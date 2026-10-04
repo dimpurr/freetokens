@@ -1,0 +1,14 @@
+[
+  {"id": "ling-3.1-flash", "name": "Ling 3.1 Flash", "maker": "inclusionAI (Ant)", "context": "262K", "image_input": "no",
+   "aa_index": {"value": 41, "date": "2026-10-04"}, "notes": null},
+  {"id": "mimo-v2.6-flash", "name": "MiMo V2.6 Flash", "maker": "Xiaomi", "context": "not checked (the Zen free tier has been capped at 200K before)", "image_input": "no",
+   "aa_index": {"value": 38, "date": "2026-10-04"}, "notes": null},
+  {"id": "longcat-2.5-preview", "name": "LongCat 2.5 Preview", "maker": "Meituan", "context": "1M", "image_input": "partial",
+   "aa_index": {"value": null, "date": "2026-10-04", "note": "not ranked (LongCat 2.0: 19)"}, "notes": "≈1.6T total / 48B active MoE; released 2026-09-25. One colour test on an image was answered wrongly."},
+  {"id": "space-bunny", "name": "Space Bunny (stealth)", "maker": "undisclosed", "context": "1M", "image_input": "yes",
+   "aa_index": {"value": null, "date": "2026-10-04", "note": "not ranked"}, "notes": "Rumoured: MiniMax family (several independent tokenizer tests), possibly M3.1 / M3.1-Flash. Some sources dispute the exact version; no official confirmation."},
+  {"id": "deepseek-v4-flash", "name": "DeepSeek V4 Flash", "maker": "DeepSeek", "context": "200K on the Zen free tier", "image_input": "no",
+   "aa_index": {"value": 34, "date": "2026-10-04"}, "notes": null},
+  {"id": "nemotron-3-ultra", "name": "Nemotron 3 Ultra (550B-A55B)", "maker": "NVIDIA", "context": "1M", "image_input": "no",
+   "aa_index": {"value": 23, "approx": true, "date": "2026-10-04"}, "notes": null}
+]

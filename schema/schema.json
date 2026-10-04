@@ -1,0 +1,63 @@
+{
+  "$comment": "Single definition of every table's fields and every legend vocabulary. build.py validates data/*.json against this file and generates the legends from it.",
+  "vocab": {
+    "channel_type": {
+      "agent_tool": {"label": "agent tool", "help": "A coding-agent product or its gateway (OpenCode Zen / Go, Command Code, …)"},
+      "router": {"label": "router", "help": "A multi-provider API router (OpenRouter, …)"},
+      "first_party": {"label": "first-party", "help": "The model maker's own API or app"}
+    },
+    "status": {
+      "live": {"label": "live", "icon": "🟢", "help": "Answering requests at the last check"},
+      "overdue": {"label": "past announced end", "icon": "🟡", "help": "Still live after its announced end date; can stop without notice"},
+      "unavailable": {"label": "listed, not answering", "icon": "⚪", "help": "Shown in the catalogue but not usable at the last check"},
+      "ended": {"label": "ended", "icon": "🔴", "help": "No longer free"}
+    },
+    "end_confidence": {
+      "official": {"label": "official", "help": "The provider published a date"},
+      "inferred": {"label": "inferred", "help": "Derived from an announced duration or a sibling channel"},
+      "none": {"label": "none", "help": "No end announced; it can still stop at any time"}
+    },
+    "check_method": {
+      "agent_run": {"label": "agent run", "help": "A real coding-agent task completed and independently verified"},
+      "api_call": {"label": "API call", "help": "A successful direct API request"},
+      "catalogue": {"label": "catalogue", "help": "Read the provider's model list, no successful call"},
+      "listing": {"label": "listing only", "help": "Read the model's web page, no call"}
+    },
+    "data_policy": {
+      "zero_retention": {"label": "zero retention, no training"},
+      "may_train": {"label": "may be logged / used for training"},
+      "unstated": {"label": "unstated", "help": "The provider says nothing"},
+      "not_checked": {"label": "not checked", "help": "We have not looked"}
+    },
+    "image_input": {
+      "yes": {"label": "yes"},
+      "partial": {"label": "accepts images, unreliable"},
+      "no": {"label": "no"},
+      "not_checked": {"label": "not checked"}
+    },
+    "event_kind": {
+      "announced": {"label": "free offer announced"},
+      "listed": {"label": "listed"},
+      "available": {"label": "became available"},
+      "end_announced": {"label": "end date announced"},
+      "limit_changed": {"label": "limit changed"},
+      "unavailable": {"label": "stopped answering"},
+      "ended": {"label": "ended"}
+    }
+  },
+  "tables": {
+    "lanes": {
+      "required": ["id", "model", "channel", "type", "model_id", "free_condition", "limits_stated", "limits_observed", "started", "ends", "data_policy", "status", "checked"],
+      "vocab_fields": {"type": "channel_type", "data_policy": "data_policy", "status": "status", "ends.confidence": "end_confidence", "checked.method": "check_method"},
+      "unknown_words": ["unstated", "not checked", "not recorded"]
+    },
+    "events": {
+      "required": ["date", "lanes", "kind", "text", "source"],
+      "vocab_fields": {"kind": "event_kind"}
+    },
+    "models": {
+      "required": ["id", "name", "maker", "context", "image_input", "aa_index"],
+      "vocab_fields": {"image_input": "image_input"}
+    }
+  }
+}
