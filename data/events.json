@@ -223,5 +223,209 @@
    "label": "AnyRouter changelog",
    "url": "https://anyrouter.dev/changelog"
   }
+ },
+ {
+  "date": "2026-09-07",
+  "lanes": [
+   "dots-3-note-preview-kilo"
+  ],
+  "kind": "listed",
+  "text": "Added to Kilo's model catalogue as \"Dots Studio: Dots3-Note Preview (free)\" at $0 per token (Kilo's own record date)",
+  "source": {
+   "label": "Kilo model page",
+   "url": "https://kilo.ai/models/dots-studio-dots-3-note-preview-free"
+  }
+ },
+ {
+  "date": "2026-04-21",
+  "lanes": [
+   "gemma-4-26b-a4b-it-kilo"
+  ],
+  "kind": "listed",
+  "text": "Added to Kilo's model catalogue as \"Google: Gemma 4 26B A4B  (free)\" at $0 per token (Kilo's own record date)",
+  "source": {
+   "label": "Kilo model page",
+   "url": "https://kilo.ai/models/google-gemma-4-26b-a4b-it-free"
+  }
+ },
+ {
+  "date": "2026-07-24",
+  "lanes": [
+   "ling-3.0-flash-kilo"
+  ],
+  "kind": "listed",
+  "text": "Added to Kilo's model catalogue as \"Ling-3.0-flash (free)\" at $0 per token (Kilo's own record date)",
+  "source": {
+   "label": "Kilo model page",
+   "url": "https://kilo.ai/models/inclusionai-ling-3-0-flash-free"
+  }
+ },
+ {
+  "date": "2026-09-07",
+  "lanes": [
+   "minimax-m2.7-kilo"
+  ],
+  "kind": "listed",
+  "text": "Added to Kilo's model catalogue as \"MiniMax: MiniMax M2.7 (free)\" at $0 per token (Kilo's own record date)",
+  "source": {
+   "label": "Kilo model page",
+   "url": "https://kilo.ai/models/minimax-minimax-m2-7-free"
+  }
+ },
+ {
+  "date": "2026-08-31",
+  "lanes": [
+   "minimax-m3-kilo"
+  ],
+  "kind": "listed",
+  "text": "Added to Kilo's model catalogue as \"MiniMax: MiniMax M3 (free)\" at $0 per token (Kilo's own record date)",
+  "source": {
+   "label": "Kilo model page",
+   "url": "https://kilo.ai/models/minimax-minimax-m3-free"
+  }
+ },
+ {
+  "date": "2026-03-12",
+  "lanes": [
+   "nemotron-3-super-120b-a12b-kilo"
+  ],
+  "kind": "listed",
+  "text": "Added to Kilo's model catalogue as \"NVIDIA: Nemotron 3 Super (free)\" at $0 per token (Kilo's own record date)",
+  "source": {
+   "label": "Kilo model page",
+   "url": "https://kilo.ai/models/nvidia-nemotron-3-super-120b-a12b-free"
+  }
+ },
+ {
+  "date": "2026-06-04",
+  "lanes": [
+   "nemotron-3-ultra-kilo"
+  ],
+  "kind": "listed",
+  "text": "Added to Kilo's model catalogue as \"NVIDIA: Nemotron 3 Ultra (free)\" at $0 per token (Kilo's own record date)",
+  "source": {
+   "label": "Kilo model page",
+   "url": "https://kilo.ai/models/nvidia-nemotron-3-ultra-550b-a55b-free"
+  }
+ },
+ {
+  "date": "2026-06-11",
+  "lanes": [
+   "nex-n2-pro-kilo"
+  ],
+  "kind": "listed",
+  "text": "Added to Kilo's model catalogue as \"Nex AGI: Nex-N2-Pro (free)\" at $0 per token (Kilo's own record date)",
+  "source": {
+   "label": "Kilo model page",
+   "url": "https://kilo.ai/models/nex-agi-nex-n2-pro-free"
+  }
+ },
+ {
+  "date": "2026-09-09",
+  "lanes": [
+   "nex-n2.5-pro-kilo"
+  ],
+  "kind": "listed",
+  "text": "Added to Kilo's model catalogue as \"Nex AGI: Nex-N2.5-Pro (free)\" at $0 per token (Kilo's own record date)",
+  "source": {
+   "label": "Kilo model page",
+   "url": "https://kilo.ai/models/nex-agi-nex-n2-5-pro-free"
+  }
+ },
+ {
+  "date": "2026-07-21",
+  "lanes": [
+   "laguna-s-2.1-kilo"
+  ],
+  "kind": "listed",
+  "text": "Added to Kilo's model catalogue as \"Poolside: Laguna S 2.1 (free)\" at $0 per token (Kilo's own record date)",
+  "source": {
+   "label": "Kilo model page",
+   "url": "https://kilo.ai/models/poolside-laguna-s-2-1-free"
+  }
+ },
+ {
+  "date": "2026-07-06",
+  "lanes": [
+   "hy3-kilo"
+  ],
+  "kind": "listed",
+  "text": "Added to Kilo's model catalogue as \"Tencent: Hy3 (free)\" at $0 per token (Kilo's own record date)",
+  "source": {
+   "label": "Kilo model page",
+   "url": "https://kilo.ai/models/tencent-hy3-free"
+  }
+ },
+ {
+  "date": "2026-04-23",
+  "lanes": [
+   "hy3-preview-kilo"
+  ],
+  "kind": "listed",
+  "text": "Added to Kilo's model catalogue as \"Tencent: Hy3 preview (free)\" at $0 per token (Kilo's own record date)",
+  "source": {
+   "label": "Kilo model page",
+   "url": "https://kilo.ai/models/tencent-hy3-preview-free"
+  }
+ },
+ {
+  "date": "2026-09-11",
+  "lanes": [
+   "ling-3.0-flash-vl-kilo"
+  ],
+  "kind": "listed",
+  "text": "Added to Kilo's model catalogue as \"inclusionAI: Ling 3.0 Flash VL (free)\" at $0 per token (Kilo's own record date)",
+  "source": {
+   "label": "Kilo model page",
+   "url": "https://kilo.ai/models/inclusionai-ling-3-0-flash-vl-free"
+  }
+ },
+ {
+  "date": "2026-10-02",
+  "lanes": [
+   "ling-3.1-flash-kilo"
+  ],
+  "kind": "listed",
+  "text": "Added to Kilo's model catalogue as \"inclusionAI: Ling 3.1 Flash (new)\" at $0 per token (Kilo's own record date)",
+  "source": {
+   "label": "Kilo model page",
+   "url": "https://kilo.ai/models/inclusionai-ling-3-1-flash"
+  }
+ },
+ {
+  "date": "2026-04-23",
+  "lanes": [
+   "ling-2.6-1t-kilo"
+  ],
+  "kind": "listed",
+  "text": "Added to Kilo's model catalogue as \"inclusionAI: Ling-2.6-1T (free)\" at $0 per token (Kilo's own record date)",
+  "source": {
+   "label": "Kilo model page",
+   "url": "https://kilo.ai/models/inclusionai-ling-2-6-1t-free"
+  }
+ },
+ {
+  "date": "2026-04-22",
+  "lanes": [
+   "ling-2.6-flash-kilo"
+  ],
+  "kind": "listed",
+  "text": "Added to Kilo's model catalogue as \"inclusionAI: Ling-2.6-flash (free)\" at $0 per token (Kilo's own record date)",
+  "source": {
+   "label": "Kilo model page",
+   "url": "https://kilo.ai/models/inclusionai-ling-2-6-flash-free"
+  }
+ },
+ {
+  "date": "2026-05-09",
+  "lanes": [
+   "ring-2.6-1t-kilo"
+  ],
+  "kind": "listed",
+  "text": "Added to Kilo's model catalogue as \"inclusionAI: Ring-2.6-1T (free)\" at $0 per token (Kilo's own record date)",
+  "source": {
+   "label": "Kilo model page",
+   "url": "https://kilo.ai/models/inclusionai-ring-2-6-1t-free"
+  }
  }
 ]

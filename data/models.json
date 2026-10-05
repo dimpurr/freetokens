@@ -76,5 +76,200 @@
    "url": "https://artificialanalysis.ai/models/nvidia-nemotron-3-ultra-550b-a55b"
   },
   "notes": null
+ },
+ {
+  "id": "dots-3-note-preview",
+  "name": "Dots3-Note Preview",
+  "maker": "Dots Studio",
+  "context": "512K",
+  "image_input": "yes",
+  "aa_index": {
+   "value": null,
+   "date": "2026-10-05",
+   "note": "not checked"
+  },
+  "notes": null
+ },
+ {
+  "id": "gemma-4-26b-a4b-it",
+  "name": "Gemma 4 26B A4B",
+  "maker": "Google",
+  "context": "262K",
+  "image_input": "yes",
+  "aa_index": {
+   "value": null,
+   "date": "2026-10-05",
+   "note": "not checked"
+  },
+  "notes": null
+ },
+ {
+  "id": "ling-3.0-flash",
+  "name": "Ling-3.0-flash",
+  "maker": "inclusionAI (Ant)",
+  "context": "262K",
+  "image_input": "no",
+  "aa_index": {
+   "value": null,
+   "date": "2026-10-05",
+   "note": "not checked"
+  },
+  "notes": null
+ },
+ {
+  "id": "minimax-m2.7",
+  "name": "MiniMax M2.7",
+  "maker": "MiniMax",
+  "context": "197K",
+  "image_input": "no",
+  "aa_index": {
+   "value": null,
+   "date": "2026-10-05",
+   "note": "not checked"
+  },
+  "notes": null
+ },
+ {
+  "id": "minimax-m3",
+  "name": "MiniMax M3",
+  "maker": "MiniMax",
+  "context": "1M",
+  "image_input": "yes",
+  "aa_index": {
+   "value": 29,
+   "date": "2026-10-05",
+   "url": "https://artificialanalysis.ai/models/minimax-m3"
+  },
+  "notes": null
+ },
+ {
+  "id": "nemotron-3-super-120b-a12b",
+  "name": "Nemotron 3 Super",
+  "maker": "NVIDIA",
+  "context": "262K",
+  "image_input": "no",
+  "aa_index": {
+   "value": null,
+   "date": "2026-10-05",
+   "note": "not checked"
+  },
+  "notes": null
+ },
+ {
+  "id": "nex-n2-pro",
+  "name": "Nex-N2-Pro",
+  "maker": "Nex AGI",
+  "context": "262K",
+  "image_input": "yes",
+  "aa_index": {
+   "value": null,
+   "date": "2026-10-05",
+   "note": "not checked"
+  },
+  "notes": null
+ },
+ {
+  "id": "nex-n2.5-pro",
+  "name": "Nex-N2.5-Pro",
+  "maker": "Nex AGI",
+  "context": "262K",
+  "image_input": "yes",
+  "aa_index": {
+   "value": null,
+   "date": "2026-10-05",
+   "note": "not checked"
+  },
+  "notes": null
+ },
+ {
+  "id": "laguna-s-2.1",
+  "name": "Laguna S 2.1",
+  "maker": "Poolside",
+  "context": "262K",
+  "image_input": "no",
+  "aa_index": {
+   "value": null,
+   "date": "2026-10-05",
+   "note": "not checked"
+  },
+  "notes": null
+ },
+ {
+  "id": "hy3",
+  "name": "Hy3",
+  "maker": "Tencent",
+  "context": "262K",
+  "image_input": "no",
+  "aa_index": {
+   "value": null,
+   "date": "2026-10-05",
+   "note": "not checked"
+  },
+  "notes": null
+ },
+ {
+  "id": "hy3-preview",
+  "name": "Hy3 preview",
+  "maker": "Tencent",
+  "context": "262K",
+  "image_input": "no",
+  "aa_index": {
+   "value": null,
+   "date": "2026-10-05",
+   "note": "not checked"
+  },
+  "notes": null
+ },
+ {
+  "id": "ling-3.0-flash-vl",
+  "name": "Ling 3.0 Flash VL",
+  "maker": "inclusionAI (Ant)",
+  "context": "262K",
+  "image_input": "yes",
+  "aa_index": {
+   "value": null,
+   "date": "2026-10-05",
+   "note": "not checked"
+  },
+  "notes": null
+ },
+ {
+  "id": "ling-2.6-1t",
+  "name": "Ling-2.6-1T",
+  "maker": "inclusionAI (Ant)",
+  "context": "262K",
+  "image_input": "no",
+  "aa_index": {
+   "value": null,
+   "date": "2026-10-05",
+   "note": "not checked"
+  },
+  "notes": null
+ },
+ {
+  "id": "ling-2.6-flash",
+  "name": "Ling-2.6-flash",
+  "maker": "inclusionAI (Ant)",
+  "context": "262K",
+  "image_input": "no",
+  "aa_index": {
+   "value": null,
+   "date": "2026-10-05",
+   "note": "not checked"
+  },
+  "notes": null
+ },
+ {
+  "id": "ring-2.6-1t",
+  "name": "Ring-2.6-1T",
+  "maker": "inclusionAI (Ant)",
+  "context": "262K",
+  "image_input": "no",
+  "aa_index": {
+   "value": null,
+   "date": "2026-10-05",
+   "note": "not checked"
+  },
+  "notes": null
  }
 ]

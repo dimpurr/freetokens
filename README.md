@@ -59,6 +59,23 @@ As of 2026-10-05.
 | Space Bunny (stealth) | AI/ML API | router | `stealth/space-bunny-alpha` | AI/ML API key; $0 input and output "while cloaked" | unstated | not measured | 2026-09-23 | — (none); "while it is cloaked", no date | not checked | 🔵 listed as free (not tested by us) | 2026-10-05 · listing only |
 | Space Bunny (stealth) | AnyRouter | router | `stealth/space-bunny-alpha` | $0 with your own key, AnyRouter credits, or its donated-key free pool | unstated | not measured | 2026-09-24 | — (none) | not checked | 🔵 listed as free (not tested by us) | 2026-10-05 · listing only |
 | Space Bunny (stealth) | BeatAPI | router | `space-bunny-alpha` | BeatAPI key; $0 input and output, "free for now" | unstated | not measured | not recorded | — (none); "the free period can end … without notice" | not checked | 🔵 listed as free (not tested by us) | 2026-10-05 · listing only |
+| Dots3-Note Preview | Kilo Code | agent tool | `dots-studio/dots-3-note-preview:free` | Kilo account; $0 input and $0 output per token on Kilo's leaderboard | unstated | not measured | 2026-09-07 | — (none) | not checked | 🔵 listed as free (not tested by us) | 2026-10-05 · listing only |
+| Gemma 4 26B A4B | Kilo Code | agent tool | `google/gemma-4-26b-a4b-it:free` | Kilo account; $0 input and $0 output per token on Kilo's leaderboard | unstated | not measured | 2026-04-21 | — (none) | not checked | 🔵 listed as free (not tested by us) | 2026-10-05 · listing only |
+| Ling-3.0-flash | Kilo Code | agent tool | `inclusionai/ling-3.0-flash:free` | Kilo account; $0 input and $0 output per token on Kilo's leaderboard | unstated | not measured | 2026-07-24 | — (none) | not checked | 🔵 listed as free (not tested by us) | 2026-10-05 · listing only |
+| MiniMax M2.7 | Kilo Code | agent tool | `minimax/minimax-m2.7:free` | Kilo account; $0 input and $0 output per token on Kilo's leaderboard | unstated | not measured | 2026-09-07 | — (none) | not checked | 🔵 listed as free (not tested by us) | 2026-10-05 · listing only |
+| MiniMax M3 | Kilo Code | agent tool | `minimax/minimax-m3:free` | Kilo account; $0 input and $0 output per token on Kilo's leaderboard | unstated | not measured | 2026-08-31 | — (none) | not checked | 🔵 listed as free (not tested by us) | 2026-10-05 · listing only |
+| Nemotron 3 Super | Kilo Code | agent tool | `nvidia/nemotron-3-super-120b-a12b:free` | Kilo account; $0 input and $0 output per token on Kilo's leaderboard | unstated | not measured | 2026-03-12 | — (none) | not checked | 🔵 listed as free (not tested by us) | 2026-10-05 · listing only |
+| Nemotron 3 Ultra (550B-A55B) | Kilo Code | agent tool | `nvidia/nemotron-3-ultra-550b-a55b:free` | Kilo account; $0 input and $0 output per token on Kilo's leaderboard | unstated | not measured | 2026-06-04 | — (none) | not checked | 🔵 listed as free (not tested by us) | 2026-10-05 · listing only |
+| Nex-N2-Pro | Kilo Code | agent tool | `nex-agi/nex-n2-pro:free` | Kilo account; $0 input and $0 output per token on Kilo's leaderboard | unstated | not measured | 2026-06-11 | — (none) | not checked | 🔵 listed as free (not tested by us) | 2026-10-05 · listing only |
+| Nex-N2.5-Pro | Kilo Code | agent tool | `nex-agi/nex-n2.5-pro:free` | Kilo account; $0 input and $0 output per token on Kilo's leaderboard | unstated | not measured | 2026-09-09 | — (none) | not checked | 🔵 listed as free (not tested by us) | 2026-10-05 · listing only |
+| Laguna S 2.1 | Kilo Code | agent tool | `poolside/laguna-s-2.1:free` | Kilo account; $0 input and $0 output per token on Kilo's leaderboard | unstated | not measured | 2026-07-21 | — (none) | not checked | 🔵 listed as free (not tested by us) | 2026-10-05 · listing only |
+| Hy3 | Kilo Code | agent tool | `tencent/hy3:free` | Kilo account; $0 input and $0 output per token on Kilo's leaderboard | unstated | not measured | 2026-07-06 | — (none) | not checked | 🔵 listed as free (not tested by us) | 2026-10-05 · listing only |
+| Hy3 preview | Kilo Code | agent tool | `tencent/hy3-preview:free` | Kilo account; $0 input and $0 output per token on Kilo's leaderboard | unstated | not measured | 2026-04-23 | — (none) | not checked | 🔵 listed as free (not tested by us) | 2026-10-05 · listing only |
+| Ling 3.0 Flash VL | Kilo Code | agent tool | `inclusionai/ling-3.0-flash-vl:free` | Kilo account; $0 input and $0 output per token on Kilo's leaderboard | unstated | not measured | 2026-09-11 | — (none) | not checked | 🔵 listed as free (not tested by us) | 2026-10-05 · listing only |
+| Ling 3.1 Flash | Kilo Code | agent tool | `inclusionai/ling-3.1-flash` | Kilo account; $0 input and $0 output per token on Kilo's leaderboard | unstated | not measured | 2026-10-02 | — (none) | not checked | 🔵 listed as free (not tested by us) | 2026-10-05 · listing only |
+| Ling-2.6-1T | Kilo Code | agent tool | `inclusionai/ling-2.6-1t:free` | Kilo account; $0 input and $0 output per token on Kilo's leaderboard | unstated | not measured | 2026-04-23 | — (none) | not checked | 🔵 listed as free (not tested by us) | 2026-10-05 · listing only |
+| Ling-2.6-flash | Kilo Code | agent tool | `inclusionai/ling-2.6-flash:free` | Kilo account; $0 input and $0 output per token on Kilo's leaderboard | unstated | not measured | 2026-04-22 | — (none) | not checked | 🔵 listed as free (not tested by us) | 2026-10-05 · listing only |
+| Ring-2.6-1T | Kilo Code | agent tool | `inclusionai/ring-2.6-1t:free` | Kilo account; $0 input and $0 output per token on Kilo's leaderboard | unstated | not measured | 2026-05-09 | — (none) | not checked | 🔵 listed as free (not tested by us) | 2026-10-05 · listing only |
 <!-- END:lanes -->
 
 Also seen but not yet tracked (unverified): Ling 3.1 Flash on Cline (reportedly free until 10-13) and on OpenCode (reportedly free from 10-02); Space Bunny on Nous Portal (announced free on Sep 25, not visible on the portal on Oct 5) and in Tencent WorkBuddy (discounted, not free, until Oct 7).
@@ -78,6 +95,7 @@ Newest first. Expected future ends are in **Ending soon** above; they are comput
 | 2026-10-04 02:45 UTC | Ling 3.1 Flash · Command Code | limit changed | Free limit raised to 300 requests/day | [Command Code](https://x.com/CommandCodeAI/status/2106576422655680856) |
 | 2026-10-04 | DeepSeek V4 Flash · OpenCode Zen | stopped answering | Shown as unavailable in the Zen catalogue | own check |
 | 2026-10-02 06:52 UTC | Space Bunny (stealth) · Freebuff | free offer announced | "We just added 3 more 100% free models … Ling 3.1 Flash, Space Bunny Alpha, Laguna S 2.1" | [Freebuff founder on X](https://x.com/jahooma/status/2105913758124286311) |
+| 2026-10-02 | Ling 3.1 Flash · Kilo Code | listed | Added to Kilo's model catalogue as "inclusionAI: Ling 3.1 Flash (new)" at $0 per token (Kilo's own record date) | [Kilo model page](https://kilo.ai/models/inclusionai-ling-3-1-flash) |
 | 2026-10-01 02:57 UTC | Space Bunny (stealth) · Command Code | end date announced | "Continues to be free … till Oct 5 on all plans" → ends 2026-10-05 | [Command Code](https://x.com/CommandCodeAI/status/2105492145033330916) |
 | 2026-09-30 20:06 UTC | Space Bunny (stealth) · OpenRouter | end date announced | "The stealth period is now extended through October 5" → ends 2026-10-05 | [OpenRouter](https://x.com/OpenRouter/status/2105388935014990311) |
 | 2026-09-30 01:10 UTC | Ling 3.1 Flash · Command Code | free offer announced | Made free in Command Code ("while it lasts") | Command Code on X (link not recorded) |
@@ -87,8 +105,24 @@ Newest first. Expected future ends are in **Ending soon** above; they are comput
 | 2026-09-23 14:31 UTC | Space Bunny (stealth) · OpenCode Go | free offer announced | Free "for the next week" → ends 2026-09-30 | [OpenCode](https://x.com/opencode/status/2102767716666941864) |
 | 2026-09-23 | Space Bunny (stealth) · AI/ML API | listed | Model page: released Sep 23, "free on AI/ML API while cloaked" | [AI/ML API model page](https://aimlapi.com/models/space-bunny-alpha) |
 | 2026-09-21 21:19 UTC | MiMo V2.6 Flash · OpenCode Zen | free offer announced | Free "for the next week" → ends 2026-09-28 | OpenCode on X (link not recorded) |
+| 2026-09-11 | Ling 3.0 Flash VL · Kilo Code | listed | Added to Kilo's model catalogue as "inclusionAI: Ling 3.0 Flash VL (free)" at $0 per token (Kilo's own record date) | [Kilo model page](https://kilo.ai/models/inclusionai-ling-3-0-flash-vl-free) |
+| 2026-09-09 | Nex-N2.5-Pro · Kilo Code | listed | Added to Kilo's model catalogue as "Nex AGI: Nex-N2.5-Pro (free)" at $0 per token (Kilo's own record date) | [Kilo model page](https://kilo.ai/models/nex-agi-nex-n2-5-pro-free) |
+| 2026-09-07 | Dots3-Note Preview · Kilo Code | listed | Added to Kilo's model catalogue as "Dots Studio: Dots3-Note Preview (free)" at $0 per token (Kilo's own record date) | [Kilo model page](https://kilo.ai/models/dots-studio-dots-3-note-preview-free) |
+| 2026-09-07 | MiniMax M2.7 · Kilo Code | listed | Added to Kilo's model catalogue as "MiniMax: MiniMax M2.7 (free)" at $0 per token (Kilo's own record date) | [Kilo model page](https://kilo.ai/models/minimax-minimax-m2-7-free) |
+| 2026-08-31 | MiniMax M3 · Kilo Code | listed | Added to Kilo's model catalogue as "MiniMax: MiniMax M3 (free)" at $0 per token (Kilo's own record date) | [Kilo model page](https://kilo.ai/models/minimax-minimax-m3-free) |
 | 2026-08-16 | DeepSeek V4 Flash · OpenCode Zen | became available | Free tier back in the catalogue (HTTP 200) | own check |
+| 2026-07-24 | Ling-3.0-flash · Kilo Code | listed | Added to Kilo's model catalogue as "Ling-3.0-flash (free)" at $0 per token (Kilo's own record date) | [Kilo model page](https://kilo.ai/models/inclusionai-ling-3-0-flash-free) |
+| 2026-07-21 | Laguna S 2.1 · Kilo Code | listed | Added to Kilo's model catalogue as "Poolside: Laguna S 2.1 (free)" at $0 per token (Kilo's own record date) | [Kilo model page](https://kilo.ai/models/poolside-laguna-s-2-1-free) |
+| 2026-07-06 | Hy3 · Kilo Code | listed | Added to Kilo's model catalogue as "Tencent: Hy3 (free)" at $0 per token (Kilo's own record date) | [Kilo model page](https://kilo.ai/models/tencent-hy3-free) |
+| 2026-06-11 | Nex-N2-Pro · Kilo Code | listed | Added to Kilo's model catalogue as "Nex AGI: Nex-N2-Pro (free)" at $0 per token (Kilo's own record date) | [Kilo model page](https://kilo.ai/models/nex-agi-nex-n2-pro-free) |
+| 2026-06-04 | Nemotron 3 Ultra (550B-A55B) · Kilo Code | listed | Added to Kilo's model catalogue as "NVIDIA: Nemotron 3 Ultra (free)" at $0 per token (Kilo's own record date) | [Kilo model page](https://kilo.ai/models/nvidia-nemotron-3-ultra-550b-a55b-free) |
 | 2026-06 | Nemotron 3 Ultra (550B-A55B) · OpenRouter | listed | Listed as free on OpenRouter | OpenRouter (link not recorded) |
+| 2026-05-09 | Ring-2.6-1T · Kilo Code | listed | Added to Kilo's model catalogue as "inclusionAI: Ring-2.6-1T (free)" at $0 per token (Kilo's own record date) | [Kilo model page](https://kilo.ai/models/inclusionai-ring-2-6-1t-free) |
+| 2026-04-23 | Hy3 preview · Kilo Code | listed | Added to Kilo's model catalogue as "Tencent: Hy3 preview (free)" at $0 per token (Kilo's own record date) | [Kilo model page](https://kilo.ai/models/tencent-hy3-preview-free) |
+| 2026-04-23 | Ling-2.6-1T · Kilo Code | listed | Added to Kilo's model catalogue as "inclusionAI: Ling-2.6-1T (free)" at $0 per token (Kilo's own record date) | [Kilo model page](https://kilo.ai/models/inclusionai-ling-2-6-1t-free) |
+| 2026-04-22 | Ling-2.6-flash · Kilo Code | listed | Added to Kilo's model catalogue as "inclusionAI: Ling-2.6-flash (free)" at $0 per token (Kilo's own record date) | [Kilo model page](https://kilo.ai/models/inclusionai-ling-2-6-flash-free) |
+| 2026-04-21 | Gemma 4 26B A4B · Kilo Code | listed | Added to Kilo's model catalogue as "Google: Gemma 4 26B A4B  (free)" at $0 per token (Kilo's own record date) | [Kilo model page](https://kilo.ai/models/google-gemma-4-26b-a4b-it-free) |
+| 2026-03-12 | Nemotron 3 Super · Kilo Code | listed | Added to Kilo's model catalogue as "NVIDIA: Nemotron 3 Super (free)" at $0 per token (Kilo's own record date) | [Kilo model page](https://kilo.ai/models/nvidia-nemotron-3-super-120b-a12b-free) |
 <!-- END:timeline -->
 
 ## 3 · Models
@@ -99,11 +133,26 @@ Benchmarks are kept here once per model rather than repeated on every lane. **AA
 <!-- generated by build.py from data/ — do not edit by hand -->
 | Model | Free on | Events | AA index | Context | Image input | Maker | Notes |
 |---|---|---|---|---|---|---|---|
-| [Ling 3.1 Flash](https://freetokens.fyi/models/ling-3.1-flash.html) | 🟢 Command Code (no end announced) | 2 | 41 (2026-10-05) | 262K | no | inclusionAI (Ant) | — |
+| [Ling 3.1 Flash](https://freetokens.fyi/models/ling-3.1-flash.html) | 🟢 Command Code (no end announced) · 🔵 Kilo Code (no end announced) | 3 | 41 (2026-10-05) | 262K | no | inclusionAI (Ant) | — |
 | [MiMo V2.6 Flash](https://freetokens.fyi/models/mimo-v2.6-flash.html) | 🟡 OpenCode Zen (past announced end 2026-09-28) | 1 | 38 (2026-10-05) | not checked (the Zen free tier has been capped at 200K before) | no | Xiaomi | — |
-| [Nemotron 3 Ultra (550B-A55B)](https://freetokens.fyi/models/nemotron-3-ultra.html) | 🟢 OpenRouter (no end announced) | 1 | 23 (2026-10-05) | 1M | no | NVIDIA | — |
+| [MiniMax M3](https://freetokens.fyi/models/minimax-m3.html) | 🔵 Kilo Code (no end announced) | 1 | 29 (2026-10-05) | 1M | yes | MiniMax | — |
+| [Nemotron 3 Ultra (550B-A55B)](https://freetokens.fyi/models/nemotron-3-ultra.html) | 🟢 OpenRouter (no end announced) · 🔵 Kilo Code (no end announced) | 2 | 23 (2026-10-05) | 1M | no | NVIDIA | — |
 | [LongCat 2.5 Preview](https://freetokens.fyi/models/longcat-2.5-preview.html) | 🟢 OpenCode Go (ends 2026-10-10) | 1 | not ranked (LongCat 2.0: 19) (2026-10-04) | 1M | accepts images, unreliable | Meituan | ≈1.6T total / 48B active MoE; released 2026-09-25. One colour test on an image was answered wrongly. |
 | [Space Bunny (stealth)](https://freetokens.fyi/models/space-bunny.html) | 🟡 OpenCode Go (ends 2026-10-05) · 🔴 Command Code (ended 2026-10-05) · 🔴 OpenRouter (ended 2026-10-05) · 🔵 OpenCode Zen (no end announced) · 🔵 Kilo Code (ends 2026-10-05) · 🔵 Freebuff (no end announced) · 🔵 AI/ML API (no end announced) · 🔵 AnyRouter (no end announced) · 🔵 BeatAPI (no end announced) | 11 | not ranked (2026-10-04) | 1M | yes | undisclosed | Rumoured: MiniMax family (several independent tokenizer tests), possibly M3.1 / M3.1-Flash. Some sources dispute the exact version; no official confirmation. |
+| [Dots3-Note Preview](https://freetokens.fyi/models/dots-3-note-preview.html) | 🔵 Kilo Code (no end announced) | 1 | not checked (2026-10-05) | 512K | yes | Dots Studio | — |
+| [Gemma 4 26B A4B](https://freetokens.fyi/models/gemma-4-26b-a4b-it.html) | 🔵 Kilo Code (no end announced) | 1 | not checked (2026-10-05) | 262K | yes | Google | — |
+| [Ling-3.0-flash](https://freetokens.fyi/models/ling-3.0-flash.html) | 🔵 Kilo Code (no end announced) | 1 | not checked (2026-10-05) | 262K | no | inclusionAI (Ant) | — |
+| [MiniMax M2.7](https://freetokens.fyi/models/minimax-m2.7.html) | 🔵 Kilo Code (no end announced) | 1 | not checked (2026-10-05) | 197K | no | MiniMax | — |
+| [Nemotron 3 Super](https://freetokens.fyi/models/nemotron-3-super-120b-a12b.html) | 🔵 Kilo Code (no end announced) | 1 | not checked (2026-10-05) | 262K | no | NVIDIA | — |
+| [Nex-N2-Pro](https://freetokens.fyi/models/nex-n2-pro.html) | 🔵 Kilo Code (no end announced) | 1 | not checked (2026-10-05) | 262K | yes | Nex AGI | — |
+| [Nex-N2.5-Pro](https://freetokens.fyi/models/nex-n2.5-pro.html) | 🔵 Kilo Code (no end announced) | 1 | not checked (2026-10-05) | 262K | yes | Nex AGI | — |
+| [Laguna S 2.1](https://freetokens.fyi/models/laguna-s-2.1.html) | 🔵 Kilo Code (no end announced) | 1 | not checked (2026-10-05) | 262K | no | Poolside | — |
+| [Hy3](https://freetokens.fyi/models/hy3.html) | 🔵 Kilo Code (no end announced) | 1 | not checked (2026-10-05) | 262K | no | Tencent | — |
+| [Hy3 preview](https://freetokens.fyi/models/hy3-preview.html) | 🔵 Kilo Code (no end announced) | 1 | not checked (2026-10-05) | 262K | no | Tencent | — |
+| [Ling 3.0 Flash VL](https://freetokens.fyi/models/ling-3.0-flash-vl.html) | 🔵 Kilo Code (no end announced) | 1 | not checked (2026-10-05) | 262K | yes | inclusionAI (Ant) | — |
+| [Ling-2.6-1T](https://freetokens.fyi/models/ling-2.6-1t.html) | 🔵 Kilo Code (no end announced) | 1 | not checked (2026-10-05) | 262K | no | inclusionAI (Ant) | — |
+| [Ling-2.6-flash](https://freetokens.fyi/models/ling-2.6-flash.html) | 🔵 Kilo Code (no end announced) | 1 | not checked (2026-10-05) | 262K | no | inclusionAI (Ant) | — |
+| [Ring-2.6-1T](https://freetokens.fyi/models/ring-2.6-1t.html) | 🔵 Kilo Code (no end announced) | 1 | not checked (2026-10-05) | 262K | no | inclusionAI (Ant) | — |
 | [DeepSeek V4 Flash](https://freetokens.fyi/models/deepseek-v4-flash.html) | ⚪ OpenCode Zen (not answering) | 2 | 34 (2026-10-05) | 200K on the Zen free tier | no | DeepSeek | The AA page scores the 0731 release; the Zen free tier may serve a different snapshot. |
 <!-- END:models -->
 
@@ -115,6 +164,7 @@ Each channel links to its own page. Everything here is derived from the lanes ab
 <!-- generated by build.py from data/ — do not edit by hand -->
 | Channel | Type | Free now | Next end | Models |
 |---|---|---|---|---|
+| [Kilo Code](https://freetokens.fyi/channels/kilo-code.html) | agent tool | 18 / 18 | Space Bunny (stealth) · 2026-10-05 (official) | 🔵 Space Bunny (stealth) · 🔵 Dots3-Note Preview · 🔵 Gemma 4 26B A4B · 🔵 Ling-3.0-flash · 🔵 MiniMax M2.7 · 🔵 MiniMax M3 · 🔵 Nemotron 3 Super · 🔵 Nemotron 3 Ultra (550B-A55B) · 🔵 Nex-N2-Pro · 🔵 Nex-N2.5-Pro · 🔵 Laguna S 2.1 · 🔵 Hy3 · 🔵 Hy3 preview · 🔵 Ling 3.0 Flash VL · 🔵 Ling 3.1 Flash · 🔵 Ling-2.6-1T · 🔵 Ling-2.6-flash · 🔵 Ring-2.6-1T |
 | [OpenCode Go](https://freetokens.fyi/channels/opencode-go.html) | agent tool | 2 / 2 | Space Bunny (stealth) · 2026-10-05 (inferred) | 🟢 LongCat 2.5 Preview · 🟡 Space Bunny (stealth) |
 | [OpenCode Zen](https://freetokens.fyi/channels/opencode-zen.html) | agent tool | 2 / 3 | none announced | 🟡 MiMo V2.6 Flash · ⚪ DeepSeek V4 Flash · 🔵 Space Bunny (stealth) |
 | [AI/ML API](https://freetokens.fyi/channels/ai-ml-api.html) | router | 1 / 1 | none announced | 🔵 Space Bunny (stealth) |
@@ -122,7 +172,6 @@ Each channel links to its own page. Everything here is derived from the lanes ab
 | [BeatAPI](https://freetokens.fyi/channels/beatapi.html) | router | 1 / 1 | none announced | 🔵 Space Bunny (stealth) |
 | [Command Code](https://freetokens.fyi/channels/command-code.html) | agent tool | 1 / 2 | none announced | 🟢 Ling 3.1 Flash · 🔴 Space Bunny (stealth) |
 | [Freebuff](https://freetokens.fyi/channels/freebuff.html) | agent tool | 1 / 1 | none announced | 🔵 Space Bunny (stealth) |
-| [Kilo Code](https://freetokens.fyi/channels/kilo-code.html) | agent tool | 1 / 1 | Space Bunny (stealth) · 2026-10-05 (official) | 🔵 Space Bunny (stealth) |
 | [OpenRouter](https://freetokens.fyi/channels/openrouter.html) | router | 1 / 2 | none announced | 🔴 Space Bunny (stealth) · 🟢 Nemotron 3 Ultra (550B-A55B) |
 <!-- END:channels -->
 

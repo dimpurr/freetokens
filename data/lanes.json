@@ -392,5 +392,447 @@
    "date": "2026-10-05",
    "method": "listing"
   }
+ },
+ {
+  "id": "dots-3-note-preview-kilo",
+  "model": "dots-3-note-preview",
+  "channel": "Kilo Code",
+  "type": "agent_tool",
+  "model_id": "dots-studio/dots-3-note-preview:free",
+  "free_condition": "Kilo account; $0 input and $0 output per token on Kilo's leaderboard",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-09-07"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-05",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "gemma-4-26b-a4b-it-kilo",
+  "model": "gemma-4-26b-a4b-it",
+  "channel": "Kilo Code",
+  "type": "agent_tool",
+  "model_id": "google/gemma-4-26b-a4b-it:free",
+  "free_condition": "Kilo account; $0 input and $0 output per token on Kilo's leaderboard",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-04-21"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-05",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "ling-3.0-flash-kilo",
+  "model": "ling-3.0-flash",
+  "channel": "Kilo Code",
+  "type": "agent_tool",
+  "model_id": "inclusionai/ling-3.0-flash:free",
+  "free_condition": "Kilo account; $0 input and $0 output per token on Kilo's leaderboard",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-07-24"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-05",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "minimax-m2.7-kilo",
+  "model": "minimax-m2.7",
+  "channel": "Kilo Code",
+  "type": "agent_tool",
+  "model_id": "minimax/minimax-m2.7:free",
+  "free_condition": "Kilo account; $0 input and $0 output per token on Kilo's leaderboard",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-09-07"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-05",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "minimax-m3-kilo",
+  "model": "minimax-m3",
+  "channel": "Kilo Code",
+  "type": "agent_tool",
+  "model_id": "minimax/minimax-m3:free",
+  "free_condition": "Kilo account; $0 input and $0 output per token on Kilo's leaderboard",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-08-31"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-05",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "nemotron-3-super-120b-a12b-kilo",
+  "model": "nemotron-3-super-120b-a12b",
+  "channel": "Kilo Code",
+  "type": "agent_tool",
+  "model_id": "nvidia/nemotron-3-super-120b-a12b:free",
+  "free_condition": "Kilo account; $0 input and $0 output per token on Kilo's leaderboard",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-03-12"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-05",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "nemotron-3-ultra-kilo",
+  "model": "nemotron-3-ultra",
+  "channel": "Kilo Code",
+  "type": "agent_tool",
+  "model_id": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "free_condition": "Kilo account; $0 input and $0 output per token on Kilo's leaderboard",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-06-04"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-05",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "nex-n2-pro-kilo",
+  "model": "nex-n2-pro",
+  "channel": "Kilo Code",
+  "type": "agent_tool",
+  "model_id": "nex-agi/nex-n2-pro:free",
+  "free_condition": "Kilo account; $0 input and $0 output per token on Kilo's leaderboard",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-06-11"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-05",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "nex-n2.5-pro-kilo",
+  "model": "nex-n2.5-pro",
+  "channel": "Kilo Code",
+  "type": "agent_tool",
+  "model_id": "nex-agi/nex-n2.5-pro:free",
+  "free_condition": "Kilo account; $0 input and $0 output per token on Kilo's leaderboard",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-09-09"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-05",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "laguna-s-2.1-kilo",
+  "model": "laguna-s-2.1",
+  "channel": "Kilo Code",
+  "type": "agent_tool",
+  "model_id": "poolside/laguna-s-2.1:free",
+  "free_condition": "Kilo account; $0 input and $0 output per token on Kilo's leaderboard",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-07-21"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-05",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "hy3-kilo",
+  "model": "hy3",
+  "channel": "Kilo Code",
+  "type": "agent_tool",
+  "model_id": "tencent/hy3:free",
+  "free_condition": "Kilo account; $0 input and $0 output per token on Kilo's leaderboard",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-07-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-05",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "hy3-preview-kilo",
+  "model": "hy3-preview",
+  "channel": "Kilo Code",
+  "type": "agent_tool",
+  "model_id": "tencent/hy3-preview:free",
+  "free_condition": "Kilo account; $0 input and $0 output per token on Kilo's leaderboard",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-04-23"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-05",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "ling-3.0-flash-vl-kilo",
+  "model": "ling-3.0-flash-vl",
+  "channel": "Kilo Code",
+  "type": "agent_tool",
+  "model_id": "inclusionai/ling-3.0-flash-vl:free",
+  "free_condition": "Kilo account; $0 input and $0 output per token on Kilo's leaderboard",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-09-11"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-05",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "ling-3.1-flash-kilo",
+  "model": "ling-3.1-flash",
+  "channel": "Kilo Code",
+  "type": "agent_tool",
+  "model_id": "inclusionai/ling-3.1-flash",
+  "free_condition": "Kilo account; $0 input and $0 output per token on Kilo's leaderboard",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-10-02"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-05",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "ling-2.6-1t-kilo",
+  "model": "ling-2.6-1t",
+  "channel": "Kilo Code",
+  "type": "agent_tool",
+  "model_id": "inclusionai/ling-2.6-1t:free",
+  "free_condition": "Kilo account; $0 input and $0 output per token on Kilo's leaderboard",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-04-23"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-05",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "ling-2.6-flash-kilo",
+  "model": "ling-2.6-flash",
+  "channel": "Kilo Code",
+  "type": "agent_tool",
+  "model_id": "inclusionai/ling-2.6-flash:free",
+  "free_condition": "Kilo account; $0 input and $0 output per token on Kilo's leaderboard",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-04-22"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-05",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "ring-2.6-1t-kilo",
+  "model": "ring-2.6-1t",
+  "channel": "Kilo Code",
+  "type": "agent_tool",
+  "model_id": "inclusionai/ring-2.6-1t:free",
+  "free_condition": "Kilo account; $0 input and $0 output per token on Kilo's leaderboard",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-05-09"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-05",
+   "method": "listing"
+  }
  }
 ]
