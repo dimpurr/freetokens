@@ -117,6 +117,8 @@ def validate(lanes, events, models):
         ann = e_.get("announced")
         if l["status"] == "live" and ann and day(ann) < checked:
             errs.append(f"{w}: status 'live' but announced end {ann} is before the check on {checked}; use 'overdue'")
+        if l["status"] == "ended" and not any(e["kind"] == "ended" for e in evs):
+            errs.append(f"{w}: status 'ended' needs an 'ended' event with the date it stopped")
         if l["status"] == "overdue" and not (ann and day(ann) < checked):
             errs.append(f"{w}: status 'overdue' needs an announced end before the check date")
         for f in ("limits_stated",):

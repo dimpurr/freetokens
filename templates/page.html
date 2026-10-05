@@ -257,7 +257,10 @@ $("stamp").innerHTML = `<span>Data as of <b>${esc(D.built)}</b></span><span>Toda
     let segs = "";
     const from = s ?? t0;
     if (l.status === "unavailable" || l.status === "ended") {
-      segs += `<div class="seg past unavailable" style="left:${pct(from)};width:calc(${pct(todayT)} - ${pct(from)})"></div>`;
+      const endEv = D.events.find((e) => e.kind === "ended" && e.lanes.includes(l.id));
+      const stop = endEv ? pd(endEv.date).t : todayT;
+      segs += `<div class="seg past unavailable" style="left:${pct(from)};width:calc(${pct(stop)} - ${pct(from)})"></div>`;
+      if (endEv) segs += `<div class="note" style="left:calc(${pct(stop)} + 6px)">ended ${esc(fd(endEv.date).slice(5, 16))}</div>`;
     } else {
       const pastEnd = l.status === "overdue" && ann ? ann : todayT;
       segs += `<div class="seg past" style="left:${pct(from)};width:calc(${pct(Math.min(pastEnd, todayT))} - ${pct(from)})"></div>`;
