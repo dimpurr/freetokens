@@ -638,7 +638,9 @@ def site_extras(pages, lanes, events, models, today):
             f'  <id>{SITE}/feed.xml</id>\n  <updated>{today.isoformat()}T00:00:00Z</updated>\n  <author><name>freetokens</name></author>\n'
             + "\n".join(entries) + "\n</feed>\n")
     return {"sitemap.xml": sitemap, "robots.txt": robots, "favicon.svg": FAVICON_SVG + "\n", "404.html": notfound,
-            "llms.txt": llms, "feed.xml": feed, f"{INDEXNOW_KEY}.txt": INDEXNOW_KEY + "\n"}
+            "llms.txt": llms, "feed.xml": feed, f"{INDEXNOW_KEY}.txt": INDEXNOW_KEY + "\n",
+            # Bing Webmaster Tools ownership file (site verification, 2026-10-06)
+            "BingSiteAuth.xml": '<?xml version="1.0"?>\n<users>\n\t<user>440E125693FE785938B213DB73F48541</user>\n</users>\n'}
 
 
 def prerender(dist):
