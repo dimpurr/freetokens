@@ -78,6 +78,9 @@ def validate(lanes, events, models):
                 if v == "":
                     errs.append(f"{where}: {k} is an empty string; write the unknown explicitly")
 
+    for m in models:
+        if not re.fullmatch(r"[a-z0-9][a-z0-9.-]*", m["id"]):
+            errs.append(f"models[{m['id']}]: id must be lowercase letters, digits, '.' or '-' (it becomes a URL)")
     model_ids = {m["id"] for m in models}
     lane_ids = {l["id"] for l in lanes}
     for coll, name in ((lanes, "lanes"), (models, "models")):
@@ -262,7 +265,7 @@ def md_models(models, lanes, events):
         a = m["aa_index"]
         aa = (("≈ " if a.get("approx") else "") + str(a["value"])) if a.get("value") is not None else a.get("note", "not ranked")
         n = sum(1 for e in events if any(next(l for l in lanes if l["id"] == i)["model"] == m["id"] for i in e["lanes"]))
-        rows.append([m["name"], free_on(m), str(n), f"{aa} ({a['date']})", m["context"], label("image_input", m["image_input"]), m["maker"], m.get("notes") or "—"])
+        rows.append([f"[{m['name']}]({SITE}/models/{m['id']}.html)", free_on(m), str(n), f"{aa} ({a['date']})", m["context"], label("image_input", m["image_input"]), m["maker"], m.get("notes") or "—"])
     return md_table(["Model", "Free on", "Events", "AA index", "Context", "Image input", "Maker", "Notes"], rows)
 
 
@@ -277,11 +280,20 @@ def render_readme(text, sections):
 
 # ---------- html ----------
 
-def render_page(lanes, events, models, today):
-    payload = {"lanes": lanes, "events": events, "models": models, "vocab": VOCAB, "built": today.isoformat()}
+SITE = "https://freetokens.fyi"
+HEAD = """<title>{title}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+"""
+
+
+def render_page(template, title, payload, root):
+    t = ROOT / "templates"
     data = json.dumps(payload, ensure_ascii=False).replace("</", "<\\/")
-    tpl = (ROOT / "templates/page.html").read_text()
-    return tpl.replace("/*__DATA__*/null", data)
+    common = (t / "common.js").read_text()
+    body = (t / template).read_text().replace("__ROOT__", root).replace("/*__COMMON__*/", f"const D = {data};\n" + common)
+    return HEAD.format(title=html.escape(title)) + "<style>\n" + (t / "style.css").read_text() + "</style>\n\n" + body
 
 
 def wrap_full(fragment):
@@ -317,21 +329,38 @@ def main():
         "timeline": md_events(events, lanes, models),
         "models": md_models(models, lanes, events),
     })
-    fragment = render_page(lanes, events, models, today)
+    base = {"lanes": lanes, "events": events, "models": models, "vocab": VOCAB, "built": today.isoformat()}
+    fragment = render_page("home.html", "freetokens", dict(base, root=""), "")
     outputs = {readme_path: readme, ROOT / "index.html": wrap_full(fragment)}
+    model_pages = {}
+    for m in models:
+        frag = render_page("model.html", f"{m['name']} · freetokens", dict(base, root="../", model=m["id"]), "../")
+        model_pages[m["id"]] = frag
+        outputs[ROOT / "models" / f"{m['id']}.html"] = wrap_full(frag)
+    stray = [p for p in (ROOT / "models").glob("*.html") if p not in outputs] if (ROOT / "models").exists() else []
 
     if a.check:
-        stale = [p.name for p, c in outputs.items() if not p.exists() or p.read_text() != c]
+        stale = [str(p.relative_to(ROOT)) for p, c in outputs.items() if not p.exists() or p.read_text() != c]
+        stale += [f"{p.relative_to(ROOT)} (no such model)" for p in stray]
         if stale:
             print("✗ out of date (run python3 build.py): " + ", ".join(stale), file=sys.stderr)
             sys.exit(1)
         print("✓ data valid, generated files up to date")
         return
+    (ROOT / "models").mkdir(exist_ok=True)
+    for p in stray:
+        p.unlink()
     for p, c in outputs.items():
         p.write_text(c)
     if a.fragment:
-        Path(a.fragment).write_text(fragment)
-    print(f"✓ {len(lanes)} lanes · {len(events)} events · {len(models)} models → README.md, index.html")
+        # for hosts that add their own <html>/<head>: the home page as a fragment, model pages as full documents beside it
+        out = Path(a.fragment)
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(fragment)
+        (out.parent / "models").mkdir(exist_ok=True)
+        for mid in model_pages:
+            (out.parent / "models" / f"{mid}.html").write_text(outputs[ROOT / "models" / f"{mid}.html"])
+    print(f"✓ {len(lanes)} lanes · {len(events)} events · {len(models)} models → README.md, index.html, models/*.html")
 
 
 if __name__ == "__main__":
