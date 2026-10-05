@@ -71,6 +71,8 @@ header.intro p { margin: 0; max-width: 66ch; color: var(--muted); }
 .st.live { color: var(--live); }
 .st.overdue { color: var(--overdue); }
 .st.overdue::before { background: transparent; border: 2px solid currentColor; width: 9px; height: 9px; }
+.st.listed { color: var(--accent); }
+.st.listed::before { background: transparent; border: 2px dashed currentColor; width: 9px; height: 9px; }
 .st.unavailable { color: var(--off); }
 .st.unavailable::before { background: transparent; border: 2px solid currentColor; }
 .st.ended { color: var(--ended); }

@@ -54,7 +54,7 @@ const confHTML = (k) => k === "none" ? "" : `<span class="conf ${k}">${esc(lab("
 const models = Object.fromEntries(D.models.map((m) => [m.id, m]));
 const lanes = Object.fromEntries(D.lanes.map((l) => [l.id, l]));
 const effEnd = (l) => l.ends.expected || l.ends.announced;
-const isFree = (l) => l.status === "live" || l.status === "overdue";
+const isFree = (l) => l.status === "live" || l.status === "overdue" || l.status === "listed";
 const slug = (name) => name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 const modelHref = (id) => `${D.root}models/${encodeURIComponent(id)}.html`;
 const channelHref = (name) => `${D.root}channels/${slug(name)}.html`;
@@ -162,7 +162,9 @@ function renderChart(el, rows, fit = false) {
     const ann = l.ends.announced ? pd(l.ends.announced).t : null;
     const end = effEnd(l) ? pd(effEnd(l)).t : null;
     const conf = l.ends.confidence;
-    const from = s ?? t0;
+    /* unknown start: begin at the model's earliest recorded start, never at the chart's edge */
+    const sib = D.lanes.filter((x) => x.model === l.model && x.started.date).map((x) => pd(x.started.date).t);
+    const from = s ?? (sib.length ? Math.min(...sib) : t0);
     let segs = "";
     if (l.status === "unavailable" || l.status === "ended") {
       const e = endedEvent(l), stop = e ? pd(e.date).t : todayT;
@@ -184,7 +186,7 @@ function renderChart(el, rows, fit = false) {
       }
     }
     if (s && s < t0) segs += `<div class="since">◀ since ${esc(absDate(l.started.date))}</div>`;
-    if (!s) segs += `<div class="since">start not recorded</div>`;
+    if (!s) segs += `<div class="since" style="left:calc(${pct(from)} + 4px)">start not recorded</div>`;
     for (const e of D.events.filter((e) => e.lanes.includes(l.id))) {
       const t = pd(e.date).t; if (t < t0) continue;
       const tip = `${absDate(e.date)}: ${lab("event_kind", e.kind)}. ${e.text}`;

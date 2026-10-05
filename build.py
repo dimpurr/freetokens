@@ -278,7 +278,7 @@ def md_models(models, lanes, events):
         return " · ".join(out) or "—"
 
     def live(m):
-        return any(l["model"] == m["id"] and l["status"] in ("live", "overdue") for l in lanes)
+        return any(l["model"] == m["id"] and l["status"] in ("live", "overdue", "listed") for l in lanes)
 
     rows = []
     for m in sorted(models, key=lambda m: (not live(m), -(m["aa_index"].get("value") or -1))):
@@ -294,7 +294,7 @@ def md_channels(lanes, models, today):
     rows = []
     for c in sorted({l["channel"] for l in lanes}):
         ls = [l for l in lanes if l["channel"] == c]
-        free = [l for l in ls if l["status"] in ("live", "overdue")]
+        free = [l for l in ls if l["status"] in ("live", "overdue", "listed")]
         up = sorted((l for l in free if effective_end(l) and day(effective_end(l)) >= today), key=lambda l: day(effective_end(l)))
         nxt = f"{mname[up[0]['model']]} · {fmt_date(effective_end(up[0]))[:10]} ({label('end_confidence', up[0]['ends']['confidence'])})" if up else "none announced"
         models_ = " · ".join(f"{VOCAB['status'][l['status']]['icon']} {mname[l['model']]}" for l in ls)

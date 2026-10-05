@@ -64,7 +64,7 @@ document.title = `${M.name} · freetokens`;
 
 /* where it's free now */
 (function () {
-  const order = { live: 0, overdue: 1, unavailable: 2, ended: 3 };
+  const order = { live: 0, overdue: 1, listed: 2, unavailable: 3, ended: 4 };
   const rows = [...ML].sort((a, b) => order[a.status] - order[b.status]);
   $("now-sub").textContent = `${rows.length} channel${rows.length === 1 ? "" : "s"} tracked`;
   $("now").innerHTML = rows.map((l) => {

@@ -155,25 +155,25 @@
   "model": "space-bunny",
   "channel": "OpenRouter",
   "type": "router",
-  "model_id": "not recorded",
+  "model_id": "stealth/space-bunny-alpha",
   "free_condition": "OpenRouter account",
   "limits_stated": {
    "text": "not checked"
   },
   "limits_observed": null,
   "started": {
-   "date": "2026-09-23T14:48Z"
+   "date": "2026-09-23T14:49Z"
   },
   "ends": {
    "announced": "2026-10-05",
    "expected": null,
    "confidence": "official",
-   "note": "listing banner \"Going away October 5\""
+   "note": "extended to Oct 5 on Sep 30; OpenRouter announced the end on Oct 5, 16:02 UTC"
   },
   "data_policy": "not_checked",
-  "status": "live",
+  "status": "ended",
   "checked": {
-   "date": "2026-10-04",
+   "date": "2026-10-05",
    "method": "listing"
   }
  },
@@ -228,6 +228,169 @@
   "checked": {
    "date": "2026-07-25",
    "method": "api_call"
+  }
+ },
+ {
+  "id": "bunny-zen",
+  "model": "space-bunny",
+  "channel": "OpenCode Zen",
+  "type": "agent_tool",
+  "model_id": "opencode/space-bunny-free",
+  "free_condition": "No key; \"free on OpenCode for a limited time\"",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none",
+   "note": "docs say \"limited time\", no date"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-05",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "bunny-kilo",
+  "model": "space-bunny",
+  "channel": "Kilo Code",
+  "type": "agent_tool",
+  "model_id": "stealth/space-bunny-alpha",
+  "free_condition": "Kilo account; $0 per token on the model page",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded"
+  },
+  "ends": {
+   "announced": "2026-10-05",
+   "expected": null,
+   "confidence": "official",
+   "note": "model name on Kilo reads \"Space Bunny Alpha (retires Oct 5)\""
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-05",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "bunny-freebuff",
+  "model": "space-bunny",
+  "channel": "Freebuff",
+  "type": "agent_tool",
+  "model_id": "not recorded",
+  "free_condition": "Free coding agent: 150 Freebucks a day across its free models, no subscription (the page says the provider retains prompts)",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-10-02T06:52Z"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "may_train",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-05",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "bunny-aimlapi",
+  "model": "space-bunny",
+  "channel": "AI/ML API",
+  "type": "router",
+  "model_id": "stealth/space-bunny-alpha",
+  "free_condition": "AI/ML API key; $0 input and output \"while cloaked\"",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-09-23"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none",
+   "note": "\"while it is cloaked\", no date"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-05",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "bunny-anyrouter",
+  "model": "space-bunny",
+  "channel": "AnyRouter",
+  "type": "router",
+  "model_id": "stealth/space-bunny-alpha",
+  "free_condition": "$0 with your own key, AnyRouter credits, or its donated-key free pool",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-09-24"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-05",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "bunny-beatapi",
+  "model": "space-bunny",
+  "channel": "BeatAPI",
+  "type": "router",
+  "model_id": "space-bunny-alpha",
+  "free_condition": "BeatAPI key; $0 input and output, \"free for now\"",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none",
+   "note": "\"the free period can end … without notice\""
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-05",
+   "method": "listing"
   }
  }
 ]

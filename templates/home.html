@@ -153,7 +153,7 @@ $("stamp").innerHTML = stamp() + `<span><b>${D.lanes.length}</b> lanes · <b>${D
 
 /* chart */
 (function () {
-  const order = { overdue: 0, live: 1, unavailable: 2, ended: 3 };
+  const order = { overdue: 0, live: 1, listed: 2, unavailable: 3, ended: 4 };
   const rows = [...D.lanes].sort((a, b) => {
     const ea = effEnd(a) ? pd(effEnd(a)).t : Infinity, eb = effEnd(b) ? pd(effEnd(b)).t : Infinity;
     return ea - eb || order[a.status] - order[b.status];

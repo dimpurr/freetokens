@@ -22,6 +22,12 @@
         "help": "Answering requests at the last check",
         "short": "live"
       },
+      "listed": {
+        "label": "listed as free (not tested by us)",
+        "icon": "🔵",
+        "help": "The provider's page lists it as free; we have not made a call",
+        "short": "listed"
+      },
       "overdue": {
         "label": "past announced end",
         "icon": "🟡",
