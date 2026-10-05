@@ -228,13 +228,42 @@ def md_events(events, lanes, models):
     return md_table(["Date", "Lane", "Event", "Detail", "Source"], rows)
 
 
-def md_models(models):
+def md_models(models, lanes, events):
+    lane_end = {}
+    for e in events:
+        if e["kind"] == "ended":
+            for i in e["lanes"]:
+                lane_end[i] = e["date"]
+
+    def free_on(m):
+        out = []
+        for l in lanes:
+            if l["model"] != m["id"]:
+                continue
+            st = l["status"]
+            if st == "ended":
+                tail = f"ended {fmt_date(lane_end[l['id']])[:10]}" if l["id"] in lane_end else "ended"
+            elif st == "unavailable":
+                tail = "not answering"
+            elif st == "overdue" and not l["ends"].get("expected"):
+                tail = f"past announced end {fmt_date(effective_end(l))[:10]}"
+            elif effective_end(l):
+                tail = f"ends {fmt_date(effective_end(l))[:10]}"
+            else:
+                tail = "no end announced"
+            out.append(f"{VOCAB['status'][st]['icon']} {l['channel']} ({tail})")
+        return " · ".join(out) or "—"
+
+    def live(m):
+        return any(l["model"] == m["id"] and l["status"] in ("live", "overdue") for l in lanes)
+
     rows = []
-    for m in models:
+    for m in sorted(models, key=lambda m: (not live(m), -(m["aa_index"].get("value") or -1))):
         a = m["aa_index"]
         aa = (("≈ " if a.get("approx") else "") + str(a["value"])) if a.get("value") is not None else a.get("note", "not ranked")
-        rows.append([m["name"], m["maker"], m["context"], label("image_input", m["image_input"]), f"{aa} ({a['date']})", m.get("notes") or "—"])
-    return md_table(["Model", "Maker", "Context", "Image input", "AA index", "Notes"], rows)
+        n = sum(1 for e in events if any(next(l for l in lanes if l["id"] == i)["model"] == m["id"] for i in e["lanes"]))
+        rows.append([m["name"], free_on(m), str(n), f"{aa} ({a['date']})", m["context"], label("image_input", m["image_input"]), m["maker"], m.get("notes") or "—"])
+    return md_table(["Model", "Free on", "Events", "AA index", "Context", "Image input", "Maker", "Notes"], rows)
 
 
 def render_readme(text, sections):
@@ -286,7 +315,7 @@ def main():
         "soon": f"As of {today.isoformat()}.\n\n" + md_soon(lanes, models, today),
         "lanes": md_lanes(lanes, models),
         "timeline": md_events(events, lanes, models),
-        "models": md_models(models),
+        "models": md_models(models, lanes, events),
     })
     fragment = render_page(lanes, events, models, today)
     outputs = {readme_path: readme, ROOT / "index.html": wrap_full(fragment)}
