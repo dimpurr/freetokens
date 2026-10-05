@@ -1,0 +1,36 @@
+name: New free model or channel
+description: A model became free somewhere (or a new channel offers it for free)
+title: "[new] <model> on <channel>"
+labels: [data, new-lane]
+body:
+  - type: input
+    id: model
+    attributes: {label: Model, placeholder: "e.g. LongCat 2.5 Preview"}
+    validations: {required: true}
+  - type: input
+    id: channel
+    attributes: {label: Channel, placeholder: "e.g. OpenCode Go, OpenRouter, Command Code"}
+    validations: {required: true}
+  - type: input
+    id: source
+    attributes: {label: Source link, description: "The announcement, listing or post that shows it is free"}
+    validations: {required: true}
+  - type: input
+    id: since
+    attributes: {label: Free since, description: "Date, UTC if you know it (YYYY-MM-DD)"}
+  - type: input
+    id: until
+    attributes: {label: Announced end date, description: "Only if the provider published one; otherwise leave empty"}
+  - type: input
+    id: model_id
+    attributes: {label: Model ID, placeholder: "the exact ID to call, e.g. opencode-go/longcat-2.5-preview-free"}
+  - type: textarea
+    id: conditions
+    attributes: {label: Conditions and limits, description: "Account or plan needed, stated limits (with a link), data policy if stated"}
+  - type: checkboxes
+    id: checked
+    attributes:
+      label: How do you know it works?
+      options:
+        - label: I made a successful call myself
+        - label: I only saw it in a catalogue or announcement

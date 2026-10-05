@@ -1,0 +1,26 @@
+name: End date or takedown
+description: A free offer got an end date, was extended, or stopped working
+title: "[end] <model> on <channel>"
+labels: [data, end]
+body:
+  - type: dropdown
+    id: what
+    attributes:
+      label: What happened?
+      options: [An end date was announced, The end date changed or was extended, It stopped working / is no longer free, It is past its end date but still works]
+    validations: {required: true}
+  - type: input
+    id: lane
+    attributes: {label: Model and channel, placeholder: "e.g. Space Bunny on Command Code"}
+    validations: {required: true}
+  - type: input
+    id: when
+    attributes: {label: When, description: "The date (and time in UTC, if you know it) of the announcement or of the first failure"}
+    validations: {required: true}
+  - type: input
+    id: source
+    attributes: {label: Source link, description: "Announcement, post or status page. If it simply stopped working, describe your check below instead."}
+  - type: textarea
+    id: evidence
+    attributes: {label: Evidence, description: "The exact error message or status code, or a quote from the announcement. No API keys or account details, please."}
+    validations: {required: true}

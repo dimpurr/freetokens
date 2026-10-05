@@ -6,7 +6,7 @@ Thanks for helping. freetokens is only as good as its data, and free LLM offers 
 
 | | Who it's for | What you do |
 |---|---|---|
-| **1 · Open an issue** | anyone | [Open an issue](../../issues/new) with the link and what changed ("X is free on Y until Oct 12", "Z now returns 404, here's the error"). We turn it into data. |
+| **1 · Open an issue** | anyone | [Open an issue](../../issues/new/choose) and pick a form (new free model · end date or takedown · correction), or just paste the link and what changed ("X is free on Y until Oct 12", "Z now returns 404, here's the error"). We turn it into data. |
 | **2 · Open a pull request** | if you're comfortable editing JSON | Edit [`data/`](data/), make sure every fact has a source link and a date, run `python3 build.py --validate`, and open a PR. |
 
 Both are welcome; an issue with a good link is just as useful as a PR. The rest of this guide is for route 2, but the rules below apply to both.

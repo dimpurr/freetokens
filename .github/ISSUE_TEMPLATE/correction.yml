@@ -1,0 +1,17 @@
+name: Correction
+description: Something on freetokens is wrong or out of date
+title: "[fix] <what is wrong>"
+labels: [data, correction]
+body:
+  - type: input
+    id: where
+    attributes: {label: Where, description: "Page or row, e.g. https://freetokens.fyi/models/space-bunny or 'Ling 3.1 Flash on Command Code'"}
+    validations: {required: true}
+  - type: textarea
+    id: wrong
+    attributes: {label: What it says now, and what it should say}
+    validations: {required: true}
+  - type: input
+    id: source
+    attributes: {label: Source link, description: "How you know. A link is best; otherwise describe what you checked and when."}
+    validations: {required: true}

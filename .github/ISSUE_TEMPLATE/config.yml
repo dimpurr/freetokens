@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: How to contribute (and the evidence rules)
+    url: https://github.com/dimpurr/freetokens/blob/main/CONTRIBUTING.md
+    about: Read this if you want to open a pull request instead.
