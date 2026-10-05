@@ -85,6 +85,10 @@ def validate(lanes, events, models):
     for m in models:
         if not re.fullmatch(r"[a-z0-9][a-z0-9.-]*", m["id"]):
             errs.append(f"models[{m['id']}]: id must be lowercase letters, digits, '.' or '-' (it becomes a URL)")
+    for m in models:
+        a = m["aa_index"]
+        if a.get("value") is not None and not str(a.get("url", "")).startswith("https://artificialanalysis.ai/"):
+            errs.append(f"models[{m['id']}]: an AA index value needs aa_index.url (its artificialanalysis.ai page)")
     model_ids = {m["id"] for m in models}
     lane_ids = {l["id"] for l in lanes}
     for coll, name in ((lanes, "lanes"), (models, "models")):
