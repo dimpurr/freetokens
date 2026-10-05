@@ -658,22 +658,35 @@ def prerender(dist):
     threading.Thread(target=srv.serve_forever, daemon=True).start()
     port = srv.server_address[1]
     n = 0
-    for p in sorted(dist.rglob("*.html")):
-        if p.name == "404.html" or p.name == "methodology.html":
-            continue
-        url = f"http://127.0.0.1:{port}/{p.relative_to(dist).as_posix()}"
-        out = ""
-        for attempt in range(3):  # headless Chrome occasionally hangs on one page; retry
-            try:
-                out = subprocess.run([chrome, "--headless=new", "--disable-gpu", "--virtual-time-budget=3000", "--dump-dom", url],
-                                     capture_output=True, text=True, timeout=45).stdout
-                break
-            except subprocess.TimeoutExpired:
-                print(f"! prerender timeout ({attempt + 1}/3): {p.relative_to(dist)}", file=sys.stderr)
-        if "<main" not in out and 'class="wrap"' not in out:
-            sys.exit(f"✗ prerender failed for {p}")
-        p.write_text("<!doctype html>\n" + out.strip() + "\n")
-        n += 1
+    pages_ = [p for p in sorted(dist.rglob("*.html")) if p.name not in ("404.html", "methodology.html")]
+    try:
+        from playwright.sync_api import sync_playwright
+    except ImportError:
+        sync_playwright = None
+    if sync_playwright:
+        with sync_playwright() as pw:
+            browser = pw.chromium.launch(channel="chrome", headless=True)
+            ctx = browser.new_context(viewport={"width": 1280, "height": 900})
+            for p in pages_:
+                page = ctx.new_page()
+                page.goto(f"http://127.0.0.1:{port}/{p.relative_to(dist).as_posix()}", wait_until="load", timeout=30000)
+                page.wait_for_timeout(300)
+                out = page.content()
+                page.close()
+                if 'class="wrap"' not in out:
+                    sys.exit(f"✗ prerender failed for {p}")
+                p.write_text(out if out.lstrip().lower().startswith("<!doctype") else "<!doctype html>\n" + out)
+                n += 1
+            browser.close()
+    else:
+        for p in pages_:
+            url = f"http://127.0.0.1:{port}/{p.relative_to(dist).as_posix()}"
+            out = subprocess.run([chrome, "--headless=new", "--disable-gpu", "--virtual-time-budget=3000", "--dump-dom", url],
+                                 capture_output=True, text=True, timeout=90).stdout
+            if 'class="wrap"' not in out:
+                sys.exit(f"✗ prerender failed for {p}")
+            p.write_text("<!doctype html>\n" + out.strip() + "\n")
+            n += 1
     srv.shutdown()
     return n
 
