@@ -192,5 +192,20 @@
         "image_input": "image_input"
       }
     }
+  },
+  "est_rules": {
+    "$comment": "ADR-004 method v1 / ADR-006 ranking. Change values here, not in code.",
+    "min_anchors": 4,
+    "min_r": 0.6,
+    "min_benchmarks": 2,
+    "min_sources": 2,
+    "band_width": 5,
+    "weights": {
+      "official": 1.0,
+      "leaderboard": 1.0,
+      "third_party": 0.75,
+      "community": 0.5,
+      "leak": 0.5
+    }
   }
 }

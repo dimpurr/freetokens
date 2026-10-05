@@ -124,12 +124,38 @@ const limitHTML = (l) => {
   const txt = ["unstated", "not checked"].includes(ls.text) ? `<span class="muted">${esc(ls.text)}</span>` : esc(ls.text);
   return ls.source ? `<a href="${esc(ls.source)}" target="_blank" rel="noopener">${txt}</a>` : txt;
 };
+/* AA: official label (links to AA) · EST band with evidence (ADR-004/006) · or not ranked */
+const aaValue = (m) => m.aa_index.value != null ? m.aa_index.value : (m.est && m.est.status === "ok" ? m.est.center : null);
+const officialAA = () => D.models.filter((x) => x.aa_index.value != null).map((x) => x.aa_index.value).sort((a, b) => b - a);
+function rankText(m) {
+  const v = officialAA();
+  if (m.aa_index.value != null) return `#${v.indexOf(m.aa_index.value) + 1} of ${v.length} ranked here`;
+  if (m.est && m.est.status === "ok") {
+    const a = 1 + v.filter((x) => x > m.est.high).length, b = 1 + v.filter((x) => x > m.est.low).length;
+    return `about #${a}–${b} among ${v.length} ranked here (estimate)`;
+  }
+  return "";
+}
+function estPanel(m) {
+  const e = m.est;
+  const rows = e.evidence.map((c) => `<li>${c.implied != null ? `<b class="mono">≈${c.implied}</b> ` : ""}<a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.benchmark === "aicodingdaily" ? "AI Coding Daily" : c.benchmark)}</a>: ${esc(c.score)}${c.variant ? ` <span class="muted">(${esc(c.variant)})</span>` : ""} · ${esc(c.source_type)}${c.implied != null ? ` · fit r=${c.r}, ${c.anchors} reference models` : ` · <span class="muted">not used: ${esc(c.why)}</span>`}</li>`).join("");
+  const head = e.status === "ok"
+    ? `Estimated from ${e.benchmarks} benchmark${e.benchmarks === 1 ? "" : "s"}: centre ${e.center}${e.spread > 10 ? " · sources disagree widely" : ""}.`
+    : `Not enough evidence yet: ${e.benchmarks} of the required benchmarks (rule: ${esc(D.est_rule)}).`;
+  return `<div class="estpanel"><p>${head}</p><ul>${rows}</ul><p class="muted">An estimate, not an Artificial Analysis score. Method: <a href="https://github.com/dimpurr/freetokens/blob/main/METHOD.md">how EST works</a>.</p></div>`;
+}
 function aaHTML(m) {
   const a = m.aa_index;
-  if (a.value == null) return `<span class="muted">${esc(a.note || "not ranked")}</span>`;
-  const title = `Artificial Analysis Intelligence Index, ${absDate(a.date)}`;
-  const inner = `<small>AA</small>${a.approx ? "≈" : ""}${a.value}`;
-  return a.url ? `<a class="aa" href="${esc(a.url)}" target="_blank" rel="noopener" title="${esc(title)}">${inner}${I.ext()}</a>` : `<span class="aa" title="${esc(title)}">${inner}</span>`;
+  if (a.value != null) {
+    const title = `Artificial Analysis Intelligence Index, ${absDate(a.date)}`;
+    const inner = `<small>AA</small>${a.approx ? "≈" : ""}${a.value}`;
+    return a.url ? `<a class="aa" href="${esc(a.url)}" target="_blank" rel="noopener" title="${esc(title)}">${inner}${I.ext()}</a>` : `<span class="aa" title="${esc(title)}">${inner}</span>`;
+  }
+  if (m.est) {
+    const label = m.est.status === "ok" ? `${m.est.low}–${m.est.high}` : "—";
+    return `<details class="estd"><summary class="aa est" title="Estimated AA index: tap for the evidence"><small>EST</small>${label} ${I.help()}</summary>${estPanel(m)}</details>`;
+  }
+  return `<span class="muted">${esc(a.note || "not ranked")}</span>`;
 }
 
 /* compact key shown above tables */

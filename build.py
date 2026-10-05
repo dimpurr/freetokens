@@ -147,7 +147,78 @@ def validate(lanes, events, models):
         for f in ("limits_stated",):
             if l[f] is not None and not l[f].get("text"):
                 errs.append(f"{w}: {f}.text is required")
+    bench, anchors = load_optional("benchmarks", {}), load_optional("anchors", [])
+    for c in bench.get("claims", []):
+        if c["model"] not in model_ids:
+            errs.append(f"benchmarks.claims: unknown model {c['model']!r}")
+        if not str(c.get("url", "")).startswith("http"):
+            errs.append(f"benchmarks.claims[{c['model']}/{c['benchmark']}]: needs a source url")
+    for a in anchors:
+        if not str(a.get("aa_url", "")).startswith("https://artificialanalysis.ai/"):
+            errs.append(f"anchors[{a.get('name')}]: needs its artificialanalysis.ai url")
     return errs
+
+
+
+# ---------- EST: estimated AA index (ADR-004 method v1, ADR-006 ranking) ----------
+
+def load_optional(name, default):
+    f = ROOT / f"data/{name}.json"
+    return json.loads(f.read_text()) if f.exists() else default
+
+
+def estimate(models, bench, anchors):
+    """Returns {model_id: est} for models without an official AA index. Pure function of data/ + schema est_rules."""
+    import statistics as st
+    R = SCHEMA["est_rules"]
+    fits = {}
+    for bid, b in bench.get("benchmarks", {}).items():
+        pts = [(a["scores"][bid]["score"], a["aa_index"]) for a in anchors if bid in a.get("scores", {})]
+        if len(pts) < R["min_anchors"]:
+            fits[bid] = {"ok": False, "why": f"only {len(pts)} reference models (need {R['min_anchors']})", "n": len(pts)}
+            continue
+        xs, ys = [p[0] for p in pts], [p[1] for p in pts]
+        mx, my = st.mean(xs), st.mean(ys)
+        slope = sum((x - mx) * (y - my) for x, y in pts) / sum((x - mx) ** 2 for x in xs)
+        r = st.correlation(xs, ys)
+        fits[bid] = {"ok": r >= R["min_r"], "a": my - slope * mx, "b": slope, "r": round(r, 3), "n": len(pts),
+                     "why": None if r >= R["min_r"] else f"correlation {r:.2f} below {R['min_r']}"}
+    out = {}
+    for m in models:
+        if m["aa_index"].get("value") is not None:
+            continue
+        claims = [c for c in bench.get("claims", []) if c["model"] == m["id"]]
+        if not claims:
+            continue
+        used, listed = [], []
+        for c in claims:
+            f = fits.get(c["benchmark"])
+            if c.get("excluded"):
+                listed.append(dict(c, implied=None, why=c["excluded"]))
+            elif not f or not f["ok"]:
+                listed.append(dict(c, implied=None, why=(f or {}).get("why") or "no reference models for this benchmark"))
+            else:
+                used.append(dict(c, implied=round(f["a"] + f["b"] * c["score"], 1), r=f["r"], anchors=f["n"],
+                                 weight=R["weights"].get(c["source_type"], 0.5)))
+        benches = {c["benchmark"] for c in used}
+        sources = {c["url"].split("/")[2] for c in used}
+        e = {"evidence": used + listed, "benchmarks": len(benches), "sources": len(sources),
+             "rule": f"needs {R['min_benchmarks']} benchmarks from {R['min_sources']} independent sources"}
+        if len(benches) >= R["min_benchmarks"] and len(sources) >= R["min_sources"]:
+            ws = sorted((c["implied"], c["weight"]) for c in used)
+            half, acc, center = sum(w for _, w in ws) / 2, 0, ws[-1][0]
+            for v, w in ws:
+                acc += w
+                if acc >= half:
+                    center = v
+                    break
+            low = round(center - R["band_width"] / 2)
+            e.update(status="ok", center=round(center, 1), low=low, high=low + R["band_width"],
+                     spread=round(max(c["implied"] for c in used) - min(c["implied"] for c in used), 1))
+        else:
+            e["status"] = "insufficient"
+        out[m["id"]] = e
+    return out, fits
 
 
 # ---------- markdown ----------
@@ -281,11 +352,18 @@ def md_models(models, lanes, events):
         return any(l["model"] == m["id"] and l["status"] in ("live", "overdue", "listed") for l in lanes)
 
     rows = []
-    for m in sorted(models, key=lambda m: (not live(m), -(m["aa_index"].get("value") or -1))):
+    for m in sorted(models, key=lambda m: (not live(m), -(m["aa_index"].get("value") or (m.get("est") or {}).get("center") or -1))):
         a = m["aa_index"]
-        aa = (("≈ " if a.get("approx") else "") + str(a["value"])) if a.get("value") is not None else a.get("note", "not ranked")
+        if a.get("value") is not None:
+            aa = ("≈ " if a.get("approx") else "") + str(a["value"])
+        elif m.get("est", {}).get("status") == "ok":
+            aa = f"EST {m['est']['low']}–{m['est']['high']} (estimate)"
+        elif m.get("est"):
+            aa = f"EST — ({m['est']['benchmarks']} benchmark so far)"
+        else:
+            aa = a.get("note", "not ranked")
         n = sum(1 for e in events if any(next(l for l in lanes if l["id"] == i)["model"] == m["id"] for i in e["lanes"]))
-        rows.append([f"[{m['name']}]({SITE}/models/{m['id']}.html)", free_on(m), str(n), f"{aa} ({a['date']})", m["context"], label("image_input", m["image_input"]), m["maker"], m.get("notes") or "—"])
+        rows.append([f"[{m['name']}]({SITE}/models/{m['id']})", free_on(m), str(n), f"{aa} ({a['date']})", m["context"], label("image_input", m["image_input"]), m["maker"], m.get("notes") or "—"])
     return md_table(["Model", "Free on", "Events", "AA index", "Context", "Image input", "Maker", "Notes"], rows)
 
 
@@ -298,7 +376,7 @@ def md_channels(lanes, models, today):
         up = sorted((l for l in free if effective_end(l) and day(effective_end(l)) >= today), key=lambda l: day(effective_end(l)))
         nxt = f"{mname[up[0]['model']]} · {fmt_date(effective_end(up[0]))[:10]} ({label('end_confidence', up[0]['ends']['confidence'])})" if up else "none announced"
         models_ = " · ".join(f"{VOCAB['status'][l['status']]['icon']} {mname[l['model']]}" for l in ls)
-        rows.append((-len(free), c, [f"[{c}]({SITE}/channels/{slug(c)}.html)", label("channel_type", ls[0]["type"]), f"{len(free)} / {len(ls)}", nxt, models_]))
+        rows.append((-len(free), c, [f"[{c}]({SITE}/channels/{slug(c)})", label("channel_type", ls[0]["type"]), f"{len(free)} / {len(ls)}", nxt, models_]))
     rows.sort()
     return md_table(["Channel", "Type", "Free now", "Next end", "Models"], [r[2] for r in rows])
 
@@ -391,6 +469,7 @@ def head_html(title, desc, url, today, extra_ld, og_image):
             f'<title>{html.escape(title)}</title>\n<meta name="description" content="{html.escape(desc)}">\n'
             f'<link rel="canonical" href="{url}">\n<meta name="robots" content="index, follow, max-image-preview:large">\n'
             f'<meta name="theme-color" content="#0a7f8a">\n<link rel="icon" href="/favicon.svg" type="image/svg+xml">\n'
+            f'<link rel="alternate" type="application/atom+xml" title="freetokens: free LLM events" href="{SITE}/feed.xml">\n'
             f'<meta property="og:type" content="website">\n<meta property="og:site_name" content="freetokens">\n'
             f'<meta property="og:title" content="{html.escape(title)}">\n<meta property="og:description" content="{html.escape(desc)}">\n'
             f'<meta property="og:url" content="{url}">\n<meta property="og:image" content="{og_image}">\n'
@@ -402,12 +481,21 @@ def head_html(title, desc, url, today, extra_ld, og_image):
 
 # ---------- pages ----------
 
-def render_body(template, payload, root, home):
+SHARED_KEYS = ("lanes", "events", "models", "vocab", "built", "ext", "est_rule")
+
+
+def render_body(template, payload, root, home, shared=False):
+    """shared=True (deployed site): the dataset and common.js come from /assets/*.js, cached across pages."""
     t = ROOT / "templates"
-    data = json.dumps(payload, ensure_ascii=False).replace("</", "<\\/")
     common = (t / "common.js").read_text()
-    return ((t / template).read_text().replace("__BRAND__", BRAND).replace("__GH__", GH).replace("__HOME__", home)
-            .replace("__ROOT__", root).replace("/*__COMMON__*/", f"const D = {data};\n" + common))
+    body = (t / template).read_text().replace("__BRAND__", BRAND).replace("__GH__", GH).replace("__HOME__", home).replace("__ROOT__", root)
+    if shared:
+        page = {k: v for k, v in payload.items() if k not in SHARED_KEYS}
+        boot = (f'<script src="/assets/data.js?v={ASSET_V}"></script>\n<script>const D = Object.assign({{}}, window.FT_DATA, '
+                f'{json.dumps(page, ensure_ascii=False)});</script>\n<script src="/assets/common.js?v={ASSET_V}"></script>\n<script>')
+        return body.replace("<script>\n/*__COMMON__*/", boot, 1)
+    data = json.dumps(payload, ensure_ascii=False).replace("</", "<\\/")
+    return body.replace("/*__COMMON__*/", f"const D = {data};\n" + common)
 
 
 def full_doc(head, body):
@@ -415,11 +503,19 @@ def full_doc(head, body):
     return f'<!doctype html>\n<html lang="en">\n<head>\n{head}<style>\n{css}</style>\n</head>\n<body>\n{body}\n</body>\n</html>\n'
 
 
+ASSET_V = "0"
+INDEXNOW_KEY = "f7c3a9e14b2d4c6e8a0b1d3f5e7c9a2b"
+
+
 def build_pages(lanes, events, models, today, mode):
     """mode 'preview': relative .html links (repo, file://, artifact). mode 'site': clean absolute URLs for freetokens.fyi."""
     site = mode == "site"
     ext = "" if site else ".html"
-    base = {"lanes": lanes, "events": events, "models": models, "vocab": VOCAB, "built": today.isoformat(), "ext": ext}
+    est, _ = estimate(models, load_optional("benchmarks", {}), load_optional("anchors", []))
+    models = [dict(m, est=est[m["id"]]) if m["id"] in est else m for m in models]
+    R = SCHEMA["est_rules"]
+    base = {"lanes": lanes, "events": events, "models": models, "vocab": VOCAB, "built": today.isoformat(), "ext": ext,
+            "est_rule": f"{R['min_benchmarks']} benchmarks from {R['min_sources']} independent sources, each fitted on ≥{R['min_anchors']} reference models with r ≥ {R['min_r']}"}
     og = f"{SITE}/og.png"
     pages = {}  # relative output path -> (head, body)
     names = {m["id"]: m["name"] for m in models}
@@ -440,7 +536,7 @@ def build_pages(lanes, events, models, today, mode):
                                for i, m in enumerate(models)]}]
     home_href = "/" if site else "index.html"
     pages["index.html"] = (head_html(title, desc, SITE + "/", today, ld, og),
-                           render_body("home.html", dict(base, root="/" if site else ""), "/" if site else "", home_href))
+                           render_body("home.html", dict(base, root="/" if site else ""), "/" if site else "", home_href, site))
     sub_root, sub_home = ("/", "/") if site else ("../", "../index.html")
     for m in models:
         title, desc = seo_model(m, lanes)
@@ -449,7 +545,7 @@ def build_pages(lanes, events, models, today, mode):
               {"@context": "https://schema.org", "@type": "WebPage", "name": title, "url": url, "description": desc,
                "dateModified": today.isoformat(), "about": {"@type": "Thing", "name": m["name"]}}]
         pages[f"models/{m['id']}.html"] = (head_html(title, desc, url, today, ld, og),
-                                            render_body("model.html", dict(base, root=sub_root, model=m["id"]), sub_root, sub_home))
+                                            render_body("model.html", dict(base, root=sub_root, model=m["id"]), sub_root, sub_home, site))
     for c in chans:
         title, desc = seo_channel(c, lanes, models)
         url = f"{SITE}/channels/{slug(c)}"
@@ -457,8 +553,39 @@ def build_pages(lanes, events, models, today, mode):
               {"@context": "https://schema.org", "@type": "WebPage", "name": title, "url": url, "description": desc,
                "dateModified": today.isoformat()}]
         pages[f"channels/{slug(c)}.html"] = (head_html(title, desc, url, today, ld, og),
-                                              render_body("channel.html", dict(base, root=sub_root, channel=c), sub_root, sub_home))
+                                              render_body("channel.html", dict(base, root=sub_root, channel=c), sub_root, sub_home, site))
+    if site:
+        pages["__base__"] = base
+        title = "How freetokens works: lanes, checks, and the EST estimate | freetokens"
+        desc = "What a lane, status and end-date confidence mean, how 'Tested by us' limits are measured, and how the EST estimate of the AA index is computed."
+        pages["methodology.html"] = (head_html(title, desc, SITE + "/methodology", today, [crumbs([("freetokens", SITE + "/"), ("Methodology", SITE + "/methodology")])], og),
+                                     '<div class="topbar"><div class="in">' + BRAND.replace("__HOME__", "/") + '<nav aria-label="Sections"><a href="/#h-models">Models</a><a href="/#h-channels">Channels</a><a href="/#h-tl">Timeline</a></nav>' + GH + '</div></div>'
+                                     + '<div class="wrap prose">' + md_to_html((ROOT / "METHOD.md").read_text()) + '</div>')
     return pages
+
+
+def md_to_html(md):
+    """Small Markdown subset for METHOD.md: #/## headings, paragraphs, - and 1. lists, **bold**, `code`, [links](url)."""
+    def inline(t):
+        t = html.escape(t)
+        t = re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", t)
+        t = re.sub(r"`(.+?)`", r"<code>\1</code>", t)
+        return re.sub(r"\[(.+?)\]\((.+?)\)", lambda m: f'<a href="{m.group(2) if m.group(2).startswith("http") else REPO + "/blob/main/" + m.group(2)}">{m.group(1)}</a>', t)
+    out, lst = [], None
+    for line in md.splitlines() + [""]:
+        m = re.match(r"^(\s*)(-|\d+\.)\s+(.*)", line)
+        if m:
+            tag = "ul" if m.group(2) == "-" else "ol"
+            if lst != tag:
+                if lst: out.append(f"</{lst}>")
+                out.append(f"<{tag}>"); lst = tag
+            out.append(f"<li>{inline(m.group(3))}</li>"); continue
+        if lst and line.strip() == "":
+            out.append(f"</{lst}>"); lst = None
+        if line.startswith("# "): out.append(f"<h1>{inline(line[2:])}</h1>")
+        elif line.startswith("## "): out.append(f"<h2>{inline(line[3:])}</h2>")
+        elif line.strip(): out.append(f"<p>{inline(line)}</p>")
+    return "\n".join(out)
 
 
 def site_extras(pages, lanes, events, models, today):
@@ -485,7 +612,33 @@ def site_extras(pages, lanes, events, models, today):
         '<meta name="robots" content="noindex">\n<link rel="icon" href="/favicon.svg" type="image/svg+xml">\n' + FONTS,
         '<div class="wrap"><header class="intro"><h1>Page not found</h1><p>This page doesn\'t exist (models and channels can be renamed). '
         'Start from the <a href="/">home page</a>, or browse <a href="/#h-models">models</a> and <a href="/#h-channels">channels</a>.</p></header></div>')
-    return {"sitemap.xml": sitemap, "robots.txt": robots, "favicon.svg": FAVICON_SVG + "\n", "404.html": notfound}
+    names = {m["id"]: m["name"] for m in models}
+    free = [l for l in lanes if l["status"] in FREE]
+    llms = (f"# freetokens\n\n> Which LLMs you can use for free right now, through which channel, and until when. "
+            f"{len(free)} free lanes across {len({l['channel'] for l in lanes})} channels; every fact dated and sourced. Data under CC BY 4.0.\n\n"
+            f"## Data (machine-readable)\n\n- [lanes.json](https://raw.githubusercontent.com/dimpurr/freetokens/main/data/lanes.json): one model × channel × free condition, with status, dates and limits\n"
+            f"- [events.json](https://raw.githubusercontent.com/dimpurr/freetokens/main/data/events.json): dated events with sources\n"
+            f"- [models.json](https://raw.githubusercontent.com/dimpurr/freetokens/main/data/models.json): models, AA index, context, image input\n"
+            f"- [Atom feed of events]({SITE}/feed.xml)\n\n## Docs\n\n- [Methodology]({SITE}/methodology): statuses, checks, the EST estimate\n"
+            f"- [Contributing]({REPO}/blob/main/CONTRIBUTING.md)\n\n## Models\n\n"
+            + "\n".join(f"- [{m['name']}]({SITE}/models/{m['id']})" for m in models)
+            + "\n\n## Channels\n\n" + "\n".join(f"- [{c}]({SITE}/channels/{slug(c)})" for c in sorted({l['channel'] for l in lanes})) + "\n")
+    def x(t):
+        return html.escape(str(t), quote=True)
+    entries = []
+    for e in sorted(events, key=lambda e: parse_date(e["date"])[0], reverse=True)[:50]:
+        l0 = lanes_by_id[e["lanes"][0]]
+        when = parse_date(e["date"])[0].strftime("%Y-%m-%dT%H:%M:%SZ")
+        link = f"{SITE}/models/{l0['model']}#ev-{re.sub(r'[^0-9]', '', e['date'])}-{e['lanes'][0]}"
+        title = f"{label('event_kind', e['kind'])}: {names[l0['model']]} on {l0['channel']}"
+        body = e["text"] + (f" (end date {fmt_date(e['end_date'])})" if e.get("end_date") else "") + f". Source: {e['source']['label']}" + (f" {e['source']['url']}" if e['source'].get('url') else "")
+        entries.append(f"  <entry><title>{x(title)}</title><link href=\"{x(link)}\"/><id>{x(link)}</id><updated>{when}</updated><summary>{x(body)}</summary></entry>")
+    feed = ('<?xml version="1.0" encoding="utf-8"?>\n<feed xmlns="http://www.w3.org/2005/Atom">\n'
+            f'  <title>freetokens: free LLM events</title>\n  <link href="{SITE}/"/>\n  <link rel="self" href="{SITE}/feed.xml"/>\n'
+            f'  <id>{SITE}/feed.xml</id>\n  <updated>{today.isoformat()}T00:00:00Z</updated>\n  <author><name>freetokens</name></author>\n'
+            + "\n".join(entries) + "\n</feed>\n")
+    return {"sitemap.xml": sitemap, "robots.txt": robots, "favicon.svg": FAVICON_SVG + "\n", "404.html": notfound,
+            "llms.txt": llms, "feed.xml": feed, f"{INDEXNOW_KEY}.txt": INDEXNOW_KEY + "\n"}
 
 
 def prerender(dist):
@@ -496,16 +649,26 @@ def prerender(dist):
     if not chrome:
         print("! Chrome not found: skipped prerendering (pages still work, but content is rendered client-side)", file=sys.stderr)
         return 0
+    import functools, http.server, threading
+    class Quiet(http.server.SimpleHTTPRequestHandler):
+        def log_message(self, *a):
+            pass
+    handler = functools.partial(Quiet, directory=str(dist))
+    srv = http.server.ThreadingHTTPServer(("127.0.0.1", 0), handler)
+    threading.Thread(target=srv.serve_forever, daemon=True).start()
+    port = srv.server_address[1]
     n = 0
     for p in sorted(dist.rglob("*.html")):
-        if p.name == "404.html":
+        if p.name == "404.html" or p.name == "methodology.html":
             continue
-        out = subprocess.run([chrome, "--headless=new", "--disable-gpu", "--virtual-time-budget=3000", "--dump-dom", p.resolve().as_uri()],
+        url = f"http://127.0.0.1:{port}/{p.relative_to(dist).as_posix()}"
+        out = subprocess.run([chrome, "--headless=new", "--disable-gpu", "--virtual-time-budget=3000", "--dump-dom", url],
                              capture_output=True, text=True, timeout=60).stdout
         if "<main" not in out and 'class="wrap"' not in out:
             sys.exit(f"✗ prerender failed for {p}")
         p.write_text("<!doctype html>\n" + out.strip() + "\n")
         n += 1
+    srv.shutdown()
     return n
 
 
@@ -558,13 +721,15 @@ def main():
         print(f"✓ data valid: {len(lanes)} lanes · {len(events)} events · {len(models)} models")
         return
 
+    est, _ = estimate(models, load_optional("benchmarks", {}), load_optional("anchors", []))
+    models_md = [dict(m, est=est[m["id"]]) if m["id"] in est else m for m in models]
     readme_path = ROOT / "README.md"
     readme = render_readme(readme_path.read_text(), {
         "legend": md_legend(),
         "soon": f"As of {today.isoformat()}.\n\n" + md_soon(lanes, models, today),
         "lanes": md_lanes(lanes, models),
         "timeline": md_events(events, lanes, models),
-        "models": md_models(models, lanes, events),
+        "models": md_models(models_md, lanes, events),
         "channels": md_channels(lanes, models, today),
     })
     preview = build_pages(lanes, events, models, today, "preview")
@@ -604,7 +769,18 @@ def main():
         import shutil
         dist = Path(a.dist)
         shutil.rmtree(dist, ignore_errors=True)
+        global ASSET_V
+        import hashlib
+        probe = build_pages(lanes, events, models, today, "site")
+        shared = {k: v for k, v in probe.pop("__base__").items() if k in SHARED_KEYS}
+        data_js = "window.FT_DATA = " + json.dumps(shared, ensure_ascii=False).replace("</", "<\\/") + ";\n"
+        common_js = (ROOT / "templates" / "common.js").read_text()
+        ASSET_V = hashlib.sha1((data_js + common_js).encode()).hexdigest()[:10]
         site = build_pages(lanes, events, models, today, "site")
+        site.pop("__base__")
+        (dist / "assets").mkdir(parents=True, exist_ok=True)
+        (dist / "assets" / "data.js").write_text(data_js)
+        (dist / "assets" / "common.js").write_text(common_js)
         for p, (h, b) in site.items():
             (dist / p).parent.mkdir(parents=True, exist_ok=True)
             (dist / p).write_text(full_doc(h, b))

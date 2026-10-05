@@ -1,0 +1,60 @@
+{
+ "benchmarks": {
+  "aicodingdaily": {
+   "name": "AI Coding Daily LLM Coding Leaderboard",
+   "metric": "Total points (max 80); best reported reasoning setting per model",
+   "url": "https://aicodingdaily.com/leaderboard",
+   "source_type": "leaderboard"
+  }
+ },
+ "claims": [
+  {
+   "model": "space-bunny",
+   "benchmark": "aicodingdaily",
+   "score": 57.19,
+   "variant": "Space Bunny (Max), tested with OpenCode, evaluated Sep 30",
+   "source_type": "leaderboard",
+   "url": "https://aicodingdaily.com/model/space-bunny",
+   "seen": "2026-10-05"
+  },
+  {
+   "model": "longcat-2.5-preview",
+   "benchmark": "aicodingdaily",
+   "score": 46.65,
+   "variant": "LongCat-2.5-Preview, tested with OpenCode, evaluated Oct 2",
+   "source_type": "leaderboard",
+   "url": "https://aicodingdaily.com/model/longcat-2-5-preview",
+   "seen": "2026-10-05"
+  },
+  {
+   "model": "space-bunny",
+   "benchmark": "hle-subset",
+   "score": 46.1,
+   "variant": "300-question subset",
+   "source_type": "community",
+   "url": "https://spacebunnyalpha.com/",
+   "seen": "2026-10-05",
+   "excluded": "partial question set; not comparable with full-test scores"
+  },
+  {
+   "model": "space-bunny",
+   "benchmark": "gpqa-subset",
+   "score": 82.0,
+   "variant": "60-question subset",
+   "source_type": "community",
+   "url": "https://spacebunnyalpha.com/",
+   "seen": "2026-10-05",
+   "excluded": "partial question set; not comparable with full-test scores"
+  },
+  {
+   "model": "space-bunny",
+   "benchmark": "ai-benchy",
+   "score": 7.0,
+   "variant": "overall, high effort (out of 10)",
+   "source_type": "community",
+   "url": "https://spacebunnyalpha.com/",
+   "seen": "2026-10-05",
+   "excluded": "no reference models with an AA index collected for this benchmark yet"
+  }
+ ]
+}

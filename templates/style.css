@@ -135,7 +135,12 @@ code.id { font: 0.76rem var(--f-mono); color: var(--fg); background: var(--surfa
 .aa { display: inline-flex; align-items: center; gap: 4px; font: 600 0.86rem var(--f-mono); color: var(--fg); background: var(--surface-2); border: 1px solid var(--line-strong); border-radius: 5px; padding: 1px 7px; text-decoration: none; white-space: nowrap; }
 a.aa:hover { border-color: var(--accent); color: var(--accent); }
 .aa small { font: 600 0.62rem var(--f-body); color: var(--muted); letter-spacing: 0.04em; }
-.aa.est { border-style: dashed; }
+.aa.est { border-style: dashed; cursor: pointer; list-style: none; }
+.aa.est::-webkit-details-marker { display: none; }
+details.estd { display: inline-block; position: relative; }
+details.estd[open] summary { border-color: var(--accent); }
+.estpanel { position: absolute; z-index: 30; top: calc(100% + 6px); left: 0; width: min(380px, 80vw); background: var(--surface); border: 1px solid var(--line-strong); border-radius: 8px; padding: 10px 12px; box-shadow: 0 8px 24px rgba(0,0,0,.18); font: 0.8rem/1.45 var(--f-body); white-space: normal; }
+.estpanel p { margin: 0 0 6px; } .estpanel ul { margin: 0 0 6px; padding-left: 16px; display: grid; gap: 4px; }
 .stale { color: var(--overdue); font-weight: 600; }
 
 /* filters */
@@ -236,6 +241,12 @@ a.ev:hover::before, a.ev:focus-visible::before { background: var(--accent); bord
 .detail dl { margin: 0; display: grid; grid-template-columns: minmax(120px, max-content) minmax(0, 1fr); gap: 7px 16px; font-size: 0.86rem; }
 .detail dt { color: var(--muted); }
 .detail dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+
+/* methodology / prose pages */
+.prose { max-width: 760px; gap: 14px; }
+.prose h1 { margin-top: 8px; } .prose h2 { margin-top: 18px; }
+.prose p, .prose li { color: var(--fg); line-height: 1.6; } .prose ul, .prose ol { margin: 0; padding-left: 22px; display: grid; gap: 6px; }
+.prose code { font: 0.85em var(--f-mono); background: var(--surface-2); border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; }
 
 footer { font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 16px; }
 
