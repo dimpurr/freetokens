@@ -316,7 +316,7 @@ def render_readme(text, sections):
 
 SITE = "https://freetokens.fyi"
 REPO = "https://github.com/dimpurr/freetokens"
-BRAND = ('<a class="brand" href="__ROOT__index.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+BRAND = ('<a class="brand" href="__HOME__"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
          'stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>'
          '<span class="word">freetokens</span></a>')
 GH = (f'<a class="gh" href="{REPO}" target="_blank" rel="noopener" title="Data and code on GitHub: corrections and new lanes welcome">'
@@ -325,25 +325,213 @@ GH = (f'<a class="gh" href="{REPO}" target="_blank" rel="noopener" title="Data a
       '2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 '
       '2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 '
       '1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg><span>Contribute</span></a>')
-HEAD = """<title>{title}</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
+FONTS = """<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
 """
+FAVICON_SVG = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#0a7f8a"/>'
+               '<path d="M35 8 14 36h15l-3 20 23-30H34z" fill="#fff"/></svg>')
 
 
-def render_page(template, title, payload, root):
+# ---------- SEO: titles, descriptions, structured data (all derived from data/) ----------
+
+def clip(s, n=158):
+    s = re.sub(r"\s+", " ", s).strip()
+    return s if len(s) <= n else s[: n - 1].rsplit(" ", 1)[0].rstrip(",;:·") + "…"
+
+
+FREE = ("live", "overdue", "listed")
+
+
+def seo_home(lanes, models, today):
+    chans = sorted({l["channel"] for l in lanes})
+    free = [l for l in lanes if l["status"] in FREE]
+    title = "Free LLMs and APIs: where they are free and until when | freetokens"
+    desc = clip(f"{len(free)} free LLM lanes across {len(chans)} channels ({', '.join(chans[:4])}…): end dates, takedowns and "
+                f"limits we measured ourselves. Every fact sourced and dated; updated {today:%b %-d, %Y}.")
+    return title, desc
+
+
+def seo_model(m, lanes):
+    ml = [l for l in lanes if l["model"] == m["id"]]
+    free = [l for l in ml if l["status"] in FREE]
+    title = f"{m['name']} free: {len(free)} of {len(ml)} channels, end dates and limits | freetokens"
+    nxt = sorted((l for l in free if effective_end(l)), key=lambda l: effective_end(l))
+    a = m["aa_index"]
+    parts = [f"Where {m['name']} is free right now: {', '.join(l['channel'] for l in free) or 'no channel at the moment'}."]
+    if nxt:
+        parts.append(f"Next end: {nxt[0]['channel']}, {fmt_date(effective_end(nxt[0]))[:10]}.")
+    if a.get("value") is not None:
+        parts.append(f"AA index {a['value']}.")
+    parts.append(f"{m['context']} context. Sources and dates for every fact.")
+    return title, clip(" ".join(parts))
+
+
+def seo_channel(c, lanes, models):
+    cl = [l for l in lanes if l["channel"] == c]
+    free = [l for l in cl if l["status"] in FREE]
+    names = {m["id"]: m["name"] for m in models}
+    title = f"Free models on {c}: {len(free)} now, end dates and limits | freetokens"
+    desc = clip(f"{len(free)} of {len(cl)} tracked models free on {c} ({label('channel_type', cl[0]['type'])}): "
+                f"{', '.join(names[l['model']] for l in free) or 'none right now'}. End dates, takedowns and limits, with sources.")
+    return title, desc
+
+
+def jsonld(obj):
+    return '<script type="application/ld+json">' + json.dumps(obj, ensure_ascii=False).replace("</", "<\\/") + "</script>"
+
+
+def crumbs(items):
+    return {"@context": "https://schema.org", "@type": "BreadcrumbList",
+            "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": n, "item": u} for i, (n, u) in enumerate(items)]}
+
+
+def head_html(title, desc, url, today, extra_ld, og_image):
+    return (f'<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
+            f'<title>{html.escape(title)}</title>\n<meta name="description" content="{html.escape(desc)}">\n'
+            f'<link rel="canonical" href="{url}">\n<meta name="robots" content="index, follow, max-image-preview:large">\n'
+            f'<meta name="theme-color" content="#0a7f8a">\n<link rel="icon" href="/favicon.svg" type="image/svg+xml">\n'
+            f'<meta property="og:type" content="website">\n<meta property="og:site_name" content="freetokens">\n'
+            f'<meta property="og:title" content="{html.escape(title)}">\n<meta property="og:description" content="{html.escape(desc)}">\n'
+            f'<meta property="og:url" content="{url}">\n<meta property="og:image" content="{og_image}">\n'
+            f'<meta property="og:image:width" content="1200">\n<meta property="og:image:height" content="630">\n'
+            f'<meta name="twitter:card" content="summary_large_image">\n<meta name="twitter:title" content="{html.escape(title)}">\n'
+            f'<meta name="twitter:description" content="{html.escape(desc)}">\n<meta name="twitter:image" content="{og_image}">\n'
+            + "\n".join(jsonld(x) for x in extra_ld) + "\n" + FONTS)
+
+
+# ---------- pages ----------
+
+def render_body(template, payload, root, home):
     t = ROOT / "templates"
     data = json.dumps(payload, ensure_ascii=False).replace("</", "<\\/")
     common = (t / "common.js").read_text()
-    body = (t / template).read_text().replace("__BRAND__", BRAND).replace("__GH__", GH).replace("__ROOT__", root).replace("/*__COMMON__*/", f"const D = {data};\n" + common)
-    return HEAD.format(title=html.escape(title)) + "<style>\n" + (t / "style.css").read_text() + "</style>\n\n" + body
+    return ((t / template).read_text().replace("__BRAND__", BRAND).replace("__GH__", GH).replace("__HOME__", home)
+            .replace("__ROOT__", root).replace("/*__COMMON__*/", f"const D = {data};\n" + common))
 
 
-def wrap_full(fragment):
-    return ('<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
-            '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
-            '</head>\n<body>\n' + fragment + '\n</body>\n</html>\n')
+def full_doc(head, body):
+    css = (ROOT / "templates" / "style.css").read_text()
+    return f'<!doctype html>\n<html lang="en">\n<head>\n{head}<style>\n{css}</style>\n</head>\n<body>\n{body}\n</body>\n</html>\n'
+
+
+def build_pages(lanes, events, models, today, mode):
+    """mode 'preview': relative .html links (repo, file://, artifact). mode 'site': clean absolute URLs for freetokens.fyi."""
+    site = mode == "site"
+    ext = "" if site else ".html"
+    base = {"lanes": lanes, "events": events, "models": models, "vocab": VOCAB, "built": today.isoformat(), "ext": ext}
+    og = f"{SITE}/og.png"
+    pages = {}  # relative output path -> (head, body)
+    names = {m["id"]: m["name"] for m in models}
+    chans = sorted({l["channel"] for l in lanes})
+
+    title, desc = seo_home(lanes, models, today)
+    ld = [{"@context": "https://schema.org", "@type": "WebSite", "name": "freetokens", "url": SITE + "/",
+           "description": desc},
+          {"@context": "https://schema.org", "@type": "Dataset", "name": "freetokens: free LLM lanes, end dates and measured limits",
+           "description": desc, "url": SITE + "/", "sameAs": REPO, "isAccessibleForFree": True,
+           "license": "https://creativecommons.org/licenses/by/4.0/", "dateModified": today.isoformat(),
+           "creator": {"@type": "Person", "name": "dimpurr", "url": "https://github.com/dimpurr"},
+           "keywords": ["free LLM", "free AI models", "free LLM API", "stealth models", "OpenRouter free models", "coding agents"],
+           "distribution": [{"@type": "DataDownload", "encodingFormat": "application/json",
+                             "contentUrl": f"https://raw.githubusercontent.com/dimpurr/freetokens/main/data/{n}.json"} for n in ("lanes", "events", "models")]},
+          {"@context": "https://schema.org", "@type": "ItemList", "name": "Models tracked on freetokens",
+           "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": m["name"], "url": f"{SITE}/models/{m['id']}"}
+                               for i, m in enumerate(models)]}]
+    home_href = "/" if site else "index.html"
+    pages["index.html"] = (head_html(title, desc, SITE + "/", today, ld, og),
+                           render_body("home.html", dict(base, root="/" if site else ""), "/" if site else "", home_href))
+    sub_root, sub_home = ("/", "/") if site else ("../", "../index.html")
+    for m in models:
+        title, desc = seo_model(m, lanes)
+        url = f"{SITE}/models/{m['id']}"
+        ld = [crumbs([("freetokens", SITE + "/"), ("Models", SITE + "/#h-models"), (m["name"], url)]),
+              {"@context": "https://schema.org", "@type": "WebPage", "name": title, "url": url, "description": desc,
+               "dateModified": today.isoformat(), "about": {"@type": "Thing", "name": m["name"]}}]
+        pages[f"models/{m['id']}.html"] = (head_html(title, desc, url, today, ld, og),
+                                            render_body("model.html", dict(base, root=sub_root, model=m["id"]), sub_root, sub_home))
+    for c in chans:
+        title, desc = seo_channel(c, lanes, models)
+        url = f"{SITE}/channels/{slug(c)}"
+        ld = [crumbs([("freetokens", SITE + "/"), ("Channels", SITE + "/#h-channels"), (c, url)]),
+              {"@context": "https://schema.org", "@type": "WebPage", "name": title, "url": url, "description": desc,
+               "dateModified": today.isoformat()}]
+        pages[f"channels/{slug(c)}.html"] = (head_html(title, desc, url, today, ld, og),
+                                              render_body("channel.html", dict(base, root=sub_root, channel=c), sub_root, sub_home))
+    return pages
+
+
+def site_extras(pages, lanes, events, models, today):
+    """robots.txt, sitemap.xml, favicon, 404 page: only for the deployed site."""
+    def lastmod(path):
+        if path.startswith("models/"):
+            mid = path[7:-5]
+            ds = [l["checked"]["date"] for l in lanes if l["model"] == mid] + [e["date"][:10] for e in events if any(lanes_by_id[i]["model"] == mid for i in e["lanes"])]
+        elif path.startswith("channels/"):
+            cs = path[9:-5]
+            ds = [l["checked"]["date"] for l in lanes if slug(l["channel"]) == cs] + [e["date"][:10] for e in events if any(slug(lanes_by_id[i]["channel"]) == cs for i in e["lanes"])]
+        else:
+            ds = [today.isoformat()]
+        return max(d for d in ds if len(d) == 10) if ds else today.isoformat()
+    lanes_by_id = {l["id"]: l for l in lanes}
+    urls = []
+    for p in sorted(pages):
+        loc = SITE + "/" if p == "index.html" else f"{SITE}/{p[:-5]}"
+        urls.append(f"  <url><loc>{loc}</loc><lastmod>{lastmod(p)}</lastmod></url>")
+    sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "\n".join(urls) + "\n</urlset>\n"
+    robots = f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n"
+    notfound = full_doc(
+        '<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n<title>Not found | freetokens</title>\n'
+        '<meta name="robots" content="noindex">\n<link rel="icon" href="/favicon.svg" type="image/svg+xml">\n' + FONTS,
+        '<div class="wrap"><header class="intro"><h1>Page not found</h1><p>This page doesn\'t exist (models and channels can be renamed). '
+        'Start from the <a href="/">home page</a>, or browse <a href="/#h-models">models</a> and <a href="/#h-channels">channels</a>.</p></header></div>')
+    return {"sitemap.xml": sitemap, "robots.txt": robots, "favicon.svg": FAVICON_SVG + "\n", "404.html": notfound}
+
+
+def prerender(dist):
+    """Run each page once in headless Chrome and keep the rendered DOM, so crawlers get full HTML without running JS."""
+    import shutil, subprocess
+    chrome = next((c for c in ("/Applications/Google Chrome.app/Contents/MacOS/Google Chrome", shutil.which("google-chrome") or "",
+                               shutil.which("chromium") or "") if c and Path(c).exists()), None)
+    if not chrome:
+        print("! Chrome not found: skipped prerendering (pages still work, but content is rendered client-side)", file=sys.stderr)
+        return 0
+    n = 0
+    for p in sorted(dist.rglob("*.html")):
+        if p.name == "404.html":
+            continue
+        out = subprocess.run([chrome, "--headless=new", "--disable-gpu", "--virtual-time-budget=3000", "--dump-dom", p.resolve().as_uri()],
+                             capture_output=True, text=True, timeout=60).stdout
+        if "<main" not in out and 'class="wrap"' not in out:
+            sys.exit(f"✗ prerender failed for {p}")
+        p.write_text("<!doctype html>\n" + out.strip() + "\n")
+        n += 1
+    return n
+
+
+def og_image(dist, lanes, models, today):
+    """1200x630 social card rendered with headless Chrome (skipped without Chrome)."""
+    import shutil, subprocess
+    chrome = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+    if not Path(chrome).exists():
+        chrome = shutil.which("google-chrome") or shutil.which("chromium")
+    if not chrome:
+        return False
+    free = len([l for l in lanes if l["status"] in FREE])
+    card = dist / "_og.html"
+    card.write_text(f"""<!doctype html><html><head><meta charset="utf-8">{FONTS}<style>
+body{{margin:0;width:1200px;height:630px;background:#10141b;color:#e5e9f0;font-family:"IBM Plex Sans",sans-serif;display:flex;flex-direction:column;justify-content:space-between;padding:64px 72px;box-sizing:border-box}}
+.b{{display:flex;gap:16px;align-items:center;font:700 40px "Bricolage Grotesque",sans-serif}} .b svg{{width:56px;height:56px}}
+h1{{font:700 72px/1.05 "Bricolage Grotesque",sans-serif;margin:0;letter-spacing:-1px}} h1 span{{color:#4fc6d0}}
+.s{{display:flex;gap:40px;font:500 28px "IBM Plex Mono",monospace;color:#9aa3b2}} .s b{{color:#e5e9f0;font-weight:500}}</style></head><body>
+<div class="b">{FAVICON_SVG}freetokens.fyi</div>
+<h1>Free LLMs, by channel,<br><span>with end dates.</span></h1>
+<div class="s"><span><b>{free}</b> free lanes</span><span><b>{len(models)}</b> models</span><span><b>{len({l['channel'] for l in lanes})}</b> channels</span><span>updated {today:%b %-d}</span></div>
+</body></html>""")
+    subprocess.run([chrome, "--headless=new", "--disable-gpu", "--hide-scrollbars", "--virtual-time-budget=3000", "--window-size=1200,630",
+                    f"--screenshot={(dist / 'og.png').resolve()}", card.resolve().as_uri()], capture_output=True, timeout=60)
+    card.unlink()
+    return (dist / "og.png").exists()
 
 
 def main():
@@ -351,6 +539,7 @@ def main():
     ap.add_argument("--check", action="store_true")
     ap.add_argument("--validate", action="store_true", help="only check data/ against the schema; write nothing (for contributors)")
     ap.add_argument("--fragment")
+    ap.add_argument("--dist", help="also build the deployable site into this folder (clean URLs, sitemap, prerendered HTML)")
     ap.add_argument("--today")
     a = ap.parse_args()
     if a.today:
@@ -365,7 +554,6 @@ def main():
     if errs:
         print("✗ data does not validate:", *errs, sep="\n  ", file=sys.stderr)
         sys.exit(1)
-
     if a.validate:
         print(f"✓ data valid: {len(lanes)} lanes · {len(events)} events · {len(models)} models")
         return
@@ -379,24 +567,14 @@ def main():
         "models": md_models(models, lanes, events),
         "channels": md_channels(lanes, models, today),
     })
-    base = {"lanes": lanes, "events": events, "models": models, "vocab": VOCAB, "built": today.isoformat()}
-    fragment = render_page("home.html", "freetokens", dict(base, root=""), "")
-    outputs = {readme_path: readme, ROOT / "index.html": wrap_full(fragment)}
-    model_pages = {}
-    for m in models:
-        frag = render_page("model.html", f"{m['name']} · freetokens", dict(base, root="../", model=m["id"]), "../")
-        model_pages[m["id"]] = frag
-        outputs[ROOT / "models" / f"{m['id']}.html"] = wrap_full(frag)
-    channel_pages = {}
-    for c in sorted({l["channel"] for l in lanes}):
-        frag = render_page("channel.html", f"{c} · freetokens", dict(base, root="../", channel=c), "../")
-        channel_pages[slug(c)] = frag
-        outputs[ROOT / "channels" / f"{slug(c)}.html"] = wrap_full(frag)
+    preview = build_pages(lanes, events, models, today, "preview")
+    outputs = {readme_path: readme}
+    outputs.update({ROOT / p: full_doc(h, b) for p, (h, b) in preview.items()})
     stray = [p for d in ("models", "channels") if (ROOT / d).exists() for p in (ROOT / d).glob("*.html") if p not in outputs]
 
     if a.check:
         stale = [str(p.relative_to(ROOT)) for p, c in outputs.items() if not p.exists() or p.read_text() != c]
-        stale += [f"{p.relative_to(ROOT)} (no such model)" for p in stray]
+        stale += [f"{p.relative_to(ROOT)} (no such page)" for p in stray]
         if stale:
             print("✗ out of date (run python3 build.py): " + ", ".join(stale), file=sys.stderr)
             sys.exit(1)
@@ -408,18 +586,34 @@ def main():
         p.unlink()
     for p, c in outputs.items():
         p.write_text(c)
+    msg = f"✓ {len(lanes)} lanes · {len(events)} events · {len(models)} models → README.md, index.html, models/*.html, channels/*.html"
+
     if a.fragment:
-        # for hosts that add their own <html>/<head>: the home page as a fragment, model pages as full documents beside it
+        # a host that adds its own <html>/<head>: home page as a fragment (head tags inline), other pages as full documents beside it
         out = Path(a.fragment)
         out.parent.mkdir(parents=True, exist_ok=True)
-        out.write_text(fragment)
-        (out.parent / "models").mkdir(exist_ok=True)
-        for mid in model_pages:
-            (out.parent / "models" / f"{mid}.html").write_text(outputs[ROOT / "models" / f"{mid}.html"])
-        (out.parent / "channels").mkdir(exist_ok=True)
-        for cs in channel_pages:
-            (out.parent / "channels" / f"{cs}.html").write_text(outputs[ROOT / "channels" / f"{cs}.html"])
-    print(f"✓ {len(lanes)} lanes · {len(events)} events · {len(models)} models → README.md, index.html, models/*.html, channels/*.html")
+        h, b = preview["index.html"]
+        css = (ROOT / "templates" / "style.css").read_text()
+        out.write_text(h.replace('<meta charset="utf-8">\n', "") + f"<style>\n{css}</style>\n" + b)
+        for p, (h2, b2) in preview.items():
+            if p != "index.html":
+                (out.parent / p).parent.mkdir(parents=True, exist_ok=True)
+                (out.parent / p).write_text(full_doc(h2, b2))
+
+    if a.dist:
+        import shutil
+        dist = Path(a.dist)
+        shutil.rmtree(dist, ignore_errors=True)
+        site = build_pages(lanes, events, models, today, "site")
+        for p, (h, b) in site.items():
+            (dist / p).parent.mkdir(parents=True, exist_ok=True)
+            (dist / p).write_text(full_doc(h, b))
+        for p, c in site_extras(site, lanes, events, models, today).items():
+            (dist / p).write_text(c)
+        n = prerender(dist)
+        ok = og_image(dist, lanes, models, today)
+        msg += f"\n✓ site → {dist}/ ({len(site)} pages, {n} prerendered, sitemap, robots, favicon, 404{', og.png' if ok else ''})"
+    print(msg)
 
 
 if __name__ == "__main__":

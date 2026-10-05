@@ -1,11 +1,11 @@
 <div class="topbar"><div class="in">
   __BRAND__
-  <nav aria-label="Sections"><a href="__ROOT__index.html#h-channels">All channels</a><a href="#h-now">What's free here</a><a href="#h-chart">Free periods</a><a href="#events">What happened</a><a href="#h-details">Details</a></nav>
+  <nav aria-label="Sections"><a href="__HOME__#h-channels">All channels</a><a href="#h-now">What's free here</a><a href="#h-chart">Free periods</a><a href="#events">What happened</a><a href="#h-details">Details</a></nav>
   __GH__
 </div></div>
 
 <div class="wrap">
-  <nav class="back"><a href="__ROOT__index.html#h-channels">← All channels</a></nav>
+  <nav class="back"><a href="__HOME__#h-channels">← All channels</a></nav>
 
   <header class="mhead" id="chead"></header>
 
@@ -38,7 +38,6 @@
 
 const C = D.channel;
 const CL = lanesOn(C);
-document.title = `${C} · freetokens`;
 
 /* header: facts derived from this channel's lanes */
 (function () {

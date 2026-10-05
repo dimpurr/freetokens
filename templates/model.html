@@ -1,11 +1,11 @@
 <div class="topbar"><div class="in">
   __BRAND__
-  <nav aria-label="Sections"><a href="__ROOT__index.html#h-models">All models</a><a href="#h-now">Where it's free</a><a href="#h-chart">Free periods</a><a href="#events">What happened</a><a href="#h-details">Details</a></nav>
+  <nav aria-label="Sections"><a href="__HOME__#h-models">All models</a><a href="#h-now">Where it's free</a><a href="#h-chart">Free periods</a><a href="#events">What happened</a><a href="#h-details">Details</a></nav>
   __GH__
 </div></div>
 
 <div class="wrap">
-  <nav class="back"><a href="__ROOT__index.html#h-models">← All models</a></nav>
+  <nav class="back"><a href="__HOME__#h-models">← All models</a></nav>
 
   <header class="mhead" id="mhead"></header>
 
@@ -38,7 +38,6 @@
 
 const M = models[D.model];
 const ML = lanesOf(M.id);
-document.title = `${M.name} · freetokens`;
 
 /* header: recorded facts only (name, maker, notes, numbers) */
 (function () {
