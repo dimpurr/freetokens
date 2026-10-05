@@ -197,8 +197,8 @@
     "$comment": "ADR-004 method v1 / ADR-006 ranking. Change values here, not in code.",
     "min_anchors": 4,
     "min_r": 0.6,
-    "min_benchmarks": 2,
-    "min_sources": 2,
+    "min_benchmarks": 1,
+    "min_sources": 1,
     "band_width": 5,
     "weights": {
       "official": 1.0,

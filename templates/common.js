@@ -140,7 +140,7 @@ function estPanel(m) {
   const e = m.est;
   const rows = e.evidence.map((c) => `<li>${c.implied != null ? `<b class="mono">≈${c.implied}</b> ` : ""}<a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.benchmark === "aicodingdaily" ? "AI Coding Daily" : c.benchmark)}</a>: ${esc(c.score)}${c.variant ? ` <span class="muted">(${esc(c.variant)})</span>` : ""} · ${esc(c.source_type)}${c.implied != null ? ` · fit r=${c.r}, ${c.anchors} reference models` : ` · <span class="muted">not used: ${esc(c.why)}</span>`}</li>`).join("");
   const head = e.status === "ok"
-    ? `Estimated from ${e.benchmarks} benchmark${e.benchmarks === 1 ? "" : "s"}: centre ${e.center}${e.spread > 10 ? " · sources disagree widely" : ""}.`
+    ? `Estimated from ${e.benchmarks} benchmark${e.benchmarks === 1 ? " (one source only: a rough guide)" : "s"}: centre ${e.center}${e.spread > 10 ? " · sources disagree widely" : ""}.`
     : `Not enough evidence yet: ${e.benchmarks} of the required benchmarks (rule: ${esc(D.est_rule)}).`;
   return `<div class="estpanel"><p>${head}</p><ul>${rows}</ul><p class="muted">An estimate, not an Artificial Analysis score. Method: <a href="https://github.com/dimpurr/freetokens/blob/main/METHOD.md">how EST works</a>.</p></div>`;
 }

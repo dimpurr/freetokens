@@ -31,7 +31,7 @@ How an EST band is computed:
 3. **Convert each benchmark to an implied AA value.** The model's score goes through that benchmark's line.
 4. **Combine.** The implied values are combined with a weighted median: official and leaderboard sources weigh 1, third-party 0.75, community and leaks 0.5.
 5. **Make the band.** The band is 5 points wide around that median.
-6. **Minimum evidence.** At least 2 benchmarks from 2 independent sources are required. Until then the site shows `EST —` with the evidence collected so far.
+6. **Minimum evidence.** At least 1 benchmark fitted this way is required (until then the site shows `EST —`). An EST built on a single benchmark is labelled "1 benchmark" in its evidence panel; treat it as a rough guide.
 
 Partial question sets (for example 60 of the GPQA questions) are listed, but not used.
 
