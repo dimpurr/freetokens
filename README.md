@@ -4,7 +4,7 @@ Where can you use a capable LLM for free **right now**, through which channel, u
 
 A hand-curated demo (v0). It tracks **free lanes**: one model × one channel × one free condition. The focus is on what existing lists miss: limited-time free models inside **subscription and agent tools** (OpenCode Zen / Go, Command Code, …) and router listings, together with **when each offer started and is expected to end**.
 
-**Visual version:** `index.html` (open it locally) has the ending-soon countdown, a lane chart against today's date, and filterable tables.
+**Visual version:** https://freetokens.fyi has the ending-soon countdown, a lane chart against today's date, and filterable tables. The same page is generated as `index.html` in this repo.
 
 ## How to read this
 
