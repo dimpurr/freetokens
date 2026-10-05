@@ -3,6 +3,7 @@
 
     python3 build.py                 # validate + write README.md and index.html
     python3 build.py --check         # validate + fail if README.md / index.html are out of date
+    python3 build.py --validate      # validate data/ only, write nothing (what contributors run)
     python3 build.py --fragment OUT  # also write the page without <html>/<head> wrappers (for hosts that add their own)
     python3 build.py --today 2026-10-04
 
@@ -348,6 +349,7 @@ def wrap_full(fragment):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true")
+    ap.add_argument("--validate", action="store_true", help="only check data/ against the schema; write nothing (for contributors)")
     ap.add_argument("--fragment")
     ap.add_argument("--today")
     a = ap.parse_args()
@@ -363,6 +365,10 @@ def main():
     if errs:
         print("✗ data does not validate:", *errs, sep="\n  ", file=sys.stderr)
         sys.exit(1)
+
+    if a.validate:
+        print(f"✓ data valid: {len(lanes)} lanes · {len(events)} events · {len(models)} models")
+        return
 
     readme_path = ROOT / "README.md"
     readme = render_readme(readme_path.read_text(), {
