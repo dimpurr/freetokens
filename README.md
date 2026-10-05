@@ -30,8 +30,8 @@ As of 2026-10-05.
 | Model | Channel | Ends | Confidence |
 |---|---|---|---|
 | MiMo V2.6 Flash | OpenCode Zen | past announced end (2026-09-28), can stop any time | official |
-| Space Bunny (stealth) | OpenCode Go | 2026-10-05 · in 0 days | inferred |
-| Space Bunny (stealth) | OpenRouter | 2026-10-05 · in 0 days | official |
+| Space Bunny (stealth) | OpenCode Go | 2026-10-05 · today | inferred |
+| Space Bunny (stealth) | OpenRouter | 2026-10-05 · today | official |
 | LongCat 2.5 Preview | OpenCode Go | 2026-10-10 13:38 UTC · in 5 days | inferred |
 <!-- END:soon -->
 

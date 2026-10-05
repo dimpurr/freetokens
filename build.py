@@ -185,7 +185,7 @@ def md_soon(lanes, models, today):
         elif d < 0:
             when = f"{fmt_date(end)} (passed)"
         else:
-            when = f"{fmt_date(end)} · in {d} day{'s' if d != 1 else ''}"
+            when = f"{fmt_date(end)} · " + ("today" if d == 0 else f"in {d} day{'s' if d != 1 else ''}")
         rows.append((day(end), [f"{mname[l['model']]}", l["channel"], when, label("end_confidence", l["ends"]["confidence"])]))
     rows.sort(key=lambda r: r[0])
     return md_table(["Model", "Channel", "Ends", "Confidence"], [r[1] for r in rows])
