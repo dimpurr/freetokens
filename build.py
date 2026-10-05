@@ -52,6 +52,10 @@ def effective_end(lane):
     return e.get("expected") or e.get("announced")
 
 
+def slug(name):
+    return re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
+
+
 # ---------- validation ----------
 
 def get(obj, dotted):
@@ -87,6 +91,17 @@ def validate(lanes, events, models):
         ids = [r["id"] for r in coll]
         for dup in {x for x in ids if ids.count(x) > 1}:
             errs.append(f"{name}: duplicate id {dup!r}")
+
+    types, slugs = {}, {}
+    for l in lanes:
+        types.setdefault(l["channel"], set()).add(l["type"])
+        slugs.setdefault(slug(l["channel"]), set()).add(l["channel"])
+    for c, ts in types.items():
+        if len(ts) > 1:
+            errs.append(f"channel {c!r}: its lanes disagree on type ({', '.join(sorted(ts))}); one channel has one type")
+    for sl, names in slugs.items():
+        if len(names) > 1:
+            errs.append(f"channels {sorted(names)} share the page name {sl!r}; rename one")
 
     by_lane = {}
     for e in events:
@@ -269,6 +284,20 @@ def md_models(models, lanes, events):
     return md_table(["Model", "Free on", "Events", "AA index", "Context", "Image input", "Maker", "Notes"], rows)
 
 
+def md_channels(lanes, models, today):
+    mname = {m["id"]: m["name"] for m in models}
+    rows = []
+    for c in sorted({l["channel"] for l in lanes}):
+        ls = [l for l in lanes if l["channel"] == c]
+        free = [l for l in ls if l["status"] in ("live", "overdue")]
+        up = sorted((l for l in free if effective_end(l) and day(effective_end(l)) >= today), key=lambda l: day(effective_end(l)))
+        nxt = f"{mname[up[0]['model']]} · {fmt_date(effective_end(up[0]))[:10]} ({label('end_confidence', up[0]['ends']['confidence'])})" if up else "none announced"
+        models_ = " · ".join(f"{VOCAB['status'][l['status']]['icon']} {mname[l['model']]}" for l in ls)
+        rows.append((-len(free), c, [f"[{c}]({SITE}/channels/{slug(c)}.html)", label("channel_type", ls[0]["type"]), f"{len(free)} / {len(ls)}", nxt, models_]))
+    rows.sort()
+    return md_table(["Channel", "Type", "Free now", "Next end", "Models"], [r[2] for r in rows])
+
+
 def render_readme(text, sections):
     for key, body in sections.items():
         pat = re.compile(rf"(<!-- BEGIN:{key} -->\n)(?:.*?\n)?(<!-- END:{key} -->)", re.S)
@@ -328,6 +357,7 @@ def main():
         "lanes": md_lanes(lanes, models),
         "timeline": md_events(events, lanes, models),
         "models": md_models(models, lanes, events),
+        "channels": md_channels(lanes, models, today),
     })
     base = {"lanes": lanes, "events": events, "models": models, "vocab": VOCAB, "built": today.isoformat()}
     fragment = render_page("home.html", "freetokens", dict(base, root=""), "")
@@ -337,7 +367,12 @@ def main():
         frag = render_page("model.html", f"{m['name']} · freetokens", dict(base, root="../", model=m["id"]), "../")
         model_pages[m["id"]] = frag
         outputs[ROOT / "models" / f"{m['id']}.html"] = wrap_full(frag)
-    stray = [p for p in (ROOT / "models").glob("*.html") if p not in outputs] if (ROOT / "models").exists() else []
+    channel_pages = {}
+    for c in sorted({l["channel"] for l in lanes}):
+        frag = render_page("channel.html", f"{c} · freetokens", dict(base, root="../", channel=c), "../")
+        channel_pages[slug(c)] = frag
+        outputs[ROOT / "channels" / f"{slug(c)}.html"] = wrap_full(frag)
+    stray = [p for d in ("models", "channels") if (ROOT / d).exists() for p in (ROOT / d).glob("*.html") if p not in outputs]
 
     if a.check:
         stale = [str(p.relative_to(ROOT)) for p, c in outputs.items() if not p.exists() or p.read_text() != c]
@@ -348,6 +383,7 @@ def main():
         print("✓ data valid, generated files up to date")
         return
     (ROOT / "models").mkdir(exist_ok=True)
+    (ROOT / "channels").mkdir(exist_ok=True)
     for p in stray:
         p.unlink()
     for p, c in outputs.items():
@@ -360,7 +396,10 @@ def main():
         (out.parent / "models").mkdir(exist_ok=True)
         for mid in model_pages:
             (out.parent / "models" / f"{mid}.html").write_text(outputs[ROOT / "models" / f"{mid}.html"])
-    print(f"✓ {len(lanes)} lanes · {len(events)} events · {len(models)} models → README.md, index.html, models/*.html")
+        (out.parent / "channels").mkdir(exist_ok=True)
+        for cs in channel_pages:
+            (out.parent / "channels" / f"{cs}.html").write_text(outputs[ROOT / "channels" / f"{cs}.html"])
+    print(f"✓ {len(lanes)} lanes · {len(events)} events · {len(models)} models → README.md, index.html, models/*.html, channels/*.html")
 
 
 if __name__ == "__main__":

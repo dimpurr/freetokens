@@ -24,13 +24,19 @@ const lanes = Object.fromEntries(D.lanes.map((l) => [l.id, l]));
 const effEnd = (l) => l.ends.expected || l.ends.announced;
 const modelHref = (id) => `${D.root}models/${encodeURIComponent(id)}.html`;
 const mlink = (id) => `<a class="mlink" href="${modelHref(id)}">${esc(models[id].name)}</a>`;
+const slug = (name) => name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+const channelHref = (name) => `${D.root}channels/${slug(name)}.html`;
+const clink = (name) => `<a class="mlink" href="${channelHref(name)}">${esc(name)}</a>`;
+const channels = [...new Set(D.lanes.map((l) => l.channel))];
+const lanesOn = (name) => D.lanes.filter((l) => l.channel === name);
+const eventsOn = (name) => D.events.filter((e) => e.lanes.some((i) => lanes[i].channel === name));
 const lanesOf = (mid) => D.lanes.filter((l) => l.model === mid);
 const eventsOf = (mid) => D.events.filter((e) => e.lanes.some((i) => lanes[i].model === mid));
 const endedEvent = (l) => D.events.find((e) => e.kind === "ended" && e.lanes.includes(l.id));
 
 const now = Date.now();
 const todayT = Date.parse(new Date(now).toISOString().slice(0, 10) + "T00:00Z");
-const daysTo = (t) => Math.round((t - todayT) / DAY);
+const daysTo = (t) => Math.round((Math.floor(t / DAY) * DAY - todayT) / DAY); // calendar days (UTC), same as the README
 
 /* one-line state of a lane, used on chips and cards */
 function laneState(l) {
@@ -42,6 +48,7 @@ function laneState(l) {
   if (l.status === "overdue" && !l.ends.expected) return `past announced end ${fd(end).slice(5, 10)}`;
   return d < 0 ? `past end ${fd(end).slice(5, 10)}` : d === 0 ? `ends today` : `ends ${fd(end).slice(5, 10)} · ${d} day${d === 1 ? "" : "s"}`;
 }
+const laneChipC = (l) => `<a class="chip ${l.status}" href="${channelHref(l.channel)}" title="${esc(lab("status", l.status))}">${icon("status", l.status)}${esc(models[l.model].name)} <small>${esc(laneState(l))}</small></a>`;
 const laneChip = (l) => `<a class="chip ${l.status}" href="${modelHref(l.model)}" title="${esc(lab("status", l.status))}">${icon("status", l.status)}${esc(l.channel)} <small>${esc(laneState(l))}</small></a>`;
 
 /* lane chart: bars = free period, markers = events */
@@ -88,7 +95,7 @@ function renderChart(el, rows, fit = false) {
       const t = pd(e.date).t; if (t < t0) continue;
       segs += `<div class="ev ${e.kind}" style="left:${pct(t)}" title="${esc(fd(e.date))}: ${esc(lab("event_kind", e.kind))}. ${esc(e.text)}"></div>`;
     }
-    html += `<div class="lbl"><div class="m">${mlink(l.model)}</div><div class="c">${esc(l.channel)} ${statusChip(l.status)}</div></div><div class="trk">${segs}</div>`;
+    html += `<div class="lbl"><div class="m">${mlink(l.model)}</div><div class="c">${clink(l.channel)} ${statusChip(l.status)}</div></div><div class="trk">${segs}</div>`;
   }
   el.innerHTML = html;
 }
@@ -108,7 +115,7 @@ function timelineHTML(evs) {
   return [...evs].sort((a, b) => pd(b.date).t - pd(a.date).t).map((e) => {
     const src = e.source.url ? `<a href="${esc(e.source.url)}" target="_blank" rel="noopener">${esc(e.source.label)}</a>` : esc(e.source.label);
     return `<div class="it"><div class="d">${esc(fd(e.date))}</div><div class="b">
-      <div class="h"><span class="k">${esc(lab("event_kind", e.kind))}</span><span class="lanes-chips">${e.lanes.map((i) => `${mlink(lanes[i].model)} ${laneChip(lanes[i])}`).join(" ")}</span></div>
+      <div class="h"><span class="k">${esc(lab("event_kind", e.kind))}</span><span class="lanes-chips">${e.lanes.map((i) => `${mlink(lanes[i].model)} · ${clink(lanes[i].channel)} ${statusChip(lanes[i].status)}`).join(" ")}</span></div>
       <div class="t">${esc(e.text)}${e.end_date ? ` <span class="mono">→ ends ${esc(fd(e.end_date))}</span>` : ""}</div>
       <div class="s">Source: ${src}${e.source.note ? ` (${esc(e.source.note)})` : ""}</div>
     </div></div>`;
