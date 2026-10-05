@@ -8,9 +8,12 @@ freetokens tracks **free lanes**: one model × one channel × one free condition
 
 ## How to contribute
 
-Spotted a new free model, an end date, a takedown, or a limit you measured? **Edit the JSON in [`data/`](data/) and open a pull request.** Every fact needs a source link and a date; unknowns are written out, never left blank. Run `python3 build.py --validate` before you submit.
+Spotted a new free model, an end date, a takedown, or a limit you measured? Two ways:
 
-Full guide: **[CONTRIBUTING.md](CONTRIBUTING.md)**. Not sure how to phrase it? Open an issue with the link and we'll add it.
+1. **Open an issue** with the link and what changed. Anyone can do this; we turn it into data.
+2. **Open a pull request** that edits the JSON in [`data/`](data/). Every fact needs a source link and a date. Run `python3 build.py --validate` before you submit.
+
+Full guide and rules: **[CONTRIBUTING.md](CONTRIBUTING.md)**.
 
 The tables below are generated from `data/` by `build.py`. Don't edit them by hand.
 
