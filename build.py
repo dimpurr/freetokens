@@ -662,8 +662,14 @@ def prerender(dist):
         if p.name == "404.html" or p.name == "methodology.html":
             continue
         url = f"http://127.0.0.1:{port}/{p.relative_to(dist).as_posix()}"
-        out = subprocess.run([chrome, "--headless=new", "--disable-gpu", "--virtual-time-budget=3000", "--dump-dom", url],
-                             capture_output=True, text=True, timeout=60).stdout
+        out = ""
+        for attempt in range(3):  # headless Chrome occasionally hangs on one page; retry
+            try:
+                out = subprocess.run([chrome, "--headless=new", "--disable-gpu", "--virtual-time-budget=3000", "--dump-dom", url],
+                                     capture_output=True, text=True, timeout=45).stdout
+                break
+            except subprocess.TimeoutExpired:
+                print(f"! prerender timeout ({attempt + 1}/3): {p.relative_to(dist)}", file=sys.stderr)
         if "<main" not in out and 'class="wrap"' not in out:
             sys.exit(f"✗ prerender failed for {p}")
         p.write_text("<!doctype html>\n" + out.strip() + "\n")
