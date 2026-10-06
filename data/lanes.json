@@ -2944,8 +2944,8 @@
   "model_id": "gemini-3.8-flash",
   "free_condition": "Gemini API key from a project without billing; free tier (limits per project, reset midnight Pacific; numbers only in AI Studio); UK / EEA / Swiss users get the paid-tier data terms",
   "limits_stated": {
-   "text": "not published (\"can be viewed in Google AI Studio … not guaranteed\")",
-   "source": "https://ai.google.dev/gemini-api/docs/rate-limits"
+   "text": "not published by Google; community readouts: about 5 requests/min and 20 requests/day per Flash model (Sep 2026), too few for agent use",
+   "source": "https://discuss.ai.google.dev/t/gemini-3-8-flash-free-tier-20-rpd-is-too-limited-for-practical-evaluation/180609"
   },
   "limits_observed": null,
   "started": {
@@ -2972,8 +2972,8 @@
   "model_id": "gemini-3.7-flash",
   "free_condition": "Gemini API key from a project without billing; free tier (limits per project, reset midnight Pacific; numbers only in AI Studio); UK / EEA / Swiss users get the paid-tier data terms",
   "limits_stated": {
-   "text": "not published (\"can be viewed in Google AI Studio … not guaranteed\")",
-   "source": "https://ai.google.dev/gemini-api/docs/rate-limits"
+   "text": "not published by Google; community readouts: about 5 requests/min and 20 requests/day per Flash model (Sep 2026), too few for agent use",
+   "source": "https://discuss.ai.google.dev/t/gemini-3-8-flash-free-tier-20-rpd-is-too-limited-for-practical-evaluation/180609"
   },
   "limits_observed": null,
   "started": {
@@ -3000,8 +3000,8 @@
   "model_id": "gemini-3.6-flash",
   "free_condition": "Gemini API key from a project without billing; free tier (limits per project, reset midnight Pacific; numbers only in AI Studio); UK / EEA / Swiss users get the paid-tier data terms",
   "limits_stated": {
-   "text": "not published (\"can be viewed in Google AI Studio … not guaranteed\")",
-   "source": "https://ai.google.dev/gemini-api/docs/rate-limits"
+   "text": "not published by Google; community readouts: about 5 requests/min and 20 requests/day per Flash model (Sep 2026), too few for agent use",
+   "source": "https://discuss.ai.google.dev/t/gemini-3-8-flash-free-tier-20-rpd-is-too-limited-for-practical-evaluation/180609"
   },
   "limits_observed": null,
   "started": {
@@ -3028,8 +3028,8 @@
   "model_id": "gemini-3.5-flash",
   "free_condition": "Gemini API key from a project without billing; free tier (limits per project, reset midnight Pacific; numbers only in AI Studio); UK / EEA / Swiss users get the paid-tier data terms",
   "limits_stated": {
-   "text": "not published (\"can be viewed in Google AI Studio … not guaranteed\")",
-   "source": "https://ai.google.dev/gemini-api/docs/rate-limits"
+   "text": "not published by Google; community readouts: about 5 requests/min and 20 requests/day per Flash model (Sep 2026), too few for agent use",
+   "source": "https://discuss.ai.google.dev/t/gemini-3-8-flash-free-tier-20-rpd-is-too-limited-for-practical-evaluation/180609"
   },
   "limits_observed": null,
   "started": {
@@ -3056,8 +3056,8 @@
   "model_id": "gemini-3.5-flash-lite",
   "free_condition": "Gemini API key from a project without billing; free tier (limits per project, reset midnight Pacific; numbers only in AI Studio); UK / EEA / Swiss users get the paid-tier data terms",
   "limits_stated": {
-   "text": "not published (\"can be viewed in Google AI Studio … not guaranteed\")",
-   "source": "https://ai.google.dev/gemini-api/docs/rate-limits"
+   "text": "not published by Google; community readouts: about 15 requests/min and 500 requests/day for Flash-Lite (Sep 2026)",
+   "source": "https://www.scriptbyai.com/gemini-api-free-tier-limits/"
   },
   "limits_observed": null,
   "started": {
