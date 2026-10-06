@@ -2926,5 +2926,285 @@
    "date": "2026-10-06",
    "method": "catalogue"
   }
+ },
+ {
+  "id": "gemini-3.8-flash-gai",
+  "model": "gemini-3.8-flash",
+  "channel": "Google AI Studio",
+  "type": "first_party",
+  "model_id": "gemini-3.8-flash",
+  "free_condition": "Gemini API key from a project without billing; free tier (limits per project, reset midnight Pacific; numbers only in AI Studio); UK / EEA / Swiss users get the paid-tier data terms",
+  "limits_stated": {
+   "text": "not published (\"can be viewed in Google AI Studio … not guaranteed\")",
+   "source": "https://ai.google.dev/gemini-api/docs/rate-limits"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "may_train",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "catalogue"
+  }
+ },
+ {
+  "id": "gemini-3.7-flash-gai",
+  "model": "gemini-3.7-flash",
+  "channel": "Google AI Studio",
+  "type": "first_party",
+  "model_id": "gemini-3.7-flash",
+  "free_condition": "Gemini API key from a project without billing; free tier (limits per project, reset midnight Pacific; numbers only in AI Studio); UK / EEA / Swiss users get the paid-tier data terms",
+  "limits_stated": {
+   "text": "not published (\"can be viewed in Google AI Studio … not guaranteed\")",
+   "source": "https://ai.google.dev/gemini-api/docs/rate-limits"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "may_train",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "catalogue"
+  }
+ },
+ {
+  "id": "gemini-3.6-flash-gai",
+  "model": "gemini-3.6-flash",
+  "channel": "Google AI Studio",
+  "type": "first_party",
+  "model_id": "gemini-3.6-flash",
+  "free_condition": "Gemini API key from a project without billing; free tier (limits per project, reset midnight Pacific; numbers only in AI Studio); UK / EEA / Swiss users get the paid-tier data terms",
+  "limits_stated": {
+   "text": "not published (\"can be viewed in Google AI Studio … not guaranteed\")",
+   "source": "https://ai.google.dev/gemini-api/docs/rate-limits"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "may_train",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "catalogue"
+  }
+ },
+ {
+  "id": "gemini-3.5-flash-gai",
+  "model": "gemini-3.5-flash",
+  "channel": "Google AI Studio",
+  "type": "first_party",
+  "model_id": "gemini-3.5-flash",
+  "free_condition": "Gemini API key from a project without billing; free tier (limits per project, reset midnight Pacific; numbers only in AI Studio); UK / EEA / Swiss users get the paid-tier data terms",
+  "limits_stated": {
+   "text": "not published (\"can be viewed in Google AI Studio … not guaranteed\")",
+   "source": "https://ai.google.dev/gemini-api/docs/rate-limits"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "may_train",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "catalogue"
+  }
+ },
+ {
+  "id": "gemini-3.5-flash-lite-gai",
+  "model": "gemini-3.5-flash-lite",
+  "channel": "Google AI Studio",
+  "type": "first_party",
+  "model_id": "gemini-3.5-flash-lite",
+  "free_condition": "Gemini API key from a project without billing; free tier (limits per project, reset midnight Pacific; numbers only in AI Studio); UK / EEA / Swiss users get the paid-tier data terms",
+  "limits_stated": {
+   "text": "not published (\"can be viewed in Google AI Studio … not guaranteed\")",
+   "source": "https://ai.google.dev/gemini-api/docs/rate-limits"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "may_train",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "catalogue"
+  }
+ },
+ {
+  "id": "glm-5.3-mistral",
+  "model": "glm-5.3",
+  "channel": "Mistral",
+  "type": "first_party",
+  "model_id": "zai-glm-5-3",
+  "free_condition": "Mistral free mode (Experiment), API key; may be used to train Mistral's models",
+  "limits_stated": {
+   "text": "not published; lowest limits (requests/s, tokens/min, tokens/month)",
+   "source": "https://docs.mistral.ai/admin/billing-usage/usage-limits"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "may_train",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "catalogue"
+  }
+ },
+ {
+  "id": "mistral-large-4-mistral",
+  "model": "mistral-large-4",
+  "channel": "Mistral",
+  "type": "first_party",
+  "model_id": "mistral-large-4",
+  "free_condition": "Mistral free mode (Experiment), API key; may be used to train Mistral's models",
+  "limits_stated": {
+   "text": "not published; lowest limits (requests/s, tokens/min, tokens/month)",
+   "source": "https://docs.mistral.ai/admin/billing-usage/usage-limits"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "may_train",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "catalogue"
+  }
+ },
+ {
+  "id": "mistral-medium-3.5-mistral",
+  "model": "mistral-medium-3.5",
+  "channel": "Mistral",
+  "type": "first_party",
+  "model_id": "mistral-medium-3-5",
+  "free_condition": "Mistral free mode (Experiment), API key; may be used to train Mistral's models",
+  "limits_stated": {
+   "text": "not published; lowest limits (requests/s, tokens/min, tokens/month)",
+   "source": "https://docs.mistral.ai/admin/billing-usage/usage-limits"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "may_train",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "catalogue"
+  }
+ },
+ {
+  "id": "mistral-small-4-mistral",
+  "model": "mistral-small-4",
+  "channel": "Mistral",
+  "type": "first_party",
+  "model_id": "mistral-small-2603",
+  "free_condition": "Mistral free mode (Experiment), API key; may be used to train Mistral's models",
+  "limits_stated": {
+   "text": "not published; lowest limits (requests/s, tokens/min, tokens/month)",
+   "source": "https://docs.mistral.ai/admin/billing-usage/usage-limits"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "may_train",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "catalogue"
+  }
+ },
+ {
+  "id": "codestral-2508-mistral",
+  "model": "codestral-2508",
+  "channel": "Mistral",
+  "type": "first_party",
+  "model_id": "codestral-2508",
+  "free_condition": "Mistral free mode (Experiment), API key; may be used to train Mistral's models",
+  "limits_stated": {
+   "text": "not published; lowest limits (requests/s, tokens/min, tokens/month)",
+   "source": "https://docs.mistral.ai/admin/billing-usage/usage-limits"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "may_train",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "catalogue"
+  }
  }
 ]

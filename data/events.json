@@ -828,5 +828,37 @@
    "label": "SiliconFlow pricing / models",
    "url": "https://siliconflow.cn/pricing"
   }
+ },
+ {
+  "date": "2026-10-06",
+  "lanes": [
+   "gemini-3.8-flash-gai",
+   "gemini-3.7-flash-gai",
+   "gemini-3.6-flash-gai",
+   "gemini-3.5-flash-gai",
+   "gemini-3.5-flash-lite-gai"
+  ],
+  "kind": "listed",
+  "text": "Free of charge on Google AI Studio's free tier (standing); not called by us yet",
+  "source": {
+   "label": "Google AI Studio docs",
+   "url": "https://ai.google.dev/gemini-api/docs/pricing"
+  }
+ },
+ {
+  "date": "2026-10-06",
+  "lanes": [
+   "glm-5.3-mistral",
+   "mistral-large-4-mistral",
+   "mistral-medium-3.5-mistral",
+   "mistral-small-4-mistral",
+   "codestral-2508-mistral"
+  ],
+  "kind": "listed",
+  "text": "Free of charge on Mistral's free tier (standing); not called by us yet",
+  "source": {
+   "label": "Mistral docs",
+   "url": "https://docs.mistral.ai/admin/billing-usage/usage-limits"
+  }
  }
 ]
