@@ -741,7 +741,10 @@
   "limits_stated": {
    "text": "unstated"
   },
-  "limits_observed": null,
+  "limits_observed": {
+   "text": "headless agent runs OK; upstream 429 under sustained load",
+   "date": "2026-10-06"
+  },
   "started": {
    "date": "2026-10-02"
   },
@@ -754,7 +757,7 @@
   "status": "live",
   "checked": {
    "date": "2026-10-06",
-   "method": "api_call"
+   "method": "agent_run"
   }
  },
  {

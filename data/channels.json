@@ -273,10 +273,12 @@
   "access": {
    "form": "own_cli",
    "protocols": [],
-   "rules": [],
+   "rules": [
+    "no_automation"
+   ],
    "source": {
-    "url": "https://docs.cline.bot/getting-started/free-models",
-    "label": "Cline docs"
+    "url": "https://cline.bot/tos",
+    "label": "Cline terms (2025-09-25): no \"automated means … that sends more request messages … than a human can reasonably produce\"; free models only in the extension and CLI"
    }
   }
  }

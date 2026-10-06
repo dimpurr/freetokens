@@ -739,5 +739,17 @@
    "label": "OpenCode Zen docs",
    "url": "https://opencode.ai/docs/zen/"
   }
+ },
+ {
+  "date": "2026-10-06",
+  "lanes": [
+   "ling-3.1-flash-kilo"
+  ],
+  "kind": "available",
+  "text": "Kilo marks inclusionai/ling-3.1-flash free on purpose (Kilo-Org/cloud PR #7114); it answers without signing in and passed headless agent tasks, with an upstream 429 under load",
+  "source": {
+   "label": "Kilo-Org/cloud PR #7114",
+   "url": "https://github.com/Kilo-Org/cloud/pull/7114"
+  }
  }
 ]
