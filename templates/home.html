@@ -28,9 +28,7 @@
 
   <section aria-labelledby="h-channels">
     <h2 id="h-channels">Channels <small>where the free lanes come from</small></h2>
-    <div class="tbl-scroll"><table class="channels cardify"><thead><tr>
-      <th>Channel</th><th>Free now</th><th>Next end</th><th>Models</th>
-    </tr></thead><tbody id="channels"></tbody></table></div>
+    <div class="chlist" id="channels"></div>
   </section>
 
   <section aria-labelledby="h-lanes">
@@ -146,19 +144,34 @@ $("stamp").innerHTML = metaStrip();
   draw();
 })();
 
-/* channels: most free-now first */
+/* channels: one summary line, then the models grouped by state, so each state is said once (option B) */
 (function () {
+  const order = { live: 0, overdue: 1, listed: 2, unavailable: 3, ended: 4 };
   const rows = channels.map((c) => {
     const ls = lanesOn(c);
     const next = ls.filter((l) => isFree(l) && effEnd(l) && pd(effEnd(l)).t >= todayT).sort((a, b) => pd(effEnd(a)).t - pd(effEnd(b)).t)[0];
     return { c, ls, free: ls.filter(isFree).length, next };
   }).sort((a, b) => b.free - a.free || a.c.localeCompare(b.c));
-  $("channels").innerHTML = rows.map(({ c, ls, free, next }) => `<tr>
-    <td><span class="name">${clink(c)}</span><span class="sub">${esc(lab("channel_type", ls[0].type))}</span></td>
-    <td class="nowrap" data-label="Free now"><span class="meter" style="--n:${ls.length}">${ls.map((l) => `<i class="${isFree(l) ? "on" : ""}"></i>`).join("")}</span><b>${free}</b> <span class="muted">of ${ls.length}</span></td>
-    <td data-label="Next end">${next ? `<b>${esc(endInfo(next).main)}</b><span class="sub">${mlink(next.model)} · ${confHTML(next.ends.confidence)}</span>` : `<span class="muted">none announced</span>`}</td>
-    <td data-label="Models"><div class="chips">${ls.map(modelChip).join("")}</div></td>
-  </tr>`).join("");
+  const groups = (ls) => {
+    const g = new Map();
+    for (const l of [...ls].sort((a, b) => order[a.status] - order[b.status])) {
+      const k = l.status + "|" + stateWords(l);
+      if (!g.has(k)) g.set(k, { l, ls: [] });
+      g.get(k).ls.push(l);
+    }
+    return [...g.values()];
+  };
+  $("channels").innerHTML = rows.map(({ c, ls, free, next }) => `<article class="ch">
+    <div class="ch-h">
+      <span class="name">${clink(c)}</span><span class="muted">${esc(lab("channel_type", ls[0].type))}</span>
+      <span class="ch-free"><span class="meter" style="--n:${ls.length}">${ls.map((l) => `<i class="${isFree(l) ? "on" : ""}"></i>`).join("")}</span><b>${free}</b> <span class="muted">of ${ls.length} free</span></span>
+      <span class="ch-next"><span class="muted">next end</span> ${next ? `<b>${esc(endInfo(next).main)}</b> <span class="muted">·</span> ${mlink(next.model)} ${confHTML(next.ends.confidence)}` : `<span class="muted">none announced</span>`}</span>
+    </div>
+    ${groups(ls).map(({ l, ls: gl }) => `<div class="ch-g">
+      <span class="ch-s">${statusHTML(l.status, stateWords(l))}${gl.length > 1 ? ` <span class="muted">(${gl.length})</span>` : ""}</span>
+      <span class="ch-m">${gl.map((x) => mlink(x.model)).join(`<span class="dot"> · </span>`)}</span>
+    </div>`).join("")}
+  </article>`).join("");
 })();
 
 /* lanes: six two-line columns, filterable */
