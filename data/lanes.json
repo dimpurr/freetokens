@@ -3098,7 +3098,10 @@
    "text": "promotion \"extended\"; end to be announced on the event page",
    "source": "https://docs.qoder.com/zh/events/flashoffer"
   },
-  "limits_observed": null,
+  "limits_observed": {
+   "text": "16 real agent tasks (fix code + run pytest) at 1, 5 and 10 parallel all passed, 21–42 s each, 0 credits; plus 15 parallel short calls OK",
+   "date": "2026-10-06"
+  },
   "started": {
    "date": "2026-09-18T02:00Z"
   },
@@ -3108,10 +3111,10 @@
    "confidence": "none"
   },
   "data_policy": "not_checked",
-  "status": "listed",
+  "status": "live",
   "checked": {
    "date": "2026-10-06",
-   "method": "listing"
+   "method": "agent_run"
   }
  },
  {

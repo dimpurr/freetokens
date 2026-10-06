@@ -956,5 +956,17 @@
    "label": "AIHubMix",
    "url": "https://aihubmix.com/model/coding-kimi-k3-free"
   }
+ },
+ {
+  "date": "2026-10-06",
+  "lanes": [
+   "qwen3.8-flash-qoder"
+  ],
+  "kind": "available",
+  "text": "Answered through the Qoder CLI (qodercli 1.1.65, headless -p) on a free personal account: 16 of 16 multi-step agent tasks passed at up to 10 parallel, every run 0 credits",
+  "source": {
+   "label": "own check",
+   "url": null
+  }
  }
 ]
