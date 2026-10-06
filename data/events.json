@@ -751,5 +751,25 @@
    "label": "Kilo-Org/cloud PR #7114",
    "url": "https://github.com/Kilo-Org/cloud/pull/7114"
   }
+ },
+ {
+  "date": "2026-10-06",
+  "lanes": [
+   "solar-pro-4-freebuff",
+   "solar-mini-4-freebuff",
+   "mimo-v2.6-flash-freebuff",
+   "glm-5.3-flash-freebuff",
+   "deepseek-v4.1-flash-freebuff",
+   "gpt-6-luna-freebuff",
+   "mimo-v2.6-pro-freebuff",
+   "deepseek-v4.1-flash-fast-freebuff",
+   "gpt-6.1-sol-freebuff"
+  ],
+  "kind": "listed",
+  "text": "On Freebuff's \"Free hours per day, by model\" table; not tested by us because Freebuff's terms forbid scripted use",
+  "source": {
+   "label": "Freebuff",
+   "url": "https://freebuff.com/"
+  }
  }
 ]

@@ -2306,5 +2306,257 @@
    "date": "2026-10-06",
    "method": "agent_run"
   }
+ },
+ {
+  "id": "solar-pro-4-freebuff",
+  "model": "solar-pro-4",
+  "channel": "Freebuff",
+  "type": "agent_tool",
+  "model_id": "not recorded",
+  "free_condition": "Freebuff app (CLI, desktop, web), no account for the CLI: \"Solar Pro 4\" on its free list; 150 Freebucks a day spent across models, refilled at midnight Pacific; ad-supported",
+  "limits_stated": {
+   "text": "unlimited hours/day (Freebuff's table; allowances don't add up)",
+   "source": "https://freebuff.com/"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "may_train",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "solar-mini-4-freebuff",
+  "model": "solar-mini-4",
+  "channel": "Freebuff",
+  "type": "agent_tool",
+  "model_id": "not recorded",
+  "free_condition": "Freebuff app (CLI, desktop, web), no account for the CLI: \"Solar Mini 4\" on its free list; 150 Freebucks a day spent across models, refilled at midnight Pacific; ad-supported",
+  "limits_stated": {
+   "text": "up to 30 hours/day (Freebuff's table; allowances don't add up)",
+   "source": "https://freebuff.com/"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "may_train",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "mimo-v2.6-flash-freebuff",
+  "model": "mimo-v2.6-flash",
+  "channel": "Freebuff",
+  "type": "agent_tool",
+  "model_id": "not recorded",
+  "free_condition": "Freebuff app (CLI, desktop, web), no account for the CLI: \"MiMo 2.6 Flash\" on its free list; 150 Freebucks a day spent across models, refilled at midnight Pacific; ad-supported",
+  "limits_stated": {
+   "text": "up to 15 hours/day (Freebuff's table; allowances don't add up)",
+   "source": "https://freebuff.com/"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "may_train",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "glm-5.3-flash-freebuff",
+  "model": "glm-5.3-flash",
+  "channel": "Freebuff",
+  "type": "agent_tool",
+  "model_id": "not recorded",
+  "free_condition": "Freebuff app (CLI, desktop, web), no account for the CLI: \"GLM 5.3 Flash\" on its free list; 150 Freebucks a day spent across models, refilled at midnight Pacific; ad-supported",
+  "limits_stated": {
+   "text": "up to 15 hours/day (Freebuff's table; allowances don't add up)",
+   "source": "https://freebuff.com/"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "may_train",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "deepseek-v4.1-flash-freebuff",
+  "model": "deepseek-v4.1-flash",
+  "channel": "Freebuff",
+  "type": "agent_tool",
+  "model_id": "not recorded",
+  "free_condition": "Freebuff app (CLI, desktop, web), no account for the CLI: \"DeepSeek V4.1 Flash\" on its free list; 150 Freebucks a day spent across models, refilled at midnight Pacific; ad-supported",
+  "limits_stated": {
+   "text": "up to 15 hours/day (Freebuff's table; allowances don't add up)",
+   "source": "https://freebuff.com/"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "may_train",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "gpt-6-luna-freebuff",
+  "model": "gpt-6-luna",
+  "channel": "Freebuff",
+  "type": "agent_tool",
+  "model_id": "not recorded",
+  "free_condition": "Freebuff app (CLI, desktop, web), no account for the CLI: \"GPT-6 Luna\" on its free list; 150 Freebucks a day spent across models, refilled at midnight Pacific; ad-supported",
+  "limits_stated": {
+   "text": "up to 7 hours/day (Freebuff's table; allowances don't add up)",
+   "source": "https://freebuff.com/"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "may_train",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "mimo-v2.6-pro-freebuff",
+  "model": "mimo-v2.6-pro",
+  "channel": "Freebuff",
+  "type": "agent_tool",
+  "model_id": "not recorded",
+  "free_condition": "Freebuff app (CLI, desktop, web), no account for the CLI: \"MiMo 2.6 Pro\" on its free list; 150 Freebucks a day spent across models, refilled at midnight Pacific; ad-supported",
+  "limits_stated": {
+   "text": "up to 5 hours/day (Freebuff's table; allowances don't add up)",
+   "source": "https://freebuff.com/"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "may_train",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "deepseek-v4.1-flash-fast-freebuff",
+  "model": "deepseek-v4.1-flash",
+  "channel": "Freebuff",
+  "type": "agent_tool",
+  "model_id": "not recorded",
+  "free_condition": "Freebuff app (CLI, desktop, web), no account for the CLI: \"DeepSeek V4.1 Flash Fast\" on its free list; 150 Freebucks a day spent across models, refilled at midnight Pacific; ad-supported",
+  "limits_stated": {
+   "text": "up to 3 hours/day (Freebuff's table; allowances don't add up)",
+   "source": "https://freebuff.com/"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "may_train",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "gpt-6.1-sol-freebuff",
+  "model": "gpt-6.1-sol",
+  "channel": "Freebuff",
+  "type": "agent_tool",
+  "model_id": "not recorded",
+  "free_condition": "Freebuff app (CLI, desktop, web), no account for the CLI: \"GPT-6.1 Sol\" on its free list; 150 Freebucks a day spent across models, refilled at midnight Pacific; ad-supported ; free in the US only",
+  "limits_stated": {
+   "text": "one session a day, US only (Freebuff's table; allowances don't add up)",
+   "source": "https://freebuff.com/"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "may_train",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "listing"
+  }
  }
 ]

@@ -527,5 +527,83 @@
    "url": "https://artificialanalysis.ai/models/muse-spark-1-2"
   },
   "notes": null
+ },
+ {
+  "id": "solar-pro-4",
+  "name": "Solar Pro 4",
+  "maker": "Upstage",
+  "context": "not checked",
+  "image_input": "not_checked",
+  "aa_index": {
+   "value": null,
+   "date": "2026-10-06",
+   "note": "not checked"
+  },
+  "notes": null
+ },
+ {
+  "id": "solar-mini-4",
+  "name": "Solar Mini 4",
+  "maker": "Upstage",
+  "context": "not checked",
+  "image_input": "not_checked",
+  "aa_index": {
+   "value": null,
+   "date": "2026-10-06",
+   "note": "not checked"
+  },
+  "notes": null
+ },
+ {
+  "id": "glm-5.3-flash",
+  "name": "GLM 5.3 Flash",
+  "maker": "Z.ai",
+  "context": "not checked",
+  "image_input": "not_checked",
+  "aa_index": {
+   "value": 42,
+   "date": "2026-10-06",
+   "url": "https://artificialanalysis.ai/models/glm-5-3-flash"
+  },
+  "notes": null
+ },
+ {
+  "id": "gpt-6-luna",
+  "name": "GPT-6 Luna",
+  "maker": "OpenAI",
+  "context": "not checked",
+  "image_input": "not_checked",
+  "aa_index": {
+   "value": 38,
+   "date": "2026-10-06",
+   "url": "https://artificialanalysis.ai/models/gpt-6-luna"
+  },
+  "notes": null
+ },
+ {
+  "id": "mimo-v2.6-pro",
+  "name": "MiMo V2.6 Pro",
+  "maker": "Xiaomi",
+  "context": "not checked",
+  "image_input": "not_checked",
+  "aa_index": {
+   "value": 46,
+   "date": "2026-10-06",
+   "url": "https://artificialanalysis.ai/models/mimo-v2-6-pro"
+  },
+  "notes": null
+ },
+ {
+  "id": "gpt-6.1-sol",
+  "name": "GPT-6.1 Sol",
+  "maker": "OpenAI",
+  "context": "not checked",
+  "image_input": "not_checked",
+  "aa_index": {
+   "value": 52,
+   "date": "2026-10-06",
+   "url": "https://artificialanalysis.ai/models/gpt-6-1-sol"
+  },
+  "notes": null
  }
 ]
