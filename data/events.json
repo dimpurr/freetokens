@@ -972,5 +972,476 @@
    "label": "own check",
    "url": null
   }
+ },
+ {
+  "date": "2026-09-23",
+  "lanes": [
+   "bunny-kilo"
+  ],
+  "kind": "listed",
+  "text": "First seen in Kilo's model catalogue (models.dev sync): Space Bunny (stealth)",
+  "source": {
+   "label": "models.dev commit",
+   "url": "https://github.com/sst/models.dev/commit/8905fbe7173a1ee019b24442cc8fc0fb9edfdb2c"
+  }
+ },
+ {
+  "date": "2026-10-01",
+  "lanes": [
+   "apodex-1.1-mini-kilo"
+  ],
+  "kind": "listed",
+  "text": "First seen in Kilo's model catalogue (models.dev sync): Apodex 1.1 Mini",
+  "source": {
+   "label": "models.dev commit",
+   "url": "https://github.com/sst/models.dev/commit/675a573d01a86e5168fbd2559c9e5a5c1d901248"
+  }
+ },
+ {
+  "date": "2026-08-03",
+  "lanes": [
+   "laguna-xs-2.1-kilo",
+   "north-mini-code-kilo",
+   "step-3.7-flash-kilo"
+  ],
+  "kind": "listed",
+  "text": "First seen in Kilo's model catalogue (models.dev sync): Laguna XS 2.1, North Mini Code, Step 3.7 Flash",
+  "source": {
+   "label": "models.dev commit",
+   "url": "https://github.com/sst/models.dev/commit/0a375c8387ef827ecb568415d735cf812c6be60f"
+  }
+ },
+ {
+  "date": "2026-09-04",
+  "lanes": [
+   "ling-3.0-flash-sante-kilo"
+  ],
+  "kind": "listed",
+  "text": "First seen in Kilo's model catalogue (models.dev sync): Ling 3.0 Flash Sante",
+  "source": {
+   "label": "models.dev commit",
+   "url": "https://github.com/sst/models.dev/commit/2acdca31bd1c0481260109c375444d61544455a5"
+  }
+ },
+ {
+  "date": "2026-08-12",
+  "lanes": [
+   "lfm-2.5-2.6b-kilo"
+  ],
+  "kind": "listed",
+  "text": "First seen in Kilo's model catalogue (models.dev sync): LFM 2.5 2.6B",
+  "source": {
+   "label": "models.dev commit",
+   "url": "https://github.com/sst/models.dev/commit/8f00edbbb386b9ae5d119c3538ffc6e98d458594"
+  }
+ },
+ {
+  "date": "2026-05-01",
+  "lanes": [
+   "nemotron-3-nano-omni-30b-a3b-kilo"
+  ],
+  "kind": "listed",
+  "text": "First seen in Kilo's model catalogue (models.dev sync): Nemotron 3 Nano Omni 30B A3B (reasoning)",
+  "source": {
+   "label": "models.dev commit",
+   "url": "https://github.com/sst/models.dev/commit/aec3f94081ea76edc37bdcc76c45fc5f11dab3aa"
+  }
+ },
+ {
+  "date": "2026-08-11",
+  "lanes": [
+   "nemotron-3.5-lightning-kilo"
+  ],
+  "kind": "listed",
+  "text": "First seen in Kilo's model catalogue (models.dev sync): Nemotron 3.5 Lightning",
+  "source": {
+   "label": "models.dev commit",
+   "url": "https://github.com/sst/models.dev/commit/0721d2d7a589a7bdef889ce9c60795c7b5835877"
+  }
+ },
+ {
+  "date": "2026-08-21",
+  "lanes": [
+   "inkling-small-kilo"
+  ],
+  "kind": "listed",
+  "text": "First seen in Kilo's model catalogue (models.dev sync): Inkling Small",
+  "source": {
+   "label": "models.dev commit",
+   "url": "https://github.com/sst/models.dev/commit/500275da0b4f49f4419b688dab75671645413377"
+  }
+ },
+ {
+  "date": "2026-06-19",
+  "lanes": [
+   "north-mini-code-cline"
+  ],
+  "kind": "listed",
+  "text": "Added to Cline's model list: North Mini Code",
+  "source": {
+   "label": "Cline repo commit",
+   "url": "https://github.com/cline/cline/commit/cdff084652e46a4f9aa7e8f4ed57766a3e10f712"
+  }
+ },
+ {
+  "date": "2026-09-09",
+  "lanes": [
+   "ling-3.0-flash-sante-cline"
+  ],
+  "kind": "listed",
+  "text": "Added to Cline's model list: Ling 3.0 Flash Sante",
+  "source": {
+   "label": "Cline repo commit",
+   "url": "https://github.com/cline/cline/commit/1063db45d80f5bac76fba5bbc8f310f56055b506"
+  }
+ },
+ {
+  "date": "2026-04-28",
+  "lanes": [
+   "nemotron-3-nano-omni-30b-a3b-cline"
+  ],
+  "kind": "listed",
+  "text": "Added to Cline's model list: Nemotron 3 Nano Omni 30B A3B (reasoning)",
+  "source": {
+   "label": "Cline repo commit",
+   "url": "https://github.com/cline/cline/commit/c6a111e82a7de486359bc0130ad6d955fb786c52"
+  }
+ },
+ {
+  "date": "2026-03-31",
+  "lanes": [
+   "nemotron-3-super-120b-a12b-cline"
+  ],
+  "kind": "listed",
+  "text": "Added to Cline's model list: Nemotron 3 Super",
+  "source": {
+   "label": "Cline repo commit",
+   "url": "https://github.com/cline/cline/commit/7f415abb5b34087a6dfeecb4c71b02f845270504"
+  }
+ },
+ {
+  "date": "2026-06-04",
+  "lanes": [
+   "nemotron-3-ultra-cline"
+  ],
+  "kind": "listed",
+  "text": "Added to Cline's model list: Nemotron 3 Ultra (550B-A55B)",
+  "source": {
+   "label": "Cline repo commit",
+   "url": "https://github.com/cline/cline/commit/48316027a7846ba1cc977834213970347cb29939"
+  }
+ },
+ {
+  "date": "2026-08-11",
+  "lanes": [
+   "nemotron-3.5-lightning-cline"
+  ],
+  "kind": "listed",
+  "text": "Added to Cline's model list: Nemotron 3.5 Lightning",
+  "source": {
+   "label": "Cline repo commit",
+   "url": "https://github.com/cline/cline/commit/00ba2ff7dafe7d72349dd1bfd0beb0fe9b170a88"
+  }
+ },
+ {
+  "date": "2026-07-28",
+  "lanes": [
+   "laguna-s-2.1-cline"
+  ],
+  "kind": "listed",
+  "text": "Added to Cline's model list: Laguna S 2.1",
+  "source": {
+   "label": "Cline repo commit",
+   "url": "https://github.com/cline/cline/commit/a6239c420c1dcc58da3fa511054784d1e49d0f85"
+  }
+ },
+ {
+  "date": "2026-07-03",
+  "lanes": [
+   "laguna-xs-2.1-cline"
+  ],
+  "kind": "listed",
+  "text": "Added to Cline's model list: Laguna XS 2.1",
+  "source": {
+   "label": "Cline repo commit",
+   "url": "https://github.com/cline/cline/commit/a2a46ae600207b47e4fc2e6706d5bd023e7fa689"
+  }
+ },
+ {
+  "date": "2026-08-13",
+  "lanes": [
+   "lfm-2.5-2.6b-cline"
+  ],
+  "kind": "listed",
+  "text": "Added to Cline's model list: LFM 2.5 2.6B",
+  "source": {
+   "label": "Cline repo commit",
+   "url": "https://github.com/cline/cline/commit/3f39c46026b64b961980573ead0355b24dfa6228"
+  }
+ },
+ {
+  "date": "2026-10-02",
+  "lanes": [
+   "apodex-1.1-mini-cline"
+  ],
+  "kind": "listed",
+  "text": "Added to Cline's model list: Apodex 1.1 Mini",
+  "source": {
+   "label": "Cline repo commit",
+   "url": "https://github.com/cline/cline/commit/a7ad50bae34c43823facf2c2ee726b45dc7c0145"
+  }
+ },
+ {
+  "date": "2026-08-14",
+  "lanes": [
+   "dots-3-note-preview-cline"
+  ],
+  "kind": "listed",
+  "text": "Added to Cline's model list: Dots3-Note Preview",
+  "source": {
+   "label": "Cline repo commit",
+   "url": "https://github.com/cline/cline/commit/225f65cc0e16298d21e392d1597039562765de0b"
+  }
+ },
+ {
+  "date": "2026-04-09",
+  "lanes": [
+   "gemma-4-26b-a4b-it-cline",
+   "gemma-4-31b-it-cline"
+  ],
+  "kind": "listed",
+  "text": "Added to Cline's model list: Gemma 4 26B A4B, Gemma 4 31B",
+  "source": {
+   "label": "Cline repo commit",
+   "url": "https://github.com/cline/cline/commit/27c93efeedfb7469dad748996a6292bf9642809c"
+  }
+ },
+ {
+  "date": "2026-08-22",
+  "lanes": [
+   "inkling-cline"
+  ],
+  "kind": "listed",
+  "text": "Added to Cline's model list: Inkling",
+  "source": {
+   "label": "Cline repo commit",
+   "url": "https://github.com/cline/cline/commit/21cb8d2525bcedf1f4b6890b27a74a14fe7451e4"
+  }
+ },
+ {
+  "date": "2025-10-17",
+  "lanes": [
+   "big-pickle-zen"
+  ],
+  "kind": "listed",
+  "text": "Added to OpenCode's model catalogue (models.dev): Big Pickle",
+  "source": {
+   "label": "models.dev commit",
+   "url": "https://github.com/sst/models.dev/commit/72053ca66"
+  }
+ },
+ {
+  "date": "2026-05-27",
+  "lanes": [
+   "mimo-v2.5-zen"
+  ],
+  "kind": "listed",
+  "text": "Added to the Zen model docs: MiMo V2.5",
+  "source": {
+   "label": "OpenCode repo commit",
+   "url": "https://github.com/anomalyco/opencode/commit/5a5d981c4e"
+  }
+ },
+ {
+  "date": "2026-06-04",
+  "lanes": [
+   "nemotron-3-ultra-zen"
+  ],
+  "kind": "listed",
+  "text": "Added to the Zen model docs: Nemotron 3 Ultra (550B-A55B)",
+  "source": {
+   "label": "OpenCode repo commit",
+   "url": "https://github.com/anomalyco/opencode/commit/f5d1ae6a9e"
+  }
+ },
+ {
+  "date": "2026-08-11",
+  "lanes": [
+   "nemotron-3.5-lightning-zen"
+  ],
+  "kind": "listed",
+  "text": "Added to the Zen model docs: Nemotron 3.5 Lightning",
+  "source": {
+   "label": "OpenCode repo commit",
+   "url": "https://github.com/anomalyco/opencode/commit/9fdd4824d3"
+  }
+ },
+ {
+  "date": "2026-08-20",
+  "lanes": [
+   "muse-spark-1.2-contributor-zen"
+  ],
+  "kind": "listed",
+  "text": "Added to the Zen model docs: Muse Spark 1.2 (Contributor)",
+  "source": {
+   "label": "OpenCode repo commit",
+   "url": "https://github.com/anomalyco/opencode/commit/3d26b12251"
+  }
+ },
+ {
+  "date": "2026-08-28",
+  "lanes": [
+   "ling-3.0-flash-fin-zen"
+  ],
+  "kind": "listed",
+  "text": "Added to the Zen model docs: Ling 3.0 Flash Fin",
+  "source": {
+   "label": "OpenCode repo commit",
+   "url": "https://github.com/anomalyco/opencode/commit/df35e842f5"
+  }
+ },
+ {
+  "date": "2026-09-02",
+  "lanes": [
+   "muse-spark-1.3-contributor-zen"
+  ],
+  "kind": "listed",
+  "text": "Added to the Zen model docs: Muse Spark 1.3 (Contributor)",
+  "source": {
+   "label": "OpenCode repo commit",
+   "url": "https://github.com/anomalyco/opencode/commit/77aec36da1"
+  }
+ },
+ {
+  "date": "2026-09-19",
+  "lanes": [
+   "jev-1.13-zen"
+  ],
+  "kind": "listed",
+  "text": "Added to the Zen model docs: JEV 1.13",
+  "source": {
+   "label": "OpenCode repo commit",
+   "url": "https://github.com/anomalyco/opencode/commit/61eae8811a"
+  }
+ },
+ {
+  "date": "2026-09-23",
+  "lanes": [
+   "bunny-zen"
+  ],
+  "kind": "listed",
+  "text": "Added to the Zen model docs: Space Bunny (stealth)",
+  "source": {
+   "label": "OpenCode repo commit",
+   "url": "https://github.com/anomalyco/opencode/commit/1b4a6dbc65"
+  }
+ },
+ {
+  "date": "2026-09-26",
+  "lanes": [
+   "longcat-2.5-preview-zen"
+  ],
+  "kind": "listed",
+  "text": "Added to the Zen model docs: LongCat 2.5 Preview",
+  "source": {
+   "label": "OpenCode repo commit",
+   "url": "https://github.com/anomalyco/opencode/commit/b65de4d694"
+  }
+ },
+ {
+  "date": "2026-10-01",
+  "lanes": [
+   "fledge-alpha-zen"
+  ],
+  "kind": "listed",
+  "text": "Added to OpenCode's model catalogue (models.dev): Fledge Alpha",
+  "source": {
+   "label": "models.dev commit",
+   "url": "https://github.com/sst/models.dev/commit/355fca0c6"
+  }
+ },
+ {
+  "date": "2026-10-02",
+  "lanes": [
+   "ling-3.1-flash-zen"
+  ],
+  "kind": "listed",
+  "text": "Added to the Zen model docs: Ling 3.1 Flash",
+  "source": {
+   "label": "OpenCode repo commit",
+   "url": "https://github.com/anomalyco/opencode/commit/c42ae0d56b"
+  }
+ },
+ {
+  "date": "2026-01-19",
+  "lanes": [
+   "glm-4.7-flash-zai"
+  ],
+  "kind": "available",
+  "text": "Launched on Z.ai: GLM-4.7-Flash",
+  "source": {
+   "label": "Z.ai release notes",
+   "url": "https://docs.z.ai/release-notes/new-released"
+  }
+ },
+ {
+  "date": "2025-07-30",
+  "lanes": [
+   "glm-4.5-flash-zai"
+  ],
+  "kind": "listed",
+  "text": "Listed as free on Z.ai's pricing page (archived snapshot): GLM-4.5-Flash",
+  "source": {
+   "label": "Z.ai pricing, archived",
+   "url": "https://web.archive.org/web/20250730192638/https://docs.z.ai/guides/overview/pricing"
+  }
+ },
+ {
+  "date": "2026-01-19",
+  "lanes": [
+   "glm-4.7-flash-bigmodel"
+  ],
+  "kind": "available",
+  "text": "Launched free on BigModel: GLM-4.7-Flash",
+  "source": {
+   "label": "Zhipu news",
+   "url": "https://www.zhipuai.cn/zh/news/148"
+  }
+ },
+ {
+  "date": "2025-04-15",
+  "lanes": [
+   "glm-4-flash-250414-bigmodel"
+  ],
+  "kind": "available",
+  "text": "First public mention: GLM-4-Flash-250414",
+  "source": {
+   "label": "news report",
+   "url": "https://finance.sina.com.cn/tech/csj/2025-04-15/doc-inetftfy1161190.shtml"
+  }
+ },
+ {
+  "date": "2026-09-30",
+  "lanes": [
+   "ling-3.1-flash-vercel"
+  ],
+  "kind": "available",
+  "text": "Announced on the Vercel changelog: Ling 3.1 Flash",
+  "source": {
+   "label": "Vercel changelog",
+   "url": "https://vercel.com/changelog/ling-3-1-flash-is-now-available-on-ai-gateway"
+  }
+ },
+ {
+  "date": "2026-07-21",
+  "lanes": [
+   "laguna-s-2.1-vercel"
+  ],
+  "kind": "available",
+  "text": "Announced on the Vercel changelog: Laguna S 2.1",
+  "source": {
+   "label": "Vercel changelog",
+   "url": "https://vercel.com/changelog/laguna-s-2-1-is-now-available-on-ai-gateway"
+  }
  }
 ]

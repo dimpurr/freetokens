@@ -263,8 +263,8 @@
    "networks": 2
   },
   "started": {
-   "date": null,
-   "note": "not recorded"
+   "date": "2026-09-23",
+   "note": "added to the Zen model docs"
   },
   "ends": {
    "announced": null,
@@ -295,8 +295,8 @@
   },
   "limits_observed": null,
   "started": {
-   "date": null,
-   "note": "not recorded"
+   "date": "2026-09-23",
+   "note": "first seen in Kilo's model catalogue (models.dev sync); the free route may predate it"
   },
   "ends": {
    "announced": "2026-10-05",
@@ -882,8 +882,8 @@
   },
   "limits_observed": null,
   "started": {
-   "date": null,
-   "note": "not recorded; first seen 2026-10-06"
+   "date": "2026-10-01",
+   "note": "first seen in Kilo's model catalogue (models.dev sync); the free route may predate it"
   },
   "ends": {
    "announced": null,
@@ -909,8 +909,8 @@
   },
   "limits_observed": null,
   "started": {
-   "date": null,
-   "note": "not recorded; first seen 2026-10-06"
+   "date": "2026-08-03",
+   "note": "first seen in Kilo's model catalogue (models.dev sync); the free route may predate it"
   },
   "ends": {
    "announced": null,
@@ -936,8 +936,8 @@
   },
   "limits_observed": null,
   "started": {
-   "date": null,
-   "note": "not recorded; first seen 2026-10-06"
+   "date": "2026-09-04",
+   "note": "first seen in Kilo's model catalogue (models.dev sync); the free route may predate it"
   },
   "ends": {
    "announced": null,
@@ -963,8 +963,8 @@
   },
   "limits_observed": null,
   "started": {
-   "date": null,
-   "note": "not recorded; first seen 2026-10-06"
+   "date": "2026-08-12",
+   "note": "first seen in Kilo's model catalogue (models.dev sync); the free route may predate it"
   },
   "ends": {
    "announced": null,
@@ -990,8 +990,8 @@
   },
   "limits_observed": null,
   "started": {
-   "date": null,
-   "note": "not recorded; first seen 2026-10-06"
+   "date": "2026-05-01",
+   "note": "first seen in Kilo's model catalogue (models.dev sync); the free route may predate it"
   },
   "ends": {
    "announced": null,
@@ -1017,8 +1017,8 @@
   },
   "limits_observed": null,
   "started": {
-   "date": null,
-   "note": "not recorded; first seen 2026-10-06"
+   "date": "2026-08-11",
+   "note": "first seen in Kilo's model catalogue (models.dev sync); the free route may predate it"
   },
   "ends": {
    "announced": null,
@@ -1044,8 +1044,8 @@
   },
   "limits_observed": null,
   "started": {
-   "date": null,
-   "note": "not recorded; first seen 2026-10-06"
+   "date": "2026-08-03",
+   "note": "first seen in Kilo's model catalogue (models.dev sync); the free route may predate it"
   },
   "ends": {
    "announced": null,
@@ -1071,8 +1071,8 @@
   },
   "limits_observed": null,
   "started": {
-   "date": null,
-   "note": "not recorded; first seen 2026-10-06"
+   "date": "2026-08-03",
+   "note": "first seen in Kilo's model catalogue (models.dev sync); the free route may predate it"
   },
   "ends": {
    "announced": null,
@@ -1103,8 +1103,8 @@
    "note": "the shared daily cap was already used up on our first call"
   },
   "started": {
-   "date": null,
-   "note": "not recorded; first seen 2026-10-06"
+   "date": "2026-08-21",
+   "note": "first seen in Kilo's model catalogue (models.dev sync); the free route may predate it"
   },
   "ends": {
    "announced": null,
@@ -1130,8 +1130,8 @@
   },
   "limits_observed": null,
   "started": {
-   "date": null,
-   "note": "not recorded; first seen 2026-10-06"
+   "date": "2026-06-19",
+   "note": "added to Cline's model list"
   },
   "ends": {
    "announced": null,
@@ -1157,8 +1157,8 @@
   },
   "limits_observed": null,
   "started": {
-   "date": null,
-   "note": "not recorded; first seen 2026-10-06"
+   "date": "2026-09-09",
+   "note": "added to Cline's model list"
   },
   "ends": {
    "announced": null,
@@ -1184,8 +1184,8 @@
   },
   "limits_observed": null,
   "started": {
-   "date": null,
-   "note": "not recorded; first seen 2026-10-06"
+   "date": "2026-04-28",
+   "note": "added to Cline's model list"
   },
   "ends": {
    "announced": null,
@@ -1211,8 +1211,8 @@
   },
   "limits_observed": null,
   "started": {
-   "date": null,
-   "note": "not recorded; first seen 2026-10-06"
+   "date": "2026-03-31",
+   "note": "added to Cline's model list"
   },
   "ends": {
    "announced": null,
@@ -1238,8 +1238,8 @@
   },
   "limits_observed": null,
   "started": {
-   "date": null,
-   "note": "not recorded; first seen 2026-10-06"
+   "date": "2026-06-04",
+   "note": "added to Cline's model list"
   },
   "ends": {
    "announced": null,
@@ -1265,8 +1265,8 @@
   },
   "limits_observed": null,
   "started": {
-   "date": null,
-   "note": "not recorded; first seen 2026-10-06"
+   "date": "2026-08-11",
+   "note": "added to Cline's model list"
   },
   "ends": {
    "announced": null,
@@ -1292,8 +1292,8 @@
   },
   "limits_observed": null,
   "started": {
-   "date": null,
-   "note": "not recorded; first seen 2026-10-06"
+   "date": "2026-07-28",
+   "note": "added to Cline's model list"
   },
   "ends": {
    "announced": null,
@@ -1319,8 +1319,8 @@
   },
   "limits_observed": null,
   "started": {
-   "date": null,
-   "note": "not recorded; first seen 2026-10-06"
+   "date": "2026-07-03",
+   "note": "added to Cline's model list"
   },
   "ends": {
    "announced": null,
@@ -1346,8 +1346,8 @@
   },
   "limits_observed": null,
   "started": {
-   "date": null,
-   "note": "not recorded; first seen 2026-10-06"
+   "date": "2026-08-13",
+   "note": "added to Cline's model list"
   },
   "ends": {
    "announced": null,
@@ -1372,8 +1372,8 @@
    "basis": "unpublished"
   },
   "started": {
-   "date": null,
-   "note": "not recorded; first seen 2026-10-06"
+   "date": "2026-10-02",
+   "note": "added to Cline's model list"
   },
   "ends": {
    "announced": null,
@@ -1399,8 +1399,8 @@
    "basis": "unpublished"
   },
   "started": {
-   "date": null,
-   "note": "not recorded; first seen 2026-10-06"
+   "date": "2026-08-14",
+   "note": "added to Cline's model list"
   },
   "ends": {
    "announced": null,
@@ -1426,8 +1426,8 @@
    "basis": "unpublished"
   },
   "started": {
-   "date": null,
-   "note": "not recorded; first seen 2026-10-06"
+   "date": "2026-04-09",
+   "note": "added to Cline's model list"
   },
   "ends": {
    "announced": null,
@@ -1453,8 +1453,8 @@
    "basis": "unpublished"
   },
   "started": {
-   "date": null,
-   "note": "not recorded; first seen 2026-10-06"
+   "date": "2026-04-09",
+   "note": "added to Cline's model list"
   },
   "ends": {
    "announced": null,
@@ -1507,8 +1507,8 @@
    "basis": "unpublished"
   },
   "started": {
-   "date": null,
-   "note": "not recorded; first seen 2026-10-06"
+   "date": "2026-08-22",
+   "note": "added to Cline's model list"
   },
   "ends": {
    "announced": null,
@@ -2070,8 +2070,8 @@
    "parallel": 10
   },
   "started": {
-   "date": null,
-   "note": "not recorded; first seen 2026-10-06"
+   "date": "2026-09-26",
+   "note": "added to the Zen model docs"
   },
   "ends": {
    "announced": null,
@@ -2106,8 +2106,8 @@
    "networks": 2
   },
   "started": {
-   "date": null,
-   "note": "not recorded; first seen 2026-10-06"
+   "date": "2026-10-02",
+   "note": "added to the Zen model docs"
   },
   "ends": {
    "announced": null,
@@ -2133,8 +2133,8 @@
   },
   "limits_observed": null,
   "started": {
-   "date": null,
-   "note": "not recorded; first seen 2026-10-06"
+   "date": "2026-08-11",
+   "note": "added to the Zen model docs"
   },
   "ends": {
    "announced": null,
@@ -2167,8 +2167,8 @@
    "note": "refused from France"
   },
   "started": {
-   "date": null,
-   "note": "not recorded; first seen 2026-10-06"
+   "date": "2026-10-01",
+   "note": "added to OpenCode's model catalogue (models.dev)"
   },
   "ends": {
    "announced": null,
@@ -2199,8 +2199,8 @@
    "networks": 2
   },
   "started": {
-   "date": null,
-   "note": "not recorded; first seen 2026-10-06"
+   "date": "2026-06-04",
+   "note": "added to the Zen model docs"
   },
   "ends": {
    "announced": null,
@@ -2231,8 +2231,8 @@
    "networks": 2
   },
   "started": {
-   "date": null,
-   "note": "not recorded; first seen 2026-10-06"
+   "date": "2026-08-28",
+   "note": "added to the Zen model docs"
   },
   "ends": {
    "announced": null,
@@ -2261,8 +2261,8 @@
    "reach": "missing"
   },
   "started": {
-   "date": null,
-   "note": "not recorded; first seen 2026-10-06"
+   "date": "2026-05-27",
+   "note": "added to the Zen model docs"
   },
   "ends": {
    "announced": null,
@@ -2291,8 +2291,8 @@
    "reach": "missing"
   },
   "started": {
-   "date": null,
-   "note": "not recorded; first seen 2026-10-06"
+   "date": "2026-09-19",
+   "note": "added to the Zen model docs"
   },
   "ends": {
    "announced": null,
@@ -2323,8 +2323,8 @@
    "networks": 2
   },
   "started": {
-   "date": null,
-   "note": "not recorded; first seen 2026-10-06"
+   "date": "2025-10-17",
+   "note": "added to OpenCode's model catalogue (models.dev)"
   },
   "ends": {
    "announced": null,
@@ -2358,8 +2358,8 @@
    "networks": 2
   },
   "started": {
-   "date": null,
-   "note": "not recorded; first seen 2026-10-06"
+   "date": "2026-09-02",
+   "note": "added to the Zen model docs"
   },
   "ends": {
    "announced": null,
@@ -2391,8 +2391,8 @@
    "reach": "missing"
   },
   "started": {
-   "date": null,
-   "note": "not recorded; first seen 2026-10-06"
+   "date": "2026-08-20",
+   "note": "added to the Zen model docs"
   },
   "ends": {
    "announced": null,
@@ -2689,8 +2689,8 @@
   },
   "limits_observed": null,
   "started": {
-   "date": null,
-   "note": "not recorded; first seen 2026-10-06"
+   "date": "2026-01-19",
+   "note": "launched on Z.ai"
   },
   "ends": {
    "announced": null,
@@ -2718,8 +2718,8 @@
   },
   "limits_observed": null,
   "started": {
-   "date": null,
-   "note": "not recorded; first seen 2026-10-06"
+   "date": "2025-07-30",
+   "note": "listed as free on Z.ai's pricing page (archived snapshot)"
   },
   "ends": {
    "announced": null,
@@ -2747,8 +2747,8 @@
   },
   "limits_observed": null,
   "started": {
-   "date": null,
-   "note": "not recorded; first seen 2026-10-06"
+   "date": "2026-01-19",
+   "note": "launched free on BigModel"
   },
   "ends": {
    "announced": null,
@@ -2776,8 +2776,8 @@
   },
   "limits_observed": null,
   "started": {
-   "date": null,
-   "note": "not recorded; first seen 2026-10-06"
+   "date": "2025-04-15",
+   "note": "first public mention"
   },
   "ends": {
    "announced": null,
@@ -2809,8 +2809,8 @@
    "cost": "zero"
   },
   "started": {
-   "date": null,
-   "note": "not recorded; first seen 2026-10-06"
+   "date": "2026-09-30",
+   "note": "announced on the Vercel changelog"
   },
   "ends": {
    "announced": null,
@@ -2842,8 +2842,8 @@
    "checks": 2
   },
   "started": {
-   "date": null,
-   "note": "not recorded; first seen 2026-10-06"
+   "date": "2026-07-21",
+   "note": "announced on the Vercel changelog"
   },
   "ends": {
    "announced": null,
