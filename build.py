@@ -179,6 +179,9 @@ def validate_channels(channels, lanes):
             errs.append(f"{w}: a {k} entry needs entry.usd")
         if not str(get(c, "source.url") or "").startswith("http"):
             errs.append(f"{w}: source.url is required")
+        for k in ("site", "models"):
+            if not str(get(c, f"links.{k}") or "").startswith("http"):
+                errs.append(f"{w}: links.{k} is required (official site, and its model / price list page)")
         a = c.get("access") or {}
         if a.get("form") not in VOCAB["access_form"]:
             errs.append(f"{w}: access.form={a.get('form')!r} is not in vocab 'access_form'")

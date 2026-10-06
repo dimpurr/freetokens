@@ -129,6 +129,13 @@ function accessHTML(a) {
 /* region-limited lanes (e.g. free in the US only): a small tag wherever the lane appears; worldwide = no region */
 const regionTag = (l) => l.region ? `<span class="regiontag" title="Free only in ${esc(l.region)}">${esc(l.region)} only</span>` : "";
 const worldwide = (l) => !l.region;
+/* official links of a channel: its site and its model / price list (data/channels.json links) */
+function chLinks(name, short = false) {
+  const c = CH[name]; if (!c || !c.links) return "";
+  const a = (u, t) => `<a class="extlink" href="${esc(u)}" target="_blank" rel="noopener">${t} ${I.ext()}</a>`;
+  if (short) return a(c.links.models, "prices");
+  return a(c.links.site, "Website") + (c.links.models !== c.links.site ? a(c.links.models, "Models & prices") : "");
+}
 /* ---------- use-case views (ADR-020): All · Humans · Agents ---------- */
 const VIEWS = {
   all: { label: "All", long: "All free lanes" },

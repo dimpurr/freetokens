@@ -178,7 +178,7 @@ onView(() => {
   }).sort((a, b) => (b.ok > 0) - (a.ok > 0) || b.free - a.free || a.c.localeCompare(b.c));
   $("channels").innerHTML = rows.map(({ c, ls, free, ok, next }) => `<article class="ch${VIEW !== "all" && !ok ? " off" : ""}">
     <div class="ch-h">
-      <span class="name">${clink(c)}</span><span class="tag">${esc(lab("channel_type", ls[0].type))}</span>${costHTML(c)}${accessHTML(CH[c] && CH[c].access)}
+      <span class="name">${clink(c)}</span>${chLinks(c, true)}<span class="tag">${esc(lab("channel_type", ls[0].type))}</span>${costHTML(c)}${accessHTML(CH[c] && CH[c].access)}
       <span class="ch-free"><span class="bar" role="img" aria-label="${free} of ${ls.length} lanes free"><i style="width:${(100 * free / ls.length).toFixed(1)}%"></i></span><b>${free}</b><span class="muted">of ${ls.length} free</span></span>
       ${VIEW !== "all" && !ok ? `<span class="viewnote">not usable by ${VIEW}: ${esc(whyNot(ls.find(isFree) || ls[0], VIEW))}</span>` : ""}
       ${next ? `<span class="ch-next"><span class="muted">next end</span> <b>${esc(endInfo(next).main)}</b> <span class="muted">·</span> ${mlink(next.model)} ${confHTML(next.ends.confidence)}</span>` : ""}

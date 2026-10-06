@@ -20,6 +20,10 @@
     "url": "https://opencode.ai/docs/zen/",
     "label": "OpenCode Zen docs; free models answer 403 FreeTierError outside OpenCode (our check)"
    }
+  },
+  "links": {
+   "site": "https://opencode.ai/zen",
+   "models": "https://opencode.ai/docs/zen/"
   }
  },
  {
@@ -45,6 +49,10 @@
     "url": "https://freebuff.com/terms-of-service",
     "label": "Freebuff terms"
    }
+  },
+  "links": {
+   "site": "https://freebuff.com",
+   "models": "https://freebuff.com"
   }
  },
  {
@@ -70,6 +78,10 @@
     "url": "https://kilo.ai/docs/gateway",
     "label": "Kilo Gateway docs"
    }
+  },
+  "links": {
+   "site": "https://kilo.ai",
+   "models": "https://kilo.ai/models"
   }
  },
  {
@@ -97,6 +109,10 @@
     "url": "https://openrouter.ai/docs/cookbook/coding-agents/claude-code-integration",
     "label": "OpenRouter docs"
    }
+  },
+  "links": {
+   "site": "https://openrouter.ai",
+   "models": "https://openrouter.ai/models?max_price=0"
   }
  },
  {
@@ -120,6 +136,10 @@
     "url": "https://docs.letta.com/pricing/",
     "label": "Letta pricing: quotas need OAuth through the Letta app, CLI or web app"
    }
+  },
+  "links": {
+   "site": "https://www.letta.com",
+   "models": "https://docs.letta.com/pricing/"
   }
  },
  {
@@ -148,6 +168,10 @@
     "url": "https://docs.beatapi.io/quick-guide",
     "label": "BeatAPI docs"
    }
+  },
+  "links": {
+   "site": "https://beatapi.io",
+   "models": "https://beatapi.io/pricing"
   }
  },
  {
@@ -173,6 +197,10 @@
     "url": "https://docs.anyrouter.top/",
     "label": "AnyRouter docs"
    }
+  },
+  "links": {
+   "site": "https://anyrouter.top",
+   "models": "https://anyrouter.top/pricing"
   }
  },
  {
@@ -202,6 +230,10 @@
     "url": "https://commandcode.ai/terms",
     "label": "Command Code terms and provider docs"
    }
+  },
+  "links": {
+   "site": "https://commandcode.ai",
+   "models": "https://commandcode.ai/models"
   }
  },
  {
@@ -229,6 +261,10 @@
     "url": "https://opencode.ai/docs/go/",
     "label": "OpenCode Go docs"
    }
+  },
+  "links": {
+   "site": "https://opencode.ai/go",
+   "models": "https://opencode.ai/docs/go/"
   }
  },
  {
@@ -255,6 +291,10 @@
     "url": "https://docs.aimlapi.com/integrations/claude-code",
     "label": "AI/ML API docs"
    }
+  },
+  "links": {
+   "site": "https://aimlapi.com",
+   "models": "https://aimlapi.com/models"
   }
  },
  {
@@ -280,6 +320,10 @@
     "url": "https://cline.bot/tos",
     "label": "Cline terms (2025-09-25): no \"automated means … that sends more request messages … than a human can reasonably produce\"; free models only in the extension and CLI"
    }
+  },
+  "links": {
+   "site": "https://cline.bot",
+   "models": "https://docs.cline.bot/getting-started/free-models"
   }
  },
  {
@@ -305,6 +349,10 @@
     "url": "https://docs.z.ai/guides/overview/pricing",
     "label": "Z.ai docs"
    }
+  },
+  "links": {
+   "site": "https://z.ai",
+   "models": "https://docs.z.ai/guides/overview/pricing"
   }
  },
  {
@@ -332,6 +380,10 @@
     "url": "https://docs.bigmodel.cn/cn/guide/start/pricing",
     "label": "BigModel docs"
    }
+  },
+  "links": {
+   "site": "https://bigmodel.cn",
+   "models": "https://docs.bigmodel.cn/cn/guide/start/pricing"
   }
  },
  {
@@ -359,6 +411,10 @@
     "url": "https://vercel.com/docs/ai-gateway/faq",
     "label": "Vercel AI Gateway docs"
    }
+  },
+  "links": {
+   "site": "https://vercel.com/ai-gateway",
+   "models": "https://vercel.com/ai-gateway/models"
   }
  },
  {
@@ -385,6 +441,10 @@
     "url": "https://docs.siliconflow.com/en/legals/terms-of-service",
     "label": "SiliconFlow docs"
    }
+  },
+  "links": {
+   "site": "https://siliconflow.cn",
+   "models": "https://siliconflow.cn/pricing"
   }
  },
  {
@@ -411,6 +471,10 @@
     "url": "https://ai.google.dev/gemini-api/docs/openai-compatibility",
     "label": "Gemini API pricing"
    }
+  },
+  "links": {
+   "site": "https://aistudio.google.com",
+   "models": "https://ai.google.dev/gemini-api/docs/pricing"
   }
  },
  {
@@ -434,6 +498,10 @@
     "url": "https://docs.qoder.com/zh/events/flashoffer",
     "label": "Qoder event page"
    }
+  },
+  "links": {
+   "site": "https://qoder.com",
+   "models": "https://docs.qoder.com/zh/events/flashoffer"
   }
  },
  {
@@ -459,6 +527,10 @@
     "url": "https://aihubmix.com/model/coding-kimi-k3-free",
     "label": "AIHubMix"
    }
+  },
+  "links": {
+   "site": "https://aihubmix.com",
+   "models": "https://aihubmix.com/models"
   }
  },
  {
@@ -484,6 +556,10 @@
     "url": "https://docs.api.nvidia.com/nim/docs/product",
     "label": "NVIDIA NIM docs"
    }
+  },
+  "links": {
+   "site": "https://build.nvidia.com",
+   "models": "https://build.nvidia.com/models"
   }
  }
 ]
