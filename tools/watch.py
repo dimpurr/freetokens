@@ -17,6 +17,10 @@ POOL_BAR = 34  # free-pool floor = Qwen 3.8 27B level (Dim, 2026-10-06)
 WATCH_RETURN = {
     ("OpenCode Go", "opencode-go/space-bunny-free"): "m1max-dimmodel can restore the bunny arm (retired 2026-10-06)",
 }
+# tracked ids whose departure matters to someone beyond the public record: (channel, model_id) -> who to tell
+WATCH_GONE = {
+    ("OpenCode Zen", "opencode/muse-spark-1.3-contributor-free"): "tell m1max-dimmodel to cancel its 4-hourly Muse probe timer (set 2026-10-06)",
+}
 # known non-chat models and aliases of lanes we already track: (channel, model_id) -> why it is ignored
 IGNORE = {
     ("OpenRouter", "nvidia/nemotron-3.5-content-safety:free"): "safety classifier, not a chat model",
@@ -152,7 +156,7 @@ def main():
                 new.append({"channel": ch, "model_id": mid, "name": name, "aa": aa, "aa_url": url, "pool_candidate": bool(aa and aa >= POOL_BAR)})
         for (c, mid), l in live.items():
             if c == ch and mid not in free:
-                gone.append({"channel": ch, "model_id": mid, "lane": l["id"], "status": l["status"]})
+                gone.append({"channel": ch, "model_id": mid, "lane": l["id"], "status": l["status"], "note": WATCH_GONE.get((ch, mid))})
     back = [{"channel": c, "model_id": m, "note": n} for (c, m), n in WATCH_RETURN.items()
             if any(x["channel"] == c and x["model_id"] == m for x in new)]
     new.sort(key=lambda x: -(x["aa"] or -1))
@@ -166,7 +170,7 @@ def main():
             lines.append(f"  {tag}{x['name']} · {x['channel']} · {x['model_id']} · AA {x['aa'] if x['aa'] is not None else '—'}")
     if gone:
         lines.append(f"🕳️ {len(gone)} tracked lane(s) no longer in the catalogue (maybe ended):")
-        lines += [f"  {x['model_id']} · {x['channel']} (lane {x['lane']}, {x['status']})" for x in gone]
+        lines += [f"  {x['model_id']} · {x['channel']} (lane {x['lane']}, {x['status']})" + (f" → {x['note']}" if x["note"] else "") for x in gone]
     if errors:
         lines.append("⚠️ could not read: " + "; ".join(errors))
     if lines:
