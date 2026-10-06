@@ -316,61 +316,6 @@
   }
  },
  {
-  "id": "bunny-aimlapi",
-  "model": "space-bunny",
-  "channel": "AI/ML API",
-  "type": "router",
-  "model_id": "stealth/space-bunny-alpha",
-  "free_condition": "Funded AI/ML API key (pay-as-you-go from a $20 top-up; its free tier is paused); $0 input and output \"while cloaked\"",
-  "limits_stated": {
-   "text": "unstated"
-  },
-  "limits_observed": null,
-  "started": {
-   "date": "2026-09-23"
-  },
-  "ends": {
-   "announced": null,
-   "expected": null,
-   "confidence": "none",
-   "note": "\"while it is cloaked\", no date"
-  },
-  "data_policy": "may_train",
-  "status": "listed",
-  "checked": {
-   "date": "2026-10-05",
-   "method": "listing"
-  }
- },
- {
-  "id": "bunny-beatapi",
-  "model": "space-bunny",
-  "channel": "BeatAPI",
-  "type": "router",
-  "model_id": "space-bunny-alpha",
-  "free_condition": "BeatAPI key; $0 input and output, \"free for now\"",
-  "limits_stated": {
-   "text": "unstated"
-  },
-  "limits_observed": null,
-  "started": {
-   "date": null,
-   "note": "not recorded"
-  },
-  "ends": {
-   "announced": null,
-   "expected": null,
-   "confidence": "none",
-   "note": "\"the free period can end … without notice\""
-  },
-  "data_policy": "may_train",
-  "status": "listed",
-  "checked": {
-   "date": "2026-10-05",
-   "method": "listing"
-  }
- },
- {
   "id": "dots-3-note-preview-kilo",
   "model": "dots-3-note-preview",
   "channel": "Kilo Code",

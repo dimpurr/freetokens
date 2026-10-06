@@ -201,18 +201,6 @@
   }
  },
  {
-  "date": "2026-09-23",
-  "lanes": [
-   "bunny-aimlapi"
-  ],
-  "kind": "listed",
-  "text": "Model page: released Sep 23, \"free on AI/ML API while cloaked\"",
-  "source": {
-   "label": "AI/ML API model page",
-   "url": "https://aimlapi.com/models/space-bunny-alpha"
-  }
- },
- {
   "date": "2026-09-07",
   "lanes": [
    "dots-3-note-preview-kilo"

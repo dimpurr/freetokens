@@ -143,38 +143,6 @@
   }
  },
  {
-  "name": "BeatAPI",
-  "entry": {
-   "kind": "account",
-   "usd": null,
-   "period": null,
-   "note": "Only models ending in -free work on a zero balance (one request per minute before a top-up); others use sign-up credit that runs out"
-  },
-  "source": {
-   "url": "https://beatapi.io/jev-api",
-   "label": "BeatAPI"
-  },
-  "checked": "2026-10-06",
-  "access": {
-   "form": "api",
-   "protocols": [
-    "openai_chat",
-    "openai_responses",
-    "anthropic_messages",
-    "gemini"
-   ],
-   "rules": [],
-   "source": {
-    "url": "https://docs.beatapi.io/quick-guide",
-    "label": "BeatAPI docs"
-   }
-  },
-  "links": {
-   "site": "https://beatapi.io",
-   "models": "https://beatapi.io/pricing"
-  }
- },
- {
   "name": "Command Code",
   "entry": {
    "kind": "subscription",
@@ -236,36 +204,6 @@
   "links": {
    "site": "https://opencode.ai/go",
    "models": "https://opencode.ai/docs/go/"
-  }
- },
- {
-  "name": "AI/ML API",
-  "entry": {
-   "kind": "topup",
-   "usd": 20,
-   "period": "once",
-   "note": "No free plan; \"The Free Tier is currently paused\"; pay-as-you-go from a $20 top-up"
-  },
-  "source": {
-   "url": "https://docs.aimlapi.com/faq/free-tier",
-   "label": "AI/ML API FAQ"
-  },
-  "checked": "2026-10-06",
-  "access": {
-   "form": "api",
-   "protocols": [
-    "openai_chat",
-    "anthropic_messages"
-   ],
-   "rules": [],
-   "source": {
-    "url": "https://docs.aimlapi.com/integrations/claude-code",
-    "label": "AI/ML API docs"
-   }
-  },
-  "links": {
-   "site": "https://aimlapi.com",
-   "models": "https://aimlapi.com/models"
   }
  },
  {
@@ -481,7 +419,7 @@
    "kind": "account",
    "usd": null,
    "period": null,
-   "note": "AIHubMix account and API key; -free models at $0 with per-account caps"
+   "note": "AIHubMix account and API key; AIHubMix, LLC (Delaware) resells cloud and model-provider quota; -free models at $0 with per-account caps"
   },
   "source": {
    "url": "https://aihubmix.com/model/coding-kimi-k3-free",
