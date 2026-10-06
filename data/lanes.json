@@ -860,7 +860,10 @@
    "text": "metered: \"standard model requests\" cap, number not published; 3 agents on Free",
    "source": "https://docs.letta.com/pricing/"
   },
-  "limits_observed": null,
+  "limits_observed": {
+   "text": "headless Letta Code CLI with a dedicated agent and --new: 3 parallel tasks work, more fail silently; credits stay 0, quota bucket stays full",
+   "date": "2026-10-06"
+  },
   "started": {
    "date": null,
    "note": "not recorded; after Aug 13, when Letta still billed it to credits"
@@ -3099,7 +3102,7 @@
    "source": "https://docs.qoder.com/zh/events/flashoffer"
   },
   "limits_observed": {
-   "text": "16 real agent tasks (fix code + run pytest) at 1, 5 and 10 parallel all passed, 21–42 s each, 0 credits; plus 15 parallel short calls OK",
+   "text": "free-pool admission: retrieval 12/12, coding 5/5 in 2 of 3 runs, plus 16/16 agent tasks at up to 10 parallel; always 0 credits",
    "date": "2026-10-06"
   },
   "started": {

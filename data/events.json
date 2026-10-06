@@ -983,5 +983,18 @@
    "label": "own check",
    "url": null
   }
+ },
+ {
+  "date": "2026-10-06",
+  "lanes": [
+   "qwen3.8-flash-qoder",
+   "dsv41flash-letta"
+  ],
+  "kind": "available",
+  "text": "Admitted to Dim's free worker pool after agent benchmarks: Qwen3.8-Flash via the Qoder CLI, and DeepSeek V4.1 Flash via the Letta Code CLI (about 3 parallel on the free plan)",
+  "source": {
+   "label": "own check",
+   "url": null
+  }
  }
 ]
