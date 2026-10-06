@@ -3086,5 +3086,118 @@
    "date": "2026-10-06",
    "method": "catalogue"
   }
+ },
+ {
+  "id": "qwen3.8-flash-qoder",
+  "model": "qwen3.8-flash",
+  "channel": "Qoder",
+  "type": "agent_tool",
+  "model_id": "Qwen3.8-Flash",
+  "free_condition": "Qoder international personal accounts, inside Qoder (IDE / CLI): billing multiplier 0.0× during the promotion, no credits used; free accounts with zero credits included",
+  "limits_stated": {
+   "text": "promotion \"extended\"; end to be announced on the event page",
+   "source": "https://docs.qoder.com/zh/events/flashoffer"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-09-18T02:00Z"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "kimi-k3-cline",
+  "model": "kimi-k3",
+  "channel": "Cline",
+  "type": "agent_tool",
+  "model_id": "not recorded",
+  "free_condition": "Cline account, inside Cline Desktop / extension / CLI (\"free in the app for a limited time\"); not through the Cline API",
+  "limits_stated": {
+   "text": "limited usage quota, size not published",
+   "source": "https://docs.cline.bot/getting-started/free-models"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-09-18"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "may_train",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "coding-kimi-k3-aihubmix",
+  "model": "coding-kimi-k3",
+  "channel": "AIHubMix",
+  "type": "router",
+  "model_id": "coding-kimi-k3-free",
+  "free_condition": "AIHubMix API key; $0 input and output (\"the open and free version of coding-kimi-k3\")",
+  "limits_stated": {
+   "text": "5 requests/min, 100 requests/day, 1M tokens/day per account",
+   "source": "https://aihubmix.com/model/coding-kimi-k3-free"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "dots-3-note-preview-aihubmix",
+  "model": "dots-3-note-preview",
+  "channel": "AIHubMix",
+  "type": "router",
+  "model_id": "dots-3-note-preview-free",
+  "free_condition": "AIHubMix API key; $0 input and output (served by AtlasCloud)",
+  "limits_stated": {
+   "text": "unstated",
+   "source": "https://aihubmix.com/model/dots-3-note-preview-free"
+  },
+  "limits_observed": {
+   "text": "AIHubMix's own page shows 0.00% uptime for the last three days",
+   "date": "2026-10-06"
+  },
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "listing"
+  }
  }
 ]

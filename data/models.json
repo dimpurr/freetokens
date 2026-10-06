@@ -803,5 +803,44 @@
    "url": "https://artificialanalysis.ai/models/gemini-3-5-flash-lite"
   },
   "notes": null
+ },
+ {
+  "id": "qwen3.8-flash",
+  "name": "Qwen3.8 Flash",
+  "maker": "Alibaba (Qwen)",
+  "context": "not checked",
+  "image_input": "not_checked",
+  "aa_index": {
+   "value": null,
+   "date": "2026-10-06",
+   "note": "not checked"
+  },
+  "notes": null
+ },
+ {
+  "id": "kimi-k3",
+  "name": "Kimi K3",
+  "maker": "Moonshot AI",
+  "context": "1M",
+  "image_input": "not_checked",
+  "aa_index": {
+   "value": 44,
+   "date": "2026-10-06",
+   "url": "https://artificialanalysis.ai/models/kimi-k3"
+  },
+  "notes": null
+ },
+ {
+  "id": "coding-kimi-k3",
+  "name": "Coding Kimi K3",
+  "maker": "Moonshot AI",
+  "context": "1M",
+  "image_input": "not_checked",
+  "aa_index": {
+   "value": null,
+   "date": "2026-10-06",
+   "note": "no AA page (coding variant of Kimi K3, AA 44)"
+  },
+  "notes": null
  }
 ]

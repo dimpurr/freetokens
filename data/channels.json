@@ -412,5 +412,53 @@
     "label": "Gemini API pricing"
    }
   }
+ },
+ {
+  "name": "Qoder",
+  "entry": {
+   "kind": "account",
+   "usd": null,
+   "period": null,
+   "note": "Qoder international, personal accounts (free tier included, zero credits OK); Teams and Enterprise excluded"
+  },
+  "source": {
+   "url": "https://docs.qoder.com/zh/events/flashoffer",
+   "label": "Qoder event page"
+  },
+  "checked": "2026-10-06",
+  "access": {
+   "form": "own_cli",
+   "protocols": [],
+   "rules": [],
+   "source": {
+    "url": "https://docs.qoder.com/zh/events/flashoffer",
+    "label": "Qoder event page"
+   }
+  }
+ },
+ {
+  "name": "AIHubMix",
+  "entry": {
+   "kind": "account",
+   "usd": null,
+   "period": null,
+   "note": "AIHubMix account and API key; -free models at $0 with per-account caps"
+  },
+  "source": {
+   "url": "https://aihubmix.com/model/coding-kimi-k3-free",
+   "label": "AIHubMix"
+  },
+  "checked": "2026-10-06",
+  "access": {
+   "form": "api",
+   "protocols": [
+    "openai_chat"
+   ],
+   "rules": [],
+   "source": {
+    "url": "https://aihubmix.com/model/coding-kimi-k3-free",
+    "label": "AIHubMix"
+   }
+  }
  }
 ]
