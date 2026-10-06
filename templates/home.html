@@ -18,7 +18,7 @@
 
   <section aria-labelledby="h-models">
     <h2 id="h-models">Models <small>ranked by AA index, or our estimate (EST) where AA has none</small></h2>
-    <div class="tbl-scroll"><table class="models collapsed" id="models-t"><thead><tr>
+    <div class="tbl-scroll"><table class="models collapsed cardify" id="models-t"><thead><tr>
       <th title="Rank among scored models; a range where an estimate's band overlaps">#</th><th>Model</th><th>AA index</th><th>Free on</th><th>Context</th><th>Images</th><th>Events</th>
     </tr></thead><tbody id="models"></tbody></table></div>
     <div class="more-row" id="models-more"></div>
@@ -26,7 +26,7 @@
 
   <section aria-labelledby="h-channels">
     <h2 id="h-channels">Channels <small>where the free lanes come from</small></h2>
-    <div class="tbl-scroll"><table class="channels"><thead><tr>
+    <div class="tbl-scroll"><table class="channels cardify"><thead><tr>
       <th>Channel</th><th>Free now</th><th>Next end</th><th>Models</th>
     </tr></thead><tbody id="channels"></tbody></table></div>
   </section>
@@ -35,7 +35,7 @@
     <h2 id="h-lanes">Free lanes <small id="lanes-count"></small></h2>
     <div class="key" id="key"></div>
     <div class="filters" id="filters"></div>
-    <div class="tbl-scroll"><table class="lanes"><thead><tr>
+    <div class="tbl-scroll"><table class="lanes cardify"><thead><tr>
       <th>Lane</th><th>Status · end</th><th><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg> Tested by us</th><th>Limit · condition</th><th>Data</th><th>Model ID</th>
     </tr></thead><tbody id="lanes"></tbody></table></div>
   </section>
@@ -92,13 +92,13 @@ $("stamp").innerHTML = metaStrip();
     const img = { yes: `<span class="st live">${I.image()} yes</span>`, partial: `<span class="pol may_train">${I.image()} unreliable</span>`, no: `<span class="muted">no</span>`, not_checked: `<span class="muted">not checked</span>` }[m.image_input];
     const r = rankOf(m);
     return `<tr class="${i >= TOP ? "more" : ""}">
-      <td class="rank nowrap">${r ? `<span class="${r.est ? "est" : ""}" title="${esc(rankText(m))}">${esc(rankLabel(r))}</span>` : ""}</td>
+      <td class="rank nowrap" data-label="">${r ? `<span class="${r.est ? "est" : ""}" title="${esc(rankText(m))}">${esc(rankLabel(r))}</span>` : ""}</td>
       <td><span class="name">${mlink(m.id)}</span><span class="sub">${esc(m.maker)}</span></td>
-      <td class="nowrap">${aaHTML(m)}${m.aa_index.date ? `<span class="sub">${esc(absDate(m.aa_index.date))}</span>` : ""}</td>
-      <td><div class="chips">${lanesOf(m.id).map(channelChip).join("")}</div></td>
-      <td>${ctx}</td>
-      <td class="nowrap">${img}</td>
-      <td class="nowrap">${n ? `<a href="${modelHref(m.id)}#events">${n} event${n === 1 ? "" : "s"}</a>` : `<span class="muted">none</span>`}</td>
+      <td class="nowrap" data-label="AA index">${aaHTML(m)}${m.aa_index.date ? `<span class="sub">${esc(absDate(m.aa_index.date))}</span>` : ""}</td>
+      <td data-label="Free on"><div class="chips">${lanesOf(m.id).map(channelChip).join("")}</div></td>
+      <td class="m-hide" data-label="Context">${ctx}</td>
+      <td class="nowrap m-hide" data-label="Images">${img}</td>
+      <td class="nowrap m-hide" data-label="Events">${n ? `<a href="${modelHref(m.id)}#events">${n} event${n === 1 ? "" : "s"}</a>` : `<span class="muted">none</span>`}</td>
     </tr>`;
   };
   const top = scored.slice(0, TOP), restScored = scored.slice(TOP), rest = [...restScored, ...unscored];
@@ -124,9 +124,9 @@ $("stamp").innerHTML = metaStrip();
   }).sort((a, b) => b.free - a.free || a.c.localeCompare(b.c));
   $("channels").innerHTML = rows.map(({ c, ls, free, next }) => `<tr>
     <td><span class="name">${clink(c)}</span><span class="sub">${esc(lab("channel_type", ls[0].type))}</span></td>
-    <td class="nowrap"><span class="meter" style="--n:${ls.length}">${ls.map((l) => `<i class="${isFree(l) ? "on" : ""}"></i>`).join("")}</span><b>${free}</b> <span class="muted">of ${ls.length}</span></td>
-    <td>${next ? `<b>${esc(endInfo(next).main)}</b><span class="sub">${mlink(next.model)} · ${confHTML(next.ends.confidence)}</span>` : `<span class="muted">none announced</span>`}</td>
-    <td><div class="chips">${ls.map(modelChip).join("")}</div></td>
+    <td class="nowrap" data-label="Free now"><span class="meter" style="--n:${ls.length}">${ls.map((l) => `<i class="${isFree(l) ? "on" : ""}"></i>`).join("")}</span><b>${free}</b> <span class="muted">of ${ls.length}</span></td>
+    <td data-label="Next end">${next ? `<b>${esc(endInfo(next).main)}</b><span class="sub">${mlink(next.model)} · ${confHTML(next.ends.confidence)}</span>` : `<span class="muted">none announced</span>`}</td>
+    <td data-label="Models"><div class="chips">${ls.map(modelChip).join("")}</div></td>
   </tr>`).join("");
 })();
 
@@ -150,11 +150,11 @@ $("stamp").innerHTML = metaStrip();
       const e = endInfo(l);
       return `<tr>
         <td><span class="name">${mlink(l.model)}</span><span class="sub">${clink(l.channel)} · ${esc(lab("channel_type", l.type))}</span></td>
-        <td class="nowrap"><span title="${esc(lab("status", l.status))}">${statusHTML(l.status, e.main)}</span><span class="sub">${e.sub}</span></td>
-        <td>${measuredHTML(l)}${checkedSub(l)}</td>
-        <td class="cond">${limitHTML(l)}<span class="sub">${esc(l.free_condition)}</span></td>
-        <td>${policyHTML(l.data_policy)}</td>
-        <td class="nowrap">${idHTML(l)}</td>
+        <td class="nowrap" data-label="Status · end"><span title="${esc(lab("status", l.status))}">${statusHTML(l.status, e.main)}</span><span class="sub">${e.sub}</span></td>
+        <td data-label="Tested by us">${measuredHTML(l)}${checkedSub(l)}</td>
+        <td class="cond" data-label="Limit · condition">${limitHTML(l)}<span class="sub">${esc(l.free_condition)}</span></td>
+        <td data-label="Data">${policyHTML(l.data_policy)}</td>
+        <td class="nowrap" data-label="Model ID">${idHTML(l)}</td>
       </tr>`;
     }).join("") || `<tr><td colspan="6" class="muted">No lanes match these filters.</td></tr>`;
   }

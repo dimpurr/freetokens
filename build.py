@@ -712,8 +712,21 @@ h1{{font:700 72px/1.05 "Bricolage Grotesque",sans-serif;margin:0;letter-spacing:
 <h1>Free LLMs, by channel,<br><span>with end dates.</span></h1>
 <div class="s"><span><b>{free}</b> free lanes</span><span><b>{len(models)}</b> models</span><span><b>{len({l['channel'] for l in lanes})}</b> channels</span><span>updated {today:%b %-d}</span></div>
 </body></html>""")
-    subprocess.run([chrome, "--headless=new", "--disable-gpu", "--hide-scrollbars", "--virtual-time-budget=3000", "--window-size=1200,630",
-                    f"--screenshot={(dist / 'og.png').resolve()}", card.resolve().as_uri()], capture_output=True, timeout=60)
+    try:  # Playwright first: the CLI's --virtual-time-budget can hang (same as --dump-dom)
+        from playwright.sync_api import sync_playwright
+        with sync_playwright() as p:
+            b = p.chromium.launch(channel="chrome")
+            pg = b.new_page(viewport={"width": 1200, "height": 630})
+            pg.goto(card.resolve().as_uri(), timeout=30000)
+            pg.wait_for_timeout(800)
+            pg.screenshot(path=str(dist / "og.png"))
+            b.close()
+    except Exception:
+        try:
+            subprocess.run([chrome, "--headless=new", "--disable-gpu", "--hide-scrollbars", "--window-size=1200,630",
+                            f"--screenshot={(dist / 'og.png').resolve()}", card.resolve().as_uri()], capture_output=True, timeout=60)
+        except subprocess.TimeoutExpired:
+            pass
     card.unlink()
     return (dist / "og.png").exists()
 

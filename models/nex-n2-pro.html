@@ -302,6 +302,29 @@ footer { font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--li
 .more-row:empty { display: none; }
 .more-row button { font: 600 0.85rem var(--f-body); color: var(--accent); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; cursor: pointer; }
 .more-row button:hover { border-color: var(--line-strong); }
+
+/* P6: below 640px the main tables reflow to cards (no sideways scrolling) */
+@media (max-width: 640px) {
+  .tbl-scroll:has(table.cardify) { overflow: visible; background: none; border: 0; }
+  table.cardify, table.cardify tbody, table.cardify tr, table.cardify td { display: block; width: auto; min-width: 0 !important; }
+  table.cardify thead { display: none; }
+  table.cardify tr { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; }
+  table.cardify td { border: 0; padding: 3px 0; white-space: normal; }
+  table.cardify td[data-label]:not([data-label=""])::before { content: attr(data-label); display: block; font: 600 0.68rem var(--f-body); letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+  table.cardify td.m-hide { display: none; }
+  table.cardify td:empty { display: none; }
+  table.models.cardify tr:not(.group) { display: grid; grid-template-columns: auto 1fr; column-gap: 10px; }
+  table.models.cardify td.rank { grid-row: 1; align-self: start; padding-top: 4px; }
+  table.models.cardify td.rank:empty { display: none; }
+  table.models.cardify td:not(.rank) { grid-column: 1 / -1; }
+  table.models.cardify td.rank + td { grid-column: 2; grid-row: 1; }
+  table.models.cardify tr.group { background: var(--surface-2); }
+  table.models.collapsed.cardify tr.more { display: none; }
+  .chip { white-space: normal; }
+  table.models.cardify td.rank { white-space: nowrap; }
+  table.lanes.cardify tr { display: grid; grid-template-columns: 1fr 1fr; column-gap: 12px; }
+  table.lanes.cardify td:first-child, table.lanes.cardify td.cond, table.lanes.cardify td:last-child { grid-column: 1 / -1; }
+}
 </style>
 </head>
 <body>
