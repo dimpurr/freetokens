@@ -167,6 +167,11 @@ function aaHTML(m) {
   }
   return `<span class="muted">${esc(a.note || "not ranked")}</span>`;
 }
+/* P7: one line under the score chip saying where the number comes from */
+const aaSource = (m) => m.aa_index.value != null
+  ? `<span class="sub">Artificial Analysis · ${esc(absDate(m.aa_index.date))}</span>`
+  : isEst(m) ? `<span class="sub">${m.est.benchmarks} benchmark${m.est.benchmarks === 1 ? "" : "s"} · estimate</span>`
+  : "";
 
 /* compact key shown above tables */
 const keyHTML = () => [

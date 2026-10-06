@@ -136,6 +136,14 @@ a.when:hover { color: var(--accent); border-bottom-color: var(--accent); }
 .card .who { font-weight: 600; line-height: 1.3; }
 .card .row { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; font-size: 0.8rem; color: var(--muted); }
 
+/* P2: three answers straight from the data, under the intro */
+.answers { display: grid; gap: 12px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.tile { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; display: grid; gap: 6px; align-content: start; }
+.tile h3 { font: 600 0.7rem var(--f-body); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+.tile .who { font-weight: 600; line-height: 1.3; }
+.tile .who a { color: var(--fg); }
+.tile .row { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; font-size: 0.8rem; color: var(--muted); }
+
 /* tables: two lines per cell, first column pinned when the table scrolls */
 .tbl-scroll { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
 table { border-collapse: separate; border-spacing: 0; width: 100%; font-size: 0.86rem; }
@@ -180,6 +188,9 @@ details.estd[open] summary { border-color: var(--accent); }
 .filters button { font: 500 0.78rem var(--f-body); color: var(--fg); background: var(--surface); border: 1px solid var(--line-strong); border-radius: 999px; padding: 3px 11px; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; }
 .filters button[aria-pressed="true"] { background: var(--fg); border-color: var(--fg); color: var(--bg); }
 .filters button[aria-pressed="true"] .st { color: inherit; }
+.filters button .n { font: 500 0.72rem var(--f-mono); color: var(--muted); }
+.filters button[aria-pressed="true"] .n { color: inherit; }
+.filters button:disabled { opacity: 0.45; cursor: not-allowed; }
 .filters .gap { width: 10px; }
 
 /* compact key above tables; full legend folds away */
@@ -284,6 +295,7 @@ footer { font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--li
 @media (max-width: 640px) {
   h1 { font-size: 1.65rem; }
   .wrap { gap: 32px; }
+  .answers { grid-template-columns: 1fr; }
   .tl .it { grid-template-columns: 44px minmax(0, 1fr); gap: 2px 10px; padding: 10px 12px; }
   .filters { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
   .filters::-webkit-scrollbar { display: none; }
@@ -341,6 +353,8 @@ footer { font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--li
     <p>Which capable models you can use for free right now, where, and until when. Every fact is dated and sourced; unknowns are written out. <span class="measured"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>Tested by us</span> marks limits we measured on our own account, which you won't find in announcements.</p>
     <div class="stamp" id="stamp"></div>
   </header>
+
+  <section class="answers" aria-label="At a glance" id="answers"></section>
 
   <section aria-labelledby="h-soon">
     <h2 id="h-soon">Ending soon <small>counted from your clock, UTC days</small></h2>
@@ -560,6 +574,11 @@ function aaHTML(m) {
   }
   return `<span class="muted">${esc(a.note || "not ranked")}</span>`;
 }
+/* P7: one line under the score chip saying where the number comes from */
+const aaSource = (m) => m.aa_index.value != null
+  ? `<span class="sub">Artificial Analysis · ${esc(absDate(m.aa_index.date))}</span>`
+  : isEst(m) ? `<span class="sub">${m.est.benchmarks} benchmark${m.est.benchmarks === 1 ? "" : "s"} · estimate</span>`
+  : "";
 
 /* compact key shown above tables */
 const keyHTML = () => [
@@ -679,6 +698,35 @@ const metaStrip = () => `<span><b>${D.models.length}</b> models</span><span><b>$
 
 $("stamp").innerHTML = metaStrip();
 
+/* at a glance (P2): three answers straight from the data */
+(function () {
+  const freeNow = (l) => isFree(l) && l.status !== "overdue";
+  const tile = (label, body) => `<article class="tile"><h3>${label}</h3>${body}</article>`;
+  const top = scored.find((m) => lanesOf(m.id).some(freeNow));
+  const chs = top ? [...new Set(lanesOf(top.id).filter(freeNow).map((l) => l.channel))] : [];
+  const up = D.lanes.filter((l) => isFree(l) && effEnd(l) && daysTo(pd(effEnd(l)).t) >= 0).sort((a, b) => pd(effEnd(a)).t - pd(effEnd(b)).t)[0];
+  const newest = D.lanes.filter((l) => isFree(l) && l.started.date).sort((a, b) => pd(b.started.date).t - pd(a.started.date).t)[0];
+  const rel = newest ? relDays(pd(newest.started.date).t) : null;
+  $("answers").innerHTML = [
+    top
+      ? tile("Highest-scored, free now",
+          `<div class="who">${mlink(top.id)} <span class="mono">${esc(rankLabel(rankOf(top)))}</span></div>` +
+          `<div class="row">${aaHTML(top)}</div>` +
+          `<div class="chips">${chs.slice(0, 3).map(clink).join("")}${chs.length > 3 ? `<span class="muted">+${chs.length - 3}</span>` : ""}</div>`)
+      : tile("Highest-scored, free now", `<div class="row"><span class="muted">none</span></div>`),
+    up
+      ? tile("Ending soonest",
+          `<div class="who">${mlink(up.model)} <span class="muted">on</span> ${clink(up.channel)}</div>` +
+          `<div class="row"><b>${esc(endInfo(up).main)}</b> <span class="muted">${esc(absDate(effEnd(up)))}</span></div>`)
+      : tile("Ending soonest", `<div class="row"><span class="muted">No upcoming end dates</span></div>`),
+    newest
+      ? tile("Newest free lane",
+          `<div class="who">${mlink(newest.model)} <span class="muted">on</span> ${clink(newest.channel)}</div>` +
+          `<div class="row">free since ${esc(absDate(newest.started.date))}${rel ? ` <span class="muted">(${esc(rel)})</span>` : ""}</div>`)
+      : tile("Newest free lane", `<div class="row"><span class="muted">none</span></div>`),
+  ].join("");
+})();
+
 /* ending soon: overdue first, then by end date */
 (function () {
   const rows = D.lanes.filter((l) => effEnd(l) && isFree(l)).map((l) => ({ l, t: pd(effEnd(l)).t })).sort((a, b) => a.t - b.t);
@@ -710,7 +758,7 @@ $("stamp").innerHTML = metaStrip();
     return `<tr class="${i >= TOP ? "more" : ""}">
       <td class="rank nowrap" data-label="">${r ? `<span class="${r.est ? "est" : ""}" title="${esc(rankText(m))}">${esc(rankLabel(r))}</span>` : ""}</td>
       <td><span class="name">${mlink(m.id)}</span><span class="sub">${esc(m.maker)}</span></td>
-      <td class="nowrap" data-label="AA index">${aaHTML(m)}${m.aa_index.date ? `<span class="sub">${esc(absDate(m.aa_index.date))}</span>` : ""}</td>
+      <td class="nowrap" data-label="AA index">${aaHTML(m)}${aaSource(m)}</td>
       <td data-label="Free on"><div class="chips">${lanesOf(m.id).map(channelChip).join("")}</div></td>
       <td class="m-hide" data-label="Context">${ctx}</td>
       <td class="nowrap m-hide" data-label="Images">${img}</td>
@@ -748,19 +796,26 @@ $("stamp").innerHTML = metaStrip();
 
 /* lanes: six two-line columns, filterable */
 (function () {
-  const filt = { type: null, status: null, tested: null };
+  const filt = { type: null, status: null, tested: null, ends: null };
   try { Object.assign(filt, JSON.parse(localStorage.getItem("ft-filters-v2") || "{}")); } catch (e) {}
   $("key").innerHTML = keyHTML();
+  /* P5: does a lane pass one filter? (empty value = no constraint) */
+  const passes = (l, f, v) => !v || (f === "type" ? l.type === v : f === "status" ? l.status === v : f === "tested" ? !!l.limits_observed : f === "ends" ? !!effEnd(l) : true);
+  /* P5: how many lanes a button would show, given the other active filters */
+  const count = (f, v) => D.lanes.filter((l) => ["type", "status", "tested", "ends"].every((k) => k === f || passes(l, k, filt[k])) && passes(l, f, v)).length;
   function renderFilters() {
-    const btn = (f, v, html) => `<button type="button" id="f-${f}-${v || "all"}" data-f="${f}" data-v="${v}" aria-pressed="${(filt[f] || "") === v}">${html}</button>`;
+    const btn = (f, v, html) => {
+      const n = count(f, v), pressed = (filt[f] || "") === v;
+      return `<button type="button" id="f-${f}-${v || "all"}" data-f="${f}" data-v="${v}" aria-pressed="${pressed}"${n === 0 && !pressed ? " disabled" : ""}>${html}<small class="n">${n}</small></button>`;
+    };
     const present = (f) => [...new Set(D.lanes.map((l) => l[f]))];
     $("filters").innerHTML =
-      `<span class="lab">Show</span>` + btn("tested", "", "all lanes") + btn("tested", "yes", `${I.bolt()} tested by us`) + `<span class="gap"></span>` +
+      `<span class="lab">Show</span>` + btn("tested", "", "all lanes") + btn("tested", "yes", `${I.bolt()} tested by us`) + btn("ends", "yes", "has end date") + `<span class="gap"></span>` +
       `<span class="lab">Status</span>` + btn("status", "", "any") + present("status").map((k) => btn("status", k, statusHTML(k))).join("") + `<span class="gap"></span>` +
       `<span class="lab">Type</span>` + btn("type", "", "any") + present("type").map((k) => btn("type", k, esc(lab("channel_type", k)))).join("");
   }
   function renderLanes() {
-    const rows = D.lanes.filter((l) => (!filt.type || l.type === filt.type) && (!filt.status || l.status === filt.status) && (!filt.tested || l.limits_observed));
+    const rows = D.lanes.filter((l) => passes(l, "type", filt.type) && passes(l, "status", filt.status) && passes(l, "tested", filt.tested) && passes(l, "ends", filt.ends));
     $("lanes-count").textContent = `${rows.length} of ${D.lanes.length}`;
     $("lanes").innerHTML = rows.map((l) => {
       const e = endInfo(l);
@@ -776,7 +831,8 @@ $("stamp").innerHTML = metaStrip();
   }
   $("filters").addEventListener("click", (ev) => {
     const b = ev.target.closest("button"); if (!b) return;
-    filt[b.dataset.f] = b.dataset.v || null;
+    const v = b.dataset.v || null;
+    filt[b.dataset.f] = b.dataset.f === "ends" && filt.ends === v ? null : v; /* P5: "has end date" toggles off */
     try { localStorage.setItem("ft-filters-v2", JSON.stringify(filt)); } catch (e) {}
     renderFilters(); renderLanes();
   });

@@ -50,8 +50,8 @@ const ML = lanesOf(M.id);
     <h1>${esc(M.name)}</h1>
     ${M.notes ? `<p class="notes">${esc(M.notes)}</p>` : ""}
     <div class="stats">
-      ${stat(a.value != null ? "AA index" : "AA index", M.est || a.value != null ? aaHTML(M) : `<span class="muted" style="font:500 0.9rem var(--f-body)">${esc(a.note || "not ranked")}</span>`,
-        `${rankText(M) ? esc(rankText(M)) + " · " : ""}${esc(absDate(a.date))}`)}
+      ${stat("AA index", `${M.est || a.value != null ? aaHTML(M) : `<span class="muted" style="font:500 0.9rem var(--f-body)">${esc(a.note || "not ranked")}</span>`}${aaSource(M)}`,
+        rankText(M) ? esc(rankText(M)) : "")}
       ${stat("Context", c ? esc(c[1]) : `<span class="muted" style="font:500 0.9rem var(--f-body)">${esc(M.context.split(" (")[0])}</span>`, c ? esc(c[2]) : esc((M.context.split(" (")[1] || "").replace(/\)$/, "")))}
       ${stat("Images", esc(lab("image_input", M.image_input)))}
       ${stat("Free now", `${ML.filter(isFree).length} of ${ML.length}`, "channels")}

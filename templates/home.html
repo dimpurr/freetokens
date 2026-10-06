@@ -11,6 +11,8 @@
     <div class="stamp" id="stamp"></div>
   </header>
 
+  <section class="answers" aria-label="At a glance" id="answers"></section>
+
   <section aria-labelledby="h-soon">
     <h2 id="h-soon">Ending soon <small>counted from your clock, UTC days</small></h2>
     <div class="soon" id="soon"></div>
@@ -63,6 +65,35 @@
 
 $("stamp").innerHTML = metaStrip();
 
+/* at a glance (P2): three answers straight from the data */
+(function () {
+  const freeNow = (l) => isFree(l) && l.status !== "overdue";
+  const tile = (label, body) => `<article class="tile"><h3>${label}</h3>${body}</article>`;
+  const top = scored.find((m) => lanesOf(m.id).some(freeNow));
+  const chs = top ? [...new Set(lanesOf(top.id).filter(freeNow).map((l) => l.channel))] : [];
+  const up = D.lanes.filter((l) => isFree(l) && effEnd(l) && daysTo(pd(effEnd(l)).t) >= 0).sort((a, b) => pd(effEnd(a)).t - pd(effEnd(b)).t)[0];
+  const newest = D.lanes.filter((l) => isFree(l) && l.started.date).sort((a, b) => pd(b.started.date).t - pd(a.started.date).t)[0];
+  const rel = newest ? relDays(pd(newest.started.date).t) : null;
+  $("answers").innerHTML = [
+    top
+      ? tile("Highest-scored, free now",
+          `<div class="who">${mlink(top.id)} <span class="mono">${esc(rankLabel(rankOf(top)))}</span></div>` +
+          `<div class="row">${aaHTML(top)}</div>` +
+          `<div class="chips">${chs.slice(0, 3).map(clink).join("")}${chs.length > 3 ? `<span class="muted">+${chs.length - 3}</span>` : ""}</div>`)
+      : tile("Highest-scored, free now", `<div class="row"><span class="muted">none</span></div>`),
+    up
+      ? tile("Ending soonest",
+          `<div class="who">${mlink(up.model)} <span class="muted">on</span> ${clink(up.channel)}</div>` +
+          `<div class="row"><b>${esc(endInfo(up).main)}</b> <span class="muted">${esc(absDate(effEnd(up)))}</span></div>`)
+      : tile("Ending soonest", `<div class="row"><span class="muted">No upcoming end dates</span></div>`),
+    newest
+      ? tile("Newest free lane",
+          `<div class="who">${mlink(newest.model)} <span class="muted">on</span> ${clink(newest.channel)}</div>` +
+          `<div class="row">free since ${esc(absDate(newest.started.date))}${rel ? ` <span class="muted">(${esc(rel)})</span>` : ""}</div>`)
+      : tile("Newest free lane", `<div class="row"><span class="muted">none</span></div>`),
+  ].join("");
+})();
+
 /* ending soon: overdue first, then by end date */
 (function () {
   const rows = D.lanes.filter((l) => effEnd(l) && isFree(l)).map((l) => ({ l, t: pd(effEnd(l)).t })).sort((a, b) => a.t - b.t);
@@ -94,7 +125,7 @@ $("stamp").innerHTML = metaStrip();
     return `<tr class="${i >= TOP ? "more" : ""}">
       <td class="rank nowrap" data-label="">${r ? `<span class="${r.est ? "est" : ""}" title="${esc(rankText(m))}">${esc(rankLabel(r))}</span>` : ""}</td>
       <td><span class="name">${mlink(m.id)}</span><span class="sub">${esc(m.maker)}</span></td>
-      <td class="nowrap" data-label="AA index">${aaHTML(m)}${m.aa_index.date ? `<span class="sub">${esc(absDate(m.aa_index.date))}</span>` : ""}</td>
+      <td class="nowrap" data-label="AA index">${aaHTML(m)}${aaSource(m)}</td>
       <td data-label="Free on"><div class="chips">${lanesOf(m.id).map(channelChip).join("")}</div></td>
       <td class="m-hide" data-label="Context">${ctx}</td>
       <td class="nowrap m-hide" data-label="Images">${img}</td>
@@ -132,19 +163,26 @@ $("stamp").innerHTML = metaStrip();
 
 /* lanes: six two-line columns, filterable */
 (function () {
-  const filt = { type: null, status: null, tested: null };
+  const filt = { type: null, status: null, tested: null, ends: null };
   try { Object.assign(filt, JSON.parse(localStorage.getItem("ft-filters-v2") || "{}")); } catch (e) {}
   $("key").innerHTML = keyHTML();
+  /* P5: does a lane pass one filter? (empty value = no constraint) */
+  const passes = (l, f, v) => !v || (f === "type" ? l.type === v : f === "status" ? l.status === v : f === "tested" ? !!l.limits_observed : f === "ends" ? !!effEnd(l) : true);
+  /* P5: how many lanes a button would show, given the other active filters */
+  const count = (f, v) => D.lanes.filter((l) => ["type", "status", "tested", "ends"].every((k) => k === f || passes(l, k, filt[k])) && passes(l, f, v)).length;
   function renderFilters() {
-    const btn = (f, v, html) => `<button type="button" id="f-${f}-${v || "all"}" data-f="${f}" data-v="${v}" aria-pressed="${(filt[f] || "") === v}">${html}</button>`;
+    const btn = (f, v, html) => {
+      const n = count(f, v), pressed = (filt[f] || "") === v;
+      return `<button type="button" id="f-${f}-${v || "all"}" data-f="${f}" data-v="${v}" aria-pressed="${pressed}"${n === 0 && !pressed ? " disabled" : ""}>${html}<small class="n">${n}</small></button>`;
+    };
     const present = (f) => [...new Set(D.lanes.map((l) => l[f]))];
     $("filters").innerHTML =
-      `<span class="lab">Show</span>` + btn("tested", "", "all lanes") + btn("tested", "yes", `${I.bolt()} tested by us`) + `<span class="gap"></span>` +
+      `<span class="lab">Show</span>` + btn("tested", "", "all lanes") + btn("tested", "yes", `${I.bolt()} tested by us`) + btn("ends", "yes", "has end date") + `<span class="gap"></span>` +
       `<span class="lab">Status</span>` + btn("status", "", "any") + present("status").map((k) => btn("status", k, statusHTML(k))).join("") + `<span class="gap"></span>` +
       `<span class="lab">Type</span>` + btn("type", "", "any") + present("type").map((k) => btn("type", k, esc(lab("channel_type", k)))).join("");
   }
   function renderLanes() {
-    const rows = D.lanes.filter((l) => (!filt.type || l.type === filt.type) && (!filt.status || l.status === filt.status) && (!filt.tested || l.limits_observed));
+    const rows = D.lanes.filter((l) => passes(l, "type", filt.type) && passes(l, "status", filt.status) && passes(l, "tested", filt.tested) && passes(l, "ends", filt.ends));
     $("lanes-count").textContent = `${rows.length} of ${D.lanes.length}`;
     $("lanes").innerHTML = rows.map((l) => {
       const e = endInfo(l);
@@ -160,7 +198,8 @@ $("stamp").innerHTML = metaStrip();
   }
   $("filters").addEventListener("click", (ev) => {
     const b = ev.target.closest("button"); if (!b) return;
-    filt[b.dataset.f] = b.dataset.v || null;
+    const v = b.dataset.v || null;
+    filt[b.dataset.f] = b.dataset.f === "ends" && filt.ends === v ? null : v; /* P5: "has end date" toggles off */
     try { localStorage.setItem("ft-filters-v2", JSON.stringify(filt)); } catch (e) {}
     renderFilters(); renderLanes();
   });
