@@ -1661,7 +1661,10 @@
    "text": "50 requests/day on the free plan",
    "source": "https://openrouter.ai/pricing"
   },
-  "limits_observed": null,
+  "limits_observed": {
+   "text": "15 parallel calls 15/15 (median 6.2 s), served by AtlasCloud",
+   "date": "2026-10-06"
+  },
   "started": {
    "date": "2026-08-14"
   },
