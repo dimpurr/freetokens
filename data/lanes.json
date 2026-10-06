@@ -2268,9 +2268,10 @@
   "channel": "OpenCode Zen",
   "type": "agent_tool",
   "model_id": "opencode/muse-spark-1.3-contributor-free",
-  "free_condition": "Inside the OpenCode app, no account; \"Contributor\" models train Meta models on your prompts",
+  "free_condition": "OpenCode Zen account with the per-model opt-in that lets Meta train on your prompts (\"requires explicit opt-in\"); Responses API only; region-limited by Meta (community reports RegionError outside the US). Anonymous calls are refused",
   "limits_stated": {
-   "text": "unstated"
+   "text": "free period \"limited time\", no end date; Meta API itself caps at 100 requests/min per team",
+   "source": "https://opencode.ai/docs/zen/"
   },
   "limits_observed": {
    "text": "two test calls (05:40, 15:30) timed out with no output (120 s, 180 s)",
@@ -2298,9 +2299,10 @@
   "channel": "OpenCode Zen",
   "type": "agent_tool",
   "model_id": "opencode/muse-spark-1.2-contributor-free",
-  "free_condition": "Inside the OpenCode app, no account; \"Contributor\" models train Meta models on your prompts",
+  "free_condition": "OpenCode Zen account with the per-model opt-in that lets Meta train on your prompts (\"requires explicit opt-in\"); Responses API only; region-limited by Meta (community reports RegionError outside the US). Anonymous calls are refused",
   "limits_stated": {
-   "text": "unstated"
+   "text": "free period \"limited time\", no end date; Meta API itself caps at 100 requests/min per team",
+   "source": "https://opencode.ai/docs/zen/"
   },
   "limits_observed": {
    "text": "two test calls (05:40, 15:30) returned \"Unexpected server error\"",
