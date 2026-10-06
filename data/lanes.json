@@ -332,7 +332,7 @@
    "confidence": "none",
    "note": "\"while it is cloaked\", no date"
   },
-  "data_policy": "not_checked",
+  "data_policy": "may_train",
   "status": "listed",
   "checked": {
    "date": "2026-10-05",
@@ -358,7 +358,7 @@
    "expected": null,
    "confidence": "none"
   },
-  "data_policy": "not_checked",
+  "data_policy": "may_train",
   "status": "listed",
   "checked": {
    "date": "2026-10-05",
@@ -386,7 +386,7 @@
    "confidence": "none",
    "note": "\"the free period can end … without notice\""
   },
-  "data_policy": "not_checked",
+  "data_policy": "may_train",
   "status": "listed",
   "checked": {
    "date": "2026-10-05",
