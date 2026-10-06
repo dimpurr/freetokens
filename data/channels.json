@@ -460,5 +460,30 @@
     "label": "AIHubMix"
    }
   }
+ },
+ {
+  "name": "NVIDIA build",
+  "entry": {
+   "kind": "account",
+   "usd": null,
+   "period": null,
+   "note": "NVIDIA Developer Program account and an nvapi- key (\"for API testing use only\", valid 1 year); free tier is rate-limited (about 40 requests/min for most models)"
+  },
+  "source": {
+   "url": "https://build.nvidia.com/",
+   "label": "NVIDIA build"
+  },
+  "checked": "2026-10-06",
+  "access": {
+   "form": "api",
+   "protocols": [
+    "openai_chat"
+   ],
+   "rules": [],
+   "source": {
+    "url": "https://docs.api.nvidia.com/nim/docs/product",
+    "label": "NVIDIA NIM docs"
+   }
+  }
  }
 ]

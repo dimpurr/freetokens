@@ -3202,5 +3202,129 @@
    "date": "2026-10-06",
    "method": "listing"
   }
+ },
+ {
+  "id": "glm-5.3-nvidia",
+  "model": "glm-5.3",
+  "channel": "NVIDIA build",
+  "type": "router",
+  "model_id": "z-ai/glm-5.3",
+  "free_condition": "NVIDIA Developer Program API key; free to prototype, rate-limited",
+  "limits_stated": {
+   "text": "about 40 requests/min for most models (community-quoted; page is script-rendered)",
+   "source": "https://build.nvidia.com/"
+  },
+  "limits_observed": {
+   "text": "no response within 180 s (non-streaming) or 150 s (streaming, no first token)",
+   "date": "2026-10-06"
+  },
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "may_train",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "api_call"
+  }
+ },
+ {
+  "id": "kimi-k3-nvidia",
+  "model": "kimi-k3",
+  "channel": "NVIDIA build",
+  "type": "router",
+  "model_id": "moonshotai/kimi-k3",
+  "free_condition": "NVIDIA Developer Program API key; free to prototype, rate-limited",
+  "limits_stated": {
+   "text": "about 40 requests/min for most models (community-quoted; page is script-rendered)",
+   "source": "https://build.nvidia.com/"
+  },
+  "limits_observed": {
+   "text": "no response within 180 s",
+   "date": "2026-10-06"
+  },
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "may_train",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "api_call"
+  }
+ },
+ {
+  "id": "deepseek-v4.1-flash-nvidia",
+  "model": "deepseek-v4.1-flash",
+  "channel": "NVIDIA build",
+  "type": "router",
+  "model_id": "deepseek-ai/deepseek-v4.1-flash",
+  "free_condition": "NVIDIA Developer Program API key; free to prototype, rate-limited",
+  "limits_stated": {
+   "text": "about 40 requests/min for most models (community-quoted; page is script-rendered)",
+   "source": "https://build.nvidia.com/"
+  },
+  "limits_observed": {
+   "text": "no response within 180 s",
+   "date": "2026-10-06"
+  },
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "may_train",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "api_call"
+  }
+ },
+ {
+  "id": "nemotron-3-super-120b-a12b-nvidia",
+  "model": "nemotron-3-super-120b-a12b",
+  "channel": "NVIDIA build",
+  "type": "router",
+  "model_id": "nvidia/nemotron-3-super-120b-a12b",
+  "free_condition": "NVIDIA Developer Program API key; free to prototype, rate-limited",
+  "limits_stated": {
+   "text": "about 40 requests/min for most models (community-quoted; page is script-rendered)",
+   "source": "https://build.nvidia.com/"
+  },
+  "limits_observed": {
+   "text": "first token 0.6 s",
+   "date": "2026-10-06"
+  },
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "may_train",
+  "status": "live",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "api_call"
+  }
  }
 ]

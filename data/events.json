@@ -968,5 +968,20 @@
    "label": "own check",
    "url": null
   }
+ },
+ {
+  "date": "2026-10-06",
+  "lanes": [
+   "glm-5.3-nvidia",
+   "kimi-k3-nvidia",
+   "deepseek-v4.1-flash-nvidia",
+   "nemotron-3-super-120b-a12b-nvidia"
+  ],
+  "kind": "listed",
+  "text": "Tested with a new NVIDIA build key: the key works (Nemotron 3 Super answered in 0.6 s) but GLM 5.3, Kimi K3 and DeepSeek V4.1 Flash returned nothing within 150–180 s, apparently queued on the free endpoints",
+  "source": {
+   "label": "own check",
+   "url": null
+  }
  }
 ]
