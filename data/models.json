@@ -97,9 +97,10 @@
   "context": "262K",
   "image_input": "yes",
   "aa_index": {
-   "value": null,
-   "date": "2026-10-05",
-   "note": "not checked"
+   "value": 17,
+   "date": "2026-10-06",
+   "url": "https://artificialanalysis.ai/models/gemma-4-26b-a4b",
+   "approx": true
   },
   "notes": null
  },
@@ -110,9 +111,9 @@
   "context": "262K",
   "image_input": "no",
   "aa_index": {
-   "value": null,
-   "date": "2026-10-05",
-   "note": "not checked"
+   "value": 20,
+   "date": "2026-10-06",
+   "url": "https://artificialanalysis.ai/models/ling-3-0-flash"
   },
   "notes": null
  },
@@ -123,9 +124,9 @@
   "context": "197K",
   "image_input": "no",
   "aa_index": {
-   "value": null,
-   "date": "2026-10-05",
-   "note": "not checked"
+   "value": 23,
+   "date": "2026-10-06",
+   "url": "https://artificialanalysis.ai/models/minimax-m2-7"
   },
   "notes": null
  },
@@ -149,9 +150,9 @@
   "context": "262K",
   "image_input": "no",
   "aa_index": {
-   "value": null,
-   "date": "2026-10-05",
-   "note": "not checked"
+   "value": 13,
+   "date": "2026-10-06",
+   "url": "https://artificialanalysis.ai/models/nvidia-nemotron-3-super-120b-a12b"
   },
   "notes": null
  },
@@ -201,9 +202,9 @@
   "context": "262K",
   "image_input": "no",
   "aa_index": {
-   "value": null,
-   "date": "2026-10-05",
-   "note": "not checked"
+   "value": 25,
+   "date": "2026-10-06",
+   "url": "https://artificialanalysis.ai/models/hy3"
   },
   "notes": null
  },
@@ -214,9 +215,10 @@
   "context": "262K",
   "image_input": "no",
   "aa_index": {
-   "value": null,
-   "date": "2026-10-05",
-   "note": "not checked"
+   "value": 23,
+   "date": "2026-10-06",
+   "url": "https://artificialanalysis.ai/models/hy3-preview",
+   "approx": true
   },
   "notes": null
  },
@@ -227,9 +229,9 @@
   "context": "262K",
   "image_input": "yes",
   "aa_index": {
-   "value": null,
-   "date": "2026-10-05",
-   "note": "not checked"
+   "value": 25,
+   "date": "2026-10-06",
+   "url": "https://artificialanalysis.ai/models/ling-3-0-flash-vl"
   },
   "notes": null
  },
@@ -240,9 +242,10 @@
   "context": "262K",
   "image_input": "no",
   "aa_index": {
-   "value": null,
-   "date": "2026-10-05",
-   "note": "not checked"
+   "value": 17,
+   "date": "2026-10-06",
+   "url": "https://artificialanalysis.ai/models/ling-2-6-1t",
+   "approx": true
   },
   "notes": null
  },
@@ -266,9 +269,9 @@
   "context": "262K",
   "image_input": "no",
   "aa_index": {
-   "value": null,
-   "date": "2026-10-05",
-   "note": "not checked"
+   "value": 17,
+   "date": "2026-10-06",
+   "url": "https://artificialanalysis.ai/models/ring-2-6-1t"
   },
   "notes": null
  },
@@ -279,9 +282,9 @@
   "context": "not checked",
   "image_input": "not_checked",
   "aa_index": {
-   "value": null,
+   "value": 39,
    "date": "2026-10-06",
-   "note": "not checked"
+   "url": "https://artificialanalysis.ai/models/deepseek-v4-1-flash"
   },
   "notes": null
  },
@@ -305,9 +308,9 @@
   "context": "not checked",
   "image_input": "not_checked",
   "aa_index": {
-   "value": null,
+   "value": 10,
    "date": "2026-10-06",
-   "note": "not checked"
+   "url": "https://artificialanalysis.ai/models/north-mini-code"
   },
   "notes": null
  },
@@ -331,9 +334,10 @@
   "context": "not checked",
   "image_input": "not_checked",
   "aa_index": {
-   "value": null,
+   "value": 8,
    "date": "2026-10-06",
-   "note": "not checked"
+   "url": "https://artificialanalysis.ai/models/lfm2-5-2-6b",
+   "approx": true
   },
   "notes": null
  },
@@ -344,9 +348,10 @@
   "context": "not checked",
   "image_input": "not_checked",
   "aa_index": {
-   "value": null,
+   "value": 10,
    "date": "2026-10-06",
-   "note": "not checked"
+   "url": "https://artificialanalysis.ai/models/nemotron-3-nano-omni-30b-a3b",
+   "approx": true
   },
   "notes": null
  },
@@ -357,9 +362,9 @@
   "context": "not checked",
   "image_input": "not_checked",
   "aa_index": {
-   "value": null,
+   "value": 13,
    "date": "2026-10-06",
-   "note": "not checked"
+   "url": "https://artificialanalysis.ai/models/nemotron-3-5-lightning"
   },
   "notes": null
  },
@@ -383,9 +388,10 @@
   "context": "not checked",
   "image_input": "not_checked",
   "aa_index": {
-   "value": null,
+   "value": 19,
    "date": "2026-10-06",
-   "note": "not checked"
+   "url": "https://artificialanalysis.ai/models/step-3-7-flash",
+   "approx": true
   },
   "notes": null
  },
@@ -396,9 +402,35 @@
   "context": "not checked",
   "image_input": "not_checked",
   "aa_index": {
-   "value": null,
+   "value": 26,
    "date": "2026-10-06",
-   "note": "not checked"
+   "url": "https://artificialanalysis.ai/models/inkling-small"
+  },
+  "notes": null
+ },
+ {
+  "id": "gemma-4-31b-it",
+  "name": "Gemma 4 31B",
+  "maker": "Google",
+  "context": "not checked",
+  "image_input": "not_checked",
+  "aa_index": {
+   "value": 15,
+   "date": "2026-10-06",
+   "url": "https://artificialanalysis.ai/models/gemma-4-31b"
+  },
+  "notes": null
+ },
+ {
+  "id": "inkling",
+  "name": "Inkling",
+  "maker": "Thinking Machines",
+  "context": "not checked",
+  "image_input": "not_checked",
+  "aa_index": {
+   "value": 25,
+   "date": "2026-10-06",
+   "url": "https://artificialanalysis.ai/models/inkling"
   },
   "notes": null
  }

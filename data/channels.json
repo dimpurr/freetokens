@@ -11,7 +11,16 @@
    "url": "https://opencode.ai/docs/zen/",
    "label": "OpenCode Zen docs"
   },
-  "checked": "2026-10-06"
+  "checked": "2026-10-06",
+  "access": {
+   "form": "own_cli",
+   "protocols": [],
+   "rules": [],
+   "source": {
+    "url": "https://opencode.ai/docs/zen/",
+    "label": "OpenCode Zen docs; free models answer 403 FreeTierError outside OpenCode (our check)"
+   }
+  }
  },
  {
   "name": "Freebuff",
@@ -25,7 +34,18 @@
    "url": "https://freebuff.com/",
    "label": "Freebuff"
   },
-  "checked": "2026-10-06"
+  "checked": "2026-10-06",
+  "access": {
+   "form": "own_cli",
+   "protocols": [],
+   "rules": [
+    "no_automation"
+   ],
+   "source": {
+    "url": "https://freebuff.com/terms-of-service",
+    "label": "Freebuff terms"
+   }
+  }
  },
  {
   "name": "Kilo Code",
@@ -39,7 +59,18 @@
    "url": "https://kilo.ai/pricing",
    "label": "Kilo pricing"
   },
-  "checked": "2026-10-06"
+  "checked": "2026-10-06",
+  "access": {
+   "form": "api",
+   "protocols": [
+    "openai_chat"
+   ],
+   "rules": [],
+   "source": {
+    "url": "https://kilo.ai/docs/gateway",
+    "label": "Kilo Gateway docs"
+   }
+  }
  },
  {
   "name": "OpenRouter",
@@ -53,7 +84,20 @@
    "url": "https://openrouter.ai/pricing",
    "label": "OpenRouter pricing"
   },
-  "checked": "2026-10-06"
+  "checked": "2026-10-06",
+  "access": {
+   "form": "api",
+   "protocols": [
+    "openai_chat",
+    "openai_responses",
+    "anthropic_messages"
+   ],
+   "rules": [],
+   "source": {
+    "url": "https://openrouter.ai/docs/cookbook/coding-agents/claude-code-integration",
+    "label": "OpenRouter docs"
+   }
+  }
  },
  {
   "name": "Letta",
@@ -67,7 +111,16 @@
    "url": "https://docs.letta.com/pricing/",
    "label": "Letta pricing"
   },
-  "checked": "2026-10-06"
+  "checked": "2026-10-06",
+  "access": {
+   "form": "own_cli",
+   "protocols": [],
+   "rules": [],
+   "source": {
+    "url": "https://docs.letta.com/pricing/",
+    "label": "Letta pricing: quotas need OAuth through the Letta app, CLI or web app"
+   }
+  }
  },
  {
   "name": "BeatAPI",
@@ -81,7 +134,21 @@
    "url": "https://beatapi.io/jev-api",
    "label": "BeatAPI"
   },
-  "checked": "2026-10-06"
+  "checked": "2026-10-06",
+  "access": {
+   "form": "api",
+   "protocols": [
+    "openai_chat",
+    "openai_responses",
+    "anthropic_messages",
+    "gemini"
+   ],
+   "rules": [],
+   "source": {
+    "url": "https://docs.beatapi.io/quick-guide",
+    "label": "BeatAPI docs"
+   }
+  }
  },
  {
   "name": "AnyRouter",
@@ -95,7 +162,18 @@
    "url": "https://anyrouter.top",
    "label": "AnyRouter"
   },
-  "checked": "2026-10-06"
+  "checked": "2026-10-06",
+  "access": {
+   "form": "api",
+   "protocols": [
+    "anthropic_messages"
+   ],
+   "rules": [],
+   "source": {
+    "url": "https://docs.anyrouter.top/",
+    "label": "AnyRouter docs"
+   }
+  }
  },
  {
   "name": "Command Code",
@@ -109,7 +187,22 @@
    "url": "https://commandcode.ai/docs/plans/go",
    "label": "Command Code Go plan"
   },
-  "checked": "2026-10-06"
+  "checked": "2026-10-06",
+  "access": {
+   "form": "api",
+   "protocols": [
+    "openai_chat",
+    "openai_responses",
+    "anthropic_messages"
+   ],
+   "rules": [
+    "no_automation"
+   ],
+   "source": {
+    "url": "https://commandcode.ai/terms",
+    "label": "Command Code terms and provider docs"
+   }
+  }
  },
  {
   "name": "OpenCode Go",
@@ -123,7 +216,20 @@
    "url": "https://opencode.ai/docs/go/",
    "label": "OpenCode Go docs"
   },
-  "checked": "2026-10-06"
+  "checked": "2026-10-06",
+  "access": {
+   "form": "api",
+   "protocols": [
+    "openai_chat",
+    "openai_responses",
+    "anthropic_messages"
+   ],
+   "rules": [],
+   "source": {
+    "url": "https://opencode.ai/docs/go/",
+    "label": "OpenCode Go docs"
+   }
+  }
  },
  {
   "name": "AI/ML API",
@@ -137,6 +243,41 @@
    "url": "https://docs.aimlapi.com/faq/free-tier",
    "label": "AI/ML API FAQ"
   },
-  "checked": "2026-10-06"
+  "checked": "2026-10-06",
+  "access": {
+   "form": "api",
+   "protocols": [
+    "openai_chat",
+    "anthropic_messages"
+   ],
+   "rules": [],
+   "source": {
+    "url": "https://docs.aimlapi.com/integrations/claude-code",
+    "label": "AI/ML API docs"
+   }
+  }
+ },
+ {
+  "name": "Cline",
+  "entry": {
+   "kind": "account",
+   "usd": null,
+   "period": null,
+   "note": "Free models need a Cline account and run inside the Cline CLI or IDE extension"
+  },
+  "source": {
+   "url": "https://docs.cline.bot/getting-started/free-models",
+   "label": "Cline docs"
+  },
+  "checked": "2026-10-06",
+  "access": {
+   "form": "own_cli",
+   "protocols": [],
+   "rules": [],
+   "source": {
+    "url": "https://docs.cline.bot/getting-started/free-models",
+    "label": "Cline docs"
+   }
+  }
  }
 ]

@@ -57,3 +57,14 @@ All data and the method's parameters are in this repository: [`data/benchmarks.j
 - **top-up first** (for example $20): a minimum credit purchase is needed.
 
 Lanes on a channel that needs money first carry a small **$** wherever they appear, and the "no payment needed" filter hides them.
+
+## How the free models can be used
+
+Each channel also records how its free models can be reached, in [`data/channels.json`](data/channels.json) (`access`), with a source:
+
+- **API · format**: an API key works from your own tools. The badge names the format (OpenAI chat, OpenAI Responses, Anthropic Messages, Gemini) or says how many it accepts.
+- **CLI only**: the free models answer only inside the vendor's own CLI or app (for example OpenCode Zen's free models return 403 outside OpenCode).
+- **App only**: only inside the vendor's desktop or web app.
+- **human only**: the terms forbid scripts, bots or autonomous agents.
+
+Rules that nearly every provider shares (no reselling access, one account per person, no bulk accounts) apply everywhere and are not repeated per channel. A lane can override its channel when its free route differs.

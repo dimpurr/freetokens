@@ -488,5 +488,42 @@
    "label": "own check",
    "url": null
   }
+ },
+ {
+  "date": "2026-10-06",
+  "lanes": [
+   "north-mini-code-cline",
+   "ling-3.0-flash-sante-cline",
+   "nemotron-3-nano-omni-30b-a3b-cline",
+   "nemotron-3-super-120b-a12b-cline",
+   "nemotron-3-ultra-cline",
+   "nemotron-3.5-lightning-cline",
+   "laguna-s-2.1-cline",
+   "laguna-xs-2.1-cline",
+   "lfm-2.5-2.6b-cline"
+  ],
+  "kind": "available",
+  "text": "Answered a test prompt in the Cline CLI (3.0.68, signed in, plan mode)",
+  "source": {
+   "label": "own check",
+   "url": null
+  }
+ },
+ {
+  "date": "2026-10-06",
+  "lanes": [
+   "apodex-1.1-mini-cline",
+   "dots-3-note-preview-cline",
+   "gemma-4-26b-a4b-it-cline",
+   "gemma-4-31b-it-cline",
+   "inkling-small-cline",
+   "inkling-cline"
+  ],
+  "kind": "listed",
+  "text": "In the Cline CLI's free-model list; the test call returned no text or an upstream error (429). Qwen 3.8 27B (404) and Step 3.7 Flash (not found) are listed but gone",
+  "source": {
+   "label": "Cline free models",
+   "url": "https://docs.cline.bot/getting-started/free-models"
+  }
  }
 ]

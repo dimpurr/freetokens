@@ -167,6 +167,40 @@
         "help": "A minimum credit purchase is needed before use",
         "tier": "paid"
       }
+    },
+    "access_form": {
+      "api": {
+        "label": "API",
+        "help": "Reachable with an API key from your own tools"
+      },
+      "own_cli": {
+        "label": "CLI only",
+        "help": "Free models work only inside the vendor's own CLI or app"
+      },
+      "own_app": {
+        "label": "App only",
+        "help": "Free models work only inside the vendor's desktop or web app"
+      }
+    },
+    "protocol": {
+      "openai_chat": {
+        "label": "OpenAI chat"
+      },
+      "openai_responses": {
+        "label": "OpenAI Responses"
+      },
+      "anthropic_messages": {
+        "label": "Anthropic Messages"
+      },
+      "gemini": {
+        "label": "Gemini"
+      }
+    },
+    "access_rule": {
+      "no_automation": {
+        "label": "human only",
+        "help": "The terms forbid scripts, bots or autonomous agents"
+      }
     }
   },
   "tables": {
@@ -228,6 +262,7 @@
       "required": [
         "name",
         "entry",
+        "access",
         "source",
         "checked"
       ],

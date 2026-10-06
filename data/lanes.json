@@ -1136,5 +1136,428 @@
    "date": "2026-10-06",
    "method": "api_call"
   }
+ },
+ {
+  "id": "north-mini-code-cline",
+  "model": "north-mini-code",
+  "channel": "Cline",
+  "type": "agent_tool",
+  "model_id": "cohere/north-mini-code:free",
+  "free_condition": "Cline account, inside the Cline CLI or IDE extension (served through OpenRouter); not through the Cline API",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "live",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "agent_run"
+  }
+ },
+ {
+  "id": "ling-3.0-flash-sante-cline",
+  "model": "ling-3.0-flash-sante",
+  "channel": "Cline",
+  "type": "agent_tool",
+  "model_id": "inclusionai/ling-3.0-flash-sante:free",
+  "free_condition": "Cline account, inside the Cline CLI or IDE extension (served through OpenRouter); not through the Cline API",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "live",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "agent_run"
+  }
+ },
+ {
+  "id": "nemotron-3-nano-omni-30b-a3b-cline",
+  "model": "nemotron-3-nano-omni-30b-a3b",
+  "channel": "Cline",
+  "type": "agent_tool",
+  "model_id": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+  "free_condition": "Cline account, inside the Cline CLI or IDE extension (served through OpenRouter); not through the Cline API",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "live",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "agent_run"
+  }
+ },
+ {
+  "id": "nemotron-3-super-120b-a12b-cline",
+  "model": "nemotron-3-super-120b-a12b",
+  "channel": "Cline",
+  "type": "agent_tool",
+  "model_id": "nvidia/nemotron-3-super-120b-a12b:free",
+  "free_condition": "Cline account, inside the Cline CLI or IDE extension (served through OpenRouter); not through the Cline API",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "live",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "agent_run"
+  }
+ },
+ {
+  "id": "nemotron-3-ultra-cline",
+  "model": "nemotron-3-ultra",
+  "channel": "Cline",
+  "type": "agent_tool",
+  "model_id": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "free_condition": "Cline account, inside the Cline CLI or IDE extension (served through OpenRouter); not through the Cline API",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "live",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "agent_run"
+  }
+ },
+ {
+  "id": "nemotron-3.5-lightning-cline",
+  "model": "nemotron-3.5-lightning",
+  "channel": "Cline",
+  "type": "agent_tool",
+  "model_id": "nvidia/nemotron-3.5-lightning:free",
+  "free_condition": "Cline account, inside the Cline CLI or IDE extension (served through OpenRouter); not through the Cline API",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "live",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "agent_run"
+  }
+ },
+ {
+  "id": "laguna-s-2.1-cline",
+  "model": "laguna-s-2.1",
+  "channel": "Cline",
+  "type": "agent_tool",
+  "model_id": "poolside/laguna-s-2.1:free",
+  "free_condition": "Cline account, inside the Cline CLI or IDE extension (served through OpenRouter); not through the Cline API",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "live",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "agent_run"
+  }
+ },
+ {
+  "id": "laguna-xs-2.1-cline",
+  "model": "laguna-xs-2.1",
+  "channel": "Cline",
+  "type": "agent_tool",
+  "model_id": "poolside/laguna-xs-2.1:free",
+  "free_condition": "Cline account, inside the Cline CLI or IDE extension (served through OpenRouter); not through the Cline API",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "live",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "agent_run"
+  }
+ },
+ {
+  "id": "lfm-2.5-2.6b-cline",
+  "model": "lfm-2.5-2.6b",
+  "channel": "Cline",
+  "type": "agent_tool",
+  "model_id": "liquid/lfm-2.5-2.6b:free",
+  "free_condition": "Cline account, inside the Cline CLI or IDE extension (served through OpenRouter); not through the Cline API",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "live",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "agent_run"
+  }
+ },
+ {
+  "id": "apodex-1.1-mini-cline",
+  "model": "apodex-1.1-mini",
+  "channel": "Cline",
+  "type": "agent_tool",
+  "model_id": "apodex/apodex-1.1-mini:free",
+  "free_condition": "Cline account, inside the Cline CLI or IDE extension (served through OpenRouter); not through the Cline API",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": {
+   "text": "ran without error but returned no text",
+   "date": "2026-10-06"
+  },
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "agent_run"
+  }
+ },
+ {
+  "id": "dots-3-note-preview-cline",
+  "model": "dots-3-note-preview",
+  "channel": "Cline",
+  "type": "agent_tool",
+  "model_id": "dots-studio/dots-3-note-preview:free",
+  "free_condition": "Cline account, inside the Cline CLI or IDE extension (served through OpenRouter); not through the Cline API",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": {
+   "text": "ran without error but returned no text",
+   "date": "2026-10-06"
+  },
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "agent_run"
+  }
+ },
+ {
+  "id": "gemma-4-26b-a4b-it-cline",
+  "model": "gemma-4-26b-a4b-it",
+  "channel": "Cline",
+  "type": "agent_tool",
+  "model_id": "google/gemma-4-26b-a4b-it:free",
+  "free_condition": "Cline account, inside the Cline CLI or IDE extension (served through OpenRouter); not through the Cline API",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": {
+   "text": "429 from OpenRouter upstream (busy)",
+   "date": "2026-10-06"
+  },
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "agent_run"
+  }
+ },
+ {
+  "id": "gemma-4-31b-it-cline",
+  "model": "gemma-4-31b-it",
+  "channel": "Cline",
+  "type": "agent_tool",
+  "model_id": "google/gemma-4-31b-it:free",
+  "free_condition": "Cline account, inside the Cline CLI or IDE extension (served through OpenRouter); not through the Cline API",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": {
+   "text": "failed on the test call",
+   "date": "2026-10-06"
+  },
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "agent_run"
+  }
+ },
+ {
+  "id": "inkling-small-cline",
+  "model": "inkling-small",
+  "channel": "Cline",
+  "type": "agent_tool",
+  "model_id": "thinkingmachines/inkling-small:free",
+  "free_condition": "Cline account, inside the Cline CLI or IDE extension (served through OpenRouter); not through the Cline API",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": {
+   "text": "failed on the test call",
+   "date": "2026-10-06"
+  },
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "agent_run"
+  }
+ },
+ {
+  "id": "inkling-cline",
+  "model": "inkling",
+  "channel": "Cline",
+  "type": "agent_tool",
+  "model_id": "thinkingmachines/inkling:free",
+  "free_condition": "Cline account, inside the Cline CLI or IDE extension (served through OpenRouter); not through the Cline API",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": {
+   "text": "429 from OpenRouter upstream (busy)",
+   "date": "2026-10-06"
+  },
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "agent_run"
+  }
  }
 ]

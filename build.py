@@ -177,6 +177,19 @@ def validate_channels(channels, lanes):
             errs.append(f"{w}: a {k} entry needs entry.usd")
         if not str(get(c, "source.url") or "").startswith("http"):
             errs.append(f"{w}: source.url is required")
+        a = c.get("access") or {}
+        if a.get("form") not in VOCAB["access_form"]:
+            errs.append(f"{w}: access.form={a.get('form')!r} is not in vocab 'access_form'")
+        if a.get("form") == "api" and not a.get("protocols"):
+            errs.append(f"{w}: an api channel needs access.protocols")
+        for x in a.get("protocols", []):
+            if x not in VOCAB["protocol"]:
+                errs.append(f"{w}: access.protocols has {x!r}, not in vocab 'protocol'")
+        for x in a.get("rules", []):
+            if x not in VOCAB["access_rule"]:
+                errs.append(f"{w}: access.rules has {x!r}, not in vocab 'access_rule'")
+        if not str(get(a, "source.url") or "").startswith("http"):
+            errs.append(f"{w}: access.source.url is required")
     for dup in {n for n in names if names.count(n) > 1}:
         errs.append(f"channels: duplicate {dup!r}")
     for c in sorted({l["channel"] for l in lanes} - set(names)):
@@ -194,6 +207,15 @@ def entry_text(c):
     if e["kind"] == "topup":
         return f"${e['usd']:g} top-up first"
     return VOCAB["entry_kind"][e["kind"]]["short"]
+
+
+def access_text(c):
+    """"API · OpenAI chat" / "API · 3 formats" / "CLI only", plus "human only" when automation is banned."""
+    a = c["access"]
+    s = VOCAB["access_form"][a["form"]]["label"]
+    if a["form"] == "api":
+        s += " · " + (VOCAB["protocol"][a["protocols"][0]]["label"] if len(a["protocols"]) == 1 else f"{len(a['protocols'])} formats")
+    return s + "".join(" · " + VOCAB["access_rule"][r]["label"] for r in a.get("rules", []))
 
 
 # ---------- EST: estimated AA index (ADR-004 method v1, ADR-006 ranking) ----------
@@ -413,9 +435,9 @@ def md_channels(lanes, models, today, chans):
         up = sorted((l for l in free if effective_end(l) and day(effective_end(l)) >= today), key=lambda l: day(effective_end(l)))
         nxt = f"{mname[up[0]['model']]} · {fmt_date(effective_end(up[0]))[:10]} ({label('end_confidence', up[0]['ends']['confidence'])})" if up else "none announced"
         models_ = " · ".join(f"{VOCAB['status'][l['status']]['icon']} {mname[l['model']]}" for l in ls)
-        rows.append((-len(free), c, [f"[{c}]({SITE}/channels/{slug(c)})", label("channel_type", ls[0]["type"]), f"[{entry_text(cinfo[c])}]({cinfo[c]['source']['url']})", f"{len(free)} / {len(ls)}", nxt, models_]))
+        rows.append((-len(free), c, [f"[{c}]({SITE}/channels/{slug(c)})", label("channel_type", ls[0]["type"]), f"[{entry_text(cinfo[c])}]({cinfo[c]['source']['url']})", f"[{access_text(cinfo[c])}]({cinfo[c]['access']['source']['url']})", f"{len(free)} / {len(ls)}", nxt, models_]))
     rows.sort()
-    return md_table(["Channel", "Type", "To start", "Free now", "Next end", "Models"], [r[2] for r in rows])
+    return md_table(["Channel", "Type", "To start", "Access", "Free now", "Next end", "Models"], [r[2] for r in rows])
 
 
 def render_readme(text, sections):

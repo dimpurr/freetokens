@@ -116,6 +116,16 @@ function costHTML(name) {
   const tip = `${c.entry.note}. Source: ${c.source.label}, checked ${absDate(c.checked)}`;
   return `<a class="cost ${costTier(name)}" href="${esc(c.source.url)}" target="_blank" rel="noopener" title="${esc(tip)}">${esc(costText(name))}</a>`;
 }
+/* how a channel's free models can be used (ADR-017): channel default, a lane may override */
+const accessOf = (l) => (l && l.access) || (CH[l.channel] && CH[l.channel].access) || null;
+const viaAPI = (l) => { const a = accessOf(l); return !!a && a.form === "api"; };
+function accessHTML(a) {
+  if (!a) return "";
+  const label = a.form === "api" ? `API · ${a.protocols.length === 1 ? lab("protocol", a.protocols[0]) : a.protocols.length + " formats"}` : lab("access_form", a.form);
+  const tip = (a.form === "api" ? "Formats: " + a.protocols.map((p) => lab("protocol", p)).join(", ") : V.access_form[a.form].help) + `. Source: ${a.source.label}`;
+  const rules = (a.rules || []).map((r) => `<span class="rule" title="${esc(V.access_rule[r].help)}">${esc(lab("access_rule", r))}</span>`).join("");
+  return `<a class="access ${a.form}" href="${esc(a.source.url)}" target="_blank" rel="noopener" title="${esc(tip)}">${esc(label)}</a>${rules}`;
+}
 /* a chip prints only the exception (an end, past end, ended, not answering); the icon carries the state, the tooltip says it in full */
 const chipNote = (l) => { const m = endInfo(l).main; return m === "no end announced" ? "" : m; };
 const chipTo = (href, text, l) => `<a class="chip" href="${href}" title="${esc(text + ": " + stateWords(l))}" aria-label="${esc(text + ", " + stateWords(l))}">${statusHTML(l.status, text)}${chipNote(l) ? `<small>${esc(chipNote(l))}</small>` : ""}</a>`;
@@ -199,7 +209,7 @@ const keyHTML = () => [
   `<span><span class="conf official">official</span> <span class="conf inferred">inferred</span> end date</span>`,
 ].map((x) => `<span>${x}</span>`).join("");
 
-const legendHTML = () => [["status", "Status"], ["entry_kind", "Cost to start a channel"], ["end_confidence", "End-date confidence"], ["check_method", "Checked by"], ["channel_type", "Channel type"], ["data_policy", "Data policy"]].map(([v, name]) =>
+const legendHTML = () => [["status", "Status"], ["entry_kind", "Cost to start a channel"], ["access_form", "How the free models can be used"], ["access_rule", "Rules"], ["end_confidence", "End-date confidence"], ["check_method", "Checked by"], ["channel_type", "Channel type"], ["data_policy", "Data policy"]].map(([v, name]) =>
   `<div><h3>${name}</h3><dl>${Object.entries(V[v]).map(([k, o]) => `<dt>${v === "status" ? statusHTML(k, o.label) : esc(o.label)}</dt>${o.help ? `<dd>${esc(o.help)}</dd>` : ""}`).join("")}</dl></div>`
 ).join("");
 
