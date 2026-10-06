@@ -126,9 +126,12 @@ function accessHTML(a) {
   const rules = (a.rules || []).map((r) => `<span class="rule" title="${esc(V.access_rule[r].help)}">${esc(lab("access_rule", r))}</span>`).join("");
   return `<a class="access ${a.form}" href="${esc(a.source.url)}" target="_blank" rel="noopener" title="${esc(tip)}">${esc(label)}</a>${rules}`;
 }
+/* region-limited lanes (e.g. free in the US only): a small tag wherever the lane appears; worldwide = no region */
+const regionTag = (l) => l.region ? `<span class="regiontag" title="Free only in ${esc(l.region)}">${esc(l.region)} only</span>` : "";
+const worldwide = (l) => !l.region;
 /* a chip prints only the exception (an end, past end, ended, not answering); the icon carries the state, the tooltip says it in full */
 const chipNote = (l) => { const m = endInfo(l).main; return m === "no end announced" ? "" : m; };
-const chipTo = (href, text, l) => `<a class="chip" href="${href}" title="${esc(text + ": " + stateWords(l))}" aria-label="${esc(text + ", " + stateWords(l))}">${statusHTML(l.status, text)}${chipNote(l) ? `<small>${esc(chipNote(l))}</small>` : ""}</a>`;
+const chipTo = (href, text, l) => `<a class="chip" href="${href}" title="${esc(text + ": " + stateWords(l))}" aria-label="${esc(text + ", " + stateWords(l))}">${statusHTML(l.status, text)}${regionTag(l)}${chipNote(l) ? `<small>${esc(chipNote(l))}</small>` : ""}</a>`;
 const channelChip = (l) => chipTo(channelHref(l.channel), l.channel, l).replace("</a>", needsPay(l.channel) ? `<span class="paymark" title="${esc(costText(l.channel))}">$</span></a>` : "</a>");
 const modelChip = (l) => chipTo(modelHref(l.model), models[l.model].name, l);
 

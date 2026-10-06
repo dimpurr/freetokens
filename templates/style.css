@@ -350,3 +350,7 @@ td.cond .cost { margin-right: 4px; }
 .access:hover { text-decoration: underline; text-underline-offset: 2px; }
 .rule { display: inline-flex; align-items: center; font: 600 0.68rem var(--f-body); padding: 1px 7px; border-radius: 4px; color: var(--overdue); border: 1px dashed color-mix(in srgb, var(--overdue) 60%, transparent); margin-left: 6px; white-space: nowrap; }
 .ch-h .access { margin-left: -4px; }
+
+/* region-limited lane tag ("US only") */
+.regiontag { display: inline-flex; align-items: center; font: 700 0.62rem var(--f-body); letter-spacing: 0.04em; text-transform: uppercase; color: var(--overdue); border: 1px solid color-mix(in srgb, var(--overdue) 55%, transparent); border-radius: 4px; padding: 0 4px; margin-left: 4px; white-space: nowrap; }
+td.rank .regiontag { margin: 2px 0 0; }
