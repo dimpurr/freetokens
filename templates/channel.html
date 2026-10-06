@@ -78,10 +78,11 @@ $("chartkey").innerHTML = chartKey;
 $("tl").innerHTML = timelineHTML(eventsOn(C));
 
 /* lane details */
+mountViewSwitch();
 $("details").innerHTML = CL.map((l) => {
   const row = (k, v) => `<dt>${k}</dt><dd>${v}</dd>`;
   const e = endInfo(l);
-  return `<div class="detail"><h3>${mlink(l.model)} ${statusHTML(l.status)}</h3><dl>
+  return `<div class="detail" data-lane="${l.id}"><h3>${mlink(l.model)} ${statusHTML(l.status)}<span class="usemarks">${useMarks(l)}</span></h3><dl>
     ${row(`${I.bolt()} Tested by us`, `${measuredHTML(l)}${l.limits_observed ? ` <span class="muted">${esc(absDate(l.limits_observed.date))}</span>` : ""}`)}
     ${row("Model ID", idHTML(l))}
     ${row("Free condition", esc(l.free_condition))}
@@ -94,4 +95,8 @@ $("details").innerHTML = CL.map((l) => {
 }).join("");
 
 $("stamp").innerHTML = `Data as of ${esc(absDate(D.built))}.`;
+onView(() => document.querySelectorAll("[data-lane]").forEach((el) => {
+  const l = lanes[el.dataset.lane], w = VIEW === "all" ? "" : whyNot(l, VIEW);
+  el.classList.toggle("off", !!w); el.title = w ? `Not usable by ${VIEW}: ${w}` : "";
+}));
 </script>

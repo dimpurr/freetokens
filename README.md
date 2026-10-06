@@ -244,13 +244,13 @@ Benchmarks are kept here once per model rather than repeated on every lane. **AA
 | Model | Free on | Events | AA index | Context | Image input | Maker | Notes |
 |---|---|---|---|---|---|---|---|
 | [GPT-6.1 Sol](https://freetokens.fyi/models/gpt-6.1-sol) | 🔵 Freebuff (no end announced) | 1 | 52 (2026-10-06) | 1025K | yes | OpenAI | — |
-| [Muse Spark 1.3 (Contributor)](https://freetokens.fyi/models/muse-spark-1.3-contributor) | 🔵 OpenCode Zen (no end announced) | 2 | 48 (2026-10-06) | 1024K | yes | Meta | — |
+| [Muse Spark 1.3 (Contributor)](https://freetokens.fyi/models/muse-spark-1.3-contributor) | 🔵 OpenCode Zen (no end announced) | 2 | 48 (2026-10-06) | 1M | yes | Meta | — |
 | [MiMo V2.6 Pro](https://freetokens.fyi/models/mimo-v2.6-pro) | 🔵 Freebuff (no end announced) | 1 | 46 (2026-10-06) | 1M | yes | Xiaomi | — |
 | [Space Bunny (stealth)](https://freetokens.fyi/models/space-bunny) | 🟡 OpenCode Go (ends 2026-10-05) · 🔴 Command Code (ended 2026-10-05) · 🔴 OpenRouter (ended 2026-10-05) · 🟢 OpenCode Zen (no end announced) · 🔵 Kilo Code (ends 2026-10-05) · 🔵 Freebuff (no end announced) · 🔵 AI/ML API (no end announced) · 🔵 AnyRouter (no end announced) · 🔵 BeatAPI (no end announced) | 12 | EST 43–48 (estimate) (2026-10-04) | 1M | yes | undisclosed | Rumoured: MiniMax family (several independent tokenizer tests), possibly M3.1 / M3.1-Flash. Some sources dispute the exact version; no official confirmation. |
 | [GLM 5.3 Flash](https://freetokens.fyi/models/glm-5.3-flash) | 🔵 Freebuff (no end announced) | 1 | 42 (2026-10-06) | 1M | yes | Z.ai | — |
 | [Ling 3.1 Flash](https://freetokens.fyi/models/ling-3.1-flash) | 🟢 Command Code (no end announced) · 🟢 Kilo Code (no end announced) · 🔵 OpenRouter (no end announced) · 🟢 OpenCode Zen (no end announced) · 🔵 Vercel AI Gateway (no end announced) | 8 | 41 (2026-10-05) | 262K | no | inclusionAI (Ant) | — |
 | [Gemini 3.8 Flash](https://freetokens.fyi/models/gemini-3.8-flash) | 🔵 Google AI Studio (no end announced) | 1 | 41 (2026-10-06) | 1M | not checked | Google | — |
-| [Muse Spark 1.2 (Contributor)](https://freetokens.fyi/models/muse-spark-1.2-contributor) | 🔵 OpenCode Zen (no end announced) | 2 | 40 (2026-10-06) | 1024K | yes | Meta | — |
+| [Muse Spark 1.2 (Contributor)](https://freetokens.fyi/models/muse-spark-1.2-contributor) | 🔵 OpenCode Zen (no end announced) | 2 | 40 (2026-10-06) | 1M | yes | Meta | — |
 | [DeepSeek V4.1 Flash](https://freetokens.fyi/models/deepseek-v4.1-flash) | 🟢 Letta (no end announced) · 🔵 Freebuff (no end announced) · 🔵 Freebuff (no end announced) | 2 | 39 (2026-10-06) | 1M | yes | DeepSeek | — |
 | [Gemini 3.7 Flash](https://freetokens.fyi/models/gemini-3.7-flash) | 🔵 Google AI Studio (no end announced) | 1 | 39 (2026-10-06) | 1M | not checked | Google | — |
 | [MiMo V2.6 Flash](https://freetokens.fyi/models/mimo-v2.6-flash) | 🟡 OpenCode Zen (past announced end 2026-09-28) · 🔵 Freebuff (no end announced) | 2 | 38 (2026-10-05) | not checked (the Zen free tier has been capped at 200K before) | no | Xiaomi | — |
@@ -293,7 +293,7 @@ Benchmarks are kept here once per model rather than repeated on every lane. **AA
 | [Apodex 1.1 Mini](https://freetokens.fyi/models/apodex-1.1-mini) | 🟢 Kilo Code (no end announced) · 🔵 Cline (no end announced) · 🟢 OpenRouter (no end announced) | 3 | not checked (2026-10-06) | 256K | no | Apodex | — |
 | [Ling 3.0 Flash Sante](https://freetokens.fyi/models/ling-3.0-flash-sante) | 🟢 Kilo Code (no end announced) · 🟢 Cline (no end announced) · 🟢 OpenRouter (no end announced) | 3 | not checked (2026-10-06) | 256K | no | inclusionAI (Ant) | — |
 | [Big Pickle](https://freetokens.fyi/models/big-pickle) | 🔵 OpenCode Zen (no end announced) | 1 | not checked (2026-10-06) | 195K | no | undisclosed | — |
-| [Fledge Alpha](https://freetokens.fyi/models/fledge-alpha) | 🟢 OpenCode Zen (no end announced) | 1 | not checked (2026-10-06) | 1024K | yes | undisclosed | — |
+| [Fledge Alpha](https://freetokens.fyi/models/fledge-alpha) | 🟢 OpenCode Zen (no end announced) | 1 | not checked (2026-10-06) | 1M | yes | undisclosed | — |
 | [JEV 1.13](https://freetokens.fyi/models/jev-1.13) | 🔵 OpenCode Zen (no end announced) | 1 | not checked (2026-10-06) | 62K | no | undisclosed | — |
 | [Solar Pro 4](https://freetokens.fyi/models/solar-pro-4) | 🔵 Freebuff (no end announced) | 1 | not checked (2026-10-06) | 512K | no | Upstage | — |
 | [Solar Mini 4](https://freetokens.fyi/models/solar-mini-4) | 🔵 Freebuff (no end announced) | 1 | not checked (2026-10-06) | 512K | no | Upstage | — |

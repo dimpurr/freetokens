@@ -129,6 +129,67 @@ function accessHTML(a) {
 /* region-limited lanes (e.g. free in the US only): a small tag wherever the lane appears; worldwide = no region */
 const regionTag = (l) => l.region ? `<span class="regiontag" title="Free only in ${esc(l.region)}">${esc(l.region)} only</span>` : "";
 const worldwide = (l) => !l.region;
+/* ---------- use-case views (ADR-020): All · Humans · Agents ---------- */
+const VIEWS = {
+  all: { label: "All", long: "All free lanes" },
+  humans: { label: "Humans", long: "Usable by a human: free, no payment first (any app, CLI or API)" },
+  agents: { label: "Agents", long: "Usable by agents and scripts: free, and an API key or a CLI that allows automation" },
+};
+/* why a free lane is not usable in a view ("" = usable); one definition for every page */
+function whyNot(l, v) {
+  if (!isFree(l)) return "not free now";
+  if (v === "humans" && needsPay(l.channel)) return "needs payment first";
+  if (v === "agents") {
+    const a = accessOf(l);
+    if (!a) return "access not recorded";
+    if ((a.rules || []).includes("no_automation")) return "terms forbid automation";
+    if (a.form === "own_app") return "app only";
+  }
+  return "";
+}
+const usableFor = (l, v) => v === "all" ? isFree(l) : whyNot(l, v) === "";
+let VIEW = (() => {
+  const q = new URLSearchParams(location.search).get("use");
+  if (VIEWS[q]) return q;
+  try { const s = localStorage.getItem("ft-view"); if (VIEWS[s]) return s; } catch (e) {}
+  return "all";
+})();
+const usable = (l) => usableFor(l, VIEW);
+const viewHooks = [];
+const onView = (fn) => { viewHooks.push(fn); fn(); };
+function setView(v) {
+  if (!VIEWS[v] || v === VIEW) return;
+  VIEW = v;
+  try { localStorage.setItem("ft-view", v); } catch (e) {}
+  const u = new URL(location.href); v === "all" ? u.searchParams.delete("use") : u.searchParams.set("use", v); history.replaceState(null, "", u);
+  viewHooks.forEach((fn) => fn());
+  drawViewSwitch();
+  const live = document.getElementById("view-live");
+  if (live) live.textContent = `Showing ${D.lanes.filter(usable).length} lanes${v === "all" ? "" : " usable by " + v}`;
+}
+function drawViewSwitch() {
+  const el = document.getElementById("viewsw"); if (!el) return;
+  el.innerHTML = `<span class="vs-lab">View</span><span role="radiogroup" aria-label="Show lanes usable by">` + Object.entries(VIEWS).map(([k, o]) =>
+    `<button type="button" role="radio" data-view="${k}" aria-checked="${k === VIEW}" tabindex="${k === VIEW ? 0 : -1}" title="${esc(o.long)}">${o.label}<small>${D.lanes.filter((l) => usableFor(l, k)).length}</small></button>`).join("") +
+    `</span><a class="vs-help" href="${D.root}methodology${D.ext}#use-case-views" title="What these views mean">${I.help("What these views mean")}</a>`;
+}
+function mountViewSwitch() {
+  /* prerendered pages already contain the switch: reuse it, but always attach the handlers */
+  const bar = document.querySelector(".topbar .in"); if (!bar) return;
+  let el = document.getElementById("viewsw");
+  if (!el) { el = document.createElement("div"); el.id = "viewsw"; el.className = "viewsw"; bar.insertBefore(el, bar.querySelector(".gh")); }
+  if (!document.getElementById("view-live")) { const live = document.createElement("div"); live.id = "view-live"; live.className = "sr-only"; live.setAttribute("aria-live", "polite"); document.body.appendChild(live); }
+  el.addEventListener("click", (ev) => { const b = ev.target.closest("[data-view]"); if (b) setView(b.dataset.view); });
+  el.addEventListener("keydown", (ev) => {
+    if (!["ArrowLeft", "ArrowRight"].includes(ev.key)) return;
+    const ks = Object.keys(VIEWS), i = ks.indexOf(VIEW), n = ks[(i + (ev.key === "ArrowRight" ? 1 : ks.length - 1)) % ks.length];
+    setView(n); el.querySelector(`[data-view="${n}"]`).focus(); ev.preventDefault();
+  });
+  drawViewSwitch();
+}
+const viewNote = () => VIEW === "all" ? "" : `<span class="viewnote">for ${VIEW}</span>`;
+/* small per-lane marks on model and channel pages */
+const useMarks = (l) => ["humans", "agents"].map((v) => { const w = whyNot(l, v); return `<span class="usemark ${w ? "no" : "yes"}" title="${esc(w ? v + ": " + w : "usable by " + v)}">${w ? "✕" : "✓"} ${v}</span>`; }).join("");
 /* a chip prints only the exception (an end, past end, ended, not answering); the icon carries the state, the tooltip says it in full */
 const chipNote = (l) => { const m = endInfo(l).main; return m === "no end announced" ? "" : m; };
 const chipTo = (href, text, l) => `<a class="chip" href="${href}" title="${esc(text + ": " + stateWords(l))}" aria-label="${esc(text + ", " + stateWords(l))}">${statusHTML(l.status, text)}${regionTag(l)}${chipNote(l) ? `<small>${esc(chipNote(l))}</small>` : ""}</a>`;
@@ -163,18 +224,21 @@ const aaValue = (m) => m.aa_index.value != null ? m.aa_index.value : (m.est && m
    an EST sits between them by its band, shown as "≈#a–b" = between official #a and #b. Never a single #n for an estimate. */
 const isEst = (m) => m.aa_index.value == null && !!(m.est && m.est.status === "ok");
 const band = (m) => m.aa_index.value != null ? [m.aa_index.value, m.aa_index.value] : isEst(m) ? [m.est.low, m.est.high] : null;
-const scored = D.models.filter(band).sort((a, b) => aaValue(b) - aaValue(a) || isEst(a) - isEst(b) || a.name.localeCompare(b.name));
-const officialVals = scored.filter((m) => !isEst(m)).map((m) => m.aa_index.value);
+const scoredAll = D.models.filter(band).sort((a, b) => aaValue(b) - aaValue(a) || isEst(a) - isEst(b) || a.name.localeCompare(b.name));
+/* ADR-020: rank inside the current use-case view (official AA ranks among themselves; an EST sits between them) */
+const viewScored = () => VIEW === "all" ? scoredAll : scoredAll.filter((m) => lanesOf(m.id).some(usable));
+let scored = scoredAll;
 function rankOf(m) {
   if (!band(m)) return null;
+  const officialVals = viewScored().filter((x) => !isEst(x)).map((x) => x.aa_index.value);
   if (!isEst(m)) { const n = 1 + officialVals.filter((v) => v > m.aa_index.value).length; return { a: n, b: n, est: false }; }
   return { a: 1 + officialVals.filter((v) => v > m.est.high).length, b: 1 + officialVals.filter((v) => v > m.est.low).length, est: true };
 }
 const rankLabel = (r) => `${r.est ? "≈" : ""}#${r.a}${r.b > r.a ? "–" + r.b : ""}`;
 function rankText(m) {
   const r = rankOf(m); if (!r) return "";
-  const n = officialVals.length;
-  return r.est ? (r.b > r.a ? `estimate: between #${r.a} and #${r.b} of the ${n} with an AA score` : `estimate: around #${r.a} of the ${n} with an AA score`) : `#${r.a} of ${n} with an AA score`;
+  const n = viewScored().filter((x) => !isEst(x)).length, where = VIEW === "all" ? "with an AA score" : `with an AA score, usable by ${VIEW}`;
+  return r.est ? (r.b > r.a ? `estimate: between #${r.a} and #${r.b} of the ${n} ${where}` : `estimate: around #${r.a} of the ${n} ${where}`) : `#${r.a} of ${n} ${where}`;
 }
 function estPanel(m) {
   const e = m.est;
@@ -316,4 +380,4 @@ document.addEventListener("click", (ev) => {
 
 const stamp = () => `<span>data as of <b>${esc(absDate(D.built))}</b></span><span>today <b>${esc(absDate(new Date(now).toISOString().slice(0, 10)))}</b> UTC</span>`;
 /* P3: catalogue size + freshness in one line (home) */
-const metaStrip = () => `<span><b>${D.models.length}</b> models</span><span><b>${D.lanes.length}</b> lanes · <b>${D.lanes.filter(isFree).length}</b> free now</span><span><b>${channels.length}</b> channels</span><span><b>${D.events.length}</b> events</span>` + stamp();
+const metaStrip = () => (VIEW === "all" ? "" : `<span class="viewcount"><b>${D.lanes.filter(usable).length}</b> usable by ${VIEW}</span>`) + `<span><b>${D.models.length}</b> models</span><span><b>${D.lanes.length}</b> lanes · <b>${D.lanes.filter(isFree).length}</b> free now</span><span><b>${channels.length}</b> channels</span><span><b>${D.events.length}</b> events</span>` + stamp();

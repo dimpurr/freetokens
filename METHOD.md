@@ -68,3 +68,13 @@ Each channel also records how its free models can be reached, in [`data/channels
 - **human only**: the terms forbid scripts, bots or autonomous agents.
 
 Rules that nearly every provider shares (no reselling access, one account per person, no bulk accounts) apply everywhere and are not repeated per channel. A lane can override its channel when its free route differs.
+
+## Use-case views
+
+The switch in the top bar (All · Humans · Agents) shows the whole site for one kind of use. It never changes a score; it only decides which lanes count.
+
+- **All**: every free lane (live, listed, or past its announced end but still answering).
+- **Humans**: free lanes that need no payment first. Lanes that only work inside the vendor's own app or CLI, or whose terms forbid automation, still count: a person can use them by hand.
+- **Agents**: free lanes that a script or coding agent may use: an API key works, or the vendor's CLI may be run unattended. Lanes whose terms forbid automation ("human only") or that only work in a desktop or web app are left out. Lanes that need a paid plan first are kept and marked with **$**.
+
+Within a view, models are ranked among the models usable in that view (official AA scores first, estimates placed between them). Models free only through lanes that don't fit the view are listed at the bottom as "Not usable this way". Free lanes limited to one region stay in every view with a region tag. The view is remembered on your device and can be shared with `?use=humans` or `?use=agents`.
