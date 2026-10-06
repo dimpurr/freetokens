@@ -47,6 +47,7 @@ const CL = lanesOn(C);
   $("chead").innerHTML = `
     <span class="kicker">${esc(lab("channel_type", CL[0].type))}</span>
     <h1>${esc(C)}</h1>
+    ${CH[C] ? `<p class="costline">To start: ${costHTML(C)} <span class="muted">${esc(CH[C].entry.note)}</span></p>` : ""}
     <div class="stats">
       ${stat("Free now", `${CL.filter(isFree).length} of ${CL.length}`, "models")}
       ${stat("Ended", String(CL.filter((l) => l.status === "ended").length), "tracked lanes that stopped")}

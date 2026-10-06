@@ -45,3 +45,15 @@ Partial question sets (for example 60 of the GPQA questions) are listed, but not
 Tap the ⓘ on any EST badge to see every benchmark used, its source, and why any excluded score was left out.
 
 All data and the method's parameters are in this repository: [`data/benchmarks.json`](data/benchmarks.json), [`data/anchors.json`](data/anchors.json), and `est_rules` in [`schema/schema.json`](schema/schema.json).
+
+## Cost to start a channel
+
+"Free" can still need something first. Each channel has one record in [`data/channels.json`](data/channels.json) with the cheapest way in and its source:
+
+- **$0 · no account**: usable without paying or signing up.
+- **$0 · account**: free after signing up, no card.
+- **$0 · invite only**: free, but sign-up needs an invitation or an established account elsewhere.
+- **plan first** (for example $10/mo): a paid subscription must be active before the free models work.
+- **top-up first** (for example $20): a minimum credit purchase is needed.
+
+Lanes on a channel that needs money first carry a small **$** wherever they appear, and the "no payment needed" filter hides them.

@@ -135,6 +135,38 @@
       "ended": {
         "label": "ended"
       }
+    },
+    "entry_kind": {
+      "none": {
+        "label": "$0, no account",
+        "short": "$0 · no account",
+        "help": "Usable without paying or signing up",
+        "tier": "free"
+      },
+      "account": {
+        "label": "$0 with an account",
+        "short": "$0 · account",
+        "help": "Free after signing up; no card",
+        "tier": "free"
+      },
+      "invite": {
+        "label": "$0, invitation only",
+        "short": "$0 · invite only",
+        "help": "Free, but sign-up needs an invitation or an established account elsewhere",
+        "tier": "gate"
+      },
+      "subscription": {
+        "label": "paid plan first",
+        "short": "plan first",
+        "help": "A paid subscription must be active before the free models work",
+        "tier": "paid"
+      },
+      "topup": {
+        "label": "top-up first",
+        "short": "top-up first",
+        "help": "A minimum credit purchase is needed before use",
+        "tier": "paid"
+      }
     }
   },
   "tables": {
@@ -190,6 +222,17 @@
       ],
       "vocab_fields": {
         "image_input": "image_input"
+      }
+    },
+    "channels": {
+      "required": [
+        "name",
+        "entry",
+        "source",
+        "checked"
+      ],
+      "vocab_fields": {
+        "entry.kind": "entry_kind"
       }
     }
   },

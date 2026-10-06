@@ -160,6 +160,42 @@ def validate(lanes, events, models):
 
 
 
+def validate_channels(channels, lanes):
+    """data/channels.json: one record per channel that has lanes; entry cost with its source (cost badges)."""
+    errs = []
+    spec = SCHEMA["tables"]["channels"]
+    names = [c.get("name") for c in channels]
+    for c in channels:
+        w = f"channels[{c.get('name')}]"
+        for f in spec["required"]:
+            if f not in c:
+                errs.append(f"{w}: missing field {f!r}")
+        k = get(c, "entry.kind")
+        if k not in VOCAB["entry_kind"]:
+            errs.append(f"{w}: entry.kind={k!r} is not in vocab 'entry_kind' ({', '.join(VOCAB['entry_kind'])})")
+        if k in ("subscription", "topup") and not isinstance(get(c, "entry.usd"), (int, float)):
+            errs.append(f"{w}: a {k} entry needs entry.usd")
+        if not str(get(c, "source.url") or "").startswith("http"):
+            errs.append(f"{w}: source.url is required")
+    for dup in {n for n in names if names.count(n) > 1}:
+        errs.append(f"channels: duplicate {dup!r}")
+    for c in sorted({l["channel"] for l in lanes} - set(names)):
+        errs.append(f"channel {c!r} has lanes but no record in data/channels.json")
+    for n in sorted(set(names) - {l["channel"] for l in lanes}):
+        errs.append(f"channels[{n}]: no lanes use this channel")
+    return errs
+
+
+def entry_text(c):
+    """README / page wording for a channel's cost to start: "$0 · account", "$10/month plan first", "$20 top-up first"."""
+    e = c["entry"]
+    if e["kind"] == "subscription":
+        return f"${e['usd']:g}/{e['period']} plan first"
+    if e["kind"] == "topup":
+        return f"${e['usd']:g} top-up first"
+    return VOCAB["entry_kind"][e["kind"]]["short"]
+
+
 # ---------- EST: estimated AA index (ADR-004 method v1, ADR-006 ranking) ----------
 
 def load_optional(name, default):
@@ -367,7 +403,8 @@ def md_models(models, lanes, events):
     return md_table(["Model", "Free on", "Events", "AA index", "Context", "Image input", "Maker", "Notes"], rows)
 
 
-def md_channels(lanes, models, today):
+def md_channels(lanes, models, today, chans):
+    cinfo = {c["name"]: c for c in chans}
     mname = {m["id"]: m["name"] for m in models}
     rows = []
     for c in sorted({l["channel"] for l in lanes}):
@@ -376,9 +413,9 @@ def md_channels(lanes, models, today):
         up = sorted((l for l in free if effective_end(l) and day(effective_end(l)) >= today), key=lambda l: day(effective_end(l)))
         nxt = f"{mname[up[0]['model']]} · {fmt_date(effective_end(up[0]))[:10]} ({label('end_confidence', up[0]['ends']['confidence'])})" if up else "none announced"
         models_ = " · ".join(f"{VOCAB['status'][l['status']]['icon']} {mname[l['model']]}" for l in ls)
-        rows.append((-len(free), c, [f"[{c}]({SITE}/channels/{slug(c)})", label("channel_type", ls[0]["type"]), f"{len(free)} / {len(ls)}", nxt, models_]))
+        rows.append((-len(free), c, [f"[{c}]({SITE}/channels/{slug(c)})", label("channel_type", ls[0]["type"]), f"[{entry_text(cinfo[c])}]({cinfo[c]['source']['url']})", f"{len(free)} / {len(ls)}", nxt, models_]))
     rows.sort()
-    return md_table(["Channel", "Type", "Free now", "Next end", "Models"], [r[2] for r in rows])
+    return md_table(["Channel", "Type", "To start", "Free now", "Next end", "Models"], [r[2] for r in rows])
 
 
 def render_readme(text, sections):
@@ -481,7 +518,7 @@ def head_html(title, desc, url, today, extra_ld, og_image):
 
 # ---------- pages ----------
 
-SHARED_KEYS = ("lanes", "events", "models", "vocab", "built", "ext", "est_rule")
+SHARED_KEYS = ("lanes", "events", "models", "chans", "vocab", "built", "ext", "est_rule")
 
 
 def render_body(template, payload, root, home, shared=False):
@@ -514,7 +551,7 @@ def build_pages(lanes, events, models, today, mode):
     est, _ = estimate(models, load_optional("benchmarks", {}), load_optional("anchors", []))
     models = [dict(m, est=est[m["id"]]) if m["id"] in est else m for m in models]
     R = SCHEMA["est_rules"]
-    base = {"lanes": lanes, "events": events, "models": models, "vocab": VOCAB, "built": today.isoformat(), "ext": ext,
+    base = {"lanes": lanes, "events": events, "models": models, "chans": load_optional("channels", []), "vocab": VOCAB, "built": today.isoformat(), "ext": ext,
             "est_rule": f"{R['min_benchmarks']} benchmarks from {R['min_sources']} independent sources, each fitted on ≥{R['min_anchors']} reference models with r ≥ {R['min_r']}"}
     og = f"{SITE}/og.png"
     pages = {}  # relative output path -> (head, body)
@@ -747,7 +784,8 @@ def main():
         today = dt.date.today()
 
     lanes, events, models = load("lanes"), load("events"), load("models")
-    errs = validate(lanes, events, models)
+    chans = load_optional("channels", [])
+    errs = validate(lanes, events, models) + validate_channels(chans, lanes)
     if errs:
         print("✗ data does not validate:", *errs, sep="\n  ", file=sys.stderr)
         sys.exit(1)
@@ -764,7 +802,7 @@ def main():
         "lanes": md_lanes(lanes, models),
         "timeline": md_events(events, lanes, models),
         "models": md_models(models_md, lanes, events),
-        "channels": md_channels(lanes, models, today),
+        "channels": md_channels(lanes, models, today, chans),
     })
     preview = build_pages(lanes, events, models, today, "preview")
     outputs = {readme_path: readme}

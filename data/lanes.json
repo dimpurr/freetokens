@@ -5,7 +5,7 @@
   "channel": "Command Code",
   "type": "agent_tool",
   "model_id": "inclusionai/ling-3.1-flash:free",
-  "free_condition": "Command Code account, 0 credits (\"while it lasts\")",
+  "free_condition": "Command Code Go plan ($1/month) or higher; requests to the free model cost no credits (\"while it lasts\")",
   "limits_stated": {
    "text": "300 requests/day",
    "source": "https://x.com/CommandCodeAI/status/2106576422655680856"
@@ -125,7 +125,7 @@
   "channel": "Command Code",
   "type": "agent_tool",
   "model_id": "stealth/space-bunny-alpha",
-  "free_condition": "Command Code, all plans, 0 credits",
+  "free_condition": "Command Code Go plan ($1/month) or higher; requests to the free model cost no credits (\"while it lasts\")",
   "limits_stated": {
    "text": "unstated"
   },
@@ -318,7 +318,7 @@
   "channel": "AI/ML API",
   "type": "router",
   "model_id": "stealth/space-bunny-alpha",
-  "free_condition": "AI/ML API key; $0 input and output \"while cloaked\"",
+  "free_condition": "Funded AI/ML API key (pay-as-you-go from a $20 top-up; its free tier is paused); $0 input and output \"while cloaked\"",
   "limits_stated": {
    "text": "unstated"
   },

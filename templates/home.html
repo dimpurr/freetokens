@@ -168,7 +168,7 @@ $("stamp").innerHTML = metaStrip();
   };
   $("channels").innerHTML = rows.map(({ c, ls, free, next }) => `<article class="ch">
     <div class="ch-h">
-      <span class="name">${clink(c)}</span><span class="tag">${esc(lab("channel_type", ls[0].type))}</span>
+      <span class="name">${clink(c)}</span><span class="tag">${esc(lab("channel_type", ls[0].type))}</span>${costHTML(c)}
       <span class="ch-free"><span class="bar" role="img" aria-label="${free} of ${ls.length} lanes free"><i style="width:${(100 * free / ls.length).toFixed(1)}%"></i></span><b>${free}</b><span class="muted">of ${ls.length} free</span></span>
       ${next ? `<span class="ch-next"><span class="muted">next end</span> <b>${esc(endInfo(next).main)}</b> <span class="muted">·</span> ${mlink(next.model)} ${confHTML(next.ends.confidence)}</span>` : ""}
     </div>
@@ -178,13 +178,13 @@ $("stamp").innerHTML = metaStrip();
 
 /* lanes: six two-line columns, filterable */
 (function () {
-  const filt = { type: null, status: null, tested: null, ends: null };
+  const filt = { type: null, status: null, tested: null, ends: null, nopay: null };
   try { Object.assign(filt, JSON.parse(localStorage.getItem("ft-filters-v2") || "{}")); } catch (e) {}
   $("key").innerHTML = keyHTML();
   /* P5: does a lane pass one filter? (empty value = no constraint) */
-  const passes = (l, f, v) => !v || (f === "type" ? l.type === v : f === "status" ? l.status === v : f === "tested" ? !!l.limits_observed : f === "ends" ? !!effEnd(l) : true);
+  const passes = (l, f, v) => !v || (f === "type" ? l.type === v : f === "status" ? l.status === v : f === "tested" ? !!l.limits_observed : f === "ends" ? !!effEnd(l) : f === "nopay" ? !needsPay(l.channel) : true);
   /* P5: how many lanes a button would show, given the other active filters */
-  const count = (f, v) => D.lanes.filter((l) => ["type", "status", "tested", "ends"].every((k) => k === f || passes(l, k, filt[k])) && passes(l, f, v)).length;
+  const count = (f, v) => D.lanes.filter((l) => ["type", "status", "tested", "ends", "nopay"].every((k) => k === f || passes(l, k, filt[k])) && passes(l, f, v)).length;
   function renderFilters() {
     const btn = (f, v, html) => {
       const n = count(f, v), pressed = (filt[f] || "") === v;
@@ -192,12 +192,12 @@ $("stamp").innerHTML = metaStrip();
     };
     const present = (f) => [...new Set(D.lanes.map((l) => l[f]))];
     $("filters").innerHTML =
-      `<span class="lab">Show</span>` + btn("tested", "", "all lanes") + btn("tested", "yes", `${I.bolt()} tested by us`) + btn("ends", "yes", "has end date") + `<span class="gap"></span>` +
+      `<span class="lab">Show</span>` + btn("tested", "", "all lanes") + btn("tested", "yes", `${I.bolt()} tested by us`) + btn("ends", "yes", "has end date") + btn("nopay", "yes", "no payment needed") + `<span class="gap"></span>` +
       `<span class="lab">Status</span>` + btn("status", "", "any") + present("status").map((k) => btn("status", k, statusHTML(k))).join("") + `<span class="gap"></span>` +
       `<span class="lab">Type</span>` + btn("type", "", "any") + present("type").map((k) => btn("type", k, esc(lab("channel_type", k)))).join("");
   }
   function renderLanes() {
-    const rows = D.lanes.filter((l) => passes(l, "type", filt.type) && passes(l, "status", filt.status) && passes(l, "tested", filt.tested) && passes(l, "ends", filt.ends));
+    const rows = D.lanes.filter((l) => passes(l, "type", filt.type) && passes(l, "status", filt.status) && passes(l, "tested", filt.tested) && passes(l, "ends", filt.ends) && passes(l, "nopay", filt.nopay));
     $("lanes-count").textContent = `${rows.length} of ${D.lanes.length}`;
     $("lanes").innerHTML = rows.map((l) => {
       const e = endInfo(l);
@@ -205,7 +205,7 @@ $("stamp").innerHTML = metaStrip();
         <td><span class="name">${mlink(l.model)}</span><span class="sub">${clink(l.channel)} · ${esc(lab("channel_type", l.type))}</span></td>
         <td class="nowrap" data-label="Status · end"><span title="${esc(lab("status", l.status))}">${statusHTML(l.status, e.main)}</span><span class="sub">${e.sub}</span></td>
         <td data-label="Tested by us">${measuredHTML(l)}${checkedSub(l)}</td>
-        <td class="cond" data-label="Limit · condition">${limitHTML(l)}<span class="sub">${esc(l.free_condition)}</span></td>
+        <td class="cond" data-label="Limit · condition">${costHTML(l.channel)} ${limitHTML(l)}<span class="sub">${esc(l.free_condition)}</span></td>
         <td data-label="Data">${policyHTML(l.data_policy)}</td>
         <td class="nowrap" data-label="Model ID">${idHTML(l)}</td>
       </tr>`;
@@ -214,7 +214,7 @@ $("stamp").innerHTML = metaStrip();
   $("filters").addEventListener("click", (ev) => {
     const b = ev.target.closest("button"); if (!b) return;
     const v = b.dataset.v || null;
-    filt[b.dataset.f] = b.dataset.f === "ends" && filt.ends === v ? null : v; /* P5: "has end date" toggles off */
+    filt[b.dataset.f] = (b.dataset.f === "ends" || b.dataset.f === "nopay") && filt[b.dataset.f] === v ? null : v; /* P5: "has end date" toggles off */
     try { localStorage.setItem("ft-filters-v2", JSON.stringify(filt)); } catch (e) {}
     renderFilters(); renderLanes();
   });

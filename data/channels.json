@@ -1,0 +1,142 @@
+[
+ {
+  "name": "OpenCode Zen",
+  "entry": {
+   "kind": "none",
+   "usd": null,
+   "period": null,
+   "note": "Free models run inside the OpenCode app with no account; the Zen API key route needs billing details"
+  },
+  "source": {
+   "url": "https://opencode.ai/docs/zen/",
+   "label": "OpenCode Zen docs"
+  },
+  "checked": "2026-10-06"
+ },
+ {
+  "name": "Freebuff",
+  "entry": {
+   "kind": "none",
+   "usd": null,
+   "period": null,
+   "note": "No account for the CLI; supported by text ads; limited mode outside 25+ countries"
+  },
+  "source": {
+   "url": "https://freebuff.com/",
+   "label": "Freebuff"
+  },
+  "checked": "2026-10-06"
+ },
+ {
+  "name": "Kilo Code",
+  "entry": {
+   "kind": "account",
+   "usd": null,
+   "period": null,
+   "note": "Free models through the Kilo Gateway with a Kilo account, no card"
+  },
+  "source": {
+   "url": "https://kilo.ai/pricing",
+   "label": "Kilo pricing"
+  },
+  "checked": "2026-10-06"
+ },
+ {
+  "name": "OpenRouter",
+  "entry": {
+   "kind": "account",
+   "usd": null,
+   "period": null,
+   "note": "Free plan: 50 requests/day"
+  },
+  "source": {
+   "url": "https://openrouter.ai/pricing",
+   "label": "OpenRouter pricing"
+  },
+  "checked": "2026-10-06"
+ },
+ {
+  "name": "Letta",
+  "entry": {
+   "kind": "account",
+   "usd": null,
+   "period": null,
+   "note": "Free plan: limited agents and requests, \"rotating free models\""
+  },
+  "source": {
+   "url": "https://docs.letta.com/pricing/",
+   "label": "Letta pricing"
+  },
+  "checked": "2026-10-06"
+ },
+ {
+  "name": "BeatAPI",
+  "entry": {
+   "kind": "account",
+   "usd": null,
+   "period": null,
+   "note": "Only models ending in -free work on a zero balance (one request per minute before a top-up); others use sign-up credit that runs out"
+  },
+  "source": {
+   "url": "https://beatapi.io/jev-api",
+   "label": "BeatAPI"
+  },
+  "checked": "2026-10-06"
+ },
+ {
+  "name": "AnyRouter",
+  "entry": {
+   "kind": "invite",
+   "usd": null,
+   "period": null,
+   "note": "Sign-up by invitation (linux.do or an older GitHub account); a community relay that can change its rules"
+  },
+  "source": {
+   "url": "https://anyrouter.top",
+   "label": "AnyRouter"
+  },
+  "checked": "2026-10-06"
+ },
+ {
+  "name": "Command Code",
+  "entry": {
+   "kind": "subscription",
+   "usd": 1,
+   "period": "month",
+   "note": "Free models need the Go plan ($1/month + processing fee) or higher"
+  },
+  "source": {
+   "url": "https://commandcode.ai/docs/plans/go",
+   "label": "Command Code Go plan"
+  },
+  "checked": "2026-10-06"
+ },
+ {
+  "name": "OpenCode Go",
+  "entry": {
+   "kind": "subscription",
+   "usd": 10,
+   "period": "month",
+   "note": "Free models need an OpenCode Go subscription; they don't use plan quota"
+  },
+  "source": {
+   "url": "https://opencode.ai/docs/go/",
+   "label": "OpenCode Go docs"
+  },
+  "checked": "2026-10-06"
+ },
+ {
+  "name": "AI/ML API",
+  "entry": {
+   "kind": "topup",
+   "usd": 20,
+   "period": "once",
+   "note": "No free plan; \"The Free Tier is currently paused\"; pay-as-you-go from a $20 top-up"
+  },
+  "source": {
+   "url": "https://docs.aimlapi.com/faq/free-tier",
+   "label": "AI/ML API FAQ"
+  },
+  "checked": "2026-10-06"
+ }
+]

@@ -103,10 +103,23 @@ const stateWords = (l) => {
   const main = endInfo(l).main;
   return l.status === "live" ? `free · ${main}` : l.status === "listed" ? `listed free · ${main}` : main;
 };
+/* cost to start a channel (data/channels.json): badge text, tier colour, source on hover */
+const CH = Object.fromEntries((D.chans || []).map((c) => [c.name, c]));
+function costText(name) {
+  const e = CH[name] && CH[name].entry; if (!e) return "";
+  return e.kind === "subscription" ? `$${e.usd}/${e.period === "month" ? "mo" : e.period} plan first` : e.kind === "topup" ? `$${e.usd} top-up first` : short("entry_kind", e.kind);
+}
+const costTier = (name) => CH[name] ? V.entry_kind[CH[name].entry.kind].tier : "";
+const needsPay = (name) => costTier(name) === "paid";
+function costHTML(name) {
+  const c = CH[name]; if (!c) return "";
+  const tip = `${c.entry.note}. Source: ${c.source.label}, checked ${absDate(c.checked)}`;
+  return `<a class="cost ${costTier(name)}" href="${esc(c.source.url)}" target="_blank" rel="noopener" title="${esc(tip)}">${esc(costText(name))}</a>`;
+}
 /* a chip prints only the exception (an end, past end, ended, not answering); the icon carries the state, the tooltip says it in full */
 const chipNote = (l) => { const m = endInfo(l).main; return m === "no end announced" ? "" : m; };
 const chipTo = (href, text, l) => `<a class="chip" href="${href}" title="${esc(text + ": " + stateWords(l))}" aria-label="${esc(text + ", " + stateWords(l))}">${statusHTML(l.status, text)}${chipNote(l) ? `<small>${esc(chipNote(l))}</small>` : ""}</a>`;
-const channelChip = (l) => chipTo(channelHref(l.channel), l.channel, l);
+const channelChip = (l) => chipTo(channelHref(l.channel), l.channel, l).replace("</a>", needsPay(l.channel) ? `<span class="paymark" title="${esc(costText(l.channel))}">$</span></a>` : "</a>");
 const modelChip = (l) => chipTo(modelHref(l.model), models[l.model].name, l);
 
 /* our own measurements: the site's unique data */
@@ -184,7 +197,7 @@ const keyHTML = () => [
   `<span><span class="conf official">official</span> <span class="conf inferred">inferred</span> end date</span>`,
 ].map((x) => `<span>${x}</span>`).join("");
 
-const legendHTML = () => [["status", "Status"], ["end_confidence", "End-date confidence"], ["check_method", "Checked by"], ["channel_type", "Channel type"], ["data_policy", "Data policy"]].map(([v, name]) =>
+const legendHTML = () => [["status", "Status"], ["entry_kind", "Cost to start a channel"], ["end_confidence", "End-date confidence"], ["check_method", "Checked by"], ["channel_type", "Channel type"], ["data_policy", "Data policy"]].map(([v, name]) =>
   `<div><h3>${name}</h3><dl>${Object.entries(V[v]).map(([k, o]) => `<dt>${v === "status" ? statusHTML(k, o.label) : esc(o.label)}</dt>${o.help ? `<dd>${esc(o.help)}</dd>` : ""}`).join("")}</dl></div>`
 ).join("");
 

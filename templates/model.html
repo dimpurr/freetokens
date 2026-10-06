@@ -87,6 +87,7 @@ $("details").innerHTML = ML.map((l) => {
   return `<div class="detail"><h3>${clink(l.channel)} ${statusHTML(l.status)}</h3><dl>
     ${row(`${I.bolt()} Tested by us`, `${measuredHTML(l)}${l.limits_observed ? ` <span class="muted">${esc(absDate(l.limits_observed.date))}</span>` : ""}`)}
     ${row("Model ID", idHTML(l))}
+    ${row("To start", `${costHTML(l.channel)} <span class="muted">${esc(CH[l.channel] ? CH[l.channel].entry.note : "")}</span>`)}
     ${row("Free condition", esc(l.free_condition))}
     ${row("Limit (stated)", limitHTML(l))}
     ${row("Started", l.started.date ? whenLink(l.started.date, startEvent(l)) : `<span class="muted">${esc(l.started.note)}</span>`)}
