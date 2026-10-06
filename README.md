@@ -262,6 +262,7 @@ Benchmarks are kept here once per model rather than repeated on every lane. **AA
 | [Ling 3.1 Flash](https://freetokens.fyi/models/ling-3.1-flash) | 🟢 Command Code (no end announced) · 🟢 Kilo Code (no end announced) · 🔵 OpenRouter (no end announced) · 🟢 OpenCode Zen (no end announced) · 🟢 Vercel AI Gateway (no end announced) | 10 | 41 (2026-10-05) | 262K | no | inclusionAI (Ant) | — |
 | [Gemini 3.8 Flash](https://freetokens.fyi/models/gemini-3.8-flash) | 🔵 Google AI Studio (no end announced) | 1 | 41 (2026-10-06) | 1M | not checked | Google | — |
 | [Muse Spark 1.2 (Contributor)](https://freetokens.fyi/models/muse-spark-1.2-contributor) | 🔵 OpenCode Zen (no end announced) | 3 | 40 (2026-10-06) | 1M | yes | Meta | — |
+| [Qwen3.8 Flash](https://freetokens.fyi/models/qwen3.8-flash) | 🔵 Qoder (no end announced) | 1 | ≈ 40 (2026-10-06) | not checked | not checked | Alibaba (Qwen) | The AA page is "Qwen3.8-Flash-Next"; we assume it is the model Qoder calls Qwen3.8-Flash (not confirmed). |
 | [DeepSeek V4.1 Flash](https://freetokens.fyi/models/deepseek-v4.1-flash) | 🟢 Letta (no end announced) · 🔵 Freebuff (no end announced) · 🔵 Freebuff (no end announced) | 2 | 39 (2026-10-06) | 1M | yes | DeepSeek | — |
 | [Gemini 3.7 Flash](https://freetokens.fyi/models/gemini-3.7-flash) | 🔵 Google AI Studio (no end announced) | 1 | 39 (2026-10-06) | 1M | not checked | Google | — |
 | [MiMo V2.6 Flash](https://freetokens.fyi/models/mimo-v2.6-flash) | 🟡 OpenCode Zen (past announced end 2026-09-28) · 🔵 Freebuff (no end announced) | 2 | 38 (2026-10-05) | not checked (the Zen free tier has been capped at 200K before) | no | Xiaomi | — |
@@ -315,7 +316,6 @@ Benchmarks are kept here once per model rather than repeated on every lane. **AA
 | [GLM-Z1 9B 0414](https://freetokens.fyi/models/glm-z1-9b-0414) | 🔵 SiliconFlow (no end announced) | 1 | not checked (2026-10-06) | 128K | not checked | Z.ai (THUDM) | — |
 | [Xing 4.0 29B](https://freetokens.fyi/models/xing4.0-29b) | 🔵 SiliconFlow (no end announced) | 1 | not checked (2026-10-06) | 256K | not checked | XingChen AGI | — |
 | [DeepSeek R1 0528 Qwen3 8B](https://freetokens.fyi/models/deepseek-r1-0528-qwen3-8b) | 🔵 SiliconFlow (no end announced) | 1 | not checked (2026-10-06) | 128K | not checked | DeepSeek | — |
-| [Qwen3.8 Flash](https://freetokens.fyi/models/qwen3.8-flash) | 🔵 Qoder (no end announced) | 1 | not checked (2026-10-06) | not checked | not checked | Alibaba (Qwen) | — |
 | [Coding Kimi K3](https://freetokens.fyi/models/coding-kimi-k3) | 🔵 AIHubMix (no end announced) | 1 | no AA page (coding variant of Kimi K3, AA 44) (2026-10-06) | 1M | not checked | Moonshot AI | — |
 <!-- END:models -->
 

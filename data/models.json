@@ -811,11 +811,12 @@
   "context": "not checked",
   "image_input": "not_checked",
   "aa_index": {
-   "value": null,
+   "value": 40,
    "date": "2026-10-06",
-   "note": "not checked"
+   "url": "https://artificialanalysis.ai/models/qwen3-8-flash-next",
+   "approx": true
   },
-  "notes": null
+  "notes": "The AA page is \"Qwen3.8-Flash-Next\"; we assume it is the model Qoder calls Qwen3.8-Flash (not confirmed)."
  },
  {
   "id": "kimi-k3",
