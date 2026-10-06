@@ -117,6 +117,8 @@ function costHTML(name) {
   return `<a class="cost ${costTier(name)}" href="${esc(c.source.url)}" target="_blank" rel="noopener" title="${esc(tip)}">${esc(costText(name))}</a>`;
 }
 /* how a channel's free models can be used (ADR-017): channel default, a lane may override */
+/* how to get a lane free: the channel says it once; a lane adds only what differs */
+const conditionOf = (l) => [CH[l.channel] && CH[l.channel].free_condition, l.free_condition].filter(Boolean).join("; ");
 const accessOf = (l) => (l && l.access) || (CH[l.channel] && CH[l.channel].access) || null;
 const viaAPI = (l) => { const a = accessOf(l); return !!a && a.form === "api"; };
 function accessHTML(a) {
@@ -239,10 +241,14 @@ function policyHTML(k) {
 const idHTML = (l) => l.model_id === "not recorded"
   ? `<span class="muted">not recorded</span>`
   : `<code class="id">${esc(l.model_id)}</code><button type="button" class="copy" data-copy="${esc(l.model_id)}" aria-label="Copy model ID ${esc(l.model_id)}">${I.copy()}</button>`;
+/* published limits (lanes.limits_stated): numbers first, "≈" for community readouts; the note folds into ⓘ */
+const statedNums = (ls) => [ls.per_day && `${ls.per_day}/day`, ls.per_minute && `${ls.per_minute}/min`, ls.hours_day && `${ls.hours_day} h/day`, ls.tokens_day && `${ls.tokens_day / 1e6}M tok/day`].filter(Boolean).join(" · ");
 const limitHTML = (l) => {
-  const ls = l.limits_stated;
-  const txt = ["unstated", "not checked"].includes(ls.text) ? `<span class="muted">${esc(ls.text)}</span>` : esc(ls.text);
-  return ls.source ? `<a href="${esc(ls.source)}" target="_blank" rel="noopener">${txt}</a>` : txt;
+  const ls = l.limits_stated, nums = statedNums(ls);
+  const head = nums ? `<b class="mono">${ls.basis === "community" ? "≈" : ""}${esc(nums)}</b>` : `<span class="muted">${esc(lab("limit_basis", ls.basis))}</span>`;
+  const tip = V.limit_basis[ls.basis].help;
+  const main = ls.source ? `<a href="${esc(ls.source)}" target="_blank" rel="noopener" title="${esc(tip)}">${head}</a>` : `<span title="${esc(tip)}">${head}</span>`;
+  return main + (ls.note ? `<details class="obs-i"><summary aria-label="About this limit">ⓘ</summary><span>${esc(ls.note)}</span></details>` : "");
 };
 /* AA: official label (links to AA) · EST band with evidence (ADR-004/006) · or not ranked */
 const aaValue = (m) => m.aa_index.value != null ? m.aa_index.value : (m.est && m.est.status === "ok" ? m.est.center : null);
@@ -447,7 +453,7 @@ function mountLanes(limit) {
         <td><span class="name">${mlink(l.model)}</span><span class="sub">${clink(l.channel)} · ${esc(lab("channel_type", l.type))}</span></td>
         <td class="nowrap" data-label="Status · end"><span title="${esc(lab("status", l.status))}">${statusHTML(l.status, e.main)}</span><span class="sub">${e.sub}</span></td>
         <td data-label="Tested by us">${measuredHTML(l)}${checkedSub(l)}</td>
-        <td class="cond" data-label="Limit · condition">${costHTML(l.channel)} ${regionTag(l)} ${limitHTML(l)}<span class="sub">${esc(l.free_condition)}</span></td>
+        <td class="cond" data-label="Limit · condition">${costHTML(l.channel)} ${regionTag(l)} ${limitHTML(l)}${l.free_condition ? `<span class="sub">${esc(l.free_condition)}</span>` : ""}</td>
         <td data-label="Data">${policyHTML(l.data_policy)}</td>
         <td class="nowrap" data-label="Model ID">${idHTML(l)}</td>
       </tr>`;

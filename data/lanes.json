@@ -5,9 +5,10 @@
   "channel": "Command Code",
   "type": "agent_tool",
   "model_id": "inclusionai/ling-3.1-flash:free",
-  "free_condition": "Command Code Go plan ($1/month) or higher; requests to the free model cost no credits (\"while it lasts\")",
+  "free_condition": null,
   "limits_stated": {
-   "text": "300 requests/day",
+   "basis": "official",
+   "per_day": 300,
    "source": "https://x.com/CommandCodeAI/status/2106576422655680856"
   },
   "limits_observed": {
@@ -36,9 +37,9 @@
   "channel": "OpenCode Zen",
   "type": "agent_tool",
   "model_id": "opencode/mimo-v2.6-flash-free",
-  "free_condition": "No key; only works from inside OpenCode (raw API returns 403 FreeTierError)",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": {
    "date": "2026-10-06",
@@ -68,9 +69,9 @@
   "channel": "OpenCode Go",
   "type": "agent_tool",
   "model_id": "opencode-go/longcat-2.5-preview-free",
-  "free_condition": "OpenCode Go; does not use Go plan quota",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": {
    "date": "2026-10-04",
@@ -103,9 +104,9 @@
   "channel": "OpenCode Go",
   "type": "agent_tool",
   "model_id": "opencode-go/space-bunny-free",
-  "free_condition": "OpenCode Go; does not use Go plan quota",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": {
    "date": "2026-10-04",
@@ -135,9 +136,9 @@
   "channel": "Command Code",
   "type": "agent_tool",
   "model_id": "stealth/space-bunny-alpha",
-  "free_condition": "Command Code Go plan ($1/month) or higher; requests to the free model cost no credits (\"while it lasts\")",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": {
    "date": "2026-10-04",
@@ -167,9 +168,9 @@
   "channel": "OpenRouter",
   "type": "router",
   "model_id": "stealth/space-bunny-alpha",
-  "free_condition": "OpenRouter account",
+  "free_condition": null,
   "limits_stated": {
-   "text": "not checked"
+   "basis": "not_checked"
   },
   "limits_observed": null,
   "started": {
@@ -194,9 +195,9 @@
   "channel": "OpenCode Zen",
   "type": "agent_tool",
   "model_id": "opencode/deepseek-v4-flash-free",
-  "free_condition": "No key; \"available for a limited time\"",
+  "free_condition": "free for a limited time",
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": null,
   "started": {
@@ -221,9 +222,9 @@
   "channel": "OpenRouter",
   "type": "router",
   "model_id": "nvidia/nemotron-3-ultra-550b-a55b:free",
-  "free_condition": "OpenRouter account",
+  "free_condition": null,
   "limits_stated": {
-   "text": "not checked"
+   "basis": "not_checked"
   },
   "limits_observed": null,
   "started": {
@@ -251,9 +252,9 @@
   "channel": "OpenCode Zen",
   "type": "agent_tool",
   "model_id": "opencode/space-bunny-free",
-  "free_condition": "No key; \"free on OpenCode for a limited time\"",
+  "free_condition": "free for a limited time",
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": {
    "date": "2026-10-06",
@@ -288,9 +289,9 @@
   "channel": "Kilo Code",
   "type": "agent_tool",
   "model_id": "stealth/space-bunny-alpha",
-  "free_condition": "Kilo account; $0 per token on the model page",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": null,
   "started": {
@@ -316,9 +317,9 @@
   "channel": "Freebuff",
   "type": "agent_tool",
   "model_id": "not recorded",
-  "free_condition": "Free coding agent: 150 Freebucks a day across its free models, no subscription (the page says the provider retains prompts)",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": null,
   "started": {
@@ -342,9 +343,9 @@
   "channel": "Kilo Code",
   "type": "agent_tool",
   "model_id": "dots-studio/dots-3-note-preview:free",
-  "free_condition": "Kilo account; $0 input and $0 output per token on Kilo's leaderboard",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": {
    "date": "2026-10-06",
@@ -379,9 +380,9 @@
   "channel": "Kilo Code",
   "type": "agent_tool",
   "model_id": "google/gemma-4-26b-a4b-it:free",
-  "free_condition": "Kilo account; $0 input and $0 output per token on Kilo's leaderboard",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": null,
   "started": {
@@ -405,9 +406,9 @@
   "channel": "Kilo Code",
   "type": "agent_tool",
   "model_id": "inclusionai/ling-3.0-flash:free",
-  "free_condition": "Kilo account; $0 input and $0 output per token on Kilo's leaderboard",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": null,
   "started": {
@@ -431,9 +432,9 @@
   "channel": "Kilo Code",
   "type": "agent_tool",
   "model_id": "minimax/minimax-m2.7:free",
-  "free_condition": "Kilo account; $0 input and $0 output per token on Kilo's leaderboard",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": null,
   "started": {
@@ -457,9 +458,9 @@
   "channel": "Kilo Code",
   "type": "agent_tool",
   "model_id": "minimax/minimax-m3:free",
-  "free_condition": "Kilo account; $0 input and $0 output per token on Kilo's leaderboard",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": null,
   "started": {
@@ -483,9 +484,9 @@
   "channel": "Kilo Code",
   "type": "agent_tool",
   "model_id": "nvidia/nemotron-3-super-120b-a12b:free",
-  "free_condition": "Kilo account; $0 input and $0 output per token on Kilo's leaderboard",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": null,
   "started": {
@@ -509,9 +510,9 @@
   "channel": "Kilo Code",
   "type": "agent_tool",
   "model_id": "nvidia/nemotron-3-ultra-550b-a55b:free",
-  "free_condition": "Kilo account; $0 input and $0 output per token on Kilo's leaderboard",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": null,
   "started": {
@@ -535,9 +536,9 @@
   "channel": "Kilo Code",
   "type": "agent_tool",
   "model_id": "nex-agi/nex-n2-pro:free",
-  "free_condition": "Kilo account; $0 input and $0 output per token on Kilo's leaderboard",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": null,
   "started": {
@@ -561,9 +562,9 @@
   "channel": "Kilo Code",
   "type": "agent_tool",
   "model_id": "nex-agi/nex-n2.5-pro:free",
-  "free_condition": "Kilo account; $0 input and $0 output per token on Kilo's leaderboard",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": null,
   "started": {
@@ -587,9 +588,9 @@
   "channel": "Kilo Code",
   "type": "agent_tool",
   "model_id": "poolside/laguna-s-2.1:free",
-  "free_condition": "Kilo account; $0 input and $0 output per token on Kilo's leaderboard",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": null,
   "started": {
@@ -613,9 +614,9 @@
   "channel": "Kilo Code",
   "type": "agent_tool",
   "model_id": "tencent/hy3:free",
-  "free_condition": "Kilo account; $0 input and $0 output per token on Kilo's leaderboard",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": null,
   "started": {
@@ -639,9 +640,9 @@
   "channel": "Kilo Code",
   "type": "agent_tool",
   "model_id": "tencent/hy3-preview:free",
-  "free_condition": "Kilo account; $0 input and $0 output per token on Kilo's leaderboard",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": null,
   "started": {
@@ -665,9 +666,9 @@
   "channel": "Kilo Code",
   "type": "agent_tool",
   "model_id": "inclusionai/ling-3.0-flash-vl:free",
-  "free_condition": "Kilo account; $0 input and $0 output per token on Kilo's leaderboard",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": null,
   "started": {
@@ -691,9 +692,9 @@
   "channel": "Kilo Code",
   "type": "agent_tool",
   "model_id": "inclusionai/ling-3.1-flash",
-  "free_condition": "Kilo account; $0 input and $0 output per token on Kilo's leaderboard",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": {
    "date": "2026-10-06",
@@ -726,9 +727,9 @@
   "channel": "Kilo Code",
   "type": "agent_tool",
   "model_id": "inclusionai/ling-2.6-1t:free",
-  "free_condition": "Kilo account; $0 input and $0 output per token on Kilo's leaderboard",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": null,
   "started": {
@@ -752,9 +753,9 @@
   "channel": "Kilo Code",
   "type": "agent_tool",
   "model_id": "inclusionai/ling-2.6-flash:free",
-  "free_condition": "Kilo account; $0 input and $0 output per token on Kilo's leaderboard",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": null,
   "started": {
@@ -778,9 +779,9 @@
   "channel": "Kilo Code",
   "type": "agent_tool",
   "model_id": "inclusionai/ring-2.6-1t:free",
-  "free_condition": "Kilo account; $0 input and $0 output per token on Kilo's leaderboard",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": null,
   "started": {
@@ -809,9 +810,10 @@
   },
   "channel": "Letta",
   "type": "agent_tool",
-  "free_condition": "Letta Free plan ($0), inside the Letta app, CLI or web app (OAuth sign-in); counts toward the free tier's \"standard model requests\" (Letta: \"rotating free models\")",
+  "free_condition": null,
   "limits_stated": {
-   "text": "metered: \"standard model requests\" cap, number not published; 3 agents on Free",
+   "basis": "unpublished",
+   "note": "request cap unpublished; 3 agents on Free",
    "source": "https://docs.letta.com/pricing/"
   },
   "limits_observed": {
@@ -850,9 +852,10 @@
   },
   "channel": "Letta",
   "type": "agent_tool",
-  "free_condition": "Letta Free plan ($0), inside the Letta app, CLI or web app (OAuth sign-in); counts toward the free tier's \"standard model requests\" (Letta: \"rotating free models\")",
+  "free_condition": null,
   "limits_stated": {
-   "text": "metered: \"standard model requests\" cap, number not published; 3 agents on Free",
+   "basis": "unpublished",
+   "note": "request cap unpublished; 3 agents on Free",
    "source": "https://docs.letta.com/pricing/"
   },
   "limits_observed": null,
@@ -873,9 +876,9 @@
   "channel": "Kilo Code",
   "type": "agent_tool",
   "model_id": "apodex/apodex-1.1-mini:free",
-  "free_condition": "Kilo CLI or extension; works without signing in (Kilo Gateway \":free\" model)",
+  "free_condition": "works without signing in (Kilo Gateway \":free\" model)",
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": null,
   "started": {
@@ -900,9 +903,9 @@
   "channel": "Kilo Code",
   "type": "agent_tool",
   "model_id": "cohere/north-mini-code:free",
-  "free_condition": "Kilo CLI or extension; works without signing in (Kilo Gateway \":free\" model)",
+  "free_condition": "works without signing in (Kilo Gateway \":free\" model)",
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": null,
   "started": {
@@ -927,9 +930,9 @@
   "channel": "Kilo Code",
   "type": "agent_tool",
   "model_id": "inclusionai/ling-3.0-flash-sante:free",
-  "free_condition": "Kilo CLI or extension; works without signing in (Kilo Gateway \":free\" model)",
+  "free_condition": "works without signing in (Kilo Gateway \":free\" model)",
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": null,
   "started": {
@@ -954,9 +957,9 @@
   "channel": "Kilo Code",
   "type": "agent_tool",
   "model_id": "liquid/lfm-2.5-2.6b:free",
-  "free_condition": "Kilo CLI or extension; works without signing in (Kilo Gateway \":free\" model)",
+  "free_condition": "works without signing in (Kilo Gateway \":free\" model)",
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": null,
   "started": {
@@ -981,9 +984,9 @@
   "channel": "Kilo Code",
   "type": "agent_tool",
   "model_id": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
-  "free_condition": "Kilo CLI or extension; works without signing in (Kilo Gateway \":free\" model)",
+  "free_condition": "works without signing in (Kilo Gateway \":free\" model)",
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": null,
   "started": {
@@ -1008,9 +1011,9 @@
   "channel": "Kilo Code",
   "type": "agent_tool",
   "model_id": "nvidia/nemotron-3.5-lightning:free",
-  "free_condition": "Kilo CLI or extension; works without signing in (Kilo Gateway \":free\" model)",
+  "free_condition": "works without signing in (Kilo Gateway \":free\" model)",
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": null,
   "started": {
@@ -1035,9 +1038,9 @@
   "channel": "Kilo Code",
   "type": "agent_tool",
   "model_id": "poolside/laguna-xs-2.1:free",
-  "free_condition": "Kilo CLI or extension; works without signing in (Kilo Gateway \":free\" model)",
+  "free_condition": "works without signing in (Kilo Gateway \":free\" model)",
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": null,
   "started": {
@@ -1062,9 +1065,9 @@
   "channel": "Kilo Code",
   "type": "agent_tool",
   "model_id": "stepfun/step-3.7-flash:free",
-  "free_condition": "Kilo CLI or extension; works without signing in (Kilo Gateway \":free\" model)",
+  "free_condition": "works without signing in (Kilo Gateway \":free\" model)",
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": null,
   "started": {
@@ -1089,9 +1092,9 @@
   "channel": "Kilo Code",
   "type": "agent_tool",
   "model_id": "thinkingmachines/inkling-small:free",
-  "free_condition": "Kilo CLI or extension; works without signing in (Kilo Gateway \":free\" model)",
+  "free_condition": "works without signing in (Kilo Gateway \":free\" model)",
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": {
    "date": "2026-10-06",
@@ -1121,9 +1124,9 @@
   "channel": "Cline",
   "type": "agent_tool",
   "model_id": "cohere/north-mini-code:free",
-  "free_condition": "Cline account, inside the Cline CLI or IDE extension (served through OpenRouter); not through the Cline API",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": null,
   "started": {
@@ -1148,9 +1151,9 @@
   "channel": "Cline",
   "type": "agent_tool",
   "model_id": "inclusionai/ling-3.0-flash-sante:free",
-  "free_condition": "Cline account, inside the Cline CLI or IDE extension (served through OpenRouter); not through the Cline API",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": null,
   "started": {
@@ -1175,9 +1178,9 @@
   "channel": "Cline",
   "type": "agent_tool",
   "model_id": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
-  "free_condition": "Cline account, inside the Cline CLI or IDE extension (served through OpenRouter); not through the Cline API",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": null,
   "started": {
@@ -1202,9 +1205,9 @@
   "channel": "Cline",
   "type": "agent_tool",
   "model_id": "nvidia/nemotron-3-super-120b-a12b:free",
-  "free_condition": "Cline account, inside the Cline CLI or IDE extension (served through OpenRouter); not through the Cline API",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": null,
   "started": {
@@ -1229,9 +1232,9 @@
   "channel": "Cline",
   "type": "agent_tool",
   "model_id": "nvidia/nemotron-3-ultra-550b-a55b:free",
-  "free_condition": "Cline account, inside the Cline CLI or IDE extension (served through OpenRouter); not through the Cline API",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": null,
   "started": {
@@ -1256,9 +1259,9 @@
   "channel": "Cline",
   "type": "agent_tool",
   "model_id": "nvidia/nemotron-3.5-lightning:free",
-  "free_condition": "Cline account, inside the Cline CLI or IDE extension (served through OpenRouter); not through the Cline API",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": null,
   "started": {
@@ -1283,9 +1286,9 @@
   "channel": "Cline",
   "type": "agent_tool",
   "model_id": "poolside/laguna-s-2.1:free",
-  "free_condition": "Cline account, inside the Cline CLI or IDE extension (served through OpenRouter); not through the Cline API",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": null,
   "started": {
@@ -1310,9 +1313,9 @@
   "channel": "Cline",
   "type": "agent_tool",
   "model_id": "poolside/laguna-xs-2.1:free",
-  "free_condition": "Cline account, inside the Cline CLI or IDE extension (served through OpenRouter); not through the Cline API",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": null,
   "started": {
@@ -1337,9 +1340,9 @@
   "channel": "Cline",
   "type": "agent_tool",
   "model_id": "liquid/lfm-2.5-2.6b:free",
-  "free_condition": "Cline account, inside the Cline CLI or IDE extension (served through OpenRouter); not through the Cline API",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": null,
   "started": {
@@ -1364,9 +1367,9 @@
   "channel": "Cline",
   "type": "agent_tool",
   "model_id": "apodex/apodex-1.1-mini:free",
-  "free_condition": "Cline account, inside the Cline CLI or IDE extension (served through OpenRouter); not through the Cline API",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "started": {
    "date": null,
@@ -1391,9 +1394,9 @@
   "channel": "Cline",
   "type": "agent_tool",
   "model_id": "dots-studio/dots-3-note-preview:free",
-  "free_condition": "Cline account, inside the Cline CLI or IDE extension (served through OpenRouter); not through the Cline API",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "started": {
    "date": null,
@@ -1418,9 +1421,9 @@
   "channel": "Cline",
   "type": "agent_tool",
   "model_id": "google/gemma-4-26b-a4b-it:free",
-  "free_condition": "Cline account, inside the Cline CLI or IDE extension (served through OpenRouter); not through the Cline API",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "started": {
    "date": null,
@@ -1445,9 +1448,9 @@
   "channel": "Cline",
   "type": "agent_tool",
   "model_id": "google/gemma-4-31b-it:free",
-  "free_condition": "Cline account, inside the Cline CLI or IDE extension (served through OpenRouter); not through the Cline API",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "started": {
    "date": null,
@@ -1472,9 +1475,9 @@
   "channel": "Cline",
   "type": "agent_tool",
   "model_id": "thinkingmachines/inkling-small:free",
-  "free_condition": "Cline account, inside the Cline CLI or IDE extension (served through OpenRouter); not through the Cline API",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "started": {
    "date": null,
@@ -1499,9 +1502,9 @@
   "channel": "Cline",
   "type": "agent_tool",
   "model_id": "thinkingmachines/inkling:free",
-  "free_condition": "Cline account, inside the Cline CLI or IDE extension (served through OpenRouter); not through the Cline API",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "started": {
    "date": null,
@@ -1526,9 +1529,11 @@
   "channel": "OpenRouter",
   "type": "router",
   "model_id": "inclusionai/ling-3.1-flash",
-  "free_condition": "OpenRouter account and API key; $0 input and output (free plan: 50 requests/day)",
+  "free_condition": null,
   "limits_stated": {
-   "text": "50 requests/day on the free plan",
+   "basis": "official",
+   "per_day": 50,
+   "note": "without credits on the account",
    "source": "https://openrouter.ai/pricing"
   },
   "limits_observed": {
@@ -1561,9 +1566,11 @@
   "channel": "OpenRouter",
   "type": "router",
   "model_id": "apodex/apodex-1.1-mini:free",
-  "free_condition": "OpenRouter account and API key; $0 input and output (free plan: 50 requests/day)",
+  "free_condition": null,
   "limits_stated": {
-   "text": "50 requests/day on the free plan",
+   "basis": "official",
+   "per_day": 50,
+   "note": "without credits on the account",
    "source": "https://openrouter.ai/pricing"
   },
   "limits_observed": null,
@@ -1592,9 +1599,11 @@
   "channel": "OpenRouter",
   "type": "router",
   "model_id": "inclusionai/ling-3.0-flash-sante:free",
-  "free_condition": "OpenRouter account and API key; $0 input and output (free plan: 50 requests/day)",
+  "free_condition": null,
   "limits_stated": {
-   "text": "50 requests/day on the free plan",
+   "basis": "official",
+   "per_day": 50,
+   "note": "without credits on the account",
    "source": "https://openrouter.ai/pricing"
   },
   "limits_observed": null,
@@ -1623,9 +1632,11 @@
   "channel": "OpenRouter",
   "type": "router",
   "model_id": "dots-studio/dots-3-note-preview:free",
-  "free_condition": "OpenRouter account and API key; $0 input and output (free plan: 50 requests/day)",
+  "free_condition": null,
   "limits_stated": {
-   "text": "50 requests/day on the free plan",
+   "basis": "official",
+   "per_day": 50,
+   "note": "without credits on the account",
    "source": "https://openrouter.ai/pricing"
   },
   "limits_observed": {
@@ -1658,9 +1669,11 @@
   "channel": "OpenRouter",
   "type": "router",
   "model_id": "liquid/lfm-2.5-2.6b:free",
-  "free_condition": "OpenRouter account and API key; $0 input and output (free plan: 50 requests/day)",
+  "free_condition": null,
   "limits_stated": {
-   "text": "50 requests/day on the free plan",
+   "basis": "official",
+   "per_day": 50,
+   "note": "without credits on the account",
    "source": "https://openrouter.ai/pricing"
   },
   "limits_observed": null,
@@ -1689,9 +1702,11 @@
   "channel": "OpenRouter",
   "type": "router",
   "model_id": "nvidia/nemotron-3.5-lightning:free",
-  "free_condition": "OpenRouter account and API key; $0 input and output (free plan: 50 requests/day)",
+  "free_condition": null,
   "limits_stated": {
-   "text": "50 requests/day on the free plan",
+   "basis": "official",
+   "per_day": 50,
+   "note": "without credits on the account",
    "source": "https://openrouter.ai/pricing"
   },
   "limits_observed": null,
@@ -1720,9 +1735,11 @@
   "channel": "OpenRouter",
   "type": "router",
   "model_id": "thinkingmachines/inkling-small:free",
-  "free_condition": "OpenRouter account and API key; $0 input and output (free plan: 50 requests/day)",
+  "free_condition": null,
   "limits_stated": {
-   "text": "50 requests/day on the free plan",
+   "basis": "official",
+   "per_day": 50,
+   "note": "without credits on the account",
    "source": "https://openrouter.ai/pricing"
   },
   "limits_observed": {
@@ -1757,9 +1774,11 @@
   "channel": "OpenRouter",
   "type": "router",
   "model_id": "poolside/laguna-s-2.1:free",
-  "free_condition": "OpenRouter account and API key; $0 input and output (free plan: 50 requests/day)",
+  "free_condition": null,
   "limits_stated": {
-   "text": "50 requests/day on the free plan",
+   "basis": "official",
+   "per_day": 50,
+   "note": "without credits on the account",
    "source": "https://openrouter.ai/pricing"
   },
   "limits_observed": {
@@ -1792,9 +1811,11 @@
   "channel": "OpenRouter",
   "type": "router",
   "model_id": "thinkingmachines/inkling:free",
-  "free_condition": "OpenRouter account and API key; $0 input and output (free plan: 50 requests/day)",
+  "free_condition": null,
   "limits_stated": {
-   "text": "50 requests/day on the free plan",
+   "basis": "official",
+   "per_day": 50,
+   "note": "without credits on the account",
    "source": "https://openrouter.ai/pricing"
   },
   "limits_observed": {
@@ -1829,9 +1850,11 @@
   "channel": "OpenRouter",
   "type": "router",
   "model_id": "poolside/laguna-xs-2.1:free",
-  "free_condition": "OpenRouter account and API key; $0 input and output (free plan: 50 requests/day)",
+  "free_condition": null,
   "limits_stated": {
-   "text": "50 requests/day on the free plan",
+   "basis": "official",
+   "per_day": 50,
+   "note": "without credits on the account",
    "source": "https://openrouter.ai/pricing"
   },
   "limits_observed": {
@@ -1864,9 +1887,11 @@
   "channel": "OpenRouter",
   "type": "router",
   "model_id": "cohere/north-mini-code:free",
-  "free_condition": "OpenRouter account and API key; $0 input and output (free plan: 50 requests/day)",
+  "free_condition": null,
   "limits_stated": {
-   "text": "50 requests/day on the free plan",
+   "basis": "official",
+   "per_day": 50,
+   "note": "without credits on the account",
    "source": "https://openrouter.ai/pricing"
   },
   "limits_observed": null,
@@ -1895,9 +1920,11 @@
   "channel": "OpenRouter",
   "type": "router",
   "model_id": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
-  "free_condition": "OpenRouter account and API key; $0 input and output (free plan: 50 requests/day)",
+  "free_condition": null,
   "limits_stated": {
-   "text": "50 requests/day on the free plan",
+   "basis": "official",
+   "per_day": 50,
+   "note": "without credits on the account",
    "source": "https://openrouter.ai/pricing"
   },
   "limits_observed": null,
@@ -1926,9 +1953,11 @@
   "channel": "OpenRouter",
   "type": "router",
   "model_id": "google/gemma-4-26b-a4b-it:free",
-  "free_condition": "OpenRouter account and API key; $0 input and output (free plan: 50 requests/day)",
+  "free_condition": null,
   "limits_stated": {
-   "text": "50 requests/day on the free plan",
+   "basis": "official",
+   "per_day": 50,
+   "note": "without credits on the account",
    "source": "https://openrouter.ai/pricing"
   },
   "limits_observed": {
@@ -1961,9 +1990,11 @@
   "channel": "OpenRouter",
   "type": "router",
   "model_id": "google/gemma-4-31b-it:free",
-  "free_condition": "OpenRouter account and API key; $0 input and output (free plan: 50 requests/day)",
+  "free_condition": null,
   "limits_stated": {
-   "text": "50 requests/day on the free plan",
+   "basis": "official",
+   "per_day": 50,
+   "note": "without credits on the account",
    "source": "https://openrouter.ai/pricing"
   },
   "limits_observed": {
@@ -1996,9 +2027,11 @@
   "channel": "OpenRouter",
   "type": "router",
   "model_id": "nvidia/nemotron-3-super-120b-a12b:free",
-  "free_condition": "OpenRouter account and API key; $0 input and output (free plan: 50 requests/day)",
+  "free_condition": null,
   "limits_stated": {
-   "text": "50 requests/day on the free plan",
+   "basis": "official",
+   "per_day": 50,
+   "note": "without credits on the account",
    "source": "https://openrouter.ai/pricing"
   },
   "limits_observed": null,
@@ -2027,9 +2060,9 @@
   "channel": "OpenCode Zen",
   "type": "agent_tool",
   "model_id": "opencode/longcat-2.5-preview-free",
-  "free_condition": "Inside the OpenCode app, no account",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": {
    "date": "2026-10-06",
@@ -2062,9 +2095,9 @@
   "channel": "OpenCode Zen",
   "type": "agent_tool",
   "model_id": "opencode/ling-3.1-flash-free",
-  "free_condition": "Inside the OpenCode app, no account",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": {
    "date": "2026-10-06",
@@ -2094,9 +2127,9 @@
   "channel": "OpenCode Zen",
   "type": "agent_tool",
   "model_id": "opencode/nemotron-3.5-lightning-free",
-  "free_condition": "Inside the OpenCode app, no account",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": null,
   "started": {
@@ -2121,9 +2154,9 @@
   "channel": "OpenCode Zen",
   "type": "agent_tool",
   "model_id": "opencode/fledge-alpha-free",
-  "free_condition": "Inside the OpenCode app, no account",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": {
    "date": "2026-10-06",
@@ -2155,9 +2188,9 @@
   "channel": "OpenCode Zen",
   "type": "agent_tool",
   "model_id": "opencode/nemotron-3-ultra-free",
-  "free_condition": "Inside the OpenCode app, no account",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": {
    "date": "2026-10-06",
@@ -2187,9 +2220,9 @@
   "channel": "OpenCode Zen",
   "type": "agent_tool",
   "model_id": "opencode/ling-3.0-flash-fin-free",
-  "free_condition": "Inside the OpenCode app, no account",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": {
    "date": "2026-10-06",
@@ -2219,9 +2252,9 @@
   "channel": "OpenCode Zen",
   "type": "agent_tool",
   "model_id": "opencode/mimo-v2.5-free",
-  "free_condition": "Inside the OpenCode app, no account",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": {
    "date": "2026-10-06",
@@ -2249,9 +2282,9 @@
   "channel": "OpenCode Zen",
   "type": "agent_tool",
   "model_id": "opencode/jev-1.13-free",
-  "free_condition": "Inside the OpenCode app, no account",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": {
    "date": "2026-10-06",
@@ -2279,9 +2312,9 @@
   "channel": "OpenCode Zen",
   "type": "agent_tool",
   "model_id": "opencode/big-pickle",
-  "free_condition": "Inside the OpenCode app, no account",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unstated"
+   "basis": "unpublished"
   },
   "limits_observed": {
    "date": "2026-10-06",
@@ -2311,9 +2344,11 @@
   "channel": "OpenCode Zen",
   "type": "agent_tool",
   "model_id": "opencode/muse-spark-1.3-contributor-free",
-  "free_condition": "OpenCode Zen account with the per-model opt-in that lets Meta train on your prompts (\"requires explicit opt-in\"); Responses API only; region-limited by Meta (community reports RegionError outside the US). Anonymous calls are refused",
+  "free_condition": "needs a Zen account and the per-model opt-in that lets Meta train on your prompts; Responses API only",
   "limits_stated": {
-   "text": "free period \"limited time\", no end date; Meta API itself caps at 100 requests/min per team",
+   "basis": "official",
+   "per_minute": 100,
+   "note": "Meta's own API cap, per team",
    "source": "https://opencode.ai/docs/zen/"
   },
   "limits_observed": {
@@ -2344,9 +2379,11 @@
   "channel": "OpenCode Zen",
   "type": "agent_tool",
   "model_id": "opencode/muse-spark-1.2-contributor-free",
-  "free_condition": "OpenCode Zen account with the per-model opt-in that lets Meta train on your prompts (\"requires explicit opt-in\"); Responses API only; region-limited by Meta (community reports RegionError outside the US). Anonymous calls are refused",
+  "free_condition": "needs a Zen account and the per-model opt-in that lets Meta train on your prompts; Responses API only",
   "limits_stated": {
-   "text": "free period \"limited time\", no end date; Meta API itself caps at 100 requests/min per team",
+   "basis": "official",
+   "per_minute": 100,
+   "note": "Meta's own API cap, per team",
    "source": "https://opencode.ai/docs/zen/"
   },
   "limits_observed": {
@@ -2375,9 +2412,10 @@
   "channel": "Freebuff",
   "type": "agent_tool",
   "model_id": "not recorded",
-  "free_condition": "Freebuff app (CLI, desktop, web), no account for the CLI: \"Solar Pro 4\" on its free list; 150 Freebucks a day spent across models, refilled at midnight Pacific; ad-supported",
+  "free_condition": null,
   "limits_stated": {
-   "text": "unlimited hours/day (Freebuff's table; allowances don't add up)",
+   "basis": "official",
+   "note": "unlimited hours; per-model allowances don't add up",
    "source": "https://freebuff.com/"
   },
   "limits_observed": null,
@@ -2403,9 +2441,11 @@
   "channel": "Freebuff",
   "type": "agent_tool",
   "model_id": "not recorded",
-  "free_condition": "Freebuff app (CLI, desktop, web), no account for the CLI: \"Solar Mini 4\" on its free list; 150 Freebucks a day spent across models, refilled at midnight Pacific; ad-supported",
+  "free_condition": null,
   "limits_stated": {
-   "text": "up to 30 hours/day (Freebuff's table; allowances don't add up)",
+   "basis": "official",
+   "hours_day": 30,
+   "note": "per-model allowances don't add up",
    "source": "https://freebuff.com/"
   },
   "limits_observed": null,
@@ -2431,9 +2471,11 @@
   "channel": "Freebuff",
   "type": "agent_tool",
   "model_id": "not recorded",
-  "free_condition": "Freebuff app (CLI, desktop, web), no account for the CLI: \"MiMo 2.6 Flash\" on its free list; 150 Freebucks a day spent across models, refilled at midnight Pacific; ad-supported",
+  "free_condition": null,
   "limits_stated": {
-   "text": "up to 15 hours/day (Freebuff's table; allowances don't add up)",
+   "basis": "official",
+   "hours_day": 15,
+   "note": "per-model allowances don't add up",
    "source": "https://freebuff.com/"
   },
   "limits_observed": null,
@@ -2459,9 +2501,11 @@
   "channel": "Freebuff",
   "type": "agent_tool",
   "model_id": "not recorded",
-  "free_condition": "Freebuff app (CLI, desktop, web), no account for the CLI: \"GLM 5.3 Flash\" on its free list; 150 Freebucks a day spent across models, refilled at midnight Pacific; ad-supported",
+  "free_condition": null,
   "limits_stated": {
-   "text": "up to 15 hours/day (Freebuff's table; allowances don't add up)",
+   "basis": "official",
+   "hours_day": 15,
+   "note": "per-model allowances don't add up",
    "source": "https://freebuff.com/"
   },
   "limits_observed": null,
@@ -2487,9 +2531,11 @@
   "channel": "Freebuff",
   "type": "agent_tool",
   "model_id": "not recorded",
-  "free_condition": "Freebuff app (CLI, desktop, web), no account for the CLI: \"DeepSeek V4.1 Flash\" on its free list; 150 Freebucks a day spent across models, refilled at midnight Pacific; ad-supported",
+  "free_condition": null,
   "limits_stated": {
-   "text": "up to 15 hours/day (Freebuff's table; allowances don't add up)",
+   "basis": "official",
+   "hours_day": 15,
+   "note": "per-model allowances don't add up",
    "source": "https://freebuff.com/"
   },
   "limits_observed": null,
@@ -2515,9 +2561,11 @@
   "channel": "Freebuff",
   "type": "agent_tool",
   "model_id": "not recorded",
-  "free_condition": "Freebuff app (CLI, desktop, web), no account for the CLI: \"GPT-6 Luna\" on its free list; 150 Freebucks a day spent across models, refilled at midnight Pacific; ad-supported",
+  "free_condition": null,
   "limits_stated": {
-   "text": "up to 7 hours/day (Freebuff's table; allowances don't add up)",
+   "basis": "official",
+   "hours_day": 7,
+   "note": "per-model allowances don't add up",
    "source": "https://freebuff.com/"
   },
   "limits_observed": null,
@@ -2543,9 +2591,11 @@
   "channel": "Freebuff",
   "type": "agent_tool",
   "model_id": "not recorded",
-  "free_condition": "Freebuff app (CLI, desktop, web), no account for the CLI: \"MiMo 2.6 Pro\" on its free list; 150 Freebucks a day spent across models, refilled at midnight Pacific; ad-supported",
+  "free_condition": null,
   "limits_stated": {
-   "text": "up to 5 hours/day (Freebuff's table; allowances don't add up)",
+   "basis": "official",
+   "hours_day": 5,
+   "note": "per-model allowances don't add up",
    "source": "https://freebuff.com/"
   },
   "limits_observed": null,
@@ -2571,9 +2621,11 @@
   "channel": "Freebuff",
   "type": "agent_tool",
   "model_id": "not recorded",
-  "free_condition": "Freebuff app (CLI, desktop, web), no account for the CLI: \"DeepSeek V4.1 Flash Fast\" on its free list; 150 Freebucks a day spent across models, refilled at midnight Pacific; ad-supported",
+  "free_condition": null,
   "limits_stated": {
-   "text": "up to 3 hours/day (Freebuff's table; allowances don't add up)",
+   "basis": "official",
+   "hours_day": 3,
+   "note": "per-model allowances don't add up",
    "source": "https://freebuff.com/"
   },
   "limits_observed": null,
@@ -2599,9 +2651,10 @@
   "channel": "Freebuff",
   "type": "agent_tool",
   "model_id": "not recorded",
-  "free_condition": "Freebuff app (CLI, desktop, web), no account for the CLI: \"GPT-6.1 Sol\" on its free list; 150 Freebucks a day spent across models, refilled at midnight Pacific; ad-supported ; free in the US only",
+  "free_condition": null,
   "limits_stated": {
-   "text": "one session a day, US only (Freebuff's table; allowances don't add up)",
+   "basis": "official",
+   "note": "one session a day",
    "source": "https://freebuff.com/"
   },
   "limits_observed": null,
@@ -2628,9 +2681,10 @@
   "channel": "Z.ai",
   "type": "first_party",
   "model_id": "glm-4.7-flash",
-  "free_condition": "Z.ai account and API key; $0 model",
+  "free_condition": null,
   "limits_stated": {
-   "text": "limits by concurrency per account (numbers only in the console)",
+   "basis": "unpublished",
+   "note": "by concurrency per account; numbers in the console",
    "source": "https://docs.z.ai/guides/overview/pricing"
   },
   "limits_observed": null,
@@ -2656,9 +2710,10 @@
   "channel": "Z.ai",
   "type": "first_party",
   "model_id": "glm-4.5-flash",
-  "free_condition": "Z.ai account and API key; $0 model",
+  "free_condition": null,
   "limits_stated": {
-   "text": "limits by concurrency per account (numbers only in the console)",
+   "basis": "unpublished",
+   "note": "by concurrency per account; numbers in the console",
    "source": "https://docs.z.ai/guides/overview/pricing"
   },
   "limits_observed": null,
@@ -2684,9 +2739,10 @@
   "channel": "Zhipu BigModel",
   "type": "first_party",
   "model_id": "glm-4.7-flash",
-  "free_condition": "BigModel account (SMS) and API key; 免费 model",
+  "free_condition": null,
   "limits_stated": {
-   "text": "limits by concurrency per account",
+   "basis": "unpublished",
+   "note": "by concurrency per account",
    "source": "https://docs.bigmodel.cn/cn/guide/start/pricing"
   },
   "limits_observed": null,
@@ -2712,9 +2768,10 @@
   "channel": "Zhipu BigModel",
   "type": "first_party",
   "model_id": "glm-4-flash-250414",
-  "free_condition": "BigModel account (SMS) and API key; 免费 model",
+  "free_condition": null,
   "limits_stated": {
-   "text": "limits by concurrency per account",
+   "basis": "unpublished",
+   "note": "by concurrency per account",
    "source": "https://docs.bigmodel.cn/cn/guide/start/pricing"
   },
   "limits_observed": null,
@@ -2740,9 +2797,10 @@
   "channel": "Vercel AI Gateway",
   "type": "router",
   "model_id": "inclusionai/ling-3.1-flash-free",
-  "free_condition": "Vercel AI Gateway key; \"Ling 3.1 Flash (Free)\"",
+  "free_condition": null,
   "limits_stated": {
-   "text": "free tier: lower per-model rate limits (not published)",
+   "basis": "unpublished",
+   "note": "lower per-model rate limits on the free tier",
    "source": "https://ai-gateway.vercel.sh/v1/models"
   },
   "limits_observed": {
@@ -2772,9 +2830,10 @@
   "channel": "Vercel AI Gateway",
   "type": "router",
   "model_id": "poolside/laguna-s-2.1-free",
-  "free_condition": "Vercel AI Gateway key; \"Laguna S 2.1 Free\"",
+  "free_condition": null,
   "limits_stated": {
-   "text": "free tier: lower per-model rate limits (not published)",
+   "basis": "unpublished",
+   "note": "lower per-model rate limits on the free tier",
    "source": "https://ai-gateway.vercel.sh/v1/models"
   },
   "limits_observed": {
@@ -2804,9 +2863,10 @@
   "channel": "SiliconFlow",
   "type": "router",
   "model_id": "Qwen/Qwen2.5-7B-Instruct",
-  "free_condition": "SiliconFlow account and API key; price 0 within fixed rate limits (standing free model)",
+  "free_condition": null,
   "limits_stated": {
-   "text": "fixed rate limits, not raised by spending",
+   "basis": "official",
+   "note": "fixed rate limits; spending doesn't raise them",
    "source": "https://siliconflow.cn/pricing"
   },
   "limits_observed": null,
@@ -2832,9 +2892,10 @@
   "channel": "SiliconFlow",
   "type": "router",
   "model_id": "Qwen/Qwen3-8B",
-  "free_condition": "SiliconFlow account and API key; price 0 within fixed rate limits (standing free model)",
+  "free_condition": null,
   "limits_stated": {
-   "text": "fixed rate limits, not raised by spending",
+   "basis": "official",
+   "note": "fixed rate limits; spending doesn't raise them",
    "source": "https://siliconflow.cn/pricing"
   },
   "limits_observed": null,
@@ -2860,9 +2921,10 @@
   "channel": "SiliconFlow",
   "type": "router",
   "model_id": "Qwen/Qwen3.5-4B",
-  "free_condition": "SiliconFlow account and API key; price 0 within fixed rate limits (standing free model)",
+  "free_condition": null,
   "limits_stated": {
-   "text": "fixed rate limits, not raised by spending",
+   "basis": "official",
+   "note": "fixed rate limits; spending doesn't raise them",
    "source": "https://siliconflow.cn/pricing"
   },
   "limits_observed": null,
@@ -2888,9 +2950,10 @@
   "channel": "SiliconFlow",
   "type": "router",
   "model_id": "THUDM/GLM-4-9B-0414",
-  "free_condition": "SiliconFlow account and API key; price 0 within fixed rate limits (standing free model)",
+  "free_condition": null,
   "limits_stated": {
-   "text": "fixed rate limits, not raised by spending",
+   "basis": "official",
+   "note": "fixed rate limits; spending doesn't raise them",
    "source": "https://siliconflow.cn/pricing"
   },
   "limits_observed": null,
@@ -2916,9 +2979,10 @@
   "channel": "SiliconFlow",
   "type": "router",
   "model_id": "THUDM/GLM-Z1-9B-0414",
-  "free_condition": "SiliconFlow account and API key; price 0 within fixed rate limits (standing free model)",
+  "free_condition": null,
   "limits_stated": {
-   "text": "fixed rate limits, not raised by spending",
+   "basis": "official",
+   "note": "fixed rate limits; spending doesn't raise them",
    "source": "https://siliconflow.cn/pricing"
   },
   "limits_observed": null,
@@ -2944,9 +3008,10 @@
   "channel": "SiliconFlow",
   "type": "router",
   "model_id": "XingChenAGI/Xing4.0-29B",
-  "free_condition": "SiliconFlow account and API key; price 0 within fixed rate limits (standing free model)",
+  "free_condition": null,
   "limits_stated": {
-   "text": "fixed rate limits, not raised by spending",
+   "basis": "official",
+   "note": "fixed rate limits; spending doesn't raise them",
    "source": "https://siliconflow.cn/pricing"
   },
   "limits_observed": null,
@@ -2972,9 +3037,10 @@
   "channel": "SiliconFlow",
   "type": "router",
   "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
-  "free_condition": "SiliconFlow account and API key; price 0 within fixed rate limits (standing free model)",
+  "free_condition": null,
   "limits_stated": {
-   "text": "fixed rate limits, not raised by spending",
+   "basis": "official",
+   "note": "fixed rate limits; spending doesn't raise them",
    "source": "https://siliconflow.cn/pricing"
   },
   "limits_observed": null,
@@ -3000,9 +3066,12 @@
   "channel": "Google AI Studio",
   "type": "first_party",
   "model_id": "gemini-3.8-flash",
-  "free_condition": "Gemini API key from a project without billing; free tier (limits per project, reset midnight Pacific; numbers only in AI Studio); UK / EEA / Swiss users get the paid-tier data terms",
+  "free_condition": null,
   "limits_stated": {
-   "text": "not published by Google; community readouts: about 5 requests/min and 20 requests/day per Flash model (Sep 2026), too few for agent use",
+   "basis": "community",
+   "per_minute": 5,
+   "per_day": 20,
+   "note": "per Flash model, Sep 2026",
    "source": "https://discuss.ai.google.dev/t/gemini-3-8-flash-free-tier-20-rpd-is-too-limited-for-practical-evaluation/180609"
   },
   "limits_observed": null,
@@ -3032,9 +3101,12 @@
   "channel": "Google AI Studio",
   "type": "first_party",
   "model_id": "gemini-3.7-flash",
-  "free_condition": "Gemini API key from a project without billing; free tier (limits per project, reset midnight Pacific; numbers only in AI Studio); UK / EEA / Swiss users get the paid-tier data terms",
+  "free_condition": null,
   "limits_stated": {
-   "text": "not published by Google; community readouts: about 5 requests/min and 20 requests/day per Flash model (Sep 2026), too few for agent use",
+   "basis": "community",
+   "per_minute": 5,
+   "per_day": 20,
+   "note": "per Flash model, Sep 2026",
    "source": "https://discuss.ai.google.dev/t/gemini-3-8-flash-free-tier-20-rpd-is-too-limited-for-practical-evaluation/180609"
   },
   "limits_observed": null,
@@ -3064,9 +3136,12 @@
   "channel": "Google AI Studio",
   "type": "first_party",
   "model_id": "gemini-3.6-flash",
-  "free_condition": "Gemini API key from a project without billing; free tier (limits per project, reset midnight Pacific; numbers only in AI Studio); UK / EEA / Swiss users get the paid-tier data terms",
+  "free_condition": null,
   "limits_stated": {
-   "text": "not published by Google; community readouts: about 5 requests/min and 20 requests/day per Flash model (Sep 2026), too few for agent use",
+   "basis": "community",
+   "per_minute": 5,
+   "per_day": 20,
+   "note": "per Flash model, Sep 2026",
    "source": "https://discuss.ai.google.dev/t/gemini-3-8-flash-free-tier-20-rpd-is-too-limited-for-practical-evaluation/180609"
   },
   "limits_observed": null,
@@ -3096,9 +3171,12 @@
   "channel": "Google AI Studio",
   "type": "first_party",
   "model_id": "gemini-3.5-flash",
-  "free_condition": "Gemini API key from a project without billing; free tier (limits per project, reset midnight Pacific; numbers only in AI Studio); UK / EEA / Swiss users get the paid-tier data terms",
+  "free_condition": null,
   "limits_stated": {
-   "text": "not published by Google; community readouts: about 5 requests/min and 20 requests/day per Flash model (Sep 2026), too few for agent use",
+   "basis": "community",
+   "per_minute": 5,
+   "per_day": 20,
+   "note": "per Flash model, Sep 2026",
    "source": "https://discuss.ai.google.dev/t/gemini-3-8-flash-free-tier-20-rpd-is-too-limited-for-practical-evaluation/180609"
   },
   "limits_observed": null,
@@ -3128,9 +3206,12 @@
   "channel": "Google AI Studio",
   "type": "first_party",
   "model_id": "gemini-3.5-flash-lite",
-  "free_condition": "Gemini API key from a project without billing; free tier (limits per project, reset midnight Pacific; numbers only in AI Studio); UK / EEA / Swiss users get the paid-tier data terms",
+  "free_condition": null,
   "limits_stated": {
-   "text": "not published by Google; community readouts: about 15 requests/min and 500 requests/day for Flash-Lite (Sep 2026)",
+   "basis": "community",
+   "per_minute": 15,
+   "per_day": 500,
+   "note": "Sep 2026",
    "source": "https://www.scriptbyai.com/gemini-api-free-tier-limits/"
   },
   "limits_observed": null,
@@ -3160,9 +3241,10 @@
   "channel": "Qoder",
   "type": "agent_tool",
   "model_id": "Qwen3.8-Flash",
-  "free_condition": "Qoder international personal accounts, inside Qoder (IDE / CLI): billing multiplier 0.0× during the promotion, no credits used; free accounts with zero credits included",
+  "free_condition": null,
   "limits_stated": {
-   "text": "promotion \"extended\"; end to be announced on the event page",
+   "basis": "unpublished",
+   "note": "promotion; no usage cap published",
    "source": "https://docs.qoder.com/zh/events/flashoffer"
   },
   "limits_observed": {
@@ -3196,9 +3278,10 @@
   "channel": "Cline",
   "type": "agent_tool",
   "model_id": "not recorded",
-  "free_condition": "Cline account, inside Cline Desktop / extension / CLI (\"free in the app for a limited time\"); not through the Cline API",
+  "free_condition": "free for a limited time",
   "limits_stated": {
-   "text": "limited usage quota, size not published",
+   "basis": "unpublished",
+   "note": "limited quota, size not published",
    "source": "https://docs.cline.bot/getting-started/free-models"
   },
   "limits_observed": null,
@@ -3223,9 +3306,13 @@
   "channel": "AIHubMix",
   "type": "router",
   "model_id": "coding-kimi-k3-free",
-  "free_condition": "AIHubMix API key; $0 input and output (\"the open and free version of coding-kimi-k3\")",
+  "free_condition": "\"the open and free version of coding-kimi-k3\"",
   "limits_stated": {
-   "text": "5 requests/min, 100 requests/day, 1M tokens/day per account",
+   "basis": "official",
+   "per_minute": 5,
+   "per_day": 100,
+   "tokens_day": 1000000,
+   "note": "per account",
    "source": "https://aihubmix.com/model/coding-kimi-k3-free"
   },
   "limits_observed": null,
@@ -3255,9 +3342,9 @@
   "channel": "AIHubMix",
   "type": "router",
   "model_id": "dots-3-note-preview-free",
-  "free_condition": "AIHubMix API key; $0 input and output (served by AtlasCloud)",
+  "free_condition": "served by AtlasCloud",
   "limits_stated": {
-   "text": "unstated",
+   "basis": "unpublished",
    "source": "https://aihubmix.com/model/dots-3-note-preview-free"
   },
   "limits_observed": {
@@ -3288,9 +3375,10 @@
   "channel": "NVIDIA build",
   "type": "router",
   "model_id": "z-ai/glm-5.3",
-  "free_condition": "NVIDIA Developer Program API key; free to prototype, rate-limited",
+  "free_condition": null,
   "limits_stated": {
-   "text": "about 40 requests/min for most models (community-quoted; page is script-rendered)",
+   "basis": "community",
+   "per_minute": 40,
    "source": "https://build.nvidia.com/"
   },
   "limits_observed": {
@@ -3325,9 +3413,10 @@
   "channel": "NVIDIA build",
   "type": "router",
   "model_id": "moonshotai/kimi-k3",
-  "free_condition": "NVIDIA Developer Program API key; free to prototype, rate-limited",
+  "free_condition": null,
   "limits_stated": {
-   "text": "about 40 requests/min for most models (community-quoted; page is script-rendered)",
+   "basis": "community",
+   "per_minute": 40,
    "source": "https://build.nvidia.com/"
   },
   "limits_observed": {
@@ -3362,9 +3451,10 @@
   "channel": "NVIDIA build",
   "type": "router",
   "model_id": "deepseek-ai/deepseek-v4.1-flash",
-  "free_condition": "NVIDIA Developer Program API key; free to prototype, rate-limited",
+  "free_condition": null,
   "limits_stated": {
-   "text": "about 40 requests/min for most models (community-quoted; page is script-rendered)",
+   "basis": "community",
+   "per_minute": 40,
    "source": "https://build.nvidia.com/"
   },
   "limits_observed": {
@@ -3399,9 +3489,10 @@
   "channel": "NVIDIA build",
   "type": "router",
   "model_id": "nvidia/nemotron-3-super-120b-a12b",
-  "free_condition": "NVIDIA Developer Program API key; free to prototype, rate-limited",
+  "free_condition": null,
   "limits_stated": {
-   "text": "about 40 requests/min for most models (community-quoted; page is script-rendered)",
+   "basis": "community",
+   "per_minute": 40,
    "source": "https://build.nvidia.com/"
   },
   "limits_observed": {

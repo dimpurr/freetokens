@@ -293,6 +293,24 @@
         "label": "status page: 0% uptime",
         "help": "The channel's own status page showed 0% uptime"
       }
+    },
+    "limit_basis": {
+      "official": {
+        "label": "published",
+        "help": "The channel publishes this limit"
+      },
+      "community": {
+        "label": "community readout",
+        "help": "Not published by the channel; numbers reported by users"
+      },
+      "unpublished": {
+        "label": "not published",
+        "help": "The channel does not publish a number"
+      },
+      "not_checked": {
+        "label": "not checked",
+        "help": "We have not looked for a published limit yet"
+      }
     }
   },
   "tables": {

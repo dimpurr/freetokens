@@ -100,7 +100,7 @@ def screen():
             continue
         m = models[l["model"]]
         s = m["aa_index"].get("value") or (est.get(m["id"], {}).get("center") if est.get(m["id"], {}).get("status") == "ok" else None)
-        judged = l.get("limits_observed") or "too few for agent use" in (l.get("limits_stated") or {}).get("text", "")
+        judged = l.get("limits_observed") or ((l.get("limits_stated") or {}).get("per_day") or 10**9) < 100  # under 100 a day is too few for agent use
         if s and s >= POOL_BAR and not judged:
             out.append((s, m["name"], l["channel"], l["status"]))
     return sorted(out, reverse=True)

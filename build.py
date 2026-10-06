@@ -162,9 +162,15 @@ def validate(lanes, events, models):
             errs.append(f"{w}: volume needs tier (taste / daily / bulk) and basis (where the number comes from)")
         if "region" in l and not (isinstance(l["region"], str) and re.fullmatch(r"[A-Z]{2}(, ?[A-Z]{2})*", l["region"])):
             errs.append(f"{w}: region must be ISO country codes like 'US' or 'US, CA' (or leave it out for worldwide)")
-        for f in ("limits_stated",):
-            if l[f] is not None and not l[f].get("text"):
-                errs.append(f"{w}: {f}.text is required")
+        ls = l["limits_stated"]
+        if set(ls) - {"basis", "per_day", "per_minute", "hours_day", "tokens_day", "note", "source"}:
+            errs.append(f"{w}: limits_stated has unknown fields {sorted(set(ls) - {'basis', 'per_day', 'per_minute', 'hours_day', 'tokens_day', 'note', 'source'})}")
+        if ls.get("basis") not in VOCAB["limit_basis"]:
+            errs.append(f"{w}: limits_stated.basis must be one of {list(VOCAB['limit_basis'])}")
+        if ls.get("basis") in ("official", "community") and not ls.get("source"):
+            errs.append(f"{w}: a published or community limit needs limits_stated.source")
+        if len(ls.get("note") or "") > 60:
+            errs.append(f"{w}: limits_stated.note is over 60 characters; use the number fields")
     bench, anchors = load_optional("benchmarks", {}), load_optional("anchors", [])
     for c in bench.get("claims", []):
         if c["model"] not in model_ids:
@@ -185,6 +191,8 @@ def validate_channels(channels, lanes):
     names = [c.get("name") for c in channels]
     for c in channels:
         w = f"channels[{c.get('name')}]"
+        if not str(c.get("free_condition") or "").strip():
+            errs.append(f"{w}: free_condition is required (how its lanes are free, said once for the channel)")
         for f in spec["required"]:
             if f not in c:
                 errs.append(f"{w}: missing field {f!r}")
@@ -364,6 +372,15 @@ def md_soon(lanes, models, today):
     return md_table(["Model", "Channel", "Ends", "Confidence"], [r[1] for r in rows])
 
 
+def stated_text(ls):
+    """'50/day · 5/min' or the basis label (README)."""
+    parts = [f"{ls['per_day']}/day" if ls.get("per_day") else "", f"{ls['per_minute']}/min" if ls.get("per_minute") else "",
+             f"{ls['hours_day']} h/day" if ls.get("hours_day") else "", f"{ls['tokens_day'] / 1e6:g}M tokens/day" if ls.get("tokens_day") else ""]
+    nums = " · ".join(p for p in parts if p)
+    head = ("≈" + nums if ls["basis"] == "community" else nums) if nums else label("limit_basis", ls["basis"])
+    return head + (f" ({ls['note']})" if ls.get("note") else "")
+
+
 def obs_text(lo):
     """Plain words for a structured 'Tested by us' record (README)."""
     parts = [label("reach", lo["reach"])] if lo.get("reach") else []
@@ -376,6 +393,7 @@ def obs_text(lo):
 
 def md_lanes(lanes, models):
     mname = {m["id"]: m["name"] for m in models}
+    chan_cond = {c["name"]: c.get("free_condition") for c in load_optional("channels", [])}
     rows = []
     for l in lanes:
         ls = l["limits_stated"]
@@ -384,8 +402,8 @@ def md_lanes(lanes, models):
         rows.append([
             mname[l["model"]], l["channel"], label("channel_type", l["type"]),
             f"`{l['model_id']}`" if l["model_id"] != "not recorded" else "not recorded",
-            l["free_condition"],
-            link(ls["text"], ls.get("source")),
+            "; ".join(x for x in (chan_cond.get(l["channel"]), l["free_condition"]) if x),
+            link(stated_text(ls), ls.get("source")),
             f"{obs_text(lo)} ({lo['date']})" if lo else "not measured",
             fmt_date(s["date"]) if s.get("date") else s.get("note"),
             ends_text(l),

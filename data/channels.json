@@ -31,7 +31,8 @@
     "label": "own checks, Oct 6: blocked from one network, working from another",
     "url": null
    }
-  }
+  },
+  "free_condition": "Inside the OpenCode app, no account; the raw API refuses free models (403 FreeTierError)"
  },
  {
   "name": "Freebuff",
@@ -60,7 +61,8 @@
   "links": {
    "site": "https://freebuff.com",
    "models": "https://freebuff.com"
-  }
+  },
+  "free_condition": "Freebuff app (CLI, desktop, web), no account for the CLI; 150 Freebucks a day shared across its free models, refilled at midnight"
  },
  {
   "name": "Kilo Code",
@@ -89,7 +91,8 @@
   "links": {
    "site": "https://kilo.ai",
    "models": "https://kilo.ai/models"
-  }
+  },
+  "free_condition": "Kilo account; $0 per token on Kilo's model list"
  },
  {
   "name": "OpenRouter",
@@ -120,7 +123,8 @@
   "links": {
    "site": "https://openrouter.ai",
    "models": "https://openrouter.ai/models?max_price=0"
-  }
+  },
+  "free_condition": "OpenRouter account and API key; models marked :free cost $0"
  },
  {
   "name": "Letta",
@@ -147,7 +151,8 @@
   "links": {
    "site": "https://www.letta.com",
    "models": "https://docs.letta.com/pricing/"
-  }
+  },
+  "free_condition": "Letta Free plan, inside the Letta app, CLI or web app; counts toward the free tier's \"standard model requests\""
  },
  {
   "name": "Command Code",
@@ -180,7 +185,8 @@
   "links": {
    "site": "https://commandcode.ai",
    "models": "https://commandcode.ai/models"
-  }
+  },
+  "free_condition": "Go plan ($1/month) or higher; the free model costs no credits \"while it lasts\""
  },
  {
   "name": "OpenCode Go",
@@ -211,7 +217,8 @@
   "links": {
    "site": "https://opencode.ai/go",
    "models": "https://opencode.ai/docs/go/"
-  }
+  },
+  "free_condition": "OpenCode Go plan; free models don't use the plan's quota"
  },
  {
   "name": "Cline",
@@ -240,7 +247,8 @@
   "links": {
    "site": "https://cline.bot",
    "models": "https://docs.cline.bot/getting-started/free-models"
-  }
+  },
+  "free_condition": "Cline account, inside the Cline CLI or IDE extension; not through the Cline API"
  },
  {
   "name": "Z.ai",
@@ -269,7 +277,8 @@
   "links": {
    "site": "https://z.ai",
    "models": "https://docs.z.ai/guides/overview/pricing"
-  }
+  },
+  "free_condition": "Z.ai account and API key; $0 models"
  },
  {
   "name": "Zhipu BigModel",
@@ -300,7 +309,8 @@
   "links": {
    "site": "https://bigmodel.cn",
    "models": "https://docs.bigmodel.cn/cn/guide/start/pricing"
-  }
+  },
+  "free_condition": "BigModel account (SMS) and API key; models marked 免费"
  },
  {
   "name": "Vercel AI Gateway",
@@ -331,7 +341,8 @@
   "links": {
    "site": "https://vercel.com/ai-gateway",
    "models": "https://vercel.com/ai-gateway/models"
-  }
+  },
+  "free_condition": "Vercel AI Gateway key; models marked Free"
  },
  {
   "name": "SiliconFlow",
@@ -361,7 +372,8 @@
   "links": {
    "site": "https://siliconflow.cn",
    "models": "https://siliconflow.cn/pricing"
-  }
+  },
+  "free_condition": "SiliconFlow account and API key; price 0 within fixed rate limits"
  },
  {
   "name": "Google AI Studio",
@@ -391,7 +403,8 @@
   "links": {
    "site": "https://aistudio.google.com",
    "models": "https://ai.google.dev/gemini-api/docs/pricing"
-  }
+  },
+  "free_condition": "Gemini API key from a project without billing; free-tier limits per project, reset at midnight Pacific; UK / EEA / Swiss users get the paid-tier data terms"
  },
  {
   "name": "Qoder",
@@ -418,7 +431,8 @@
   "links": {
    "site": "https://qoder.com",
    "models": "https://docs.qoder.com/zh/events/flashoffer"
-  }
+  },
+  "free_condition": "Qoder international personal account, inside Qoder (IDE / CLI): billing multiplier 0.0× during the promotion, no credits used"
  },
  {
   "name": "AIHubMix",
@@ -447,7 +461,8 @@
   "links": {
    "site": "https://aihubmix.com",
    "models": "https://aihubmix.com/models"
-  }
+  },
+  "free_condition": "AIHubMix API key; $0 input and output"
  },
  {
   "name": "NVIDIA build",
@@ -476,6 +491,7 @@
   "links": {
    "site": "https://build.nvidia.com",
    "models": "https://build.nvidia.com/models"
-  }
+  },
+  "free_condition": "NVIDIA Developer Program API key; free to prototype, rate-limited"
  }
 ]

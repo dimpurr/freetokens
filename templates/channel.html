@@ -48,6 +48,7 @@ const CL = lanesOn(C);
     <span class="kicker">${esc(lab("channel_type", CL[0].type))}</span>
     <h1>${esc(C)}</h1>
     <p class="chlinks">${chLinks(C)}</p>
+    ${CH[C] && CH[C].free_condition ? `<p class="chcond"><b>Free if:</b> ${esc(CH[C].free_condition)}</p>` : ""}
     ${CH[C] ? `<p class="costline">To start: ${costHTML(C)} <span class="muted">${esc(CH[C].entry.note)}</span></p><p class="costline">Use it: ${accessHTML(CH[C].access)}</p>` : ""}
     <div class="stats">
       ${stat("Free now", `${CL.filter(isFree).length} of ${CL.length}`, "models")}
@@ -86,7 +87,7 @@ $("details").innerHTML = CL.map((l) => {
   return `<div class="detail" data-lane="${l.id}"><h3>${mlink(l.model)} ${statusHTML(l.status)}<span class="usemarks">${useMarks(l)}</span></h3><dl>
     ${row(`${I.bolt()} Tested by us`, `${measuredHTML(l)}`)}
     ${row("Model ID", idHTML(l))}
-    ${row("Free condition", esc(l.free_condition))}
+    ${row("Free condition", esc(conditionOf(l)))}
     ${row("Limit (stated)", limitHTML(l))}
     ${row("Started", l.started.date ? whenLink(l.started.date, startEvent(l)) : `<span class="muted">${esc(l.started.note)}</span>`)}
     ${row("End", `<b>${esc(e.main)}</b> ${e.sub}${l.ends.note ? `<span class="sub">${esc(l.ends.note)}</span>` : ""}`)}

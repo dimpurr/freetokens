@@ -90,7 +90,7 @@ $("details").innerHTML = ML.map((l) => {
     ${row("Model ID", idHTML(l))}
     ${row("To start", `${costHTML(l.channel)} <span class="muted">${esc(CH[l.channel] ? CH[l.channel].entry.note : "")}</span>`)}
     ${row("Use it", accessHTML(accessOf(l)))}
-    ${row("Free condition", esc(l.free_condition))}
+    ${row("Free condition", esc(conditionOf(l)))}
     ${row("Limit (stated)", limitHTML(l))}
     ${row("Started", l.started.date ? whenLink(l.started.date, startEvent(l)) : `<span class="muted">${esc(l.started.note)}</span>`)}
     ${row("End", `<b>${esc(e.main)}</b> ${e.sub}${l.ends.note ? `<span class="sub">${esc(l.ends.note)}</span>` : ""}`)}
