@@ -281,5 +281,110 @@
     "label": "Cline terms (2025-09-25): no \"automated means … that sends more request messages … than a human can reasonably produce\"; free models only in the extension and CLI"
    }
   }
+ },
+ {
+  "name": "Z.ai",
+  "entry": {
+   "kind": "account",
+   "usd": null,
+   "period": null,
+   "note": "Free GLM Flash models with a Z.ai account, no card"
+  },
+  "source": {
+   "url": "https://docs.z.ai/guides/overview/pricing",
+   "label": "Z.ai pricing"
+  },
+  "checked": "2026-10-06",
+  "access": {
+   "form": "api",
+   "protocols": [
+    "openai_chat"
+   ],
+   "rules": [],
+   "source": {
+    "url": "https://docs.z.ai/guides/overview/pricing",
+    "label": "Z.ai docs"
+   }
+  }
+ },
+ {
+  "name": "Zhipu BigModel",
+  "entry": {
+   "kind": "account",
+   "usd": null,
+   "period": null,
+   "note": "Account by mobile number + SMS (overseas numbers accepted), no card"
+  },
+  "source": {
+   "url": "https://docs.bigmodel.cn/cn/guide/start/pricing",
+   "label": "BigModel pricing"
+  },
+  "checked": "2026-10-06",
+  "access": {
+   "form": "api",
+   "protocols": [
+    "openai_chat",
+    "openai_responses",
+    "anthropic_messages"
+   ],
+   "rules": [],
+   "source": {
+    "url": "https://docs.bigmodel.cn/cn/guide/start/pricing",
+    "label": "BigModel docs"
+   }
+  }
+ },
+ {
+  "name": "Vercel AI Gateway",
+  "entry": {
+   "kind": "account",
+   "usd": null,
+   "period": null,
+   "note": "Vercel account; free models plus $5/month gateway credit per team; a payment method may be required before use (\"customer_verification_required\")"
+  },
+  "source": {
+   "url": "https://vercel.com/docs/ai-gateway/faq",
+   "label": "Vercel AI Gateway docs"
+  },
+  "checked": "2026-10-06",
+  "access": {
+   "form": "api",
+   "protocols": [
+    "openai_chat",
+    "openai_responses",
+    "anthropic_messages"
+   ],
+   "rules": [],
+   "source": {
+    "url": "https://vercel.com/docs/ai-gateway/faq",
+    "label": "Vercel AI Gateway docs"
+   }
+  }
+ },
+ {
+  "name": "SiliconFlow",
+  "entry": {
+   "kind": "account",
+   "usd": null,
+   "period": null,
+   "note": "SiliconFlow account; the China site (siliconflow.cn) requires real-name verification for free models"
+  },
+  "source": {
+   "url": "https://siliconflow.cn/pricing",
+   "label": "SiliconFlow pricing"
+  },
+  "checked": "2026-10-06",
+  "access": {
+   "form": "api",
+   "protocols": [
+    "openai_chat",
+    "anthropic_messages"
+   ],
+   "rules": [],
+   "source": {
+    "url": "https://docs.siliconflow.com/en/legals/terms-of-service",
+    "label": "SiliconFlow docs"
+   }
+  }
  }
 ]

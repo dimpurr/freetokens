@@ -605,5 +605,138 @@
    "url": "https://artificialanalysis.ai/models/gpt-6-1-sol"
   },
   "notes": null
+ },
+ {
+  "id": "glm-4.7-flash",
+  "name": "GLM-4.7-Flash",
+  "maker": "Z.ai",
+  "context": "200K",
+  "image_input": "not_checked",
+  "aa_index": {
+   "value": 15,
+   "date": "2026-10-06",
+   "url": "https://artificialanalysis.ai/models/glm-4-7-flash",
+   "approx": true
+  },
+  "notes": null
+ },
+ {
+  "id": "glm-4.5-flash",
+  "name": "GLM-4.5-Flash",
+  "maker": "Z.ai",
+  "context": "200K",
+  "image_input": "not_checked",
+  "aa_index": {
+   "value": null,
+   "date": "2026-10-06",
+   "note": "not checked"
+  },
+  "notes": null
+ },
+ {
+  "id": "glm-4-flash-250414",
+  "name": "GLM-4-Flash-250414",
+  "maker": "Z.ai",
+  "context": "128K",
+  "image_input": "not_checked",
+  "aa_index": {
+   "value": null,
+   "date": "2026-10-06",
+   "note": "not checked"
+  },
+  "notes": null
+ },
+ {
+  "id": "qwen2.5-7b-instruct",
+  "name": "Qwen2.5 7B Instruct",
+  "maker": "Alibaba (Qwen)",
+  "context": "32K",
+  "image_input": "not_checked",
+  "aa_index": {
+   "value": null,
+   "date": "2026-10-06",
+   "note": "not checked"
+  },
+  "notes": null
+ },
+ {
+  "id": "qwen3-8b",
+  "name": "Qwen3 8B",
+  "maker": "Alibaba (Qwen)",
+  "context": "128K",
+  "image_input": "not_checked",
+  "aa_index": {
+   "value": 7,
+   "date": "2026-10-06",
+   "url": "https://artificialanalysis.ai/models/qwen3-8b-instruct-reasoning",
+   "approx": true
+  },
+  "notes": null
+ },
+ {
+  "id": "qwen3.5-4b",
+  "name": "Qwen3.5 4B",
+  "maker": "Alibaba (Qwen)",
+  "context": "256K",
+  "image_input": "not_checked",
+  "aa_index": {
+   "value": 13,
+   "date": "2026-10-06",
+   "url": "https://artificialanalysis.ai/models/qwen3-5-4b",
+   "approx": true
+  },
+  "notes": null
+ },
+ {
+  "id": "glm-4-9b-0414",
+  "name": "GLM-4 9B 0414",
+  "maker": "Z.ai (THUDM)",
+  "context": "32K",
+  "image_input": "not_checked",
+  "aa_index": {
+   "value": null,
+   "date": "2026-10-06",
+   "note": "not checked"
+  },
+  "notes": null
+ },
+ {
+  "id": "glm-z1-9b-0414",
+  "name": "GLM-Z1 9B 0414",
+  "maker": "Z.ai (THUDM)",
+  "context": "128K",
+  "image_input": "not_checked",
+  "aa_index": {
+   "value": null,
+   "date": "2026-10-06",
+   "note": "not checked"
+  },
+  "notes": null
+ },
+ {
+  "id": "xing4.0-29b",
+  "name": "Xing 4.0 29B",
+  "maker": "XingChen AGI",
+  "context": "256K",
+  "image_input": "not_checked",
+  "aa_index": {
+   "value": null,
+   "date": "2026-10-06",
+   "note": "not checked"
+  },
+  "notes": null
+ },
+ {
+  "id": "deepseek-r1-0528-qwen3-8b",
+  "name": "DeepSeek R1 0528 Qwen3 8B",
+  "maker": "DeepSeek",
+  "context": "128K",
+  "image_input": "not_checked",
+  "aa_index": {
+   "value": null,
+   "date": "2026-10-06",
+   "note": "not checked"
+  },
+  "notes": null
  }
 ]

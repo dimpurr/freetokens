@@ -2562,5 +2562,369 @@
    "method": "listing"
   },
   "region": "US"
+ },
+ {
+  "id": "glm-4.7-flash-zai",
+  "model": "glm-4.7-flash",
+  "channel": "Z.ai",
+  "type": "first_party",
+  "model_id": "glm-4.7-flash",
+  "free_condition": "Z.ai account and API key; $0 model",
+  "limits_stated": {
+   "text": "limits by concurrency per account (numbers only in the console)",
+   "source": "https://docs.z.ai/guides/overview/pricing"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "zero_retention",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "catalogue"
+  }
+ },
+ {
+  "id": "glm-4.5-flash-zai",
+  "model": "glm-4.5-flash",
+  "channel": "Z.ai",
+  "type": "first_party",
+  "model_id": "glm-4.5-flash",
+  "free_condition": "Z.ai account and API key; $0 model",
+  "limits_stated": {
+   "text": "limits by concurrency per account (numbers only in the console)",
+   "source": "https://docs.z.ai/guides/overview/pricing"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "zero_retention",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "catalogue"
+  }
+ },
+ {
+  "id": "glm-4.7-flash-bigmodel",
+  "model": "glm-4.7-flash",
+  "channel": "Zhipu BigModel",
+  "type": "first_party",
+  "model_id": "glm-4.7-flash",
+  "free_condition": "BigModel account (SMS) and API key; 免费 model",
+  "limits_stated": {
+   "text": "limits by concurrency per account",
+   "source": "https://docs.bigmodel.cn/cn/guide/start/pricing"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "may_train",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "catalogue"
+  }
+ },
+ {
+  "id": "glm-4-flash-250414-bigmodel",
+  "model": "glm-4-flash-250414",
+  "channel": "Zhipu BigModel",
+  "type": "first_party",
+  "model_id": "glm-4-flash-250414",
+  "free_condition": "BigModel account (SMS) and API key; 免费 model",
+  "limits_stated": {
+   "text": "limits by concurrency per account",
+   "source": "https://docs.bigmodel.cn/cn/guide/start/pricing"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "may_train",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "catalogue"
+  }
+ },
+ {
+  "id": "ling-3.1-flash-vercel",
+  "model": "ling-3.1-flash",
+  "channel": "Vercel AI Gateway",
+  "type": "router",
+  "model_id": "inclusionai/ling-3.1-flash-free",
+  "free_condition": "Vercel AI Gateway key; \"Ling 3.1 Flash (Free)\"",
+  "limits_stated": {
+   "text": "free tier: lower per-model rate limits (not published)",
+   "source": "https://ai-gateway.vercel.sh/v1/models"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "unstated",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "catalogue"
+  }
+ },
+ {
+  "id": "laguna-s-2.1-vercel",
+  "model": "laguna-s-2.1",
+  "channel": "Vercel AI Gateway",
+  "type": "router",
+  "model_id": "poolside/laguna-s-2.1-free",
+  "free_condition": "Vercel AI Gateway key; \"Laguna S 2.1 Free\"",
+  "limits_stated": {
+   "text": "free tier: lower per-model rate limits (not published)",
+   "source": "https://ai-gateway.vercel.sh/v1/models"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "may_train",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "catalogue"
+  }
+ },
+ {
+  "id": "qwen2.5-7b-instruct-siliconflow",
+  "model": "qwen2.5-7b-instruct",
+  "channel": "SiliconFlow",
+  "type": "router",
+  "model_id": "Qwen/Qwen2.5-7B-Instruct",
+  "free_condition": "SiliconFlow account and API key; price 0 within fixed rate limits (standing free model)",
+  "limits_stated": {
+   "text": "fixed rate limits, not raised by spending",
+   "source": "https://siliconflow.cn/pricing"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "zero_retention",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "catalogue"
+  }
+ },
+ {
+  "id": "qwen3-8b-siliconflow",
+  "model": "qwen3-8b",
+  "channel": "SiliconFlow",
+  "type": "router",
+  "model_id": "Qwen/Qwen3-8B",
+  "free_condition": "SiliconFlow account and API key; price 0 within fixed rate limits (standing free model)",
+  "limits_stated": {
+   "text": "fixed rate limits, not raised by spending",
+   "source": "https://siliconflow.cn/pricing"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "zero_retention",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "catalogue"
+  }
+ },
+ {
+  "id": "qwen3.5-4b-siliconflow",
+  "model": "qwen3.5-4b",
+  "channel": "SiliconFlow",
+  "type": "router",
+  "model_id": "Qwen/Qwen3.5-4B",
+  "free_condition": "SiliconFlow account and API key; price 0 within fixed rate limits (standing free model)",
+  "limits_stated": {
+   "text": "fixed rate limits, not raised by spending",
+   "source": "https://siliconflow.cn/pricing"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "zero_retention",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "catalogue"
+  }
+ },
+ {
+  "id": "glm-4-9b-0414-siliconflow",
+  "model": "glm-4-9b-0414",
+  "channel": "SiliconFlow",
+  "type": "router",
+  "model_id": "THUDM/GLM-4-9B-0414",
+  "free_condition": "SiliconFlow account and API key; price 0 within fixed rate limits (standing free model)",
+  "limits_stated": {
+   "text": "fixed rate limits, not raised by spending",
+   "source": "https://siliconflow.cn/pricing"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "zero_retention",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "catalogue"
+  }
+ },
+ {
+  "id": "glm-z1-9b-0414-siliconflow",
+  "model": "glm-z1-9b-0414",
+  "channel": "SiliconFlow",
+  "type": "router",
+  "model_id": "THUDM/GLM-Z1-9B-0414",
+  "free_condition": "SiliconFlow account and API key; price 0 within fixed rate limits (standing free model)",
+  "limits_stated": {
+   "text": "fixed rate limits, not raised by spending",
+   "source": "https://siliconflow.cn/pricing"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "zero_retention",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "catalogue"
+  }
+ },
+ {
+  "id": "xing4.0-29b-siliconflow",
+  "model": "xing4.0-29b",
+  "channel": "SiliconFlow",
+  "type": "router",
+  "model_id": "XingChenAGI/Xing4.0-29B",
+  "free_condition": "SiliconFlow account and API key; price 0 within fixed rate limits (standing free model)",
+  "limits_stated": {
+   "text": "fixed rate limits, not raised by spending",
+   "source": "https://siliconflow.cn/pricing"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "zero_retention",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "catalogue"
+  }
+ },
+ {
+  "id": "deepseek-r1-0528-qwen3-8b-siliconflow",
+  "model": "deepseek-r1-0528-qwen3-8b",
+  "channel": "SiliconFlow",
+  "type": "router",
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "free_condition": "SiliconFlow account and API key; price 0 within fixed rate limits (standing free model)",
+  "limits_stated": {
+   "text": "fixed rate limits, not raised by spending",
+   "source": "https://siliconflow.cn/pricing"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "zero_retention",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "catalogue"
+  }
  }
 ]

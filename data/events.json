@@ -771,5 +771,62 @@
    "label": "Freebuff",
    "url": "https://freebuff.com/"
   }
+ },
+ {
+  "date": "2026-10-06",
+  "lanes": [
+   "glm-4.7-flash-zai",
+   "glm-4.5-flash-zai"
+  ],
+  "kind": "listed",
+  "text": "Listed at $0 in Z.ai's own catalogue (standing free tier); not called by us yet",
+  "source": {
+   "label": "Z.ai pricing / models",
+   "url": "https://docs.z.ai/guides/overview/pricing"
+  }
+ },
+ {
+  "date": "2026-10-06",
+  "lanes": [
+   "glm-4.7-flash-bigmodel",
+   "glm-4-flash-250414-bigmodel"
+  ],
+  "kind": "listed",
+  "text": "Listed at $0 in Zhipu BigModel's own catalogue (standing free tier); not called by us yet",
+  "source": {
+   "label": "Zhipu BigModel pricing / models",
+   "url": "https://docs.bigmodel.cn/cn/guide/start/pricing"
+  }
+ },
+ {
+  "date": "2026-10-06",
+  "lanes": [
+   "ling-3.1-flash-vercel",
+   "laguna-s-2.1-vercel"
+  ],
+  "kind": "listed",
+  "text": "Listed at $0 in Vercel AI Gateway's own catalogue (standing free tier); not called by us yet",
+  "source": {
+   "label": "Vercel AI Gateway pricing / models",
+   "url": "https://ai-gateway.vercel.sh/v1/models"
+  }
+ },
+ {
+  "date": "2026-10-06",
+  "lanes": [
+   "qwen2.5-7b-instruct-siliconflow",
+   "qwen3-8b-siliconflow",
+   "qwen3.5-4b-siliconflow",
+   "glm-4-9b-0414-siliconflow",
+   "glm-z1-9b-0414-siliconflow",
+   "xing4.0-29b-siliconflow",
+   "deepseek-r1-0528-qwen3-8b-siliconflow"
+  ],
+  "kind": "listed",
+  "text": "Listed at $0 in SiliconFlow's own catalogue (standing free tier); not called by us yet",
+  "source": {
+   "label": "SiliconFlow pricing / models",
+   "url": "https://siliconflow.cn/pricing"
+  }
  }
 ]
