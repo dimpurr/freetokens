@@ -406,7 +406,10 @@
   "limits_stated": {
    "text": "unstated"
   },
-  "limits_observed": null,
+  "limits_observed": {
+   "text": "10 parallel agent runs OK (92 s), no 429; malformed tool calls on retrieval-style tasks",
+   "date": "2026-10-06"
+  },
   "started": {
    "date": "2026-09-07"
   },
@@ -419,7 +422,7 @@
   "status": "live",
   "checked": {
    "date": "2026-10-06",
-   "method": "api_call"
+   "method": "agent_run"
   }
  },
  {
@@ -2690,7 +2693,7 @@
    "source": "https://ai-gateway.vercel.sh/v1/models"
   },
   "limits_observed": {
-   "text": "5 requests/min per team (per region), stated in the 429; 4 of 10 parallel calls OK",
+   "text": "paid tier (credits bought): 5/min gateway cap gone, but upstream returned 503 for 21 of 24 calls at 3–5 parallel; cost 0 on success",
    "date": "2026-10-06"
   },
   "started": {

@@ -870,5 +870,17 @@
    "label": "own check",
    "url": null
   }
+ },
+ {
+  "date": "2026-10-06",
+  "lanes": [
+   "ling-3.1-flash-vercel"
+  ],
+  "kind": "limit_changed",
+  "text": "After buying AI Gateway credits (paid tier removes Vercel's per-model limit) the free Ling 3.1 Flash still costs $0 but the Novita upstream returned 503 for most calls: 10/10 once, then mostly 503 at 3–15 parallel",
+  "source": {
+   "label": "own check",
+   "url": null
+  }
  }
 ]
