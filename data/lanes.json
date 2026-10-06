@@ -413,10 +413,10 @@
    "confidence": "none"
   },
   "data_policy": "not_checked",
-  "status": "listed",
+  "status": "live",
   "checked": {
-   "date": "2026-10-05",
-   "method": "listing"
+   "date": "2026-10-06",
+   "method": "api_call"
   }
  },
  {
@@ -543,10 +543,10 @@
    "confidence": "none"
   },
   "data_policy": "not_checked",
-  "status": "listed",
+  "status": "live",
   "checked": {
-   "date": "2026-10-05",
-   "method": "listing"
+   "date": "2026-10-06",
+   "method": "api_call"
   }
  },
  {
@@ -569,10 +569,10 @@
    "confidence": "none"
   },
   "data_policy": "not_checked",
-  "status": "listed",
+  "status": "live",
   "checked": {
-   "date": "2026-10-05",
-   "method": "listing"
+   "date": "2026-10-06",
+   "method": "api_call"
   }
  },
  {
@@ -647,10 +647,10 @@
    "confidence": "none"
   },
   "data_policy": "not_checked",
-  "status": "listed",
+  "status": "live",
   "checked": {
-   "date": "2026-10-05",
-   "method": "listing"
+   "date": "2026-10-06",
+   "method": "api_call"
   }
  },
  {
@@ -751,10 +751,10 @@
    "confidence": "none"
   },
   "data_policy": "not_checked",
-  "status": "listed",
+  "status": "live",
   "checked": {
-   "date": "2026-10-05",
-   "method": "listing"
+   "date": "2026-10-06",
+   "method": "api_call"
   }
  },
  {
@@ -890,5 +890,251 @@
    "confidence": "none"
   },
   "data_policy": "may_train"
+ },
+ {
+  "id": "apodex-1.1-mini-kilo",
+  "model": "apodex-1.1-mini",
+  "channel": "Kilo Code",
+  "type": "agent_tool",
+  "model_id": "apodex/apodex-1.1-mini:free",
+  "free_condition": "Kilo CLI or extension; works without signing in (Kilo Gateway \":free\" model)",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "live",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "api_call"
+  }
+ },
+ {
+  "id": "north-mini-code-kilo",
+  "model": "north-mini-code",
+  "channel": "Kilo Code",
+  "type": "agent_tool",
+  "model_id": "cohere/north-mini-code:free",
+  "free_condition": "Kilo CLI or extension; works without signing in (Kilo Gateway \":free\" model)",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "live",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "api_call"
+  }
+ },
+ {
+  "id": "ling-3.0-flash-sante-kilo",
+  "model": "ling-3.0-flash-sante",
+  "channel": "Kilo Code",
+  "type": "agent_tool",
+  "model_id": "inclusionai/ling-3.0-flash-sante:free",
+  "free_condition": "Kilo CLI or extension; works without signing in (Kilo Gateway \":free\" model)",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "live",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "api_call"
+  }
+ },
+ {
+  "id": "lfm-2.5-2.6b-kilo",
+  "model": "lfm-2.5-2.6b",
+  "channel": "Kilo Code",
+  "type": "agent_tool",
+  "model_id": "liquid/lfm-2.5-2.6b:free",
+  "free_condition": "Kilo CLI or extension; works without signing in (Kilo Gateway \":free\" model)",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "live",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "api_call"
+  }
+ },
+ {
+  "id": "nemotron-3-nano-omni-30b-a3b-kilo",
+  "model": "nemotron-3-nano-omni-30b-a3b",
+  "channel": "Kilo Code",
+  "type": "agent_tool",
+  "model_id": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+  "free_condition": "Kilo CLI or extension; works without signing in (Kilo Gateway \":free\" model)",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "live",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "api_call"
+  }
+ },
+ {
+  "id": "nemotron-3.5-lightning-kilo",
+  "model": "nemotron-3.5-lightning",
+  "channel": "Kilo Code",
+  "type": "agent_tool",
+  "model_id": "nvidia/nemotron-3.5-lightning:free",
+  "free_condition": "Kilo CLI or extension; works without signing in (Kilo Gateway \":free\" model)",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "live",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "api_call"
+  }
+ },
+ {
+  "id": "laguna-xs-2.1-kilo",
+  "model": "laguna-xs-2.1",
+  "channel": "Kilo Code",
+  "type": "agent_tool",
+  "model_id": "poolside/laguna-xs-2.1:free",
+  "free_condition": "Kilo CLI or extension; works without signing in (Kilo Gateway \":free\" model)",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "live",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "api_call"
+  }
+ },
+ {
+  "id": "step-3.7-flash-kilo",
+  "model": "step-3.7-flash",
+  "channel": "Kilo Code",
+  "type": "agent_tool",
+  "model_id": "stepfun/step-3.7-flash:free",
+  "free_condition": "Kilo CLI or extension; works without signing in (Kilo Gateway \":free\" model)",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "live",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "api_call"
+  }
+ },
+ {
+  "id": "inkling-small-kilo",
+  "model": "inkling-small",
+  "channel": "Kilo Code",
+  "type": "agent_tool",
+  "model_id": "thinkingmachines/inkling-small:free",
+  "free_condition": "Kilo CLI or extension; works without signing in (Kilo Gateway \":free\" model)",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": {
+   "text": "daily cap reached on the first call (cap shared across users; credits don't lift it)",
+   "date": "2026-10-06"
+  },
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "api_call"
+  }
  }
 ]

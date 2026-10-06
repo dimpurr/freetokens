@@ -284,5 +284,122 @@
    "note": "not checked"
   },
   "notes": null
+ },
+ {
+  "id": "apodex-1.1-mini",
+  "name": "Apodex 1.1 Mini",
+  "maker": "Apodex",
+  "context": "not checked",
+  "image_input": "not_checked",
+  "aa_index": {
+   "value": null,
+   "date": "2026-10-06",
+   "note": "not checked"
+  },
+  "notes": null
+ },
+ {
+  "id": "north-mini-code",
+  "name": "North Mini Code",
+  "maker": "Cohere",
+  "context": "not checked",
+  "image_input": "not_checked",
+  "aa_index": {
+   "value": null,
+   "date": "2026-10-06",
+   "note": "not checked"
+  },
+  "notes": null
+ },
+ {
+  "id": "ling-3.0-flash-sante",
+  "name": "Ling 3.0 Flash Sante",
+  "maker": "inclusionAI (Ant)",
+  "context": "not checked",
+  "image_input": "not_checked",
+  "aa_index": {
+   "value": null,
+   "date": "2026-10-06",
+   "note": "not checked"
+  },
+  "notes": null
+ },
+ {
+  "id": "lfm-2.5-2.6b",
+  "name": "LFM 2.5 2.6B",
+  "maker": "Liquid AI",
+  "context": "not checked",
+  "image_input": "not_checked",
+  "aa_index": {
+   "value": null,
+   "date": "2026-10-06",
+   "note": "not checked"
+  },
+  "notes": null
+ },
+ {
+  "id": "nemotron-3-nano-omni-30b-a3b",
+  "name": "Nemotron 3 Nano Omni 30B A3B (reasoning)",
+  "maker": "NVIDIA",
+  "context": "not checked",
+  "image_input": "not_checked",
+  "aa_index": {
+   "value": null,
+   "date": "2026-10-06",
+   "note": "not checked"
+  },
+  "notes": null
+ },
+ {
+  "id": "nemotron-3.5-lightning",
+  "name": "Nemotron 3.5 Lightning",
+  "maker": "NVIDIA",
+  "context": "not checked",
+  "image_input": "not_checked",
+  "aa_index": {
+   "value": null,
+   "date": "2026-10-06",
+   "note": "not checked"
+  },
+  "notes": null
+ },
+ {
+  "id": "laguna-xs-2.1",
+  "name": "Laguna XS 2.1",
+  "maker": "Poolside",
+  "context": "not checked",
+  "image_input": "not_checked",
+  "aa_index": {
+   "value": null,
+   "date": "2026-10-06",
+   "note": "not checked"
+  },
+  "notes": null
+ },
+ {
+  "id": "step-3.7-flash",
+  "name": "Step 3.7 Flash",
+  "maker": "StepFun",
+  "context": "not checked",
+  "image_input": "not_checked",
+  "aa_index": {
+   "value": null,
+   "date": "2026-10-06",
+   "note": "not checked"
+  },
+  "notes": null
+ },
+ {
+  "id": "inkling-small",
+  "name": "Inkling Small",
+  "maker": "Thinking Machines",
+  "context": "not checked",
+  "image_input": "not_checked",
+  "aa_index": {
+   "value": null,
+   "date": "2026-10-06",
+   "note": "not checked"
+  },
+  "notes": null
  }
 ]

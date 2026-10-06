@@ -452,5 +452,41 @@
    "label": "own check",
    "url": null
   }
+ },
+ {
+  "date": "2026-10-06",
+  "lanes": [
+   "dots-3-note-preview-kilo",
+   "laguna-s-2.1-kilo",
+   "ling-3.1-flash-kilo",
+   "nemotron-3-super-120b-a12b-kilo",
+   "nemotron-3-ultra-kilo",
+   "apodex-1.1-mini-kilo",
+   "north-mini-code-kilo",
+   "ling-3.0-flash-sante-kilo",
+   "lfm-2.5-2.6b-kilo",
+   "nemotron-3-nano-omni-30b-a3b-kilo",
+   "nemotron-3.5-lightning-kilo",
+   "laguna-xs-2.1-kilo",
+   "step-3.7-flash-kilo"
+  ],
+  "kind": "available",
+  "text": "Answered a test prompt through the Kilo CLI (7.8.3, roll-call) without signing in",
+  "source": {
+   "label": "own check",
+   "url": null
+  }
+ },
+ {
+  "date": "2026-10-06",
+  "lanes": [
+   "inkling-small-kilo"
+  ],
+  "kind": "limit_changed",
+  "text": "Listed free in the Kilo CLI; the first test call hit \"Daily limit reached … Credits don't affect this cap\"",
+  "source": {
+   "label": "own check",
+   "url": null
+  }
  }
 ]
