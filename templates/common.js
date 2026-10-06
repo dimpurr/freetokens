@@ -98,7 +98,12 @@ function endInfo(l) {
 }
 
 /* chips: a channel (on model pages) or a model (on channel pages) with its state */
-const chipTo = (href, text, l) => `<a class="chip" href="${href}">${statusHTML(l.status, text)}<small>${esc(endInfo(l).main)}</small></a>`;
+/* the state in words, so a chip never relies on colour alone: "free · ends in 4 days", "listed free · no end announced" */
+const stateWords = (l) => {
+  const main = endInfo(l).main;
+  return l.status === "live" ? `free · ${main}` : l.status === "listed" ? `listed free · ${main}` : main;
+};
+const chipTo = (href, text, l) => `<a class="chip" href="${href}">${statusHTML(l.status, text)}<small>${esc(stateWords(l))}</small></a>`;
 const channelChip = (l) => chipTo(channelHref(l.channel), l.channel, l);
 const modelChip = (l) => chipTo(modelHref(l.model), models[l.model].name, l);
 
@@ -126,15 +131,20 @@ const limitHTML = (l) => {
 };
 /* AA: official label (links to AA) · EST band with evidence (ADR-004/006) · or not ranked */
 const aaValue = (m) => m.aa_index.value != null ? m.aa_index.value : (m.est && m.est.status === "ok" ? m.est.center : null);
-const officialAA = () => D.models.filter((x) => x.aa_index.value != null).map((x) => x.aa_index.value).sort((a, b) => b - a);
+/* one ranking for every page: official AA = a point, EST = its band. A rank is a range wherever bands overlap
+   (never a single #n for an estimate, ADR-006). Order: centre desc, official before EST, then name. */
+const isEst = (m) => m.aa_index.value == null && !!(m.est && m.est.status === "ok");
+const band = (m) => m.aa_index.value != null ? [m.aa_index.value, m.aa_index.value] : isEst(m) ? [m.est.low, m.est.high] : null;
+const scored = D.models.filter(band).sort((a, b) => aaValue(b) - aaValue(a) || isEst(a) - isEst(b) || a.name.localeCompare(b.name));
+function rankOf(m) {
+  const me = band(m); if (!me) return null;
+  const others = scored.filter((o) => o !== m).map(band);
+  return { a: 1 + others.filter(([lo]) => lo > me[1]).length, b: 1 + others.filter(([, hi]) => hi > me[0]).length, est: isEst(m) };
+}
+const rankLabel = (r) => `${r.est ? "≈" : ""}#${r.a}${r.b > r.a ? "–" + r.b : ""}`;
 function rankText(m) {
-  const v = officialAA();
-  if (m.aa_index.value != null) return `#${v.indexOf(m.aa_index.value) + 1} of ${v.length} ranked here`;
-  if (m.est && m.est.status === "ok") {
-    const a = 1 + v.filter((x) => x > m.est.high).length, b = 1 + v.filter((x) => x > m.est.low).length;
-    return `about #${a}–${b} among ${v.length} ranked here (estimate)`;
-  }
-  return "";
+  const r = rankOf(m); if (!r) return "";
+  return `${r.est ? "about " : ""}${rankLabel(r).replace("≈", "")} of ${scored.length} scored here${r.est ? " (estimate)" : ""}`;
 }
 function estPanel(m) {
   const e = m.est;
@@ -270,3 +280,5 @@ document.addEventListener("click", (ev) => {
 });
 
 const stamp = () => `<span>data as of <b>${esc(absDate(D.built))}</b></span><span>today <b>${esc(absDate(new Date(now).toISOString().slice(0, 10)))}</b> UTC</span>`;
+/* P3: catalogue size + freshness in one line (home) */
+const metaStrip = () => `<span><b>${D.models.length}</b> models</span><span><b>${D.lanes.length}</b> lanes · <b>${D.lanes.filter(isFree).length}</b> free now</span><span><b>${channels.length}</b> channels</span><span><b>${D.events.length}</b> events</span>` + stamp();

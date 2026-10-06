@@ -38,6 +38,8 @@ Partial question sets (for example 60 of the GPQA questions) are listed, but not
 **How EST is ranked:**
 - EST models sort alongside official AA scores by the middle of their band.
 - They never get a single rank number, only a range such as "about #10–15".
+- A model with an official score can also get a range (for example #3–4) when an EST band overlaps its score, because we can't tell which of the two is higher. Ranks count only the models scored on this site.
+- The home page shows the top 10 scored models first; "Show all" reveals the rest, including the models with no AA score and too little evidence for an estimate.
 - When Artificial Analysis publishes an official score, the EST is replaced, and we record whether the official score fell inside the band.
 
 Tap the ⓘ on any EST badge to see every benchmark used, its source, and why any excluded score was left out.
