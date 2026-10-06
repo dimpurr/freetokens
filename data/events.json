@@ -857,5 +857,18 @@
    "label": "own check",
    "url": null
   }
+ },
+ {
+  "date": "2026-10-06",
+  "lanes": [
+   "ling-3.1-flash-vercel",
+   "laguna-s-2.1-vercel"
+  ],
+  "kind": "limit_changed",
+  "text": "Tested with a Vercel AI Gateway key: Ling 3.1 Flash (Free) answers but is capped at 5 requests per minute per team (per region); Laguna S 2.1 Free returned 503",
+  "source": {
+   "label": "own check",
+   "url": null
+  }
  }
 ]

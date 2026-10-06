@@ -2686,7 +2686,10 @@
    "text": "free tier: lower per-model rate limits (not published)",
    "source": "https://ai-gateway.vercel.sh/v1/models"
   },
-  "limits_observed": null,
+  "limits_observed": {
+   "text": "5 requests/min per team (per region), stated in the 429; 4 of 10 parallel calls OK",
+   "date": "2026-10-06"
+  },
   "started": {
    "date": null,
    "note": "not recorded; first seen 2026-10-06"
@@ -2697,10 +2700,10 @@
    "confidence": "none"
   },
   "data_policy": "unstated",
-  "status": "listed",
+  "status": "live",
   "checked": {
    "date": "2026-10-06",
-   "method": "catalogue"
+   "method": "api_call"
   }
  },
  {
@@ -2714,7 +2717,10 @@
    "text": "free tier: lower per-model rate limits (not published)",
    "source": "https://ai-gateway.vercel.sh/v1/models"
   },
-  "limits_observed": null,
+  "limits_observed": {
+   "text": "503 \"Service temporarily unavailable\" on our test call",
+   "date": "2026-10-06"
+  },
   "started": {
    "date": null,
    "note": "not recorded; first seen 2026-10-06"
@@ -2728,7 +2734,7 @@
   "status": "listed",
   "checked": {
    "date": "2026-10-06",
-   "method": "catalogue"
+   "method": "api_call"
   }
  },
  {
