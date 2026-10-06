@@ -241,7 +241,7 @@
    "text": "unstated"
   },
   "limits_observed": {
-   "text": "10 parallel agent runs worked in the morning; by evening 3 of 3 calls got 'Rate limit exceeded' after 3 retries; still in the Zen catalogue",
+   "text": "rate limit appears to be per IP: after heavy use from one IP, 29 of 30 runs got 'Rate limit exceeded', while a call from another IP answered in 23 s",
    "date": "2026-10-06"
   },
   "started": {
@@ -255,7 +255,7 @@
    "note": "docs say \"limited time\", no date"
   },
   "data_policy": "zero_retention",
-  "status": "listed",
+  "status": "live",
   "checked": {
    "date": "2026-10-06",
    "method": "api_call"
