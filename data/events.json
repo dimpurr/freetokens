@@ -882,5 +882,17 @@
    "label": "own check",
    "url": null
   }
+ },
+ {
+  "date": "2026-10-06T05:37Z",
+  "lanes": [
+   "bunny-go"
+  ],
+  "kind": "ended",
+  "text": "Calls through OpenCode Go return \"Unexpected server error\" from 05:37 UTC, and space-bunny-free is no longer in OpenCode Go's model list (/zen/go/v1/models, checked 2026-10-06). Still free on OpenCode Zen",
+  "source": {
+   "label": "OpenCode Go models",
+   "url": "https://opencode.ai/zen/go/v1/models"
+  }
  }
 ]

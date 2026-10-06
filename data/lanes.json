@@ -113,10 +113,10 @@
    "note": "\"next week\" passed; still answering on 2026-10-05 19:06 UTC, after the Command Code channel ended"
   },
   "data_policy": "zero_retention",
-  "status": "overdue",
+  "status": "ended",
   "checked": {
-   "date": "2026-10-05",
-   "method": "api_call"
+   "date": "2026-10-06",
+   "method": "catalogue"
   }
  },
  {
