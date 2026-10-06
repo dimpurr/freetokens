@@ -40,8 +40,8 @@
    "text": "unstated"
   },
   "limits_observed": {
-   "text": "15 parallel agent runs OK",
-   "date": "2026-10-04"
+   "text": "test call timed out after 120 s (Oct 6)",
+   "date": "2026-10-06"
   },
   "started": {
    "date": "2026-09-21T21:19Z"
@@ -55,7 +55,7 @@
   "data_policy": "may_train",
   "status": "overdue",
   "checked": {
-   "date": "2026-10-04",
+   "date": "2026-10-06",
    "method": "agent_run"
   }
  },
@@ -200,8 +200,8 @@
   "data_policy": "may_train",
   "status": "unavailable",
   "checked": {
-   "date": "2026-10-04",
-   "method": "catalogue"
+   "date": "2026-10-06",
+   "method": "agent_run"
   }
  },
  {
@@ -252,10 +252,10 @@
    "note": "docs say \"limited time\", no date"
   },
   "data_policy": "not_checked",
-  "status": "listed",
+  "status": "live",
   "checked": {
-   "date": "2026-10-05",
-   "method": "listing"
+   "date": "2026-10-06",
+   "method": "agent_run"
   }
  },
  {
@@ -1554,6 +1554,750 @@
    "confidence": "none"
   },
   "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "agent_run"
+  }
+ },
+ {
+  "id": "ling-3.1-flash-or",
+  "model": "ling-3.1-flash",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "inclusionai/ling-3.1-flash",
+  "free_condition": "OpenRouter account and API key; $0 input and output (free plan: 50 requests/day)",
+  "limits_stated": {
+   "text": "50 requests/day on the free plan",
+   "source": "https://openrouter.ai/pricing"
+  },
+  "limits_observed": {
+   "text": "429 upstream rate limit on our test call",
+   "date": "2026-10-06"
+  },
+  "started": {
+   "date": "2026-10-02"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "api_call"
+  }
+ },
+ {
+  "id": "apodex-1.1-mini-or",
+  "model": "apodex-1.1-mini",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "apodex/apodex-1.1-mini:free",
+  "free_condition": "OpenRouter account and API key; $0 input and output (free plan: 50 requests/day)",
+  "limits_stated": {
+   "text": "50 requests/day on the free plan",
+   "source": "https://openrouter.ai/pricing"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-10-01"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "live",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "api_call"
+  }
+ },
+ {
+  "id": "ling-3.0-flash-sante-or",
+  "model": "ling-3.0-flash-sante",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "inclusionai/ling-3.0-flash-sante:free",
+  "free_condition": "OpenRouter account and API key; $0 input and output (free plan: 50 requests/day)",
+  "limits_stated": {
+   "text": "50 requests/day on the free plan",
+   "source": "https://openrouter.ai/pricing"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-09-04"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "live",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "api_call"
+  }
+ },
+ {
+  "id": "dots-3-note-preview-or",
+  "model": "dots-3-note-preview",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "dots-studio/dots-3-note-preview:free",
+  "free_condition": "OpenRouter account and API key; $0 input and output (free plan: 50 requests/day)",
+  "limits_stated": {
+   "text": "50 requests/day on the free plan",
+   "source": "https://openrouter.ai/pricing"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-08-14"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "live",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "api_call"
+  }
+ },
+ {
+  "id": "lfm-2.5-2.6b-or",
+  "model": "lfm-2.5-2.6b",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "liquid/lfm-2.5-2.6b:free",
+  "free_condition": "OpenRouter account and API key; $0 input and output (free plan: 50 requests/day)",
+  "limits_stated": {
+   "text": "50 requests/day on the free plan",
+   "source": "https://openrouter.ai/pricing"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-08-11"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "live",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "api_call"
+  }
+ },
+ {
+  "id": "nemotron-3.5-lightning-or",
+  "model": "nemotron-3.5-lightning",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "nvidia/nemotron-3.5-lightning:free",
+  "free_condition": "OpenRouter account and API key; $0 input and output (free plan: 50 requests/day)",
+  "limits_stated": {
+   "text": "50 requests/day on the free plan",
+   "source": "https://openrouter.ai/pricing"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-08-11"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "live",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "api_call"
+  }
+ },
+ {
+  "id": "inkling-small-or",
+  "model": "inkling-small",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "thinkingmachines/inkling-small:free",
+  "free_condition": "OpenRouter account and API key; $0 input and output (free plan: 50 requests/day)",
+  "limits_stated": {
+   "text": "50 requests/day on the free plan",
+   "source": "https://openrouter.ai/pricing"
+  },
+  "limits_observed": {
+   "text": "403: \"only available on agentic harnesses\" (raw API call refused)",
+   "date": "2026-10-06"
+  },
+  "started": {
+   "date": "2026-07-30"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "api_call"
+  }
+ },
+ {
+  "id": "laguna-s-2.1-or",
+  "model": "laguna-s-2.1",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "poolside/laguna-s-2.1:free",
+  "free_condition": "OpenRouter account and API key; $0 input and output (free plan: 50 requests/day)",
+  "limits_stated": {
+   "text": "50 requests/day on the free plan",
+   "source": "https://openrouter.ai/pricing"
+  },
+  "limits_observed": {
+   "text": "429 upstream rate limit on our test call",
+   "date": "2026-10-06"
+  },
+  "started": {
+   "date": "2026-07-21"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "api_call"
+  }
+ },
+ {
+  "id": "inkling-or",
+  "model": "inkling",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "thinkingmachines/inkling:free",
+  "free_condition": "OpenRouter account and API key; $0 input and output (free plan: 50 requests/day)",
+  "limits_stated": {
+   "text": "50 requests/day on the free plan",
+   "source": "https://openrouter.ai/pricing"
+  },
+  "limits_observed": {
+   "text": "403: \"only available on agentic harnesses\" (raw API call refused)",
+   "date": "2026-10-06"
+  },
+  "started": {
+   "date": "2026-07-17"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "api_call"
+  }
+ },
+ {
+  "id": "laguna-xs-2.1-or",
+  "model": "laguna-xs-2.1",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "poolside/laguna-xs-2.1:free",
+  "free_condition": "OpenRouter account and API key; $0 input and output (free plan: 50 requests/day)",
+  "limits_stated": {
+   "text": "50 requests/day on the free plan",
+   "source": "https://openrouter.ai/pricing"
+  },
+  "limits_observed": {
+   "text": "429 upstream rate limit on our test call",
+   "date": "2026-10-06"
+  },
+  "started": {
+   "date": "2026-07-02"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "api_call"
+  }
+ },
+ {
+  "id": "north-mini-code-or",
+  "model": "north-mini-code",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "cohere/north-mini-code:free",
+  "free_condition": "OpenRouter account and API key; $0 input and output (free plan: 50 requests/day)",
+  "limits_stated": {
+   "text": "50 requests/day on the free plan",
+   "source": "https://openrouter.ai/pricing"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-06-17"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "live",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "api_call"
+  }
+ },
+ {
+  "id": "nemotron-3-nano-omni-30b-a3b-or",
+  "model": "nemotron-3-nano-omni-30b-a3b",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+  "free_condition": "OpenRouter account and API key; $0 input and output (free plan: 50 requests/day)",
+  "limits_stated": {
+   "text": "50 requests/day on the free plan",
+   "source": "https://openrouter.ai/pricing"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-04-28"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "live",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "api_call"
+  }
+ },
+ {
+  "id": "gemma-4-26b-a4b-it-or",
+  "model": "gemma-4-26b-a4b-it",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "google/gemma-4-26b-a4b-it:free",
+  "free_condition": "OpenRouter account and API key; $0 input and output (free plan: 50 requests/day)",
+  "limits_stated": {
+   "text": "50 requests/day on the free plan",
+   "source": "https://openrouter.ai/pricing"
+  },
+  "limits_observed": {
+   "text": "429 upstream rate limit on our test call",
+   "date": "2026-10-06"
+  },
+  "started": {
+   "date": "2026-04-03"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "api_call"
+  }
+ },
+ {
+  "id": "gemma-4-31b-it-or",
+  "model": "gemma-4-31b-it",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "google/gemma-4-31b-it:free",
+  "free_condition": "OpenRouter account and API key; $0 input and output (free plan: 50 requests/day)",
+  "limits_stated": {
+   "text": "50 requests/day on the free plan",
+   "source": "https://openrouter.ai/pricing"
+  },
+  "limits_observed": {
+   "text": "429 upstream rate limit on our test call",
+   "date": "2026-10-06"
+  },
+  "started": {
+   "date": "2026-04-02"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "api_call"
+  }
+ },
+ {
+  "id": "nemotron-3-super-120b-a12b-or",
+  "model": "nemotron-3-super-120b-a12b",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "nvidia/nemotron-3-super-120b-a12b:free",
+  "free_condition": "OpenRouter account and API key; $0 input and output (free plan: 50 requests/day)",
+  "limits_stated": {
+   "text": "50 requests/day on the free plan",
+   "source": "https://openrouter.ai/pricing"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-03-11"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "live",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "api_call"
+  }
+ },
+ {
+  "id": "longcat-2.5-preview-zen",
+  "model": "longcat-2.5-preview",
+  "channel": "OpenCode Zen",
+  "type": "agent_tool",
+  "model_id": "opencode/longcat-2.5-preview-free",
+  "free_condition": "Inside the OpenCode app, no account",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "live",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "agent_run"
+  }
+ },
+ {
+  "id": "ling-3.1-flash-zen",
+  "model": "ling-3.1-flash",
+  "channel": "OpenCode Zen",
+  "type": "agent_tool",
+  "model_id": "opencode/ling-3.1-flash-free",
+  "free_condition": "Inside the OpenCode app, no account",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "live",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "agent_run"
+  }
+ },
+ {
+  "id": "nemotron-3.5-lightning-zen",
+  "model": "nemotron-3.5-lightning",
+  "channel": "OpenCode Zen",
+  "type": "agent_tool",
+  "model_id": "opencode/nemotron-3.5-lightning-free",
+  "free_condition": "Inside the OpenCode app, no account",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "live",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "agent_run"
+  }
+ },
+ {
+  "id": "fledge-alpha-zen",
+  "model": "fledge-alpha",
+  "channel": "OpenCode Zen",
+  "type": "agent_tool",
+  "model_id": "opencode/fledge-alpha-free",
+  "free_condition": "Inside the OpenCode app, no account",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "live",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "agent_run"
+  }
+ },
+ {
+  "id": "nemotron-3-ultra-zen",
+  "model": "nemotron-3-ultra",
+  "channel": "OpenCode Zen",
+  "type": "agent_tool",
+  "model_id": "opencode/nemotron-3-ultra-free",
+  "free_condition": "Inside the OpenCode app, no account",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": {
+   "text": "503 \"Service temporarily overloaded\" from Nvidia on our test call",
+   "date": "2026-10-06"
+  },
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "agent_run"
+  }
+ },
+ {
+  "id": "ling-3.0-flash-fin-zen",
+  "model": "ling-3.0-flash-fin",
+  "channel": "OpenCode Zen",
+  "type": "agent_tool",
+  "model_id": "opencode/ling-3.0-flash-fin-free",
+  "free_condition": "Inside the OpenCode app, no account",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": {
+   "text": "\"Endpoint is unavailable\" on our test call",
+   "date": "2026-10-06"
+  },
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "agent_run"
+  }
+ },
+ {
+  "id": "mimo-v2.5-zen",
+  "model": "mimo-v2.5",
+  "channel": "OpenCode Zen",
+  "type": "agent_tool",
+  "model_id": "opencode/mimo-v2.5-free",
+  "free_condition": "Inside the OpenCode app, no account",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": {
+   "text": "server error on our test call",
+   "date": "2026-10-06"
+  },
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "agent_run"
+  }
+ },
+ {
+  "id": "jev-1.13-zen",
+  "model": "jev-1.13",
+  "channel": "OpenCode Zen",
+  "type": "agent_tool",
+  "model_id": "opencode/jev-1.13-free",
+  "free_condition": "Inside the OpenCode app, no account",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": {
+   "text": "server error on our test call",
+   "date": "2026-10-06"
+  },
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "agent_run"
+  }
+ },
+ {
+  "id": "big-pickle-zen",
+  "model": "big-pickle",
+  "channel": "OpenCode Zen",
+  "type": "agent_tool",
+  "model_id": "opencode/big-pickle",
+  "free_condition": "Inside the OpenCode app, no account",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": {
+   "text": "test call timed out after 120 s",
+   "date": "2026-10-06"
+  },
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "agent_run"
+  }
+ },
+ {
+  "id": "muse-spark-1.3-contributor-zen",
+  "model": "muse-spark-1.3-contributor",
+  "channel": "OpenCode Zen",
+  "type": "agent_tool",
+  "model_id": "opencode/muse-spark-1.3-contributor-free",
+  "free_condition": "Inside the OpenCode app, no account; \"Contributor\" models train Meta models on your prompts",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": {
+   "text": "test call timed out after 120 s",
+   "date": "2026-10-06"
+  },
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "may_train",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-06",
+   "method": "agent_run"
+  }
+ },
+ {
+  "id": "muse-spark-1.2-contributor-zen",
+  "model": "muse-spark-1.2-contributor",
+  "channel": "OpenCode Zen",
+  "type": "agent_tool",
+  "model_id": "opencode/muse-spark-1.2-contributor-free",
+  "free_condition": "Inside the OpenCode app, no account; \"Contributor\" models train Meta models on your prompts",
+  "limits_stated": {
+   "text": "unstated"
+  },
+  "limits_observed": {
+   "text": "server error on our test call",
+   "date": "2026-10-06"
+  },
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "may_train",
   "status": "listed",
   "checked": {
    "date": "2026-10-06",
