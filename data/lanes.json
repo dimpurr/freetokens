@@ -3068,45 +3068,20 @@
   }
  },
  {
-  "id": "glm-5.3-mistral",
-  "model": "glm-5.3",
-  "channel": "Mistral",
-  "type": "first_party",
-  "model_id": "zai-glm-5-3",
-  "free_condition": "Mistral free mode (Experiment), API key; may be used to train Mistral's models",
-  "limits_stated": {
-   "text": "not published; lowest limits (requests/s, tokens/min, tokens/month)",
-   "source": "https://docs.mistral.ai/admin/billing-usage/usage-limits"
-  },
-  "limits_observed": null,
-  "started": {
-   "date": null,
-   "note": "not recorded; first seen 2026-10-06"
-  },
-  "ends": {
-   "announced": null,
-   "expected": null,
-   "confidence": "none"
-  },
-  "data_policy": "may_train",
-  "status": "listed",
-  "checked": {
-   "date": "2026-10-06",
-   "method": "catalogue"
-  }
- },
- {
   "id": "mistral-large-4-mistral",
   "model": "mistral-large-4",
   "channel": "Mistral",
   "type": "first_party",
   "model_id": "mistral-large-4",
-  "free_condition": "Mistral free mode (Experiment), API key; may be used to train Mistral's models",
+  "free_condition": "Mistral free mode: included monthly usage within the Limits page caps; API key from an account with a verified phone",
   "limits_stated": {
    "text": "not published; lowest limits (requests/s, tokens/min, tokens/month)",
    "source": "https://docs.mistral.ai/admin/billing-usage/usage-limits"
   },
-  "limits_observed": null,
+  "limits_observed": {
+   "text": "50 requests/min and 20,000 tokens/min (rate-limit headers); 8 parallel calls OK",
+   "date": "2026-10-06"
+  },
   "started": {
    "date": null,
    "note": "not recorded; first seen 2026-10-06"
@@ -3117,10 +3092,10 @@
    "confidence": "none"
   },
   "data_policy": "may_train",
-  "status": "listed",
+  "status": "live",
   "checked": {
    "date": "2026-10-06",
-   "method": "catalogue"
+   "method": "api_call"
   }
  },
  {
@@ -3129,12 +3104,15 @@
   "channel": "Mistral",
   "type": "first_party",
   "model_id": "mistral-medium-3-5",
-  "free_condition": "Mistral free mode (Experiment), API key; may be used to train Mistral's models",
+  "free_condition": "Mistral free mode: included monthly usage within the Limits page caps; API key from an account with a verified phone",
   "limits_stated": {
    "text": "not published; lowest limits (requests/s, tokens/min, tokens/month)",
    "source": "https://docs.mistral.ai/admin/billing-usage/usage-limits"
   },
-  "limits_observed": null,
+  "limits_observed": {
+   "text": "429 \"Rate limit exceeded\" on every test call",
+   "date": "2026-10-06"
+  },
   "started": {
    "date": null,
    "note": "not recorded; first seen 2026-10-06"
@@ -3148,7 +3126,7 @@
   "status": "listed",
   "checked": {
    "date": "2026-10-06",
-   "method": "catalogue"
+   "method": "api_call"
   }
  },
  {
@@ -3157,7 +3135,7 @@
   "channel": "Mistral",
   "type": "first_party",
   "model_id": "mistral-small-2603",
-  "free_condition": "Mistral free mode (Experiment), API key; may be used to train Mistral's models",
+  "free_condition": "Mistral free mode: included monthly usage within the Limits page caps; API key from an account with a verified phone",
   "limits_stated": {
    "text": "not published; lowest limits (requests/s, tokens/min, tokens/month)",
    "source": "https://docs.mistral.ai/admin/billing-usage/usage-limits"
@@ -3185,7 +3163,7 @@
   "channel": "Mistral",
   "type": "first_party",
   "model_id": "codestral-2508",
-  "free_condition": "Mistral free mode (Experiment), API key; may be used to train Mistral's models",
+  "free_condition": "Mistral free mode: included monthly usage within the Limits page caps; API key from an account with a verified phone",
   "limits_stated": {
    "text": "not published; lowest limits (requests/s, tokens/min, tokens/month)",
    "source": "https://docs.mistral.ai/admin/billing-usage/usage-limits"

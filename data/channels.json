@@ -419,7 +419,7 @@
    "kind": "account",
    "usd": null,
    "period": null,
-   "note": "Mistral account with a verified phone number (one per plan), no card; free mode has the lowest limits"
+   "note": "Free mode: \"create API keys and use included monthly usage within the limits shown on the Limits page\"; verified phone, no card. Not a list of permanently free models"
   },
   "source": {
    "url": "https://docs.mistral.ai/admin/billing-usage/usage-limits",
