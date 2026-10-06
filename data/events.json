@@ -889,10 +889,22 @@
    "bunny-go"
   ],
   "kind": "ended",
-  "text": "Calls through OpenCode Go return \"Unexpected server error\" from 05:37 UTC, and space-bunny-free is no longer in OpenCode Go's model list (/zen/go/v1/models, checked 2026-10-06). Still free on OpenCode Zen",
+  "text": "Calls through OpenCode Go return \"Unexpected server error\" from 05:37 UTC; OpenCode Go's model list now has space-bunny without the -free suffix (a paid, seat-quota model), not space-bunny-free (checked 2026-10-06). Still free on OpenCode Zen",
   "source": {
    "label": "OpenCode Go models",
    "url": "https://opencode.ai/zen/go/v1/models"
+  }
+ },
+ {
+  "date": "2026-10-06",
+  "lanes": [
+   "bunny-kilo"
+  ],
+  "kind": "ended",
+  "text": "No longer in the Kilo CLI's model list (kilo models, 7.8.3); Kilo had announced Oct 5 as the end",
+  "source": {
+   "label": "own check",
+   "url": null
   }
  }
 ]

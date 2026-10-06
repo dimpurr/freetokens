@@ -283,10 +283,10 @@
    "note": "model name on Kilo reads \"Space Bunny Alpha (retires Oct 5)\""
   },
   "data_policy": "unstated",
-  "status": "listed",
+  "status": "ended",
   "checked": {
-   "date": "2026-10-05",
-   "method": "listing"
+   "date": "2026-10-06",
+   "method": "catalogue"
   }
  },
  {
@@ -2008,7 +2008,10 @@
   "limits_stated": {
    "text": "unstated"
   },
-  "limits_observed": null,
+  "limits_observed": {
+   "text": "10 parallel calls OK through the OpenCode CLI",
+   "date": "2026-10-06"
+  },
   "started": {
    "date": null,
    "note": "not recorded; first seen 2026-10-06"
@@ -2035,7 +2038,10 @@
   "limits_stated": {
    "text": "unstated"
   },
-  "limits_observed": null,
+  "limits_observed": {
+   "text": "5 and 10 parallel calls all timed out after 150 s (Oct 6, ~17:00 UTC+1)",
+   "date": "2026-10-06"
+  },
   "started": {
    "date": null,
    "note": "not recorded; first seen 2026-10-06"

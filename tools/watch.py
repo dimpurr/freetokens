@@ -13,6 +13,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 UA = {"User-Agent": "freetokens-watch/1 (+https://freetokens.fyi)"}
 POOL_BAR = 30
+# ids whose return to a free catalogue matters to someone: (channel, model_id) -> who to tell
+WATCH_RETURN = {
+    ("OpenCode Go", "opencode-go/space-bunny-free"): "m1max-dimmodel can restore the bunny arm (retired 2026-10-06)",
+}
 # known non-chat models and aliases of lanes we already track: (channel, model_id) -> why it is ignored
 IGNORE = {
     ("OpenRouter", "nvidia/nemotron-3.5-content-safety:free"): "safety classifier, not a chat model",
@@ -101,10 +105,12 @@ def main():
         for (c, mid), l in live.items():
             if c == ch and mid not in free:
                 gone.append({"channel": ch, "model_id": mid, "lane": l["id"], "status": l["status"]})
+    back = [{"channel": c, "model_id": m, "note": n} for (c, m), n in WATCH_RETURN.items()
+            if any(x["channel"] == c and x["model_id"] == m for x in new)]
     new.sort(key=lambda x: -(x["aa"] or -1))
     now = dt.datetime.now(dt.timezone.utc).isoformat(timespec="minutes")
-    (out / "latest.json").write_text(json.dumps({"checked": now, "new": new, "gone": gone, "errors": errors}, ensure_ascii=False, indent=1))
-    lines = []
+    (out / "latest.json").write_text(json.dumps({"checked": now, "back": back, "new": new, "gone": gone, "errors": errors}, ensure_ascii=False, indent=1))
+    lines = [f"🔁 back in a free catalogue: {x['model_id']} · {x['channel']} → {x['note']}" for x in back]
     if new:
         lines.append(f"🆕 {len(new)} free model(s) not on freetokens yet:")
         for x in new:
