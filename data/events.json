@@ -213,18 +213,6 @@
   }
  },
  {
-  "date": "2026-09-24",
-  "lanes": [
-   "bunny-anyrouter"
-  ],
-  "kind": "listed",
-  "text": "Changelog: Space Bunny Alpha joins the catalogue as a free model",
-  "source": {
-   "label": "AnyRouter changelog",
-   "url": "https://anyrouter.dev/changelog"
-  }
- },
- {
   "date": "2026-09-07",
   "lanes": [
    "dots-3-note-preview-kilo"

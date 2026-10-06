@@ -175,35 +175,6 @@
   }
  },
  {
-  "name": "AnyRouter",
-  "entry": {
-   "kind": "invite",
-   "usd": null,
-   "period": null,
-   "note": "Sign-up by invitation (linux.do or an older GitHub account); a community relay that can change its rules"
-  },
-  "source": {
-   "url": "https://anyrouter.top",
-   "label": "AnyRouter"
-  },
-  "checked": "2026-10-06",
-  "access": {
-   "form": "api",
-   "protocols": [
-    "anthropic_messages"
-   ],
-   "rules": [],
-   "source": {
-    "url": "https://docs.anyrouter.top/",
-    "label": "AnyRouter docs"
-   }
-  },
-  "links": {
-   "site": "https://anyrouter.top",
-   "models": "https://anyrouter.top/pricing"
-  }
- },
- {
   "name": "Command Code",
   "entry": {
    "kind": "subscription",

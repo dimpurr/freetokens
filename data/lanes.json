@@ -343,32 +343,6 @@
   }
  },
  {
-  "id": "bunny-anyrouter",
-  "model": "space-bunny",
-  "channel": "AnyRouter",
-  "type": "router",
-  "model_id": "stealth/space-bunny-alpha",
-  "free_condition": "$0 with your own key, AnyRouter credits, or its donated-key free pool",
-  "limits_stated": {
-   "text": "unstated"
-  },
-  "limits_observed": null,
-  "started": {
-   "date": "2026-09-24"
-  },
-  "ends": {
-   "announced": null,
-   "expected": null,
-   "confidence": "none"
-  },
-  "data_policy": "may_train",
-  "status": "listed",
-  "checked": {
-   "date": "2026-10-05",
-   "method": "listing"
-  }
- },
- {
   "id": "bunny-beatapi",
   "model": "space-bunny",
   "channel": "BeatAPI",
