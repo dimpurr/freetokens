@@ -2261,7 +2261,7 @@
    "text": "unstated"
   },
   "limits_observed": {
-   "text": "test call timed out after 120 s",
+   "text": "two test calls (05:40, 15:30) timed out with no output (120 s, 180 s)",
    "date": "2026-10-06"
   },
   "started": {
@@ -2291,7 +2291,7 @@
    "text": "unstated"
   },
   "limits_observed": {
-   "text": "server error on our test call",
+   "text": "two test calls (05:40, 15:30) returned \"Unexpected server error\"",
    "date": "2026-10-06"
   },
   "started": {
