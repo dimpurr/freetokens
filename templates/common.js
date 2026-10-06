@@ -103,7 +103,9 @@ const stateWords = (l) => {
   const main = endInfo(l).main;
   return l.status === "live" ? `free · ${main}` : l.status === "listed" ? `listed free · ${main}` : main;
 };
-const chipTo = (href, text, l) => `<a class="chip" href="${href}">${statusHTML(l.status, text)}<small>${esc(stateWords(l))}</small></a>`;
+/* a chip prints only the exception (an end, past end, ended, not answering); the icon carries the state, the tooltip says it in full */
+const chipNote = (l) => { const m = endInfo(l).main; return m === "no end announced" ? "" : m; };
+const chipTo = (href, text, l) => `<a class="chip" href="${href}" title="${esc(text + ": " + stateWords(l))}" aria-label="${esc(text + ", " + stateWords(l))}">${statusHTML(l.status, text)}${chipNote(l) ? `<small>${esc(chipNote(l))}</small>` : ""}</a>`;
 const channelChip = (l) => chipTo(channelHref(l.channel), l.channel, l);
 const modelChip = (l) => chipTo(modelHref(l.model), models[l.model].name, l);
 

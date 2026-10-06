@@ -339,32 +339,37 @@ footer { font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--li
   table.lanes.cardify td:first-child, table.lanes.cardify td.cond, table.lanes.cardify td:last-child { grid-column: 1 / -1; }
 }
 
-/* channels list (option B): summary line + models grouped by state, full width */
-.chlist { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
-.ch { padding: 12px 16px; border-top: 1px solid var(--line); display: grid; gap: 6px; }
+/* channels list: summary line + full-width strip of model chips */
+.chlist { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+.ch { padding: 16px 20px; border-top: 1px solid var(--line); display: grid; gap: 10px; }
 .ch:first-child { border-top: 0; }
-.ch-h { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; }
-.ch-h .name { font-weight: 600; }
-.ch-h .ch-free { display: inline-flex; align-items: center; gap: 6px; font-size: 0.86rem; }
-.ch-h .ch-next { font-size: 0.86rem; margin-left: auto; }
-.ch-g { display: grid; grid-template-columns: minmax(200px, max-content) minmax(0, 1fr); gap: 2px 14px; font-size: 0.86rem; align-items: baseline; }
-.ch-g .ch-s .st { white-space: normal; }
-.ch-g .ch-m { line-height: 1.55; }
-.ch-g .ch-m a { font-weight: 500; white-space: nowrap; }
-.ch-g .dot { color: var(--muted); }
+.ch-h { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; min-height: 24px; }
+.ch-h .name a { font: 650 1rem var(--f-body); color: var(--fg); text-decoration: none; }
+.ch-h .name a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.tag { font: 600 0.66rem var(--f-body); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--line); border-radius: 4px; padding: 1px 6px; }
+.ch-free { display: inline-flex; align-items: center; gap: 6px; font-size: 0.82rem; font-variant-numeric: tabular-nums; }
+.bar { display: inline-block; width: 64px; height: 6px; border-radius: 3px; background: var(--off-soft); overflow: hidden; margin-right: 2px; }
+.bar i { display: block; height: 100%; background: var(--live); border-radius: 3px; }
+.ch-next { font-size: 0.82rem; margin-left: auto; display: inline-flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+.ch-chips { gap: 6px; }
+.ch-chips .chip { padding: 3px 10px 3px 8px; }
 @media (max-width: 640px) {
-  .ch { padding: 12px; }
-  .ch-h .ch-next { margin-left: 0; flex-basis: 100%; }
-  .ch-g { grid-template-columns: 1fr; }
+  .ch { padding: 14px; gap: 8px; }
+  .ch-next { margin-left: 0; flex-basis: 100%; }
 }
 
-.ch-chips { gap: 6px 8px; }
+/* friends links: one-way links to sites we recommend */
+.friends { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px 20px; }
+.friends h3 { font: 600 0.68rem var(--f-body); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
+.friends ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.friends a { font-size: 0.88rem; }
+@media (max-width: 640px) { .friends { grid-template-columns: 1fr 1fr; } }
 </style>
 </head>
 <body>
 <div class="topbar"><div class="in">
   <a class="brand" href="index.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg><span class="word">freetokens</span></a>
-  <nav aria-label="Sections"><a href="#h-soon">Ending soon</a><a href="#h-models">Models</a><a href="#h-channels">Channels</a><a href="#h-lanes">Lanes</a><a href="#h-chart">Chart</a><a href="#h-tl">Timeline</a><a href="#h-legend">Legend</a></nav>
+  <nav aria-label="Sections"><a href="#h-soon">Ending soon</a><a href="#h-models">Models</a><a href="#h-channels">Channels</a><a href="#h-lanes">Lanes</a><a href="#h-chart">Chart</a><a href="#h-tl">Timeline</a><a href="#h-legend">Legend</a><a href="#h-friends">Elsewhere</a></nav>
   <a class="gh" href="https://github.com/dimpurr/freetokens" target="_blank" rel="noopener" title="Data and code on GitHub: corrections and new lanes welcome"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg><span>Contribute</span></a>
 </div></div>
 
@@ -417,6 +422,11 @@ footer { font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--li
 
   <section aria-labelledby="h-legend">
     <details class="legend"><summary id="h-legend">Legend: every label on this site</summary><div class="legend-grid" id="legend"></div></details>
+  </section>
+
+  <section aria-labelledby="h-friends">
+    <h2 id="h-friends">Elsewhere <small>sites we read and recommend</small></h2>
+    <div class="friends"><div><h3>Free models and plans</h3><ul><li><a href="https://stealthmodels.com/benchmarks/" target="_blank" rel="noopener">Stealth Models</a></li><li><a href="https://codexradar.com/" target="_blank" rel="noopener">Codex Radar</a></li><li><a href="https://pi.dev/models?name=Free" target="_blank" rel="noopener">pi.dev free models</a></li><li><a href="https://freellm.net/" target="_blank" rel="noopener">FreeLLM</a></li><li><a href="https://tokenplans.dev/" target="_blank" rel="noopener">Token Plans</a></li><li><a href="https://kilo.ai/leaderboard" target="_blank" rel="noopener">Kilo free models</a></li></ul></div><div><h3>Benchmarks</h3><ul><li><a href="https://artificialanalysis.ai/leaderboards/models" target="_blank" rel="noopener">Artificial Analysis</a></li><li><a href="https://lmarena.ai/leaderboard" target="_blank" rel="noopener">LMArena</a></li><li><a href="https://www.vals.ai/benchmarks" target="_blank" rel="noopener">Vals AI</a></li><li><a href="https://epoch.ai/data/ai-models" target="_blank" rel="noopener">Epoch AI</a></li><li><a href="https://llm-stats.com/" target="_blank" rel="noopener">LLM Stats</a></li></ul></div><div><h3>Catalogues and prices</h3><ul><li><a href="https://openrouter.ai/models" target="_blank" rel="noopener">OpenRouter models</a></li><li><a href="https://models.dev/" target="_blank" rel="noopener">models.dev</a></li><li><a href="https://pricepertoken.com/" target="_blank" rel="noopener">Price Per Token</a></li></ul></div></div>
   </section>
 
   <footer>v0.3 · curated by hand · generated by <span class="mono">build.py</span> from <span class="mono">data/*.json</span>. AA index = Artificial Analysis Intelligence Index. Measured limits are one-off light readings from our own account, not load tests. Data: <a href="https://github.com/dimpurr/freetokens/blob/main/data/LICENSE.md">CC BY 4.0</a> · <a href="https://github.com/dimpurr/freetokens/blob/main/CONTRIBUTING.md">contribute</a> · <a href="https://freetokens.fyi/methodology">methodology</a> · <a href="https://freetokens.fyi/feed.xml">events feed</a>.</footer>
@@ -529,7 +539,9 @@ const stateWords = (l) => {
   const main = endInfo(l).main;
   return l.status === "live" ? `free · ${main}` : l.status === "listed" ? `listed free · ${main}` : main;
 };
-const chipTo = (href, text, l) => `<a class="chip" href="${href}">${statusHTML(l.status, text)}<small>${esc(stateWords(l))}</small></a>`;
+/* a chip prints only the exception (an end, past end, ended, not answering); the icon carries the state, the tooltip says it in full */
+const chipNote = (l) => { const m = endInfo(l).main; return m === "no end announced" ? "" : m; };
+const chipTo = (href, text, l) => `<a class="chip" href="${href}" title="${esc(text + ": " + stateWords(l))}" aria-label="${esc(text + ", " + stateWords(l))}">${statusHTML(l.status, text)}${chipNote(l) ? `<small>${esc(chipNote(l))}</small>` : ""}</a>`;
 const channelChip = (l) => chipTo(channelHref(l.channel), l.channel, l);
 const modelChip = (l) => chipTo(modelHref(l.model), models[l.model].name, l);
 
@@ -817,9 +829,9 @@ $("stamp").innerHTML = metaStrip();
   };
   $("channels").innerHTML = rows.map(({ c, ls, free, next }) => `<article class="ch">
     <div class="ch-h">
-      <span class="name">${clink(c)}</span><span class="muted">${esc(lab("channel_type", ls[0].type))}</span>
-      <span class="ch-free"><span class="meter" style="--n:${ls.length}">${ls.map((l) => `<i class="${isFree(l) ? "on" : ""}"></i>`).join("")}</span><b>${free}</b> <span class="muted">of ${ls.length} free</span></span>
-      <span class="ch-next"><span class="muted">next end</span> ${next ? `<b>${esc(endInfo(next).main)}</b> <span class="muted">·</span> ${mlink(next.model)} ${confHTML(next.ends.confidence)}` : `<span class="muted">none announced</span>`}</span>
+      <span class="name">${clink(c)}</span><span class="tag">${esc(lab("channel_type", ls[0].type))}</span>
+      <span class="ch-free"><span class="bar" role="img" aria-label="${free} of ${ls.length} lanes free"><i style="width:${(100 * free / ls.length).toFixed(1)}%"></i></span><b>${free}</b><span class="muted">of ${ls.length} free</span></span>
+      ${next ? `<span class="ch-next"><span class="muted">next end</span> <b>${esc(endInfo(next).main)}</b> <span class="muted">·</span> ${mlink(next.model)} ${confHTML(next.ends.confidence)}</span>` : ""}
     </div>
     <div class="chips ch-chips">${[...ls].sort((a, b) => order[a.status] - order[b.status]).map(modelChip).join("")}</div>
   </article>`).join("");
