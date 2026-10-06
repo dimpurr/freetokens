@@ -30,10 +30,10 @@
  {
   "name": "Kilo Code",
   "entry": {
-   "kind": "account",
+   "kind": "none",
    "usd": null,
    "period": null,
-   "note": "Free models through the Kilo Gateway with a Kilo account, no card"
+   "note": "\":free\" models answered in the Kilo CLI without signing in (our test, Oct 6); other models need a Kilo account"
   },
   "source": {
    "url": "https://kilo.ai/pricing",
