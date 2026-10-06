@@ -391,3 +391,45 @@ tr.offrow td { opacity: 0.6; }
 .extlink .ico { width: 12px; height: 12px; }
 .chlinks { display: flex; gap: 14px; margin: 2px 0 6px; }
 .ch-h .extlink { margin-left: -6px; }
+
+/* fallback ladder (Agents view) */
+.ladder { display: grid; gap: 14px; }
+.ladder .lede { margin: 0; color: var(--muted); font-size: 0.92rem; max-width: 65ch; }
+.seg { display: inline-flex; border: 1px solid var(--line-strong); border-radius: 999px; padding: 2px; gap: 2px; justify-self: start; }
+.seg button { font: 500 0.8rem var(--f-body); border: 0; background: transparent; color: var(--muted); padding: 5px 12px; border-radius: 999px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--accent-soft); color: var(--accent); }
+.lad-chart { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 8px; }
+.lad-chart svg { display: block; width: 100%; height: auto; min-width: 560px; }
+.lad-chart text { font: 11px var(--f-body); fill: var(--muted); }
+.lad-chart .tier { fill: var(--fg); font-weight: 600; font-size: 12px; }
+.lad-chart .grid { stroke: var(--line); }
+.lad-chart .grid.dash { stroke-dasharray: 2 4; }
+.lad-chart .front { fill: none; stroke: var(--accent); stroke-width: 2; stroke-dasharray: 6 4; }
+.lad-chart .pt circle { fill: var(--measured); }
+.lad-chart .pt.faded circle { opacity: .4; }
+.lad-chart .pt.hollow circle { fill: var(--surface); stroke: var(--faint); stroke-width: 2; }
+.lad-chart .pt.lead text { fill: var(--fg); font-weight: 600; }
+.ladder .legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 0.78rem; color: var(--muted); }
+.ladder .legend span { display: inline-flex; align-items: center; gap: 6px; }
+.ladder .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.ladder .dot.f { background: var(--measured); } .ladder .dot.h { border: 2px solid var(--faint); width: 7px; height: 7px; }
+.ladder .dash { width: 18px; border-top: 2px dashed var(--accent); display: inline-block; }
+ol.rungs { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; counter-reset: r; }
+ol.rungs > li { counter-increment: r; display: grid; grid-template-columns: 34px 1fr; gap: 12px; align-items: start; padding: 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+ol.rungs > li::before { content: counter(r); font: 700 1.1rem var(--f-display); color: var(--accent); background: var(--accent-soft); width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; }
+ol.rungs > li.muted::before { content: none; }
+.rung { min-width: 0; display: grid; gap: 4px; }
+.rung .top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 8px; font-weight: 600; }
+.pill { font: 500 0.72rem var(--f-body); border-radius: 999px; padding: 1px 8px; white-space: nowrap; }
+.pill.score { background: var(--measured-soft); color: var(--measured); font-family: var(--f-mono); }
+.pill.tier { background: var(--accent-soft); color: var(--accent); }
+.pill.warn { background: var(--overdue-soft); color: var(--overdue); }
+.rung .why, .rung .alt { font-size: 0.85rem; color: var(--muted); }
+.lad-out summary { cursor: pointer; font-weight: 500; font-size: 0.9rem; }
+.lad-tbl { border-collapse: collapse; width: 100%; font-size: 0.84rem; margin-top: 8px; }
+.lad-tbl th, .lad-tbl td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.lad-tbl th { font-weight: 500; color: var(--muted); font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.04em; }
+.lad-tbl td.num { font-family: var(--f-mono); white-space: nowrap; }
+.ladder .foot { font-size: 0.78rem; color: var(--faint); margin: 0; }
+.ladder[hidden] { display: none; }
+.lad-chart .pt.hollow.faded circle { opacity: .5; }

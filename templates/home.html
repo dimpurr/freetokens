@@ -13,6 +13,17 @@
 
   <section class="answers" aria-label="At a glance" id="answers"></section>
 
+  <section class="ladder" id="ladder" aria-labelledby="h-ladder" hidden>
+    <h2 id="h-ladder">Fallback ladder <small>for agents · smartest first, step down when it runs out</small></h2>
+    <p class="lede">Free models cost nothing until you hit their limit, so the trade-off is intelligence against how much you get. A route is on the ladder only if no other route is both smarter and more generous.</p>
+    <div class="seg" role="group" aria-label="Which routes count"><button type="button" data-lad="conf" aria-pressed="true">Confirmed only</button><button type="button" data-lad="all" aria-pressed="false">Include unconfirmed</button></div>
+    <div class="lad-chart" id="lad-chart"></div>
+    <div class="legend" id="lad-legend"></div>
+    <ol class="rungs" id="lad-rungs"></ol>
+    <details class="lad-out"><summary id="lad-out-sum"></summary><div class="tbl-scroll"><table class="lad-tbl"><thead><tr><th>Model · route</th><th>Score</th><th>Volume</th><th>Why not</th></tr></thead><tbody id="lad-out"></tbody></table></div></details>
+    <p class="foot">Volume tiers come from published limits and our own concurrency runs; we never run a quota dry to measure it. Scores within 2 points share a rung. <a id="lad-how" href="#fallback-ladder">How the ladder is built</a></p>
+  </section>
+
   <section aria-labelledby="h-soon">
     <h2 id="h-soon">Ending soon <small>counted from your clock, UTC days</small></h2>
     <div class="soon" id="soon"></div>
@@ -97,6 +108,81 @@ onView(() => {
       : tile("Newest free lane", `<div class="row"><span class="muted">none</span></div>`),
   ].join("");
 });
+
+/* fallback ladder (Agents view only): Pareto frontier of score × volume tier over agent-usable lanes */
+(function () {
+  const sec = $("ladder"); let mode = "conf";
+  const TIERS = ["taste", "daily", "bulk"], ti = (l) => TIERS.indexOf(l.volume.tier);
+  const sc = (l) => aaValue(models[l.model]);
+  const name = (l) => `${models[l.model].name} · ${l.channel}`;
+  const scoreTxt = (l) => isEst(models[l.model]) ? `EST ≈${Math.round(sc(l))}` : `AA ${sc(l)}`;
+  function build() {
+    const all = D.lanes.filter((l) => usableFor(l, "agents") && l.volume && sc(l) != null);
+    const pool = all.filter((l) => mode === "all" || l.status === "live");
+    const rungs = []; let best = -Infinity;
+    for (let t = TIERS.length - 1; t >= 0; t--) {
+      const c = pool.filter((l) => ti(l) === t).sort((a, b) => sc(b) - sc(a));
+      if (!c.length || sc(c[0]) <= best + 2) continue;
+      rungs.push({ lead: c[0], alts: c.slice(1).filter((l) => sc(l) >= sc(c[0]) - 2) });
+      best = sc(c[0]);
+    }
+    rungs.reverse();
+    const on = new Set(rungs.flatMap((r) => [r.lead, ...r.alts]));
+    const out = all.filter((l) => !on.has(l) && sc(l) >= 30).map((l) => {
+      if (!pool.includes(l)) return { l, why: "Not confirmed yet" + (l.limits_observed ? `: ${l.limits_observed.text}` : "") };
+      const by = rungs.slice().reverse().find((r) => ti(r.lead) >= ti(l) && sc(r.lead) >= sc(l) - 2) || rungs[0];
+      return { l, why: `Beaten by ${name(by.lead)}` };
+    }).sort((a, b) => sc(b.l) - sc(a.l));
+    return { all, pool, rungs, on, out };
+  }
+  function chart({ all, pool, rungs, on }) {
+    const W = 660, H = 340, x0 = 72, x1 = 650, top = 24, bot = 290, lo = 30, hi = 50;
+    const y = (s) => bot - (Math.min(hi, Math.max(lo, s)) - lo) * (bot - top) / (hi - lo);
+    const cx = (t) => x0 + (t + 0.5) * (x1 - x0) / 3;
+    let g = "";
+    for (let s = lo; s <= hi; s += 5) g += `<line x1="${x0}" x2="${x1}" y1="${y(s)}" y2="${y(s)}" class="grid"/><text x="${x0 - 8}" y="${y(s) + 4}" text-anchor="end">${s}</text>`;
+    for (let t = 1; t < 3; t++) g += `<line x1="${x0 + t * (x1 - x0) / 3}" x2="${x0 + t * (x1 - x0) / 3}" y1="${top}" y2="${bot}" class="grid dash"/>`;
+    TIERS.forEach((k, t) => g += `<text class="tier" x="${cx(t)}" y="${bot + 20}" text-anchor="middle">${esc(lab("volume_tier", k))}</text>`);
+    g += `<text x="${(x0 + x1) / 2}" y="${bot + 38}" text-anchor="middle">more volume →</text><text x="16" y="${(top + bot) / 2}" transform="rotate(-90 16 ${(top + bot) / 2})" text-anchor="middle">AA index (or EST)</text>`;
+    if (rungs.length) {
+      let d = `M ${x0} ${y(sc(rungs[0].lead))}`;
+      rungs.forEach((r, i) => { const nx = i < rungs.length - 1 ? x0 + (ti(r.lead) + 1) * (x1 - x0) / 3 : x1; d += ` L ${nx} ${y(sc(r.lead))}`; if (i < rungs.length - 1) d += ` L ${nx} ${y(sc(rungs[i + 1].lead))}`; });
+      g += `<path d="${d}" class="front"/>`;
+    }
+    const pts = all.filter((l) => sc(l) >= lo);
+    TIERS.forEach((k, t) => {
+      const col = pts.filter((l) => ti(l) === t).sort((a, b) => sc(b) - sc(a));
+      let lastY = -99;
+      col.forEach((l, i) => {
+        const px = cx(t) + ((i % 3) - 1) * 16, py = y(sc(l));
+        const conf = pool.includes(l), lead = rungs.some((r) => r.lead === l), named = on.has(l);
+        const cls = "pt" + (l.status !== "live" ? " hollow" : "") + (named && conf ? "" : " faded");
+        let label = "";
+        if (lead) label = `<text x="${cx(t)}" y="${py - 13}" text-anchor="middle">${esc(name(l))}</text>`;
+        else if (named) { const ly = Math.max(py + 4, lastY + 13); lastY = ly; label = `<text x="${cx(t) + 30}" y="${ly}">${esc(models[l.model].name)}</text>`; }
+        g += `<g class="${cls}${lead ? " lead" : ""}"><title>${esc(name(l) + " · " + scoreTxt(l) + " · " + l.volume.basis)}</title><circle cx="${px}" cy="${py}" r="${lead ? 7 : 5.5}"/>${label}</g>`;
+      });
+    });
+    return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Score against volume tier for free routes agents can use; the dashed line is the fallback ladder">${g}</svg>`;
+  }
+  function draw() {
+    sec.hidden = VIEW !== "agents"; if (sec.hidden) return;
+    $("lad-how").href = `${D.root}methodology${D.ext}#fallback-ladder`;
+    const r = build();
+    sec.querySelectorAll("[data-lad]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lad === mode)));
+    $("lad-chart").innerHTML = chart(r);
+    $("lad-legend").innerHTML = `<span><i class="dot f"></i>works in our tests</span><span><i class="dot h"></i>listed, not confirmed</span><span><i class="dash"></i>the ladder</span><span>faded = beaten on both score and volume; hover a dot for its name</span>`;
+    $("lad-rungs").innerHTML = r.rungs.map((g) => `<li><div class="rung">
+      <div class="top">${mlink(g.lead.model)} <span class="muted">·</span> ${clink(g.lead.channel)} <span class="pill score">${esc(scoreTxt(g.lead))}</span><span class="pill tier" title="${esc(g.lead.volume.basis)}">${esc(lab("volume_tier", g.lead.volume.tier))}</span>${g.lead.status !== "live" ? `<span class="pill warn">not confirmed</span>` : ""}</div>
+      <div class="why">${esc(g.lead.limits_observed ? g.lead.limits_observed.text : g.lead.volume.basis)}</div>
+      ${g.alts.length ? `<div class="alt">Same rung, if busy: ${g.alts.map((l) => `${mlink(l.model)} · ${clink(l.channel)} <span class="mono">${esc(scoreTxt(l))}</span>`).join("; ")}</div>` : ""}
+    </div></li>`).join("") || `<li class="muted">No confirmed route with a known volume yet.</li>`;
+    $("lad-out-sum").textContent = `Not on the ladder, and why (${r.out.length})`;
+    $("lad-out").innerHTML = r.out.map(({ l, why }) => `<tr><td>${mlink(l.model)} · ${clink(l.channel)}</td><td class="num">${esc(scoreTxt(l))}</td><td>${esc(lab("volume_tier", l.volume.tier))}</td><td>${esc(why)}</td></tr>`).join("");
+  }
+  sec.addEventListener("click", (ev) => { const b = ev.target.closest("[data-lad]"); if (b) { mode = b.dataset.lad; draw(); } });
+  onView(draw);
+})();
 
 /* ending soon: overdue first, then by end date */
 onView(() => {

@@ -78,3 +78,11 @@ The switch in the top bar (All · Humans · Agents) shows the whole site for one
 - **Agents**: free lanes that a script or coding agent may use: an API key works, or the vendor's CLI may be run unattended. Lanes whose terms forbid automation ("human only") or that only work in a desktop or web app are left out. Lanes that need a paid plan first are kept and marked with **$**.
 
 Within a view, models are ranked among the models usable in that view (official AA scores first, estimates placed between them). Models free only through lanes that don't fit the view are listed at the bottom as "Not usable this way". Free lanes limited to one region stay in every view with a region tag. The view is remembered on your device and can be shared with `?use=humans` or `?use=agents`.
+
+## Fallback ladder
+
+In the Agents view, the home page shows which free route to use first and what to step down to when it runs out.
+
+- **Volume tier.** Each lane can carry a rough tier: *a few dozen a day* (about 100 requests or fewer), *hundreds a day* (or only a few at once), or *10+ at once, all day* (ten or more parallel agent runs worked in our tests). The tier comes from the route's published limits or from our own concurrency runs, and the lane records which. We never run a quota dry to measure it: exact numbers change by account, by IP and by day, so a coarse tier stays true longer.
+- **The ladder.** Start from the most generous tier and take its highest score. Moving to a less generous tier, a route earns a rung only if it scores more than 2 points above every rung below it, because a smaller allowance is only worth it for a clearly smarter model. Routes within 2 points of a rung's leader in the same tier are listed as stand-ins (EST bands are wider than 2 points).
+- **What counts.** Only routes usable by agents (an API key or a CLI whose terms allow automation) with a score. By default only routes that worked in our tests; *Include unconfirmed* also counts routes that are listed free but have not worked for us yet.

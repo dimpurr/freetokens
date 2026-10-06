@@ -201,6 +201,20 @@
         "label": "human only",
         "help": "The terms forbid scripts, bots or autonomous agents"
       }
+    },
+    "volume_tier": {
+      "taste": {
+        "label": "A few dozen a day",
+        "help": "Roughly 100 requests a day or fewer"
+      },
+      "daily": {
+        "label": "Hundreds a day",
+        "help": "Hundreds of requests a day, or only a few at once"
+      },
+      "bulk": {
+        "label": "10+ at once, all day",
+        "help": "Ten or more parallel agent runs worked in our tests"
+      }
     }
   },
   "tables": {

@@ -144,6 +144,8 @@ def validate(lanes, events, models):
             errs.append(f"{w}: status 'ended' needs an 'ended' event with the date it stopped")
         if l["status"] == "overdue" and not (ann and day(ann) < checked):
             errs.append(f"{w}: status 'overdue' needs an announced end before the check date")
+        if "volume" in l and not (get(l, "volume.tier") in VOCAB["volume_tier"] and str(get(l, "volume.basis") or "").strip()):
+            errs.append(f"{w}: volume needs tier (taste / daily / bulk) and basis (where the number comes from)")
         if "region" in l and not (isinstance(l["region"], str) and re.fullmatch(r"[A-Z]{2}(, ?[A-Z]{2})*", l["region"])):
             errs.append(f"{w}: region must be ISO country codes like 'US' or 'US, CA' (or leave it out for worldwide)")
         for f in ("limits_stated",):
