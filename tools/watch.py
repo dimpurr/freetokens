@@ -81,6 +81,27 @@ def aa_index(name_or_id, slugs, cache={}):
     return cache[s], f"https://artificialanalysis.ai/models/{s}"
 
 
+def screen():
+    """Weekly self-check (the Dots3 lesson): lanes already in our data that agents may use, score >= POOL_BAR
+    (official AA or EST centre), still free, but never load-tested. Pool membership is not ours to know; just list them."""
+    sys.path.insert(0, str(ROOT))
+    import build
+    models = {m["id"]: m for m in build.load("models")}
+    est, _ = build.estimate(list(models.values()), build.load_optional("benchmarks", {}), build.load_optional("anchors", []))
+    chans = {c["name"]: c for c in build.load_optional("channels", [])}
+    out = []
+    for l in build.load("lanes"):
+        a = (l.get("access") or chans.get(l["channel"], {}).get("access") or {})
+        if l["status"] not in ("live", "listed", "overdue") or "no_automation" in a.get("rules", []) or a.get("form") not in ("api", "own_cli"):
+            continue
+        m = models[l["model"]]
+        s = m["aa_index"].get("value") or (est.get(m["id"], {}).get("center") if est.get(m["id"], {}).get("status") == "ok" else None)
+        judged = l.get("limits_observed") or "too few for agent use" in (l.get("limits_stated") or {}).get("text", "")
+        if s and s >= POOL_BAR and not judged:
+            out.append((s, m["name"], l["channel"], l["status"]))
+    return sorted(out, reverse=True)
+
+
 def main():
     out = Path(next((a.split("=", 1)[1] for a in sys.argv if a.startswith("--out=")), "~/scratch/DimResearchS/freetokens-watch")).expanduser()
     out.mkdir(parents=True, exist_ok=True)
@@ -124,7 +145,12 @@ def main():
     if lines:
         print("freetokens watch · " + now[:10] + "\n" + "\n".join(lines) + f"\nDetails: {out / 'latest.json'}")
     elif "--heartbeat" in sys.argv:
-        print(f"freetokens watch · {now[:10]} · no changes in {len(CATALOGUES)} catalogues this run (weekly heartbeat)")
+        print(f"freetokens watch · {now[:10]} · no catalogue changes this run (weekly heartbeat)")
+    if "--heartbeat" in sys.argv:
+        todo = screen()
+        if todo:
+            print(f"🔎 {len(todo)} lane(s) agents could use, score ≥{POOL_BAR}, never tested by us:")
+            print("\n".join(f"  {s:g} · {n} · {c} ({st})" for s, n, c, st in todo))
 
 
 if __name__ == "__main__":
