@@ -37,7 +37,7 @@
 mountViewSwitch();
 document.querySelectorAll("a[data-ext]").forEach((a) => a.setAttribute("href", a.getAttribute("href") + D.ext));
 mountLanes(null);
-mountChart(false);
+mountChart(null);
 $("legend").innerHTML = legendHTML();
 if (location.hash === "#h-legend") document.querySelector("details.legend").open = true;
 </script>

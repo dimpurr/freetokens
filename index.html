@@ -532,10 +532,10 @@ ol.rungs > li.muted::before { content: none; }
   </section>
 
   <section aria-labelledby="h-chart">
-    <h2 id="h-chart">Free periods <small>lanes with an end date · bars against today</small></h2>
+    <h2 id="h-chart">Free periods <small>free lanes scoring 30+ or with an end date · bars against today</small></h2>
     <div class="key keyrow" id="chartkey"></div>
     <div class="chart-scroll"><div class="chart" id="chart" role="img" aria-label="Chart of each free lane's free period against today's date"></div></div>
-    <div class="more-row"><a class="seeall" href="lanes#h-chart">Every lane on the chart →</a></div>
+    <div class="more-row"><a class="seeall" href="lanes#h-chart">All 115 lanes on the chart →</a></div>
   </section>
 
   <section aria-labelledby="h-tl">
@@ -1001,10 +1001,10 @@ function mountLanes(limit) {
 }
 
 /* chart: lanes usable in the view */
-function mountChart(endOnly) {
+function mountChart(minScore) {
   onView(() => {
   const order = { overdue: 0, live: 1, listed: 2, unavailable: 3, ended: 4 };
-  const rows = D.lanes.filter((l) => (VIEW === "all" || usable(l)) && (!endOnly || (effEnd(l) && isFree(l)))).sort((a, b) => {
+  const rows = D.lanes.filter((l) => (VIEW === "all" || usable(l)) && (minScore == null || (isFree(l) && (effEnd(l) || (aaValue(models[l.model]) ?? -1) >= minScore)))).sort((a, b) => {
     const ea = effEnd(a) ? pd(effEnd(a)).t : Infinity, eb = effEnd(b) ? pd(effEnd(b)).t : Infinity;
     return ea - eb || order[a.status] - order[b.status];
   });
@@ -1225,7 +1225,7 @@ onView(() => {
 });
 
 mountLanes(8);
-mountChart(true);
+mountChart(30);
 
 $("tl").innerHTML = timelineHTML([...D.events].sort((a, b) => pd(b.date).t - pd(a.date).t).slice(0, 6));
 document.querySelectorAll(".seeall").forEach((a) => { const h = a.getAttribute("href"); if (!/^(https?:|#)/.test(h) && !h.includes(D.ext || "\u0000")) a.setAttribute("href", h.replace(/^([^#?]*)/, "$1" + D.ext)); });

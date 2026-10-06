@@ -962,10 +962,10 @@ function mountLanes(limit) {
 }
 
 /* chart: lanes usable in the view */
-function mountChart(endOnly) {
+function mountChart(minScore) {
   onView(() => {
   const order = { overdue: 0, live: 1, listed: 2, unavailable: 3, ended: 4 };
-  const rows = D.lanes.filter((l) => (VIEW === "all" || usable(l)) && (!endOnly || (effEnd(l) && isFree(l)))).sort((a, b) => {
+  const rows = D.lanes.filter((l) => (VIEW === "all" || usable(l)) && (minScore == null || (isFree(l) && (effEnd(l) || (aaValue(models[l.model]) ?? -1) >= minScore)))).sort((a, b) => {
     const ea = effEnd(a) ? pd(effEnd(a)).t : Infinity, eb = effEnd(b) ? pd(effEnd(b)).t : Infinity;
     return ea - eb || order[a.status] - order[b.status];
   });
