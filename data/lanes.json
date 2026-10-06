@@ -240,7 +240,10 @@
   "limits_stated": {
    "text": "unstated"
   },
-  "limits_observed": null,
+  "limits_observed": {
+   "text": "10 parallel agent runs OK",
+   "date": "2026-10-06"
+  },
   "started": {
    "date": null,
    "note": "not recorded"
