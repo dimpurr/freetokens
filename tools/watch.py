@@ -102,6 +102,33 @@ def screen():
     return sorted(out, reverse=True)
 
 
+# promo pages with no machine-readable catalogue: alert when the page text changes (e.g. an end date is announced)
+PAGES = {
+    "Qoder · Qwen3.8-Flash promo": ("https://docs.qoder.com/zh/events/flashoffer", "结束"),
+}
+
+
+def page_changes(out):
+    import hashlib, html as H
+    state_f = out / "pages.json"
+    state = json.loads(state_f.read_text()) if state_f.exists() else {}
+    lines = []
+    for name, (url, key) in PAGES.items():
+        try:
+            t = re.sub(r"<script.*?</script>|<style.*?</style>", "", get(url), flags=re.S)
+            t = re.sub(r"\s+", " ", H.unescape(re.sub(r"<[^>]+>", " ", t)))
+        except Exception as e:
+            lines.append(f"⚠️ could not read {name}: {str(e)[:60]}")
+            continue
+        h = hashlib.sha1(t.encode()).hexdigest()
+        if name in state and state[name] != h:
+            snips = [t[max(0, m.start() - 60):m.end() + 80] for m in re.finditer(key, t)][:2]
+            lines.append(f"📄 {name} changed: " + " … ".join(snips) + f" ({url})")
+        state[name] = h
+    state_f.write_text(json.dumps(state, ensure_ascii=False, indent=1))
+    return lines
+
+
 def main():
     out = Path(next((a.split("=", 1)[1] for a in sys.argv if a.startswith("--out=")), "~/scratch/DimResearchS/freetokens-watch")).expanduser()
     out.mkdir(parents=True, exist_ok=True)
@@ -131,7 +158,7 @@ def main():
     new.sort(key=lambda x: -(x["aa"] or -1))
     now = dt.datetime.now(dt.timezone.utc).isoformat(timespec="minutes")
     (out / "latest.json").write_text(json.dumps({"checked": now, "back": back, "new": new, "gone": gone, "errors": errors}, ensure_ascii=False, indent=1))
-    lines = [f"🔁 back in a free catalogue: {x['model_id']} · {x['channel']} → {x['note']}" for x in back]
+    lines = page_changes(out) + [f"🔁 back in a free catalogue: {x['model_id']} · {x['channel']} → {x['note']}" for x in back]
     if new:
         lines.append(f"🆕 {len(new)} free model(s) not on freetokens yet:")
         for x in new:
