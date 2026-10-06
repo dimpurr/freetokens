@@ -464,6 +464,7 @@ ol.rungs > li.muted::before { content: none; }
 .ladder .foot { font-size: 0.78rem; color: var(--faint); margin: 0; }
 .ladder[hidden] { display: none; }
 .lad-chart .pt.hollow.faded circle { opacity: .5; }
+.lad-chart text.minor { font-size: 10px; fill: var(--faint); }
 </style>
 </head>
 <body>
@@ -1012,15 +1013,27 @@ onView(() => {
     const pts = all.filter((l) => sc(l) >= lo);
     TIERS.forEach((k, t) => {
       const col = pts.filter((l) => ti(l) === t).sort((a, b) => sc(b) - sc(a));
-      let lastY = -99;
+      const stack = { L: -99, R: -99 };
+      const place = (side, py) => { const ly = Math.max(py + 4, stack[side] + 13); stack[side] = ly; return ly; };
       col.forEach((l, i) => {
         const px = cx(t) + ((i % 3) - 1) * 16, py = y(sc(l));
-        const conf = pool.includes(l), lead = rungs.some((r) => r.lead === l), named = on.has(l);
-        const cls = "pt" + (l.status !== "live" ? " hollow" : "") + (named && conf ? "" : " faded");
+        const conf = pool.includes(l), lead = rungs.some((r) => r.lead === l), named = on.has(l) && conf;
+        const cls = "pt" + (l.status !== "live" ? " hollow" : "") + (named ? "" : " faded");
         let label = "";
         if (lead) label = `<text x="${cx(t)}" y="${py - 13}" text-anchor="middle">${esc(name(l))}</text>`;
-        else if (named) { const ly = Math.max(py + 4, lastY + 13); lastY = ly; label = `<text x="${cx(t) + 30}" y="${ly}">${esc(models[l.model].name)}</text>`; }
+        else if (named) label = `<text x="${cx(t) + 30}" y="${place("R", py)}">${esc(models[l.model].name)}</text>`;
         g += `<g class="${cls}${lead ? " lead" : ""}"><title>${esc(name(l) + " · " + scoreTxt(l) + " · " + l.volume.basis)}</title><circle cx="${px}" cy="${py}" r="${lead ? 7 : 5.5}"/>${label}</g>`;
+      });
+      /* off-ladder points: one small label per cluster (scores within 1 point), the top model named, the rest as +n */
+      const rest = col.filter((l) => !(on.has(l) && pool.includes(l)));
+      const clusters = [];
+      rest.forEach((l) => { const c = clusters[clusters.length - 1]; c && sc(c[0]) - sc(l) <= 1 ? c.push(l) : clusters.push([l]); });
+      const side = t === TIERS.length - 1 ? "L" : "R";
+      clusters.forEach((c) => {
+        const names = [...new Set(c.map((l) => models[l.model].name))];
+        const ly = place(side, y(sc(c[0])));
+        const x = side === "R" ? cx(t) + 30 : cx(t) - 28;
+        g += `<text class="minor" x="${x}" y="${ly}" text-anchor="${side === "R" ? "start" : "end"}"><title>${esc(c.map((l) => name(l) + " · " + scoreTxt(l)).join("\n"))}</title>${esc(names[0])}${names.length > 1 ? ` +${names.length - 1}` : ""}</text>`;
       });
     });
     return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Score against volume tier for free routes agents can use; the dashed line is the fallback ladder">${g}</svg>`;
@@ -1031,7 +1044,7 @@ onView(() => {
     const r = build();
     sec.querySelectorAll("[data-lad]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lad === mode)));
     $("lad-chart").innerHTML = chart(r);
-    $("lad-legend").innerHTML = `<span><i class="dot f"></i>works in our tests</span><span><i class="dot h"></i>listed, not confirmed</span><span><i class="dash"></i>the ladder</span><span>faded = beaten on both score and volume; hover a dot for its name</span>`;
+    $("lad-legend").innerHTML = `<span><i class="dot f"></i>works in our tests</span><span><i class="dot h"></i>listed, not confirmed</span><span><i class="dash"></i>the ladder</span><span>faded = beaten on both score and volume; hover a name for the whole cluster</span>`;
     $("lad-rungs").innerHTML = r.rungs.map((g) => `<li><div class="rung">
       <div class="top">${mlink(g.lead.model)} <span class="muted">·</span> ${clink(g.lead.channel)} <span class="pill score">${esc(scoreTxt(g.lead))}</span><span class="pill tier" title="${esc(g.lead.volume.basis)}">${esc(lab("volume_tier", g.lead.volume.tier))}</span>${g.lead.status !== "live" ? `<span class="pill warn">not confirmed</span>` : ""}</div>
       <div class="why">${esc(g.lead.limits_observed ? g.lead.limits_observed.text : g.lead.volume.basis)}</div>
