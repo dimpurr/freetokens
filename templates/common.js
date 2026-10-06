@@ -204,10 +204,29 @@ const channelChip = (l) => chipTo(channelHref(l.channel), l.channel, l).replace(
 const modelChip = (l) => chipTo(modelHref(l.model), models[l.model].name, l);
 
 /* our own measurements: the site's unique data */
+/* structured "Tested by us" (lanes.limits_observed): reach · capacity · cost · quirks as chips; note and provenance fold into ⓘ.
+   A channel-wide limit scope (channels.json limit_scope, e.g. Zen's per-IP allowance) is said once on the channel and shown on its lanes. */
+function obsParts(l) {
+  const lo = l.limits_observed; if (!lo) return [];
+  const p = [];
+  if (lo.reach) p.push({ t: lab("reach", lo.reach) + (lo.reach === "works" ? ` · ${shortDate(lo.date)}` : lo.checks > 1 ? ` ×${lo.checks}` : ""), c: "r-" + lo.reach, h: V.reach[lo.reach].help });
+  if (lo.parallel) p.push({ t: `${lo.parallel} parallel`, c: "cap", h: `${lo.parallel} parallel runs worked in our test` });
+  const scope = lo.scope || (CH[l.channel] && CH[l.channel].limit_scope && CH[l.channel].limit_scope.value);
+  if (scope) p.push({ t: lab("limit_scope", scope), c: "cap", h: V.limit_scope[scope].help });
+  if (lo.load) p.push({ t: lab("under_load", lo.load), c: "cap", h: V.under_load[lo.load].help });
+  if (lo.cost) p.push({ t: lab("cost_seen", lo.cost), c: "cost0", h: V.cost_seen[lo.cost].help });
+  (lo.quirks || []).forEach((q) => p.push({ t: lab("quirk", q), c: "quirk", h: V.quirk[q].help }));
+  return p;
+}
+const shortDate = (d) => { const x = new Date(pd(d).t); return `${MON[x.getUTCMonth()]} ${x.getUTCDate()}`; };
+const obsText = (l) => obsParts(l).map((x) => x.t).concat(l.limits_observed && l.limits_observed.note ? [l.limits_observed.note] : []).join(" · ");
 function measuredHTML(l, badge = false) {
   const lo = l.limits_observed;
   if (!lo) return `<span class="muted">not measured</span>`;
-  return `<span class="measured${badge ? " badge" : ""}">${I.bolt()}${esc(lo.text)}</span>`;
+  const parts = obsParts(l), shown = badge ? parts.slice(0, 2) : parts;
+  const prov = [lo.note, `checked ${absDate(lo.date)}`, lo.checks > 1 ? `${lo.checks} checks` : "", lo.networks > 1 ? `from ${lo.networks} networks` : ""].filter(Boolean).join(" · ");
+  return `<span class="obs${badge ? " badge" : ""}">${I.bolt()}${shown.map((x) => `<span class="ob ${x.c}" title="${esc(x.h)}">${esc(x.t)}</span>`).join("")}` +
+    (badge ? "" : `<details class="obs-i"><summary aria-label="Details of our check">ⓘ</summary><span>${esc(prov)}</span></details>`) + `</span>`;
 }
 const checkedSub = (l) => {
   const age = -daysTo(pd(l.checked.date).t);

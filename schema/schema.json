@@ -215,6 +215,84 @@
         "label": "10+ at once, all day",
         "help": "Ten or more parallel agent runs worked in our tests"
       }
+    },
+    "reach": {
+      "works": {
+        "label": "works",
+        "help": "Answered correctly in our checks"
+      },
+      "busy": {
+        "label": "often busy",
+        "help": "Upstream rate-limited or overloaded in repeated checks"
+      },
+      "no_reply": {
+        "label": "no reply",
+        "help": "No answer within our time limit in repeated checks"
+      },
+      "refused": {
+        "label": "refused",
+        "help": "The route answers with an error that blocks use (not a temporary limit)"
+      },
+      "missing": {
+        "label": "not in the client",
+        "help": "Still listed by the channel, but its current client no longer offers the model"
+      }
+    },
+    "limit_scope": {
+      "per_ip": {
+        "label": "per-IP limit",
+        "help": "The free allowance is counted per IP address; heavy use from one network blocks it while others still work"
+      },
+      "per_key": {
+        "label": "per-key limit",
+        "help": "Counted per API key"
+      },
+      "per_account": {
+        "label": "per-account limit",
+        "help": "Counted per account"
+      },
+      "shared": {
+        "label": "shared cap",
+        "help": "One cap shared by all users of the route"
+      }
+    },
+    "under_load": {
+      "throttled": {
+        "label": "throttled under load",
+        "help": "Works, but sustained or repeated calls get rate-limited"
+      },
+      "queues": {
+        "label": "queues when busy",
+        "help": "Requests wait in a queue instead of failing"
+      }
+    },
+    "cost_seen": {
+      "zero": {
+        "label": "0 credits used",
+        "help": "Our runs were not charged"
+      }
+    },
+    "quirk": {
+      "region_limited": {
+        "label": "region-limited",
+        "help": "Refused from some countries"
+      },
+      "bad_tool_calls": {
+        "label": "malformed tool calls",
+        "help": "Some tool calls came back malformed in agent tasks"
+      },
+      "harness_only": {
+        "label": "agent harnesses only",
+        "help": "Refused as a plain API call; works only inside supported agent tools"
+      },
+      "fails_silently": {
+        "label": "fails silently over limit",
+        "help": "Runs above the limit exit without an error message"
+      },
+      "uptime_zero": {
+        "label": "status page: 0% uptime",
+        "help": "The channel's own status page showed 0% uptime"
+      }
     }
   },
   "tables": {

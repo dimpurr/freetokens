@@ -144,6 +144,20 @@ def validate(lanes, events, models):
             errs.append(f"{w}: status 'ended' needs an 'ended' event with the date it stopped")
         if l["status"] == "overdue" and not (ann and day(ann) < checked):
             errs.append(f"{w}: status 'overdue' needs an announced end before the check date")
+        lo = l.get("limits_observed")
+        if lo:
+            allowed = {"date", "reach", "parallel", "scope", "load", "cost", "quirks", "note", "checks", "networks"}
+            if set(lo) - allowed:
+                errs.append(f"{w}: limits_observed has unknown fields {sorted(set(lo) - allowed)} (old free text goes in note, max 60 chars)")
+            for f, vname in (("reach", "reach"), ("scope", "limit_scope"), ("load", "under_load"), ("cost", "cost_seen")):
+                if f in lo and lo[f] not in VOCAB[vname]:
+                    errs.append(f"{w}: limits_observed.{f} {lo[f]!r} is not in vocab {vname}")
+            if any(q not in VOCAB["quirk"] for q in lo.get("quirks", [])):
+                errs.append(f"{w}: limits_observed.quirks has a value not in vocab quirk")
+            if len(lo.get("note") or "") > 60:
+                errs.append(f"{w}: limits_observed.note is over 60 characters; say it with fields")
+            if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(lo.get("date", ""))):
+                errs.append(f"{w}: limits_observed.date must be YYYY-MM-DD")
         if "volume" in l and not (get(l, "volume.tier") in VOCAB["volume_tier"] and str(get(l, "volume.basis") or "").strip()):
             errs.append(f"{w}: volume needs tier (taste / daily / bulk) and basis (where the number comes from)")
         if "region" in l and not (isinstance(l["region"], str) and re.fullmatch(r"[A-Z]{2}(, ?[A-Z]{2})*", l["region"])):
@@ -350,6 +364,16 @@ def md_soon(lanes, models, today):
     return md_table(["Model", "Channel", "Ends", "Confidence"], [r[1] for r in rows])
 
 
+def obs_text(lo):
+    """Plain words for a structured 'Tested by us' record (README)."""
+    parts = [label("reach", lo["reach"])] if lo.get("reach") else []
+    if lo.get("parallel"): parts.append(f"{lo['parallel']} parallel")
+    parts += [label(v, lo[f]) for f, v in (("scope", "limit_scope"), ("load", "under_load"), ("cost", "cost_seen")) if lo.get(f)]
+    parts += [label("quirk", q) for q in lo.get("quirks", [])]
+    if lo.get("note"): parts.append(lo["note"])
+    return " · ".join(parts)
+
+
 def md_lanes(lanes, models):
     mname = {m["id"]: m["name"] for m in models}
     rows = []
@@ -362,7 +386,7 @@ def md_lanes(lanes, models):
             f"`{l['model_id']}`" if l["model_id"] != "not recorded" else "not recorded",
             l["free_condition"],
             link(ls["text"], ls.get("source")),
-            f"{lo['text']} ({lo['date']})" if lo else "not measured",
+            f"{obs_text(lo)} ({lo['date']})" if lo else "not measured",
             fmt_date(s["date"]) if s.get("date") else s.get("note"),
             ends_text(l),
             label("data_policy", l["data_policy"]),

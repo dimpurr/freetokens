@@ -126,7 +126,7 @@ onView(() => {
     rungs.reverse();
     const on = new Set(rungs.flatMap((r) => [r.lead, ...r.alts]));
     const out = all.filter((l) => !on.has(l) && sc(l) >= 30).map((l) => {
-      if (!pool.includes(l)) return { l, why: "Not confirmed yet" + (l.limits_observed ? `: ${l.limits_observed.text}` : "") };
+      if (!pool.includes(l)) return { l, why: "Not confirmed yet" + (l.limits_observed ? `: ${obsText(l)}` : "") };
       const by = rungs.slice().reverse().find((r) => ti(r.lead) >= ti(l) && sc(r.lead) >= sc(l) - 2) || rungs[0];
       return { l, why: `Beaten by ${name(by.lead)}` };
     }).sort((a, b) => sc(b.l) - sc(a.l));
@@ -183,7 +183,7 @@ onView(() => {
     $("lad-legend").innerHTML = `<span><i class="dot f"></i>works in our tests</span><span><i class="dot h"></i>listed, not confirmed</span><span><i class="dash"></i>the ladder</span><span>faded = beaten on both score and volume; hover a name for the whole cluster</span>`;
     $("lad-rungs").innerHTML = r.rungs.map((g) => `<li><div class="rung">
       <div class="top">${mlink(g.lead.model)} <span class="muted">·</span> ${clink(g.lead.channel)} <span class="pill score">${esc(scoreTxt(g.lead))}</span><span class="pill tier" title="${esc(g.lead.volume.basis)}">${esc(lab("volume_tier", g.lead.volume.tier))}</span>${g.lead.status !== "live" ? `<span class="pill warn">not confirmed</span>` : ""}</div>
-      <div class="why">${esc(g.lead.limits_observed ? g.lead.limits_observed.text : g.lead.volume.basis)}</div>
+      <div class="why">${g.lead.limits_observed ? measuredHTML(g.lead) : esc(g.lead.volume.basis)}</div>
       ${g.alts.length ? `<div class="alt">Same rung, if busy: ${g.alts.map((l) => `${mlink(l.model)} · ${clink(l.channel)} <span class="mono">${esc(scoreTxt(l))}</span>`).join("; ")}</div>` : ""}
     </div></li>`).join("") || `<li class="muted">No confirmed route with a known volume yet.</li>`;
     $("lad-out-sum").textContent = `Not on the ladder, and why (${r.out.length})`;

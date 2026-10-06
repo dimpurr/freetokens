@@ -86,7 +86,7 @@ $("details").innerHTML = ML.map((l) => {
   const row = (k, v) => `<dt>${k}</dt><dd>${v}</dd>`;
   const e = endInfo(l);
   return `<div class="detail" data-lane="${l.id}"><h3>${clink(l.channel)} ${statusHTML(l.status)}<span class="usemarks">${useMarks(l)}</span></h3><dl>
-    ${row(`${I.bolt()} Tested by us`, `${measuredHTML(l)}${l.limits_observed ? ` <span class="muted">${esc(absDate(l.limits_observed.date))}</span>` : ""}`)}
+    ${row(`${I.bolt()} Tested by us`, `${measuredHTML(l)}`)}
     ${row("Model ID", idHTML(l))}
     ${row("To start", `${costHTML(l.channel)} <span class="muted">${esc(CH[l.channel] ? CH[l.channel].entry.note : "")}</span>`)}
     ${row("Use it", accessHTML(accessOf(l)))}

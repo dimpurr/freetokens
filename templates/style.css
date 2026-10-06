@@ -445,3 +445,19 @@ ol.rungs > li.muted::before { content: none; }
   .topbar nav { order: 2; flex-basis: 100%; justify-content: center; -webkit-mask-image: none; mask-image: none; padding-right: 0; }
   .topbar nav a { padding: 5px 8px; }
 }
+
+/* structured "Tested by us" chips */
+.obs { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 4px; }
+.obs > .ico { color: var(--measured); margin-right: 2px; }
+.ob { font: 500 0.74rem var(--f-body); border-radius: 999px; padding: 1px 8px; white-space: nowrap; background: var(--off-soft); color: var(--fg); }
+.ob.r-works { background: var(--live-soft); color: var(--live); }
+.ob.r-busy, .ob.r-no_reply { background: var(--overdue-soft); color: var(--overdue); }
+.ob.r-refused, .ob.r-missing { background: var(--off-soft); color: var(--off); }
+.ob.cap { background: var(--measured-soft); color: var(--measured); }
+.ob.cost0 { background: var(--accent-soft); color: var(--accent); }
+.ob.quirk { background: transparent; border: 1px solid var(--line-strong); color: var(--muted); }
+.obs-i { display: inline; }
+.obs-i summary { display: inline; cursor: pointer; list-style: none; color: var(--faint); font-size: 0.85rem; padding: 0 2px; }
+.obs-i summary::-webkit-details-marker { display: none; }
+.obs-i[open] summary { color: var(--accent); }
+.obs-i > span { display: block; font-size: 0.78rem; color: var(--muted); margin-top: 3px; }

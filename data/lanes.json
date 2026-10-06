@@ -11,8 +11,9 @@
    "source": "https://x.com/CommandCodeAI/status/2106576422655680856"
   },
   "limits_observed": {
-   "text": "15 parallel agent runs OK",
-   "date": "2026-10-04"
+   "date": "2026-10-04",
+   "reach": "works",
+   "parallel": 15
   },
   "started": {
    "date": "2026-09-30T01:10Z"
@@ -40,8 +41,10 @@
    "text": "unstated"
   },
   "limits_observed": {
-   "text": "answered both checks from a second network (Oct 6); earlier failures came from one IP, and Zen's free tier limits per IP",
-   "date": "2026-10-06"
+   "date": "2026-10-06",
+   "reach": "works",
+   "checks": 2,
+   "networks": 2
   },
   "started": {
    "date": "2026-09-21T21:19Z"
@@ -70,8 +73,9 @@
    "text": "unstated"
   },
   "limits_observed": {
-   "text": "15 parallel agent runs OK",
-   "date": "2026-10-04"
+   "date": "2026-10-04",
+   "reach": "works",
+   "parallel": 15
   },
   "started": {
    "date": "2026-09-26T13:38Z"
@@ -104,8 +108,10 @@
    "text": "unstated"
   },
   "limits_observed": {
-   "text": "≤ 10 parallel; at 15, 6 runs hung with no 429",
-   "date": "2026-10-04"
+   "date": "2026-10-04",
+   "reach": "works",
+   "parallel": 10,
+   "note": "at 15 parallel, some runs hung"
   },
   "started": {
    "date": "2026-09-23T14:31Z"
@@ -134,8 +140,9 @@
    "text": "unstated"
   },
   "limits_observed": {
-   "text": "15 parallel agent runs OK",
-   "date": "2026-10-04"
+   "date": "2026-10-04",
+   "reach": "works",
+   "parallel": 15
   },
   "started": {
    "date": null,
@@ -249,8 +256,10 @@
    "text": "unstated"
   },
   "limits_observed": {
-   "text": "rate limit appears to be per IP: after heavy use from one IP, 29 of 30 runs got 'Rate limit exceeded', while a call from another IP answered in 23 s",
-   "date": "2026-10-06"
+   "date": "2026-10-06",
+   "reach": "works",
+   "parallel": 10,
+   "networks": 2
   },
   "started": {
    "date": null,
@@ -338,8 +347,12 @@
    "text": "unstated"
   },
   "limits_observed": {
-   "text": "10 parallel agent runs OK (92 s), no 429; malformed tool calls on retrieval-style tasks",
-   "date": "2026-10-06"
+   "date": "2026-10-06",
+   "reach": "works",
+   "parallel": 10,
+   "quirks": [
+    "bad_tool_calls"
+   ]
   },
   "started": {
    "date": "2026-09-07"
@@ -683,8 +696,10 @@
    "text": "unstated"
   },
   "limits_observed": {
-   "text": "headless agent runs OK, 10 at once; rate-limited under long sustained load",
-   "date": "2026-10-06"
+   "date": "2026-10-06",
+   "reach": "works",
+   "parallel": 10,
+   "load": "throttled"
   },
   "started": {
    "date": "2026-10-02"
@@ -800,8 +815,14 @@
    "source": "https://docs.letta.com/pricing/"
   },
   "limits_observed": {
-   "text": "headless Letta Code CLI with a dedicated agent and --new: 3 parallel tasks work, more fail silently; credits stay 0, quota bucket stays full",
-   "date": "2026-10-06"
+   "date": "2026-10-06",
+   "reach": "works",
+   "parallel": 3,
+   "cost": "zero",
+   "quirks": [
+    "fails_silently"
+   ],
+   "note": "headless runs need a dedicated agent and --new"
   },
   "started": {
    "date": null,
@@ -1073,8 +1094,10 @@
    "text": "unstated"
   },
   "limits_observed": {
-   "text": "daily cap reached on the first call (cap shared across users; credits don't lift it)",
-   "date": "2026-10-06"
+   "date": "2026-10-06",
+   "reach": "refused",
+   "scope": "shared",
+   "note": "the shared daily cap was already used up on our first call"
   },
   "started": {
    "date": null,
@@ -1509,8 +1532,9 @@
    "source": "https://openrouter.ai/pricing"
   },
   "limits_observed": {
-   "text": "answered (Oct 6); a second call right after was rate-limited upstream",
-   "date": "2026-10-06"
+   "date": "2026-10-06",
+   "reach": "works",
+   "load": "throttled"
   },
   "started": {
    "date": "2026-10-02"
@@ -1605,8 +1629,9 @@
    "source": "https://openrouter.ai/pricing"
   },
   "limits_observed": {
-   "text": "15 parallel calls 15/15 (median 6.2 s), served by AtlasCloud",
-   "date": "2026-10-06"
+   "date": "2026-10-06",
+   "reach": "works",
+   "parallel": 15
   },
   "started": {
    "date": "2026-08-14"
@@ -1701,8 +1726,11 @@
    "source": "https://openrouter.ai/pricing"
   },
   "limits_observed": {
-   "text": "403: \"only available on agentic harnesses\" (raw API call refused)",
-   "date": "2026-10-06"
+   "date": "2026-10-06",
+   "reach": "refused",
+   "quirks": [
+    "harness_only"
+   ]
   },
   "started": {
    "date": "2026-07-30"
@@ -1735,8 +1763,9 @@
    "source": "https://openrouter.ai/pricing"
   },
   "limits_observed": {
-   "text": "answered (Oct 6); often busy upstream",
-   "date": "2026-10-06"
+   "date": "2026-10-06",
+   "reach": "works",
+   "load": "throttled"
   },
   "started": {
    "date": "2026-07-21"
@@ -1769,8 +1798,11 @@
    "source": "https://openrouter.ai/pricing"
   },
   "limits_observed": {
-   "text": "403: \"only available on agentic harnesses\" (raw API call refused)",
-   "date": "2026-10-06"
+   "date": "2026-10-06",
+   "reach": "refused",
+   "quirks": [
+    "harness_only"
+   ]
   },
   "started": {
    "date": "2026-07-17"
@@ -1803,8 +1835,9 @@
    "source": "https://openrouter.ai/pricing"
   },
   "limits_observed": {
-   "text": "often busy: upstream rate limit in two checks (Oct 6)",
-   "date": "2026-10-06"
+   "date": "2026-10-06",
+   "reach": "busy",
+   "checks": 2
   },
   "started": {
    "date": "2026-07-02"
@@ -1899,8 +1932,9 @@
    "source": "https://openrouter.ai/pricing"
   },
   "limits_observed": {
-   "text": "often busy: upstream rate limit in two checks (Oct 6)",
-   "date": "2026-10-06"
+   "date": "2026-10-06",
+   "reach": "busy",
+   "checks": 2
   },
   "started": {
    "date": "2026-04-03"
@@ -1933,8 +1967,9 @@
    "source": "https://openrouter.ai/pricing"
   },
   "limits_observed": {
-   "text": "often busy: upstream rate limit in two checks (Oct 6)",
-   "date": "2026-10-06"
+   "date": "2026-10-06",
+   "reach": "busy",
+   "checks": 2
   },
   "started": {
    "date": "2026-04-02"
@@ -1997,8 +2032,9 @@
    "text": "unstated"
   },
   "limits_observed": {
-   "text": "10 parallel calls OK through the OpenCode CLI",
-   "date": "2026-10-06"
+   "date": "2026-10-06",
+   "reach": "works",
+   "parallel": 10
   },
   "started": {
    "date": null,
@@ -2031,8 +2067,10 @@
    "text": "unstated"
   },
   "limits_observed": {
-   "text": "answered both checks from a second network (Oct 6); earlier failures came from one IP, and Zen's free tier limits per IP",
-   "date": "2026-10-06"
+   "date": "2026-10-06",
+   "reach": "works",
+   "checks": 2,
+   "networks": 2
   },
   "started": {
    "date": null,
@@ -2088,8 +2126,12 @@
    "text": "unstated"
   },
   "limits_observed": {
-   "text": "works from the UK; refused from France with 'not available in your country' (Oct 6)",
-   "date": "2026-10-06"
+   "date": "2026-10-06",
+   "reach": "works",
+   "quirks": [
+    "region_limited"
+   ],
+   "note": "refused from France"
   },
   "started": {
    "date": null,
@@ -2118,8 +2160,10 @@
    "text": "unstated"
   },
   "limits_observed": {
-   "text": "answered both checks from a second network (Oct 6)",
-   "date": "2026-10-06"
+   "date": "2026-10-06",
+   "reach": "works",
+   "checks": 2,
+   "networks": 2
   },
   "started": {
    "date": null,
@@ -2148,8 +2192,10 @@
    "text": "unstated"
   },
   "limits_observed": {
-   "text": "not answering in our checks from two networks (Oct 5–6)",
-   "date": "2026-10-06"
+   "date": "2026-10-06",
+   "reach": "no_reply",
+   "checks": 2,
+   "networks": 2
   },
   "started": {
    "date": null,
@@ -2178,8 +2224,8 @@
    "text": "unstated"
   },
   "limits_observed": {
-   "text": "still in Zen's model list, but the current OpenCode CLI (1.18.35) no longer offers it",
-   "date": "2026-10-06"
+   "date": "2026-10-06",
+   "reach": "missing"
   },
   "started": {
    "date": null,
@@ -2208,8 +2254,8 @@
    "text": "unstated"
   },
   "limits_observed": {
-   "text": "still in Zen's model list, but the current OpenCode CLI (1.18.35) no longer offers it",
-   "date": "2026-10-06"
+   "date": "2026-10-06",
+   "reach": "missing"
   },
   "started": {
    "date": null,
@@ -2238,8 +2284,10 @@
    "text": "unstated"
   },
   "limits_observed": {
-   "text": "answered both checks from a second network (Oct 6)",
-   "date": "2026-10-06"
+   "date": "2026-10-06",
+   "reach": "works",
+   "checks": 2,
+   "networks": 2
   },
   "started": {
    "date": null,
@@ -2269,8 +2317,10 @@
    "source": "https://opencode.ai/docs/zen/"
   },
   "limits_observed": {
-   "text": "answered both checks from a second network (Oct 6); earlier failures came from one IP, and Zen's free tier limits per IP; free for a limited time",
-   "date": "2026-10-06"
+   "date": "2026-10-06",
+   "reach": "works",
+   "checks": 2,
+   "networks": 2
   },
   "started": {
    "date": null,
@@ -2300,8 +2350,8 @@
    "source": "https://opencode.ai/docs/zen/"
   },
   "limits_observed": {
-   "text": "still in Zen's model list, but the current OpenCode CLI (1.18.35) no longer offers it",
-   "date": "2026-10-06"
+   "date": "2026-10-06",
+   "reach": "missing"
   },
   "started": {
    "date": null,
@@ -2696,8 +2746,9 @@
    "source": "https://ai-gateway.vercel.sh/v1/models"
   },
   "limits_observed": {
-   "text": "on the paid tier the 5-per-minute cap goes away, but the upstream was busy for most calls in our checks (Oct 6); successful calls cost 0",
-   "date": "2026-10-06"
+   "date": "2026-10-06",
+   "reach": "busy",
+   "cost": "zero"
   },
   "started": {
    "date": null,
@@ -2727,8 +2778,9 @@
    "source": "https://ai-gateway.vercel.sh/v1/models"
   },
   "limits_observed": {
-   "text": "answered both checks (Oct 6)",
-   "date": "2026-10-06"
+   "date": "2026-10-06",
+   "reach": "works",
+   "checks": 2
   },
   "started": {
    "date": null,
@@ -3114,8 +3166,10 @@
    "source": "https://docs.qoder.com/zh/events/flashoffer"
   },
   "limits_observed": {
-   "text": "free-pool admission: retrieval 12/12, coding 5/5 in 2 of 3 runs, plus 16/16 agent tasks at up to 10 parallel; always 0 credits",
-   "date": "2026-10-06"
+   "date": "2026-10-06",
+   "reach": "works",
+   "parallel": 10,
+   "cost": "zero"
   },
   "started": {
    "date": "2026-09-18T02:00Z"
@@ -3207,8 +3261,10 @@
    "source": "https://aihubmix.com/model/dots-3-note-preview-free"
   },
   "limits_observed": {
-   "text": "AIHubMix's own page shows 0.00% uptime for the last three days",
-   "date": "2026-10-06"
+   "date": "2026-10-06",
+   "quirks": [
+    "uptime_zero"
+   ]
   },
   "started": {
    "date": null,
@@ -3238,8 +3294,10 @@
    "source": "https://build.nvidia.com/"
   },
   "limits_observed": {
-   "text": "queued: no reply within 150 s in three checks (Oct 5–6)",
-   "date": "2026-10-06"
+   "date": "2026-10-06",
+   "reach": "no_reply",
+   "load": "queues",
+   "checks": 3
   },
   "started": {
    "date": null,
@@ -3273,8 +3331,10 @@
    "source": "https://build.nvidia.com/"
   },
   "limits_observed": {
-   "text": "queued: no reply within 150 s in three checks (Oct 5–6)",
-   "date": "2026-10-06"
+   "date": "2026-10-06",
+   "reach": "no_reply",
+   "load": "queues",
+   "checks": 3
   },
   "started": {
    "date": null,
@@ -3308,8 +3368,10 @@
    "source": "https://build.nvidia.com/"
   },
   "limits_observed": {
-   "text": "queued: no reply within 150 s in three checks (Oct 5–6)",
-   "date": "2026-10-06"
+   "date": "2026-10-06",
+   "reach": "no_reply",
+   "load": "queues",
+   "checks": 3
   },
   "started": {
    "date": null,
@@ -3343,8 +3405,9 @@
    "source": "https://build.nvidia.com/"
   },
   "limits_observed": {
-   "text": "first token 0.6 s",
-   "date": "2026-10-06"
+   "date": "2026-10-06",
+   "reach": "works",
+   "note": "first token in 0.6 s"
   },
   "started": {
    "date": null,

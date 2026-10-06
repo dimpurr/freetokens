@@ -24,6 +24,13 @@
   "links": {
    "site": "https://opencode.ai/zen",
    "models": "https://opencode.ai/docs/zen/"
+  },
+  "limit_scope": {
+   "value": "per_ip",
+   "source": {
+    "label": "own checks, Oct 6: blocked from one network, working from another",
+    "url": null
+   }
   }
  },
  {
