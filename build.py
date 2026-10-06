@@ -620,12 +620,19 @@ def build_pages(lanes, events, models, today, mode):
                "dateModified": today.isoformat()}]
         pages[f"channels/{slug(c)}.html"] = (head_html(title, desc, url, today, ld, og),
                                               render_body("channel.html", dict(base, root=sub_root, channel=c), sub_root, sub_home, site))
+    for pg, title, desc in (("lanes", "All free LLM lanes: status, end dates and measured limits | freetokens",
+                             f"All {len(lanes)} free model × channel routes we track, with status, end dates, our own measured limits and exact model IDs."),
+                            ("timeline", "Timeline of free LLM offers: starts, ends and changes | freetokens",
+                             f"Every recorded change to free LLM offers ({len(events)} events): free periods starting and ending, end dates announced, limits measured.")):
+        url = f"{SITE}/{pg}"
+        pages[f"{pg}.html"] = (head_html(title, desc, url, today, [crumbs([("freetokens", SITE + "/"), (pg.title(), url)])], og),
+                               render_body(f"{pg}.html", dict(base, root="/" if site else ""), "/" if site else "", home_href, site))
     if site:
         pages["__base__"] = base
         title = "How freetokens works: lanes, checks, and the EST estimate | freetokens"
         desc = "What a lane, status and end-date confidence mean, how 'Tested by us' limits are measured, and how the EST estimate of the AA index is computed."
         pages["methodology.html"] = (head_html(title, desc, SITE + "/methodology", today, [crumbs([("freetokens", SITE + "/"), ("Methodology", SITE + "/methodology")])], og),
-                                     '<div class="topbar"><div class="in">' + BRAND.replace("__HOME__", "/") + '<nav aria-label="Sections"><a href="/#h-models">Models</a><a href="/#h-channels">Channels</a><a href="/#h-tl">Timeline</a></nav>' + GH + '</div></div>'
+                                     '<div class="topbar"><div class="in">' + BRAND.replace("__HOME__", "/") + '<nav aria-label="Site"><a href="/#h-models">Models</a><a href="/#h-channels">Channels</a><a href="/lanes">Lanes</a><a href="/timeline">Timeline</a><a href="/methodology">Method</a></nav>' + GH + '</div></div>'
                                      + '<div class="wrap prose">' + md_to_html((ROOT / "METHOD.md").read_text()) + '</div>')
     return pages
 

@@ -434,3 +434,14 @@ ol.rungs > li.muted::before { content: none; }
 .ladder[hidden] { display: none; }
 .lad-chart .pt.hollow.faded circle { opacity: .5; }
 .lad-chart text.minor { font-size: 10px; fill: var(--faint); }
+
+/* v0.5 navigation redesign: "see all" exits under capped sections */
+.more-row .seeall { font: 500 0.88rem var(--f-body); color: var(--accent); text-decoration: none; }
+.more-row .seeall:hover { text-decoration: underline; text-underline-offset: 3px; }
+.chip.more { color: var(--accent); border-style: dashed; text-decoration: none; }
+.pagehead { display: grid; gap: 6px; }
+.pagehead p { margin: 0; color: var(--muted); max-width: 65ch; }
+@media (max-width: 640px) {
+  .topbar nav { order: 2; flex-basis: 100%; justify-content: center; -webkit-mask-image: none; mask-image: none; padding-right: 0; }
+  .topbar nav a { padding: 5px 8px; }
+}

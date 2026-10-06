@@ -1,0 +1,25 @@
+<div class="topbar"><div class="in">
+  __BRAND__
+  <nav aria-label="Site"><a href="__HOME__#h-models">Models</a><a href="__HOME__#h-channels">Channels</a><a href="__ROOT__lanes" data-ext>Lanes</a><a href="__ROOT__timeline" data-ext>Timeline</a><a href="__ROOT__methodology" data-ext>Method</a></nav>
+  __GH__
+</div></div>
+
+<div class="wrap">
+  <nav class="back"><a href="__HOME__">← Overview</a></nav>
+  <header class="pagehead">
+    <h1>Timeline</h1>
+    <p>Every change we recorded: free periods starting and ending, end dates announced, limits measured. Newest first; each time links to its source. Also as an <a href="https://freetokens.fyi/feed.xml">Atom feed</a>.</p>
+  </header>
+  <section aria-labelledby="h-tl">
+    <h2 id="h-tl">All events <small id="tl-count"></small></h2>
+    <div class="tl" id="tl"></div>
+  </section>
+</div>
+
+<script>
+/*__COMMON__*/
+
+document.querySelectorAll("a[data-ext]").forEach((a) => a.setAttribute("href", a.getAttribute("href") + D.ext));
+$("tl-count").textContent = D.events.length + " events";
+$("tl").innerHTML = timelineHTML(D.events);
+</script>

@@ -464,6 +464,17 @@ ol.rungs > li.muted::before { content: none; }
 .ladder[hidden] { display: none; }
 .lad-chart .pt.hollow.faded circle { opacity: .5; }
 .lad-chart text.minor { font-size: 10px; fill: var(--faint); }
+
+/* v0.5 navigation redesign: "see all" exits under capped sections */
+.more-row .seeall { font: 500 0.88rem var(--f-body); color: var(--accent); text-decoration: none; }
+.more-row .seeall:hover { text-decoration: underline; text-underline-offset: 3px; }
+.chip.more { color: var(--accent); border-style: dashed; text-decoration: none; }
+.pagehead { display: grid; gap: 6px; }
+.pagehead p { margin: 0; color: var(--muted); max-width: 65ch; }
+@media (max-width: 640px) {
+  .topbar nav { order: 2; flex-basis: 100%; justify-content: center; -webkit-mask-image: none; mask-image: none; padding-right: 0; }
+  .topbar nav a { padding: 5px 8px; }
+}
 </style>
 </head>
 <body>
@@ -894,6 +905,74 @@ document.addEventListener("click", (ev) => {
 const stamp = () => `<span>data as of <b>${esc(absDate(D.built))}</b></span><span>today <b>${esc(absDate(new Date(now).toISOString().slice(0, 10)))}</b> UTC</span>`;
 /* P3: catalogue size + freshness in one line (home) */
 const metaStrip = () => (VIEW === "all" ? "" : `<span class="viewcount"><b>${D.lanes.filter(usable).length}</b> usable by ${VIEW}</span>`) + `<span><b>${D.models.length}</b> models</span><span><b>${D.lanes.length}</b> lanes · <b>${D.lanes.filter(isFree).length}</b> free now</span><span><b>${channels.length}</b> channels</span><span><b>${D.events.length}</b> events</span>` + stamp();
+
+/* ---------- shared sections (home highlights and the full /lanes page) ---------- */
+/* lanes: the view is the base filter; buttons refine it ("no payment needed" hides in Humans, where it is always true) */
+function mountLanes(limit) {
+  const filt = { type: null, status: null, tested: null, ends: null, nopay: null, api: null, world: null };
+  try { Object.assign(filt, JSON.parse(localStorage.getItem("ft-filters-v2") || "{}")); } catch (e) {}
+  if ($("key")) $("key").innerHTML = keyHTML();
+  const keys = ["type", "status", "tested", "ends", "nopay", "api", "world"];
+  const base = (l) => VIEW === "all" || usable(l);
+  const passes = (l, f, v) => !v || (f === "type" ? l.type === v : f === "status" ? l.status === v : f === "tested" ? !!l.limits_observed : f === "ends" ? !!effEnd(l) : f === "nopay" ? !needsPay(l.channel) : f === "api" ? viaAPI(l) : f === "world" ? worldwide(l) : true);
+  const count = (f, v) => D.lanes.filter((l) => base(l) && keys.every((k) => k === f || passes(l, k, filt[k])) && passes(l, f, v)).length;
+  function renderFilters() {
+    if (limit) return;
+    if (VIEW === "humans") filt.nopay = null;
+    const btn = (f, v, html) => {
+      const n = count(f, v), pressed = (filt[f] || "") === v;
+      return `<button type="button" id="f-${f}-${v || "all"}" data-f="${f}" data-v="${v}" aria-pressed="${pressed}"${n === 0 && !pressed ? " disabled" : ""}>${html}<small class="n">${n}</small></button>`;
+    };
+    const present = (f) => [...new Set(D.lanes.filter(base).map((l) => l[f]))];
+    $("filters").innerHTML =
+      `<span class="lab">Show</span>` + btn("tested", "", "all lanes") + btn("tested", "yes", `${I.bolt()} tested by us`) + btn("ends", "yes", "has end date") + (VIEW === "humans" ? "" : btn("nopay", "yes", "no payment needed")) + btn("api", "yes", "API key works") + btn("world", "yes", "available worldwide") + `<span class="gap"></span>` +
+      `<span class="lab">Status</span>` + btn("status", "", "any") + present("status").map((k) => btn("status", k, statusHTML(k))).join("") + `<span class="gap"></span>` +
+      `<span class="lab">Type</span>` + btn("type", "", "any") + present("type").map((k) => btn("type", k, esc(lab("channel_type", k)))).join("");
+  }
+  function renderLanes() {
+    let rows = D.lanes.filter((l) => base(l) && (limit || keys.every((k) => passes(l, k, filt[k]))));
+    const total = rows.length;
+    if (limit) {
+      /* home: the lanes most worth a look: free now, tested by us, ending soonest, best scored */
+      const sc = (l) => aaValue(models[l.model]) ?? -1, end = (l) => effEnd(l) ? pd(effEnd(l)).t : Infinity;
+      rows = rows.filter(isFree).sort((a, b) => (b.status === "live") - (a.status === "live") || !!b.limits_observed - !!a.limits_observed || end(a) - end(b) || sc(b) - sc(a)).slice(0, limit);
+      $("lanes-count").textContent = `${rows.length} of ${total}${VIEW === "all" ? "" : " usable by " + VIEW} · free now, tested by us first`;
+      $("lanes-more").innerHTML = `<a class="seeall" href="${D.root}lanes${D.ext}${VIEW === "all" ? "" : "?use=" + VIEW}">All ${total} lanes, with filters and the full chart →</a>`;
+    } else $("lanes-count").textContent = `${rows.length} of ${D.lanes.length}${VIEW === "all" ? "" : " · usable by " + VIEW}`;
+    $("lanes").innerHTML = rows.map((l) => {
+      const e = endInfo(l);
+      return `<tr>
+        <td><span class="name">${mlink(l.model)}</span><span class="sub">${clink(l.channel)} · ${esc(lab("channel_type", l.type))}</span></td>
+        <td class="nowrap" data-label="Status · end"><span title="${esc(lab("status", l.status))}">${statusHTML(l.status, e.main)}</span><span class="sub">${e.sub}</span></td>
+        <td data-label="Tested by us">${measuredHTML(l)}${checkedSub(l)}</td>
+        <td class="cond" data-label="Limit · condition">${costHTML(l.channel)} ${regionTag(l)} ${limitHTML(l)}<span class="sub">${esc(l.free_condition)}</span></td>
+        <td data-label="Data">${policyHTML(l.data_policy)}</td>
+        <td class="nowrap" data-label="Model ID">${idHTML(l)}</td>
+      </tr>`;
+    }).join("") || `<tr><td colspan="6" class="muted">No lanes match these filters.</td></tr>`;
+  }
+  if ($("filters")) $("filters").addEventListener("click", (ev) => {
+    const b = ev.target.closest("button"); if (!b) return;
+    const v = b.dataset.v || null;
+    filt[b.dataset.f] = ["ends", "nopay", "api", "world"].includes(b.dataset.f) && filt[b.dataset.f] === v ? null : v;
+    try { localStorage.setItem("ft-filters-v2", JSON.stringify(filt)); } catch (e) {}
+    renderFilters(); renderLanes();
+  });
+  onView(() => { renderFilters(); renderLanes(); });
+}
+
+/* chart: lanes usable in the view */
+function mountChart(endOnly) {
+  onView(() => {
+  const order = { overdue: 0, live: 1, listed: 2, unavailable: 3, ended: 4 };
+  const rows = D.lanes.filter((l) => (VIEW === "all" || usable(l)) && (!endOnly || (effEnd(l) && isFree(l)))).sort((a, b) => {
+    const ea = effEnd(a) ? pd(effEnd(a)).t : Infinity, eb = effEnd(b) ? pd(effEnd(b)).t : Infinity;
+    return ea - eb || order[a.status] - order[b.status];
+  });
+  renderChart($("chart"), rows);
+  $("chartkey").innerHTML = chartKey;
+});
+}
 
 
 const C = D.channel;

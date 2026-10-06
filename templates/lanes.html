@@ -1,0 +1,43 @@
+<div class="topbar"><div class="in">
+  __BRAND__
+  <nav aria-label="Site"><a href="__HOME__#h-models">Models</a><a href="__HOME__#h-channels">Channels</a><a href="__ROOT__lanes" data-ext>Lanes</a><a href="__ROOT__timeline" data-ext>Timeline</a><a href="__ROOT__methodology" data-ext>Method</a></nav>
+  __GH__
+</div></div>
+
+<div class="wrap">
+  <nav class="back"><a href="__HOME__">← Overview</a></nav>
+  <header class="pagehead">
+    <h1>All free lanes</h1>
+    <p>Every model × channel route we track, with its status, end date, what we measured, and the exact model ID. Filter below; the chart shows each free period against today.</p>
+  </header>
+
+  <section aria-labelledby="h-lanes">
+    <h2 id="h-lanes">Free lanes <small id="lanes-count"></small></h2>
+    <div class="key" id="key"></div>
+    <div class="filters" id="filters"></div>
+    <div class="tbl-scroll"><table class="lanes cardify"><thead><tr>
+      <th>Lane</th><th>Status · end</th><th><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg> Tested by us</th><th>Limit · condition</th><th>Data</th><th>Model ID</th>
+    </tr></thead><tbody id="lanes"></tbody></table></div>
+  </section>
+
+  <section aria-labelledby="h-chart">
+    <h2 id="h-chart">Free periods <small>every lane · bars against today; markers are events</small></h2>
+    <div class="key keyrow" id="chartkey"></div>
+    <div class="chart-scroll"><div class="chart" id="chart" role="img" aria-label="Chart of each free lane's free period against today's date"></div></div>
+  </section>
+
+  <section aria-labelledby="h-legend">
+    <details class="legend"><summary id="h-legend">Legend: every label on this site</summary><div class="legend-grid" id="legend"></div></details>
+  </section>
+</div>
+
+<script>
+/*__COMMON__*/
+
+mountViewSwitch();
+document.querySelectorAll("a[data-ext]").forEach((a) => a.setAttribute("href", a.getAttribute("href") + D.ext));
+mountLanes(null);
+mountChart(false);
+$("legend").innerHTML = legendHTML();
+if (location.hash === "#h-legend") document.querySelector("details.legend").open = true;
+</script>
