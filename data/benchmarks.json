@@ -5,6 +5,24 @@
    "metric": "Total points (max 80); best reported reasoning setting per model",
    "url": "https://aicodingdaily.com/leaderboard",
    "source_type": "leaderboard"
+  },
+  "swe_bench_verified": {
+   "name": "SWE-bench Verified",
+   "metric": "% resolved, as published by the vendor or leaderboard",
+   "url": "https://www.swebench.com/",
+   "source_type": "leaderboard"
+  },
+  "swe_bench_pro": {
+   "name": "SWE-bench Pro (public)",
+   "metric": "% resolved",
+   "url": "https://scale.com/leaderboard/swe_bench_pro_public",
+   "source_type": "leaderboard"
+  },
+  "terminal_bench_2_1": {
+   "name": "Terminal-Bench 2.1",
+   "metric": "% tasks solved",
+   "url": "https://www.tbench.ai/",
+   "source_type": "leaderboard"
   }
  },
  "claims": [
@@ -55,6 +73,87 @@
    "url": "https://spacebunnyalpha.com/",
    "seen": "2026-10-05",
    "excluded": "no reference models with an AA index collected for this benchmark yet"
+  },
+  {
+   "model": "dots-3-note-preview",
+   "benchmark": "swe_bench_verified",
+   "score": 78.4,
+   "variant": "vendor-reported",
+   "source_type": "official",
+   "url": "https://huggingface.co/dots-studio/dots3-note-prev",
+   "seen": "2026-10-06"
+  },
+  {
+   "model": "dots-3-note-preview",
+   "benchmark": "swe_bench_pro",
+   "score": 61.0,
+   "variant": "vendor-reported",
+   "source_type": "official",
+   "url": "https://huggingface.co/dots-studio/dots3-note-prev",
+   "seen": "2026-10-06"
+  },
+  {
+   "model": "dots-3-note-preview",
+   "benchmark": "terminal_bench_2_1",
+   "score": 75.1,
+   "variant": "vendor-reported",
+   "source_type": "official",
+   "url": "https://huggingface.co/dots-studio/dots3-note-prev",
+   "seen": "2026-10-06"
+  },
+  {
+   "model": "nex-n2.5-pro",
+   "benchmark": "terminal_bench_2_1",
+   "score": 82.7,
+   "variant": "vendor-reported",
+   "source_type": "official",
+   "url": "https://huggingface.co/nex-agi/Nex-N2.5-Pro",
+   "seen": "2026-10-06"
+  },
+  {
+   "model": "nex-n2.5-pro",
+   "benchmark": "swe_bench_pro",
+   "score": 61.2,
+   "variant": "vendor-reported",
+   "source_type": "official",
+   "url": "https://huggingface.co/nex-agi/Nex-N2.5-Pro",
+   "seen": "2026-10-06"
+  },
+  {
+   "model": "laguna-s-2.1",
+   "benchmark": "terminal_bench_2_1",
+   "score": 70.2,
+   "variant": "vendor-reported",
+   "source_type": "official",
+   "url": "https://poolside.ai/blog/introducing-laguna-s-2-1",
+   "seen": "2026-10-06"
+  },
+  {
+   "model": "laguna-s-2.1",
+   "benchmark": "swe_bench_pro",
+   "score": 59.4,
+   "variant": "vendor-reported",
+   "source_type": "official",
+   "url": "https://poolside.ai/blog/introducing-laguna-s-2-1",
+   "seen": "2026-10-06"
+  },
+  {
+   "model": "laguna-xs-2.1",
+   "benchmark": "swe_bench_verified",
+   "score": 70.9,
+   "variant": "vendor-reported",
+   "source_type": "official",
+   "url": "https://poolside.ai/blog/introducing-laguna-xs-2-1",
+   "seen": "2026-10-06"
+  },
+  {
+   "model": "laguna-xs-2.1",
+   "benchmark": "swe_bench_pro",
+   "score": 47.6,
+   "variant": "vendor-reported",
+   "source_type": "official",
+   "url": "https://poolside.ai/blog/introducing-laguna-xs-2-1",
+   "seen": "2026-10-06"
   }
  ]
 }

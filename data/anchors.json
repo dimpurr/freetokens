@@ -20,6 +20,14 @@
    "aicodingdaily": {
     "score": 67.41,
     "url": "https://aicodingdaily.com/leaderboard"
+   },
+   "swe_bench_pro": {
+    "score": 89.9,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+   },
+   "terminal_bench_2_1": {
+    "score": 87.64,
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
    }
   }
  },
@@ -32,6 +40,10 @@
    "aicodingdaily": {
     "score": 66.35,
     "url": "https://aicodingdaily.com/leaderboard"
+   },
+   "terminal_bench_2_1": {
+    "score": 87.83,
+    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1"
    }
   }
  },
@@ -44,6 +56,14 @@
    "aicodingdaily": {
     "score": 64.31,
     "url": "https://aicodingdaily.com/leaderboard"
+   },
+   "swe_bench_pro": {
+    "score": 81.3,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+   },
+   "terminal_bench_2_1": {
+    "score": 83.15,
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
    }
   }
  },
@@ -56,6 +76,14 @@
    "aicodingdaily": {
     "score": 61.03,
     "url": "https://aicodingdaily.com/leaderboard"
+   },
+   "swe_bench_pro": {
+    "score": 81.2,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+   },
+   "terminal_bench_2_1": {
+    "score": 88.2,
+    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1"
    }
   }
  },
@@ -68,6 +96,10 @@
    "aicodingdaily": {
     "score": 60.09,
     "url": "https://aicodingdaily.com/leaderboard"
+   },
+   "terminal_bench_2_1": {
+    "score": 73.41,
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
    }
   }
  },
@@ -80,6 +112,10 @@
    "aicodingdaily": {
     "score": 59.07,
     "url": "https://aicodingdaily.com/leaderboard"
+   },
+   "terminal_bench_2_1": {
+    "score": 73.03,
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
    }
   }
  },
@@ -92,6 +128,14 @@
    "aicodingdaily": {
     "score": 56.89,
     "url": "https://aicodingdaily.com/leaderboard"
+   },
+   "swe_bench_verified": {
+    "score": 85.1,
+    "url": "https://wan27.org/blog/kimi-k3-benchmarks"
+   },
+   "terminal_bench_2_1": {
+    "score": 88.3,
+    "url": "https://z.ai/blog/glm-5.3"
    }
   }
  },
@@ -104,6 +148,14 @@
    "aicodingdaily": {
     "score": 54.82,
     "url": "https://aicodingdaily.com/leaderboard"
+   },
+   "swe_bench_verified": {
+    "score": 95.4,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   },
+   "terminal_bench_2_1": {
+    "score": 86.05,
+    "url": "https://z.ai/blog/glm-5.3"
    }
   }
  },
@@ -116,6 +168,10 @@
    "aicodingdaily": {
     "score": 54.35,
     "url": "https://aicodingdaily.com/leaderboard"
+   },
+   "terminal_bench_2_1": {
+    "score": 82.56,
+    "url": "https://benchlm.ai/benchmarks/terminalbench21"
    }
   }
  },
@@ -128,6 +184,10 @@
    "aicodingdaily": {
     "score": 53.81,
     "url": "https://aicodingdaily.com/leaderboard"
+   },
+   "terminal_bench_2_1": {
+    "score": 78.84,
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
    }
   }
  },
@@ -140,6 +200,18 @@
    "aicodingdaily": {
     "score": 53.39,
     "url": "https://aicodingdaily.com/leaderboard"
+   },
+   "swe_bench_pro": {
+    "score": 67.7,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+   },
+   "swe_bench_verified": {
+    "score": 79.9,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   },
+   "terminal_bench_2_1": {
+    "score": 86.6,
+    "url": "https://z.ai/blog/glm-5.3"
    }
   }
  },
@@ -152,6 +224,10 @@
    "aicodingdaily": {
     "score": 53.01,
     "url": "https://aicodingdaily.com/leaderboard"
+   },
+   "terminal_bench_2_1": {
+    "score": 81.65,
+    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1"
    }
   }
  },
@@ -164,6 +240,18 @@
    "aicodingdaily": {
     "score": 47.76,
     "url": "https://aicodingdaily.com/leaderboard"
+   },
+   "swe_bench_pro": {
+    "score": 61.7,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+   },
+   "swe_bench_verified": {
+    "score": 86.0,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   },
+   "terminal_bench_2_1": {
+    "score": 73,
+    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1"
    }
   }
  },
@@ -176,6 +264,14 @@
    "aicodingdaily": {
     "score": 47.09,
     "url": "https://aicodingdaily.com/leaderboard"
+   },
+   "swe_bench_verified": {
+    "score": 80.0,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   },
+   "terminal_bench_2_1": {
+    "score": 87.64,
+    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1"
    }
   }
  },
@@ -188,6 +284,18 @@
    "aicodingdaily": {
     "score": 40.35,
     "url": "https://aicodingdaily.com/leaderboard"
+   },
+   "swe_bench_pro": {
+    "score": 59,
+    "url": "https://www.minimax.io/blog/minimax-m3"
+   },
+   "swe_bench_verified": {
+    "score": 77.75,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+   },
+   "terminal_bench_2_1": {
+    "score": 65.17,
+    "url": "https://www.minimax.io/blog/minimax-m3"
    }
   }
  },
@@ -200,6 +308,1846 @@
    "aicodingdaily": {
     "score": 53.29,
     "url": "https://aicodingdaily.com/leaderboard"
+   },
+   "terminal_bench_2_1": {
+    "score": 82.0,
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+   }
+  }
+ },
+ {
+  "name": "Fable 5 (w/ fallback)",
+  "aa_index": 49.6258,
+  "aa_url": "https://artificialanalysis.ai/models/claude-fable-5",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 80,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+   },
+   "swe_bench_verified": {
+    "score": 95.0,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+   },
+   "terminal_bench_2_1": {
+    "score": 84.45,
+    "url": "https://z.ai/blog/glm-5.3"
+   }
+  }
+ },
+ {
+  "name": "Claude Opus 4.5",
+  "aa_index": 23.6789,
+  "aa_url": "https://artificialanalysis.ai/models/claude-opus-4-5",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 51.5,
+    "url": "https://scale.com/leaderboard/swe_bench_pro_public"
+   },
+   "swe_bench_verified": {
+    "score": 80.05,
+    "url": "https://www.swebench.com/"
+   }
+  }
+ },
+ {
+  "name": "Claude Opus 4.6 (Thinking)",
+  "aa_index": 26.3534,
+  "aa_url": "https://artificialanalysis.ai/models/claude-opus-4-6",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 52.65,
+    "url": "https://scale.com/leaderboard/swe_bench_pro_public"
+   },
+   "swe_bench_verified": {
+    "score": 78.2,
+    "url": "https://www.swebench.com/"
+   }
+  }
+ },
+ {
+  "name": "Opus 4.8",
+  "aa_index": 41.7899,
+  "aa_url": "https://artificialanalysis.ai/models/claude-opus-4-8",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 69.2,
+    "url": "https://z.ai/blog/glm-5.2"
+   },
+   "swe_bench_verified": {
+    "score": 88.6,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+   },
+   "terminal_bench_2_1": {
+    "score": 84.8,
+    "url": "https://z.ai/blog/glm-5.2"
+   }
+  }
+ },
+ {
+  "name": "Claude Opus 5",
+  "aa_index": 50.7771,
+  "aa_url": "https://artificialanalysis.ai/models/claude-opus-5",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 79.2,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+   },
+   "swe_bench_verified": {
+    "score": 96.5,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+   },
+   "terminal_bench_2_1": {
+    "score": 84.64,
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+   }
+  }
+ },
+ {
+  "name": "Claude Sonnet 5",
+  "aa_index": 38.1639,
+  "aa_url": "https://artificialanalysis.ai/models/claude-sonnet-5",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 63.2,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+   },
+   "swe_bench_verified": {
+    "score": 82.4,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+   },
+   "terminal_bench_2_1": {
+    "score": 77.47,
+    "url": "https://benchlm.ai/benchmarks/terminalbench21"
+   }
+  }
+ },
+ {
+  "name": "DeepSeek V4 Flash 0731",
+  "aa_index": 34.3305,
+  "aa_url": "https://artificialanalysis.ai/models/deepseek-v4-flash",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 52.3,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+   },
+   "swe_bench_verified": {
+    "score": 78.6,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   },
+   "terminal_bench_2_1": {
+    "score": 58.62,
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+   }
+  }
+ },
+ {
+  "name": "DeepSeek-V4-Pro",
+  "aa_index": 35.9968,
+  "aa_url": "https://artificialanalysis.ai/models/deepseek-v4-pro",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 54.9,
+    "url": "https://z.ai/blog/glm-5.2"
+   },
+   "swe_bench_verified": {
+    "score": 80.0,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+   },
+   "terminal_bench_2_1": {
+    "score": 64,
+    "url": "https://z.ai/blog/glm-5.3"
+   }
+  }
+ },
+ {
+  "name": "GLM-5",
+  "aa_index": 27.9112,
+  "aa_url": "https://artificialanalysis.ai/models/glm-5",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 55.1,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+   },
+   "swe_bench_verified": {
+    "score": 72.8,
+    "url": "https://www.swebench.com/"
+   }
+  }
+ },
+ {
+  "name": "GLM-5.1",
+  "aa_index": 26.0586,
+  "aa_url": "https://artificialanalysis.ai/models/glm-5-1",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 58.4,
+    "url": "https://z.ai/blog/glm-5.2"
+   },
+   "swe_bench_verified": {
+    "score": 76.4,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   },
+   "terminal_bench_2_1": {
+    "score": 60.22,
+    "url": "https://z.ai/blog/glm-5.2"
+   }
+  }
+ },
+ {
+  "name": "GLM-5.2",
+  "aa_index": 33.7055,
+  "aa_url": "https://artificialanalysis.ai/models/glm-5-2",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 62.1,
+    "url": "https://z.ai/blog/glm-5.2"
+   },
+   "swe_bench_verified": {
+    "score": 82.8,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   },
+   "terminal_bench_2_1": {
+    "score": 81.0,
+    "url": "https://z.ai/blog/glm-5.2"
+   }
+  }
+ },
+ {
+  "name": "GPT-5.2",
+  "aa_index": 30.4482,
+  "aa_url": "https://artificialanalysis.ai/models/gpt-5-2",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 42.77,
+    "url": "https://scale.com/leaderboard/swe_bench_pro_public"
+   },
+   "swe_bench_verified": {
+    "score": 75.8,
+    "url": "https://www.swebench.com/"
+   }
+  }
+ },
+ {
+  "name": "GPT-5.3 Codex",
+  "aa_index": 32.5028,
+  "aa_url": "https://artificialanalysis.ai/models/gpt-5-3-codex",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 56.8,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+   },
+   "swe_bench_verified": {
+    "score": 81.5,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   }
+  }
+ },
+ {
+  "name": "GPT 5.4 (xhigh)",
+  "aa_index": 38.9756,
+  "aa_url": "https://artificialanalysis.ai/models/gpt-5-4",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 58.4,
+    "url": "https://scale.com/leaderboard/swe_bench_pro_public"
+   },
+   "swe_bench_verified": {
+    "score": 78.2,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   }
+  }
+ },
+ {
+  "name": "GPT-5.5",
+  "aa_index": 38.3556,
+  "aa_url": "https://artificialanalysis.ai/models/gpt-5-5",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 58.6,
+    "url": "https://z.ai/blog/glm-5.2"
+   },
+   "swe_bench_verified": {
+    "score": 82.6,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   },
+   "terminal_bench_2_1": {
+    "score": 83.4,
+    "url": "https://z.ai/blog/glm-5.2"
+   }
+  }
+ },
+ {
+  "name": "GPT-5.6 Luna",
+  "aa_index": 37.3244,
+  "aa_url": "https://artificialanalysis.ai/models/gpt-5-6-luna",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 62.7,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+   },
+   "swe_bench_verified": {
+    "score": 93.0,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   },
+   "terminal_bench_2_1": {
+    "score": 81.87,
+    "url": "https://benchlm.ai/benchmarks/terminalbench21"
+   }
+  }
+ },
+ {
+  "name": "GPT-5.6 Sol",
+  "aa_index": 46.9727,
+  "aa_url": "https://artificialanalysis.ai/models/gpt-5-6-sol",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 64.6,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+   },
+   "swe_bench_verified": {
+    "score": 96.2,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   },
+   "terminal_bench_2_1": {
+    "score": 88.8,
+    "url": "https://z.ai/blog/glm-5.3"
+   }
+  }
+ },
+ {
+  "name": "GPT-5.6 Terra",
+  "aa_index": 42.0829,
+  "aa_url": "https://artificialanalysis.ai/models/gpt-5-6-terra",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 63.4,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+   },
+   "swe_bench_verified": {
+    "score": 95.4,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   },
+   "terminal_bench_2_1": {
+    "score": 87.4,
+    "url": "https://z.ai/blog/glm-5.3-flash"
+   }
+  }
+ },
+ {
+  "name": "Gemini 3.1 Pro Preview (02/26)",
+  "aa_index": 29.7186,
+  "aa_url": "https://artificialanalysis.ai/models/gemini-3-1-pro-preview",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 54.2,
+    "url": "https://z.ai/blog/glm-5.2"
+   },
+   "swe_bench_verified": {
+    "score": 78.8,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   },
+   "terminal_bench_2_1": {
+    "score": 72.4,
+    "url": "https://z.ai/blog/glm-5.2"
+   }
+  }
+ },
+ {
+  "name": "Gemini 3.5 Flash",
+  "aa_index": 32.5983,
+  "aa_url": "https://artificialanalysis.ai/models/gemini-3-5-flash",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 55.1,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+   },
+   "swe_bench_verified": {
+    "score": 78.8,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   },
+   "terminal_bench_2_1": {
+    "score": 75.18,
+    "url": "https://benchlm.ai/benchmarks/terminalbench21"
+   }
+  }
+ },
+ {
+  "name": "Gemini 3.5 Flash-Lite",
+  "aa_index": 22.1685,
+  "aa_url": "https://artificialanalysis.ai/models/gemini-3-5-flash-lite",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 54.2,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+   },
+   "swe_bench_verified": {
+    "score": 75.0,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   },
+   "terminal_bench_2_1": {
+    "score": 52.09,
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+   }
+  }
+ },
+ {
+  "name": "Granite 4.2 30B",
+  "aa_index": 14.8312,
+  "aa_url": "https://artificialanalysis.ai/models/granite-4-2-30b",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 33.29,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+   },
+   "swe_bench_verified": {
+    "score": 57,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+   },
+   "terminal_bench_2_1": {
+    "score": 29.24,
+    "url": "https://benchlm.ai/benchmarks/terminalbench21"
+   }
+  }
+ },
+ {
+  "name": "Granite 4.2 8B",
+  "aa_index": 11.0813,
+  "aa_url": "https://artificialanalysis.ai/models/granite-4-2-8b",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 19.11,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+   },
+   "swe_bench_verified": {
+    "score": 47.67,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+   },
+   "terminal_bench_2_1": {
+    "score": 20.56,
+    "url": "https://benchlm.ai/benchmarks/terminalbench21"
+   }
+  }
+ },
+ {
+  "name": "Grok 4.20 (Reasoning)",
+  "aa_index": 25.655,
+  "aa_url": "https://artificialanalysis.ai/models/grok-4-20",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 51.8,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+   },
+   "swe_bench_verified": {
+    "score": 74.45,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+   },
+   "terminal_bench_2_1": {
+    "score": 44.2,
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+   }
+  }
+ },
+ {
+  "name": "Grok 4.5",
+  "aa_index": 38.8121,
+  "aa_url": "https://artificialanalysis.ai/models/grok-4-5",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 64.7,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+   },
+   "swe_bench_verified": {
+    "score": 86.6,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   },
+   "terminal_bench_2_1": {
+    "score": 75.55,
+    "url": "https://benchlm.ai/benchmarks/terminalbench21"
+   }
+  }
+ },
+ {
+  "name": "Inkling (Xhigh)",
+  "aa_index": 24.9848,
+  "aa_url": "https://artificialanalysis.ai/models/inkling",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 54.3,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+   },
+   "swe_bench_verified": {
+    "score": 77.6,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+   },
+   "terminal_bench_2_1": {
+    "score": 55.06,
+    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1"
+   }
+  }
+ },
+ {
+  "name": "Inkling-Small",
+  "aa_index": 25.6583,
+  "aa_url": "https://artificialanalysis.ai/models/inkling-small",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 55.9,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+   },
+   "swe_bench_verified": {
+    "score": 81.2,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   },
+   "terminal_bench_2_1": {
+    "score": 59.88,
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+   }
+  }
+ },
+ {
+  "name": "Kimi K2.5",
+  "aa_index": 23.4585,
+  "aa_url": "https://artificialanalysis.ai/models/kimi-k2-5",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 50.7,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+   },
+   "swe_bench_verified": {
+    "score": 73.8,
+    "url": "https://www.swebench.com/"
+   },
+   "terminal_bench_2_1": {
+    "score": 41.95,
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+   }
+  }
+ },
+ {
+  "name": "Kimi K2.6",
+  "aa_index": 26.9792,
+  "aa_url": "https://artificialanalysis.ai/models/kimi-k2-6",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 58.6,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+   },
+   "swe_bench_verified": {
+    "score": 78.2,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+   },
+   "terminal_bench_2_1": {
+    "score": 53.56,
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+   }
+  }
+ },
+ {
+  "name": "Ling 3.0 Flash",
+  "aa_index": 20.1333,
+  "aa_url": "https://artificialanalysis.ai/models/ling-3-0-flash",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 56.6,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+   },
+   "swe_bench_verified": {
+    "score": 65.2,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   },
+   "terminal_bench_2_1": {
+    "score": 53.59,
+    "url": "https://benchlm.ai/benchmarks/terminalbench21"
+   }
+  }
+ },
+ {
+  "name": "MiMo V2.5 Pro",
+  "aa_index": 25.9869,
+  "aa_url": "https://artificialanalysis.ai/models/mimo-v2-5-pro",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 57.2,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+   },
+   "swe_bench_verified": {
+    "score": 74.0,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   },
+   "terminal_bench_2_1": {
+    "score": 57.3,
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+   }
+  }
+ },
+ {
+  "name": "MiniMax-M2.7",
+  "aa_index": 22.7578,
+  "aa_url": "https://artificialanalysis.ai/models/minimax-m2-7",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 56.2,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+   },
+   "swe_bench_verified": {
+    "score": 73.8,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   },
+   "terminal_bench_2_1": {
+    "score": 48.69,
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+   }
+  }
+ },
+ {
+  "name": "Muse Glimmer (High)",
+  "aa_index": 17.4754,
+  "aa_url": "https://artificialanalysis.ai/models/muse-glimmer",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 51.2,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+   },
+   "swe_bench_verified": {
+    "score": 76,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+   },
+   "terminal_bench_2_1": {
+    "score": 51.69,
+    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1"
+   }
+  }
+ },
+ {
+  "name": "Muse Spark 1.1",
+  "aa_index": 33.7298,
+  "aa_url": "https://artificialanalysis.ai/models/muse-spark-1-1",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 61.5,
+    "url": "https://scale.com/leaderboard/swe_bench_pro_public"
+   },
+   "swe_bench_verified": {
+    "score": 82.0,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   },
+   "terminal_bench_2_1": {
+    "score": 74.65,
+    "url": "https://benchlm.ai/benchmarks/terminalbench21"
+   }
+  }
+ },
+ {
+  "name": "Qwen 3.6 Plus",
+  "aa_index": 27.0099,
+  "aa_url": "https://artificialanalysis.ai/models/qwen3-6-plus",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 56.6,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+   },
+   "swe_bench_verified": {
+    "score": 76.1,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   },
+   "terminal_bench_2_1": {
+    "score": 53.18,
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+   }
+  }
+ },
+ {
+  "name": "Qwen3.6-27B",
+  "aa_index": 21.428,
+  "aa_url": "https://artificialanalysis.ai/models/qwen3-6-27b",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 53.5,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+   },
+   "swe_bench_verified": {
+    "score": 77.2,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+   }
+  }
+ },
+ {
+  "name": "Qwen3.6-35B-A3B",
+  "aa_index": 18.229,
+  "aa_url": "https://artificialanalysis.ai/models/qwen3-6-35b-a3b",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 49.5,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+   },
+   "swe_bench_verified": {
+    "score": 73.4,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+   }
+  }
+ },
+ {
+  "name": "Qwen3.7-Max",
+  "aa_index": 29.4572,
+  "aa_url": "https://artificialanalysis.ai/models/qwen3-7-max",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 60.6,
+    "url": "https://z.ai/blog/glm-5.2"
+   },
+   "swe_bench_verified": {
+    "score": 74.6,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   },
+   "terminal_bench_2_1": {
+    "score": 68.03,
+    "url": "https://z.ai/blog/glm-5.2"
+   }
+  }
+ },
+ {
+  "name": "Qwen 3.7 Plus",
+  "aa_index": 25.1622,
+  "aa_url": "https://artificialanalysis.ai/models/qwen3-7-plus",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 57.6,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+   },
+   "swe_bench_verified": {
+    "score": 77.7,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+   },
+   "terminal_bench_2_1": {
+    "score": 52.81,
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+   }
+  }
+ },
+ {
+  "name": "Qwen3.8-Flash-Next",
+  "aa_index": 39.8223,
+  "aa_url": "https://artificialanalysis.ai/models/qwen3-8-flash-next",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 62.5,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+   }
+  }
+ },
+ {
+  "name": "Step 3.7 Flash",
+  "aa_index": 19.4813,
+  "aa_url": "https://artificialanalysis.ai/models/step-3-7-flash",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 56.3,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+   },
+   "terminal_bench_2_1": {
+    "score": 59.5,
+    "url": "https://benchlm.ai/benchmarks/terminalbench21"
+   }
+  }
+ },
+ {
+  "name": "Claude 4.5 Sonnet",
+  "aa_index": 19.3437,
+  "aa_url": "https://artificialanalysis.ai/models/claude-4-5-sonnet",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 43.6,
+    "url": "https://scale.com/leaderboard/swe_bench_pro_public"
+   },
+   "swe_bench_verified": {
+    "score": 74.8,
+    "url": "https://www.swebench.com/"
+   }
+  }
+ },
+ {
+  "name": "Claude 4.5 Haiku",
+  "aa_index": 15.4109,
+  "aa_url": "https://artificialanalysis.ai/models/claude-4-5-haiku",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 39.45,
+    "url": "https://scale.com/leaderboard/swe_bench_pro_public"
+   },
+   "swe_bench_verified": {
+    "score": 66.6,
+    "url": "https://www.swebench.com/"
+   }
+  }
+ },
+ {
+  "name": "DeepSeek V3.2 (Thinking)",
+  "aa_index": 16.0435,
+  "aa_url": "https://artificialanalysis.ai/models/deepseek-v3-2",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 15.56,
+    "url": "https://scale.com/leaderboard/swe_bench_pro_public"
+   },
+   "swe_bench_verified": {
+    "score": 68.8,
+    "url": "https://www.swebench.com/"
+   }
+  }
+ },
+ {
+  "name": "Gemini 3 Flash (12/25)",
+  "aa_index": 17.9337,
+  "aa_url": "https://artificialanalysis.ai/models/gemini-3-flash",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 34.63,
+    "url": "https://scale.com/leaderboard/swe_bench_pro_public"
+   },
+   "swe_bench_verified": {
+    "score": 75.4,
+    "url": "https://www.swebench.com/"
+   },
+   "terminal_bench_2_1": {
+    "score": 53.93,
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+   }
+  }
+ },
+ {
+  "name": "Gemini 3 Pro Preview",
+  "aa_index": 27.958,
+  "aa_url": "https://artificialanalysis.ai/models/gemini-3-pro",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 43.3,
+    "url": "https://scale.com/leaderboard/swe_bench_pro_public"
+   },
+   "swe_bench_verified": {
+    "score": 76.4,
+    "url": "https://www.swebench.com/"
+   }
+  }
+ },
+ {
+  "name": "gemma-3-27b-it",
+  "aa_index": 4.853,
+  "aa_url": "https://artificialanalysis.ai/models/gemma-3-27b",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 11.38,
+    "url": "https://scale.com/leaderboard/swe_bench_pro_public"
+   }
+  }
+ },
+ {
+  "name": "GLM-4.6",
+  "aa_index": 14.9293,
+  "aa_url": "https://artificialanalysis.ai/models/glm-4-6",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 9.67,
+    "url": "https://scale.com/leaderboard/swe_bench_pro_public"
+   },
+   "swe_bench_verified": {
+    "score": 61.8,
+    "url": "https://www.swebench.com/"
+   }
+  }
+ },
+ {
+  "name": "GPT-5",
+  "aa_index": 22.9828,
+  "aa_url": "https://artificialanalysis.ai/models/gpt-5",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 41.78,
+    "url": "https://scale.com/leaderboard/swe_bench_pro_public"
+   },
+   "swe_bench_verified": {
+    "score": 69.0,
+    "url": "https://www.swebench.com/"
+   }
+  }
+ },
+ {
+  "name": "GPT 5.2 Codex",
+  "aa_index": 28.5017,
+  "aa_url": "https://artificialanalysis.ai/models/gpt-5-2-codex",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 41.04,
+    "url": "https://scale.com/leaderboard/swe_bench_pro_public"
+   },
+   "swe_bench_verified": {
+    "score": 72.6,
+    "url": "https://www.swebench.com/"
+   }
+  }
+ },
+ {
+  "name": "gpt-oss-120b",
+  "aa_index": 11.6028,
+  "aa_url": "https://artificialanalysis.ai/models/gpt-oss-120b",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 16.2,
+    "url": "https://scale.com/leaderboard/swe_bench_pro_public"
+   },
+   "swe_bench_verified": {
+    "score": 29.8,
+    "url": "https://www.swebench.com/"
+   }
+  }
+ },
+ {
+  "name": "Kimi K2 Thinking",
+  "aa_index": 12.7155,
+  "aa_url": "https://artificialanalysis.ai/models/kimi-k2",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 27.67,
+    "url": "https://scale.com/leaderboard/swe_bench_pro_public"
+   },
+   "swe_bench_verified": {
+    "score": 61.8,
+    "url": "https://www.swebench.com/"
+   }
+  }
+ },
+ {
+  "name": "Llama 4 Maverick Instruct",
+  "aa_index": 9.9906,
+  "aa_url": "https://artificialanalysis.ai/models/llama-4-maverick",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 5.24,
+    "url": "https://scale.com/leaderboard/swe_bench_pro_public"
+   },
+   "swe_bench_verified": {
+    "score": 21.04,
+    "url": "https://www.swebench.com/"
+   }
+  }
+ },
+ {
+  "name": "MiniMax-M2.1",
+  "aa_index": 20.9453,
+  "aa_url": "https://artificialanalysis.ai/models/minimax-m2-1",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 36.81,
+    "url": "https://scale.com/leaderboard/swe_bench_pro_public"
+   },
+   "swe_bench_verified": {
+    "score": 74.8,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   }
+  }
+ },
+ {
+  "name": "qwen3-235b-a22b",
+  "aa_index": 11.9971,
+  "aa_url": "https://artificialanalysis.ai/models/qwen3-235b-a22b-instruct-2507",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 21.41,
+    "url": "https://scale.com/leaderboard/swe_bench_pro_public"
+   }
+  }
+ },
+ {
+  "name": "Qwen3-Coder-480B-A35B-Instruct",
+  "aa_index": 11.899,
+  "aa_url": "https://artificialanalysis.ai/models/qwen3-coder-480b-a35b-instruct",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_pro": {
+    "score": 38.7,
+    "url": "https://scale.com/leaderboard/swe_bench_pro_public"
+   },
+   "swe_bench_verified": {
+    "score": 62.5,
+    "url": "https://www.swebench.com/"
+   }
+  }
+ },
+ {
+  "name": "Apodex 1.1",
+  "aa_index": 26.4104,
+  "aa_url": "https://artificialanalysis.ai/models/apodex-1-1",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 77.7,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+   },
+   "terminal_bench_2_1": {
+    "score": 70.8,
+    "url": "https://benchlm.ai/benchmarks/terminalbench21"
+   }
+  }
+ },
+ {
+  "name": "Claude 3 Opus",
+  "aa_index": 8.724,
+  "aa_url": "https://artificialanalysis.ai/models/claude-3-opus",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 15.8,
+    "url": "https://www.swebench.com/"
+   }
+  }
+ },
+ {
+  "name": "Claude 3.7 Sonnet",
+  "aa_index": 15.2706,
+  "aa_url": "https://artificialanalysis.ai/models/claude-3-7-sonnet",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 66.4,
+    "url": "https://www.swebench.com/"
+   }
+  }
+ },
+ {
+  "name": "Claude 4 Opus",
+  "aa_index": 16.6142,
+  "aa_url": "https://artificialanalysis.ai/models/claude-4-opus",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 73.2,
+    "url": "https://www.swebench.com/"
+   }
+  }
+ },
+ {
+  "name": "Claude 4.1 Opus",
+  "aa_index": 18.567,
+  "aa_url": "https://artificialanalysis.ai/models/claude-4-1-opus",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 74.5,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+   }
+  }
+ },
+ {
+  "name": "Claude Haiku 4.5 (Thinking)",
+  "aa_index": 16.8822,
+  "aa_url": "https://artificialanalysis.ai/models/claude-4-5-haiku-reasoning",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 66.6,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   },
+   "terminal_bench_2_1": {
+    "score": 43.82,
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+   }
+  }
+ },
+ {
+  "name": "Claude Opus 4.5 (Thinking)",
+  "aa_index": 29.0955,
+  "aa_url": "https://artificialanalysis.ai/models/claude-opus-4-5-thinking",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 76.4,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   }
+  }
+ },
+ {
+  "name": "Claude Opus 4.7",
+  "aa_index": 40.6898,
+  "aa_url": "https://artificialanalysis.ai/models/claude-opus-4-7",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 82.0,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   },
+   "terminal_bench_2_1": {
+    "score": 68.54,
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+   }
+  }
+ },
+ {
+  "name": "Claude Sonnet 4.5 (Thinking)",
+  "aa_index": 20.6662,
+  "aa_url": "https://artificialanalysis.ai/models/claude-4-5-sonnet-thinking",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 70.0,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   }
+  }
+ },
+ {
+  "name": "Claude Sonnet 4.6",
+  "aa_index": 24.6869,
+  "aa_url": "https://artificialanalysis.ai/models/claude-sonnet-4-6",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 78.5,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+   },
+   "terminal_bench_2_1": {
+    "score": 57.3,
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+   }
+  }
+ },
+ {
+  "name": "Command A",
+  "aa_index": 6.9582,
+  "aa_url": "https://artificialanalysis.ai/models/command-a",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 7.8,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   }
+  }
+ },
+ {
+  "name": "DeepSeek V3",
+  "aa_index": 8.4869,
+  "aa_url": "https://artificialanalysis.ai/models/deepseek-v3",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 42,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+   }
+  }
+ },
+ {
+  "name": "DeepSeek V3 0324",
+  "aa_index": 9.72,
+  "aa_url": "https://artificialanalysis.ai/models/deepseek-v3-0324",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 42.0,
+    "url": "https://www.swebench.com/"
+   }
+  }
+ },
+ {
+  "name": "DeepSeek V3.2 Reasoner",
+  "aa_index": 21.4868,
+  "aa_url": "https://artificialanalysis.ai/models/deepseek-v3-2-reasoning",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 60.0,
+    "url": "https://www.swebench.com/"
+   }
+  }
+ },
+ {
+  "name": "GLM-4.7",
+  "aa_index": 22.2403,
+  "aa_url": "https://artificialanalysis.ai/models/glm-4-7",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 71.6,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   }
+  }
+ },
+ {
+  "name": "GLM-5.3-Flash",
+  "aa_index": 41.8075,
+  "aa_url": "https://artificialanalysis.ai/models/glm-5-3-flash",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 92.0,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   },
+   "terminal_bench_2_1": {
+    "score": 84.28,
+    "url": "https://z.ai/blog/glm-5.3-flash"
+   }
+  }
+ },
+ {
+  "name": "GPT-4.1",
+  "aa_index": 12.6913,
+  "aa_url": "https://artificialanalysis.ai/models/gpt-4-1",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 47.09,
+    "url": "https://www.swebench.com/"
+   }
+  }
+ },
+ {
+  "name": "GPT-4.1 mini",
+  "aa_index": 10.1589,
+  "aa_url": "https://artificialanalysis.ai/models/gpt-4-1-mini",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 23.77,
+    "url": "https://www.swebench.com/"
+   }
+  }
+ },
+ {
+  "name": "GPT-4o",
+  "aa_index": 8.4416,
+  "aa_url": "https://artificialanalysis.ai/models/gpt-4o",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 30.21,
+    "url": "https://www.swebench.com/"
+   }
+  }
+ },
+ {
+  "name": "GPT 5 mini",
+  "aa_index": 16.7731,
+  "aa_url": "https://artificialanalysis.ai/models/gpt-5-mini",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 60.3,
+    "url": "https://www.swebench.com/"
+   }
+  }
+ },
+ {
+  "name": "GPT 5 nano",
+  "aa_index": 12.9922,
+  "aa_url": "https://artificialanalysis.ai/models/gpt-5-nano",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 34.8,
+    "url": "https://www.swebench.com/"
+   }
+  }
+ },
+ {
+  "name": "GPT 5.1",
+  "aa_index": 24.7358,
+  "aa_url": "https://artificialanalysis.ai/models/gpt-5-1",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 67.9,
+    "url": "https://www.swebench.com/"
+   }
+  }
+ },
+ {
+  "name": "GPT 5.1 Codex",
+  "aa_index": 23.6973,
+  "aa_url": "https://artificialanalysis.ai/models/gpt-5-1-codex",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 66.0,
+    "url": "https://www.swebench.com/"
+   }
+  }
+ },
+ {
+  "name": "GPT 5.4 Mini",
+  "aa_index": 24.0682,
+  "aa_url": "https://artificialanalysis.ai/models/gpt-5-4-mini",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 73.0,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   },
+   "terminal_bench_2_1": {
+    "score": 54.68,
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+   }
+  }
+ },
+ {
+  "name": "GPT 5.4 Nano",
+  "aa_index": 20.7197,
+  "aa_url": "https://artificialanalysis.ai/models/gpt-5-4-nano",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 69.8,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   },
+   "terminal_bench_2_1": {
+    "score": 41.57,
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+   }
+  }
+ },
+ {
+  "name": "Gemini 2.0 Flash (Experimental)",
+  "aa_index": 8.2173,
+  "aa_url": "https://artificialanalysis.ai/models/gemini-2-0-flash-experimental",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 44.2,
+    "url": "https://www.swebench.com/"
+   }
+  }
+ },
+ {
+  "name": "Gemini 2.5 Flash",
+  "aa_index": 9.8513,
+  "aa_url": "https://artificialanalysis.ai/models/gemini-2-5-flash",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 28.73,
+    "url": "https://www.swebench.com/"
+   }
+  }
+ },
+ {
+  "name": "Gemini 2.5 Pro",
+  "aa_index": 16.0779,
+  "aa_url": "https://artificialanalysis.ai/models/gemini-2-5-pro",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 54.4,
+    "url": "https://www.swebench.com/"
+   }
+  }
+ },
+ {
+  "name": "Gemini 3.6 Flash",
+  "aa_index": 33.9786,
+  "aa_url": "https://artificialanalysis.ai/models/gemini-3-6-flash",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 79.6,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   },
+   "terminal_bench_2_1": {
+    "score": 73.78,
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+   }
+  }
+ },
+ {
+  "name": "Gemini 3.7 Flash",
+  "aa_index": 39.0595,
+  "aa_url": "https://artificialanalysis.ai/models/gemini-3-7-flash",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 80.8,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   },
+   "terminal_bench_2_1": {
+    "score": 85.8,
+    "url": "https://z.ai/blog/glm-5.3-flash"
+   }
+  }
+ },
+ {
+  "name": "Grok 4",
+  "aa_index": 22.4867,
+  "aa_url": "https://artificialanalysis.ai/models/grok-4",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 57.8,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   }
+  }
+ },
+ {
+  "name": "Grok 4.3",
+  "aa_index": 24.8801,
+  "aa_url": "https://artificialanalysis.ai/models/grok-4-3",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 71.4,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   },
+   "terminal_bench_2_1": {
+    "score": 41.95,
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+   }
+  }
+ },
+ {
+  "name": "Grok 4.6",
+  "aa_index": 44.3113,
+  "aa_url": "https://artificialanalysis.ai/models/grok-4-6",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 95.6,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   },
+   "terminal_bench_2_1": {
+    "score": 78.28,
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+   }
+  }
+ },
+ {
+  "name": "Hy3 Preview",
+  "aa_index": 22.7362,
+  "aa_url": "https://artificialanalysis.ai/models/hy3-preview",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 74.4,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+   }
+  }
+ },
+ {
+  "name": "Kimi K2.7 Code",
+  "aa_index": 25.8121,
+  "aa_url": "https://artificialanalysis.ai/models/kimi-k2-7-code",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 78.2,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   },
+   "terminal_bench_2_1": {
+    "score": 67.04,
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+   }
+  }
+ },
+ {
+  "name": "Llama 4 Scout Instruct",
+  "aa_index": 8.075,
+  "aa_url": "https://artificialanalysis.ai/models/llama-4-scout",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 9.06,
+    "url": "https://www.swebench.com/"
+   }
+  }
+ },
+ {
+  "name": "MiMo V2.5",
+  "aa_index": 25.1743,
+  "aa_url": "https://artificialanalysis.ai/models/mimo-v2-5-0424",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 71.0,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   },
+   "terminal_bench_2_1": {
+    "score": 60.67,
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+   }
+  }
+ },
+ {
+  "name": "MiniMax M2",
+  "aa_index": 18.6257,
+  "aa_url": "https://artificialanalysis.ai/models/minimax-m2",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 61.0,
+    "url": "https://www.swebench.com/"
+   }
+  }
+ },
+ {
+  "name": "MiniMax-M2.5",
+  "aa_index": 22.7966,
+  "aa_url": "https://artificialanalysis.ai/models/minimax-m2-5",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 75.0,
+    "url": "https://www.swebench.com/"
+   }
+  }
+ },
+ {
+  "name": "Mistral Large 3",
+  "aa_index": 9.2661,
+  "aa_url": "https://artificialanalysis.ai/models/mistral-large-3",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 41.4,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   }
+  }
+ },
+ {
+  "name": "Mistral Medium 3.5",
+  "aa_index": 14.1889,
+  "aa_url": "https://artificialanalysis.ai/models/mistral-medium-3-5",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 66.4,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   },
+   "terminal_bench_2_1": {
+    "score": 44.76,
+    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1"
+   }
+  }
+ },
+ {
+  "name": "Muse Spark 1.2",
+  "aa_index": 39.5759,
+  "aa_url": "https://artificialanalysis.ai/models/muse-spark-1-2",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 86.6,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   },
+   "terminal_bench_2_1": {
+    "score": 76.28,
+    "url": "https://benchlm.ai/benchmarks/terminalbench21"
+   }
+  }
+ },
+ {
+  "name": "Nemotron 3 Ultra 550B A55B (Reasoning)",
+  "aa_index": 22.9279,
+  "aa_url": "https://artificialanalysis.ai/models/nvidia-nemotron-3-ultra-550b-a55b",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 70.45,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+   },
+   "terminal_bench_2_1": {
+    "score": 52.44,
+    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1"
+   }
+  }
+ },
+ {
+  "name": "Nemotron 3.5 Lightning",
+  "aa_index": 12.8572,
+  "aa_url": "https://artificialanalysis.ai/models/nemotron-3-5-lightning",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 52.8,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   },
+   "terminal_bench_2_1": {
+    "score": 10.86,
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+   }
+  }
+ },
+ {
+  "name": "o3-mini",
+  "aa_index": 12.4708,
+  "aa_url": "https://artificialanalysis.ai/models/o3-mini",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 45.85,
+    "url": "https://www.swebench.com/"
+   }
+  }
+ },
+ {
+  "name": "Qwen 3.6 Max Preview",
+  "aa_index": 28.3749,
+  "aa_url": "https://artificialanalysis.ai/models/qwen3-6-max",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 72.8,
+    "url": "https://www.vals.ai/benchmarks/swebench"
+   }
+  }
+ },
+ {
+  "name": "Qwen3.5-122B-A10B",
+  "aa_index": 15.5694,
+  "aa_url": "https://artificialanalysis.ai/models/qwen3-5-122b-a10b",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 72,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+   }
+  }
+ },
+ {
+  "name": "Qwen3.5-27B",
+  "aa_index": 22.8993,
+  "aa_url": "https://artificialanalysis.ai/models/qwen3-5-27b",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 72.4,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+   }
+  }
+ },
+ {
+  "name": "Qwen3.5-35B-A3B",
+  "aa_index": 19.3295,
+  "aa_url": "https://artificialanalysis.ai/models/qwen3-5-35b-a3b",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 69.2,
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+   }
+  }
+ },
+ {
+  "name": "o1-preview",
+  "aa_index": 11.3759,
+  "aa_url": "https://artificialanalysis.ai/models/o1-preview",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 64.6,
+    "url": "https://www.swebench.com/"
+   }
+  }
+ },
+ {
+  "name": "o3",
+  "aa_index": 20.2008,
+  "aa_url": "https://artificialanalysis.ai/models/o3",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 58.4,
+    "url": "https://www.swebench.com/"
+   }
+  }
+ },
+ {
+  "name": "o4-mini",
+  "aa_index": 16.6531,
+  "aa_url": "https://artificialanalysis.ai/models/o4-mini",
+  "seen": "2026-10-06",
+  "scores": {
+   "swe_bench_verified": {
+    "score": 64.6,
+    "url": "https://www.swebench.com/"
+   }
+  }
+ },
+ {
+  "name": "Claude Fable 5.1 (High, Default Fallback)",
+  "aa_index": 51.1516,
+  "aa_url": "https://artificialanalysis.ai/models/claude-fable-5-1-high",
+  "seen": "2026-10-06",
+  "scores": {
+   "terminal_bench_2_1": {
+    "score": 89.89,
+    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1"
+   }
+  }
+ },
+ {
+  "name": "Claude Fable 5.1 (Xhigh, Default Fallback)",
+  "aa_index": 53.2033,
+  "aa_url": "https://artificialanalysis.ai/models/claude-fable-5-1-xhigh",
+  "seen": "2026-10-06",
+  "scores": {
+   "terminal_bench_2_1": {
+    "score": 91.01,
+    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1"
+   }
+  }
+ },
+ {
+  "name": "Command A+",
+  "aa_index": 13.1335,
+  "aa_url": "https://artificialanalysis.ai/models/command-a-plus",
+  "seen": "2026-10-06",
+  "scores": {
+   "terminal_bench_2_1": {
+    "score": 17.6,
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+   }
+  }
+ },
+ {
+  "name": "GPT-5.6 Sol (Xhigh)",
+  "aa_index": 44.0089,
+  "aa_url": "https://artificialanalysis.ai/models/gpt-5-6-sol-xhigh",
+  "seen": "2026-10-06",
+  "scores": {
+   "terminal_bench_2_1": {
+    "score": 89.51,
+    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1"
+   }
+  }
+ },
+ {
+  "name": "GPT-6 Astra (High)",
+  "aa_index": 50.9191,
+  "aa_url": "https://artificialanalysis.ai/models/gpt-6-astra-high",
+  "seen": "2026-10-06",
+  "scores": {
+   "terminal_bench_2_1": {
+    "score": 89.89,
+    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1"
+   }
+  }
+ },
+ {
+  "name": "GPT-6 Astra (Medium)",
+  "aa_index": 49.5704,
+  "aa_url": "https://artificialanalysis.ai/models/gpt-6-astra-medium",
+  "seen": "2026-10-06",
+  "scores": {
+   "terminal_bench_2_1": {
+    "score": 89.51,
+    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1"
+   }
+  }
+ },
+ {
+  "name": "GPT-6 Sol",
+  "aa_index": 47.6305,
+  "aa_url": "https://artificialanalysis.ai/models/gpt-6-sol",
+  "seen": "2026-10-06",
+  "scores": {
+   "terminal_bench_2_1": {
+    "score": 83.15,
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+   }
+  }
+ },
+ {
+  "name": "Gemini 4 Argon",
+  "aa_index": 52.5606,
+  "aa_url": "https://artificialanalysis.ai/models/gemini-4-argon",
+  "seen": "2026-10-06",
+  "scores": {
+   "terminal_bench_2_1": {
+    "score": 57.68,
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+   }
+  }
+ },
+ {
+  "name": "K2 Horizon 375B A23B",
+  "aa_index": 30.5015,
+  "aa_url": "https://artificialanalysis.ai/models/k2-horizon-375b-a23b",
+  "seen": "2026-10-06",
+  "scores": {
+   "terminal_bench_2_1": {
+    "score": 71.91,
+    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1"
+   }
+  }
+ },
+ {
+  "name": "Ling 3.0 Flash Fin",
+  "aa_index": 22.5966,
+  "aa_url": "https://artificialanalysis.ai/models/ling-3-0-flash-fin",
+  "seen": "2026-10-06",
+  "scores": {
+   "terminal_bench_2_1": {
+    "score": 50.19,
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+   }
+  }
+ },
+ {
+  "name": "Mercury 2.5",
+  "aa_index": 12.3408,
+  "aa_url": "https://artificialanalysis.ai/models/mercury-2-5",
+  "seen": "2026-10-06",
+  "scores": {
+   "terminal_bench_2_1": {
+    "score": 34.46,
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
    }
   }
  }

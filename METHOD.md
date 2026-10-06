@@ -27,7 +27,7 @@ New and stealth models usually have no AA index. For those we show an **EST** ba
 
 How an EST band is computed:
 1. **Collect public scores.** We record public scores for the model with their sources. Official, leaderboard, third-party and community or leaked results all count, but only if they are for this exact model, never a rumoured identity or a predecessor.
-2. **Fit each benchmark against reference models.** For each benchmark we take reference models that have both a score on the same benchmark and an official AA index. We need at least 4 of them, and we fit a straight line. A benchmark is used only if the fit's correlation is at least 0.6.
+2. **Fit each benchmark against reference models.** For each benchmark we take reference models that have both a score on the same benchmark and an official AA index. We need at least 4 of them, and we fit a straight line. A benchmark is used only if the fit's correlation is at least 0.6. Benchmarks fitted today (Oct 6): AI Coding Daily (17 reference models, r = 0.85), SWE-bench Verified (110, r = 0.82), SWE-bench Pro (62, r = 0.87) and Terminal-Bench 2.1 (77, r = 0.87). When a reference model has several published scores on one benchmark we use their median.
 3. **Convert each benchmark to an implied AA value.** The model's score goes through that benchmark's line.
 4. **Combine.** The implied values are combined with a weighted median: official and leaderboard sources weigh 1, third-party 0.75, community and leaks 0.5.
 5. **Make the band.** The band is 5 points wide around that median.
