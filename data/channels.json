@@ -412,30 +412,5 @@
     "label": "Gemini API pricing"
    }
   }
- },
- {
-  "name": "Mistral",
-  "entry": {
-   "kind": "account",
-   "usd": null,
-   "period": null,
-   "note": "Free mode: \"create API keys and use included monthly usage within the limits shown on the Limits page\"; verified phone, no card. Not a list of permanently free models"
-  },
-  "source": {
-   "url": "https://docs.mistral.ai/admin/billing-usage/usage-limits",
-   "label": "Mistral docs"
-  },
-  "checked": "2026-10-06",
-  "access": {
-   "form": "api",
-   "protocols": [
-    "openai_chat"
-   ],
-   "rules": [],
-   "source": {
-    "url": "https://docs.mistral.ai/getting-started/quickstarts/studio/activate-and-generate-api-key",
-    "label": "Mistral docs"
-   }
-  }
  }
 ]

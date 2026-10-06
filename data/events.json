@@ -844,33 +844,5 @@
    "label": "Google AI Studio docs",
    "url": "https://ai.google.dev/gemini-api/docs/pricing"
   }
- },
- {
-  "date": "2026-10-06",
-  "lanes": [
-   "mistral-large-4-mistral",
-   "mistral-medium-3.5-mistral",
-   "mistral-small-4-mistral",
-   "codestral-2508-mistral"
-  ],
-  "kind": "listed",
-  "text": "Free of charge on Mistral's free tier (standing); not called by us yet",
-  "source": {
-   "label": "Mistral docs",
-   "url": "https://docs.mistral.ai/admin/billing-usage/usage-limits"
-  }
- },
- {
-  "date": "2026-10-06",
-  "lanes": [
-   "mistral-large-4-mistral",
-   "mistral-medium-3.5-mistral"
-  ],
-  "kind": "limit_changed",
-  "text": "Tested with a free-mode key: Large 4 answered, headers show 50 requests/min and 20,000 tokens/min; Medium 3.5 returned 429 on every call; GLM 5.3 returned 403 \"not available in your subscription tier\" (removed)",
-  "source": {
-   "label": "own check",
-   "url": null
-  }
  }
 ]
