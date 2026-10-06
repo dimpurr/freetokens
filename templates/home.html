@@ -144,7 +144,7 @@ $("stamp").innerHTML = metaStrip();
   draw();
 })();
 
-/* channels: one summary line, then the models grouped by state, so each state is said once (option B) */
+/* channels: one summary line, then every model as a chip across the full width (option A) */
 (function () {
   const order = { live: 0, overdue: 1, listed: 2, unavailable: 3, ended: 4 };
   const rows = channels.map((c) => {
@@ -167,10 +167,7 @@ $("stamp").innerHTML = metaStrip();
       <span class="ch-free"><span class="meter" style="--n:${ls.length}">${ls.map((l) => `<i class="${isFree(l) ? "on" : ""}"></i>`).join("")}</span><b>${free}</b> <span class="muted">of ${ls.length} free</span></span>
       <span class="ch-next"><span class="muted">next end</span> ${next ? `<b>${esc(endInfo(next).main)}</b> <span class="muted">·</span> ${mlink(next.model)} ${confHTML(next.ends.confidence)}` : `<span class="muted">none announced</span>`}</span>
     </div>
-    ${groups(ls).map(({ l, ls: gl }) => `<div class="ch-g">
-      <span class="ch-s">${statusHTML(l.status, stateWords(l))}${gl.length > 1 ? ` <span class="muted">(${gl.length})</span>` : ""}</span>
-      <span class="ch-m">${gl.map((x) => mlink(x.model)).join(`<span class="dot"> · </span>`)}</span>
-    </div>`).join("")}
+    <div class="chips ch-chips">${[...ls].sort((a, b) => order[a.status] - order[b.status]).map(modelChip).join("")}</div>
   </article>`).join("");
 })();
 
