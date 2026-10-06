@@ -427,5 +427,30 @@
    "label": "Kilo model page",
    "url": "https://kilo.ai/models/inclusionai-ring-2-6-1t-free"
   }
+ },
+ {
+  "date": "2026-08-13",
+  "lanes": [
+   "dsv4flash-letta"
+  ],
+  "kind": "available",
+  "text": "Letta: \"DeepSeek V4 Flash are now available on Letta Cloud. Use your Letta API credits to run either model.\" Paid credits then, not free",
+  "source": {
+   "label": "Letta on LinkedIn",
+   "url": "https://www.linkedin.com/posts/letta-ai_grok-46-and-deepseek-v4-flash-are-now-available-activity-7493785231003398144-QbkR"
+  }
+ },
+ {
+  "date": "2026-10-06",
+  "lanes": [
+   "dsv41flash-letta",
+   "dsv4flash-letta"
+  ],
+  "kind": "listed",
+  "text": "Both carry a green \"Free\" badge in the Letta app's Hosted model list (other hosted models show \"Quota\" or \"Out of credits\"); V4.1 Flash ran an agent session on a free account. No official start or end date found",
+  "source": {
+   "label": "own check",
+   "url": null
+  }
  }
 ]

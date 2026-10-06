@@ -271,5 +271,18 @@
    "note": "not checked"
   },
   "notes": null
+ },
+ {
+  "id": "deepseek-v4.1-flash",
+  "name": "DeepSeek V4.1 Flash",
+  "maker": "DeepSeek",
+  "context": "not checked",
+  "image_input": "not_checked",
+  "aa_index": {
+   "value": null,
+   "date": "2026-10-06",
+   "note": "not checked"
+  },
+  "notes": null
  }
 ]
