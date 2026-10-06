@@ -12,7 +12,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 UA = {"User-Agent": "freetokens-watch/1 (+https://freetokens.fyi)"}
-POOL_BAR = 30
+POOL_BAR = 34  # free-pool floor = Qwen 3.8 27B level (Dim, 2026-10-06)
 # ids whose return to a free catalogue matters to someone: (channel, model_id) -> who to tell
 WATCH_RETURN = {
     ("OpenCode Go", "opencode-go/space-bunny-free"): "m1max-dimmodel can restore the bunny arm (retired 2026-10-06)",
