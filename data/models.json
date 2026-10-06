@@ -163,9 +163,10 @@
   "context": "262K",
   "image_input": "yes",
   "aa_index": {
-   "value": null,
-   "date": "2026-10-05",
-   "note": "not checked"
+   "value": 28,
+   "date": "2026-10-06",
+   "url": "https://artificialanalysis.ai/models/nex-n2-pro",
+   "approx": true
   },
   "notes": null
  },
@@ -256,9 +257,10 @@
   "context": "262K",
   "image_input": "no",
   "aa_index": {
-   "value": null,
-   "date": "2026-10-05",
-   "note": "not checked"
+   "value": 10,
+   "date": "2026-10-06",
+   "url": "https://artificialanalysis.ai/models/ling-2-6-flash",
+   "approx": true
   },
   "notes": null
  },
