@@ -1880,11 +1880,13 @@
    "source": "https://openrouter.ai/pricing"
   },
   "limits_observed": {
-   "date": "2026-10-06",
-   "reach": "refused",
+   "date": "2026-10-07",
+   "reach": "works",
+   "parallel": 10,
    "quirks": [
     "harness_only"
-   ]
+   ],
+   "note": "works through opencode; plain API calls get 403"
   },
   "started": {
    "date": "2026-07-30"
@@ -1895,14 +1897,14 @@
    "confidence": "none"
   },
   "data_policy": "may_train",
-  "status": "listed",
+  "status": "live",
   "checked": {
-   "date": "2026-10-06",
-   "method": "api_call"
+   "date": "2026-10-07",
+   "method": "agent_run"
   },
   "volume": {
-   "tier": "taste",
-   "basis": "50 requests a day without credits (stated)"
+   "tier": "daily",
+   "basis": "own check: 10 parallel runs; OpenRouter :free shares 1000 requests/day per account"
   }
  },
  {
@@ -1956,11 +1958,13 @@
    "source": "https://openrouter.ai/pricing"
   },
   "limits_observed": {
-   "date": "2026-10-06",
-   "reach": "refused",
+   "date": "2026-10-07",
+   "reach": "works",
+   "parallel": 10,
    "quirks": [
     "harness_only"
-   ]
+   ],
+   "note": "works through opencode; plain API calls get 403"
   },
   "started": {
    "date": "2026-07-17"
@@ -1971,14 +1975,14 @@
    "confidence": "none"
   },
   "data_policy": "may_train",
-  "status": "listed",
+  "status": "live",
   "checked": {
-   "date": "2026-10-06",
-   "method": "api_call"
+   "date": "2026-10-07",
+   "method": "agent_run"
   },
   "volume": {
-   "tier": "taste",
-   "basis": "50 requests a day without credits (stated)"
+   "tier": "daily",
+   "basis": "own check: 10 parallel runs; OpenRouter :free shares 1000 requests/day per account"
   }
  },
  {
