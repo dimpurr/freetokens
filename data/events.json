@@ -1443,5 +1443,29 @@
    "label": "Vercel changelog",
    "url": "https://vercel.com/changelog/laguna-s-2-1-is-now-available-on-ai-gateway"
   }
+ },
+ {
+  "date": "2026-10-06",
+  "lanes": [
+   "exo-zen"
+  ],
+  "kind": "listed",
+  "text": "Added to OpenCode's model catalogue (models.dev): Exo",
+  "source": {
+   "label": "models.dev commit",
+   "url": "https://github.com/sst/models.dev/commit/0773f61a19"
+  }
+ },
+ {
+  "date": "2026-10-07",
+  "lanes": [
+   "mimo-v2.5-zen"
+  ],
+  "kind": "ended",
+  "text": "No longer in OpenCode Zen's model list (free catalogue check)",
+  "source": {
+   "label": "own check of opencode.ai/zen/v1/models",
+   "url": "https://opencode.ai/zen/v1/models"
+  }
  }
 ]

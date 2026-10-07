@@ -856,5 +856,18 @@
    "url": "https://artificialanalysis.ai/models/glm-5-3"
   },
   "notes": null
+ },
+ {
+  "id": "exo",
+  "name": "Exo",
+  "maker": "undisclosed",
+  "context": "1M",
+  "image_input": "yes",
+  "aa_index": {
+   "value": null,
+   "date": "2026-10-07",
+   "note": "not checked"
+  },
+  "notes": "Zen describes it as a free-tier preview reasoning model with text and image input and tool use"
  }
 ]

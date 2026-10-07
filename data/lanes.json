@@ -61,6 +61,10 @@
   "checked": {
    "date": "2026-10-06",
    "method": "api_call"
+  },
+  "volume": {
+   "tier": "daily",
+   "basis": "channel rule: Zen's free allowance is per IP per day; this model not load-tested"
   }
  },
  {
@@ -226,7 +230,11 @@
   "limits_stated": {
    "basis": "not_checked"
   },
-  "limits_observed": null,
+  "limits_observed": {
+   "date": "2026-10-07",
+   "reach": "works",
+   "checks": 2
+  },
   "started": {
    "date": "2026-06"
   },
@@ -238,7 +246,7 @@
   "data_policy": "may_train",
   "status": "live",
   "checked": {
-   "date": "2026-07-25",
+   "date": "2026-10-07",
    "method": "api_call"
   },
   "volume": {
@@ -2119,6 +2127,10 @@
   "checked": {
    "date": "2026-10-06",
    "method": "api_call"
+  },
+  "volume": {
+   "tier": "daily",
+   "basis": "channel rule: Zen's free allowance is per IP per day; this model not load-tested"
   }
  },
  {
@@ -2146,6 +2158,10 @@
   "checked": {
    "date": "2026-10-06",
    "method": "agent_run"
+  },
+  "volume": {
+   "tier": "daily",
+   "basis": "channel rule: Zen's free allowance is per IP per day; this model not load-tested"
   }
  },
  {
@@ -2180,6 +2196,10 @@
   "checked": {
    "date": "2026-10-06",
    "method": "api_call"
+  },
+  "volume": {
+   "tier": "daily",
+   "basis": "channel rule: Zen's free allowance is per IP per day; this model not load-tested"
   }
  },
  {
@@ -2212,6 +2232,10 @@
   "checked": {
    "date": "2026-10-06",
    "method": "api_call"
+  },
+  "volume": {
+   "tier": "daily",
+   "basis": "channel rule: Zen's free allowance is per IP per day; this model not load-tested"
   }
  },
  {
@@ -2244,6 +2268,10 @@
   "checked": {
    "date": "2026-10-06",
    "method": "api_call"
+  },
+  "volume": {
+   "tier": "daily",
+   "basis": "channel rule: Zen's free allowance is per IP per day; this model not load-tested"
   }
  },
  {
@@ -2270,10 +2298,10 @@
    "confidence": "none"
   },
   "data_policy": "may_train",
-  "status": "listed",
+  "status": "ended",
   "checked": {
-   "date": "2026-10-06",
-   "method": "api_call"
+   "date": "2026-10-07",
+   "method": "catalogue"
   }
  },
  {
@@ -2336,6 +2364,10 @@
   "checked": {
    "date": "2026-10-06",
    "method": "api_call"
+  },
+  "volume": {
+   "tier": "daily",
+   "basis": "channel rule: Zen's free allowance is per IP per day; this model not load-tested"
   }
  },
  {
@@ -3522,6 +3554,37 @@
   "volume": {
    "tier": "daily",
    "basis": "about 40 requests a minute (community-quoted)"
+  }
+ },
+ {
+  "id": "exo-zen",
+  "model": "exo",
+  "channel": "OpenCode Zen",
+  "type": "agent_tool",
+  "model_id": "opencode/exo-free",
+  "free_condition": null,
+  "limits_stated": {
+   "basis": "unpublished"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-10-06",
+   "note": "added to OpenCode's model catalogue (models.dev)"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "may_train",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-07",
+   "method": "catalogue"
+  },
+  "volume": {
+   "tier": "daily",
+   "basis": "channel rule: Zen's free allowance is per IP per day; this model not load-tested"
   }
  }
 ]
