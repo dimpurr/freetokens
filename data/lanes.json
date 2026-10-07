@@ -1136,7 +1136,10 @@
   "limits_stated": {
    "basis": "unpublished"
   },
-  "limits_observed": null,
+  "limits_observed": {
+   "date": "2026-10-07",
+   "reach": "works"
+  },
   "started": {
    "date": "2026-06-19",
    "note": "added to Cline's model list"
@@ -1149,8 +1152,8 @@
   "data_policy": "may_train",
   "status": "live",
   "checked": {
-   "date": "2026-10-06",
-   "method": "agent_run"
+   "date": "2026-10-07",
+   "method": "api_call"
   }
  },
  {
@@ -1163,7 +1166,10 @@
   "limits_stated": {
    "basis": "unpublished"
   },
-  "limits_observed": null,
+  "limits_observed": {
+   "date": "2026-10-07",
+   "reach": "works"
+  },
   "started": {
    "date": "2026-09-09",
    "note": "added to Cline's model list"
@@ -1176,8 +1182,8 @@
   "data_policy": "may_train",
   "status": "live",
   "checked": {
-   "date": "2026-10-06",
-   "method": "agent_run"
+   "date": "2026-10-07",
+   "method": "api_call"
   }
  },
  {
@@ -1190,7 +1196,10 @@
   "limits_stated": {
    "basis": "unpublished"
   },
-  "limits_observed": null,
+  "limits_observed": {
+   "date": "2026-10-07",
+   "reach": "works"
+  },
   "started": {
    "date": "2026-04-28",
    "note": "added to Cline's model list"
@@ -1203,8 +1212,8 @@
   "data_policy": "may_train",
   "status": "live",
   "checked": {
-   "date": "2026-10-06",
-   "method": "agent_run"
+   "date": "2026-10-07",
+   "method": "api_call"
   }
  },
  {
@@ -1217,7 +1226,10 @@
   "limits_stated": {
    "basis": "unpublished"
   },
-  "limits_observed": null,
+  "limits_observed": {
+   "date": "2026-10-07",
+   "reach": "works"
+  },
   "started": {
    "date": "2026-03-31",
    "note": "added to Cline's model list"
@@ -1230,8 +1242,8 @@
   "data_policy": "may_train",
   "status": "live",
   "checked": {
-   "date": "2026-10-06",
-   "method": "agent_run"
+   "date": "2026-10-07",
+   "method": "api_call"
   }
  },
  {
@@ -1244,7 +1256,10 @@
   "limits_stated": {
    "basis": "unpublished"
   },
-  "limits_observed": null,
+  "limits_observed": {
+   "date": "2026-10-07",
+   "reach": "works"
+  },
   "started": {
    "date": "2026-06-04",
    "note": "added to Cline's model list"
@@ -1257,8 +1272,8 @@
   "data_policy": "may_train",
   "status": "live",
   "checked": {
-   "date": "2026-10-06",
-   "method": "agent_run"
+   "date": "2026-10-07",
+   "method": "api_call"
   }
  },
  {
@@ -1271,7 +1286,10 @@
   "limits_stated": {
    "basis": "unpublished"
   },
-  "limits_observed": null,
+  "limits_observed": {
+   "date": "2026-10-07",
+   "reach": "works"
+  },
   "started": {
    "date": "2026-08-11",
    "note": "added to Cline's model list"
@@ -1284,8 +1302,8 @@
   "data_policy": "may_train",
   "status": "live",
   "checked": {
-   "date": "2026-10-06",
-   "method": "agent_run"
+   "date": "2026-10-07",
+   "method": "api_call"
   }
  },
  {
@@ -1298,7 +1316,10 @@
   "limits_stated": {
    "basis": "unpublished"
   },
-  "limits_observed": null,
+  "limits_observed": {
+   "date": "2026-10-07",
+   "reach": "works"
+  },
   "started": {
    "date": "2026-07-28",
    "note": "added to Cline's model list"
@@ -1311,8 +1332,8 @@
   "data_policy": "may_train",
   "status": "live",
   "checked": {
-   "date": "2026-10-06",
-   "method": "agent_run"
+   "date": "2026-10-07",
+   "method": "api_call"
   }
  },
  {
@@ -1325,7 +1346,10 @@
   "limits_stated": {
    "basis": "unpublished"
   },
-  "limits_observed": null,
+  "limits_observed": {
+   "date": "2026-10-07",
+   "reach": "works"
+  },
   "started": {
    "date": "2026-07-03",
    "note": "added to Cline's model list"
@@ -1338,8 +1362,8 @@
   "data_policy": "may_train",
   "status": "live",
   "checked": {
-   "date": "2026-10-06",
-   "method": "agent_run"
+   "date": "2026-10-07",
+   "method": "api_call"
   }
  },
  {
@@ -1352,7 +1376,10 @@
   "limits_stated": {
    "basis": "unpublished"
   },
-  "limits_observed": null,
+  "limits_observed": {
+   "date": "2026-10-07",
+   "reach": "works"
+  },
   "started": {
    "date": "2026-08-13",
    "note": "added to Cline's model list"
@@ -1365,8 +1392,8 @@
   "data_policy": "may_train",
   "status": "live",
   "checked": {
-   "date": "2026-10-06",
-   "method": "agent_run"
+   "date": "2026-10-07",
+   "method": "api_call"
   }
  },
  {
@@ -1389,12 +1416,15 @@
    "confidence": "none"
   },
   "data_policy": "may_train",
-  "status": "listed",
+  "status": "live",
   "checked": {
-   "date": "2026-10-06",
-   "method": "agent_run"
+   "date": "2026-10-07",
+   "method": "api_call"
   },
-  "limits_observed": null
+  "limits_observed": {
+   "date": "2026-10-07",
+   "reach": "works"
+  }
  },
  {
   "id": "dots-3-note-preview-cline",
@@ -1416,12 +1446,15 @@
    "confidence": "none"
   },
   "data_policy": "may_train",
-  "status": "listed",
+  "status": "live",
   "checked": {
-   "date": "2026-10-06",
-   "method": "agent_run"
+   "date": "2026-10-07",
+   "method": "api_call"
   },
-  "limits_observed": null
+  "limits_observed": {
+   "date": "2026-10-07",
+   "reach": "works"
+  }
  },
  {
   "id": "gemma-4-26b-a4b-it-cline",
@@ -1445,10 +1478,14 @@
   "data_policy": "may_train",
   "status": "listed",
   "checked": {
-   "date": "2026-10-06",
-   "method": "agent_run"
+   "date": "2026-10-07",
+   "method": "api_call"
   },
-  "limits_observed": null
+  "limits_observed": {
+   "date": "2026-10-07",
+   "reach": "busy",
+   "checks": 2
+  }
  },
  {
   "id": "gemma-4-31b-it-cline",
@@ -1472,10 +1509,14 @@
   "data_policy": "may_train",
   "status": "listed",
   "checked": {
-   "date": "2026-10-06",
-   "method": "agent_run"
+   "date": "2026-10-07",
+   "method": "api_call"
   },
-  "limits_observed": null
+  "limits_observed": {
+   "date": "2026-10-07",
+   "reach": "busy",
+   "checks": 2
+  }
  },
  {
   "id": "inkling-small-cline",
@@ -1499,10 +1540,14 @@
   "data_policy": "may_train",
   "status": "listed",
   "checked": {
-   "date": "2026-10-06",
-   "method": "agent_run"
+   "date": "2026-10-07",
+   "method": "api_call"
   },
-  "limits_observed": null
+  "limits_observed": {
+   "date": "2026-10-07",
+   "reach": "busy",
+   "checks": 2
+  }
  },
  {
   "id": "inkling-cline",
@@ -1526,10 +1571,14 @@
   "data_policy": "may_train",
   "status": "listed",
   "checked": {
-   "date": "2026-10-06",
-   "method": "agent_run"
+   "date": "2026-10-07",
+   "method": "api_call"
   },
-  "limits_observed": null
+  "limits_observed": {
+   "date": "2026-10-07",
+   "reach": "busy",
+   "checks": 2
+  }
  },
  {
   "id": "ling-3.1-flash-or",
