@@ -12,8 +12,24 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 UA = {"User-Agent": "freetokens-watch/1 (+https://freetokens.fyi)"}
-POOL_BAR = 30  # free-pool floors (Dim, 2026-10-07): main tier >= 35, borderline 30-35, below 30 out; admission needs Dim's approval
-MAIN_BAR = 35
+# Pool floors are Dim's private policy, kept in chco tools/free-pool/arms.toml [policy] (main_bar, pool_bar).
+# Read them from there when present (env FT_POOL_POLICY overrides the path); fall back to the last known values.
+def _pool_policy():
+    import os
+    try:
+        import tomllib
+    except ImportError:
+        return 30, 35
+    cands = [os.environ.get("FT_POOL_POLICY", "")] + [os.path.expanduser(p + "/tools/free-pool/arms.toml") for p in
+             ("~/WorkflowUser/Code/Project/dimresearchcode", "~/WorkflowUser/Code/Personal/dimresearchcode", "~/Workflow/code/project/dimresearchcode")]
+    for c in cands:
+        if c and os.path.exists(c):
+            pol = tomllib.load(open(c, "rb")).get("policy", {})
+            return pol.get("pool_bar", 30), pol.get("main_bar", 35)
+    return 30, 35
+
+
+POOL_BAR, MAIN_BAR = _pool_policy()
 # ids whose return to a free catalogue matters to someone: (channel, model_id) -> who to tell
 WATCH_RETURN = {
     ("OpenCode Go", "opencode-go/space-bunny-free"): "m1max-dimmodel can restore the bunny arm (retired 2026-10-06)",

@@ -6,7 +6,10 @@
     python3 tools/query.py events [--since YYYY-MM-DD] [--lane ID]
     python3 tools/query.py pool [--min 30]            # agent-usable free lanes with a score, best first
 
-Scores use build.estimate(), the same code the site uses. Output keys are stable; new keys may be added.
+Scores use build.estimate(), the same code the site uses.
+CONTRACT (parsed by chco `oc-free status`; tell m1max-dimmodel before renaming or removing any of these):
+  score -> kind, value, low, high, confidence · lanes -> status, ends.expected, ends.announced, ends.confidence · pool -> lane, score.*
+New keys may be added freely.
 """
 import json, sys
 from pathlib import Path
