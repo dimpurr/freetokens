@@ -2,7 +2,7 @@
  {
   "id": "ling-3.1-flash",
   "name": "Ling 3.1 Flash",
-  "maker": "inclusionAI (Ant)",
+  "maker": "inclusionai",
   "context": "262K",
   "image_input": "no",
   "aa_index": {
@@ -15,7 +15,7 @@
  {
   "id": "mimo-v2.6-flash",
   "name": "MiMo V2.6 Flash",
-  "maker": "Xiaomi",
+  "maker": "xiaomi",
   "context": "not checked (the Zen free tier has been capped at 200K before)",
   "image_input": "no",
   "aa_index": {
@@ -28,7 +28,7 @@
  {
   "id": "longcat-2.5-preview",
   "name": "LongCat 2.5 Preview",
-  "maker": "Meituan",
+  "maker": "meituan",
   "context": "1M",
   "image_input": "partial",
   "aa_index": {
@@ -49,12 +49,18 @@
    "date": "2026-10-04",
    "note": "not ranked"
   },
-  "notes": "Rumoured: MiniMax family (several independent tokenizer tests), possibly M3.1 / M3.1-Flash. Some sources dispute the exact version; no official confirmation."
+  "notes": "Rumoured: MiniMax family (several independent tokenizer tests), possibly M3.1 / M3.1-Flash. Some sources dispute the exact version; no official confirmation.",
+  "suspected_maker": {
+   "maker": "minimax",
+   "basis": "community fingerprinting links it to MiniMax M3.1; MiniMax later shipped the same system in its own agent tool",
+   "url": "https://startupfortune.com/minimax-slips-a-new-coding-model-into-its-agent-tool-witho",
+   "confidence": "unconfirmed"
+  }
  },
  {
   "id": "deepseek-v4-flash",
   "name": "DeepSeek V4 Flash",
-  "maker": "DeepSeek",
+  "maker": "deepseek",
   "context": "200K on the Zen free tier",
   "image_input": "no",
   "aa_index": {
@@ -67,7 +73,7 @@
  {
   "id": "nemotron-3-ultra",
   "name": "Nemotron 3 Ultra (550B-A55B)",
-  "maker": "NVIDIA",
+  "maker": "nvidia",
   "context": "1M",
   "image_input": "no",
   "aa_index": {
@@ -80,7 +86,7 @@
  {
   "id": "dots-3-note-preview",
   "name": "Dots3-Note Preview",
-  "maker": "Dots Studio",
+  "maker": "dots-studio",
   "context": "512K",
   "image_input": "yes",
   "aa_index": {
@@ -93,7 +99,7 @@
  {
   "id": "gemma-4-26b-a4b-it",
   "name": "Gemma 4 26B A4B",
-  "maker": "Google",
+  "maker": "google",
   "context": "262K",
   "image_input": "yes",
   "aa_index": {
@@ -107,7 +113,7 @@
  {
   "id": "ling-3.0-flash",
   "name": "Ling-3.0-flash",
-  "maker": "inclusionAI (Ant)",
+  "maker": "inclusionai",
   "context": "262K",
   "image_input": "no",
   "aa_index": {
@@ -120,7 +126,7 @@
  {
   "id": "minimax-m2.7",
   "name": "MiniMax M2.7",
-  "maker": "MiniMax",
+  "maker": "minimax",
   "context": "197K",
   "image_input": "no",
   "aa_index": {
@@ -133,7 +139,7 @@
  {
   "id": "minimax-m3",
   "name": "MiniMax M3",
-  "maker": "MiniMax",
+  "maker": "minimax",
   "context": "1M",
   "image_input": "yes",
   "aa_index": {
@@ -146,7 +152,7 @@
  {
   "id": "nemotron-3-super-120b-a12b",
   "name": "Nemotron 3 Super",
-  "maker": "NVIDIA",
+  "maker": "nvidia",
   "context": "262K",
   "image_input": "no",
   "aa_index": {
@@ -159,7 +165,7 @@
  {
   "id": "nex-n2-pro",
   "name": "Nex-N2-Pro",
-  "maker": "Nex AGI",
+  "maker": "nex-agi",
   "context": "262K",
   "image_input": "yes",
   "aa_index": {
@@ -173,7 +179,7 @@
  {
   "id": "nex-n2.5-pro",
   "name": "Nex-N2.5-Pro",
-  "maker": "Nex AGI",
+  "maker": "nex-agi",
   "context": "262K",
   "image_input": "yes",
   "aa_index": {
@@ -186,7 +192,7 @@
  {
   "id": "laguna-s-2.1",
   "name": "Laguna S 2.1",
-  "maker": "Poolside",
+  "maker": "poolside",
   "context": "262K",
   "image_input": "no",
   "aa_index": {
@@ -199,7 +205,7 @@
  {
   "id": "hy3",
   "name": "Hy3",
-  "maker": "Tencent",
+  "maker": "tencent",
   "context": "262K",
   "image_input": "no",
   "aa_index": {
@@ -212,7 +218,7 @@
  {
   "id": "hy3-preview",
   "name": "Hy3 preview",
-  "maker": "Tencent",
+  "maker": "tencent",
   "context": "262K",
   "image_input": "no",
   "aa_index": {
@@ -226,7 +232,7 @@
  {
   "id": "ling-3.0-flash-vl",
   "name": "Ling 3.0 Flash VL",
-  "maker": "inclusionAI (Ant)",
+  "maker": "inclusionai",
   "context": "262K",
   "image_input": "yes",
   "aa_index": {
@@ -239,7 +245,7 @@
  {
   "id": "ling-2.6-1t",
   "name": "Ling-2.6-1T",
-  "maker": "inclusionAI (Ant)",
+  "maker": "inclusionai",
   "context": "262K",
   "image_input": "no",
   "aa_index": {
@@ -253,7 +259,7 @@
  {
   "id": "ling-2.6-flash",
   "name": "Ling-2.6-flash",
-  "maker": "inclusionAI (Ant)",
+  "maker": "inclusionai",
   "context": "262K",
   "image_input": "no",
   "aa_index": {
@@ -267,7 +273,7 @@
  {
   "id": "ring-2.6-1t",
   "name": "Ring-2.6-1T",
-  "maker": "inclusionAI (Ant)",
+  "maker": "inclusionai",
   "context": "262K",
   "image_input": "no",
   "aa_index": {
@@ -280,7 +286,7 @@
  {
   "id": "deepseek-v4.1-flash",
   "name": "DeepSeek V4.1 Flash",
-  "maker": "DeepSeek",
+  "maker": "deepseek",
   "context": "1M",
   "image_input": "yes",
   "aa_index": {
@@ -293,7 +299,7 @@
  {
   "id": "apodex-1.1-mini",
   "name": "Apodex 1.1 Mini",
-  "maker": "Apodex",
+  "maker": "apodex",
   "context": "256K",
   "image_input": "no",
   "aa_index": {
@@ -306,7 +312,7 @@
  {
   "id": "north-mini-code",
   "name": "North Mini Code",
-  "maker": "Cohere",
+  "maker": "cohere",
   "context": "256K",
   "image_input": "no",
   "aa_index": {
@@ -319,7 +325,7 @@
  {
   "id": "ling-3.0-flash-sante",
   "name": "Ling 3.0 Flash Sante",
-  "maker": "inclusionAI (Ant)",
+  "maker": "inclusionai",
   "context": "256K",
   "image_input": "no",
   "aa_index": {
@@ -332,7 +338,7 @@
  {
   "id": "lfm-2.5-2.6b",
   "name": "LFM 2.5 2.6B",
-  "maker": "Liquid AI",
+  "maker": "liquid",
   "context": "128K",
   "image_input": "no",
   "aa_index": {
@@ -346,7 +352,7 @@
  {
   "id": "nemotron-3-nano-omni-30b-a3b",
   "name": "Nemotron 3 Nano Omni 30B A3B (reasoning)",
-  "maker": "NVIDIA",
+  "maker": "nvidia",
   "context": "256K",
   "image_input": "yes",
   "aa_index": {
@@ -360,7 +366,7 @@
  {
   "id": "nemotron-3.5-lightning",
   "name": "Nemotron 3.5 Lightning",
-  "maker": "NVIDIA",
+  "maker": "nvidia",
   "context": "1M",
   "image_input": "no",
   "aa_index": {
@@ -373,7 +379,7 @@
  {
   "id": "laguna-xs-2.1",
   "name": "Laguna XS 2.1",
-  "maker": "Poolside",
+  "maker": "poolside",
   "context": "256K",
   "image_input": "no",
   "aa_index": {
@@ -386,7 +392,7 @@
  {
   "id": "step-3.7-flash",
   "name": "Step 3.7 Flash",
-  "maker": "StepFun",
+  "maker": "stepfun",
   "context": "256K",
   "image_input": "yes",
   "aa_index": {
@@ -400,7 +406,7 @@
  {
   "id": "inkling-small",
   "name": "Inkling Small",
-  "maker": "Thinking Machines",
+  "maker": "thinking-machines",
   "context": "1M",
   "image_input": "yes",
   "aa_index": {
@@ -413,7 +419,7 @@
  {
   "id": "gemma-4-31b-it",
   "name": "Gemma 4 31B",
-  "maker": "Google",
+  "maker": "google",
   "context": "256K",
   "image_input": "yes",
   "aa_index": {
@@ -426,7 +432,7 @@
  {
   "id": "inkling",
   "name": "Inkling",
-  "maker": "Thinking Machines",
+  "maker": "thinking-machines",
   "context": "1M",
   "image_input": "yes",
   "aa_index": {
@@ -465,7 +471,7 @@
  {
   "id": "mimo-v2.5",
   "name": "MiMo V2.5",
-  "maker": "Xiaomi",
+  "maker": "xiaomi",
   "context": "1M",
   "image_input": "yes",
   "aa_index": {
@@ -479,7 +485,7 @@
  {
   "id": "ling-3.0-flash-fin",
   "name": "Ling 3.0 Flash Fin",
-  "maker": "inclusionAI (Ant)",
+  "maker": "inclusionai",
   "context": "256K",
   "image_input": "no",
   "aa_index": {
@@ -505,7 +511,7 @@
  {
   "id": "muse-spark-1.3-contributor",
   "name": "Muse Spark 1.3 (Contributor)",
-  "maker": "Meta",
+  "maker": "meta",
   "context": "1M",
   "image_input": "yes",
   "aa_index": {
@@ -518,7 +524,7 @@
  {
   "id": "muse-spark-1.2-contributor",
   "name": "Muse Spark 1.2 (Contributor)",
-  "maker": "Meta",
+  "maker": "meta",
   "context": "1M",
   "image_input": "yes",
   "aa_index": {
@@ -531,7 +537,7 @@
  {
   "id": "solar-pro-4",
   "name": "Solar Pro 4",
-  "maker": "Upstage",
+  "maker": "upstage",
   "context": "512K",
   "image_input": "no",
   "aa_index": {
@@ -544,7 +550,7 @@
  {
   "id": "solar-mini-4",
   "name": "Solar Mini 4",
-  "maker": "Upstage",
+  "maker": "upstage",
   "context": "512K",
   "image_input": "no",
   "aa_index": {
@@ -557,7 +563,7 @@
  {
   "id": "glm-5.3-flash",
   "name": "GLM 5.3 Flash",
-  "maker": "Z.ai",
+  "maker": "zai",
   "context": "1M",
   "image_input": "yes",
   "aa_index": {
@@ -570,7 +576,7 @@
  {
   "id": "gpt-6-luna",
   "name": "GPT-6 Luna",
-  "maker": "OpenAI",
+  "maker": "openai",
   "context": "1025K",
   "image_input": "yes",
   "aa_index": {
@@ -583,7 +589,7 @@
  {
   "id": "mimo-v2.6-pro",
   "name": "MiMo V2.6 Pro",
-  "maker": "Xiaomi",
+  "maker": "xiaomi",
   "context": "1M",
   "image_input": "yes",
   "aa_index": {
@@ -596,7 +602,7 @@
  {
   "id": "gpt-6.1-sol",
   "name": "GPT-6.1 Sol",
-  "maker": "OpenAI",
+  "maker": "openai",
   "context": "1025K",
   "image_input": "yes",
   "aa_index": {
@@ -609,7 +615,7 @@
  {
   "id": "glm-4.7-flash",
   "name": "GLM-4.7-Flash",
-  "maker": "Z.ai",
+  "maker": "zai",
   "context": "200K",
   "image_input": "not_checked",
   "aa_index": {
@@ -623,7 +629,7 @@
  {
   "id": "glm-4.5-flash",
   "name": "GLM-4.5-Flash",
-  "maker": "Z.ai",
+  "maker": "zai",
   "context": "200K",
   "image_input": "not_checked",
   "aa_index": {
@@ -636,7 +642,7 @@
  {
   "id": "glm-4-flash-250414",
   "name": "GLM-4-Flash-250414",
-  "maker": "Z.ai",
+  "maker": "zai",
   "context": "128K",
   "image_input": "not_checked",
   "aa_index": {
@@ -649,7 +655,7 @@
  {
   "id": "qwen2.5-7b-instruct",
   "name": "Qwen2.5 7B Instruct",
-  "maker": "Alibaba (Qwen)",
+  "maker": "qwen",
   "context": "32K",
   "image_input": "not_checked",
   "aa_index": {
@@ -662,7 +668,7 @@
  {
   "id": "qwen3-8b",
   "name": "Qwen3 8B",
-  "maker": "Alibaba (Qwen)",
+  "maker": "qwen",
   "context": "128K",
   "image_input": "not_checked",
   "aa_index": {
@@ -676,7 +682,7 @@
  {
   "id": "qwen3.5-4b",
   "name": "Qwen3.5 4B",
-  "maker": "Alibaba (Qwen)",
+  "maker": "qwen",
   "context": "256K",
   "image_input": "not_checked",
   "aa_index": {
@@ -690,7 +696,7 @@
  {
   "id": "glm-4-9b-0414",
   "name": "GLM-4 9B 0414",
-  "maker": "Z.ai (THUDM)",
+  "maker": "zai",
   "context": "32K",
   "image_input": "not_checked",
   "aa_index": {
@@ -703,7 +709,7 @@
  {
   "id": "glm-z1-9b-0414",
   "name": "GLM-Z1 9B 0414",
-  "maker": "Z.ai (THUDM)",
+  "maker": "zai",
   "context": "128K",
   "image_input": "not_checked",
   "aa_index": {
@@ -716,7 +722,7 @@
  {
   "id": "xing4.0-29b",
   "name": "Xing 4.0 29B",
-  "maker": "XingChen AGI",
+  "maker": "xingchen",
   "context": "256K",
   "image_input": "not_checked",
   "aa_index": {
@@ -729,7 +735,7 @@
  {
   "id": "deepseek-r1-0528-qwen3-8b",
   "name": "DeepSeek R1 0528 Qwen3 8B",
-  "maker": "DeepSeek",
+  "maker": "deepseek",
   "context": "128K",
   "image_input": "not_checked",
   "aa_index": {
@@ -742,7 +748,7 @@
  {
   "id": "gemini-3.8-flash",
   "name": "Gemini 3.8 Flash",
-  "maker": "Google",
+  "maker": "google",
   "context": "1M",
   "image_input": "not_checked",
   "aa_index": {
@@ -755,7 +761,7 @@
  {
   "id": "gemini-3.7-flash",
   "name": "Gemini 3.7 Flash",
-  "maker": "Google",
+  "maker": "google",
   "context": "1M",
   "image_input": "not_checked",
   "aa_index": {
@@ -768,7 +774,7 @@
  {
   "id": "gemini-3.6-flash",
   "name": "Gemini 3.6 Flash",
-  "maker": "Google",
+  "maker": "google",
   "context": "1M",
   "image_input": "not_checked",
   "aa_index": {
@@ -781,7 +787,7 @@
  {
   "id": "gemini-3.5-flash",
   "name": "Gemini 3.5 Flash",
-  "maker": "Google",
+  "maker": "google",
   "context": "1M",
   "image_input": "not_checked",
   "aa_index": {
@@ -794,7 +800,7 @@
  {
   "id": "gemini-3.5-flash-lite",
   "name": "Gemini 3.5 Flash-Lite",
-  "maker": "Google",
+  "maker": "google",
   "context": "1M",
   "image_input": "not_checked",
   "aa_index": {
@@ -807,7 +813,7 @@
  {
   "id": "qwen3.8-flash",
   "name": "Qwen3.8 Flash",
-  "maker": "Alibaba (Qwen)",
+  "maker": "qwen",
   "context": "not checked",
   "image_input": "not_checked",
   "aa_index": {
@@ -821,7 +827,7 @@
  {
   "id": "kimi-k3",
   "name": "Kimi K3",
-  "maker": "Moonshot AI",
+  "maker": "moonshot",
   "context": "1M",
   "image_input": "not_checked",
   "aa_index": {
@@ -834,7 +840,7 @@
  {
   "id": "coding-kimi-k3",
   "name": "Coding Kimi K3",
-  "maker": "Moonshot AI",
+  "maker": "moonshot",
   "context": "1M",
   "image_input": "not_checked",
   "aa_index": {
@@ -847,7 +853,7 @@
  {
   "id": "glm-5.3",
   "name": "GLM 5.3",
-  "maker": "Z.ai",
+  "maker": "zai",
   "context": "1M",
   "image_input": "not_checked",
   "aa_index": {

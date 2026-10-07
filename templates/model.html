@@ -46,7 +46,7 @@ const ML = lanesOf(M.id);
   const c = M.context.match(/^([\d.]+[KM])\s*(.*)$/);
   const tested = ML.filter((l) => l.limits_observed);
   $("mhead").innerHTML = `
-    <span class="kicker">${esc(M.maker)}</span>
+    <span class="kicker">${mklink(M.maker)}${suspectedHTML(M)}</span>
     <h1>${esc(M.name)}</h1>
     ${M.notes ? `<p class="notes">${esc(M.notes)}</p>` : ""}
     <div class="stats">

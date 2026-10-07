@@ -379,6 +379,12 @@
       "vocab_fields": {
         "entry.kind": "entry_kind"
       }
+    },
+    "makers": {
+      "required": [
+        "id",
+        "name"
+      ]
     }
   },
   "est_rules": {

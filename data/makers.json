@@ -1,0 +1,216 @@
+[
+ {
+  "id": "inclusionai",
+  "name": "inclusionAI",
+  "parent": "Ant Group",
+  "country": "CN",
+  "links": {
+   "models": "https://huggingface.co/inclusionAI"
+  }
+ },
+ {
+  "id": "google",
+  "name": "Google",
+  "country": "US",
+  "links": {
+   "site": "https://deepmind.google",
+   "models": "https://huggingface.co/google"
+  }
+ },
+ {
+  "id": "zai",
+  "name": "Z.ai",
+  "parent": "Zhipu AI; THUDM is its research lab",
+  "country": "CN",
+  "links": {
+   "site": "https://z.ai",
+   "models": "https://huggingface.co/zai-org"
+  }
+ },
+ {
+  "id": "nvidia",
+  "name": "NVIDIA",
+  "country": "US",
+  "links": {
+   "site": "https://www.nvidia.com",
+   "models": "https://huggingface.co/nvidia"
+  }
+ },
+ {
+  "id": "qwen",
+  "name": "Qwen",
+  "parent": "Alibaba",
+  "country": "CN",
+  "links": {
+   "site": "https://qwen.ai",
+   "models": "https://huggingface.co/Qwen"
+  }
+ },
+ {
+  "id": "xiaomi",
+  "name": "Xiaomi MiMo",
+  "parent": "Xiaomi",
+  "country": "CN",
+  "links": {
+   "site": "https://mimo.xiaomi.com",
+   "models": "https://huggingface.co/XiaomiMiMo"
+  }
+ },
+ {
+  "id": "deepseek",
+  "name": "DeepSeek",
+  "country": "CN",
+  "links": {
+   "site": "https://www.deepseek.com",
+   "models": "https://huggingface.co/deepseek-ai"
+  }
+ },
+ {
+  "id": "minimax",
+  "name": "MiniMax",
+  "country": "CN",
+  "links": {
+   "site": "https://www.minimax.io",
+   "models": "https://huggingface.co/MiniMaxAI"
+  }
+ },
+ {
+  "id": "nex-agi",
+  "name": "Nex AGI",
+  "country": "CN",
+  "links": {
+   "models": "https://huggingface.co/nex-agi"
+  }
+ },
+ {
+  "id": "poolside",
+  "name": "Poolside",
+  "country": "US",
+  "links": {
+   "site": "https://poolside.ai",
+   "models": "https://huggingface.co/poolside"
+  }
+ },
+ {
+  "id": "tencent",
+  "name": "Tencent Hunyuan",
+  "parent": "Tencent",
+  "country": "CN",
+  "links": {
+   "site": "https://hunyuan.tencent.com",
+   "models": "https://huggingface.co/tencent"
+  }
+ },
+ {
+  "id": "thinking-machines",
+  "name": "Thinking Machines",
+  "country": "US",
+  "links": {
+   "site": "https://thinkingmachines.ai",
+   "models": "https://huggingface.co/thinkingmachines"
+  }
+ },
+ {
+  "id": "meta",
+  "name": "Meta",
+  "country": "US",
+  "links": {
+   "site": "https://ai.meta.com",
+   "models": "https://huggingface.co/meta-llama"
+  }
+ },
+ {
+  "id": "upstage",
+  "name": "Upstage",
+  "country": "KR",
+  "links": {
+   "site": "https://www.upstage.ai",
+   "models": "https://huggingface.co/upstage"
+  }
+ },
+ {
+  "id": "openai",
+  "name": "OpenAI",
+  "country": "US",
+  "links": {
+   "site": "https://openai.com",
+   "models": "https://huggingface.co/openai"
+  }
+ },
+ {
+  "id": "moonshot",
+  "name": "Moonshot AI (Kimi)",
+  "country": "CN",
+  "links": {
+   "site": "https://www.kimi.ai",
+   "models": "https://huggingface.co/moonshotai"
+  }
+ },
+ {
+  "id": "meituan",
+  "name": "Meituan LongCat",
+  "parent": "Meituan",
+  "country": "CN",
+  "links": {
+   "site": "https://longcat.chat",
+   "models": "https://huggingface.co/meituan-longcat"
+  }
+ },
+ {
+  "id": "dots-studio",
+  "name": "Dots Studio",
+  "parent": "Xiaohongshu (rednote)",
+  "country": "CN",
+  "links": {
+   "models": "https://huggingface.co/dots-studio"
+  }
+ },
+ {
+  "id": "apodex",
+  "name": "Apodex",
+  "links": {
+   "models": "https://huggingface.co/apodex"
+  }
+ },
+ {
+  "id": "cohere",
+  "name": "Cohere",
+  "country": "CA",
+  "links": {
+   "site": "https://cohere.com",
+   "models": "https://huggingface.co/CohereLabs"
+  }
+ },
+ {
+  "id": "liquid",
+  "name": "Liquid AI",
+  "country": "US",
+  "links": {
+   "site": "https://www.liquid.ai",
+   "models": "https://huggingface.co/LiquidAI"
+  }
+ },
+ {
+  "id": "stepfun",
+  "name": "StepFun",
+  "country": "CN",
+  "links": {
+   "site": "https://www.stepfun.com",
+   "models": "https://huggingface.co/stepfun-ai"
+  }
+ },
+ {
+  "id": "xingchen",
+  "name": "XingChen AGI",
+  "parent": "China Telecom",
+  "country": "CN",
+  "links": {
+   "models": "https://huggingface.co/XingChen-AGI"
+  }
+ },
+ {
+  "id": "undisclosed",
+  "name": "Undisclosed (stealth)",
+  "note": "Stealth models shipped without a maker's name. Community attributions are shown on each model as unconfirmed."
+ }
+]

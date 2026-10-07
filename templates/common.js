@@ -60,6 +60,11 @@ const modelHref = (id) => `${D.root}models/${encodeURIComponent(id)}${D.ext}`;
 const channelHref = (name) => `${D.root}channels/${slug(name)}${D.ext}`;
 const mlink = (id) => `<a href="${modelHref(id)}">${esc(models[id].name)}</a>`;
 const clink = (name) => `<a href="${channelHref(name)}">${esc(name)}</a>`;
+/* makers (data/makers.json): every model points at one; a stealth model may carry an unconfirmed suspected_maker */
+const MK = Object.fromEntries((D.makers || []).map((x) => [x.id, x]));
+const makerHref = (id) => `${D.root}makers/${encodeURIComponent(id)}${D.ext}`;
+const mklink = (id) => MK[id] ? `<a class="mklink" href="${makerHref(id)}">${esc(MK[id].name)}</a>` : esc(id);
+const suspectedHTML = (m) => m.suspected_maker ? ` <span class="suspect" title="${esc(m.suspected_maker.basis)}">possibly ${mklink(m.suspected_maker.maker)} · unconfirmed</span>` : "";
 const channels = [...new Set(D.lanes.map((l) => l.channel))];
 const lanesOf = (mid) => D.lanes.filter((l) => l.model === mid);
 const lanesOn = (name) => D.lanes.filter((l) => l.channel === name);
@@ -481,3 +486,24 @@ function mountChart(minScore) {
   $("chartkey").innerHTML = chartKey;
 });
 }
+
+/* one row of the models table (home, maker pages) */
+function modelRow(m, i, off, TOP = 10) {
+    const n = eventsOf(m.id).length;
+    const c = m.context.match(/^([\d.]+[KM])\s*(.*)$/);
+    const ctx = c ? `<b class="mono">${esc(c[1])}</b>${c[2] ? `<span class="sub">${esc(c[2])}</span>` : ""}` : `<span class="muted">${esc(m.context.split(" (")[0])}</span><span class="sub">${esc((m.context.split(" (")[1] || "").replace(/\)$/, ""))}</span>`;
+    const img = { yes: `<span class="st live">${I.image()} yes</span>`, partial: `<span class="pol may_train">${I.image()} unreliable</span>`, no: `<span class="muted">no</span>`, not_checked: `<span class="muted">not checked</span>` }[m.image_input];
+    const r = off ? null : rankOf(m);
+    const ls = lanesOf(m.id), ok = VIEW === "all" ? ls : ls.filter(usable), rest = VIEW === "all" ? [] : ls.filter((l) => !usable(l));
+    const restChips = rest.map((l) => channelChip(l).replace('class="chip"', `class="chip off" title="${esc(l.channel + ": " + (whyNot(l, VIEW) || "not free now"))}"`)).join("");
+    const regionOnly = r && ok.some(isFree) && !ok.some((l) => isFree(l) && worldwide(l));
+    return `<tr class="${i >= TOP ? "more" : ""}${off ? " offrow" : ""}">
+      <td class="rank nowrap" data-label="">${r ? `<span class="${r.est ? "est" : ""}" title="${esc(rankText(m))}">${esc(rankLabel(r))}</span>` : ""}${regionOnly ? `<br>${regionTag(ok.find(isFree))}` : ""}</td>
+      <td><span class="name">${mlink(m.id)}</span><span class="sub">${mklink(m.maker)}</span></td>
+      <td class="nowrap" data-label="AA index">${aaHTML(m)}${aaSource(m)}</td>
+      <td data-label="Free on"><div class="chips">${ok.map(channelChip).join("")}${restChips}${rest.length ? `<button type="button" class="morechips" aria-expanded="false" data-label="+${rest.length} other">+${rest.length} other</button>` : ""}</div></td>
+      <td class="m-hide" data-label="Context">${ctx}</td>
+      <td class="nowrap m-hide" data-label="Images">${img}</td>
+      <td class="nowrap m-hide" data-label="Events">${n ? `<a href="${modelHref(m.id)}#events">${n} event${n === 1 ? "" : "s"}</a>` : `<span class="muted">none</span>`}</td>
+    </tr>`;
+  }

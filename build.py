@@ -171,6 +171,14 @@ def validate(lanes, events, models):
             errs.append(f"{w}: a published or community limit needs limits_stated.source")
         if len(ls.get("note") or "") > 60:
             errs.append(f"{w}: limits_stated.note is over 60 characters; use the number fields")
+    mk_ids = {x["id"] for x in load_optional("makers", [])}
+    if mk_ids:
+        for m in models:
+            if m["maker"] not in mk_ids:
+                errs.append(f"models[{m['id']}]: maker {m['maker']!r} is not an id in data/makers.json")
+            sm = m.get("suspected_maker")
+            if sm and (sm.get("maker") not in mk_ids or not str(sm.get("url", "")).startswith("http") or sm.get("confidence") != "unconfirmed"):
+                errs.append(f"models[{m['id']}]: suspected_maker needs a known maker id, a source url and confidence 'unconfirmed'")
     bench, anchors = load_optional("benchmarks", {}), load_optional("anchors", [])
     for c in bench.get("claims", []):
         if c["model"] not in model_ids:
@@ -470,7 +478,7 @@ def md_models(models, lanes, events):
         else:
             aa = a.get("note", "not ranked")
         n = sum(1 for e in events if any(next(l for l in lanes if l["id"] == i)["model"] == m["id"] for i in e["lanes"]))
-        rows.append([f"[{m['name']}]({SITE}/models/{m['id']})", free_on(m), str(n), f"{aa} ({a['date']})", m["context"], label("image_input", m["image_input"]), m["maker"], m.get("notes") or "—"])
+        rows.append([f"[{m['name']}]({SITE}/models/{m['id']})", free_on(m), str(n), f"{aa} ({a['date']})", m["context"], label("image_input", m["image_input"]), {x["id"]: x["name"] for x in load_optional("makers", [])}.get(m["maker"], m["maker"]), m.get("notes") or "—"])
     return md_table(["Model", "Free on", "Events", "AA index", "Context", "Image input", "Maker", "Notes"], rows)
 
 
@@ -563,6 +571,15 @@ def seo_channel(c, lanes, models):
     return title, desc
 
 
+def seo_maker(mk, lanes, models):
+    ms = [m for m in models if m["maker"] == mk["id"]]
+    free = [m for m in ms if any(l["model"] == m["id"] and l["status"] in FREE for l in lanes)]
+    who = "stealth models with no maker named" if mk["id"] == "undisclosed" else f"{mk['name']} models"
+    title = f"Free {who}: {len(free)} now, where and until when | freetokens" if mk["id"] != "undisclosed" else f"Stealth LLMs free now ({len(free)}): suspected makers and where to use them | freetokens"
+    desc = clip(f"{len(free)} of {len(ms)} tracked {who} are free right now: {', '.join(m['name'] for m in free) or 'none'}. Channels, end dates, scores and sources.")
+    return title, desc
+
+
 def jsonld(obj):
     return '<script type="application/ld+json">' + json.dumps(obj, ensure_ascii=False).replace("</", "<\\/") + "</script>"
 
@@ -589,7 +606,7 @@ def head_html(title, desc, url, today, extra_ld, og_image):
 
 # ---------- pages ----------
 
-SHARED_KEYS = ("lanes", "events", "models", "chans", "vocab", "built", "ext", "est_rule")
+SHARED_KEYS = ("lanes", "events", "models", "chans", "makers", "vocab", "built", "ext", "est_rule")
 
 
 def render_body(template, payload, root, home, shared=False):
@@ -622,7 +639,7 @@ def build_pages(lanes, events, models, today, mode):
     est, _ = estimate(models, load_optional("benchmarks", {}), load_optional("anchors", []))
     models = [dict(m, est=est[m["id"]]) if m["id"] in est else m for m in models]
     R = SCHEMA["est_rules"]
-    base = {"lanes": lanes, "events": events, "models": models, "chans": load_optional("channels", []), "vocab": VOCAB, "built": today.isoformat(), "ext": ext,
+    base = {"lanes": lanes, "events": events, "models": models, "chans": load_optional("channels", []), "makers": load_optional("makers", []), "vocab": VOCAB, "built": today.isoformat(), "ext": ext,
             "est_rule": f"{R['min_benchmarks']} benchmarks from {R['min_sources']} independent sources, each fitted on ≥{R['min_anchors']} reference models with r ≥ {R['min_r']}"}
     og = f"{SITE}/og.png"
     pages = {}  # relative output path -> (head, body)
@@ -669,6 +686,17 @@ def build_pages(lanes, events, models, today, mode):
         url = f"{SITE}/{pg}"
         pages[f"{pg}.html"] = (head_html(title, desc, url, today, [crumbs([("freetokens", SITE + "/"), (pg.title(), url)])], og),
                                render_body(f"{pg}.html", dict(base, root="/" if site else ""), "/" if site else "", home_href, site))
+    makers = load_optional("makers", [])
+    for mk in makers:
+        title, desc = seo_maker(mk, lanes, models)
+        url = f"{SITE}/makers/{mk['id']}"
+        ld = [crumbs([("freetokens", SITE + "/"), ("Makers", SITE + "/makers"), (mk["name"], url)]),
+              {"@context": "https://schema.org", "@type": "Organization", "name": mk["name"], "url": (mk.get("links") or {}).get("site") or url}]
+        pages[f"makers/{mk['id']}.html"] = (head_html(title, desc, url, today, ld, og),
+                                            render_body("maker.html", dict(base, root=sub_root, maker=mk["id"]), sub_root, sub_home, site))
+    title, desc = "LLM makers with free models: who offers what, right now | freetokens", f"{len(makers)} model makers, ranked by how many of their models are free right now, with the best free model of each."
+    pages["makers.html"] = (head_html(title, desc, SITE + "/makers", today, [crumbs([("freetokens", SITE + "/"), ("Makers", SITE + "/makers")])], og),
+                            render_body("makers.html", dict(base, root="/" if site else ""), "/" if site else "", home_href, site))
     if site:
         pages["__base__"] = base
         title = "How freetokens works: lanes, checks, and the EST estimate | freetokens"
@@ -900,6 +928,7 @@ def main():
     for p in stray:
         p.unlink()
     for p, c in outputs.items():
+        p.parent.mkdir(parents=True, exist_ok=True)
         p.write_text(c)
     msg = f"✓ {len(lanes)} lanes · {len(events)} events · {len(models)} models → README.md, index.html, models/*.html, channels/*.html"
 
