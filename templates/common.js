@@ -279,9 +279,11 @@ function rankText(m) {
 }
 function estPanel(m) {
   const e = m.est;
-  const rows = e.evidence.map((c) => `<li>${c.implied != null ? `<b class="mono">≈${c.implied}</b> ` : ""}<a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(({ aicodingdaily: "AI Coding Daily", swe_bench_verified: "SWE-bench Verified", swe_bench_pro: "SWE-bench Pro", terminal_bench_2_1: "Terminal-Bench 2.1" })[c.benchmark] || c.benchmark)}</a>: ${esc(c.score)}${c.variant ? ` <span class="muted">(${esc(c.variant)})</span>` : ""} · ${esc(c.source_type)}${c.implied != null ? ` · fit r=${c.r}, ${c.anchors} reference models` : ` · <span class="muted">not used: ${esc(c.why)}</span>`}</li>`).join("");
+  const rows = e.evidence.map((c) => `<li>${c.implied != null ? `<b class="mono">≈${c.implied}</b> ` : ""}<a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(({ aicodingdaily: "AI Coding Daily", swe_bench_verified: "SWE-bench Verified", swe_bench_pro: "SWE-bench Pro", terminal_bench_2_1: "Terminal-Bench 2.1" })[c.benchmark] || c.benchmark)}</a>: ${esc(c.score)}${c.variant ? ` <span class="muted">(${esc(c.variant)})</span>` : ""} · ${esc(c.source_type)}${c.implied != null ? (c.method === "peer" ? ` · compared with ${esc(c.peers_used.join(", "))} in the same table` : ` · fit r=${c.r}, ${c.anchors} reference models`) : ` · <span class="muted">not used: ${esc(c.why)}</span>`}</li>`).join("");
   const head = e.status === "ok"
-    ? `Estimated from ${e.benchmarks} benchmark${e.benchmarks === 1 ? " (one source only: a rough guide)" : "s"}: centre ${e.center}${e.spread > 10 ? " · sources disagree widely" : ""}.`
+    ? `Estimated from ${e.benchmarks} benchmark${e.benchmarks === 1 ? " (one source only: a rough guide)" : "s"}: centre ${e.center}${e.spread > 10 ? " · sources disagree widely" : ""}.` +
+      (e.method === "peer" ? " Vendor numbers are read against the other models in the vendor's own comparison table, whose AA scores are known." : "") +
+      (e.vendor_only ? " Vendor-reported only, with no comparison models: treat as low confidence (wider band)." : "")
     : `Not enough evidence yet: ${e.benchmarks} of the required benchmarks (rule: ${esc(D.est_rule)}).`;
   return `<div class="estpanel"><p>${head}</p><ul>${rows}</ul><p class="muted">An estimate, not an Artificial Analysis score. Method: <a href="https://github.com/dimpurr/freetokens/blob/main/METHOD.md">how EST works</a>.</p></div>`;
 }

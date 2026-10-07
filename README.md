@@ -335,20 +335,20 @@ Benchmarks are kept here once per model rather than repeated on every lane. **AA
 | [LongCat 2.5 Preview](https://freetokens.fyi/models/longcat-2.5-preview) | 🟢 OpenCode Go (ends 2026-10-10) · 🟢 OpenCode Zen (no end announced) | 3 | EST 34–39 (estimate) (2026-10-04) | 1M | accepts images, unreliable | Meituan LongCat | ≈1.6T total / 48B active MoE; released 2026-09-25. One colour test on an image was answered wrongly. |
 | [DeepSeek V4 Flash](https://freetokens.fyi/models/deepseek-v4-flash) | ⚪ OpenCode Zen (not answering) · 🔵 Letta (no end announced) | 4 | 34 (2026-10-08) | 200K on the Zen free tier | no | DeepSeek | AA's page is the 0731 update (34); the April 0420 release scores 24 (artificialanalysis.ai/models/deepseek-v4-flash-0420). Channels label it plain "deepseek-v4-flash". |
 | [Gemini 3.6 Flash](https://freetokens.fyi/models/gemini-3.6-flash) | 🔵 Google AI Studio (no end announced) | 1 | 34 (2026-10-06) | 1M | not checked | Google | — |
-| [Dots3-Note Preview](https://freetokens.fyi/models/dots-3-note-preview) | 🟢 Kilo Code (no end announced) · 🟢 Cline (no end announced) · 🟢 OpenRouter (no end announced) · 🔵 AIHubMix (no end announced) | 6 | EST 31–36 (estimate) (2026-10-05) | 512K | yes | Dots Studio | — |
-| [Laguna S 2.1](https://freetokens.fyi/models/laguna-s-2.1) | 🟢 Kilo Code (no end announced) · 🟢 Cline (no end announced) · 🟢 OpenRouter (no end announced) · 🟢 Vercel AI Gateway (no end announced) | 8 | EST 30–35 (estimate) (2026-10-05) | 262K | no | Poolside | — |
 | [Gemini 3.5 Flash](https://freetokens.fyi/models/gemini-3.5-flash) | 🔵 Google AI Studio (no end announced) | 1 | 33 (2026-10-06) | 1M | not checked | Google | — |
+| [Dots3-Note Preview](https://freetokens.fyi/models/dots-3-note-preview) | 🟢 Kilo Code (no end announced) · 🟢 Cline (no end announced) · 🟢 OpenRouter (no end announced) · 🔵 AIHubMix (no end announced) | 6 | EST 28–33 (estimate) (2026-10-05) | 512K | yes | Dots Studio | — |
+| [Laguna S 2.1](https://freetokens.fyi/models/laguna-s-2.1) | 🟢 Kilo Code (no end announced) · 🟢 Cline (no end announced) · 🟢 OpenRouter (no end announced) · 🟢 Vercel AI Gateway (no end announced) | 8 | EST 27–32 (estimate) (2026-10-05) | 262K | no | Poolside | — |
 | [Solar Pro 4](https://freetokens.fyi/models/solar-pro-4) | 🔵 Freebuff (no end announced) | 2 | 28 (2026-10-07) | 512K | no | Upstage | — |
-| [Xing 4.0 29B](https://freetokens.fyi/models/xing4.0-29b) | 🔵 SiliconFlow (no end announced) | 1 | EST 25–30 (estimate) (2026-10-06) | 256K | not checked | XingChen AGI | — |
 | [Inkling Small](https://freetokens.fyi/models/inkling-small) | 🔵 Kilo Code (no end announced) · 🔵 Cline (no end announced) · 🟢 OpenRouter (no end announced) | 4 | 26 (2026-10-06) | 1M | yes | Thinking Machines | — |
-| [Laguna XS 2.1](https://freetokens.fyi/models/laguna-xs-2.1) | 🟢 Kilo Code (no end announced) · 🟢 Cline (no end announced) · 🔵 OpenRouter (no end announced) | 5 | EST 23–28 (estimate) (2026-10-06) | 256K | no | Poolside | — |
 | [Inkling](https://freetokens.fyi/models/inkling) | 🔵 Cline (no end announced) · 🟢 OpenRouter (no end announced) | 3 | 25 (2026-10-06) | 1M | yes | Thinking Machines | — |
 | [Solar Mini 4](https://freetokens.fyi/models/solar-mini-4) | 🔵 Freebuff (no end announced) | 2 | 24 (2026-10-07) | 512K | no | Upstage | — |
 | [Nemotron 3 Ultra (550B-A55B)](https://freetokens.fyi/models/nemotron-3-ultra) | 🟢 OpenRouter (no end announced) · 🟢 Kilo Code (no end announced) · 🟢 Cline (no end announced) · 🟢 OpenCode Zen (no end announced) | 7 | 23 (2026-10-05) | 1M | no | NVIDIA | — |
 | [Ling 3.0 Flash Fin](https://freetokens.fyi/models/ling-3.0-flash-fin) | 🔵 OpenCode Zen (no end announced) | 2 | 23 (2026-10-06) | 256K | no | inclusionAI | — |
 | [Gemini 3.5 Flash-Lite](https://freetokens.fyi/models/gemini-3.5-flash-lite) | 🔵 Google AI Studio (no end announced) | 1 | 22 (2026-10-06) | 1M | not checked | Google | — |
+| [Xing 4.0 29B](https://freetokens.fyi/models/xing4.0-29b) | 🔵 SiliconFlow (no end announced) | 1 | EST 17–22 (estimate) (2026-10-06) | 256K | not checked | XingChen AGI | — |
 | [Step 3.7 Flash](https://freetokens.fyi/models/step-3.7-flash) | 🟢 Kilo Code (no end announced) | 2 | ≈ 19 (2026-10-06) | 256K | yes | StepFun | — |
 | [Gemma 4 26B A4B](https://freetokens.fyi/models/gemma-4-26b-a4b-it) | 🔴 Kilo Code (ended 2026-10-07) · 🔵 Cline (no end announced) · 🔵 OpenRouter (no end announced) | 5 | ≈ 17 (2026-10-06) | 262K | yes | Google | — |
+| [Laguna XS 2.1](https://freetokens.fyi/models/laguna-xs-2.1) | 🟢 Kilo Code (no end announced) · 🟢 Cline (no end announced) · 🔵 OpenRouter (no end announced) | 5 | EST 14–19 (estimate) (2026-10-06) | 256K | no | Poolside | — |
 | [Gemma 4 31B](https://freetokens.fyi/models/gemma-4-31b-it) | 🔵 Cline (no end announced) · 🔵 OpenRouter (no end announced) | 3 | 15 (2026-10-06) | 256K | yes | Google | — |
 | [GLM-4.7-Flash](https://freetokens.fyi/models/glm-4.7-flash) | 🔵 Z.ai (no end announced) · 🔵 Zhipu BigModel (no end announced) | 4 | ≈ 15 (2026-10-06) | 200K | not checked | Z.ai | — |
 | [Nemotron 3 Super](https://freetokens.fyi/models/nemotron-3-super-120b-a12b) | 🟢 Kilo Code (no end announced) · 🟢 Cline (no end announced) · 🟢 OpenRouter (no end announced) · 🟢 NVIDIA build (no end announced) | 7 | 13 (2026-10-06) | 262K | no | NVIDIA | — |
@@ -371,7 +371,7 @@ Benchmarks are kept here once per model rather than repeated on every lane. **AA
 | [GLM-Z1 9B 0414](https://freetokens.fyi/models/glm-z1-9b-0414) | 🔵 SiliconFlow (no end announced) | 1 | not checked (2026-10-06) | 128K | not checked | Z.ai | — |
 | [Coding Kimi K3](https://freetokens.fyi/models/coding-kimi-k3) | 🔵 AIHubMix (no end announced) | 2 | no AA page (coding variant of Kimi K3, AA 44) (2026-10-06) | 1M | not checked | Moonshot AI (Kimi) | — |
 | [Exo](https://freetokens.fyi/models/exo) | 🔵 OpenCode Zen (no end announced) | 1 | not checked (2026-10-07) | 1M | yes | Undisclosed (stealth) | Zen describes it as a free-tier preview reasoning model with text and image input and tool use |
-| [Nex-N2.5-Pro](https://freetokens.fyi/models/nex-n2.5-pro) | 🔴 Kilo Code (ended 2026-10-07) | 2 | EST 32–37 (estimate) (2026-10-05) | 262K | yes | Nex AGI | — |
+| [Nex-N2.5-Pro](https://freetokens.fyi/models/nex-n2.5-pro) | 🔴 Kilo Code (ended 2026-10-07) | 2 | EST 40–45 (estimate) (2026-10-05) | 262K | yes | Nex AGI | — |
 | [MiniMax M3](https://freetokens.fyi/models/minimax-m3) | 🔴 Kilo Code (ended 2026-10-07) | 2 | 29 (2026-10-05) | 1M | yes | MiniMax | — |
 | [Nex-N2-Pro](https://freetokens.fyi/models/nex-n2-pro) | 🔴 Kilo Code (ended 2026-10-07) | 2 | ≈ 28 (2026-10-06) | 262K | yes | Nex AGI | — |
 | [Hy3](https://freetokens.fyi/models/hy3) | 🔴 Kilo Code (ended 2026-10-07) | 2 | 25 (2026-10-06) | 262K | no | Tencent Hunyuan | — |

@@ -293,22 +293,28 @@ def estimate(models, bench, anchors):
             elif not f or not f["ok"]:
                 listed.append(dict(c, implied=None, why=(f or {}).get("why") or "no reference models for this benchmark"))
             else:
-                used.append(dict(c, implied=round(f["a"] + f["b"] * c["score"], 1), r=f["r"], anchors=f["n"],
-                                 weight=R["weights"].get(c["source_type"], 0.5)))
+                gap_max, scale = R.get("peer_max_gap", 10), R.get("peer_scale", 5)
+                near = [p for p in c.get("peers", []) if p.get("aa") is not None and abs(c["score"] - p["score"]) <= gap_max]
+                if near:  # ADR-023: compare inside the same table, so the vendor's harness and model-class bias cancel
+                    ws = [(p["aa"] + f["b"] * (c["score"] - p["score"]), 1 / (1 + abs(c["score"] - p["score"]) / scale)) for p in near]
+                    implied = sum(v * w for v, w in ws) / sum(w for _, w in ws)
+                    used.append(dict(c, implied=round(implied, 1), r=f["r"], anchors=f["n"], method="peer",
+                                     peers_used=[p["name"] for p in near], weight=R["weights"].get(c["source_type"], 0.5)))
+                else:
+                    used.append(dict(c, implied=round(f["a"] + f["b"] * c["score"], 1), r=f["r"], anchors=f["n"], method="fit",
+                                     weight=R["weights"].get(c["source_type"], 0.5)))
         benches = {c["benchmark"] for c in used}
         sources = {c["url"].split("/")[2] for c in used}
         e = {"evidence": used + listed, "benchmarks": len(benches), "sources": len(sources),
              "rule": f"needs {R['min_benchmarks']} benchmarks from {R['min_sources']} independent sources"}
         if len(benches) >= R["min_benchmarks"] and len(sources) >= R["min_sources"]:
-            ws = sorted((c["implied"], c["weight"]) for c in used)
-            half, acc, center = sum(w for _, w in ws) / 2, 0, ws[-1][0]
-            for v, w in ws:
-                acc += w
-                if acc >= half:
-                    center = v
-                    break
-            low = round(center - R["band_width"] / 2)
-            e.update(status="ok", center=round(center, 1), low=low, high=low + R["band_width"],
+            ws = [(c["implied"], c["weight"]) for c in used]
+            center = sum(v * w for v, w in ws) / sum(w for _, w in ws)  # weighted mean (ADR-023; a median of two picks the lower one)
+            vendor_only = all(c["source_type"] == "official" and c["method"] == "fit" for c in used)
+            width = R.get("vendor_only_band", 10) if vendor_only else R["band_width"]
+            low = round(center - width / 2)
+            e.update(status="ok", center=round(center, 1), low=low, high=low + width,
+                     method="peer" if any(c["method"] == "peer" for c in used) else "fit", vendor_only=vendor_only,
                      spread=round(max(c["implied"] for c in used) - min(c["implied"] for c in used), 1))
         else:
             e["status"] = "insufficient"

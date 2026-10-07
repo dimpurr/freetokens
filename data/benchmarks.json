@@ -81,7 +81,33 @@
       "variant": "vendor-reported",
       "source_type": "official",
       "url": "https://huggingface.co/dots-studio/dots3-note-prev",
-      "seen": "2026-10-06"
+      "seen": "2026-10-06",
+      "peers": [
+        {
+          "name": "Hy3",
+          "aa": 25,
+          "aa_url": "https://artificialanalysis.ai/models/hy3",
+          "score": 78.0
+        },
+        {
+          "name": "GLM 5.2",
+          "aa": 33.71,
+          "aa_url": "https://artificialanalysis.ai/models/glm-5-2",
+          "score": 84.2
+        },
+        {
+          "name": "DeepSeek V4 Flash 0420 (table: \"preview\")",
+          "aa": 24.16,
+          "aa_url": "https://artificialanalysis.ai/models/deepseek-v4-flash-0420",
+          "score": 79.0
+        },
+        {
+          "name": "Claude Opus 4.8",
+          "aa": 41.78,
+          "aa_url": "https://artificialanalysis.ai/models/claude-opus-4-8",
+          "score": 88.6
+        }
+      ]
     },
     {
       "model": "dots-3-note-preview",
@@ -90,7 +116,45 @@
       "variant": "vendor-reported",
       "source_type": "official",
       "url": "https://huggingface.co/dots-studio/dots3-note-prev",
-      "seen": "2026-10-06"
+      "seen": "2026-10-06",
+      "peers": [
+        {
+          "name": "Hy3",
+          "aa": 25,
+          "aa_url": "https://artificialanalysis.ai/models/hy3",
+          "score": 57.9
+        },
+        {
+          "name": "GLM 5.2",
+          "aa": 33.71,
+          "aa_url": "https://artificialanalysis.ai/models/glm-5-2",
+          "score": 62.1
+        },
+        {
+          "name": "DeepSeek V4 Flash 0420 (table: \"preview\")",
+          "aa": 24.16,
+          "aa_url": "https://artificialanalysis.ai/models/deepseek-v4-flash-0420",
+          "score": 52.6
+        },
+        {
+          "name": "Kimi K3",
+          "aa": 44,
+          "aa_url": "https://artificialanalysis.ai/models/kimi-k3",
+          "score": 63.4
+        },
+        {
+          "name": "Claude Opus 4.8",
+          "aa": 41.78,
+          "aa_url": "https://artificialanalysis.ai/models/claude-opus-4-8",
+          "score": 69.2
+        },
+        {
+          "name": "GPT-5.5",
+          "aa": 38.36,
+          "aa_url": "https://artificialanalysis.ai/models/gpt-5-5",
+          "score": 58.6
+        }
+      ]
     },
     {
       "model": "dots-3-note-preview",
@@ -99,7 +163,51 @@
       "variant": "vendor-reported",
       "source_type": "official",
       "url": "https://huggingface.co/dots-studio/dots3-note-prev",
-      "seen": "2026-10-06"
+      "seen": "2026-10-06",
+      "peers": [
+        {
+          "name": "Hy3",
+          "aa": 25,
+          "aa_url": "https://artificialanalysis.ai/models/hy3",
+          "score": 71.7
+        },
+        {
+          "name": "GLM 5.2",
+          "aa": 33.71,
+          "aa_url": "https://artificialanalysis.ai/models/glm-5-2",
+          "score": 81.0
+        },
+        {
+          "name": "DeepSeek V4 Flash 0731",
+          "aa": 34.33,
+          "aa_url": "https://artificialanalysis.ai/models/deepseek-v4-flash",
+          "score": 82.7
+        },
+        {
+          "name": "DeepSeek V4 Flash 0420 (table: \"preview\")",
+          "aa": 24.16,
+          "aa_url": "https://artificialanalysis.ai/models/deepseek-v4-flash-0420",
+          "score": 61.8
+        },
+        {
+          "name": "Kimi K3",
+          "aa": 44,
+          "aa_url": "https://artificialanalysis.ai/models/kimi-k3",
+          "score": 88.3
+        },
+        {
+          "name": "Claude Opus 4.8",
+          "aa": 41.78,
+          "aa_url": "https://artificialanalysis.ai/models/claude-opus-4-8",
+          "score": 84.6
+        },
+        {
+          "name": "GPT-5.5",
+          "aa": 38.36,
+          "aa_url": "https://artificialanalysis.ai/models/gpt-5-5",
+          "score": 82.7
+        }
+      ]
     },
     {
       "model": "nex-n2.5-pro",
@@ -108,7 +216,45 @@
       "variant": "vendor-reported",
       "source_type": "official",
       "url": "https://huggingface.co/nex-agi/Nex-N2.5-Pro",
-      "seen": "2026-10-06"
+      "seen": "2026-10-06",
+      "peers": [
+        {
+          "name": "Kimi K3",
+          "aa": 44,
+          "aa_url": "https://artificialanalysis.ai/models/kimi-k3",
+          "score": 88.3
+        },
+        {
+          "name": "GLM-5.3",
+          "aa": 45,
+          "aa_url": "https://artificialanalysis.ai/models/glm-5-3",
+          "score": 88.2
+        },
+        {
+          "name": "DeepSeek V4 Pro 0813",
+          "aa": 35.99,
+          "aa_url": "https://artificialanalysis.ai/models/deepseek-v4-pro",
+          "score": 87.9
+        },
+        {
+          "name": "Qwen3.8 Max",
+          "aa": 45.41,
+          "aa_url": "https://artificialanalysis.ai/models/qwen3-8-max",
+          "score": 86.6
+        },
+        {
+          "name": "Claude Opus 5",
+          "aa": 50.78,
+          "aa_url": "https://artificialanalysis.ai/models/claude-opus-5",
+          "score": 89.1
+        },
+        {
+          "name": "GPT-5.6 Sol",
+          "aa": 46.97,
+          "aa_url": "https://artificialanalysis.ai/models/gpt-5-6-sol",
+          "score": 88.8
+        }
+      ]
     },
     {
       "model": "nex-n2.5-pro",
@@ -117,7 +263,45 @@
       "variant": "vendor-reported",
       "source_type": "official",
       "url": "https://huggingface.co/nex-agi/Nex-N2.5-Pro",
-      "seen": "2026-10-06"
+      "seen": "2026-10-06",
+      "peers": [
+        {
+          "name": "Kimi K3",
+          "aa": 44,
+          "aa_url": "https://artificialanalysis.ai/models/kimi-k3",
+          "score": 63.3
+        },
+        {
+          "name": "GLM-5.3",
+          "aa": 45,
+          "aa_url": "https://artificialanalysis.ai/models/glm-5-3",
+          "score": 64.6
+        },
+        {
+          "name": "DeepSeek V4 Pro 0813",
+          "aa": 35.99,
+          "aa_url": "https://artificialanalysis.ai/models/deepseek-v4-pro",
+          "score": 55.4
+        },
+        {
+          "name": "Qwen3.8 Max",
+          "aa": 45.41,
+          "aa_url": "https://artificialanalysis.ai/models/qwen3-8-max",
+          "score": 67.7
+        },
+        {
+          "name": "Claude Opus 5",
+          "aa": 50.78,
+          "aa_url": "https://artificialanalysis.ai/models/claude-opus-5",
+          "score": 79.2
+        },
+        {
+          "name": "GPT-5.6 Sol",
+          "aa": 46.97,
+          "aa_url": "https://artificialanalysis.ai/models/gpt-5-6-sol",
+          "score": 64.6
+        }
+      ]
     },
     {
       "model": "laguna-s-2.1",
@@ -126,7 +310,57 @@
       "variant": "vendor-reported",
       "source_type": "official",
       "url": "https://poolside.ai/blog/introducing-laguna-s-2-1",
-      "seen": "2026-10-06"
+      "seen": "2026-10-06",
+      "peers": [
+        {
+          "name": "Hy3",
+          "aa": 25,
+          "aa_url": "https://artificialanalysis.ai/models/hy3",
+          "score": 71.7
+        },
+        {
+          "name": "Inkling (Xhigh)",
+          "aa": 24.98,
+          "aa_url": "https://artificialanalysis.ai/models/inkling",
+          "score": 63.8
+        },
+        {
+          "name": "Nemotron 3 Ultra",
+          "aa": 22.93,
+          "aa_url": "https://artificialanalysis.ai/models/nemotron-3-ultra",
+          "score": 56.4
+        },
+        {
+          "name": "DeepSeek V4 Pro 0813",
+          "aa": 35.99,
+          "aa_url": "https://artificialanalysis.ai/models/deepseek-v4-pro",
+          "score": 64.0
+        },
+        {
+          "name": "Kimi K3",
+          "aa": 44,
+          "aa_url": "https://artificialanalysis.ai/models/kimi-k3",
+          "score": 88.3
+        },
+        {
+          "name": "Qwen3.7 Max",
+          "aa": 29.46,
+          "aa_url": "https://artificialanalysis.ai/models/qwen3-7-max",
+          "score": 74.5
+        },
+        {
+          "name": "Muse Spark 1.1",
+          "aa": 33.73,
+          "aa_url": "https://artificialanalysis.ai/models/muse-spark-1-1",
+          "score": 80.0
+        },
+        {
+          "name": "Claude Fable 5",
+          "aa": 49.62,
+          "aa_url": "https://artificialanalysis.ai/models/claude-fable-5",
+          "score": 88.0
+        }
+      ]
     },
     {
       "model": "laguna-s-2.1",
@@ -135,7 +369,45 @@
       "variant": "vendor-reported",
       "source_type": "official",
       "url": "https://poolside.ai/blog/introducing-laguna-s-2-1",
-      "seen": "2026-10-06"
+      "seen": "2026-10-06",
+      "peers": [
+        {
+          "name": "Hy3",
+          "aa": 25,
+          "aa_url": "https://artificialanalysis.ai/models/hy3",
+          "score": 57.9
+        },
+        {
+          "name": "Inkling (Xhigh)",
+          "aa": 24.98,
+          "aa_url": "https://artificialanalysis.ai/models/inkling",
+          "score": 54.3
+        },
+        {
+          "name": "DeepSeek V4 Pro 0813",
+          "aa": 35.99,
+          "aa_url": "https://artificialanalysis.ai/models/deepseek-v4-pro",
+          "score": 55.4
+        },
+        {
+          "name": "Qwen3.7 Max",
+          "aa": 29.46,
+          "aa_url": "https://artificialanalysis.ai/models/qwen3-7-max",
+          "score": 60.6
+        },
+        {
+          "name": "Muse Spark 1.1",
+          "aa": 33.73,
+          "aa_url": "https://artificialanalysis.ai/models/muse-spark-1-1",
+          "score": 61.5
+        },
+        {
+          "name": "Claude Fable 5",
+          "aa": 49.62,
+          "aa_url": "https://artificialanalysis.ai/models/claude-fable-5",
+          "score": 80.3
+        }
+      ]
     },
     {
       "model": "laguna-xs-2.1",
@@ -144,7 +416,27 @@
       "variant": "vendor-reported",
       "source_type": "official",
       "url": "https://poolside.ai/blog/introducing-laguna-xs-2-1",
-      "seen": "2026-10-06"
+      "seen": "2026-10-06",
+      "peers": [
+        {
+          "name": "Qwen3.6 35B A3B",
+          "aa": 18.23,
+          "aa_url": "https://artificialanalysis.ai/models/qwen3-6-35b-a3b",
+          "score": 73.4
+        },
+        {
+          "name": "North Mini Code",
+          "aa": 10,
+          "aa_url": "https://artificialanalysis.ai/models/north-mini-code",
+          "score": 67.6
+        },
+        {
+          "name": "Claude Haiku 4.5 (thinking)",
+          "aa": 16.88,
+          "aa_url": "https://artificialanalysis.ai/models/claude-4-5-haiku-reasoning",
+          "score": 73.3
+        }
+      ]
     },
     {
       "model": "laguna-xs-2.1",
@@ -153,7 +445,39 @@
       "variant": "vendor-reported",
       "source_type": "official",
       "url": "https://poolside.ai/blog/introducing-laguna-xs-2-1",
-      "seen": "2026-10-06"
+      "seen": "2026-10-06",
+      "peers": [
+        {
+          "name": "Qwen3.6 35B A3B",
+          "aa": 18.23,
+          "aa_url": "https://artificialanalysis.ai/models/qwen3-6-35b-a3b",
+          "score": 49.5
+        },
+        {
+          "name": "North Mini Code",
+          "aa": 10,
+          "aa_url": "https://artificialanalysis.ai/models/north-mini-code",
+          "score": 40.2
+        },
+        {
+          "name": "Claude Haiku 4.5 (thinking)",
+          "aa": 16.88,
+          "aa_url": "https://artificialanalysis.ai/models/claude-4-5-haiku-reasoning",
+          "score": 39.5
+        },
+        {
+          "name": "gpt-oss-120b",
+          "aa": 11.6,
+          "aa_url": "https://artificialanalysis.ai/models/gpt-oss-120b",
+          "score": 16.2
+        },
+        {
+          "name": "GPT-5.4 Nano",
+          "aa": 20.72,
+          "aa_url": "https://artificialanalysis.ai/models/gpt-5-4-nano",
+          "score": 52.4
+        }
+      ]
     },
     {
       "model": "xing4.0-29b",
@@ -162,7 +486,21 @@
       "variant": "vendor model card, SWE-agent harness, 210K context",
       "source_type": "official",
       "url": "https://huggingface.co/XingChen-AGI/Xing4.0-29B-A4B",
-      "seen": "2026-10-07"
+      "seen": "2026-10-07",
+      "peers": [
+        {
+          "name": "Qwen3.6 35B A3B",
+          "aa": 18.23,
+          "aa_url": "https://artificialanalysis.ai/models/qwen3-6-35b-a3b",
+          "score": 76.0
+        },
+        {
+          "name": "Gemma 4 26B A4B",
+          "aa": 16.67,
+          "aa_url": "https://artificialanalysis.ai/models/gemma-4-26b-a4b",
+          "score": 53.0
+        }
+      ]
     },
     {
       "model": "xing4.0-29b",
@@ -171,7 +509,21 @@
       "variant": "vendor model card, terminus-2, average of 3 runs",
       "source_type": "official",
       "url": "https://huggingface.co/XingChen-AGI/Xing4.0-29B-A4B",
-      "seen": "2026-10-07"
+      "seen": "2026-10-07",
+      "peers": [
+        {
+          "name": "Qwen3.6 35B A3B",
+          "aa": 18.23,
+          "aa_url": "https://artificialanalysis.ai/models/qwen3-6-35b-a3b",
+          "score": 51.5
+        },
+        {
+          "name": "Gemma 4 26B A4B",
+          "aa": 16.67,
+          "aa_url": "https://artificialanalysis.ai/models/gemma-4-26b-a4b",
+          "score": 30.0
+        }
+      ]
     }
   ]
 }

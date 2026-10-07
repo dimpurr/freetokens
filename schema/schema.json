@@ -400,6 +400,10 @@
       "third_party": 0.75,
       "community": 0.5,
       "leak": 0.5
-    }
+    },
+    "peer_max_gap": 10,
+    "peer_scale": 5,
+    "vendor_only_band": 10,
+    "$comment_peers": "ADR-023: a claim that comes from a comparison table carries peers [{name, aa, aa_url, score}] measured in the same table; implied AA = peer AA + fit slope x (score - peer score), using peers within peer_max_gap points, weighted 1/(1 + gap/peer_scale). Vendor-only claims without usable peers get a vendor_only_band wide band and low confidence."
   }
 }

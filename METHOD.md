@@ -90,3 +90,7 @@ In the Agents view, the home page shows which free route to use first and what t
 ## Makers
 
 Every model points at one maker in `data/makers.json` (name, parent company, country, official links). Different spellings of one company are merged there (for example THUDM under Z.ai). Stealth models belong to "Undisclosed"; when the community has linked one to a maker, the model carries a `suspected_maker` with its source and is shown as "possibly X · unconfirmed" on the model page and in a separate "Possibly theirs" list on that maker's page. It never counts as the maker's own model.
+
+## Vendor numbers and comparison tables (ADR-023)
+
+Vendors report their own models' benchmark scores in their own harness, and small models tend to score far higher on coding benchmarks than their overall intelligence would suggest. Mapping those raw numbers through a fit learned from independent leaderboards overestimates them (Xing 4.0 29B came out at 27; its vendor table shows it level with Qwen3.6 35B A3B, AA 18). So a vendor score that comes from a comparison table is read against the other models in that same table: for each comparison model with a known AA score and a benchmark score within 10 points, the implied AA is that model's AA plus the fit slope times the score difference, weighted toward the closest models. The estimate is the weighted mean of the benchmarks. Vendor-reported scores with no usable comparison models get a band twice as wide and are marked low confidence.

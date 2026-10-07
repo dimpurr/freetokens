@@ -41,7 +41,8 @@ def score(m):
     if e.get("status") == "ok":
         n = e.get("benchmarks", 0)
         return {"model": m["id"], "name": m["name"], "kind": "est", "value": e["center"], "low": e["low"], "high": e["high"],
-                "confidence": "medium" if n >= 2 else "low", "benchmarks": n,
+                "confidence": "low" if e.get("vendor_only") or n < 2 else "medium", "benchmarks": n,
+                "method": e.get("method"), "vendor_only": e.get("vendor_only", False),
                 "evidence": [{k: c.get(k) for k in ("benchmark", "score", "source_type", "url", "variant")} for c in CLAIMS if c["model"] == m["id"]]}
     return {"model": m["id"], "name": m["name"], "kind": "none", "value": None, "note": a.get("note") or "no AA index and too little evidence for an estimate"}
 
