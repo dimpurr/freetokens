@@ -1467,5 +1467,224 @@
    "label": "own check of opencode.ai/zen/v1/models",
    "url": "https://opencode.ai/zen/v1/models"
   }
+ },
+ {
+  "date": "2026-09-24",
+  "lanes": [
+   "bunny-cc"
+  ],
+  "kind": "announced",
+  "text": "Announced as free on Command Code on X: Space Bunny (stealth)",
+  "source": {
+   "label": "X post by @CommandCodeAI",
+   "url": "https://x.com/CommandCodeAI/status/2102941840811135057"
+  }
+ },
+ {
+  "date": "2026-09-05",
+  "lanes": [
+   "solar-pro-4-freebuff"
+  ],
+  "kind": "announced",
+  "text": "Announced as free on Freebuff on X: Solar Pro 4",
+  "source": {
+   "label": "X post by @jahooma",
+   "url": "https://x.com/jahooma/status/2096169643035840581"
+  }
+ },
+ {
+  "date": "2026-10-03",
+  "lanes": [
+   "solar-mini-4-freebuff"
+  ],
+  "kind": "announced",
+  "text": "Announced as free on Freebuff on X: Solar Mini 4",
+  "source": {
+   "label": "X post by @jahooma",
+   "url": "https://x.com/jahooma/status/2106192400788107619"
+  }
+ },
+ {
+  "date": "2026-09-22",
+  "lanes": [
+   "mimo-v2.6-flash-freebuff",
+   "mimo-v2.6-pro-freebuff"
+  ],
+  "kind": "available",
+  "text": "Mentioned as free on Freebuff on X (earliest mention found): MiMo V2.6 Flash, MiMo V2.6 Pro",
+  "source": {
+   "label": "X post by @BilalGreyrat",
+   "url": "https://x.com/BilalGreyrat/status/2102256208950460895"
+  }
+ },
+ {
+  "date": "2026-08-28",
+  "lanes": [
+   "glm-5.3-flash-freebuff"
+  ],
+  "kind": "announced",
+  "text": "Announced as free on Freebuff on X: GLM 5.3 Flash",
+  "source": {
+   "label": "X post by @jahooma",
+   "url": "https://x.com/jahooma/status/2093137551918051624"
+  }
+ },
+ {
+  "date": "2026-09-11",
+  "lanes": [
+   "deepseek-v4.1-flash-freebuff"
+  ],
+  "kind": "available",
+  "text": "Mentioned as free on Freebuff on X (earliest mention found): DeepSeek V4.1 Flash",
+  "source": {
+   "label": "X post by @dextune",
+   "url": "https://x.com/dextune/status/2098398998805766538"
+  }
+ },
+ {
+  "date": "2026-09-17",
+  "lanes": [
+   "gpt-6-luna-freebuff"
+  ],
+  "kind": "available",
+  "text": "Mentioned as free on Freebuff on X (earliest mention found): GPT-6 Luna",
+  "source": {
+   "label": "X post by @ah4alt",
+   "url": "https://x.com/ah4alt/status/2100431181682802917"
+  }
+ },
+ {
+  "date": "2026-10-05",
+  "lanes": [
+   "deepseek-v4.1-flash-fast-freebuff"
+  ],
+  "kind": "announced",
+  "text": "Announced as free on Freebuff on X: DeepSeek V4.1 Flash",
+  "source": {
+   "label": "X post by @FreebuffHQ",
+   "url": "https://x.com/FreebuffHQ/status/2107254693378568575"
+  }
+ },
+ {
+  "date": "2026-09-30",
+  "lanes": [
+   "gpt-6.1-sol-freebuff"
+  ],
+  "kind": "announced",
+  "text": "Announced as free on Freebuff on X: GPT-6.1 Sol",
+  "source": {
+   "label": "X post by @jahooma",
+   "url": "https://x.com/jahooma/status/2105302144098177024"
+  }
+ },
+ {
+  "date": "2024-10-06",
+  "lanes": [
+   "qwen2.5-7b-instruct-siliconflow"
+  ],
+  "kind": "available",
+  "text": "Mentioned as free on SiliconFlow on X (earliest mention found): Qwen2.5 7B Instruct",
+  "source": {
+   "label": "X post by @immazzystar",
+   "url": "https://x.com/immazzystar/status/1842817923217346560"
+  }
+ },
+ {
+  "date": "2025-09-02",
+  "lanes": [
+   "qwen3-8b-siliconflow"
+  ],
+  "kind": "available",
+  "text": "Mentioned as free on SiliconFlow on X (earliest mention found): Qwen3 8B",
+  "source": {
+   "label": "X post by @YinsenW_",
+   "url": "https://x.com/YinsenW_/status/1962730167291527290"
+  }
+ },
+ {
+  "date": "2026-09-11",
+  "lanes": [
+   "qwen3.5-4b-siliconflow"
+  ],
+  "kind": "available",
+  "text": "Mentioned as free on SiliconFlow on X (earliest mention found): Qwen3.5 4B",
+  "source": {
+   "label": "X post by @wanghejun114387",
+   "url": "https://x.com/wanghejun114387/status/2098372678306644284"
+  }
+ },
+ {
+  "date": "2025-07-20",
+  "lanes": [
+   "glm-4-9b-0414-siliconflow"
+  ],
+  "kind": "available",
+  "text": "Mentioned as free on SiliconFlow on X (earliest mention found): GLM-4 9B 0414",
+  "source": {
+   "label": "X post by @OipsAnthony",
+   "url": "https://x.com/OipsAnthony/status/1946819692649390481"
+  }
+ },
+ {
+  "date": "2026-09-03",
+  "lanes": [
+   "gemini-3.8-flash-gai"
+  ],
+  "kind": "available",
+  "text": "Mentioned as free on Google AI Studio on X (earliest mention found): Gemini 3.8 Flash",
+  "source": {
+   "label": "X post by @toshinobu65",
+   "url": "https://x.com/toshinobu65/status/2095607179558679013"
+  }
+ },
+ {
+  "date": "2026-08-14",
+  "lanes": [
+   "gemini-3.7-flash-gai"
+  ],
+  "kind": "available",
+  "text": "Mentioned as free on Google AI Studio on X (earliest mention found): Gemini 3.7 Flash",
+  "source": {
+   "label": "X post by @toshinobu65",
+   "url": "https://x.com/toshinobu65/status/2088245502609674418"
+  }
+ },
+ {
+  "date": "2026-08-23",
+  "lanes": [
+   "coding-kimi-k3-aihubmix"
+  ],
+  "kind": "available",
+  "text": "Mentioned as free on AIHubMix on X (earliest mention found): Coding Kimi K3",
+  "source": {
+   "label": "X post by @shesaidmewakeup",
+   "url": "https://x.com/shesaidmewakeup/status/2091527248419467335"
+  }
+ },
+ {
+  "date": "2026-09-25",
+  "lanes": [
+   "deepseek-v4.1-flash-nvidia",
+   "glm-5.3-nvidia",
+   "kimi-k3-nvidia"
+  ],
+  "kind": "available",
+  "text": "Mentioned as free on NVIDIA build on X (earliest mention found): DeepSeek V4.1 Flash, GLM 5.3, Kimi K3",
+  "source": {
+   "label": "X post by @pengsonal",
+   "url": "https://x.com/pengsonal/status/2103525364656161209"
+  }
+ },
+ {
+  "date": "2026-05-23",
+  "lanes": [
+   "nemotron-3-super-120b-a12b-nvidia"
+  ],
+  "kind": "available",
+  "text": "Mentioned as free on NVIDIA build on X (earliest mention found): Nemotron 3 Super",
+  "source": {
+   "label": "X post by @X_SUZQ",
+   "url": "https://x.com/X_SUZQ/status/2058196916958343363"
+  }
  }
 ]
