@@ -1686,5 +1686,28 @@
    "label": "X post by @X_SUZQ",
    "url": "https://x.com/X_SUZQ/status/2058196916958343363"
   }
+ },
+ {
+  "date": "2026-10-07",
+  "lanes": [
+   "gemma-4-26b-a4b-it-kilo",
+   "hy3-kilo",
+   "hy3-preview-kilo",
+   "ling-2.6-1t-kilo",
+   "ling-2.6-flash-kilo",
+   "ling-3.0-flash-kilo",
+   "ling-3.0-flash-vl-kilo",
+   "minimax-m2.7-kilo",
+   "minimax-m3-kilo",
+   "nex-n2-pro-kilo",
+   "nex-n2.5-pro-kilo",
+   "ring-2.6-1t-kilo"
+  ],
+  "kind": "ended",
+  "text": "Not in Kilo's free model list any more: the signed-in Kilo CLI (7.8.3) lists 14 free models, none of these; most remain only as paid models",
+  "source": {
+   "label": "own check: kilo models kilo, signed in",
+   "url": "https://kilo.ai/models"
+  }
  }
 ]
