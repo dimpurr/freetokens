@@ -241,7 +241,7 @@
     "limit_scope": {
       "per_ip": {
         "label": "per-IP limit",
-        "help": "The free allowance is counted per IP address; heavy use from one network blocks it while others still work"
+        "help": "The free allowance is counted per IP address per day (Zen: reset at 00:00 UTC); heavy use from one network uses it up while other networks still work"
       },
       "per_key": {
         "label": "per-key limit",

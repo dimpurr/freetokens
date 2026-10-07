@@ -28,7 +28,7 @@
   "limit_scope": {
    "value": "per_ip",
    "source": {
-    "label": "own checks, Oct 6: blocked from one network, working from another",
+    "label": "OpenCode Zen source (handler.ts, ipRateLimiter.ts): free models are limited per IP per day, reset at 00:00 UTC; an API key doesn't change it",
     "url": null
    }
   },

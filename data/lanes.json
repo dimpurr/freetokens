@@ -280,7 +280,7 @@
   },
   "volume": {
    "tier": "daily",
-   "basis": "own check: 10 parallel in the morning, then refused for the rest of the day from the same IP"
+   "basis": "own check: 10 parallel agent runs; Zen's free allowance is per IP per day"
   }
  },
  {
@@ -2352,10 +2352,10 @@
    "source": "https://opencode.ai/docs/zen/"
   },
   "limits_observed": {
-   "date": "2026-10-06",
+   "date": "2026-10-07",
    "reach": "works",
-   "checks": 2,
-   "networks": 2
+   "parallel": 10,
+   "note": "real coding, retrieval and synthesis tasks passed"
   },
   "started": {
    "date": "2026-09-02",
@@ -2369,8 +2369,12 @@
   "data_policy": "may_train",
   "status": "live",
   "checked": {
-   "date": "2026-10-06",
-   "method": "api_call"
+   "date": "2026-10-07",
+   "method": "agent_run"
+  },
+  "volume": {
+   "tier": "daily",
+   "basis": "own check: 10 parallel agent runs; Zen's free allowance is per IP per day"
   }
  },
  {
