@@ -19,17 +19,18 @@ def _pool_policy():
     try:
         import tomllib
     except ImportError:
-        return 30, 35
+        return 25, 30, 35
     cands = [os.environ.get("FT_POOL_POLICY", "")] + [os.path.expanduser(p + "/tools/free-pool/arms.toml") for p in
              ("~/WorkflowUser/Code/Project/dimresearchcode", "~/WorkflowUser/Code/Personal/dimresearchcode", "~/Workflow/code/project/dimresearchcode")]
     for c in cands:
         if c and os.path.exists(c):
             pol = tomllib.load(open(c, "rb")).get("policy", {})
-            return pol.get("pool_bar", 30), pol.get("main_bar", 35)
-    return 30, 35
+            return pol.get("pass_bar", 25), pol.get("pool_bar", 30), pol.get("main_bar", 35)
+    return 25, 30, 35
 
 
-POOL_BAR, MAIN_BAR = _pool_policy()
+PASS_BAR, BORDER_BAR, MAIN_BAR = _pool_policy()  # 及格层 25-30 (retrieval / docs only), 擦线层 30-35, 主层 >= 35 (Dim, 2026-10-08)
+POOL_BAR = PASS_BAR  # lowest floor: anything at or above it is worth flagging
 # ids whose return to a free catalogue matters to someone: (channel, model_id) -> who to tell
 WATCH_RETURN = {
     ("OpenCode Go", "opencode-go/space-bunny-free"): "m1max-dimmodel can restore the bunny arm (retired 2026-10-06)",
@@ -184,7 +185,7 @@ def main():
         lines.append(f"🆕 {len(new)} free model(s) not on freetokens yet:")
         for x in new:
             tag = "⭐ pool candidate " if x["pool_candidate"] else ""
-            if x["pool_candidate"]: tag = "⭐ main-tier candidate " if x["aa"] >= MAIN_BAR else "◐ borderline candidate "
+            if x["pool_candidate"]: tag = "⭐ main-tier candidate " if x["aa"] >= MAIN_BAR else "◐ borderline candidate " if x["aa"] >= BORDER_BAR else "○ pass-tier candidate (retrieval / docs only) "
             lines.append(f"  {tag}{x['name']} · {x['channel']} · {x['model_id']} · AA {x['aa'] if x['aa'] is not None else '—'}")
     if gone:
         lines.append(f"🕳️ {len(gone)} tracked lane(s) no longer in the catalogue (maybe ended):")
