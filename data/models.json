@@ -535,9 +535,9 @@
   "context": "512K",
   "image_input": "no",
   "aa_index": {
-   "value": null,
-   "date": "2026-10-06",
-   "note": "not checked"
+   "value": 28,
+   "date": "2026-10-07",
+   "url": "https://artificialanalysis.ai/models/solar-pro4"
   },
   "notes": null
  },
@@ -548,9 +548,9 @@
   "context": "512K",
   "image_input": "no",
   "aa_index": {
-   "value": null,
-   "date": "2026-10-06",
-   "note": "not checked"
+   "value": 24,
+   "date": "2026-10-07",
+   "url": "https://artificialanalysis.ai/models/solar-mini4"
   },
   "notes": null
  },

@@ -337,9 +337,11 @@ Benchmarks are kept here once per model rather than repeated on every lane. **AA
 | [Dots3-Note Preview](https://freetokens.fyi/models/dots-3-note-preview) | 🟢 Kilo Code (no end announced) · 🟢 Cline (no end announced) · 🟢 OpenRouter (no end announced) · 🔵 AIHubMix (no end announced) | 6 | EST 31–36 (estimate) (2026-10-05) | 512K | yes | Dots Studio | — |
 | [Laguna S 2.1](https://freetokens.fyi/models/laguna-s-2.1) | 🟢 Kilo Code (no end announced) · 🟢 Cline (no end announced) · 🟢 OpenRouter (no end announced) · 🟢 Vercel AI Gateway (no end announced) | 8 | EST 30–35 (estimate) (2026-10-05) | 262K | no | Poolside | — |
 | [Gemini 3.5 Flash](https://freetokens.fyi/models/gemini-3.5-flash) | 🔵 Google AI Studio (no end announced) | 1 | 33 (2026-10-06) | 1M | not checked | Google | — |
+| [Solar Pro 4](https://freetokens.fyi/models/solar-pro-4) | 🔵 Freebuff (no end announced) | 2 | 28 (2026-10-07) | 512K | no | Upstage | — |
 | [Inkling Small](https://freetokens.fyi/models/inkling-small) | 🔵 Kilo Code (no end announced) · 🔵 Cline (no end announced) · 🔵 OpenRouter (no end announced) | 4 | 26 (2026-10-06) | 1M | yes | Thinking Machines | — |
 | [Laguna XS 2.1](https://freetokens.fyi/models/laguna-xs-2.1) | 🟢 Kilo Code (no end announced) · 🟢 Cline (no end announced) · 🔵 OpenRouter (no end announced) | 5 | EST 23–28 (estimate) (2026-10-06) | 256K | no | Poolside | — |
 | [Inkling](https://freetokens.fyi/models/inkling) | 🔵 Cline (no end announced) · 🔵 OpenRouter (no end announced) | 3 | 25 (2026-10-06) | 1M | yes | Thinking Machines | — |
+| [Solar Mini 4](https://freetokens.fyi/models/solar-mini-4) | 🔵 Freebuff (no end announced) | 2 | 24 (2026-10-07) | 512K | no | Upstage | — |
 | [Nemotron 3 Ultra (550B-A55B)](https://freetokens.fyi/models/nemotron-3-ultra) | 🟢 OpenRouter (no end announced) · 🟢 Kilo Code (no end announced) · 🟢 Cline (no end announced) · 🟢 OpenCode Zen (no end announced) | 7 | 23 (2026-10-05) | 1M | no | NVIDIA | — |
 | [Ling 3.0 Flash Fin](https://freetokens.fyi/models/ling-3.0-flash-fin) | 🔵 OpenCode Zen (no end announced) | 2 | 23 (2026-10-06) | 256K | no | inclusionAI (Ant) | — |
 | [Gemini 3.5 Flash-Lite](https://freetokens.fyi/models/gemini-3.5-flash-lite) | 🔵 Google AI Studio (no end announced) | 1 | 22 (2026-10-06) | 1M | not checked | Google | — |
@@ -359,8 +361,6 @@ Benchmarks are kept here once per model rather than repeated on every lane. **AA
 | [Big Pickle](https://freetokens.fyi/models/big-pickle) | 🟢 OpenCode Zen (no end announced) | 2 | not checked (2026-10-06) | 195K | no | undisclosed | — |
 | [Fledge Alpha](https://freetokens.fyi/models/fledge-alpha) | 🟢 OpenCode Zen (no end announced) | 2 | not checked (2026-10-06) | 1M | yes | undisclosed | — |
 | [JEV 1.13](https://freetokens.fyi/models/jev-1.13) | 🔵 OpenCode Zen (no end announced) | 2 | not checked (2026-10-06) | 62K | no | undisclosed | — |
-| [Solar Pro 4](https://freetokens.fyi/models/solar-pro-4) | 🔵 Freebuff (no end announced) | 2 | not checked (2026-10-06) | 512K | no | Upstage | — |
-| [Solar Mini 4](https://freetokens.fyi/models/solar-mini-4) | 🔵 Freebuff (no end announced) | 2 | not checked (2026-10-06) | 512K | no | Upstage | — |
 | [GLM-4.5-Flash](https://freetokens.fyi/models/glm-4.5-flash) | 🔵 Z.ai (no end announced) | 2 | not checked (2026-10-06) | 200K | not checked | Z.ai | — |
 | [GLM-4-Flash-250414](https://freetokens.fyi/models/glm-4-flash-250414) | 🔵 Zhipu BigModel (no end announced) | 2 | not checked (2026-10-06) | 128K | not checked | Z.ai | — |
 | [Qwen2.5 7B Instruct](https://freetokens.fyi/models/qwen2.5-7b-instruct) | 🔵 SiliconFlow (no end announced) | 2 | not checked (2026-10-06) | 32K | not checked | Alibaba (Qwen) | — |
