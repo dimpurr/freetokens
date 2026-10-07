@@ -12,7 +12,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 UA = {"User-Agent": "freetokens-watch/1 (+https://freetokens.fyi)"}
-POOL_BAR = 34  # free-pool floor = Qwen 3.8 27B level (Dim, 2026-10-06)
+POOL_BAR = 30  # free-pool floors (Dim, 2026-10-07): main tier >= 35, borderline 30-35, below 30 out; admission needs Dim's approval
+MAIN_BAR = 35
 # ids whose return to a free catalogue matters to someone: (channel, model_id) -> who to tell
 WATCH_RETURN = {
     ("OpenCode Go", "opencode-go/space-bunny-free"): "m1max-dimmodel can restore the bunny arm (retired 2026-10-06)",
@@ -167,6 +168,7 @@ def main():
         lines.append(f"🆕 {len(new)} free model(s) not on freetokens yet:")
         for x in new:
             tag = "⭐ pool candidate " if x["pool_candidate"] else ""
+            if x["pool_candidate"]: tag = "⭐ main-tier candidate " if x["aa"] >= MAIN_BAR else "◐ borderline candidate "
             lines.append(f"  {tag}{x['name']} · {x['channel']} · {x['model_id']} · AA {x['aa'] if x['aa'] is not None else '—'}")
     if gone:
         lines.append(f"🕳️ {len(gone)} tracked lane(s) no longer in the catalogue (maybe ended):")

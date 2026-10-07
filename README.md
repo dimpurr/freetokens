@@ -339,6 +339,7 @@ Benchmarks are kept here once per model rather than repeated on every lane. **AA
 | [Laguna S 2.1](https://freetokens.fyi/models/laguna-s-2.1) | 🟢 Kilo Code (no end announced) · 🟢 Cline (no end announced) · 🟢 OpenRouter (no end announced) · 🟢 Vercel AI Gateway (no end announced) | 8 | EST 30–35 (estimate) (2026-10-05) | 262K | no | Poolside | — |
 | [Gemini 3.5 Flash](https://freetokens.fyi/models/gemini-3.5-flash) | 🔵 Google AI Studio (no end announced) | 1 | 33 (2026-10-06) | 1M | not checked | Google | — |
 | [Solar Pro 4](https://freetokens.fyi/models/solar-pro-4) | 🔵 Freebuff (no end announced) | 2 | 28 (2026-10-07) | 512K | no | Upstage | — |
+| [Xing 4.0 29B](https://freetokens.fyi/models/xing4.0-29b) | 🔵 SiliconFlow (no end announced) | 1 | EST 25–30 (estimate) (2026-10-06) | 256K | not checked | XingChen AGI | — |
 | [Inkling Small](https://freetokens.fyi/models/inkling-small) | 🔵 Kilo Code (no end announced) · 🔵 Cline (no end announced) · 🟢 OpenRouter (no end announced) | 4 | 26 (2026-10-06) | 1M | yes | Thinking Machines | — |
 | [Laguna XS 2.1](https://freetokens.fyi/models/laguna-xs-2.1) | 🟢 Kilo Code (no end announced) · 🟢 Cline (no end announced) · 🔵 OpenRouter (no end announced) | 5 | EST 23–28 (estimate) (2026-10-06) | 256K | no | Poolside | — |
 | [Inkling](https://freetokens.fyi/models/inkling) | 🔵 Cline (no end announced) · 🟢 OpenRouter (no end announced) | 3 | 25 (2026-10-06) | 1M | yes | Thinking Machines | — |
@@ -356,6 +357,7 @@ Benchmarks are kept here once per model rather than repeated on every lane. **AA
 | [North Mini Code](https://freetokens.fyi/models/north-mini-code) | 🟢 Kilo Code (no end announced) · 🟢 Cline (no end announced) · 🟢 OpenRouter (no end announced) | 5 | 10 (2026-10-06) | 256K | no | Cohere | — |
 | [Nemotron 3 Nano Omni 30B A3B (reasoning)](https://freetokens.fyi/models/nemotron-3-nano-omni-30b-a3b) | 🟢 Kilo Code (no end announced) · 🟢 Cline (no end announced) · 🟢 OpenRouter (no end announced) | 5 | ≈ 10 (2026-10-06) | 256K | yes | NVIDIA | — |
 | [LFM 2.5 2.6B](https://freetokens.fyi/models/lfm-2.5-2.6b) | 🟢 Kilo Code (no end announced) · 🟢 Cline (no end announced) · 🟢 OpenRouter (no end announced) | 5 | ≈ 8 (2026-10-06) | 128K | no | Liquid AI | — |
+| [DeepSeek R1 0528 Qwen3 8B](https://freetokens.fyi/models/deepseek-r1-0528-qwen3-8b) | 🔵 SiliconFlow (no end announced) | 1 | 8 (2026-10-07) | 128K | not checked | DeepSeek | — |
 | [Qwen3 8B](https://freetokens.fyi/models/qwen3-8b) | 🔵 SiliconFlow (no end announced) | 2 | ≈ 7 (2026-10-06) | 128K | not checked | Alibaba (Qwen) | — |
 | [Apodex 1.1 Mini](https://freetokens.fyi/models/apodex-1.1-mini) | 🔴 Kilo Code (ended 2026-10-07) · 🟢 Cline (no end announced) · 🟢 OpenRouter (no end announced) | 6 | not checked (2026-10-06) | 256K | no | Apodex | — |
 | [Ling 3.0 Flash Sante](https://freetokens.fyi/models/ling-3.0-flash-sante) | 🟢 Kilo Code (no end announced) · 🟢 Cline (no end announced) · 🟢 OpenRouter (no end announced) | 5 | not checked (2026-10-06) | 256K | no | inclusionAI (Ant) | — |
@@ -367,8 +369,6 @@ Benchmarks are kept here once per model rather than repeated on every lane. **AA
 | [Qwen2.5 7B Instruct](https://freetokens.fyi/models/qwen2.5-7b-instruct) | 🔵 SiliconFlow (no end announced) | 2 | not checked (2026-10-06) | 32K | not checked | Alibaba (Qwen) | — |
 | [GLM-4 9B 0414](https://freetokens.fyi/models/glm-4-9b-0414) | 🔵 SiliconFlow (no end announced) | 2 | not checked (2026-10-06) | 32K | not checked | Z.ai (THUDM) | — |
 | [GLM-Z1 9B 0414](https://freetokens.fyi/models/glm-z1-9b-0414) | 🔵 SiliconFlow (no end announced) | 1 | not checked (2026-10-06) | 128K | not checked | Z.ai (THUDM) | — |
-| [Xing 4.0 29B](https://freetokens.fyi/models/xing4.0-29b) | 🔵 SiliconFlow (no end announced) | 1 | not checked (2026-10-06) | 256K | not checked | XingChen AGI | — |
-| [DeepSeek R1 0528 Qwen3 8B](https://freetokens.fyi/models/deepseek-r1-0528-qwen3-8b) | 🔵 SiliconFlow (no end announced) | 1 | not checked (2026-10-06) | 128K | not checked | DeepSeek | — |
 | [Coding Kimi K3](https://freetokens.fyi/models/coding-kimi-k3) | 🔵 AIHubMix (no end announced) | 2 | no AA page (coding variant of Kimi K3, AA 44) (2026-10-06) | 1M | not checked | Moonshot AI | — |
 | [Exo](https://freetokens.fyi/models/exo) | 🔵 OpenCode Zen (no end announced) | 1 | not checked (2026-10-07) | 1M | yes | undisclosed | Zen describes it as a free-tier preview reasoning model with text and image input and tool use |
 | [Nex-N2.5-Pro](https://freetokens.fyi/models/nex-n2.5-pro) | 🔴 Kilo Code (ended 2026-10-07) | 2 | EST 32–37 (estimate) (2026-10-05) | 262K | yes | Nex AGI | — |

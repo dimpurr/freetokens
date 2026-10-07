@@ -733,9 +733,9 @@
   "context": "128K",
   "image_input": "not_checked",
   "aa_index": {
-   "value": null,
-   "date": "2026-10-06",
-   "note": "not checked"
+   "value": 8,
+   "date": "2026-10-07",
+   "url": "https://artificialanalysis.ai/models/deepseek-r1-qwen3-8b"
   },
   "notes": null
  },
