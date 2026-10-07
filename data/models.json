@@ -59,10 +59,10 @@
   "image_input": "no",
   "aa_index": {
    "value": 34,
-   "date": "2026-10-05",
+   "date": "2026-10-08",
    "url": "https://artificialanalysis.ai/models/deepseek-v4-flash"
   },
-  "notes": "The AA page scores the 0731 release; the Zen free tier may serve a different snapshot."
+  "notes": "AA's page is the 0731 update (34); the April 0420 release scores 24 (artificialanalysis.ai/models/deepseek-v4-flash-0420). Channels label it plain \"deepseek-v4-flash\"."
  },
  {
   "id": "nemotron-3-ultra",
