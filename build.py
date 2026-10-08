@@ -114,7 +114,12 @@ def validate(lanes, events, models):
             parse_date(e["date"])
         except ValueError as x:
             errs.append(f"events[{e['date']}]: {x}")
-        for lid in e["lanes"]:
+        if not e.get("lanes") and not e.get("offers"):
+            errs.append(f"events[{e['date']}]: needs lanes or offers")
+        for oid in e.get("offers", []):
+            if oid not in {o["id"] for o in load_optional("offers", [])}:
+                errs.append(f"events[{e['date']}]: unknown offer {oid!r}")
+        for lid in e.get("lanes", []):
             if lid not in lane_ids:
                 errs.append(f"events[{e['date']}]: unknown lane {lid!r}")
             by_lane.setdefault(lid, []).append(e)
@@ -190,6 +195,43 @@ def validate(lanes, events, models):
             errs.append(f"anchors[{a.get('name')}]: needs its artificialanalysis.ai url")
     return errs
 
+
+
+def validate_offers(offers, channels, models):
+    """data/offers.json (ADR-005 / 019 / 025): generic allowances and grants, kept apart from $0 model lanes."""
+    errs, ids = [], set()
+    chans = {c["name"] for c in channels}
+    spec = SCHEMA["tables"]["offers"]
+    for o in offers:
+        w = f"offers[{o.get('id')}]"
+        for f in spec["required"]:
+            if f not in o:
+                errs.append(f"{w}: missing field {f!r}")
+        if o.get("id") in ids:
+            errs.append(f"{w}: duplicate id")
+        ids.add(o.get("id"))
+        if not re.fullmatch(r"[a-z0-9][a-z0-9.-]*", str(o.get("id", ""))):
+            errs.append(f"{w}: id must be lower-case kebab-case")
+        for f, vname in spec["vocab_fields"].items():
+            if o.get(f) not in VOCAB[vname]:
+                errs.append(f"{w}: {f}={o.get(f)!r} is not in vocab {vname}")
+        if o.get("channel") and o["channel"] not in chans:
+            errs.append(f"{w}: channel {o['channel']!r} is not in channels.json")
+        g = o.get("gets") or {}
+        if g.get("per") not in VOCAB["per"] or not str(g.get("text", "")).strip() or len(g.get("text", "")) > 90:
+            errs.append(f"{w}: gets needs per (once/day/week/month/year) and text (<= 90 chars)")
+        if any(r not in VOCAB["requirement"] for r in o.get("requires", [])):
+            errs.append(f"{w}: requires has a value not in vocab requirement")
+        if o.get("type") == "entitlement" and not (o.get("paid_plan") or {}).get("name"):
+            errs.append(f"{w}: an entitlement names the paid plan it comes with")
+        if not str((o.get("source") or {}).get("url", "")).startswith("http"):
+            errs.append(f"{w}: source.url is required")
+        for mid in (o.get("models") or {}).get("tracked", []):
+            if mid not in {m["id"] for m in models}:
+                errs.append(f"{w}: models.tracked {mid!r} is not in models.json")
+        if len(o.get("note") or "") > 140:
+            errs.append(f"{w}: note over 140 characters")
+    return errs
 
 
 def validate_channels(channels, lanes):
@@ -434,7 +476,7 @@ def md_events(events, lanes, models):
     lane = {l["id"]: l for l in lanes}
     rows = []
     for e in sorted(events, key=lambda e: parse_date(e["date"])[0], reverse=True):
-        who = ", ".join(f"{mname[lane[i]['model']]} · {lane[i]['channel']}" for i in e["lanes"])
+        who = ", ".join(f"{mname[lane[i]['model']]} · {lane[i]['channel']}" for i in e.get("lanes", []))
         src = link(e["source"]["label"], e["source"].get("url"))
         if e["source"].get("note"):
             src += f" ({e['source']['note']})"
@@ -447,7 +489,7 @@ def md_models(models, lanes, events):
     lane_end = {}
     for e in events:
         if e["kind"] == "ended":
-            for i in e["lanes"]:
+            for i in e.get("lanes", []):
                 lane_end[i] = e["date"]
 
     def free_on(m):
@@ -483,7 +525,7 @@ def md_models(models, lanes, events):
             aa = f"EST — ({m['est']['benchmarks']} benchmark so far)"
         else:
             aa = a.get("note", "not ranked")
-        n = sum(1 for e in events if any(next(l for l in lanes if l["id"] == i)["model"] == m["id"] for i in e["lanes"]))
+        n = sum(1 for e in events if any(next(l for l in lanes if l["id"] == i)["model"] == m["id"] for i in e.get("lanes", [])))
         rows.append([f"[{m['name']}]({SITE}/models/{m['id']})", free_on(m), str(n), f"{aa} ({a['date']})", m["context"], label("image_input", m["image_input"]), {x["id"]: x["name"] for x in load_optional("makers", [])}.get(m["maker"], m["maker"]), m.get("notes") or "—"])
     return md_table(["Model", "Free on", "Events", "AA index", "Context", "Image input", "Maker", "Notes"], rows)
 
@@ -612,7 +654,7 @@ def head_html(title, desc, url, today, extra_ld, og_image):
 
 # ---------- pages ----------
 
-SHARED_KEYS = ("lanes", "events", "models", "chans", "makers", "vocab", "built", "ext", "est_rule")
+SHARED_KEYS = ("lanes", "events", "models", "chans", "makers", "offers", "vocab", "built", "ext", "est_rule")
 
 
 def render_body(template, payload, root, home, shared=False):
@@ -645,7 +687,7 @@ def build_pages(lanes, events, models, today, mode):
     est, _ = estimate(models, load_optional("benchmarks", {}), load_optional("anchors", []))
     models = [dict(m, est=est[m["id"]]) if m["id"] in est else m for m in models]
     R = SCHEMA["est_rules"]
-    base = {"lanes": lanes, "events": events, "models": models, "chans": load_optional("channels", []), "makers": load_optional("makers", []), "vocab": VOCAB, "built": today.isoformat(), "ext": ext,
+    base = {"lanes": lanes, "events": events, "models": models, "chans": load_optional("channels", []), "makers": load_optional("makers", []), "offers": load_optional("offers", []), "vocab": VOCAB, "built": today.isoformat(), "ext": ext,
             "est_rule": f"{R['min_benchmarks']} benchmarks from {R['min_sources']} independent sources, each fitted on ≥{R['min_anchors']} reference models with r ≥ {R['min_r']}"}
     og = f"{SITE}/og.png"
     pages = {}  # relative output path -> (head, body)
@@ -692,6 +734,22 @@ def build_pages(lanes, events, models, today, mode):
         url = f"{SITE}/{pg}"
         pages[f"{pg}.html"] = (head_html(title, desc, url, today, [crumbs([("freetokens", SITE + "/"), (pg.title(), url)])], og),
                                render_body(f"{pg}.html", dict(base, root="/" if site else ""), "/" if site else "", home_href, site))
+    offers = load_optional("offers", [])
+    for o in offers:
+        url = f"{SITE}/offers/{o['id']}"
+        title = f"{o['name']}: {o['gets']['text']} | freetokens"
+        desc = clip(f"{o['name']} ({label('offer_type', o['type'])}, {o['provider']}): {o['gets']['text']} {label('per', o['gets']['per'])}. "
+                    f"Needs: {', '.join(label('requirement', r) for r in o.get('requires', [])) or 'nothing'}. Status and source checked {o['checked']['date'] if isinstance(o['checked'], dict) else o['checked']}.")
+        ld = [crumbs([("freetokens", SITE + "/"), ("Free programs", SITE + "/offers"), (o["name"], url)]),
+              {"@context": "https://schema.org", "@type": "Offer", "name": o["name"], "url": url, "price": 0, "priceCurrency": "USD",
+               "offeredBy": {"@type": "Organization", "name": o["provider"]}}]
+        pages[f"offers/{o['id']}.html"] = (head_html(title, desc, url, today, ld, og),
+                                           render_body("offer.html", dict(base, root=sub_root, offer=o["id"]), sub_root, sub_home, site))
+    title = "Free LLM programs: student plans, credits and daily allowances | freetokens"
+    desc = clip(f"{len(offers)} free programs that pay for model use: student plans, sign-up credits, daily and monthly allowances, perks bundled with plans. "
+                "Amounts in each provider's own unit, with what each one needs.")
+    pages["offers.html"] = (head_html(title, desc, SITE + "/offers", today, [crumbs([("freetokens", SITE + "/"), ("Free programs", SITE + "/offers")])], og),
+                            render_body("offers.html", dict(base, root="/" if site else ""), "/" if site else "", home_href, site))
     makers = load_optional("makers", [])
     for mk in makers:
         title, desc = seo_maker(mk, lanes, models)
@@ -708,7 +766,7 @@ def build_pages(lanes, events, models, today, mode):
         title = "How freetokens works: lanes, checks, and the EST estimate | freetokens"
         desc = "What a lane, status and end-date confidence mean, how 'Tested by us' limits are measured, and how the EST estimate of the AA index is computed."
         pages["methodology.html"] = (head_html(title, desc, SITE + "/methodology", today, [crumbs([("freetokens", SITE + "/"), ("Methodology", SITE + "/methodology")])], og),
-                                     '<div class="topbar"><div class="in">' + BRAND.replace("__HOME__", "/") + '<nav aria-label="Site"><a href="/#h-models">Models</a><a href="/#h-channels">Channels</a><a href="/lanes">Lanes</a><a href="/timeline">Timeline</a><a href="/methodology">Method</a></nav>' + GH + '</div></div>'
+                                     '<div class="topbar"><div class="in">' + BRAND.replace("__HOME__", "/") + '<nav aria-label="Site"><a href="/#h-models">Models</a><a href="/#h-channels">Channels</a><a href="/offers">Offers</a><a href="/lanes">Lanes</a><a href="/timeline">Timeline</a></nav>' + GH + '</div></div>'
                                      + '<div class="wrap prose">' + md_to_html((ROOT / "METHOD.md").read_text()) + '</div>')
     return pages
 
@@ -795,10 +853,10 @@ def site_extras(pages, lanes, events, models, today):
     def lastmod(path):
         if path.startswith("models/"):
             mid = path[7:-5]
-            ds = [l["checked"]["date"] for l in lanes if l["model"] == mid] + [e["date"][:10] for e in events if any(lanes_by_id[i]["model"] == mid for i in e["lanes"])]
+            ds = [l["checked"]["date"] for l in lanes if l["model"] == mid] + [e["date"][:10] for e in events if any(lanes_by_id[i]["model"] == mid for i in e.get("lanes", []))]
         elif path.startswith("channels/"):
             cs = path[9:-5]
-            ds = [l["checked"]["date"] for l in lanes if slug(l["channel"]) == cs] + [e["date"][:10] for e in events if any(slug(lanes_by_id[i]["channel"]) == cs for i in e["lanes"])]
+            ds = [l["checked"]["date"] for l in lanes if slug(l["channel"]) == cs] + [e["date"][:10] for e in events if any(slug(lanes_by_id[i]["channel"]) == cs for i in e.get("lanes", []))]
         else:
             ds = [today.isoformat()]
         return max(d for d in ds if len(d) == 10) if ds else today.isoformat()
@@ -821,10 +879,15 @@ def site_extras(pages, lanes, events, models, today):
         return html.escape(str(t), quote=True)
     entries = []
     for e in sorted(events, key=lambda e: parse_date(e["date"])[0], reverse=True)[:50]:
-        l0 = lanes_by_id[e["lanes"][0]]
         when = parse_date(e["date"])[0].strftime("%Y-%m-%dT%H:%M:%SZ")
-        link = f"{SITE}/models/{l0['model']}#ev-{re.sub(r'[^0-9]', '', e['date'])}-{e['lanes'][0]}"
-        title = f"{label('event_kind', e['kind'])}: {names[l0['model']]} on {l0['channel']}"
+        if e.get("lanes"):
+            l0 = lanes_by_id[e["lanes"][0]]
+            link = f"{SITE}/models/{l0['model']}#ev-{re.sub(r'[^0-9]', '', e['date'])}-{e['lanes'][0]}"
+            title = f"{label('event_kind', e['kind'])}: {names[l0['model']]} on {l0['channel']}"
+        else:  # an event about a free program (offers.json)
+            oid = e["offers"][0]
+            link = f"{SITE}/offers/{oid}#ev-{re.sub(r'[^0-9]', '', e['date'])}"
+            title = f"{label('event_kind', e['kind'])}: {next((o['name'] for o in load_optional('offers', []) if o['id'] == oid), oid)}"
         body = e["text"] + (f" (end date {fmt_date(e['end_date'])})" if e.get("end_date") else "") + f". Source: {e['source']['label']}" + (f" {e['source']['url']}" if e['source'].get('url') else "")
         entries.append(f"  <entry><title>{x(title)}</title><link href=\"{x(link)}\"/><id>{x(link)}</id><updated>{when}</updated><summary>{x(body)}</summary></entry>")
     feed = ('<?xml version="1.0" encoding="utf-8"?>\n<feed xmlns="http://www.w3.org/2005/Atom">\n'
@@ -942,7 +1005,7 @@ def main():
 
     lanes, events, models = load("lanes"), load("events"), load("models")
     chans = load_optional("channels", [])
-    errs = validate(lanes, events, models) + validate_channels(chans, lanes)
+    errs = validate(lanes, events, models) + validate_channels(chans, lanes) + validate_offers(load_optional("offers", []), chans, models)
     if errs:
         print("✗ data does not validate:", *errs, sep="\n  ", file=sys.stderr)
         sys.exit(1)

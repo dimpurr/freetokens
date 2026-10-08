@@ -311,6 +311,95 @@
         "label": "not checked",
         "help": "We have not looked for a published limit yet"
       }
+    },
+    "offer_type": {
+      "student": {
+        "label": "student",
+        "help": "For verified students"
+      },
+      "entitlement": {
+        "label": "comes with a plan",
+        "help": "Included in a paid plan you may already have"
+      },
+      "check_in": {
+        "label": "check-in",
+        "help": "Earned by signing in or checking in regularly"
+      },
+      "signup_trial": {
+        "label": "sign-up credit",
+        "help": "A one-off grant for new accounts"
+      },
+      "time_window": {
+        "label": "limited-time",
+        "help": "Free for a set period"
+      },
+      "daily_allowance": {
+        "label": "daily allowance",
+        "help": "A fresh allowance every day, spendable across many models"
+      },
+      "monthly_credit": {
+        "label": "monthly credit",
+        "help": "A credit grant renewed every month"
+      }
+    },
+    "requirement": {
+      "account": {
+        "label": "account",
+        "help": "Needs an account"
+      },
+      "card": {
+        "label": "card",
+        "help": "Needs a payment card on file"
+      },
+      "phone_cn": {
+        "label": "+86 phone",
+        "help": "Needs a mainland China phone number"
+      },
+      "phone_intl": {
+        "label": "phone",
+        "help": "Needs a phone number"
+      },
+      "student": {
+        "label": "student",
+        "help": "Needs student verification"
+      },
+      "real_name": {
+        "label": "real-name ID",
+        "help": "Needs real-name identity verification"
+      },
+      "paid_plan": {
+        "label": "paid plan",
+        "help": "Needs a paid subscription"
+      },
+      "invite": {
+        "label": "invite",
+        "help": "Needs an invitation"
+      },
+      "region": {
+        "label": "region",
+        "help": "Only in some countries"
+      },
+      "github": {
+        "label": "GitHub",
+        "help": "Needs a GitHub account"
+      }
+    },
+    "per": {
+      "once": {
+        "label": "once"
+      },
+      "day": {
+        "label": "a day"
+      },
+      "week": {
+        "label": "a week"
+      },
+      "month": {
+        "label": "a month"
+      },
+      "year": {
+        "label": "a year"
+      }
     }
   },
   "tables": {
@@ -346,7 +435,6 @@
     "events": {
       "required": [
         "date",
-        "lanes",
         "kind",
         "text",
         "source"
@@ -385,6 +473,23 @@
         "id",
         "name"
       ]
+    },
+    "offers": {
+      "required": [
+        "id",
+        "name",
+        "provider",
+        "type",
+        "gets",
+        "requires",
+        "status",
+        "checked",
+        "source"
+      ],
+      "vocab_fields": {
+        "type": "offer_type",
+        "status": "status"
+      }
     }
   },
   "est_rules": {

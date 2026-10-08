@@ -64,16 +64,31 @@ const clink = (name) => `<a href="${channelHref(name)}">${esc(name)}</a>`;
 const MK = Object.fromEntries((D.makers || []).map((x) => [x.id, x]));
 const makerHref = (id) => `${D.root}makers/${encodeURIComponent(id)}${D.ext}`;
 const mklink = (id) => MK[id] ? `<a class="mklink" href="${makerHref(id)}">${esc(MK[id].name)}</a>` : esc(id);
+/* free programs (data/offers.json, ADR-005 / 025): allowances and grants, never ranked with $0 model lanes */
+const OF = Object.fromEntries((D.offers || []).map((o) => [o.id, o]));
+const offerHref = (id) => `${D.root}offers/${encodeURIComponent(id)}${D.ext}`;
+const olink = (id) => OF[id] ? `<a href="${offerHref(id)}">${esc(OF[id].name)}</a>` : esc(id);
+const PER_RANK = { day: 0, week: 1, month: 2, year: 3, once: 4 };
+const offerAccess = (o) => o.access || (CH[o.channel] && CH[o.channel].access) || null;
+/* usable in a view: Agents needs an API or CLI that allows automation; Humans and All take everything */
+const offerUsable = (o, v = VIEW) => o.status !== "ended" && (v !== "agents" || (() => { const a = offerAccess(o); return !!a && a.form !== "own_app" && !(a.rules || []).includes("no_automation"); })());
+const offerEase = (o) => (o.requires || []).filter((r) => r !== "account").length;  /* fewer hurdles first */
+const offerSort = (a, b) => offerEase(a) - offerEase(b) || (PER_RANK[a.gets.per] ?? 9) - (PER_RANK[b.gets.per] ?? 9) || a.name.localeCompare(b.name);
+const getsHTML = (o) => `<b>${esc(o.gets.text)}</b> <span class="per per-${esc(o.gets.per)}">${esc(lab("per", o.gets.per))}</span>`;
+const reqHTML = (o) => (o.requires || []).length
+  ? o.requires.map((r) => `<span class="req${r === "account" ? " soft" : ""}" title="${esc(V.requirement[r].help)}">${esc(lab("requirement", r))}</span>`).join("")
+  : `<span class="req none">nothing</span>`;
+const offersFor = (mid) => (D.offers || []).filter((o) => o.status !== "ended" && ((o.models || {}).tracked || []).includes(mid));
 const suspectedHTML = (m) => m.suspected_maker ? ` <span class="suspect" title="${esc(m.suspected_maker.basis)}">possibly ${mklink(m.suspected_maker.maker)} · unconfirmed</span>` : "";
 const channels = [...new Set(D.lanes.map((l) => l.channel))];
 const lanesOf = (mid) => D.lanes.filter((l) => l.model === mid);
 const lanesOn = (name) => D.lanes.filter((l) => l.channel === name);
-const eventsOf = (mid) => D.events.filter((e) => e.lanes.some((i) => lanes[i].model === mid));
-const eventsOn = (name) => D.events.filter((e) => e.lanes.some((i) => lanes[i].channel === name));
+const eventsOf = (mid) => D.events.filter((e) => (e.lanes || []).some((i) => lanes[i].model === mid));
+const eventsOn = (name) => D.events.filter((e) => (e.lanes || []).some((i) => lanes[i].channel === name) || (e.offers || []).some((o) => OF[o] && OF[o].channel === name));
 
 /* events have stable anchors; dates that came from an event link to it */
 const evId = (e) => `ev-${e.date.replace(/[^0-9]/g, "")}-${e.lanes[0]}`;
-const findEv = (l, pred) => D.events.find((e) => e.lanes.includes(l.id) && pred(e));
+const findEv = (l, pred) => D.events.find((e) => (e.lanes || []).includes(l.id) && pred(e));
 const whenLink = (s, ev) => ev ? `<a class="when" href="#${evId(ev)}">${esc(absDate(s))}</a>` : esc(absDate(s));
 const endedEvent = (l) => findEv(l, (e) => e.kind === "ended");
 const startEvent = (l) => l.started.date && findEv(l, (e) => e.date === l.started.date);
@@ -403,7 +418,7 @@ function timelineHTML(evs) {
     const timeHTML = e.source.url ? `<a href="${esc(e.source.url)}" target="_blank" rel="noopener" title="Open the source">${time}</a>` : time;
     const src = e.source.url ? `<a href="${esc(e.source.url)}" target="_blank" rel="noopener">${esc(e.source.label)} ${I.ext()}</a>` : esc(e.source.label);
     out += `<div class="it" id="${evId(e)}"><div class="t">${timeHTML}</div><div class="b">
-      <div class="h"><span class="k">${esc(lab("event_kind", e.kind))}</span>${e.lanes.map((i) => `<span class="lane">${mlink(lanes[i].model)} · ${clink(lanes[i].channel)}</span>${statusHTML(lanes[i].status)}`).join(" ")}</div>
+      <div class="h"><span class="k">${esc(lab("event_kind", e.kind))}</span>${(e.lanes || []).map((i) => `<span class="lane">${mlink(lanes[i].model)} · ${clink(lanes[i].channel)}</span>${statusHTML(lanes[i].status)}`).join(" ")}${(e.offers || []).map((o) => OF[o] ? `<span class="lane">${olink(o)}</span>${statusHTML(OF[o].status)}` : "").join(" ")}</div>
       <div class="x">${esc(e.text)}${e.end_date ? ` <span class="muted">→ end date ${esc(absDate(e.end_date))}</span>` : ""}</div>
       <div class="s">Source: ${src}${e.source.note ? ` · ${esc(e.source.note)}` : ""}</div>
     </div></div>`;

@@ -14,6 +14,11 @@
     <div class="chcards" id="now"></div>
   </section>
 
+  <section aria-labelledby="h-also" id="also-sec" hidden>
+    <h2 id="h-also">Also free through <small>programs whose allowance covers this model · amounts are shared with other models</small></h2>
+    <div class="alsofree" id="also"></div>
+  </section>
+
   <section aria-labelledby="h-chart">
     <h2 id="h-chart">Free periods <small>one bar per channel; markers are events</small></h2>
     <div class="key keyrow" id="chartkey"></div>
@@ -105,4 +110,8 @@ onView(() => document.querySelectorAll("[data-lane]").forEach((el) => {
   const l = lanes[el.dataset.lane], w = VIEW === "all" ? "" : whyNot(l, VIEW);
   el.classList.toggle("off", !!w); el.title = w ? `Not usable by ${VIEW}: ${w}` : "";
 }));
+/* free programs that cover this page (ADR-025) */
+{ const os = offersFor(M.id).sort(offerSort);
+  $("also-sec").hidden = !os.length;
+  $("also").innerHTML = os.map((o) => `<div class="row">${olink(o.id)} ${statusHTML(o.status)} ${getsHTML(o)} <span>${reqHTML(o)}</span></div>`).join(""); }
 </script>

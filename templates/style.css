@@ -469,3 +469,13 @@ ol.rungs > li.muted::before { content: none; }
 .suspect { font: 500 0.74rem var(--f-body); color: var(--overdue); background: var(--overdue-soft); border-radius: 999px; padding: 1px 8px; white-space: nowrap; }
 .suspect a { color: inherit; }
 .kicker .suspect { margin-left: 8px; text-transform: none; letter-spacing: 0; }
+
+/* free programs (offers) */
+.per { font: 500 0.72rem var(--f-body); border-radius: 999px; padding: 1px 8px; white-space: nowrap; background: var(--accent-soft); color: var(--accent); }
+.per.per-once { background: var(--off-soft); color: var(--off); }
+.req { font: 500 0.72rem var(--f-body); border-radius: 999px; padding: 1px 8px; white-space: nowrap; border: 1px solid var(--line-strong); color: var(--fg); margin-right: 4px; display: inline-block; margin-bottom: 2px; }
+.req.soft { color: var(--muted); border-style: dashed; }
+.req.none { color: var(--live); border-color: color-mix(in srgb, var(--live) 45%, transparent); }
+.otype { font: 600 0.72rem var(--f-body); text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+.alsofree { display: grid; gap: 6px; }
+.alsofree .row { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: baseline; }

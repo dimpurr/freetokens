@@ -5,6 +5,7 @@
     python3 tools/query.py lanes <model-id|lane-id|channel>   # status, checks, limits, volume
     python3 tools/query.py events [--since YYYY-MM-DD] [--lane ID]
     python3 tools/query.py pool [--min 30]            # agent-usable free lanes with a score, best first
+    python3 tools/query.py offers [--model ID] [--type T]   # free programs: allowances, credits, student plans (ADR-025)
 
 Scores use build.estimate(), the same code the site uses.
 CONTRACT (parsed by chco `oc-free status`; tell m1max-dimmodel before renaming or removing any of these):
@@ -82,6 +83,10 @@ def main(argv):
             if s["value"] is not None and s["value"] >= mn:
                 out.append({**{k: v[k] for k in ("lane", "channel", "model_id", "status", "tested", "volume")}, "score": s})
         out.sort(key=lambda x: -x["score"]["value"])
+    elif cmd == "offers":
+        mid, ty = opt("--model"), opt("--type")
+        out = [o for o in build.load_optional("offers", []) if (not ty or o["type"] == ty)
+               and (not mid or mid in (o.get("models") or {}).get("tracked", []))]
     else:
         print(__doc__); return 2
     print(json.dumps(out, ensure_ascii=False, indent=1))
