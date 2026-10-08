@@ -37,6 +37,8 @@ The runner scripts that hold host names and own IPs are private: `.private/obser
 - **Visitors**: distinct IPs with a page view. This includes link previews and scanners that don't announce themselves, so treat it as an upper bound.
 - **Page views**: 2xx responses for pages (not assets).
 - **Excluded**: bots by user agent (see `BOT`, `LLM_BOTS`, `SEARCH_BOTS` in observe.py) and the IPs in `FT_OBSERVE_IGNORE_IPS` (our own machines). A maintainer's phone on mobile data is not excluded.
+- **Pages AI assistants read for someone**: hits from ChatGPT-User, Perplexity-User, Claude-User on our own paths. The assistant sends only the URL, never the person's question; the page tells you the topic. Scanners fake these user agents, so hits on paths we don't serve are dropped.
+- **Visitors who came from an AI answer**: landings with `utm_source=chatgpt.com` (or perplexity, claude.ai, copilot, gemini): a person clicked a citation. We see the landing page, not the question.
 - **AI crawlers**: OAI-SearchBot and ChatGPT-User (ChatGPT fetching a page for a user, i.e. a real person asked about it), ClaudeBot, PerplexityBot, GPTBot, Bytespider and others. ChatGPT-User and Perplexity-User are the closest thing to "an AI assistant cited us".
 
 ## §4 Data freshness rules

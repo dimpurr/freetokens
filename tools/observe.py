@@ -47,7 +47,9 @@ def get(url, timeout=30, head=False):
 def parse_logs(files):
     ignore = {x.strip() for x in os.environ.get("FT_OBSERVE_IGNORE_IPS", "").split(",") if x.strip()}
     days = defaultdict(lambda: {"views": 0, "visitors": set(), "browsers": set(), "pages": Counter(), "referrers": Counter(),
-                                "llm_bots": Counter(), "search_bots": Counter(), "other_bots": 0, "feed": 0, "llms_txt": 0})
+                                "llm_bots": Counter(), "search_bots": Counter(), "other_bots": 0, "feed": 0, "llms_txt": 0,
+                                "ai_user_pages": Counter(), "ai_landings": Counter()})
+    USER_FETCH = ("ChatGPT-User", "Perplexity-User", "Claude-User", "MistralAI-User")  # an assistant reading a page for a person, live
     for f in files:
         own_log = "freetokens" in Path(f).name  # site-specific log: every line is ours; shared log: our paths only
         for line in open(f, errors="ignore"):
@@ -62,7 +64,10 @@ def parse_logs(files):
             llm = next((b for b in LLM_BOTS if b.lower() in ua.lower()), None)
             srch = next((b for b in SEARCH_BOTS if b.lower() in ua.lower()), None)
             if llm:
-                d["llm_bots"][llm] += 1; continue
+                d["llm_bots"][llm] += 1
+                if llm in USER_FETCH and SITE_PATH.match(path):  # only our own paths: scanners fake this user agent
+                    d["ai_user_pages"][path.split("?")[0]] += 1
+                continue
             if srch:
                 d["search_bots"][srch] += 1; continue
             if BOT.search(ua):
@@ -70,6 +75,9 @@ def parse_logs(files):
             if ip in ignore:
                 continue
             p = path.split("?")[0]
+            src = re.search(r"utm_source=([a-z.]+)", path)
+            if src and src.group(1) in ("chatgpt.com", "perplexity", "perplexity.ai", "claude.ai", "copilot.com", "gemini.google.com"):
+                d["ai_landings"][f"{p} ← {src.group(1)}"] += 1
             if p == "/feed.xml": d["feed"] += 1
             if p == "/llms.txt": d["llms_txt"] += 1
             if p.startswith("/assets/data.js"):
@@ -83,7 +91,8 @@ def parse_logs(files):
         out[k] = {"views": d["views"], "visitors": len(d["visitors"]), "browsers": len(d["browsers"]),
                   "top_pages": d["pages"].most_common(8), "referrers": d["referrers"].most_common(8),
                   "llm_bots": dict(d["llm_bots"]), "search_bots": dict(d["search_bots"]), "other_bots": d["other_bots"],
-                  "feed": d["feed"], "llms_txt": d["llms_txt"]}
+                  "feed": d["feed"], "llms_txt": d["llms_txt"],
+                  "ai_user_pages": d["ai_user_pages"].most_common(10), "ai_landings": d["ai_landings"].most_common(10)}
     return out
 
 
@@ -173,9 +182,10 @@ def report(kind, log_files, watch_path):
             days = parse_logs(log_files)
             last = sorted(days)[-7:]
             tot = lambda k: sum(days[d][k] for d in last)
-            pages, refs, llm, srch = Counter(), Counter(), Counter(), Counter()
+            pages, refs, llm, srch, aiu, ail = Counter(), Counter(), Counter(), Counter(), Counter(), Counter()
             for d in last:
                 pages.update(dict(days[d]["top_pages"])); refs.update(dict(days[d]["referrers"]))
+                aiu.update(dict(days[d]["ai_user_pages"])); ail.update(dict(days[d]["ai_landings"]))
                 llm.update(days[d]["llm_bots"]); srch.update(days[d]["search_bots"])
             lines.append(f"Visitors (7 d): {tot('browsers')} browser loads · {tot('visitors')} IPs · {tot('views')} page views · "
                          f"daily browsers {', '.join(str(days[d]['browsers']) for d in last)}")
@@ -184,6 +194,8 @@ def report(kind, log_files, watch_path):
             lines.append("AI crawlers: " + (", ".join(f"{b} {n}" for b, n in llm.most_common()) or "none") +
                          " · search bots: " + (", ".join(f"{b} {n}" for b, n in srch.most_common(5)) or "none") +
                          f" · feed {tot('feed')} · llms.txt {tot('llms_txt')}")
+            lines.append("Pages AI assistants read for someone: " + (", ".join(f"{p} {n}" for p, n in aiu.most_common(8)) or "none"))
+            lines.append("Visitors who came from an AI answer: " + (", ".join(f"{p} {n}" for p, n in ail.most_common(6)) or "none"))
         lk = links()
         lines.append(f"Links: {len(lk['broken'])} broken of {lk['checked']}" + (": " + "; ".join(f"{u} ({c})" for u, c in lk["broken"][:8]) if lk["broken"] else ""))
         lines.append(f"Data: {len(st)} live lane(s) not re-checked for >{STALE_DAYS} days" + (": " + ", ".join(f"{x['lane']} ({x['days']} d)" for x in st[:12]) if st else ""))
