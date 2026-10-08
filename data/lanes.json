@@ -3719,5 +3719,35 @@
    "tier": "daily",
    "basis": "channel rule: Zen's free allowance is per IP per day; this model not load-tested"
   }
+ },
+ {
+  "id": "qwen3.8-27b-or",
+  "model": "qwen3.8-27b",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "qwen/qwen3.8-27b:free",
+  "free_condition": null,
+  "limits_stated": {
+   "basis": "official",
+   "per_day": 50,
+   "note": "1000/day once 10+ credits have been bought",
+   "source": "https://openrouter.ai/qwen/qwen3.8-27b:free"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-08-14",
+   "note": "first public mention we found; the free route may predate it"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "may_train",
+  "status": "ended",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "catalogue"
+  }
  }
 ]

@@ -1721,5 +1721,29 @@
    "label": "own check: kilo models kilo, signed in",
    "url": "https://kilo.ai/models"
   }
+ },
+ {
+  "date": "2026-08-14",
+  "lanes": [
+   "qwen3.8-27b-or"
+  ],
+  "kind": "available",
+  "text": "Guide published for using Qwen3.8 27B (free) through OpenRouter: Qwen3.8 27B",
+  "source": {
+   "label": "TypingMind guide",
+   "url": "https://www.typingmind.com/guide/openrouter/qwen3.8-27b-free"
+  }
+ },
+ {
+  "date": "2026-10-08",
+  "lanes": [
+   "qwen3.8-27b-or"
+  ],
+  "kind": "ended",
+  "text": "qwen/qwen3.8-27b:free is no longer in OpenRouter's model list; only the paid qwen/qwen3.8-27b remains",
+  "source": {
+   "label": "own check of openrouter.ai/api/v1/models",
+   "url": "https://openrouter.ai/api/v1/models"
+  }
  }
 ]

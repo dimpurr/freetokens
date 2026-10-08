@@ -875,5 +875,18 @@
    "note": "not checked"
   },
   "notes": "Zen describes it as a free-tier preview reasoning model with text and image input and tool use"
+ },
+ {
+  "id": "qwen3.8-27b",
+  "name": "Qwen3.8 27B",
+  "maker": "qwen",
+  "context": "262K",
+  "image_input": "yes",
+  "aa_index": {
+   "value": 34,
+   "date": "2026-10-08",
+   "url": "https://artificialanalysis.ai/models/qwen3-8-27b"
+  },
+  "notes": "Dense 27B open-weight vision-language model, released 2026-08 (AA index 33.7)."
  }
 ]
