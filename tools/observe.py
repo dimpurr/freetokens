@@ -127,6 +127,9 @@ def health(watch_path=None):
     except Exception as e:
         h["problems"].append(f"cannot read the deployed data: {str(e)[:60]}")
     h["stale_lanes"] = lanes_stale()
+    today = dt.date.today()
+    h["stale_offers"] = [o["id"] for o in json.loads((ROOT / "data/offers.json").read_text())
+                         if o["status"] in ("live", "listed") and (today - dt.date.fromisoformat((o["checked"]["date"] if isinstance(o["checked"], dict) else o["checked"])[:10])).days > 14]
     if watch_path:
         try:
             w = json.loads(Path(watch_path).expanduser().read_text())
@@ -199,6 +202,8 @@ def report(kind, log_files, watch_path):
         lk = links()
         lines.append(f"Links: {len(lk['broken'])} broken of {lk['checked']}" + (": " + "; ".join(f"{u} ({c})" for u, c in lk["broken"][:8]) if lk["broken"] else ""))
         lines.append(f"Data: {len(st)} live lane(s) not re-checked for >{STALE_DAYS} days" + (": " + ", ".join(f"{x['lane']} ({x['days']} d)" for x in st[:12]) if st else ""))
+        so = h.get("stale_offers", [])
+        lines.append(f"Programs: {len(so)} not re-checked for >14 days" + (": " + ", ".join(so[:10]) if so else ""))
         lines.append(f"Deployed build {h.get('deployed_build', '?')} · site pages {'all 200' if not any(v != 200 for v in h['pages'].values()) else h['pages']}")
     elif st and dt.date.today().weekday() == 3:  # daily: stale data is a Thursday nudge, not a daily one
         lines.append(f"🕰️ {len(st)} live lane(s) due for a re-check (>{STALE_DAYS} days): " + ", ".join(x["lane"] for x in st[:12]))

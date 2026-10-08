@@ -45,6 +45,7 @@ The runner scripts that hold host names and own IPs are private: `.private/obser
 
 - A **live** or **overdue** lane not re-checked for **7 days** is "re-check due". The site shows it next to the check date, the Agents fallback ladder stops counting it as confirmed, and `query.py lanes` returns `stale: true`. The daily health report lists these on Thursdays.
 - A negative finding needs repeated checks (ADR-022). The 7-day rule only says "look again"; it never marks a lane as ended.
+- A free program (offers.json) not re-checked for **14 days** is listed in the weekly report.
 - The catalogue watch must have run in the last 30 hours, otherwise the daily report says so.
 
 ## §5 Query recipes

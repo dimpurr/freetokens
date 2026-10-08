@@ -1,1 +1,1781 @@
-[]
+[
+ {
+  "id": "github-copilot-student",
+  "name": "GitHub Copilot Student",
+  "provider": "GitHub",
+  "channel": null,
+  "type": "student",
+  "gets": {
+   "amount": null,
+   "unit": "credits",
+   "per": "month",
+   "text": "Unlimited completions + a GitHub AI Credits allowance; limited chat/agents"
+  },
+  "requires": [
+   "account",
+   "github",
+   "student"
+  ],
+  "paid_plan": null,
+  "region": null,
+  "access": {
+   "form": "own_app",
+   "rules": []
+  },
+  "models": {
+   "kind": "list",
+   "ids": [],
+   "tracked": [],
+   "count": null,
+   "note": "Auto model selection only; excludes third-party agents; no list published"
+  },
+  "status": "live",
+  "started": null,
+  "ends": null,
+  "source": {
+   "label": "GitHub Student Developer Pack",
+   "url": "https://education.github.com/pack"
+  },
+  "quote": "GitHub Copilot Student is available to verified students. The plan includes unlimited code completions and an allowance of GitHub AI Credits, plus limited chat and agent usage",
+  "note": "AI-credit allowance amount not published; GitHub reevaluates eligibility monthly (docs.github.com).",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "zed-student",
+  "name": "Zed Student plan",
+  "provider": "Zed Industries",
+  "channel": null,
+  "type": "student",
+  "gets": {
+   "amount": 10,
+   "unit": "USD",
+   "per": "month",
+   "text": "$10/month in AI token credits + all Zed Pro features, free for 12 months"
+  },
+  "requires": [
+   "account",
+   "github",
+   "student"
+  ],
+  "paid_plan": null,
+  "region": null,
+  "access": {
+   "form": "own_app",
+   "rules": []
+  },
+  "models": {
+   "kind": "list",
+   "ids": [],
+   "tracked": [],
+   "count": null,
+   "note": "All Zed-hosted models except Claude Fable, Claude Opus, GPT Pro"
+  },
+  "status": "live",
+  "started": null,
+  "ends": null,
+  "source": {
+   "label": "Zed for Students",
+   "url": "https://zed.dev/education"
+  },
+  "quote": "For verified university students, Zed Pro is free for one year.",
+  "note": "18+; worldwide; GitHub account >30 days + university email (JetBrains domain db). Downgrades to Free after 12 months.",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "kiro-students",
+  "name": "Kiro for Students",
+  "provider": "AWS (Kiro)",
+  "channel": null,
+  "type": "student",
+  "gets": {
+   "amount": 1000,
+   "unit": "credits",
+   "per": "month",
+   "text": "1,000 Kiro credits/month free for one year; no rollover; add-on credits unavailable"
+  },
+  "requires": [
+   "account",
+   "student",
+   "real_name"
+  ],
+  "paid_plan": null,
+  "region": null,
+  "access": {
+   "form": "own_app",
+   "rules": []
+  },
+  "models": {
+   "kind": "list",
+   "ids": [],
+   "tracked": [],
+   "count": null,
+   "note": "Credits usable on Kiro models; auto-downgrade to free tier after 1 year"
+  },
+  "status": "live",
+  "started": null,
+  "ends": null,
+  "source": {
+   "label": "Kiro for students",
+   "url": "https://kiro.dev/students/"
+  },
+  "quote": "Eligible university students get 1,000 credits per month free for one year. Credits do not roll over month to month. No credit card required.",
+  "note": "18+; participating universities only; university email; enrollment proof on request; no rollover; add-ons unavailable.",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "google-ai-plus-student-intl",
+  "name": "Google AI Plus free for students (12-month, outside the U.S.)",
+  "provider": "Google",
+  "channel": null,
+  "type": "student",
+  "gets": {
+   "amount": 12,
+   "unit": "months",
+   "per": "once",
+   "text": "12-month Google AI Plus student trial at no cost; 2x higher Gemini usage limits"
+  },
+  "requires": [
+   "account",
+   "card",
+   "student"
+  ],
+  "paid_plan": null,
+  "region": null,
+  "access": {
+   "form": "own_app",
+   "rules": []
+  },
+  "models": {
+   "kind": "list",
+   "ids": [
+    "Gemini Omni"
+   ],
+   "tracked": [],
+   "count": null,
+   "note": "2x limits, 400 GB storage, Gemini Omni, unlimited Study Notebooks/Visuals/Live"
+  },
+  "status": "live",
+  "started": null,
+  "ends": "2026-12-31",
+  "source": {
+   "label": "Claim a Google One student offer",
+   "url": "https://support.google.com/googleone/answer/17422238"
+  },
+  "quote": "Eligible students can get a 12-month Google AI Plus (400 GB) student trial plan at no cost.",
+  "note": "18+; SheerID via school email; excl. US, CA, HK, MO, Albania, Bolivia, Tunisia; redeem by 2026-12-31; card required.",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "openai-chatgpt-back-to-school",
+  "name": "ChatGPT Back to School (4 free months of Plus)",
+  "provider": "OpenAI",
+  "channel": null,
+  "type": "student",
+  "gets": {
+   "amount": 4,
+   "unit": "months",
+   "per": "once",
+   "text": "Four free monthly billing periods of ChatGPT Plus; then $20/mo unless cancelled"
+  },
+  "requires": [
+   "account",
+   "card",
+   "student"
+  ],
+  "paid_plan": null,
+  "region": "US",
+  "access": {
+   "form": "own_app",
+   "rules": []
+  },
+  "models": {
+   "kind": "list",
+   "ids": [],
+   "tracked": [],
+   "count": null,
+   "note": "Plus-tier access incl ChatGPT Work for the free period"
+  },
+  "status": "live",
+  "started": null,
+  "ends": "2026-10-31",
+  "source": {
+   "label": "ChatGPT Back to School offer for students (OpenAI Help)",
+   "url": "https://help.openai.com/en/articles/20001493-chatgpt-back-to-school-offer-for-students"
+  },
+  "quote": "The 2026 Back to School offer provides eligible students with four free monthly billing periods of ChatGPT Plus, including access to ChatGPT Work and other Plus features.",
+  "note": "Claim by 2026-10-31; US degree-granting institutions; SheerID; payment method required (not charged); once per student.",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "openai-codex-student-credits",
+  "name": "Codex for Students ($100 credits)",
+  "provider": "OpenAI",
+  "channel": null,
+  "type": "student",
+  "gets": {
+   "amount": 100,
+   "unit": "USD",
+   "per": "once",
+   "text": "$100 (2,500 ChatGPT credits) for Codex; ChatGPT credits not API; expire in 12 months"
+  },
+  "requires": [
+   "account",
+   "student"
+  ],
+  "paid_plan": null,
+  "region": "US,CA",
+  "access": {
+   "form": "own_cli",
+   "rules": []
+  },
+  "models": {
+   "kind": "list",
+   "ids": [],
+   "tracked": [],
+   "count": null,
+   "note": "ChatGPT credits usable in Codex; extends Codex usage beyond plan limits"
+  },
+  "status": "live",
+  "started": null,
+  "ends": null,
+  "source": {
+   "label": "Codex credits for Students - Terms of Service (OpenAI Help)",
+   "url": "https://help.openai.com/en/articles/20001147-codex-credits-for-students-terms-of-service"
+  },
+  "quote": "OpenAI is offering verified university students in the United States and Canada $100 in credits to use in Codex.",
+  "note": "US/CA students at degree-granting universities; SheerID via university email; one per student; credits expire 12mo.",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "cursor-student-pro",
+  "name": "Cursor student discount (legacy free Pro year)",
+  "provider": "Cursor (Anysphere)",
+  "channel": null,
+  "type": "student",
+  "gets": {
+   "amount": null,
+   "unit": "months",
+   "per": "once",
+   "text": "1 year Cursor Pro free for verified students; new sign-ups discontinued 2026-06-25"
+  },
+  "requires": [
+   "student"
+  ],
+  "paid_plan": null,
+  "region": null,
+  "access": {
+   "form": "own_app",
+   "rules": []
+  },
+  "models": {
+   "kind": "list",
+   "ids": [],
+   "tracked": [],
+   "count": null,
+   "note": "Program closed to new sign-ups on 2026-06-25"
+  },
+  "status": "ended",
+  "started": null,
+  "ends": "2026-06-25",
+  "source": {
+   "label": "Student discount (Cursor Docs)",
+   "url": "https://cursor.com/help/account-and-billing/student-discount"
+  },
+  "quote": "Cursor discontinued new sign-ups for the legacy student discount on June 25, 2026.",
+  "note": "Existing holders keep rate until expiry then $20/mo; replacements are event credits + a request form.",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "jetbrains-ai-free",
+  "name": "JetBrains AI Free (3 AI Credits / 30 days)",
+  "provider": "JetBrains",
+  "channel": null,
+  "type": "free_plan",
+  "gets": {
+   "amount": 3,
+   "unit": "credits",
+   "per": "month",
+   "text": "3 free AI Credits per 30 days (AI Free tier); separate AI Trial gives 10 credits"
+  },
+  "requires": [
+   "account"
+  ],
+  "paid_plan": null,
+  "region": null,
+  "access": {
+   "form": "own_app",
+   "rules": []
+  },
+  "models": {
+   "kind": "list",
+   "ids": [
+    "cloud LLMs via JetBrains AI (OpenAI/Google/Anthropic)"
+   ],
+   "tracked": [],
+   "count": null,
+   "note": "1 AI Credit = $1 USD; quota resets every 30 days"
+  },
+  "status": "live",
+  "started": null,
+  "ends": null,
+  "source": {
+   "label": "JetBrains AI plans and usage",
+   "url": "https://www.jetbrains.com/help/ai-assistant/licensing-and-subscriptions.html"
+  },
+  "quote": "AI Free | Free | 3 AI Credits per 30-days",
+  "note": "Not student-gated (AI Pro not in student licenses). Excluded in Mainland China; not in Android Studio/Community.",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "claude-for-teachers",
+  "name": "Claude for Teachers (1 year free)",
+  "provider": "Anthropic",
+  "channel": null,
+  "type": "signup_trial",
+  "gets": {
+   "amount": 12,
+   "unit": "months",
+   "per": "once",
+   "text": "Free full year of premium Claude (incl Claude Code, Cowork) for verified US K-12 educators"
+  },
+  "requires": [
+   "account",
+   "region"
+  ],
+  "paid_plan": null,
+  "region": "US",
+  "access": {
+   "form": "own_app",
+   "rules": []
+  },
+  "models": {
+   "kind": "catalogue",
+   "ids": [],
+   "tracked": [],
+   "count": null,
+   "note": "Premium Claude capabilities; training is off for verified teacher accounts"
+  },
+  "status": "live",
+  "started": "2026-07-14",
+  "ends": "2027-06-30",
+  "source": {
+   "label": "Introducing Claude for Teachers",
+   "url": "https://www.anthropic.com/news/claude-for-teachers"
+  },
+  "quote": "Once verified, educators can access Claude for Teachers entirely free. Sign up by June 30, 2027, for a full year of access.",
+  "note": "Educators only (not students), 18+, US K-12. No individual student discount; school/district offering separate.",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "google-antigravity",
+  "name": "Google Antigravity (free tier)",
+  "provider": "Google",
+  "channel": null,
+  "type": "free_plan",
+  "gets": {
+   "amount": null,
+   "unit": "other",
+   "per": "week",
+   "text": "Free baseline: Gemini 3.1 Pro + 3.8 Flash, unlimited Tab completions, weekly quota"
+  },
+  "requires": [
+   "account"
+  ],
+  "paid_plan": null,
+  "region": null,
+  "access": {
+   "form": "own_app",
+   "rules": []
+  },
+  "models": {
+   "kind": "list",
+   "ids": [
+    "Gemini 3.1 Pro",
+    "Gemini 3.8 Flash"
+   ],
+   "tracked": [
+    "gemini-3.8-flash"
+   ],
+   "count": 2,
+   "note": "Core agent models on the free baseline; 'A meaningful quota, refreshed weekly'"
+  },
+  "status": "live",
+  "started": null,
+  "ends": null,
+  "source": {
+   "label": "Plans | Google Antigravity Docs",
+   "url": "https://antigravity.google/docs/plans/"
+  },
+  "quote": "All plans receive the following baseline features: Use of Gemini models, including Gemini 3.1 Pro, Gemini 3.8 Flash ... Unlimited Tab completions",
+  "note": "Refreshes weekly, higher limits + 3rd-party models need Google AI Pro/Ultra. No BYOK; 3rd-party clients break ToS.",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "aliyun-university-300-voucher",
+  "name": "阿里云 云工开物 300 元抵扣金",
+  "provider": "Alibaba Cloud (阿里云 云工开物)",
+  "channel": null,
+  "type": "student",
+  "gets": {
+   "amount": 300,
+   "unit": "CNY",
+   "per": "once",
+   "text": "¥300 no-threshold voucher, valid 1 year; deducts inference/training/deploy fees"
+  },
+  "requires": [
+   "account",
+   "student",
+   "real_name"
+  ],
+  "paid_plan": null,
+  "region": "CN",
+  "access": {
+   "form": "api",
+   "rules": [],
+   "protocols": [
+    "openai_chat"
+   ]
+  },
+  "models": {
+   "kind": "list",
+   "ids": [],
+   "tracked": [],
+   "count": null,
+   "note": "Voucher is currency, spendable across cloud products incl Bailian inference"
+  },
+  "status": "live",
+  "started": "2025-11-11",
+  "ends": "2026-11-10",
+  "source": {
+   "label": "阿里云百炼 云工开物 高校计划",
+   "url": "https://help.aliyun.com/zh/model-studio/introduction-to-yungongkaiwu"
+  },
+  "quote": "面向中国高校学生（包括中国香港、中国澳门和中国台湾地区），完成实名认证后即可领取300元无门槛抵扣金。",
+  "note": "CN students incl HK/MO/TW; student real-name verification on Aliyun; valid 1 year; window 2025-11-11 to 2026-11-10.",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "trae-cn-free-credits",
+  "name": "TRAE CN 免费用户积分",
+  "provider": "ByteDance (字节跳动 TRAE)",
+  "channel": null,
+  "type": "check_in",
+  "gets": {
+   "amount": 100,
+   "unit": "credits",
+   "per": "day",
+   "text": "Daily check-in 100 credits; +500/mo login; one-time 4000 on signup; 500 per invite"
+  },
+  "requires": [
+   "account",
+   "region"
+  ],
+  "paid_plan": null,
+  "region": "CN",
+  "access": {
+   "form": "own_app",
+   "rules": []
+  },
+  "models": {
+   "kind": "list",
+   "ids": [
+    "GLM-5.2",
+    "Seed-2.1-Turbo",
+    "Seed-Code"
+   ],
+   "tracked": [],
+   "count": 3,
+   "note": "Built-in TRAE models consume credits; members get extra subsidy"
+  },
+  "status": "live",
+  "started": null,
+  "ends": null,
+  "source": {
+   "label": "TRAE 积分与计费",
+   "url": "https://docs.trae.cn/ide_plans-and-billing"
+  },
+  "quote": "免费用户 ... 每日签到 每天 100 积分 ... 每月登录赠送 500 积分",
+  "note": "Daily check-in reads 100/day today (2026-10-08); earlier data said 150. Credits valid 31 days; free users can't buy.",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "codebuddy-signup-250",
+  "name": "CodeBuddy 新用户 250 Credits",
+  "provider": "Buddy AI (CodeBuddy 国际版)",
+  "channel": null,
+  "type": "signup_trial",
+  "gets": {
+   "amount": 250,
+   "unit": "credits",
+   "per": "once",
+   "text": "250 credits on first sign-in for new users; valid 14 days"
+  },
+  "requires": [
+   "account"
+  ],
+  "paid_plan": null,
+  "region": null,
+  "access": {
+   "form": "own_app",
+   "rules": []
+  },
+  "models": {
+   "kind": "list",
+   "ids": [],
+   "tracked": [],
+   "count": null,
+   "note": "Free plan uses Auto model dispatch; credits consume across available models"
+  },
+  "status": "live",
+  "started": null,
+  "ends": null,
+  "source": {
+   "label": "CodeBuddy Subscription (intl)",
+   "url": "https://www.codebuddy.ai/docs/ide/Account/Subscription"
+  },
+  "quote": "New users receive 250 credits immediately upon their first sign-in. The credits are valid for 14 days.",
+  "note": "New-user benefit; separate from the Free plan's monthly 100 credits and the 7-day Pro trial.",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "codebuddy-free-monthly",
+  "name": "CodeBuddy Free 计划 100 Credits/月",
+  "provider": "Buddy AI (CodeBuddy 国际版)",
+  "channel": null,
+  "type": "free_plan",
+  "gets": {
+   "amount": 100,
+   "unit": "credits",
+   "per": "month",
+   "text": "Free plan: 100 credits/month + 30/day limited-time active bonus"
+  },
+  "requires": [
+   "account"
+  ],
+  "paid_plan": null,
+  "region": null,
+  "access": {
+   "form": "own_app",
+   "rules": []
+  },
+  "models": {
+   "kind": "list",
+   "ids": [],
+   "tracked": [],
+   "count": null,
+   "note": "Auto model routing; all models available during the promotional period"
+  },
+  "status": "live",
+  "started": null,
+  "ends": null,
+  "source": {
+   "label": "CodeBuddy Pricing (intl)",
+   "url": "https://www.codebuddy.ai/docs/ide/Account/pricing"
+  },
+  "quote": "Free ... Base Credits / Month 100 ... Promotional Bonus (Limited-Time Offer) 30 credits / day",
+  "note": "Bonus needs >=1 chat request that day; base+bonus valid for the month, no rollover; promo is limited-time.",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "codebuddy-pro-trial-7day",
+  "name": "CodeBuddy Pro 7 天免费试用 (500 Credits)",
+  "provider": "Buddy AI (CodeBuddy 国际版)",
+  "channel": null,
+  "type": "signup_trial",
+  "gets": {
+   "amount": 500,
+   "unit": "credits",
+   "per": "once",
+   "text": "One 7-day Pro free trial with 500 credits, valid 7 days"
+  },
+  "requires": [
+   "account",
+   "card"
+  ],
+  "paid_plan": null,
+  "region": null,
+  "access": {
+   "form": "own_app",
+   "rules": []
+  },
+  "models": {
+   "kind": "list",
+   "ids": [],
+   "tracked": [],
+   "count": null,
+   "note": "Pro plan model access during the 7-day trial"
+  },
+  "status": "live",
+  "started": null,
+  "ends": null,
+  "source": {
+   "label": "CodeBuddy Subscription (intl)",
+   "url": "https://www.codebuddy.ai/docs/ide/Account/Subscription"
+  },
+  "quote": "Users who have never purchased Pro or claimed a free trial can receive one 7-day Pro free trial after linking a credit card and enabling auto-renewal.",
+  "note": "One per user; requires linked card + auto-renewal; converts to $10/mo Pro unless cancelled; 500 credits valid 7 days.",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "workbuddy-experience-500",
+  "name": "WorkBuddy 体验版 500 积分/月",
+  "provider": "Tencent (WorkBuddy / CodeBuddy)",
+  "channel": null,
+  "type": "free_plan",
+  "gets": {
+   "amount": 500,
+   "unit": "credits",
+   "per": "month",
+   "text": "体验版 free tier: 500 base credits/month (limited-time monthly total 500)"
+  },
+  "requires": [
+   "account",
+   "region"
+  ],
+  "paid_plan": null,
+  "region": "CN",
+  "access": {
+   "form": "own_app",
+   "rules": []
+  },
+  "models": {
+   "kind": "list",
+   "ids": [],
+   "tracked": [],
+   "count": null,
+   "note": "Model availability varies by tier"
+  },
+  "status": "live",
+  "started": null,
+  "ends": null,
+  "source": {
+   "label": "WorkBuddy 定价",
+   "url": "https://www.workbuddy.cn/docs/workbuddy/Pricing"
+  },
+  "quote": "WorkBuddy 提供体验版及多个付费订阅版本，其中体验版可免费使用 ... 基础积分 / 月 500",
+  "note": "Free 体验版 tier; 500 base credits/month; stops once a paid plan is active; shared with CodeBuddy (one account).",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "volcengine-ark-free-quota",
+  "name": "火山方舟 免费推理额度",
+  "provider": "Volcengine (火山引擎 / 字节跳动)",
+  "channel": null,
+  "type": "signup_trial",
+  "gets": {
+   "amount": null,
+   "unit": "tokens",
+   "per": "once",
+   "text": "Free inference quota for new users; per-model amount shown in console"
+  },
+  "requires": [
+   "account",
+   "region"
+  ],
+  "paid_plan": null,
+  "region": "CN",
+  "access": {
+   "form": "api",
+   "rules": [],
+   "protocols": [
+    "openai_chat"
+   ]
+  },
+  "models": {
+   "kind": "catalogue",
+   "ids": [],
+   "tracked": [],
+   "count": null,
+   "note": "Per-model quota, computed separately, shared under main account"
+  },
+  "status": "live",
+  "started": null,
+  "ends": null,
+  "source": {
+   "label": "火山方舟 免费推理额度",
+   "url": "https://www.volcengine.com/docs/82379/1399514"
+  },
+  "quote": "方舟为新用户提供免费推理试用额度……您只需要注册火山引擎，即可获得一定额度的免费调用模型推理服务的次数。",
+  "note": "Amount not published (check console); pay-per-token online inference only; exhaustion needs real-name + activation.",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "kimi-api-free-trial",
+  "name": "Kimi 开放平台免费测试权益",
+  "provider": "Moonshot AI (月之暗面)",
+  "channel": null,
+  "type": "signup_trial",
+  "gets": {
+   "amount": 15,
+   "unit": "CNY",
+   "per": "once",
+   "text": "¥15 voucher on signup after real-name; auto-applies to API; not for K3; 3 mo"
+  },
+  "requires": [
+   "account",
+   "real_name",
+   "phone_cn"
+  ],
+  "paid_plan": null,
+  "region": "CN",
+  "access": {
+   "form": "api",
+   "rules": [],
+   "protocols": [
+    "openai_chat"
+   ]
+  },
+  "models": {
+   "kind": "list",
+   "ids": [
+    "Kimi models (K3 excluded from voucher)"
+   ],
+   "tracked": [],
+   "count": null,
+   "note": "Voucher auto-deducts, priority over topped-up balance"
+  },
+  "status": "live",
+  "started": null,
+  "ends": null,
+  "source": {
+   "label": "Kimi 开放平台免费测试权益",
+   "url": "https://www.kimi.com/zh-cn/help/kimi-api/api-free-trial"
+  },
+  "quote": "适用对象：国内手机号注册的新用户。赠送金额：注册即赠送 15 元代金券。领取条件：完成实名认证后发放。",
+  "note": "Valid 3 months from issue; cannot experience Kimi K3; after used, billing draws topped-up balance.",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "iflow-free-plan",
+  "name": "iFlow 心流 Free 计划",
+  "provider": "iFlow (心流)",
+  "channel": null,
+  "type": "free_plan",
+  "gets": {
+   "amount": 1000,
+   "unit": "requests",
+   "per": "month",
+   "text": "Free tier ¥0: 1,000 free API calls/month (basic Web Search); sign-up grants 100 credits"
+  },
+  "requires": [
+   "account",
+   "region"
+  ],
+  "paid_plan": null,
+  "region": "CN",
+  "access": {
+   "form": "api",
+   "rules": [],
+   "protocols": [
+    "openai_chat"
+   ]
+  },
+  "models": {
+   "kind": "list",
+   "ids": [
+    "Web Search (basic)"
+   ],
+   "tracked": [],
+   "count": null,
+   "note": "Free tier covers basic Web Search only; Combo/Image/Fetch modes are Pro-only"
+  },
+  "status": "live",
+  "started": null,
+  "ends": null,
+  "source": {
+   "label": "iFlow Pricing",
+   "url": "https://platform.iflow.cn/en/components/Pricing"
+  },
+  "quote": "Free ¥0 1,000 次/月 免费额度 基础 Web 搜索",
+  "note": "Search-API free tier (not LLM tokens); CN site, payment via Alipay.",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "doubao-work-30day",
+  "name": "豆包工作 30 天订阅权益",
+  "provider": "ByteDance (字节跳动 豆包)",
+  "channel": null,
+  "type": "signup_trial",
+  "gets": {
+   "amount": 30,
+   "unit": "other",
+   "per": "once",
+   "text": "Free 30-day 豆包 Work subscription on desktop sign-in; paid users' time auto-extends"
+  },
+  "requires": [
+   "account",
+   "region"
+  ],
+  "paid_plan": null,
+  "region": "CN",
+  "access": {
+   "form": "own_app",
+   "rules": []
+  },
+  "models": {
+   "kind": "list",
+   "ids": [],
+   "tracked": [],
+   "count": null,
+   "note": "Consumer 豆包 Work subscription features/quota, not a raw API token grant"
+  },
+  "status": "live",
+  "started": null,
+  "ends": null,
+  "source": {
+   "label": "豆包工作 自助购买个人订阅",
+   "url": "https://www.doubao.com/work/docs/zh-cn/articles/672868468340-personal-subscription"
+  },
+  "quote": "在桌面端下载并登录豆包工作，即可免费领取 30 天订阅权益。已付费用户的会员时长自动顺延。",
+  "note": "Desktop app (豆包工作). Quota also usable in 飞书 AI features if same phone number.",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "workbuddy-campus-freshman-1000",
+  "name": "WorkBuddy 开学季新生福利 1000 积分",
+  "provider": "Tencent (腾讯 WorkBuddy)",
+  "channel": null,
+  "type": "student",
+  "gets": {
+   "amount": 1000,
+   "unit": "credits",
+   "per": "once",
+   "text": "1,000 credits via WeChat student verification; 3-month validity; one per student"
+  },
+  "requires": [
+   "account",
+   "student",
+   "real_name",
+   "phone_cn",
+   "region"
+  ],
+  "paid_plan": null,
+  "region": "CN",
+  "access": {
+   "form": "own_app",
+   "rules": [
+    "no_automation"
+   ]
+  },
+  "models": {
+   "kind": "list",
+   "ids": [],
+   "tracked": [],
+   "count": null,
+   "note": "WorkBuddy/CodeBuddy credits, shared account"
+  },
+  "status": "listed",
+  "started": "2026-08-24",
+  "ends": "2026-10-31",
+  "source": {
+   "label": "WorkBuddy 开学季新生福利",
+   "url": "https://www.workbuddy.cn/events/campus-freshman/"
+  },
+  "quote": "活动时间：2026.08.24 00:00 — 2026.10.31 23:59，第一批限量 200 万份，先到先得。",
+  "note": "Mainland China students (2nd-gen ID; HK/MO/TW & foreign not supported); 2M slots first-come; credits valid 3 months.",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "qoderwork-cn-student-4000",
+  "name": "QoderWork CN 高校学生/教师认证 4,000 Credits",
+  "provider": "Alibaba (阿里云 · QoderWork CN / 通义灵码)",
+  "channel": null,
+  "type": "student",
+  "gets": {
+   "amount": 4000,
+   "unit": "credits",
+   "per": "once",
+   "text": "4,000 Credits (valid 3 months) with Aliyun university student/teacher verification"
+  },
+  "requires": [
+   "account",
+   "student",
+   "real_name",
+   "region"
+  ],
+  "paid_plan": null,
+  "region": "CN",
+  "access": {
+   "form": "own_app",
+   "rules": []
+  },
+  "models": {
+   "kind": "list",
+   "ids": [],
+   "tracked": [],
+   "count": null,
+   "note": "QoderWork CN (Lingma) desktop; credits consume built-in models"
+  },
+  "status": "ended",
+  "started": "2026-06-01",
+  "ends": "2026-07-30",
+  "source": {
+   "label": "QoderWork CN 活动条款",
+   "url": "https://help.aliyun.com/zh/lingma/qoderwork-cn-new-user-credits-claim-and-referral-reward-program-terms-and-conditions"
+  },
+  "quote": "高校学生和教师认证的用户……可额外获得 4,000 Credits（有效期 3 个月）……本活动自 2026 年 6 月 1 日起生效。",
+  "note": "Title marks 【7月30日截止】: new claims closed 2026-07-30; QoderWork CN is the domestic Lingma product, not Qoder intl.",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "vercel-ai-gateway",
+  "name": "AI Gateway Free Tier Monthly Credit",
+  "provider": "Vercel",
+  "channel": "Vercel AI Gateway",
+  "type": "monthly_credit",
+  "gets": {
+   "amount": 5,
+   "unit": "USD",
+   "per": "month",
+   "text": "$5/month included AI Gateway Credits, free tier, starts on first request"
+  },
+  "requires": [
+   "account",
+   "card"
+  ],
+  "paid_plan": null,
+  "region": null,
+  "models": {
+   "kind": "catalogue",
+   "ids": [],
+   "tracked": [],
+   "count": null,
+   "note": "Free tier = subset of catalogue; see vercel.com/ai-gateway/models?freeTier=true"
+  },
+  "status": "live",
+  "started": null,
+  "ends": null,
+  "source": {
+   "label": "AI Gateway Pricing",
+   "url": "https://vercel.com/docs/ai-gateway/pricing"
+  },
+  "quote": "Free tier ... Monthly credit $5/month included ... Your free credits start when you make your first AI Gateway request.",
+  "note": "Team account + payment method required (403 customer_verification_required). Buying credits ends free credit.",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "freebuff",
+  "name": "Freebuff Free Plan Daily Allowance",
+  "provider": "Freebuff",
+  "channel": "Freebuff",
+  "type": "daily_allowance",
+  "gets": {
+   "amount": 1.5,
+   "unit": "USD",
+   "per": "day",
+   "text": "Free plan '$1.50 refilled daily', measured in Freebucks, resets at midnight"
+  },
+  "requires": [
+   "account"
+  ],
+  "paid_plan": null,
+  "region": null,
+  "models": {
+   "kind": "list",
+   "ids": [
+    "GLM 5.3 Flash",
+    "DeepSeek V4.1 Flash"
+   ],
+   "tracked": [
+    "deepseek-v4.1-flash",
+    "glm-5.3-flash",
+    "gpt-6-luna",
+    "gpt-6.1-sol",
+    "mimo-v2.6-flash",
+    "mimo-v2.6-pro",
+    "solar-mini-4",
+    "solar-pro-4",
+    "space-bunny"
+   ],
+   "count": 2,
+   "note": "Free plan per-day lists these 2; more models priced in paid-tier table"
+  },
+  "status": "live",
+  "started": null,
+  "ends": null,
+  "source": {
+   "label": "Freebuff Pricing",
+   "url": "https://freebuff.com/pricing"
+  },
+  "quote": "Free $0/month. No card required. $1.50 refilled daily. Unlimited messages per session. Usage is measured in Freebucks.",
+  "note": "Homepage: 'funded by ads'. Page shows '$1.50/day', not literal '150 Freebucks'; FB-to-$ rate not stated. 2026-10-08.",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "nvidia-build-nim",
+  "name": "NVIDIA NIM Free Trial (build.nvidia.com)",
+  "provider": "NVIDIA",
+  "channel": "NVIDIA build",
+  "type": "daily_allowance",
+  "gets": {
+   "amount": 10000,
+   "unit": "requests",
+   "per": "day",
+   "text": "Free inference: up to 40 rpm / 10,000 requests per day (rate-limited trial)"
+  },
+  "requires": [
+   "account"
+  ],
+  "paid_plan": null,
+  "region": null,
+  "models": {
+   "kind": "catalogue",
+   "ids": [],
+   "tracked": [
+    "deepseek-v4.1-flash",
+    "glm-5.3",
+    "kimi-k3",
+    "nemotron-3-super-120b-a12b"
+   ],
+   "count": null,
+   "note": "NIM API Catalog (build.nvidia.com/explore), many hosted models"
+  },
+  "status": "live",
+  "started": null,
+  "ends": null,
+  "source": {
+   "label": "Try NVIDIA NIM APIs",
+   "url": "https://build.nvidia.com/"
+  },
+  "quote": "Free inference with leading models. Rate limits: Up to 40 rpm, 10,000 requests per day.",
+  "note": "Page shows rate limits, not credits ('credit'=0 hits); needs Dev Program+verify. Old 1000-credit model per forums.",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "cloudflare-workers-ai",
+  "name": "Workers AI Free Daily Neurons",
+  "provider": "Cloudflare",
+  "channel": "Cloudflare Workers AI",
+  "type": "daily_allowance",
+  "gets": {
+   "amount": 10000,
+   "unit": "neurons",
+   "per": "day",
+   "text": "10,000 Neurons per day at no charge, resets daily 00:00 UTC"
+  },
+  "requires": [
+   "account"
+  ],
+  "paid_plan": null,
+  "region": null,
+  "models": {
+   "kind": "catalogue",
+   "ids": [],
+   "tracked": [
+    "qwen3.8-27b"
+   ],
+   "count": null,
+   "note": "50+ models; some (kimi-k2.6, glm-5.2/5.3, deepseek-v4) need paid billing"
+  },
+  "status": "live",
+  "started": null,
+  "ends": null,
+  "source": {
+   "label": "Workers AI Pricing",
+   "url": "https://developers.cloudflare.com/workers-ai/platform/pricing/"
+  },
+  "quote": "Our free allocation allows anyone to use a total of 10,000 Neurons per day at no charge. All limits reset daily at 00:00 UTC.",
+  "note": "Included in Workers Free plan. Docs last updated 2026-10-01; re-checked 2026-10-08.",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "modelscope-api-inference",
+  "name": "ModelScope API-Inference Daily Free Calls",
+  "provider": "ModelScope (Alibaba)",
+  "channel": "ModelScope",
+  "type": "daily_allowance",
+  "gets": {
+   "amount": 2000,
+   "unit": "requests",
+   "per": "day",
+   "text": "2,000 API-Inference calls/day total (all models); per-model cap ~200/day; 100/min base"
+  },
+  "requires": [
+   "account",
+   "real_name"
+  ],
+  "paid_plan": null,
+  "region": "CN",
+  "models": {
+   "kind": "catalogue",
+   "ids": [],
+   "tracked": [
+    "qwen3.8-27b"
+   ],
+   "count": null,
+   "note": "all API-Inference-enabled models share the combined daily quota"
+  },
+  "status": "listed",
+  "started": null,
+  "ends": null,
+  "source": {
+   "label": "ModelScope free inference announcement (official modelscope account)",
+   "url": "https://developer.aliyun.com/article/1644361"
+  },
+  "quote": "魔搭推出免费模型推理API，注册就送每日2000次调用",
+  "note": "Docs limits page is SPA, unextractable 2026-10-08; 2000/day+200/model+100/min corroborated; may adjust anytime.",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "cerebras-free-trial",
+  "name": "Cerebras Inference Free Trial Credit",
+  "provider": "Cerebras",
+  "channel": null,
+  "type": "signup_trial",
+  "gets": {
+   "amount": 5,
+   "unit": "USD",
+   "per": "once",
+   "text": "$5 in free credits, expire 30 days after granted, all public models"
+  },
+  "requires": [
+   "account",
+   "card"
+  ],
+  "paid_plan": null,
+  "region": null,
+  "access": {
+   "form": "api",
+   "rules": [],
+   "protocols": [
+    "openai_chat"
+   ]
+  },
+  "models": {
+   "kind": "catalogue",
+   "ids": [],
+   "tracked": [],
+   "count": null,
+   "note": "all Shared Inference public models; Free Trial has per-model RPM/TPM caps"
+  },
+  "status": "live",
+  "started": null,
+  "ends": null,
+  "source": {
+   "label": "Cerebras Rate Limits FAQ",
+   "url": "https://inference-docs.cerebras.ai/support/rate-limits"
+  },
+  "quote": "New accounts receive $5 in free credits after adding a verified payment method. These credits expire 30 days after they're granted and can be used across all public models.",
+  "note": "No permanently free tier; credits time+credit bounded. Checked 2026-10-08.",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "nebius-token-factory-trial",
+  "name": "Nebius Token Factory Trial Credit",
+  "provider": "Nebius",
+  "channel": null,
+  "type": "signup_trial",
+  "gets": {
+   "amount": 1,
+   "unit": "USD",
+   "per": "once",
+   "text": "$1 trial credit on first sign-up, valid 30 days"
+  },
+  "requires": [
+   "account",
+   "card"
+  ],
+  "paid_plan": null,
+  "region": null,
+  "access": {
+   "form": "api",
+   "rules": [],
+   "protocols": [
+    "openai_chat"
+   ]
+  },
+  "models": {
+   "kind": "catalogue",
+   "ids": [],
+   "tracked": [],
+   "count": null,
+   "note": "open-source LLM + image models via Playground/API"
+  },
+  "status": "live",
+  "started": null,
+  "ends": null,
+  "source": {
+   "label": "Nebius Token Factory Billing docs",
+   "url": "https://docs.tokenfactory.nebius.com/other-capabilities/billing-new"
+  },
+  "quote": "Upon first sign-up, you receive $1 in trial credit, valid for 30 days. Billing setup is mandatory... requires a bank card.",
+  "note": "Bank card required at onboarding. Builder Program adds $25; Startups up to $5k are separate programs. 2026-10-08.",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "fireworks-amd-dev-credits",
+  "name": "Fireworks AI Credits (AMD AI Developer Program)",
+  "provider": "Fireworks AI",
+  "channel": null,
+  "type": "signup_trial",
+  "gets": {
+   "amount": 50,
+   "unit": "USD",
+   "per": "once",
+   "text": "$50 in Fireworks credits, 90-day validity, via AMD AI Developer Program"
+  },
+  "requires": [
+   "account"
+  ],
+  "paid_plan": null,
+  "region": null,
+  "access": {
+   "form": "api",
+   "rules": [],
+   "protocols": [
+    "openai_chat"
+   ]
+  },
+  "models": {
+   "kind": "catalogue",
+   "ids": [],
+   "tracked": [],
+   "count": null,
+   "note": "Fireworks serverless LLM inference models"
+  },
+  "status": "live",
+  "started": null,
+  "ends": null,
+  "source": {
+   "label": "Fireworks x AMD partner page",
+   "url": "https://fireworks.ai/partners/amd"
+  },
+  "quote": "Through the AMD AI Developer Program, developers can now access $50 of Fireworks credits... $50 in Fireworks credits, 90-day validity from issuance.",
+  "note": "Needs AMD AI Dev Program join+approval (~2 days). No always-free tier; base is prepaid credits / 10 RPM.",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "novita-ai-signup-credits",
+  "name": "Novita AI Signup Promotional Credits",
+  "provider": "Novita AI",
+  "channel": null,
+  "type": "signup_trial",
+  "gets": {
+   "amount": 100,
+   "unit": "USD",
+   "per": "once",
+   "text": "$100 promotional credits for Novita Sandbox usage, valid 90 days"
+  },
+  "requires": [
+   "account"
+  ],
+  "paid_plan": null,
+  "region": null,
+  "access": {
+   "form": "api",
+   "rules": [],
+   "protocols": [
+    "openai_chat"
+   ]
+  },
+  "models": {
+   "kind": "catalogue",
+   "ids": [],
+   "tracked": [],
+   "count": null,
+   "note": "grant applies to Novita Sandbox usage; LLM API trial amount not stated"
+  },
+  "status": "live",
+  "started": null,
+  "ends": null,
+  "source": {
+   "label": "Novita Sandbox Pricing docs",
+   "url": "https://docs.novita.ai/guides/sandbox-pricing"
+  },
+  "quote": "New users can complete a quick account setup survey to receive $100 in promotional credits for eligible Novita Sandbox usage. No credit card is required.",
+  "note": "Register page: valid 90 days. Secondary sources cite ~$0.50 LLM voucher; Novita states no LLM credit amount. 2026-10-08.",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "qwencloud-free-quota",
+  "name": "QwenCloud New User Free Quota",
+  "provider": "QwenCloud (Alibaba)",
+  "channel": null,
+  "type": "signup_trial",
+  "gets": {
+   "amount": null,
+   "unit": "tokens",
+   "per": "once",
+   "text": "Per-model free token quota, valid 90 days from account activation (varies by model)"
+  },
+  "requires": [
+   "account",
+   "card"
+  ],
+  "paid_plan": null,
+  "region": null,
+  "access": {
+   "form": "api",
+   "rules": [],
+   "protocols": [
+    "openai_chat"
+   ]
+  },
+  "models": {
+   "kind": "catalogue",
+   "ids": [],
+   "tracked": [],
+   "count": null,
+   "note": "each model has independent quota (input+output combined)"
+  },
+  "status": "live",
+  "started": null,
+  "ends": null,
+  "source": {
+   "label": "QwenCloud Free quota docs",
+   "url": "https://docs.qwencloud.com/resources/free-quota"
+  },
+  "quote": "New user free quota: When you activate your account, all existing models receive a free quota. The 90-day period starts from your account activation date.",
+  "note": "Unlock needs completing payment info (card). Offsets only real-time inference. 2026-10-08.",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "alibaba-model-studio-intl-free-quota",
+  "name": "Alibaba Cloud Model Studio New User Free Quota",
+  "provider": "Alibaba Cloud",
+  "channel": null,
+  "type": "signup_trial",
+  "gets": {
+   "amount": 1000000,
+   "unit": "tokens",
+   "per": "once",
+   "text": "Typically 1,000,000 tokens per model, valid 90 days (independent per model)"
+  },
+  "requires": [
+   "account",
+   "phone_intl"
+  ],
+  "paid_plan": null,
+  "region": "SG",
+  "access": {
+   "form": "api",
+   "rules": [],
+   "protocols": [
+    "openai_chat"
+   ]
+  },
+  "models": {
+   "kind": "catalogue",
+   "ids": [],
+   "tracked": [],
+   "count": null,
+   "note": "per-model ~1M tokens; Singapore-region/International-scope only"
+  },
+  "status": "live",
+  "started": null,
+  "ends": null,
+  "source": {
+   "label": "Model Studio Free quota for new users",
+   "url": "https://www.alibabacloud.com/help/en/model-studio/new-free-quota"
+  },
+  "quote": "When you first activate Alibaba Cloud Model Studio (Singapore region), the platform automatically grants you a free quota for various models... valid for 90 days.",
+  "note": "Per-model ~1M tokens, 90 days. Needs account info (mobile). OAuth separate 2,000 calls/day. Doc 2026-09-22. 2026-10-08.",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "aliyun-bailian-new-free-quota",
+  "name": "阿里云百炼 新人免费额度",
+  "provider": "阿里云 (Alibaba Cloud)",
+  "channel": null,
+  "type": "signup_trial",
+  "gets": {
+   "amount": 1000000,
+   "unit": "tokens",
+   "per": "once",
+   "text": "各模型新人免费额度，通常 100 万 Token/模型，有效期 90 天"
+  },
+  "requires": [
+   "account"
+  ],
+  "paid_plan": null,
+  "region": "CN",
+  "access": {
+   "form": "api",
+   "rules": [],
+   "protocols": [
+    "openai_chat"
+   ]
+  },
+  "models": {
+   "kind": "catalogue",
+   "ids": [],
+   "tracked": [],
+   "count": null,
+   "note": "各模型独立额度(通常100万Token)；仅华北2(北京)地域模型享有；新模型自发布日起算90天"
+  },
+  "status": "live",
+  "started": null,
+  "ends": null,
+  "source": {
+   "label": "阿里云百炼 新人免费额度",
+   "url": "https://help.aliyun.com/zh/model-studio/new-free-quota"
+  },
+  "quote": "当您首次开通阿里云百炼时，平台会自动为您发放各模型的新人专属免费额度。免费额度的有效期为 90 天，从开通阿里云百炼、模型发布或模型申请通过之日起计算。",
+  "note": "通常100万Token/模型；无需实名认证即可领取，用完按量付费需实名+充值；OAuth另计每天2000次。Checked 2026-10-08.",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "siliconflow-signup-voucher",
+  "name": "硅基流动 SiliconFlow 注册免费额度",
+  "provider": "硅基流动 (SiliconFlow)",
+  "channel": "SiliconFlow",
+  "type": "signup_trial",
+  "gets": {
+   "amount": 14,
+   "unit": "CNY",
+   "per": "once",
+   "text": "注册即得 14 元免费额度(约2千万 Qwen1.5-14B Tokens)；邀请+实名再得16元代金券"
+  },
+  "requires": [
+   "account",
+   "real_name",
+   "invite"
+  ],
+  "paid_plan": null,
+  "region": "CN",
+  "models": {
+   "kind": "catalogue",
+   "ids": [],
+   "tracked": [],
+   "count": null,
+   "note": "100+ 模型经API调用；价格页列多个 免费 小模型(Qwen2-7B 等)"
+  },
+  "status": "live",
+  "started": null,
+  "ends": null,
+  "source": {
+   "label": "SiliconFlow 价格说明",
+   "url": "https://docs.siliconflow.com/cn/faqs/billing-rules"
+  },
+  "quote": "新用户注册即得 14 元免费额度 (相当于 2 千万 Qwen1.5-14B Tokens)",
+  "note": "¥14 base needs only account. ¥16 通用代金券 needs 推荐官 invite + 实名认证 (developer-talk/od7wj9rr23p95uhihmhrombp). 2026-10-08.",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "qianwen-ai-platform-free-quota",
+  "name": "千问AI平台 新用户免费额度",
+  "provider": "千问AI平台 (Alibaba)",
+  "channel": null,
+  "type": "signup_trial",
+  "gets": {
+   "amount": null,
+   "unit": "tokens",
+   "per": "once",
+   "text": "文本类模型免费额度累计超7000万Token；每模型通常100万Token，90天"
+  },
+  "requires": [
+   "account",
+   "real_name"
+  ],
+  "paid_plan": null,
+  "region": "CN",
+  "access": {
+   "form": "api",
+   "rules": [],
+   "protocols": [
+    "openai_chat"
+   ]
+  },
+  "models": {
+   "kind": "catalogue",
+   "ids": [],
+   "tracked": [],
+   "count": null,
+   "note": "大部分模型独立额度(通常100万Token/模型)；文本类累计>7000万Token；部分模型不参与"
+  },
+  "status": "live",
+  "started": null,
+  "ends": null,
+  "source": {
+   "label": "千问AI平台 免费额度",
+   "url": "https://platform.qianwenai.com/docs/resources/free-quota"
+  },
+  "quote": "首次注册千问AI平台后，大部分模型会自动获得独立的免费额度。其中文本类模型的免费额度累计超过7000万 Token。",
+  "note": "每模型通常100万Token，90天；未认证需完成(实名)认证后发放，用尽即停默认开启。Checked 2026-10-08.",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "mistral-pro-student",
+  "name": "Mistral Pro Education (Student) Plan",
+  "provider": "Mistral",
+  "channel": null,
+  "type": "student",
+  "gets": {
+   "amount": 15,
+   "unit": "USD",
+   "per": "month",
+   "text": "Pro Education plan: $15/mo API credits at student price $5.99/mo (normally $14.99)"
+  },
+  "requires": [
+   "account",
+   "student"
+  ],
+  "paid_plan": null,
+  "region": null,
+  "access": {
+   "form": "api",
+   "rules": [],
+   "protocols": [
+    "openai_chat"
+   ]
+  },
+  "models": {
+   "kind": "catalogue",
+   "ids": [],
+   "tracked": [],
+   "count": null,
+   "note": "Vibe full access + Studio API models; Pro/Devstral coding"
+  },
+  "status": "live",
+  "started": null,
+  "ends": null,
+  "source": {
+   "label": "Mistral Pricing",
+   "url": "https://mistral.ai/pricing/"
+  },
+  "quote": "Verified students can get Mistral Pro for $5.99 / month (normally $14.99).",
+  "note": "Education: accredited institution, max 12mo, new to Vibe; Pro lists $15/mo API credits. $10 Free-credit unverified.",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "huggingface-pro-inference-credits",
+  "name": "Hugging Face Inference Providers PRO Monthly Credits",
+  "provider": "Hugging Face",
+  "channel": null,
+  "type": "entitlement",
+  "gets": {
+   "amount": 2,
+   "unit": "USD",
+   "per": "month",
+   "text": "$2.00 monthly compute credits with PRO (Free users: None)"
+  },
+  "requires": [
+   "account",
+   "paid_plan"
+  ],
+  "paid_plan": {
+   "name": "Hugging Face PRO",
+   "usd": 9,
+   "period": "month"
+  },
+  "region": null,
+  "access": {
+   "form": "api",
+   "rules": [],
+   "protocols": [
+    "openai_chat"
+   ]
+  },
+  "models": {
+   "kind": "catalogue",
+   "ids": [],
+   "tracked": [],
+   "count": null,
+   "note": "200+ models across providers; credits are general HF compute"
+  },
+  "status": "live",
+  "started": null,
+  "ends": null,
+  "source": {
+   "label": "Inference Providers Pricing and Billing",
+   "url": "https://huggingface.co/docs/inference-providers/en/pricing"
+  },
+  "quote": "Free Users — Monthly Credits: None. PRO Users — $2.00... Team or Enterprise — $2.00 per seat.",
+  "note": "PRO is $9/month (huggingface.co/pricing). Credits credited monthly, applied before pay-as-you-go. Checked 2026-10-08.",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "letta-auto-free",
+  "name": "Letta Free Plan Letta Auto Quota",
+  "provider": "Letta",
+  "channel": "Letta",
+  "type": "free_plan",
+  "gets": {
+   "amount": null,
+   "unit": "credits",
+   "per": "month",
+   "text": "Limited Letta Auto usage on Free plan (weekly+monthly quota; number not published)"
+  },
+  "requires": [
+   "account"
+  ],
+  "paid_plan": null,
+  "region": null,
+  "models": {
+   "kind": "list",
+   "ids": [
+    "Auto",
+    "Auto Chat",
+    "Auto Fast"
+   ],
+   "tracked": [],
+   "count": 3,
+   "note": "Letta Auto routes frontier models; free tier uses rotating free models"
+  },
+  "status": "live",
+  "started": null,
+  "ends": null,
+  "source": {
+   "label": "Letta Pricing",
+   "url": "https://docs.letta.com/pricing/"
+  },
+  "quote": "The free tier includes a limited number of total agents and LLM requests with rotating free models.",
+  "note": "Free Auto quota number not published; 3 agents; quotas reset monthly, need OAuth via app/CLI/web. 2026-10-08.",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "qoder-daily-credits",
+  "name": "Qoder Claim 100 Credits Every Day",
+  "provider": "Qoder",
+  "channel": "Qoder",
+  "type": "check_in",
+  "gets": {
+   "amount": 100,
+   "unit": "credits",
+   "per": "day",
+   "text": "Claim 100 Credits/day in Qoder desktop app; each reward valid 30 days"
+  },
+  "requires": [
+   "account"
+  ],
+  "paid_plan": null,
+  "region": null,
+  "models": {
+   "kind": "catalogue",
+   "ids": [],
+   "tracked": [],
+   "count": null,
+   "note": "Credits usable across Qoder IDE/CLI/JetBrains/Mobile/Cloud Agents"
+  },
+  "status": "live",
+  "started": "2026-09-18",
+  "ends": null,
+  "source": {
+   "label": "Qoder Claim 100 Credits Every Day",
+   "url": "https://docs.qoder.com/events/100credits"
+  },
+  "quote": "Individual users of Qoder International can claim 100 Credits every day in the Qoder desktop app. Both free users and paid individual subscribers are eligible.",
+  "note": "Manual daily claim (10:00 SGT window); each reward valid 30 days, carry over; Teams ineligible; end TBA. 2026-10-08.",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "listing"
+  }
+ }
+]

@@ -190,15 +190,15 @@
  },
  {
   "date": "2026-10-02T06:52Z",
-  "lanes": [
-   "bunny-freebuff"
-  ],
   "kind": "announced",
   "text": "\"We just added 3 more 100% free models … Ling 3.1 Flash, Space Bunny Alpha, Laguna S 2.1\"",
   "source": {
    "label": "Freebuff founder on X",
    "url": "https://x.com/jahooma/status/2105913758124286311"
-  }
+  },
+  "offers": [
+   "freebuff"
+  ]
  },
  {
   "date": "2026-09-07",
@@ -730,23 +730,15 @@
  },
  {
   "date": "2026-10-06",
-  "lanes": [
-   "solar-pro-4-freebuff",
-   "solar-mini-4-freebuff",
-   "mimo-v2.6-flash-freebuff",
-   "glm-5.3-flash-freebuff",
-   "deepseek-v4.1-flash-freebuff",
-   "gpt-6-luna-freebuff",
-   "mimo-v2.6-pro-freebuff",
-   "deepseek-v4.1-flash-fast-freebuff",
-   "gpt-6.1-sol-freebuff"
-  ],
   "kind": "listed",
   "text": "On Freebuff's \"Free hours per day, by model\" table; not tested by us because Freebuff's terms forbid scripted use",
   "source": {
    "label": "Freebuff",
    "url": "https://freebuff.com/"
-  }
+  },
+  "offers": [
+   "freebuff"
+  ]
  },
  {
   "date": "2026-10-06",
@@ -947,18 +939,15 @@
  },
  {
   "date": "2026-10-06",
-  "lanes": [
-   "glm-5.3-nvidia",
-   "kimi-k3-nvidia",
-   "deepseek-v4.1-flash-nvidia",
-   "nemotron-3-super-120b-a12b-nvidia"
-  ],
   "kind": "listed",
   "text": "Tested with a new NVIDIA build key: the key works (Nemotron 3 Super answered in 0.6 s) but GLM 5.3, Kimi K3 and DeepSeek V4.1 Flash returned nothing within 150–180 s, apparently queued on the free endpoints",
   "source": {
    "label": "own check",
    "url": null
-  }
+  },
+  "offers": [
+   "nvidia-build-nim"
+  ]
  },
  {
   "date": "2026-10-06",
@@ -1482,100 +1471,99 @@
  },
  {
   "date": "2026-09-05",
-  "lanes": [
-   "solar-pro-4-freebuff"
-  ],
   "kind": "announced",
   "text": "Announced as free on Freebuff on X: Solar Pro 4",
   "source": {
    "label": "X post by @jahooma",
    "url": "https://x.com/jahooma/status/2096169643035840581"
-  }
+  },
+  "offers": [
+   "freebuff"
+  ]
  },
  {
   "date": "2026-10-03",
-  "lanes": [
-   "solar-mini-4-freebuff"
-  ],
   "kind": "announced",
   "text": "Announced as free on Freebuff on X: Solar Mini 4",
   "source": {
    "label": "X post by @jahooma",
    "url": "https://x.com/jahooma/status/2106192400788107619"
-  }
+  },
+  "offers": [
+   "freebuff"
+  ]
  },
  {
   "date": "2026-09-22",
-  "lanes": [
-   "mimo-v2.6-flash-freebuff",
-   "mimo-v2.6-pro-freebuff"
-  ],
   "kind": "available",
   "text": "Mentioned as free on Freebuff on X (earliest mention found): MiMo V2.6 Flash, MiMo V2.6 Pro",
   "source": {
    "label": "X post by @BilalGreyrat",
    "url": "https://x.com/BilalGreyrat/status/2102256208950460895"
-  }
+  },
+  "offers": [
+   "freebuff"
+  ]
  },
  {
   "date": "2026-08-28",
-  "lanes": [
-   "glm-5.3-flash-freebuff"
-  ],
   "kind": "announced",
   "text": "Announced as free on Freebuff on X: GLM 5.3 Flash",
   "source": {
    "label": "X post by @jahooma",
    "url": "https://x.com/jahooma/status/2093137551918051624"
-  }
+  },
+  "offers": [
+   "freebuff"
+  ]
  },
  {
   "date": "2026-09-11",
-  "lanes": [
-   "deepseek-v4.1-flash-freebuff"
-  ],
   "kind": "available",
   "text": "Mentioned as free on Freebuff on X (earliest mention found): DeepSeek V4.1 Flash",
   "source": {
    "label": "X post by @dextune",
    "url": "https://x.com/dextune/status/2098398998805766538"
-  }
+  },
+  "offers": [
+   "freebuff"
+  ]
  },
  {
   "date": "2026-09-17",
-  "lanes": [
-   "gpt-6-luna-freebuff"
-  ],
   "kind": "available",
   "text": "Mentioned as free on Freebuff on X (earliest mention found): GPT-6 Luna",
   "source": {
    "label": "X post by @ah4alt",
    "url": "https://x.com/ah4alt/status/2100431181682802917"
-  }
+  },
+  "offers": [
+   "freebuff"
+  ]
  },
  {
   "date": "2026-10-05",
-  "lanes": [
-   "deepseek-v4.1-flash-fast-freebuff"
-  ],
   "kind": "announced",
   "text": "Announced as free on Freebuff on X: DeepSeek V4.1 Flash",
   "source": {
    "label": "X post by @FreebuffHQ",
    "url": "https://x.com/FreebuffHQ/status/2107254693378568575"
-  }
+  },
+  "offers": [
+   "freebuff"
+  ]
  },
  {
   "date": "2026-09-30",
-  "lanes": [
-   "gpt-6.1-sol-freebuff"
-  ],
   "kind": "announced",
   "text": "Announced as free on Freebuff on X: GPT-6.1 Sol",
   "source": {
    "label": "X post by @jahooma",
    "url": "https://x.com/jahooma/status/2105302144098177024"
-  }
+  },
+  "offers": [
+   "freebuff"
+  ]
  },
  {
   "date": "2024-10-06",
@@ -1663,29 +1651,27 @@
  },
  {
   "date": "2026-09-25",
-  "lanes": [
-   "deepseek-v4.1-flash-nvidia",
-   "glm-5.3-nvidia",
-   "kimi-k3-nvidia"
-  ],
   "kind": "available",
   "text": "Mentioned as free on NVIDIA build on X (earliest mention found): DeepSeek V4.1 Flash, GLM 5.3, Kimi K3",
   "source": {
    "label": "X post by @pengsonal",
    "url": "https://x.com/pengsonal/status/2103525364656161209"
-  }
+  },
+  "offers": [
+   "nvidia-build-nim"
+  ]
  },
  {
   "date": "2026-05-23",
-  "lanes": [
-   "nemotron-3-super-120b-a12b-nvidia"
-  ],
   "kind": "available",
   "text": "Mentioned as free on NVIDIA build on X (earliest mention found): Nemotron 3 Super",
   "source": {
    "label": "X post by @X_SUZQ",
    "url": "https://x.com/X_SUZQ/status/2058196916958343363"
-  }
+  },
+  "offers": [
+   "nvidia-build-nim"
+  ]
  },
  {
   "date": "2026-10-07",
@@ -1748,26 +1734,26 @@
  },
  {
   "date": "2026-08-17",
-  "lanes": [
-   "qwen3.8-27b-cf"
-  ],
   "kind": "listed",
   "text": "Added to the Workers AI model catalogue: Qwen3.8 27B",
   "source": {
    "label": "Workers AI model page",
    "url": "https://developers.cloudflare.com/workers-ai/models/qwen3.8-27b/"
-  }
+  },
+  "offers": [
+   "cloudflare-workers-ai"
+  ]
  },
  {
   "date": "2026-08-19",
-  "lanes": [
-   "qwen3.8-27b-modelscope"
-  ],
   "kind": "listed",
   "text": "Registered on ModelScope's free API-Inference gateway (model list timestamp): Qwen3.8 27B",
   "source": {
    "label": "ModelScope API-Inference model list",
    "url": "https://api-inference.modelscope.cn/v1/models"
-  }
+  },
+  "offers": [
+   "modelscope-api-inference"
+  ]
  }
 ]

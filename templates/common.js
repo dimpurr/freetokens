@@ -87,7 +87,7 @@ const eventsOf = (mid) => D.events.filter((e) => (e.lanes || []).some((i) => lan
 const eventsOn = (name) => D.events.filter((e) => (e.lanes || []).some((i) => lanes[i].channel === name) || (e.offers || []).some((o) => OF[o] && OF[o].channel === name));
 
 /* events have stable anchors; dates that came from an event link to it */
-const evId = (e) => `ev-${e.date.replace(/[^0-9]/g, "")}-${e.lanes[0]}`;
+const evId = (e) => `ev-${e.date.replace(/[^0-9]/g, "")}-${((e.lanes || [])[0] || (e.offers || [])[0])}`;
 const findEv = (l, pred) => D.events.find((e) => (e.lanes || []).includes(l.id) && pred(e));
 const whenLink = (s, ev) => ev ? `<a class="when" href="#${evId(ev)}">${esc(absDate(s))}</a>` : esc(absDate(s));
 const endedEvent = (l) => findEv(l, (e) => e.kind === "ended");
@@ -143,10 +143,10 @@ const accessOf = (l) => (l && l.access) || (CH[l.channel] && CH[l.channel].acces
 const viaAPI = (l) => { const a = accessOf(l); return !!a && a.form === "api"; };
 function accessHTML(a) {
   if (!a) return "";
-  const label = a.form === "api" ? `API · ${a.protocols.length === 1 ? lab("protocol", a.protocols[0]) : a.protocols.length + " formats"}` : lab("access_form", a.form);
-  const tip = (a.form === "api" ? "Formats: " + a.protocols.map((p) => lab("protocol", p)).join(", ") : V.access_form[a.form].help) + `. Source: ${a.source.label}`;
+  const ps = a.protocols || [], label = a.form === "api" ? (ps.length === 1 ? `API · ${lab("protocol", ps[0])}` : ps.length ? `API · ${ps.length} formats` : "API") : lab("access_form", a.form);
+  const tip = (a.form === "api" ? "Formats: " + (a.protocols || []).map((p) => lab("protocol", p)).join(", ") : V.access_form[a.form].help) + (a.source ? `. Source: ${a.source.label}` : "");
   const rules = (a.rules || []).map((r) => `<span class="rule" title="${esc(V.access_rule[r].help)}">${esc(lab("access_rule", r))}</span>`).join("");
-  return `<a class="access ${a.form}" href="${esc(a.source.url)}" target="_blank" rel="noopener" title="${esc(tip)}">${esc(label)}</a>${rules}`;
+  return (a.source ? `<a class="access ${a.form}" href="${esc(a.source.url)}" target="_blank" rel="noopener" title="${esc(tip)}">${esc(label)}</a>` : `<span class="access ${a.form}" title="${esc(tip)}">${esc(label)}</span>`) + rules;
 }
 /* region-limited lanes (e.g. free in the US only): a small tag wherever the lane appears; worldwide = no region */
 const regionTag = (l) => l.region ? `<span class="regiontag" title="Free only in ${esc(l.region)}">${esc(l.region)} only</span>` : "";
@@ -379,7 +379,7 @@ function renderChart(el, rows, fit = false) {
     }
     if (s && s < t0) segs += `<div class="since">◀ since ${esc(absDate(l.started.date))}</div>`;
     if (!s) segs += `<div class="since" style="left:calc(${pct(from)} + 4px)">start not recorded</div>`;
-    for (const e of D.events.filter((e) => e.lanes.includes(l.id))) {
+    for (const e of D.events.filter((e) => (e.lanes || []).includes(l.id))) {
       const t = pd(e.date).t; if (t < t0) continue;
       const tip = `${absDate(e.date)}: ${lab("event_kind", e.kind)}. ${e.text}`;
       segs += `<a class="ev ${e.kind}" href="#${evId(e)}" style="left:${pct(t)}" title="${esc(tip)}" aria-label="${esc(tip)}"></a>`;
@@ -521,7 +521,7 @@ function modelRow(m, i, off, TOP = 10) {
       <td class="rank nowrap" data-label="">${r ? `<span class="${r.est ? "est" : ""}" title="${esc(rankText(m))}">${esc(rankLabel(r))}</span>` : ""}${regionOnly ? `<br>${regionTag(ok.find(isFree))}` : ""}</td>
       <td><span class="name">${mlink(m.id)}</span><span class="sub">${mklink(m.maker)}</span></td>
       <td class="nowrap" data-label="AA index">${aaHTML(m)}${aaSource(m)}</td>
-      <td data-label="Free on"><div class="chips">${ok.map(channelChip).join("")}${restChips}${rest.length ? `<button type="button" class="morechips" aria-expanded="false" data-label="+${rest.length} other">+${rest.length} other</button>` : ""}</div></td>
+      <td data-label="Free on"><div class="chips">${ok.map(channelChip).join("")}${offersFor(m.id).filter((o) => offerUsable(o)).map((o) => `<a class="chip offerchip" href="${offerHref(o.id)}" title="${esc(o.name + ": " + o.gets.text + " " + lab("per", o.gets.per) + " (an allowance shared with other models)")}">via ${esc(o.channel || o.provider)}</a>`).join("")}${restChips}${rest.length ? `<button type="button" class="morechips" aria-expanded="false" data-label="+${rest.length} other">+${rest.length} other</button>` : ""}</div></td>
       <td class="m-hide" data-label="Context">${ctx}</td>
       <td class="nowrap m-hide" data-label="Images">${img}</td>
       <td class="nowrap m-hide" data-label="Events">${n ? `<a href="${modelHref(m.id)}#events">${n} event${n === 1 ? "" : "s"}</a>` : `<span class="muted">none</span>`}</td>

@@ -479,3 +479,4 @@ ol.rungs > li.muted::before { content: none; }
 .otype { font: 600 0.72rem var(--f-body); text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
 .alsofree { display: grid; gap: 6px; }
 .alsofree .row { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: baseline; }
+.chip.offerchip { border-style: dashed; color: var(--accent); text-decoration: none; }

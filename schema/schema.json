@@ -314,8 +314,8 @@
     },
     "offer_type": {
       "student": {
-        "label": "student",
-        "help": "For verified students"
+        "label": "education",
+        "help": "For verified students or teachers"
       },
       "entitlement": {
         "label": "comes with a plan",
@@ -340,6 +340,10 @@
       "monthly_credit": {
         "label": "monthly credit",
         "help": "A credit grant renewed every month"
+      },
+      "free_plan": {
+        "label": "free plan",
+        "help": "A recurring allowance inside a tool's free plan"
       }
     },
     "requirement": {

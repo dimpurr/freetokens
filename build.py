@@ -273,8 +273,9 @@ def validate_channels(channels, lanes):
         errs.append(f"channels: duplicate {dup!r}")
     for c in sorted({l["channel"] for l in lanes} - set(names)):
         errs.append(f"channel {c!r} has lanes but no record in data/channels.json")
-    for n in sorted(set(names) - {l["channel"] for l in lanes}):
-        errs.append(f"channels[{n}]: no lanes use this channel")
+    offer_chans = {o.get("channel") for o in load_optional("offers", [])}
+    for n in sorted(set(names) - {l["channel"] for l in lanes} - offer_chans):
+        errs.append(f"channels[{n}]: no lanes or offers use this channel")
     return errs
 
 
@@ -611,6 +612,11 @@ def seo_model(m, lanes):
 
 def seo_channel(c, lanes, models):
     cl = [l for l in lanes if l["channel"] == c]
+    if not cl:  # a channel that now holds only free programs (ADR-025)
+        os_ = [o for o in load_optional("offers", []) if o.get("channel") == c]
+        return (f"{c}: free allowance and credits | freetokens",
+                clip(f"{c} gives a free allowance that covers many models rather than free models of its own: "
+                     + "; ".join(f"{o['name']}: {o['gets']['text']}" for o in os_) + ". Conditions, sources and dates."))
     free = [l for l in cl if l["status"] in FREE]
     names = {m["id"]: m["name"] for m in models}
     title = f"Free models on {c}: {len(free)} now, end dates and limits | freetokens"
@@ -692,7 +698,7 @@ def build_pages(lanes, events, models, today, mode):
     og = f"{SITE}/og.png"
     pages = {}  # relative output path -> (head, body)
     names = {m["id"]: m["name"] for m in models}
-    chans = sorted({l["channel"] for l in lanes})
+    chans = sorted({l["channel"] for l in lanes} | {o["channel"] for o in load_optional("offers", []) if o.get("channel")})  # a channel may hold only offers (ADR-025)
 
     title, desc = seo_home(lanes, models, today)
     ld = [{"@context": "https://schema.org", "@type": "WebSite", "name": "freetokens", "url": SITE + "/",
@@ -844,6 +850,10 @@ def llms_txt(lanes, models, today):
             f"- [channels.json]({raw}/channels.json): cost to start, how free models can be used (API / CLI / app), free condition\n"
             f"- [events.json]({raw}/events.json): dated events with sources\n"
             f"- [makers.json]({raw}/makers.json) · [benchmarks.json]({raw}/benchmarks.json) · [schema.json]({REPO.replace('github.com', 'raw.githubusercontent.com')}/main/schema/schema.json): field definitions\n\n"
+            "## Free programs (allowances and credits, not tied to one model)\n\n"
+            + "\n".join(f"- [{o['name']}]({SITE}/offers/{o['id']}) · {o['gets']['text']} ({label('per', o['gets']['per'])}) · needs: {', '.join(label('requirement', r) for r in o.get('requires', [])) or 'nothing'}"
+                        for o in sorted(load_optional("offers", []), key=lambda o: (len(o.get("requires", [])), o["name"])) if o["status"] != "ended")
+            + f"\n\nAll programs with filters: {SITE}/offers · data: {raw}/offers.json\n\n"
             "## No longer free\n\n" + "\n".join(f"- [{m['name']}]({SITE}/models/{m['id']})" for m in gone) + "\n\n"
             "## Channels\n\n" + "\n".join(f"- [{c}]({SITE}/channels/{slug(c)})" for c in sorted({l['channel'] for l in lanes})) + "\n")
 

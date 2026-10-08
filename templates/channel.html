@@ -50,7 +50,7 @@ const CL = lanesOn(C);
   const last = CL.map((l) => l.checked.date).sort().pop();
   const tested = CL.filter((l) => l.limits_observed);
   $("chead").innerHTML = `
-    <span class="kicker">${esc(lab("channel_type", CL[0].type))}</span>
+    <span class="kicker">${esc(CL[0] ? lab("channel_type", CL[0].type) : "free programs only")}</span>
     <h1>${esc(C)}</h1>
     <p class="chlinks">${chLinks(C)}</p>
     ${CH[C] && CH[C].free_condition ? `<p class="chcond"><b>Free if:</b> ${esc(CH[C].free_condition)}</p>` : ""}

@@ -98,3 +98,7 @@ Vendors report their own models' benchmark scores in their own harness, and smal
 ## Privacy and re-checks
 
 The site sets no cookies and runs no trackers or session recording. We read the standard web server log (page, time, referrer, user agent) to count visits and AI crawlers; how it works is in OBSERVE.md. A live lane that hasn't been re-checked for 7 days is marked "re-check due" and is no longer counted as confirmed until it is checked again.
+
+## Free programs (offers)
+
+A lane is a model that costs $0 on a channel, with caps that only stop abuse. A free program gives you something you can spend across many models: credits, a daily allowance (Neurons, Freebucks, a shared call quota), a student plan or a perk that comes with a plan you already pay for. Programs live on their own page (/offers) and are never ranked with the models; a model page lists them under "Also free through". Amounts are kept in each provider's own unit and never converted. The list is sorted by how easy a program is to get (fewest requirements first), then by how often it refills. Only official, lawful routes are listed. A program not re-checked for 14 days is due for a re-check.

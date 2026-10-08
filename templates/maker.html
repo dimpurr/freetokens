@@ -77,5 +77,5 @@ onView(() => {
   renderChart($("chart"), kl, true);
   $("chartkey").innerHTML = chartKey;
 });
-$("tl").innerHTML = timelineHTML(D.events.filter((e) => e.lanes.some((i) => KM.some((m) => m.id === lanes[i].model))));
+$("tl").innerHTML = timelineHTML(D.events.filter((e) => (e.lanes || []).some((i) => KM.some((m) => m.id === lanes[i].model))));
 </script>
