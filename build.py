@@ -737,6 +737,59 @@ def md_to_html(md):
     return "\n".join(out)
 
 
+def llms_txt(lanes, models, today):
+    """llms.txt for AI assistants: the answer first (free now, best first, with scores and channels), then pages and data."""
+    est, _ = estimate(models, load_optional("benchmarks", {}), load_optional("anchors", []))
+    chans = {c["name"]: c for c in load_optional("channels", [])}
+    makers = {m["id"]: m["name"] for m in load_optional("makers", [])}
+    raw = "https://raw.githubusercontent.com/dimpurr/freetokens/main/data"
+    free = [l for l in lanes if l["status"] in FREE]
+
+    def score(m):
+        if m["aa_index"].get("value") is not None:
+            return m["aa_index"]["value"], f"AA {m['aa_index']['value']}"
+        e = est.get(m["id"], {})
+        return (e["center"], f"EST {e['low']}-{e['high']}") if e.get("status") == "ok" else (-1, "unscored")
+
+    def agent_ok(l):
+        a = l.get("access") or chans.get(l["channel"], {}).get("access") or {}
+        return a.get("form") in ("api", "own_cli") and "no_automation" not in a.get("rules", [])
+
+    rows, gone = [], []
+    for m in models:
+        ls = [l for l in free if l["model"] == m["id"]]
+        if not ls:
+            if any(l["model"] == m["id"] for l in lanes):
+                gone.append(m)
+            continue
+        s, label_ = score(m)
+        where = ", ".join(sorted({l["channel"] + ("" if l["status"] == "live" else " (listed)") for l in ls}))
+        agents = "yes" if any(agent_ok(l) for l in ls) else "no"
+        rows.append((s, f"- [{m['name']}]({SITE}/models/{m['id']}) · {label_} · {makers.get(m['maker'], m['maker'])} · free on: {where} · usable by agents: {agents}"))
+    rows.sort(key=lambda r: -r[0])
+    return (f"# freetokens\n\n> Which LLMs you can use for free right now, through which channel, and until when. "
+            f"{len(free)} free lanes, {len(rows)} models, {len({l['channel'] for l in lanes})} channels; every fact dated and sourced. "
+            f"Generated {today.isoformat()}. Data under CC BY 4.0.\n\n"
+            "Scores: AA = Artificial Analysis Intelligence Index (v4.3.2); EST = our estimate from benchmarks when AA has none (method in /methodology). "
+            "\"(listed)\" = in the channel's free catalogue but not confirmed working by us. \"Usable by agents\" = an API key or a CLI whose terms allow automation.\n\n"
+            "## Free now, best first\n\n" + "\n".join(r for _, r in rows) + "\n\n"
+            "## Pages\n\n"
+            f"- [Overview]({SITE}/): models, channels, ending soon, latest changes\n"
+            f"- [Agents view]({SITE}/?use=agents): routes scripts and agents may use, with a fallback ladder (smartest first, step down when it runs out)\n"
+            f"- [All lanes]({SITE}/lanes): every model x channel route with status, limits, what we measured, model IDs\n"
+            f"- [Timeline]({SITE}/timeline) and [Atom feed]({SITE}/feed.xml): every recorded change, with sources\n"
+            f"- [Makers]({SITE}/makers): who makes the free models; stealth models with unconfirmed attributions\n"
+            f"- [Methodology]({SITE}/methodology): statuses, checks, the EST estimate, privacy\n\n"
+            "## Data (machine-readable, CC BY 4.0)\n\n"
+            f"- [lanes.json]({raw}/lanes.json): one model x channel x free condition: status, dates, published limits, what we measured\n"
+            f"- [models.json]({raw}/models.json): models, maker, AA index, context, image input\n"
+            f"- [channels.json]({raw}/channels.json): cost to start, how free models can be used (API / CLI / app), free condition\n"
+            f"- [events.json]({raw}/events.json): dated events with sources\n"
+            f"- [makers.json]({raw}/makers.json) · [benchmarks.json]({raw}/benchmarks.json) · [schema.json]({REPO.replace('github.com', 'raw.githubusercontent.com')}/main/schema/schema.json): field definitions\n\n"
+            "## No longer free\n\n" + "\n".join(f"- [{m['name']}]({SITE}/models/{m['id']})" for m in gone) + "\n\n"
+            "## Channels\n\n" + "\n".join(f"- [{c}]({SITE}/channels/{slug(c)})" for c in sorted({l['channel'] for l in lanes})) + "\n")
+
+
 def site_extras(pages, lanes, events, models, today):
     """robots.txt, sitemap.xml, favicon, 404 page: only for the deployed site."""
     def lastmod(path):
@@ -763,15 +816,7 @@ def site_extras(pages, lanes, events, models, today):
         'Start from the <a href="/">home page</a>, or browse <a href="/#h-models">models</a> and <a href="/#h-channels">channels</a>.</p></header></div>')
     names = {m["id"]: m["name"] for m in models}
     free = [l for l in lanes if l["status"] in FREE]
-    llms = (f"# freetokens\n\n> Which LLMs you can use for free right now, through which channel, and until when. "
-            f"{len(free)} free lanes across {len({l['channel'] for l in lanes})} channels; every fact dated and sourced. Data under CC BY 4.0.\n\n"
-            f"## Data (machine-readable)\n\n- [lanes.json](https://raw.githubusercontent.com/dimpurr/freetokens/main/data/lanes.json): one model × channel × free condition, with status, dates and limits\n"
-            f"- [events.json](https://raw.githubusercontent.com/dimpurr/freetokens/main/data/events.json): dated events with sources\n"
-            f"- [models.json](https://raw.githubusercontent.com/dimpurr/freetokens/main/data/models.json): models, AA index, context, image input\n"
-            f"- [Atom feed of events]({SITE}/feed.xml)\n\n## Docs\n\n- [Methodology]({SITE}/methodology): statuses, checks, the EST estimate\n"
-            f"- [Contributing]({REPO}/blob/main/CONTRIBUTING.md)\n\n## Models\n\n"
-            + "\n".join(f"- [{m['name']}]({SITE}/models/{m['id']})" for m in models)
-            + "\n\n## Channels\n\n" + "\n".join(f"- [{c}]({SITE}/channels/{slug(c)})" for c in sorted({l['channel'] for l in lanes})) + "\n")
+    llms = llms_txt(lanes, models, today)
     def x(t):
         return html.escape(str(t), quote=True)
     entries = []
