@@ -94,3 +94,7 @@ Every model points at one maker in `data/makers.json` (name, parent company, cou
 ## Vendor numbers and comparison tables (ADR-023)
 
 Vendors report their own models' benchmark scores in their own harness, and small models tend to score far higher on coding benchmarks than their overall intelligence would suggest. Mapping those raw numbers through a fit learned from independent leaderboards overestimates them (Xing 4.0 29B came out at 27; its vendor table shows it level with Qwen3.6 35B A3B, AA 18). So a vendor score that comes from a comparison table is read against the other models in that same table: for each comparison model with a known AA score and a benchmark score within 10 points, the implied AA is that model's AA plus the fit slope times the score difference, weighted toward the closest models. The estimate is the weighted mean of the benchmarks. Vendor-reported scores with no usable comparison models get a band twice as wide and are marked low confidence.
+
+## Privacy and re-checks
+
+The site sets no cookies and runs no trackers or session recording. We read the standard web server log (page, time, referrer, user agent) to count visits and AI crawlers; how it works is in OBSERVE.md. A live lane that hasn't been re-checked for 7 days is marked "re-check due" and is no longer counted as confirmed until it is checked again.

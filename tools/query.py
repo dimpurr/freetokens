@@ -53,7 +53,8 @@ def lane_view(l):
             "free": l["status"] in ("live", "listed", "overdue"), "checked": l["checked"], "tested": l.get("limits_observed"),
             "limits": l["limits_stated"], "volume": l.get("volume"), "ends": l["ends"], "started": l["started"],
             "access": {"form": a.get("form"), "rules": a.get("rules", [])},
-            "agent_usable": l["status"] in ("live", "listed", "overdue") and a.get("form") in ("api", "own_cli") and "no_automation" not in a.get("rules", [])}
+            "agent_usable": l["status"] in ("live", "listed", "overdue") and a.get("form") in ("api", "own_cli") and "no_automation" not in a.get("rules", []),
+            "stale": l["status"] in ("live", "overdue") and (__import__("datetime").date.today() - __import__("datetime").date.fromisoformat(l["checked"]["date"][:10])).days > 7}
 
 
 def main(argv):

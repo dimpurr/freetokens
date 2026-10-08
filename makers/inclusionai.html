@@ -785,9 +785,12 @@ function measuredHTML(l, badge = false) {
   return `<span class="obs${badge ? " badge" : ""}">${I.bolt()}${shown.map((x) => `<span class="ob ${x.c}" title="${esc(x.h)}">${esc(x.t)}</span>`).join("")}` +
     (badge ? "" : `<details class="obs-i"><summary aria-label="Details of our check">ⓘ</summary><span>${esc(prov)}</span></details>`) + `</span>`;
 }
+/* a live lane not re-checked for 7 days is due for a re-check: shown, and not counted as confirmed (OBSERVE.md) */
+const STALE_DAYS = 7;
+const isStale = (l) => (l.status === "live" || l.status === "overdue") && -daysTo(pd(l.checked.date).t) > STALE_DAYS;
 const checkedSub = (l) => {
-  const age = -daysTo(pd(l.checked.date).t);
-  return `<span class="sub">${esc(lab("check_method", l.checked.method))} · <span class="${age > 30 ? "stale" : ""}">${esc(absDate(l.checked.date))}${age > 30 ? " · stale" : ""}</span></span>`;
+  const age = -daysTo(pd(l.checked.date).t), due = isStale(l), old = age > 30;
+  return `<span class="sub">${esc(lab("check_method", l.checked.method))} · <span class="${due || old ? "stale" : ""}" title="${due ? `Last checked ${age} days ago; live lanes are re-checked within ${STALE_DAYS} days` : ""}">${esc(absDate(l.checked.date))}${due ? " · re-check due" : old ? " · stale" : ""}</span></span>`;
 };
 function policyHTML(k) {
   const icon = k === "zero_retention" ? I.lock() : k === "may_train" ? I.eye() : I.help();
