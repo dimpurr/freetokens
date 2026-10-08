@@ -493,5 +493,125 @@
    "models": "https://build.nvidia.com/models"
   },
   "free_condition": "NVIDIA Developer Program API key; free to prototype, rate-limited"
+ },
+ {
+  "name": "Groq",
+  "entry": {
+   "kind": "account",
+   "usd": null,
+   "period": null,
+   "note": "GroqCloud account (email, Google or GitHub), no card; the free plan has per-model rate limits"
+  },
+  "source": {
+   "url": "https://console.groq.com/docs/rate-limits",
+   "label": "Groq rate limits"
+  },
+  "checked": "2026-10-08",
+  "access": {
+   "form": "api",
+   "protocols": [
+    "openai_chat"
+   ],
+   "rules": [],
+   "source": {
+    "url": "https://console.groq.com/docs/models",
+    "label": "Groq docs"
+   }
+  },
+  "links": {
+   "site": "https://groq.com",
+   "models": "https://console.groq.com/docs/models"
+  },
+  "free_condition": "GroqCloud free plan: every model within its free rate limits, no card"
+ },
+ {
+  "name": "Cloudflare Workers AI",
+  "entry": {
+   "kind": "account",
+   "usd": null,
+   "period": null,
+   "note": "Cloudflare account on the Workers Free plan, no card; 10,000 Neurons a day free, reset at 00:00 UTC"
+  },
+  "source": {
+   "url": "https://developers.cloudflare.com/workers-ai/platform/pricing/",
+   "label": "Workers AI pricing"
+  },
+  "checked": "2026-10-08",
+  "access": {
+   "form": "api",
+   "protocols": [
+    "openai_chat"
+   ],
+   "rules": [],
+   "source": {
+    "url": "https://developers.cloudflare.com/workers-ai/",
+    "label": "Workers AI docs"
+   }
+  },
+  "links": {
+   "site": "https://developers.cloudflare.com/workers-ai/",
+   "models": "https://developers.cloudflare.com/workers-ai/models/"
+  },
+  "free_condition": "Workers Free plan: 10,000 Neurons a day across all models (a few large models need the paid plan)"
+ },
+ {
+  "name": "OVHcloud AI Endpoints",
+  "entry": {
+   "kind": "none",
+   "usd": null,
+   "period": null,
+   "note": "Anonymous lane: no account and no key; 2 requests a minute per IP and model. With an OVHcloud key the same models are billed per token"
+  },
+  "source": {
+   "url": "https://endpoints.ai.cloud.ovh.net/",
+   "label": "OVHcloud AI Endpoints"
+  },
+  "checked": "2026-10-08",
+  "access": {
+   "form": "api",
+   "protocols": [
+    "openai_chat"
+   ],
+   "rules": [],
+   "source": {
+    "url": "https://endpoints.ai.cloud.ovh.net/",
+    "label": "OVHcloud AI Endpoints"
+   }
+  },
+  "links": {
+   "site": "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/",
+   "models": "https://endpoints.ai.cloud.ovh.net/catalog"
+  },
+  "free_condition": "Anonymous calls without a key, 2 requests a minute per IP and model; EU-hosted, OVHcloud says anonymous requests are not stored"
+ },
+ {
+  "name": "ModelScope",
+  "entry": {
+   "kind": "account",
+   "usd": null,
+   "period": null,
+   "note": "ModelScope account and access token; community reports say an Alibaba Cloud account with real-name verification must be bound"
+  },
+  "source": {
+   "url": "https://www.modelscope.cn/docs/model-service/API-Inference/intro",
+   "label": "ModelScope API-Inference"
+  },
+  "checked": "2026-10-08",
+  "access": {
+   "form": "api",
+   "protocols": [
+    "openai_chat"
+   ],
+   "rules": [],
+   "source": {
+    "url": "https://www.modelscope.cn/docs/model-service/API-Inference/intro",
+    "label": "ModelScope API-Inference"
+   }
+  },
+  "links": {
+   "site": "https://www.modelscope.cn",
+   "models": "https://api-inference.modelscope.cn/v1/models"
+  },
+  "free_condition": "Daily free API-Inference calls for registered users (a shared daily total; per-model caps vary)"
  }
 ]

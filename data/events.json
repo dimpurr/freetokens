@@ -1745,5 +1745,29 @@
    "label": "own check of openrouter.ai/api/v1/models",
    "url": "https://openrouter.ai/api/v1/models"
   }
+ },
+ {
+  "date": "2026-08-17",
+  "lanes": [
+   "qwen3.8-27b-cf"
+  ],
+  "kind": "listed",
+  "text": "Added to the Workers AI model catalogue: Qwen3.8 27B",
+  "source": {
+   "label": "Workers AI model page",
+   "url": "https://developers.cloudflare.com/workers-ai/models/qwen3.8-27b/"
+  }
+ },
+ {
+  "date": "2026-08-19",
+  "lanes": [
+   "qwen3.8-27b-modelscope"
+  ],
+  "kind": "listed",
+  "text": "Registered on ModelScope's free API-Inference gateway (model list timestamp): Qwen3.8 27B",
+  "source": {
+   "label": "ModelScope API-Inference model list",
+   "url": "https://api-inference.modelscope.cn/v1/models"
+  }
  }
 ]

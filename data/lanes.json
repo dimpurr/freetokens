@@ -3749,5 +3749,143 @@
    "date": "2026-10-08",
    "method": "catalogue"
   }
+ },
+ {
+  "id": "qwen3.8-27b-groq",
+  "model": "qwen3.8-27b",
+  "channel": "Groq",
+  "type": "router",
+  "model_id": "qwen/qwen3.8-27b",
+  "free_condition": null,
+  "limits_stated": {
+   "basis": "official",
+   "per_day": 1000,
+   "per_minute": 30,
+   "tokens_day": 200000,
+   "source": "https://console.groq.com/docs/rate-limits"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "unstated",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "listing"
+  },
+  "volume": {
+   "tier": "daily",
+   "basis": "1,000 requests a day, 30 a minute (stated)"
+  }
+ },
+ {
+  "id": "qwen3.8-27b-cf",
+  "model": "qwen3.8-27b",
+  "channel": "Cloudflare Workers AI",
+  "type": "router",
+  "model_id": "@cf/qwen/qwen3.8-27b",
+  "free_condition": null,
+  "limits_stated": {
+   "basis": "official",
+   "note": "10,000 Neurons a day: about 34K output tokens",
+   "source": "https://developers.cloudflare.com/workers-ai/platform/pricing/"
+  },
+  "limits_observed": {
+   "date": "2026-10-08",
+   "reach": "works"
+  },
+  "started": {
+   "date": "2026-08-17",
+   "note": "added to the Workers AI catalogue"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "unstated",
+  "status": "live",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "api_call"
+  },
+  "volume": {
+   "tier": "taste",
+   "basis": "10,000 Neurons a day, about 34K output tokens (stated)"
+  }
+ },
+ {
+  "id": "qwen3.8-27b-ovh",
+  "model": "qwen3.8-27b",
+  "channel": "OVHcloud AI Endpoints",
+  "type": "router",
+  "model_id": "Qwen3.8-27B",
+  "free_condition": null,
+  "limits_stated": {
+   "basis": "official",
+   "per_minute": 2,
+   "note": "per IP and model on the anonymous lane",
+   "source": "https://endpoints.ai.cloud.ovh.net/"
+  },
+  "limits_observed": {
+   "date": "2026-10-08",
+   "reach": "works",
+   "note": "anonymous call answered; a second one hit the 2/min cap"
+  },
+  "started": {
+   "date": null,
+   "note": "not recorded"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "zero_retention",
+  "status": "live",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "api_call"
+  },
+  "volume": {
+   "tier": "taste",
+   "basis": "2 requests a minute per IP (stated)"
+  }
+ },
+ {
+  "id": "qwen3.8-27b-modelscope",
+  "model": "qwen3.8-27b",
+  "channel": "ModelScope",
+  "type": "router",
+  "model_id": "Qwen/Qwen3.8-27B",
+  "free_condition": null,
+  "limits_stated": {
+   "basis": "unpublished",
+   "note": "shared daily call allowance; number not machine-readable",
+   "source": "https://www.modelscope.cn/docs/model-service/API-Inference/intro"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-08-19",
+   "note": "registered on the API-Inference gateway"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "unstated",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "catalogue"
+  }
  }
 ]
