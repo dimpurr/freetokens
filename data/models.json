@@ -888,5 +888,135 @@
    "url": "https://artificialanalysis.ai/models/qwen3-8-27b"
   },
   "notes": "Dense 27B open-weight vision-language model, released 2026-08 (AA index 33.7)."
+ },
+ {
+  "id": "qwen3.5-397b-a17b",
+  "name": "Qwen3.5 397B A17B",
+  "maker": "qwen",
+  "context": "not checked",
+  "image_input": "not_checked",
+  "aa_index": {
+   "value": 21,
+   "date": "2026-10-08",
+   "url": "https://artificialanalysis.ai/models/qwen3-5-397b-a17b"
+  },
+  "notes": null
+ },
+ {
+  "id": "qwen3.6-27b",
+  "name": "Qwen3.6 27B",
+  "maker": "qwen",
+  "context": "not checked",
+  "image_input": "not_checked",
+  "aa_index": {
+   "value": 21,
+   "date": "2026-10-08",
+   "url": "https://artificialanalysis.ai/models/qwen3-6-27b"
+  },
+  "notes": null
+ },
+ {
+  "id": "qwen3.5-9b",
+  "name": "Qwen3.5 9B",
+  "maker": "qwen",
+  "context": "not checked",
+  "image_input": "not_checked",
+  "aa_index": {
+   "value": 13,
+   "date": "2026-10-08",
+   "url": "https://artificialanalysis.ai/models/qwen3-5-9b"
+  },
+  "notes": null
+ },
+ {
+  "id": "qwen2.5-vl-72b",
+  "name": "Qwen2.5 VL 72B Instruct",
+  "maker": "qwen",
+  "context": "not checked",
+  "image_input": "yes",
+  "aa_index": {
+   "value": null,
+   "date": "2026-10-08",
+   "note": "not on Artificial Analysis"
+  },
+  "notes": null
+ },
+ {
+  "id": "llama-3.3-70b",
+  "name": "Llama 3.3 70B Instruct",
+  "maker": "meta",
+  "context": "not checked",
+  "image_input": "no",
+  "aa_index": {
+   "value": 8,
+   "date": "2026-10-08",
+   "url": "https://artificialanalysis.ai/models/llama-3-3-instruct-70b"
+  },
+  "notes": null
+ },
+ {
+  "id": "mistral-small-3.2",
+  "name": "Mistral Small 3.2 24B",
+  "maker": "mistral",
+  "context": "not checked",
+  "image_input": "not_checked",
+  "aa_index": {
+   "value": 8,
+   "date": "2026-10-08",
+   "url": "https://artificialanalysis.ai/models/mistral-small-3-2"
+  },
+  "notes": null
+ },
+ {
+  "id": "mistral-nemo",
+  "name": "Mistral Nemo Instruct 2407",
+  "maker": "mistral",
+  "context": "not checked",
+  "image_input": "no",
+  "aa_index": {
+   "value": null,
+   "date": "2026-10-08",
+   "note": "not on Artificial Analysis"
+  },
+  "notes": null
+ },
+ {
+  "id": "mistral-7b-instruct",
+  "name": "Mistral 7B Instruct v0.3",
+  "maker": "mistral",
+  "context": "not checked",
+  "image_input": "no",
+  "aa_index": {
+   "value": 5,
+   "date": "2026-10-08",
+   "url": "https://artificialanalysis.ai/models/mistral-7b-instruct"
+  },
+  "notes": null
+ },
+ {
+  "id": "gpt-oss-120b",
+  "name": "gpt-oss-120b",
+  "maker": "openai",
+  "context": "not checked",
+  "image_input": "no",
+  "aa_index": {
+   "value": 12,
+   "date": "2026-10-08",
+   "url": "https://artificialanalysis.ai/models/gpt-oss-120b"
+  },
+  "notes": null
+ },
+ {
+  "id": "gpt-oss-20b",
+  "name": "gpt-oss-20b",
+  "maker": "openai",
+  "context": "not checked",
+  "image_input": "no",
+  "aa_index": {
+   "value": 10,
+   "date": "2026-10-08",
+   "url": "https://artificialanalysis.ai/models/gpt-oss-20b"
+  },
+  "notes": null
  }
 ]

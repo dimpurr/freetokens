@@ -3887,5 +3887,415 @@
    "date": "2026-10-08",
    "method": "catalogue"
   }
+ },
+ {
+  "id": "qwen3.5-397b-a17b-ovh",
+  "model": "qwen3.5-397b-a17b",
+  "channel": "OVHcloud AI Endpoints",
+  "type": "router",
+  "model_id": "Qwen3.5-397B-A17B",
+  "free_condition": null,
+  "limits_stated": {
+   "basis": "official",
+   "per_minute": 2,
+   "note": "per IP and model on the anonymous lane",
+   "source": "https://endpoints.ai.cloud.ovh.net/"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "zero_retention",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "catalogue"
+  },
+  "volume": {
+   "tier": "taste",
+   "basis": "2 requests a minute per IP (stated)"
+  }
+ },
+ {
+  "id": "qwen3.6-27b-ovh",
+  "model": "qwen3.6-27b",
+  "channel": "OVHcloud AI Endpoints",
+  "type": "router",
+  "model_id": "Qwen3.6-27B",
+  "free_condition": null,
+  "limits_stated": {
+   "basis": "official",
+   "per_minute": 2,
+   "note": "per IP and model on the anonymous lane",
+   "source": "https://endpoints.ai.cloud.ovh.net/"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "zero_retention",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "catalogue"
+  },
+  "volume": {
+   "tier": "taste",
+   "basis": "2 requests a minute per IP (stated)"
+  }
+ },
+ {
+  "id": "qwen3.5-9b-ovh",
+  "model": "qwen3.5-9b",
+  "channel": "OVHcloud AI Endpoints",
+  "type": "router",
+  "model_id": "Qwen3.5-9B",
+  "free_condition": null,
+  "limits_stated": {
+   "basis": "official",
+   "per_minute": 2,
+   "note": "per IP and model on the anonymous lane",
+   "source": "https://endpoints.ai.cloud.ovh.net/"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "zero_retention",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "catalogue"
+  },
+  "volume": {
+   "tier": "taste",
+   "basis": "2 requests a minute per IP (stated)"
+  }
+ },
+ {
+  "id": "qwen2.5-vl-72b-ovh",
+  "model": "qwen2.5-vl-72b",
+  "channel": "OVHcloud AI Endpoints",
+  "type": "router",
+  "model_id": "Qwen2.5-VL-72B-Instruct",
+  "free_condition": null,
+  "limits_stated": {
+   "basis": "official",
+   "per_minute": 2,
+   "note": "per IP and model on the anonymous lane",
+   "source": "https://endpoints.ai.cloud.ovh.net/"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "zero_retention",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "catalogue"
+  },
+  "volume": {
+   "tier": "taste",
+   "basis": "2 requests a minute per IP (stated)"
+  }
+ },
+ {
+  "id": "llama-3.3-70b-ovh",
+  "model": "llama-3.3-70b",
+  "channel": "OVHcloud AI Endpoints",
+  "type": "router",
+  "model_id": "Meta-Llama-3_3-70B-Instruct",
+  "free_condition": null,
+  "limits_stated": {
+   "basis": "official",
+   "per_minute": 2,
+   "note": "per IP and model on the anonymous lane",
+   "source": "https://endpoints.ai.cloud.ovh.net/"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "zero_retention",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "catalogue"
+  },
+  "volume": {
+   "tier": "taste",
+   "basis": "2 requests a minute per IP (stated)"
+  }
+ },
+ {
+  "id": "mistral-small-3.2-ovh",
+  "model": "mistral-small-3.2",
+  "channel": "OVHcloud AI Endpoints",
+  "type": "router",
+  "model_id": "Mistral-Small-3.2-24B-Instruct-2506",
+  "free_condition": null,
+  "limits_stated": {
+   "basis": "official",
+   "per_minute": 2,
+   "note": "per IP and model on the anonymous lane",
+   "source": "https://endpoints.ai.cloud.ovh.net/"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "zero_retention",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "catalogue"
+  },
+  "volume": {
+   "tier": "taste",
+   "basis": "2 requests a minute per IP (stated)"
+  }
+ },
+ {
+  "id": "mistral-nemo-ovh",
+  "model": "mistral-nemo",
+  "channel": "OVHcloud AI Endpoints",
+  "type": "router",
+  "model_id": "Mistral-Nemo-Instruct-2407",
+  "free_condition": null,
+  "limits_stated": {
+   "basis": "official",
+   "per_minute": 2,
+   "note": "per IP and model on the anonymous lane",
+   "source": "https://endpoints.ai.cloud.ovh.net/"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "zero_retention",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "catalogue"
+  },
+  "volume": {
+   "tier": "taste",
+   "basis": "2 requests a minute per IP (stated)"
+  }
+ },
+ {
+  "id": "mistral-7b-instruct-ovh",
+  "model": "mistral-7b-instruct",
+  "channel": "OVHcloud AI Endpoints",
+  "type": "router",
+  "model_id": "Mistral-7B-Instruct-v0.3",
+  "free_condition": null,
+  "limits_stated": {
+   "basis": "official",
+   "per_minute": 2,
+   "note": "per IP and model on the anonymous lane",
+   "source": "https://endpoints.ai.cloud.ovh.net/"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "zero_retention",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "catalogue"
+  },
+  "volume": {
+   "tier": "taste",
+   "basis": "2 requests a minute per IP (stated)"
+  }
+ },
+ {
+  "id": "gpt-oss-120b-ovh",
+  "model": "gpt-oss-120b",
+  "channel": "OVHcloud AI Endpoints",
+  "type": "router",
+  "model_id": "gpt-oss-120b",
+  "free_condition": null,
+  "limits_stated": {
+   "basis": "official",
+   "per_minute": 2,
+   "note": "per IP and model on the anonymous lane",
+   "source": "https://endpoints.ai.cloud.ovh.net/"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "zero_retention",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "catalogue"
+  },
+  "volume": {
+   "tier": "taste",
+   "basis": "2 requests a minute per IP (stated)"
+  }
+ },
+ {
+  "id": "gpt-oss-20b-ovh",
+  "model": "gpt-oss-20b",
+  "channel": "OVHcloud AI Endpoints",
+  "type": "router",
+  "model_id": "gpt-oss-20b",
+  "free_condition": null,
+  "limits_stated": {
+   "basis": "official",
+   "per_minute": 2,
+   "note": "per IP and model on the anonymous lane",
+   "source": "https://endpoints.ai.cloud.ovh.net/"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "zero_retention",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "catalogue"
+  },
+  "volume": {
+   "tier": "taste",
+   "basis": "2 requests a minute per IP (stated)"
+  }
+ },
+ {
+  "id": "gpt-oss-120b-groq",
+  "model": "gpt-oss-120b",
+  "channel": "Groq",
+  "type": "router",
+  "model_id": "openai/gpt-oss-120b",
+  "free_condition": null,
+  "limits_stated": {
+   "basis": "official",
+   "per_day": 1000,
+   "per_minute": 30,
+   "tokens_day": 200000,
+   "source": "https://console.groq.com/docs/rate-limits"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "unstated",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "catalogue"
+  },
+  "volume": {
+   "tier": "daily",
+   "basis": "1,000 requests a day, 30 a minute (stated)"
+  }
+ },
+ {
+  "id": "gpt-oss-20b-groq",
+  "model": "gpt-oss-20b",
+  "channel": "Groq",
+  "type": "router",
+  "model_id": "openai/gpt-oss-20b",
+  "free_condition": null,
+  "limits_stated": {
+   "basis": "official",
+   "per_day": 1000,
+   "per_minute": 30,
+   "tokens_day": 200000,
+   "source": "https://console.groq.com/docs/rate-limits"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "unstated",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-08",
+   "method": "catalogue"
+  },
+  "volume": {
+   "tier": "daily",
+   "basis": "1,000 requests a day, 30 a minute (stated)"
+  }
  }
 ]

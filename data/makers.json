@@ -209,6 +209,15 @@
   }
  },
  {
+  "id": "mistral",
+  "name": "Mistral AI",
+  "country": "FR",
+  "links": {
+   "site": "https://mistral.ai",
+   "models": "https://huggingface.co/mistralai"
+  }
+ },
+ {
   "id": "undisclosed",
   "name": "Undisclosed (stealth)",
   "note": "Stealth models shipped without a maker's name. Community attributions are shown on each model as unconfirmed."
