@@ -220,6 +220,31 @@ def bing(site="https://freetokens.fyi/"):
         return {"error": str(e)[:120]}
 
 
+def posthog(days=7, project=299433):
+    """PostHog EU project "freetokens" (cookieless): page views, outbound clicks by host, feature events.
+    Key: POSTHOG_PERSONAL_API_KEY (read) from the environment or chco .env."""
+    key = os.environ.get("POSTHOG_PERSONAL_API_KEY")
+    if not key:
+        envf = Path.home() / "WorkflowUser/Code/Project/dimresearchcode/.env"
+        if envf.exists():
+            key = next((l.split("=", 1)[1].strip().strip('"') for l in envf.read_text().splitlines() if l.startswith("POSTHOG_PERSONAL_API_KEY=")), None)
+    if not key:
+        return {"error": "no POSTHOG_PERSONAL_API_KEY"}
+    def hogql(q):
+        body = json.dumps({"query": {"kind": "HogQLQuery", "query": q}}).encode()
+        req = urllib.request.Request(f"https://eu.posthog.com/api/projects/{project}/query/", data=body,
+                                     headers={"Authorization": "Bearer " + key, "Content-Type": "application/json"})
+        with urllib.request.urlopen(req, timeout=60) as r:
+            return json.load(r).get("results", [])
+    since = f"timestamp > now() - interval {int(days)} day"
+    try:
+        return {"events": hogql(f"select event, count() from events where {since} group by event order by count() desc limit 12"),
+                "outbound": hogql(f"select properties.host, count() from events where event = 'outbound_click' and {since} group by properties.host order by count() desc limit 8"),
+                "pages": hogql(f"select properties.$pathname, count() from events where event = '$pageview' and {since} group by properties.$pathname order by count() desc limit 6")}
+    except Exception as e:
+        return {"error": str(e)[:120]}
+
+
 # ---------- report ----------
 
 def report(kind, log_files, watch_path):
@@ -248,6 +273,14 @@ def report(kind, log_files, watch_path):
                          f" · feed {tot('feed')} · llms.txt {tot('llms_txt')}")
             lines.append("Pages AI assistants read for someone: " + (", ".join(f"{p} {n}" for p, n in aiu.most_common(8)) or "none"))
             lines.append("Visitors who came from an AI answer: " + (", ".join(f"{p} {n}" for p, n in ail.most_common(6)) or "none"))
+        ph = posthog()
+        if ph.get("error"):
+            lines.append("In-page events: unavailable (" + ph["error"] + ")")
+        else:
+            ev = dict((e, n) for e, n in ph["events"])
+            lines.append(f"In-page (PostHog, 7 d): {ev.get('$pageview', 0)} page views · {ev.get('outbound_click', 0)} outbound clicks"
+                         + (" → " + ", ".join(f"{h} {n}" for h, n in ph["outbound"]) if ph["outbound"] else "")
+                         + " · features: " + (", ".join(f"{e} {n}" for e, n in ph["events"] if not e.startswith("$") and e != "outbound_click") or "none"))
         g = gsc()
         if g.get("error"):
             lines.append("Google Search: unavailable (" + g["error"] + ")")

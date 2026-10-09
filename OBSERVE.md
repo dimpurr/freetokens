@@ -11,10 +11,11 @@ visitors ──► nginx on kafu ──► freetokens.access.log (own log since 
                     tools/observe.py logs / report --weekly ──► Telegram (Hermes, Mondays)
 data/*.json ──────► tools/observe.py health ──► Telegram only when something is wrong (Hermes, daily)
 public catalogues ► tools/watch.py ──► Telegram on changes (Hermes, daily 09:00)
-search engines ───► Google Search Console (domain property) · Bing Webmaster (BingSiteAuth.xml) · IndexNow key file
+in-page events ──► PostHog EU, project "freetokens" (id 299433), cookieless ──► observe.py posthog() ──► weekly report
+search engines ───► Google Search Console API (gcloud user credentials) · Bing Webmaster API ──► weekly report
 ```
 
-No cookies, no client-side trackers, no session replay. Counts come from the standard server log that every web server keeps.
+No cookies, no session replay, no autocapture. PostHog runs with memory-only persistence, anonymised IPs, Do Not Track respected, and is skipped for automation (`navigator.webdriver`; PostHog also drops bot user agents such as HeadlessChrome). Server-log counts come from the standard log every web server keeps.
 
 ## §2 Tool registry
 
@@ -26,8 +27,24 @@ No cookies, no client-side trackers, no session replay. Counts come from the sta
 | `tools/observe.py report --daily / --weekly` | Telegram text; daily prints nothing when all is well | text |
 | `tools/watch.py` | free-catalogue diff (new, gone, back) and promo page changes | see its docstring |
 | `tools/query.py` | stable JSON for other tools: scores, lanes (incl. `stale`), events, agent pool | see its docstring |
-| Google Search Console | indexed pages, queries, impressions, clicks | web UI for now (API access pending, see §6) |
-| Bing Webmaster Tools | the same for Bing | web UI for now |
+| `observe.py` `posthog()` | page views, outbound clicks by host, feature events (7 days) | needs `POSTHOG_PERSONAL_API_KEY` (read) |
+| `observe.py` `gsc()` | Google clicks, impressions, average position, top queries and pages (data lags 2 days) | gcloud ADC of cheny.org.cn@gmail.com with scope `webmasters.readonly`; quota project `mellow-app-25eaf` (Search Console API enabled there); covers all 16 of Dim's Search Console properties |
+| `observe.py` `bing()` | Bing clicks, impressions, queries | `BING_WEBMASTER_API_KEY` |
+
+**Credentials** (all in chco `.env`, never in this repo): `POSTHOG_PERSONAL_API_KEY` (read and query), `POSTHOG_ADMIN_API_KEY` (all access, for creating projects and dashboards by API), `BING_WEBMASTER_API_KEY`. Google uses the local gcloud user credentials (`~/.config/gcloud/application_default_credentials.json`, backup `.bak-20261009`). The PostHog project key in `build.py` (`POSTHOG_KEY`) is public by design.
+
+**Event registry** (sent by `templates/common.js`, one delegated click listener):
+
+| Event | When | Properties |
+|---|---|---|
+| `$pageview`, `$pageleave` | page load and leave | standard |
+| `outbound_click` | any link to another site: the core conversion (a reader leaves to use a channel) | `url`, `host`, `text`, `page`, `section` |
+| `view_switch` | All / Humans / Agents | `view` |
+| `filter` | a filter button on /lanes or /offers | `filter`, `value` |
+| `ladder_mode` | Confirmed only / Include unconfirmed | `mode` |
+| `see_all` | a "see all" exit under a capped section | `to` |
+| `copy_model_id` | the copy button next to a model ID | `model_id` |
+| `est_open` | opening an EST evidence panel | page, section |
 
 The runner scripts that hold host names and own IPs are private: `.private/observe-fetch.sh` (fetches 8 days of logs from kafu) and the Hermes wrapper `~/.hermes/scripts/freetokens-observe.sh`.
 
@@ -64,8 +81,10 @@ python3 tools/observe.py report --weekly --watch ~/scratch/DimResearchS/freetoke
 
 ## §6 Known blind spots and pending work
 
-- **No in-page events.** We can't tell which features people use (view switch, filters, ladder) or which channel links they click. Plan: PostHog EU, cookieless, in the DimWorks organisation. Pending Dim (the project has to be created in the browser).
-- **Search data needs the web UI.** Plan: a read-only service account for the Search Console API, and a Bing Webmaster API key. Pending Dim.
+- **No returning visitors.** Memory-only persistence means every page load is a new anonymous id: we count views and clicks, not people.
+- **Bots and automation are invisible to PostHog** (by design); the server log still sees them.
+- **Test events**: 3 events on 2026-10-09 04:26 BST (`/offers`, `freebuff.com`) came from the setup check.
+- **Search queries are hidden by Google when there are only a few**; Bing had no data yet on 2026-10-09.
 - Logs older than 14 days are rotated away; the weekly report only looks at 7 days.
 - Visitors behind one NAT count as one IP; one person on several networks counts several times.
 
