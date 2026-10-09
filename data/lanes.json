@@ -3795,11 +3795,17 @@
   "model_id": "Ling-3.1-flash",
   "free_condition": "\"free for 2 weeks\", then billed",
   "limits_stated": {
-   "basis": "unpublished",
-   "note": "256K context on the official API",
-   "source": "https://developer.ant-ling.com/zh-CN/docs/models/price/"
+   "basis": "official",
+   "per_minute": 120,
+   "note": "2 requests a second; 256K context on the official API",
+   "source": "https://developer.ant-ling.com/zh-CN/docs/"
   },
-  "limits_observed": null,
+  "limits_observed": {
+   "date": "2026-10-09",
+   "reach": "works",
+   "parallel": 5,
+   "note": "2 requests/s cap counts new requests, not concurrency"
+  },
   "started": {
    "date": "2026-09-30",
    "note": "launch day"
@@ -3811,10 +3817,14 @@
    "note": "\"free for 2 weeks\" from the 2026-09-30 launch"
   },
   "data_policy": "unstated",
-  "status": "listed",
+  "status": "live",
   "checked": {
    "date": "2026-10-09",
-   "method": "listing"
+   "method": "agent_run"
+  },
+  "volume": {
+   "tier": "daily",
+   "basis": "own check: 5 parallel agent runs; starts capped at 2 a second"
   }
  }
 ]

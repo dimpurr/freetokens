@@ -1819,6 +1819,6 @@
    "url": "https://developer.ant-ling.com/zh-CN/docs/faq/"
   },
   "quote": "额度：每日 50 万 tokens（含输入和输出）；发放时间：每日 02:00 前自动发放；当日未使用额度不结转至次日",
-  "note": "When the quota runs out, calls pause until the next day unless an Alipay account is bound for pay-as-you-go."
+  "note": "Unclear whether cached input counts: one agent retrieval task read about 3M cached tokens. Calls pause at the cap unless Alipay is bound."
  }
 ]
