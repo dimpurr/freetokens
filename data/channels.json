@@ -613,5 +613,36 @@
    "models": "https://api-inference.modelscope.cn/v1/models"
   },
   "free_condition": "Daily free API-Inference calls for registered users (a shared daily total; per-model caps vary)"
+ },
+ {
+  "name": "Ant Ling",
+  "entry": {
+   "kind": "account",
+   "usd": null,
+   "period": null,
+   "note": "Ant Ling (蚂蚁百灵) developer account, signed in with a phone code; paying needs a personal Alipay account, the free quota does not"
+  },
+  "source": {
+   "url": "https://developer.ant-ling.com/zh-CN/docs/models/price/",
+   "label": "Ant Ling pricing"
+  },
+  "checked": "2026-10-09",
+  "access": {
+   "form": "api",
+   "protocols": [
+    "openai_chat",
+    "anthropic_messages"
+   ],
+   "rules": [],
+   "source": {
+    "url": "https://developer.ant-ling.com/zh-CN/docs/",
+    "label": "Ant Ling API docs"
+   }
+  },
+  "links": {
+   "site": "https://www.ant-ling.com",
+   "models": "https://developer.ant-ling.com/zh-CN/docs/models/price/"
+  },
+  "free_condition": "Official Ant Ling API: models priced 0 during their launch promotions"
  }
 ]

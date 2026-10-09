@@ -1755,5 +1755,18 @@
   "offers": [
    "modelscope-api-inference"
   ]
+ },
+ {
+  "date": "2026-09-30",
+  "lanes": [
+   "ling-3.1-flash-antling"
+  ],
+  "kind": "announced",
+  "text": "Ling 3.1 Flash launched on the official Ant Ling API, free for 2 weeks: Ling 3.1 Flash",
+  "end_date": "2026-10-14",
+  "source": {
+   "label": "Ant Ling pricing",
+   "url": "https://developer.ant-ling.com/zh-CN/docs/models/price/"
+  }
  }
 ]

@@ -3786,5 +3786,35 @@
    "tier": "daily",
    "basis": "1,000 requests a day, 30 a minute (stated)"
   }
+ },
+ {
+  "id": "ling-3.1-flash-antling",
+  "model": "ling-3.1-flash",
+  "channel": "Ant Ling",
+  "type": "first_party",
+  "model_id": "Ling-3.1-flash",
+  "free_condition": "\"free for 2 weeks\", then billed",
+  "limits_stated": {
+   "basis": "unpublished",
+   "note": "256K context on the official API",
+   "source": "https://developer.ant-ling.com/zh-CN/docs/models/price/"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-09-30",
+   "note": "launch day"
+  },
+  "ends": {
+   "announced": null,
+   "expected": "2026-10-14",
+   "confidence": "inferred",
+   "note": "\"free for 2 weeks\" from the 2026-09-30 launch"
+  },
+  "data_policy": "unstated",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-09",
+   "method": "listing"
+  }
  }
 ]

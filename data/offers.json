@@ -1777,5 +1777,48 @@
    "date": "2026-10-08",
    "method": "listing"
   }
+ },
+ {
+  "id": "ant-ling-daily-500k",
+  "name": "Ant Ling daily free tokens",
+  "provider": "Ant Group (蚂蚁百灵)",
+  "channel": "Ant Ling",
+  "type": "daily_allowance",
+  "gets": {
+   "amount": 500000,
+   "unit": "tokens",
+   "per": "day",
+   "text": "500,000 tokens a day (input + output), issued before 02:00, no rollover"
+  },
+  "requires": [
+   "account",
+   "phone_cn"
+  ],
+  "paid_plan": null,
+  "region": "CN",
+  "models": {
+   "kind": "catalogue",
+   "ids": [
+    "Ling",
+    "Ring",
+    "Ming"
+   ],
+   "tracked": [],
+   "count": null,
+   "note": "every Ant Ling model on the official API"
+  },
+  "status": "live",
+  "started": null,
+  "ends": null,
+  "checked": {
+   "date": "2026-10-09",
+   "method": "listing"
+  },
+  "source": {
+   "label": "Ant Ling FAQ",
+   "url": "https://developer.ant-ling.com/zh-CN/docs/faq/"
+  },
+  "quote": "额度：每日 50 万 tokens（含输入和输出）；发放时间：每日 02:00 前自动发放；当日未使用额度不结转至次日",
+  "note": "When the quota runs out, calls pause until the next day unless an Alipay account is bound for pay-as-you-go."
  }
 ]
