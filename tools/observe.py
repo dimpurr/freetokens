@@ -171,6 +171,55 @@ def links():
     return {"checked": len(urls), "broken": broken, "blocked_for_bots": blocked}
 
 
+# ---------- search engines ----------
+
+def gsc(days=7, site="sc-domain:freetokens.fyi"):
+    """Google Search Console via the local gcloud user credentials (scope webmasters.readonly).
+    Quota project: FT_GSC_QUOTA_PROJECT (default mellow-app-25eaf, where the Search Console API is enabled)."""
+    import subprocess, urllib.parse
+    tok = subprocess.run(["gcloud", "auth", "application-default", "print-access-token"], capture_output=True, text=True, timeout=60).stdout.strip()
+    if not tok:
+        return {"error": "no gcloud token (run gcloud auth application-default login with webmasters.readonly)"}
+    end = dt.date.today() - dt.timedelta(days=2)  # Search Console data lags about two days
+    start = end - dt.timedelta(days=days - 1)
+    url = f"https://searchconsole.googleapis.com/webmasters/v3/sites/{urllib.parse.quote(site, safe='')}/searchAnalytics/query"
+    hdr = {"Authorization": "Bearer " + tok, "Content-Type": "application/json",
+           "x-goog-user-project": os.environ.get("FT_GSC_QUOTA_PROJECT", "mellow-app-25eaf")}
+    def q(dims, n=10):
+        body = json.dumps({"startDate": start.isoformat(), "endDate": end.isoformat(), "dimensions": dims, "rowLimit": n}).encode()
+        with urllib.request.urlopen(urllib.request.Request(url, data=body, headers=hdr), timeout=60) as r:
+            return json.load(r).get("rows", [])
+    try:
+        tot = q([], 1)
+        return {"start": start.isoformat(), "end": end.isoformat(),
+                "clicks": tot[0]["clicks"] if tot else 0, "impressions": tot[0]["impressions"] if tot else 0,
+                "position": round(tot[0]["position"], 1) if tot else None,
+                "queries": [(r["keys"][0], r["clicks"], r["impressions"]) for r in q(["query"])],
+                "pages": [(r["keys"][0].replace("https://freetokens.fyi", "") or "/", r["clicks"], r["impressions"]) for r in q(["page"])]}
+    except Exception as e:
+        return {"error": str(e)[:120]}
+
+
+def bing(site="https://freetokens.fyi/"):
+    """Bing Webmaster Tools API (BING_WEBMASTER_API_KEY from the environment or chco .env)."""
+    key = os.environ.get("BING_WEBMASTER_API_KEY")
+    if not key:
+        envf = Path.home() / "WorkflowUser/Code/Project/dimresearchcode/.env"
+        if envf.exists():
+            key = next((l.split("=", 1)[1].strip().strip('"') for l in envf.read_text().splitlines() if l.startswith("BING_WEBMASTER_API_KEY=")), None)
+    if not key:
+        return {"error": "no BING_WEBMASTER_API_KEY"}
+    def call(m):
+        with urllib.request.urlopen(f"https://ssl.bing.com/webmaster/api.svc/json/{m}?siteUrl={site}&apikey={key}", timeout=60) as r:
+            return json.load(r).get("d") or []
+    try:
+        traffic, queries = call("GetRankAndTrafficStats")[-7:], call("GetQueryStats")
+        return {"clicks": sum(x.get("Clicks", 0) for x in traffic), "impressions": sum(x.get("Impressions", 0) for x in traffic),
+                "queries": sorted(((q.get("Query"), q.get("Clicks", 0), q.get("Impressions", 0)) for q in queries), key=lambda x: -x[2])[:6], "days": len(traffic)}
+    except Exception as e:
+        return {"error": str(e)[:120]}
+
+
 # ---------- report ----------
 
 def report(kind, log_files, watch_path):
@@ -199,6 +248,19 @@ def report(kind, log_files, watch_path):
                          f" · feed {tot('feed')} · llms.txt {tot('llms_txt')}")
             lines.append("Pages AI assistants read for someone: " + (", ".join(f"{p} {n}" for p, n in aiu.most_common(8)) or "none"))
             lines.append("Visitors who came from an AI answer: " + (", ".join(f"{p} {n}" for p, n in ail.most_common(6)) or "none"))
+        g = gsc()
+        if g.get("error"):
+            lines.append("Google Search: unavailable (" + g["error"] + ")")
+        else:
+            lines.append(f"Google Search {g['start'][5:]}–{g['end'][5:]}: {g['clicks']} clicks · {g['impressions']} impressions · avg position {g['position'] or '—'}"
+                         + (" · queries: " + ", ".join(f"{k} {c}/{i}" for k, c, i in g["queries"][:6]) if g["queries"] else " · queries hidden (too few)")
+                         + (" · pages: " + ", ".join(f"{k} {i}" for k, c, i in g["pages"][:5]) if g["pages"] else ""))
+        b = bing()
+        if b.get("error"):
+            lines.append("Bing: unavailable (" + b["error"] + ")")
+        else:
+            lines.append("Bing: no data yet" if not b["days"] and not b["queries"] else
+                         f"Bing ({b['days']} days): {b['clicks']} clicks · {b['impressions']} impressions" + (" · queries: " + ", ".join(f"{k} {c}/{i}" for k, c, i in b["queries"]) if b["queries"] else ""))
         lk = links()
         lines.append(f"Links: {len(lk['broken'])} broken of {lk['checked']}" + (": " + "; ".join(f"{u} ({c})" for u, c in lk["broken"][:8]) if lk["broken"] else ""))
         lines.append(f"Data: {len(st)} live lane(s) not re-checked for >{STALE_DAYS} days" + (": " + ", ".join(f"{x['lane']} ({x['days']} d)" for x in st[:12]) if st else ""))
