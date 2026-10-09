@@ -1820,5 +1820,59 @@
   },
   "quote": "额度：每日 50 万 tokens（含输入和输出）；发放时间：每日 02:00 前自动发放；当日未使用额度不结转至次日",
   "note": "Unclear if cached input counts; free-period calls aren't in usage records. Verified accounts also get ¥20 credit. Pauses at cap w/o Alipay."
+ },
+ {
+  "id": "huawei-codearts-daily-10m",
+  "name": "Huawei Cloud CodeArts daily free tokens",
+  "provider": "Huawei Cloud (华为云码道)",
+  "channel": null,
+  "type": "daily_allowance",
+  "gets": {
+   "amount": 10000000,
+   "unit": "tokens",
+   "per": "day",
+   "text": "10M tokens a day on the promo models; resets at 24:00 UTC+8, first come first served"
+  },
+  "requires": [
+   "account"
+  ],
+  "paid_plan": null,
+  "region": "CN",
+  "access": {
+   "form": "own_app",
+   "rules": []
+  },
+  "models": {
+   "kind": "list",
+   "ids": [
+    "deepseek-v4.1-flash",
+    "glm-5.3-flash",
+    "deepseek-v4-flash-0731",
+    "deepseek-v4-pro-0813"
+   ],
+   "tracked": [
+    "deepseek-v4.1-flash",
+    "glm-5.3-flash",
+    "deepseek-v4-flash"
+   ],
+   "count": 4,
+   "note": "Promo models rotate; the app's model picker is authoritative"
+  },
+  "status": "live",
+  "started": {
+   "date": "2026-08-19",
+   "note": "IDE and plugins; desktop and web from 2026-09-15"
+  },
+  "ends": null,
+  "checked": {
+   "date": "2026-10-09",
+   "method": "listing"
+  },
+  "source": {
+   "label": "Huawei Cloud docs: 限时领取Tokens",
+   "url": "https://support.huaweicloud.com/offers-codeartsagent/codeartsagent_offers_0001.html"
+  },
+  "quote": "每位用户每日可领取1000万Tokens。福利Token将于当日24:00清零，不累积至次日。……结束时间：另行通知",
+  "note": "Only inside CodeArts IDE, VS Code/JetBrains plugins, desktop, web or mini-program; no API key. End date not announced."
  }
 ]
