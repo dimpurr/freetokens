@@ -1819,6 +1819,6 @@
    "url": "https://developer.ant-ling.com/zh-CN/docs/faq/"
   },
   "quote": "额度：每日 50 万 tokens（含输入和输出）；发放时间：每日 02:00 前自动发放；当日未使用额度不结转至次日",
-  "note": "Cache counting unknown: free-period calls aren't metered (recheck ~10-14). Verified accounts get ¥20 gift credit. Pauses at cap w/o Alipay."
+  "note": "Unclear if cached input counts; free-period calls aren't in usage records. Verified accounts also get ¥20 credit. Pauses at cap w/o Alipay."
  }
 ]
