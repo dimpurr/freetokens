@@ -40,6 +40,7 @@
   <section aria-labelledby="h-channels">
     <h2 id="h-channels">Channels <small>where the free lanes come from</small></h2>
     <div class="chlist" id="channels"></div>
+    <div class="more-row" id="channels-more"></div>
   </section>
 
   <section aria-labelledby="h-offers" id="offers-sec">
@@ -252,15 +253,18 @@ onView(() => {
   });
 })();
 
-/* channels: one summary line, then every model as a chip; channels with nothing usable in the view sink and fade */
-onView(() => {
+/* channels: one summary line, then every model as a chip; channels with nothing usable in the view sink and fade.
+   Only the first CH_CAP show until the reader asks for all. */
+const CH_CAP = 6; let chAll = false;
+const renderChannels = () => {
   const order = { live: 0, overdue: 1, listed: 2, unavailable: 3, ended: 4 };
   const rows = channels.map((c) => {
     const ls = lanesOn(c);
     const next = ls.filter((l) => usable(l) && effEnd(l) && pd(effEnd(l)).t >= todayT).sort((a, b) => pd(effEnd(a)).t - pd(effEnd(b)).t)[0];
     return { c, ls, free: ls.filter(isFree).length, ok: ls.filter(usable).length, next };
   }).sort((a, b) => (b.ok > 0) - (a.ok > 0) || b.free - a.free || a.c.localeCompare(b.c));
-  $("channels").innerHTML = rows.map(({ c, ls, free, ok, next }) => `<article class="ch${VIEW !== "all" && !ok ? " off" : ""}">
+  const shown = chAll ? rows : rows.slice(0, CH_CAP);
+  $("channels").innerHTML = shown.map(({ c, ls, free, ok, next }) => `<article class="ch${VIEW !== "all" && !ok ? " off" : ""}">
     <div class="ch-h">
       <span class="name">${clink(c)}</span>${chLinks(c, true)}<span class="tag">${esc(lab("channel_type", ls[0].type))}</span>${costHTML(c)}${accessHTML(CH[c] && CH[c].access)}
       <span class="ch-free"><span class="bar" role="img" aria-label="${free} of ${ls.length} lanes free"><i style="width:${(100 * free / ls.length).toFixed(1)}%"></i></span><b>${free}</b><span class="muted">of ${ls.length} free</span></span>
@@ -271,7 +275,11 @@ onView(() => {
       return s.slice(0, CAP).map((l) => VIEW !== "all" && ok && !usable(l) ? modelChip(l).replace('class="chip"', `class="chip faded" title="${esc(whyNot(l, VIEW))}"`) : modelChip(l)).join("") +
         (s.length > CAP ? `<a class="chip more" href="${channelHref(c)}">+${s.length - CAP} more →</a>` : ""); })()}</div>
   </article>`).join("");
-});
+  $("channels-more").innerHTML = rows.length > CH_CAP
+    ? `<button type="button" class="seeall linkbtn" id="ch-toggle">${chAll ? "Show fewer channels" : `All ${rows.length} channels →`}</button>` : "";
+  const b = $("ch-toggle"); if (b) b.onclick = () => { chAll = !chAll; renderChannels(); };
+};
+onView(renderChannels);
 
 mountLanes(8);
 /* free programs: the five easiest to get in this view (ADR-025) */
@@ -286,7 +294,7 @@ onView(() => {
 mountChart(30);
 
 $("tl").innerHTML = timelineHTML([...D.events].sort((a, b) => pd(b.date).t - pd(a.date).t).slice(0, 6));
-document.querySelectorAll(".seeall").forEach((a) => { const h = a.getAttribute("href"); if (!/^(https?:|#)/.test(h) && !h.includes(D.ext || "\u0000")) a.setAttribute("href", h.replace(/^([^#?]*)/, "$1" + D.ext)); });
+document.querySelectorAll("a.seeall").forEach((a) => { const h = a.getAttribute("href"); if (!/^(https?:|#)/.test(h) && !h.includes(D.ext || "\u0000")) a.setAttribute("href", h.replace(/^([^#?]*)/, "$1" + D.ext)); });
 document.querySelectorAll('.topbar nav a[href$="lanes"], .topbar nav a[href$="timeline"], .topbar nav a[href$="offers"]').forEach((a) => a.setAttribute("href", a.getAttribute("href") + D.ext));
 /* old one-page anchors now live on their own pages */
 { const go = { "#h-lanes": "lanes", "#h-chart-all": "lanes#h-chart", "#h-legend": "lanes#h-legend", "#h-tl": "timeline" }[location.hash];
