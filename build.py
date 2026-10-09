@@ -643,8 +643,20 @@ def crumbs(items):
             "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": n, "item": u} for i, (n, u) in enumerate(items)]}
 
 
+POSTHOG_KEY = "phc_tqfXBiHBRqpyfgAGUtaeMZjhugGAZAPddJueVuSoqSq3"  # public project key of the PostHog EU project "freetokens" (ADR-024); empty = no analytics
+POSTHOG_SNIPPET = """<script>
+/* cookieless analytics (OBSERVE.md): memory persistence, no session recording, no autocapture, Do Not Track respected; skipped for automation (prerender, crawlers) */
+if (!navigator.webdriver && navigator.doNotTrack !== "1") {
+!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset identify alias set_config".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+posthog.init("__KEY__", {api_host: "https://eu.i.posthog.com", persistence: "memory", autocapture: false, capture_pageview: true, capture_pageleave: true,
+  disable_session_recording: true, respect_dnt: true, person_profiles: "identified_only", ip: false});
+}
+</script>
+"""
+
+
 def head_html(title, desc, url, today, extra_ld, og_image):
-    return (f'<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
+    return ((POSTHOG_SNIPPET.replace("__KEY__", POSTHOG_KEY) if POSTHOG_KEY and url.startswith(SITE) else "") + f'<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
             f'<title>{html.escape(title)}</title>\n<meta name="description" content="{html.escape(desc)}">\n'
             f'<link rel="canonical" href="{url}">\n<meta name="robots" content="index, follow, max-image-preview:large">\n'
             f'<meta name="theme-color" content="#0a7f8a">\n<link rel="icon" href="/favicon.svg" type="image/svg+xml">\n'

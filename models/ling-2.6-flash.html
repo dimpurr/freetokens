@@ -1,6 +1,14 @@
 <!doctype html>
 <html lang="en">
 <head>
+<script>
+/* cookieless analytics (OBSERVE.md): memory persistence, no session recording, no autocapture, Do Not Track respected; skipped for automation (prerender, crawlers) */
+if (!navigator.webdriver && navigator.doNotTrack !== "1") {
+!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset identify alias set_config".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+posthog.init("phc_tqfXBiHBRqpyfgAGUtaeMZjhugGAZAPddJueVuSoqSq3", {api_host: "https://eu.i.posthog.com", persistence: "memory", autocapture: false, capture_pageview: true, capture_pageleave: true,
+  disable_session_recording: true, respect_dnt: true, person_profiles: "identified_only", ip: false});
+}
+</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Ling-2.6-flash free: 0 of 1 channels, end dates and limits | freetokens</title>
@@ -1084,6 +1092,23 @@ function modelRow(m, i, off, TOP = 10) {
       <td class="nowrap m-hide" data-label="Events">${n ? `<a href="${modelHref(m.id)}#events">${n} event${n === 1 ? "" : "s"}</a>` : `<span class="muted">none</span>`}</td>
     </tr>`;
   }
+
+/* in-page events for cookieless analytics (OBSERVE.md §1): no-ops unless the PostHog snippet loaded */
+const track = (event, props) => { try { if (window.posthog && window.posthog.capture) window.posthog.capture(event, props); } catch (e) {} };
+document.addEventListener("click", (ev) => {
+  const el = ev.target.closest("a, button, summary"); if (!el) return;
+  const where = { page: location.pathname, section: (el.closest("section[aria-labelledby], header") || {}).id || (el.closest("section") && el.closest("section").getAttribute("aria-labelledby")) || "" };
+  if (el.tagName === "A" && /^https?:/.test(el.href) && !el.href.startsWith(location.origin)) {
+    const u = new URL(el.href);
+    track("outbound_click", { ...where, url: el.href, host: u.hostname, text: (el.textContent || "").trim().slice(0, 60) });
+  } else if (el.dataset.copy) track("copy_model_id", { ...where, model_id: el.dataset.copy });
+  else if (el.dataset.view) track("view_switch", { ...where, view: el.dataset.view });
+  else if (el.dataset.f) track("filter", { ...where, filter: el.dataset.f, value: el.dataset.v || "" });
+  else if (el.dataset.k) track("filter", { ...where, filter: el.dataset.k, value: el.dataset.v || "" });
+  else if (el.dataset.lad) track("ladder_mode", { ...where, mode: el.dataset.lad });
+  else if (el.classList.contains("seeall")) track("see_all", { ...where, to: el.getAttribute("href") });
+  else if (el.tagName === "SUMMARY" && el.closest("details.estd")) track("est_open", where);
+}, true);
 
 
 const M = models[D.model];

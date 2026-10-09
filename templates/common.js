@@ -527,3 +527,20 @@ function modelRow(m, i, off, TOP = 10) {
       <td class="nowrap m-hide" data-label="Events">${n ? `<a href="${modelHref(m.id)}#events">${n} event${n === 1 ? "" : "s"}</a>` : `<span class="muted">none</span>`}</td>
     </tr>`;
   }
+
+/* in-page events for cookieless analytics (OBSERVE.md §1): no-ops unless the PostHog snippet loaded */
+const track = (event, props) => { try { if (window.posthog && window.posthog.capture) window.posthog.capture(event, props); } catch (e) {} };
+document.addEventListener("click", (ev) => {
+  const el = ev.target.closest("a, button, summary"); if (!el) return;
+  const where = { page: location.pathname, section: (el.closest("section[aria-labelledby], header") || {}).id || (el.closest("section") && el.closest("section").getAttribute("aria-labelledby")) || "" };
+  if (el.tagName === "A" && /^https?:/.test(el.href) && !el.href.startsWith(location.origin)) {
+    const u = new URL(el.href);
+    track("outbound_click", { ...where, url: el.href, host: u.hostname, text: (el.textContent || "").trim().slice(0, 60) });
+  } else if (el.dataset.copy) track("copy_model_id", { ...where, model_id: el.dataset.copy });
+  else if (el.dataset.view) track("view_switch", { ...where, view: el.dataset.view });
+  else if (el.dataset.f) track("filter", { ...where, filter: el.dataset.f, value: el.dataset.v || "" });
+  else if (el.dataset.k) track("filter", { ...where, filter: el.dataset.k, value: el.dataset.v || "" });
+  else if (el.dataset.lad) track("ladder_mode", { ...where, mode: el.dataset.lad });
+  else if (el.classList.contains("seeall")) track("see_all", { ...where, to: el.getAttribute("href") });
+  else if (el.tagName === "SUMMARY" && el.closest("details.estd")) track("est_open", where);
+}, true);
