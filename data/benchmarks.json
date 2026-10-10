@@ -524,6 +524,16 @@
           "score": 30.0
         }
       ]
+    },
+    {
+      "model": "glyph-cluster",
+      "benchmark": "gpqa-subset",
+      "score": 56.4,
+      "variant": "55-question subset, 31 of 55",
+      "source_type": "community",
+      "url": "https://stealthmodels.com/glyph-cluster/",
+      "seen": "2026-10-10",
+      "excluded": "partial question set; comparisons use different lengths"
     }
   ]
 }

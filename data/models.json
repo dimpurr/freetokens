@@ -871,10 +871,37 @@
   "image_input": "yes",
   "aa_index": {
    "value": null,
-   "date": "2026-10-07",
+   "date": "2026-10-10",
    "note": "not checked"
   },
   "notes": "Zen describes it as a free-tier preview reasoning model with text and image input and tool use"
+ },
+ {
+  "id": "glyph-cluster",
+  "name": "Glyph Cluster",
+  "maker": "undisclosed",
+  "context": "256K",
+  "image_input": "no",
+  "aa_index": {
+   "value": null,
+   "date": "2026-10-10",
+   "note": "not checked"
+  },
+  "notes": null
+ },
+ {
+  "id": "step-5-preview",
+  "name": "Step 5 Preview",
+  "maker": "stepfun",
+  "context": "1M",
+  "image_input": "yes",
+  "aa_index": {
+   "value": 44,
+   "date": "2026-10-10",
+   "url": "https://artificialanalysis.ai/models/step-5",
+   "approx": true
+  },
+  "notes": null
  },
  {
   "id": "qwen3.8-27b",

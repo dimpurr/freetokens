@@ -1768,5 +1768,41 @@
    "label": "Ant Ling pricing",
    "url": "https://developer.ant-ling.com/zh-CN/docs/models/price/"
   }
+ },
+ {
+  "date": "2026-10-07",
+  "lanes": [
+   "glyph-cluster-vercel"
+  ],
+  "kind": "announced",
+  "text": "Early access on AI Gateway for Pro or Enterprise teams with purchased credits; token price $0 during the stealth period: Glyph Cluster",
+  "source": {
+   "label": "Vercel changelog",
+   "url": "https://vercel.com/changelog/glyph-cluster-is-now-available-in-stealth-for-free-on-ai-gateway"
+  }
+ },
+ {
+  "date": "2026-10-09",
+  "lanes": [
+   "step-5-preview-zen"
+  ],
+  "kind": "listed",
+  "text": "First seen in the OpenCode Zen free catalogue; the listing may predate this check: Step 5 Preview",
+  "source": {
+   "label": "OpenCode Zen model list",
+   "url": "https://opencode.ai/zen/v1/models"
+  }
+ },
+ {
+  "date": "2026-10-09",
+  "lanes": [
+   "step-5-preview-go"
+  ],
+  "kind": "listed",
+  "text": "First seen in the OpenCode Go free catalogue; the listing may predate this check: Step 5 Preview",
+  "source": {
+   "label": "OpenCode Go model list",
+   "url": "https://opencode.ai/zen/go/v1/models"
+  }
  }
 ]
