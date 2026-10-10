@@ -1049,7 +1049,7 @@ def main():
     preview = build_pages(lanes, events, models, today, "preview")
     outputs = {readme_path: readme}
     outputs.update({ROOT / p: full_doc(h, b) for p, (h, b) in preview.items()})
-    stray = [p for d in ("models", "channels") if (ROOT / d).exists() for p in (ROOT / d).glob("*.html") if p not in outputs]
+    stray = [p for d in ("models", "channels", "offers", "makers") if (ROOT / d).exists() for p in (ROOT / d).glob("*.html") if p not in outputs]
 
     if a.check:
         stale = [str(p.relative_to(ROOT)) for p, c in outputs.items() if not p.exists() or p.read_text() != c]
