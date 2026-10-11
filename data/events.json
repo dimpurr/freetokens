@@ -1,1820 +1,1847 @@
 [
- {
-  "date": "2026-10-05T19:06Z",
-  "lanes": [
-   "bunny-go"
-  ],
-  "kind": "available",
-  "text": "Still answering (HTTP 200) after the Command Code channel ended",
-  "source": {
-   "label": "own check",
-   "url": null
-  }
- },
- {
-  "date": "2026-10-05T19:02Z",
-  "lanes": [
-   "bunny-cc"
-  ],
-  "kind": "ended",
-  "text": "Calls return 404 \"No endpoints found for stealth/space-bunny-alpha\" (not retryable); re-checked 2/2 at 19:06. The model catalogue still lists it, so the catalogue is not a liveness signal.",
-  "source": {
-   "label": "own check",
-   "url": null
-  }
- },
- {
-  "date": "2026-10-04T02:45Z",
-  "lanes": [
-   "ling-cc"
-  ],
-  "kind": "limit_changed",
-  "text": "Free limit raised to 300 requests/day",
-  "source": {
-   "label": "Command Code",
-   "url": "https://x.com/CommandCodeAI/status/2106576422655680856"
-  }
- },
- {
-  "date": "2026-10-04",
-  "lanes": [
-   "dsflash-zen"
-  ],
-  "kind": "unavailable",
-  "text": "Shown as unavailable in the Zen catalogue",
-  "source": {
-   "label": "own check",
-   "url": null
-  }
- },
- {
-  "date": "2026-10-01T02:57Z",
-  "lanes": [
-   "bunny-cc"
-  ],
-  "kind": "end_announced",
-  "end_date": "2026-10-05",
-  "text": "\"Continues to be free … till Oct 5 on all plans\"",
-  "source": {
-   "label": "Command Code",
-   "url": "https://x.com/CommandCodeAI/status/2105492145033330916"
-  }
- },
- {
-  "date": "2026-09-30T01:10Z",
-  "lanes": [
-   "ling-cc"
-  ],
-  "kind": "announced",
-  "text": "Made free in Command Code (\"while it lasts\")",
-  "source": {
-   "label": "Command Code on X",
-   "url": "https://x.com/CommandCodeAI/status/2105102930999492729",
-   "note": "link not recorded"
-  }
- },
- {
-  "date": "2026-09-26T13:38Z",
-  "lanes": [
-   "longcat-go"
-  ],
-  "kind": "announced",
-  "text": "Free on OpenCode \"for two weeks\"",
-  "source": {
-   "label": "OpenCode and Meituan on X",
-   "url": "https://x.com/opencode/status/2103841640171614322",
-   "note": "link not recorded"
-  }
- },
- {
-  "date": "2026-09-23T14:49Z",
-  "lanes": [
-   "bunny-or"
-  ],
-  "kind": "listed",
-  "text": "Launched as a free stealth model (1M context; text, image and video input)",
-  "source": {
-   "label": "OpenRouter",
-   "url": "https://x.com/OpenRouter/status/2102772427105407270"
-  }
- },
- {
-  "date": "2026-09-23T14:31Z",
-  "lanes": [
-   "bunny-go"
-  ],
-  "kind": "announced",
-  "end_date": "2026-09-30",
-  "text": "Free \"for the next week\"",
-  "source": {
-   "label": "OpenCode",
-   "url": "https://x.com/opencode/status/2102767716666941864"
-  }
- },
- {
-  "date": "2026-09-21T21:19Z",
-  "lanes": [
-   "mimo-zen"
-  ],
-  "kind": "announced",
-  "end_date": "2026-09-28",
-  "text": "Free \"for the next week\"",
-  "source": {
-   "label": "OpenCode on X",
-   "url": "https://x.com/opencode/status/2102145730999730611",
-   "note": "link not recorded"
-  }
- },
- {
-  "date": "2026-08-16",
-  "lanes": [
-   "dsflash-zen"
-  ],
-  "kind": "available",
-  "text": "Free tier back in the catalogue (HTTP 200)",
-  "source": {
-   "label": "own check",
-   "url": null
-  }
- },
- {
-  "date": "2026-06",
-  "lanes": [
-   "nemotron-or"
-  ],
-  "kind": "listed",
-  "text": "Listed as free on OpenRouter",
-  "source": {
-   "label": "OpenRouter",
-   "url": null,
-   "note": "link not recorded"
-  }
- },
- {
-  "date": "2026-10-05T16:02Z",
-  "lanes": [
-   "bunny-or"
-  ],
-  "kind": "ended",
-  "text": "\"Space Bunny Alpha's stealth period has ended\"; the model behind it to be revealed",
-  "source": {
-   "label": "OpenRouter",
-   "url": "https://x.com/OpenRouter/status/2107139469174542636"
-  }
- },
- {
-  "date": "2026-09-30T20:06Z",
-  "lanes": [
-   "bunny-or"
-  ],
-  "kind": "end_announced",
-  "end_date": "2026-10-05",
-  "text": "\"The stealth period is now extended through October 5\"",
-  "source": {
-   "label": "OpenRouter",
-   "url": "https://x.com/OpenRouter/status/2105388935014990311"
-  }
- },
- {
-  "date": "2026-10-05",
-  "lanes": [
-   "bunny-kilo"
-  ],
-  "kind": "end_announced",
-  "end_date": "2026-10-05",
-  "text": "Kilo's model name reads \"Space Bunny Alpha (retires Oct 5)\" (date we saw it, not when it was posted)",
-  "source": {
-   "label": "Kilo Code model page",
-   "url": "https://kilo.ai/models/stealth-space-bunny-alpha"
-  }
- },
- {
-  "date": "2026-10-02T06:52Z",
-  "kind": "announced",
-  "text": "\"We just added 3 more 100% free models … Ling 3.1 Flash, Space Bunny Alpha, Laguna S 2.1\"",
-  "source": {
-   "label": "Freebuff founder on X",
-   "url": "https://x.com/jahooma/status/2105913758124286311"
+  {
+    "date": "2026-10-11",
+    "lanes": [
+      "dots-3-note-preview-cline",
+      "north-mini-code-cline",
+      "ling-3.0-flash-sante-cline",
+      "nemotron-3-nano-omni-30b-a3b-cline",
+      "nemotron-3-super-120b-a12b-cline",
+      "nemotron-3-ultra-cline",
+      "nemotron-3.5-lightning-cline",
+      "laguna-s-2.1-cline",
+      "laguna-xs-2.1-cline",
+      "lfm-2.5-2.6b-cline",
+      "apodex-1.1-mini-cline",
+      "gemma-4-26b-a4b-it-cline",
+      "gemma-4-31b-it-cline",
+      "inkling-small-cline",
+      "inkling-cline",
+      "kimi-k3-cline"
+    ],
+    "kind": "ended",
+    "text": "Cline free promotion ended: API returns \"Free model promotion ended\"; models removed from Cline recommended models catalogue",
+    "source": {
+      "label": "Cline API and CLI check",
+      "url": "https://docs.cline.bot/getting-started/free-models"
+    }
   },
-  "offers": [
-   "freebuff"
-  ]
- },
- {
-  "date": "2026-09-07",
-  "lanes": [
-   "dots-3-note-preview-kilo"
-  ],
-  "kind": "listed",
-  "text": "Added to Kilo's model catalogue as \"Dots Studio: Dots3-Note Preview (free)\" at $0 per token (Kilo's own record date)",
-  "source": {
-   "label": "Kilo model page",
-   "url": "https://kilo.ai/models/dots-studio-dots-3-note-preview-free"
-  }
- },
- {
-  "date": "2026-04-21",
-  "lanes": [
-   "gemma-4-26b-a4b-it-kilo"
-  ],
-  "kind": "listed",
-  "text": "Added to Kilo's model catalogue as \"Google: Gemma 4 26B A4B  (free)\" at $0 per token (Kilo's own record date)",
-  "source": {
-   "label": "Kilo model page",
-   "url": "https://kilo.ai/models/google-gemma-4-26b-a4b-it-free"
-  }
- },
- {
-  "date": "2026-07-24",
-  "lanes": [
-   "ling-3.0-flash-kilo"
-  ],
-  "kind": "listed",
-  "text": "Added to Kilo's model catalogue as \"Ling-3.0-flash (free)\" at $0 per token (Kilo's own record date)",
-  "source": {
-   "label": "Kilo model page",
-   "url": "https://kilo.ai/models/inclusionai-ling-3-0-flash-free"
-  }
- },
- {
-  "date": "2026-09-07",
-  "lanes": [
-   "minimax-m2.7-kilo"
-  ],
-  "kind": "listed",
-  "text": "Added to Kilo's model catalogue as \"MiniMax: MiniMax M2.7 (free)\" at $0 per token (Kilo's own record date)",
-  "source": {
-   "label": "Kilo model page",
-   "url": "https://kilo.ai/models/minimax-minimax-m2-7-free"
-  }
- },
- {
-  "date": "2026-08-31",
-  "lanes": [
-   "minimax-m3-kilo"
-  ],
-  "kind": "listed",
-  "text": "Added to Kilo's model catalogue as \"MiniMax: MiniMax M3 (free)\" at $0 per token (Kilo's own record date)",
-  "source": {
-   "label": "Kilo model page",
-   "url": "https://kilo.ai/models/minimax-minimax-m3-free"
-  }
- },
- {
-  "date": "2026-03-12",
-  "lanes": [
-   "nemotron-3-super-120b-a12b-kilo"
-  ],
-  "kind": "listed",
-  "text": "Added to Kilo's model catalogue as \"NVIDIA: Nemotron 3 Super (free)\" at $0 per token (Kilo's own record date)",
-  "source": {
-   "label": "Kilo model page",
-   "url": "https://kilo.ai/models/nvidia-nemotron-3-super-120b-a12b-free"
-  }
- },
- {
-  "date": "2026-06-04",
-  "lanes": [
-   "nemotron-3-ultra-kilo"
-  ],
-  "kind": "listed",
-  "text": "Added to Kilo's model catalogue as \"NVIDIA: Nemotron 3 Ultra (free)\" at $0 per token (Kilo's own record date)",
-  "source": {
-   "label": "Kilo model page",
-   "url": "https://kilo.ai/models/nvidia-nemotron-3-ultra-550b-a55b-free"
-  }
- },
- {
-  "date": "2026-06-11",
-  "lanes": [
-   "nex-n2-pro-kilo"
-  ],
-  "kind": "listed",
-  "text": "Added to Kilo's model catalogue as \"Nex AGI: Nex-N2-Pro (free)\" at $0 per token (Kilo's own record date)",
-  "source": {
-   "label": "Kilo model page",
-   "url": "https://kilo.ai/models/nex-agi-nex-n2-pro-free"
-  }
- },
- {
-  "date": "2026-09-09",
-  "lanes": [
-   "nex-n2.5-pro-kilo"
-  ],
-  "kind": "listed",
-  "text": "Added to Kilo's model catalogue as \"Nex AGI: Nex-N2.5-Pro (free)\" at $0 per token (Kilo's own record date)",
-  "source": {
-   "label": "Kilo model page",
-   "url": "https://kilo.ai/models/nex-agi-nex-n2-5-pro-free"
-  }
- },
- {
-  "date": "2026-07-21",
-  "lanes": [
-   "laguna-s-2.1-kilo"
-  ],
-  "kind": "listed",
-  "text": "Added to Kilo's model catalogue as \"Poolside: Laguna S 2.1 (free)\" at $0 per token (Kilo's own record date)",
-  "source": {
-   "label": "Kilo model page",
-   "url": "https://kilo.ai/models/poolside-laguna-s-2-1-free"
-  }
- },
- {
-  "date": "2026-07-06",
-  "lanes": [
-   "hy3-kilo"
-  ],
-  "kind": "listed",
-  "text": "Added to Kilo's model catalogue as \"Tencent: Hy3 (free)\" at $0 per token (Kilo's own record date)",
-  "source": {
-   "label": "Kilo model page",
-   "url": "https://kilo.ai/models/tencent-hy3-free"
-  }
- },
- {
-  "date": "2026-04-23",
-  "lanes": [
-   "hy3-preview-kilo"
-  ],
-  "kind": "listed",
-  "text": "Added to Kilo's model catalogue as \"Tencent: Hy3 preview (free)\" at $0 per token (Kilo's own record date)",
-  "source": {
-   "label": "Kilo model page",
-   "url": "https://kilo.ai/models/tencent-hy3-preview-free"
-  }
- },
- {
-  "date": "2026-09-11",
-  "lanes": [
-   "ling-3.0-flash-vl-kilo"
-  ],
-  "kind": "listed",
-  "text": "Added to Kilo's model catalogue as \"inclusionAI: Ling 3.0 Flash VL (free)\" at $0 per token (Kilo's own record date)",
-  "source": {
-   "label": "Kilo model page",
-   "url": "https://kilo.ai/models/inclusionai-ling-3-0-flash-vl-free"
-  }
- },
- {
-  "date": "2026-10-02",
-  "lanes": [
-   "ling-3.1-flash-kilo"
-  ],
-  "kind": "listed",
-  "text": "Added to Kilo's model catalogue as \"inclusionAI: Ling 3.1 Flash (new)\" at $0 per token (Kilo's own record date)",
-  "source": {
-   "label": "Kilo model page",
-   "url": "https://kilo.ai/models/inclusionai-ling-3-1-flash"
-  }
- },
- {
-  "date": "2026-04-23",
-  "lanes": [
-   "ling-2.6-1t-kilo"
-  ],
-  "kind": "listed",
-  "text": "Added to Kilo's model catalogue as \"inclusionAI: Ling-2.6-1T (free)\" at $0 per token (Kilo's own record date)",
-  "source": {
-   "label": "Kilo model page",
-   "url": "https://kilo.ai/models/inclusionai-ling-2-6-1t-free"
-  }
- },
- {
-  "date": "2026-04-22",
-  "lanes": [
-   "ling-2.6-flash-kilo"
-  ],
-  "kind": "listed",
-  "text": "Added to Kilo's model catalogue as \"inclusionAI: Ling-2.6-flash (free)\" at $0 per token (Kilo's own record date)",
-  "source": {
-   "label": "Kilo model page",
-   "url": "https://kilo.ai/models/inclusionai-ling-2-6-flash-free"
-  }
- },
- {
-  "date": "2026-05-09",
-  "lanes": [
-   "ring-2.6-1t-kilo"
-  ],
-  "kind": "listed",
-  "text": "Added to Kilo's model catalogue as \"inclusionAI: Ring-2.6-1T (free)\" at $0 per token (Kilo's own record date)",
-  "source": {
-   "label": "Kilo model page",
-   "url": "https://kilo.ai/models/inclusionai-ring-2-6-1t-free"
-  }
- },
- {
-  "date": "2026-08-13",
-  "lanes": [
-   "dsv4flash-letta"
-  ],
-  "kind": "available",
-  "text": "Letta: \"DeepSeek V4 Flash are now available on Letta Cloud. Use your Letta API credits to run either model.\" Paid credits then, not free",
-  "source": {
-   "label": "Letta on LinkedIn",
-   "url": "https://www.linkedin.com/posts/letta-ai_grok-46-and-deepseek-v4-flash-are-now-available-activity-7493785231003398144-QbkR"
-  }
- },
- {
-  "date": "2026-10-06",
-  "lanes": [
-   "dsv41flash-letta",
-   "dsv4flash-letta"
-  ],
-  "kind": "listed",
-  "text": "Both carry a green \"Free\" badge in the Letta app's Hosted model list (other hosted models show \"Quota\" or \"Out of credits\"); V4.1 Flash ran an agent session on a free account. No official start or end date found",
-  "source": {
-   "label": "own check",
-   "url": null
-  }
- },
- {
-  "date": "2026-10-06",
-  "lanes": [
-   "dots-3-note-preview-kilo",
-   "laguna-s-2.1-kilo",
-   "ling-3.1-flash-kilo",
-   "nemotron-3-super-120b-a12b-kilo",
-   "nemotron-3-ultra-kilo",
-   "apodex-1.1-mini-kilo",
-   "north-mini-code-kilo",
-   "ling-3.0-flash-sante-kilo",
-   "lfm-2.5-2.6b-kilo",
-   "nemotron-3-nano-omni-30b-a3b-kilo",
-   "nemotron-3.5-lightning-kilo",
-   "laguna-xs-2.1-kilo",
-   "step-3.7-flash-kilo"
-  ],
-  "kind": "available",
-  "text": "Answered a test prompt through the Kilo CLI (7.8.3, roll-call) without signing in",
-  "source": {
-   "label": "own check",
-   "url": null
-  }
- },
- {
-  "date": "2026-10-06",
-  "lanes": [
-   "inkling-small-kilo"
-  ],
-  "kind": "limit_changed",
-  "text": "Listed free in the Kilo CLI; the first test call hit \"Daily limit reached … Credits don't affect this cap\"",
-  "source": {
-   "label": "own check",
-   "url": null
-  }
- },
- {
-  "date": "2026-10-06",
-  "lanes": [
-   "north-mini-code-cline",
-   "ling-3.0-flash-sante-cline",
-   "nemotron-3-nano-omni-30b-a3b-cline",
-   "nemotron-3-super-120b-a12b-cline",
-   "nemotron-3-ultra-cline",
-   "nemotron-3.5-lightning-cline",
-   "laguna-s-2.1-cline",
-   "laguna-xs-2.1-cline",
-   "lfm-2.5-2.6b-cline"
-  ],
-  "kind": "available",
-  "text": "Answered a test prompt in the Cline CLI (3.0.68, signed in, plan mode)",
-  "source": {
-   "label": "own check",
-   "url": null
-  }
- },
- {
-  "date": "2026-10-06",
-  "lanes": [
-   "apodex-1.1-mini-cline",
-   "dots-3-note-preview-cline",
-   "gemma-4-26b-a4b-it-cline",
-   "gemma-4-31b-it-cline",
-   "inkling-small-cline",
-   "inkling-cline"
-  ],
-  "kind": "listed",
-  "text": "In the Cline CLI's free-model list; the test call returned no text or an upstream error (429). Qwen 3.8 27B (404) and Step 3.7 Flash (not found) are listed but gone",
-  "source": {
-   "label": "Cline free models",
-   "url": "https://docs.cline.bot/getting-started/free-models"
-  }
- },
- {
-  "date": "2026-10-02",
-  "lanes": [
-   "ling-3.1-flash-or"
-  ],
-  "kind": "listed",
-  "text": "Listed on OpenRouter as inclusionai/ling-3.1-flash at $0 (OpenRouter's catalogue record date)",
-  "source": {
-   "label": "OpenRouter model page",
-   "url": "https://openrouter.ai/inclusionai/ling-3.1-flash"
-  }
- },
- {
-  "date": "2026-10-01",
-  "lanes": [
-   "apodex-1.1-mini-or"
-  ],
-  "kind": "listed",
-  "text": "Listed on OpenRouter as apodex/apodex-1.1-mini:free at $0 (OpenRouter's catalogue record date)",
-  "source": {
-   "label": "OpenRouter model page",
-   "url": "https://openrouter.ai/apodex/apodex-1.1-mini"
-  }
- },
- {
-  "date": "2026-09-04",
-  "lanes": [
-   "ling-3.0-flash-sante-or"
-  ],
-  "kind": "listed",
-  "text": "Listed on OpenRouter as inclusionai/ling-3.0-flash-sante:free at $0 (OpenRouter's catalogue record date)",
-  "source": {
-   "label": "OpenRouter model page",
-   "url": "https://openrouter.ai/inclusionai/ling-3.0-flash-sante"
-  }
- },
- {
-  "date": "2026-08-14",
-  "lanes": [
-   "dots-3-note-preview-or"
-  ],
-  "kind": "listed",
-  "text": "Listed on OpenRouter as dots-studio/dots-3-note-preview:free at $0 (OpenRouter's catalogue record date)",
-  "source": {
-   "label": "OpenRouter model page",
-   "url": "https://openrouter.ai/dots-studio/dots-3-note-preview"
-  }
- },
- {
-  "date": "2026-08-11",
-  "lanes": [
-   "lfm-2.5-2.6b-or"
-  ],
-  "kind": "listed",
-  "text": "Listed on OpenRouter as liquid/lfm-2.5-2.6b:free at $0 (OpenRouter's catalogue record date)",
-  "source": {
-   "label": "OpenRouter model page",
-   "url": "https://openrouter.ai/liquid/lfm-2.5-2.6b"
-  }
- },
- {
-  "date": "2026-08-11",
-  "lanes": [
-   "nemotron-3.5-lightning-or"
-  ],
-  "kind": "listed",
-  "text": "Listed on OpenRouter as nvidia/nemotron-3.5-lightning:free at $0 (OpenRouter's catalogue record date)",
-  "source": {
-   "label": "OpenRouter model page",
-   "url": "https://openrouter.ai/nvidia/nemotron-3.5-lightning"
-  }
- },
- {
-  "date": "2026-07-30",
-  "lanes": [
-   "inkling-small-or"
-  ],
-  "kind": "listed",
-  "text": "Listed on OpenRouter as thinkingmachines/inkling-small:free at $0 (OpenRouter's catalogue record date)",
-  "source": {
-   "label": "OpenRouter model page",
-   "url": "https://openrouter.ai/thinkingmachines/inkling-small"
-  }
- },
- {
-  "date": "2026-07-21",
-  "lanes": [
-   "laguna-s-2.1-or"
-  ],
-  "kind": "listed",
-  "text": "Listed on OpenRouter as poolside/laguna-s-2.1:free at $0 (OpenRouter's catalogue record date)",
-  "source": {
-   "label": "OpenRouter model page",
-   "url": "https://openrouter.ai/poolside/laguna-s-2.1"
-  }
- },
- {
-  "date": "2026-07-17",
-  "lanes": [
-   "inkling-or"
-  ],
-  "kind": "listed",
-  "text": "Listed on OpenRouter as thinkingmachines/inkling:free at $0 (OpenRouter's catalogue record date)",
-  "source": {
-   "label": "OpenRouter model page",
-   "url": "https://openrouter.ai/thinkingmachines/inkling"
-  }
- },
- {
-  "date": "2026-07-02",
-  "lanes": [
-   "laguna-xs-2.1-or"
-  ],
-  "kind": "listed",
-  "text": "Listed on OpenRouter as poolside/laguna-xs-2.1:free at $0 (OpenRouter's catalogue record date)",
-  "source": {
-   "label": "OpenRouter model page",
-   "url": "https://openrouter.ai/poolside/laguna-xs-2.1"
-  }
- },
- {
-  "date": "2026-06-17",
-  "lanes": [
-   "north-mini-code-or"
-  ],
-  "kind": "listed",
-  "text": "Listed on OpenRouter as cohere/north-mini-code:free at $0 (OpenRouter's catalogue record date)",
-  "source": {
-   "label": "OpenRouter model page",
-   "url": "https://openrouter.ai/cohere/north-mini-code"
-  }
- },
- {
-  "date": "2026-04-28",
-  "lanes": [
-   "nemotron-3-nano-omni-30b-a3b-or"
-  ],
-  "kind": "listed",
-  "text": "Listed on OpenRouter as nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free at $0 (OpenRouter's catalogue record date)",
-  "source": {
-   "label": "OpenRouter model page",
-   "url": "https://openrouter.ai/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning"
-  }
- },
- {
-  "date": "2026-04-03",
-  "lanes": [
-   "gemma-4-26b-a4b-it-or"
-  ],
-  "kind": "listed",
-  "text": "Listed on OpenRouter as google/gemma-4-26b-a4b-it:free at $0 (OpenRouter's catalogue record date)",
-  "source": {
-   "label": "OpenRouter model page",
-   "url": "https://openrouter.ai/google/gemma-4-26b-a4b-it"
-  }
- },
- {
-  "date": "2026-04-02",
-  "lanes": [
-   "gemma-4-31b-it-or"
-  ],
-  "kind": "listed",
-  "text": "Listed on OpenRouter as google/gemma-4-31b-it:free at $0 (OpenRouter's catalogue record date)",
-  "source": {
-   "label": "OpenRouter model page",
-   "url": "https://openrouter.ai/google/gemma-4-31b-it"
-  }
- },
- {
-  "date": "2026-03-11",
-  "lanes": [
-   "nemotron-3-super-120b-a12b-or"
-  ],
-  "kind": "listed",
-  "text": "Listed on OpenRouter as nvidia/nemotron-3-super-120b-a12b:free at $0 (OpenRouter's catalogue record date)",
-  "source": {
-   "label": "OpenRouter model page",
-   "url": "https://openrouter.ai/nvidia/nemotron-3-super-120b-a12b"
-  }
- },
- {
-  "date": "2026-10-06",
-  "lanes": [
-   "bunny-zen",
-   "longcat-2.5-preview-zen",
-   "ling-3.1-flash-zen",
-   "nemotron-3.5-lightning-zen",
-   "fledge-alpha-zen"
-  ],
-  "kind": "available",
-  "text": "Answered a test prompt through the OpenCode CLI (opencode run) with no account",
-  "source": {
-   "label": "own check",
-   "url": null
-  }
- },
- {
-  "date": "2026-10-06",
-  "lanes": [
-   "nemotron-3-ultra-zen",
-   "ling-3.0-flash-fin-zen",
-   "mimo-v2.5-zen",
-   "jev-1.13-zen",
-   "big-pickle-zen",
-   "muse-spark-1.3-contributor-zen",
-   "muse-spark-1.2-contributor-zen"
-  ],
-  "kind": "listed",
-  "text": "In OpenCode Zen's free list (-free models); our test call failed (server error, upstream overload or timeout)",
-  "source": {
-   "label": "OpenCode Zen docs",
-   "url": "https://opencode.ai/docs/zen/"
-  }
- },
- {
-  "date": "2026-10-06",
-  "lanes": [
-   "ling-3.1-flash-kilo"
-  ],
-  "kind": "available",
-  "text": "Kilo marks inclusionai/ling-3.1-flash free on purpose (Kilo-Org/cloud PR #7114); it answers without signing in and passed headless agent tasks, with an upstream 429 under load",
-  "source": {
-   "label": "Kilo-Org/cloud PR #7114",
-   "url": "https://github.com/Kilo-Org/cloud/pull/7114"
-  }
- },
- {
-  "date": "2026-10-06",
-  "kind": "listed",
-  "text": "On Freebuff's \"Free hours per day, by model\" table; not tested by us because Freebuff's terms forbid scripted use",
-  "source": {
-   "label": "Freebuff",
-   "url": "https://freebuff.com/"
+  {
+    "date": "2026-10-05T19:06Z",
+    "lanes": [
+      "bunny-go"
+    ],
+    "kind": "available",
+    "text": "Still answering (HTTP 200) after the Command Code channel ended",
+    "source": {
+      "label": "own check",
+      "url": null
+    }
   },
-  "offers": [
-   "freebuff"
-  ]
- },
- {
-  "date": "2026-10-06",
-  "lanes": [
-   "glm-4.7-flash-zai",
-   "glm-4.5-flash-zai"
-  ],
-  "kind": "listed",
-  "text": "Listed at $0 in Z.ai's own catalogue (standing free tier); not called by us yet",
-  "source": {
-   "label": "Z.ai pricing / models",
-   "url": "https://docs.z.ai/guides/overview/pricing"
-  }
- },
- {
-  "date": "2026-10-06",
-  "lanes": [
-   "glm-4.7-flash-bigmodel",
-   "glm-4-flash-250414-bigmodel"
-  ],
-  "kind": "listed",
-  "text": "Listed at $0 in Zhipu BigModel's own catalogue (standing free tier); not called by us yet",
-  "source": {
-   "label": "Zhipu BigModel pricing / models",
-   "url": "https://docs.bigmodel.cn/cn/guide/start/pricing"
-  }
- },
- {
-  "date": "2026-10-06",
-  "lanes": [
-   "ling-3.1-flash-vercel",
-   "laguna-s-2.1-vercel"
-  ],
-  "kind": "listed",
-  "text": "Listed at $0 in Vercel AI Gateway's own catalogue (standing free tier); not called by us yet",
-  "source": {
-   "label": "Vercel AI Gateway pricing / models",
-   "url": "https://ai-gateway.vercel.sh/v1/models"
-  }
- },
- {
-  "date": "2026-10-06",
-  "lanes": [
-   "qwen2.5-7b-instruct-siliconflow",
-   "qwen3-8b-siliconflow",
-   "qwen3.5-4b-siliconflow",
-   "glm-4-9b-0414-siliconflow",
-   "glm-z1-9b-0414-siliconflow",
-   "xing4.0-29b-siliconflow",
-   "deepseek-r1-0528-qwen3-8b-siliconflow"
-  ],
-  "kind": "listed",
-  "text": "Listed at $0 in SiliconFlow's own catalogue (standing free tier); not called by us yet",
-  "source": {
-   "label": "SiliconFlow pricing / models",
-   "url": "https://siliconflow.cn/pricing"
-  }
- },
- {
-  "date": "2026-10-06",
-  "lanes": [
-   "gemini-3.8-flash-gai",
-   "gemini-3.7-flash-gai",
-   "gemini-3.6-flash-gai",
-   "gemini-3.5-flash-gai",
-   "gemini-3.5-flash-lite-gai"
-  ],
-  "kind": "listed",
-  "text": "Free of charge on Google AI Studio's free tier (standing); not called by us yet",
-  "source": {
-   "label": "Google AI Studio docs",
-   "url": "https://ai.google.dev/gemini-api/docs/pricing"
-  }
- },
- {
-  "date": "2026-10-06T15:30Z",
-  "lanes": [
-   "muse-spark-1.3-contributor-zen",
-   "muse-spark-1.2-contributor-zen"
-  ],
-  "kind": "unavailable",
-  "text": "Retested through the OpenCode CLI without an account: 1.3 timed out after 180 s, 1.2 returned \"Unexpected server error\"; both stay listed. Possibly needs a signed-in account that grants the training permission (not verified)",
-  "source": {
-   "label": "own check",
-   "url": null
-  }
- },
- {
-  "date": "2026-10-06",
-  "lanes": [
-   "ling-3.1-flash-vercel",
-   "laguna-s-2.1-vercel"
-  ],
-  "kind": "limit_changed",
-  "text": "Tested with a Vercel AI Gateway key: Ling 3.1 Flash (Free) answers but is capped at 5 requests per minute per team (per region); Laguna S 2.1 Free returned 503",
-  "source": {
-   "label": "own check",
-   "url": null
-  }
- },
- {
-  "date": "2026-10-06",
-  "lanes": [
-   "ling-3.1-flash-vercel"
-  ],
-  "kind": "limit_changed",
-  "text": "After buying AI Gateway credits (paid tier removes Vercel's per-model limit) the free Ling 3.1 Flash still costs $0 but the Novita upstream returned 503 for most calls: 10/10 once, then mostly 503 at 3–15 parallel",
-  "source": {
-   "label": "own check",
-   "url": null
-  }
- },
- {
-  "date": "2026-10-06T05:37Z",
-  "lanes": [
-   "bunny-go"
-  ],
-  "kind": "ended",
-  "text": "Calls through OpenCode Go return \"Unexpected server error\" from 05:37 UTC; OpenCode Go's model list now has space-bunny without the -free suffix (a paid, seat-quota model), not space-bunny-free (checked 2026-10-06). Still free on OpenCode Zen",
-  "source": {
-   "label": "OpenCode Go models",
-   "url": "https://opencode.ai/zen/go/v1/models"
-  }
- },
- {
-  "date": "2026-10-06",
-  "lanes": [
-   "bunny-kilo"
-  ],
-  "kind": "ended",
-  "text": "No longer in the Kilo CLI's model list (kilo models, 7.8.3); Kilo had announced Oct 5 as the end",
-  "source": {
-   "label": "own check",
-   "url": null
-  }
- },
- {
-  "date": "2026-10-06",
-  "lanes": [
-   "muse-spark-1.3-contributor-zen",
-   "muse-spark-1.2-contributor-zen"
-  ],
-  "kind": "limit_changed",
-  "text": "Conditions found: the Contributor models need a signed-in Zen account with an explicit data-training opt-in, use the Responses API, and are limited to Meta's allowed regions (many RegionError reports outside the US); this explains our anonymous test failures",
-  "source": {
-   "label": "OpenCode Zen docs",
-   "url": "https://opencode.ai/docs/zen/"
-  }
- },
- {
-  "date": "2026-09-18T02:00Z",
-  "lanes": [
-   "qwen3.8-flash-qoder"
-  ],
-  "kind": "announced",
-  "text": "Qoder international: Qwen3.8-Flash free for all personal users (billing 0.1× → 0.0×), first until Sep 30, then extended from Oct 1 with the end to be announced",
-  "source": {
-   "label": "Qoder event page",
-   "url": "https://docs.qoder.com/zh/events/flashoffer"
-  }
- },
- {
-  "date": "2026-09-18",
-  "lanes": [
-   "kimi-k3-cline"
-  ],
-  "kind": "announced",
-  "text": "Kimi K3 free in Cline for a limited time (Cline on X on Sep 20: \"Kimi K3 is still free in the app for a limited time\"); no end date",
-  "source": {
-   "label": "Cline on X",
-   "url": "https://x.com/cline/status/2101754721677840702"
-  }
- },
- {
-  "date": "2026-10-06",
-  "lanes": [
-   "coding-kimi-k3-aihubmix",
-   "dots-3-note-preview-aihubmix"
-  ],
-  "kind": "listed",
-  "text": "Listed at $0 on AIHubMix",
-  "source": {
-   "label": "AIHubMix",
-   "url": "https://aihubmix.com/model/coding-kimi-k3-free"
-  }
- },
- {
-  "date": "2026-10-06",
-  "lanes": [
-   "qwen3.8-flash-qoder"
-  ],
-  "kind": "available",
-  "text": "Answered through the Qoder CLI (qodercli 1.1.65, headless -p) on a free personal account: 16 of 16 multi-step agent tasks passed at up to 10 parallel, every run 0 credits",
-  "source": {
-   "label": "own check",
-   "url": null
-  }
- },
- {
-  "date": "2026-10-06",
-  "kind": "listed",
-  "text": "Tested with a new NVIDIA build key: the key works (Nemotron 3 Super answered in 0.6 s) but GLM 5.3, Kimi K3 and DeepSeek V4.1 Flash returned nothing within 150–180 s, apparently queued on the free endpoints",
-  "source": {
-   "label": "own check",
-   "url": null
+  {
+    "date": "2026-10-05T19:02Z",
+    "lanes": [
+      "bunny-cc"
+    ],
+    "kind": "ended",
+    "text": "Calls return 404 \"No endpoints found for stealth/space-bunny-alpha\" (not retryable); re-checked 2/2 at 19:06. The model catalogue still lists it, so the catalogue is not a liveness signal.",
+    "source": {
+      "label": "own check",
+      "url": null
+    }
   },
-  "offers": [
-   "nvidia-build-nim"
-  ]
- },
- {
-  "date": "2026-10-06",
-  "lanes": [
-   "qwen3.8-flash-qoder",
-   "dsv41flash-letta"
-  ],
-  "kind": "available",
-  "text": "Admitted to Dim's free worker pool after agent benchmarks: Qwen3.8-Flash via the Qoder CLI, and DeepSeek V4.1 Flash via the Letta Code CLI (about 3 parallel on the free plan)",
-  "source": {
-   "label": "own check",
-   "url": null
-  }
- },
- {
-  "date": "2026-09-23",
-  "lanes": [
-   "bunny-kilo"
-  ],
-  "kind": "listed",
-  "text": "First seen in Kilo's model catalogue (models.dev sync): Space Bunny (stealth)",
-  "source": {
-   "label": "models.dev commit",
-   "url": "https://github.com/sst/models.dev/commit/8905fbe7173a1ee019b24442cc8fc0fb9edfdb2c"
-  }
- },
- {
-  "date": "2026-10-01",
-  "lanes": [
-   "apodex-1.1-mini-kilo"
-  ],
-  "kind": "listed",
-  "text": "First seen in Kilo's model catalogue (models.dev sync): Apodex 1.1 Mini",
-  "source": {
-   "label": "models.dev commit",
-   "url": "https://github.com/sst/models.dev/commit/675a573d01a86e5168fbd2559c9e5a5c1d901248"
-  }
- },
- {
-  "date": "2026-08-03",
-  "lanes": [
-   "laguna-xs-2.1-kilo",
-   "north-mini-code-kilo",
-   "step-3.7-flash-kilo"
-  ],
-  "kind": "listed",
-  "text": "First seen in Kilo's model catalogue (models.dev sync): Laguna XS 2.1, North Mini Code, Step 3.7 Flash",
-  "source": {
-   "label": "models.dev commit",
-   "url": "https://github.com/sst/models.dev/commit/0a375c8387ef827ecb568415d735cf812c6be60f"
-  }
- },
- {
-  "date": "2026-09-04",
-  "lanes": [
-   "ling-3.0-flash-sante-kilo"
-  ],
-  "kind": "listed",
-  "text": "First seen in Kilo's model catalogue (models.dev sync): Ling 3.0 Flash Sante",
-  "source": {
-   "label": "models.dev commit",
-   "url": "https://github.com/sst/models.dev/commit/2acdca31bd1c0481260109c375444d61544455a5"
-  }
- },
- {
-  "date": "2026-08-12",
-  "lanes": [
-   "lfm-2.5-2.6b-kilo"
-  ],
-  "kind": "listed",
-  "text": "First seen in Kilo's model catalogue (models.dev sync): LFM 2.5 2.6B",
-  "source": {
-   "label": "models.dev commit",
-   "url": "https://github.com/sst/models.dev/commit/8f00edbbb386b9ae5d119c3538ffc6e98d458594"
-  }
- },
- {
-  "date": "2026-05-01",
-  "lanes": [
-   "nemotron-3-nano-omni-30b-a3b-kilo"
-  ],
-  "kind": "listed",
-  "text": "First seen in Kilo's model catalogue (models.dev sync): Nemotron 3 Nano Omni 30B A3B (reasoning)",
-  "source": {
-   "label": "models.dev commit",
-   "url": "https://github.com/sst/models.dev/commit/aec3f94081ea76edc37bdcc76c45fc5f11dab3aa"
-  }
- },
- {
-  "date": "2026-08-11",
-  "lanes": [
-   "nemotron-3.5-lightning-kilo"
-  ],
-  "kind": "listed",
-  "text": "First seen in Kilo's model catalogue (models.dev sync): Nemotron 3.5 Lightning",
-  "source": {
-   "label": "models.dev commit",
-   "url": "https://github.com/sst/models.dev/commit/0721d2d7a589a7bdef889ce9c60795c7b5835877"
-  }
- },
- {
-  "date": "2026-08-21",
-  "lanes": [
-   "inkling-small-kilo"
-  ],
-  "kind": "listed",
-  "text": "First seen in Kilo's model catalogue (models.dev sync): Inkling Small",
-  "source": {
-   "label": "models.dev commit",
-   "url": "https://github.com/sst/models.dev/commit/500275da0b4f49f4419b688dab75671645413377"
-  }
- },
- {
-  "date": "2026-06-19",
-  "lanes": [
-   "north-mini-code-cline"
-  ],
-  "kind": "listed",
-  "text": "Added to Cline's model list: North Mini Code",
-  "source": {
-   "label": "Cline repo commit",
-   "url": "https://github.com/cline/cline/commit/cdff084652e46a4f9aa7e8f4ed57766a3e10f712"
-  }
- },
- {
-  "date": "2026-09-09",
-  "lanes": [
-   "ling-3.0-flash-sante-cline"
-  ],
-  "kind": "listed",
-  "text": "Added to Cline's model list: Ling 3.0 Flash Sante",
-  "source": {
-   "label": "Cline repo commit",
-   "url": "https://github.com/cline/cline/commit/1063db45d80f5bac76fba5bbc8f310f56055b506"
-  }
- },
- {
-  "date": "2026-04-28",
-  "lanes": [
-   "nemotron-3-nano-omni-30b-a3b-cline"
-  ],
-  "kind": "listed",
-  "text": "Added to Cline's model list: Nemotron 3 Nano Omni 30B A3B (reasoning)",
-  "source": {
-   "label": "Cline repo commit",
-   "url": "https://github.com/cline/cline/commit/c6a111e82a7de486359bc0130ad6d955fb786c52"
-  }
- },
- {
-  "date": "2026-03-31",
-  "lanes": [
-   "nemotron-3-super-120b-a12b-cline"
-  ],
-  "kind": "listed",
-  "text": "Added to Cline's model list: Nemotron 3 Super",
-  "source": {
-   "label": "Cline repo commit",
-   "url": "https://github.com/cline/cline/commit/7f415abb5b34087a6dfeecb4c71b02f845270504"
-  }
- },
- {
-  "date": "2026-06-04",
-  "lanes": [
-   "nemotron-3-ultra-cline"
-  ],
-  "kind": "listed",
-  "text": "Added to Cline's model list: Nemotron 3 Ultra (550B-A55B)",
-  "source": {
-   "label": "Cline repo commit",
-   "url": "https://github.com/cline/cline/commit/48316027a7846ba1cc977834213970347cb29939"
-  }
- },
- {
-  "date": "2026-08-11",
-  "lanes": [
-   "nemotron-3.5-lightning-cline"
-  ],
-  "kind": "listed",
-  "text": "Added to Cline's model list: Nemotron 3.5 Lightning",
-  "source": {
-   "label": "Cline repo commit",
-   "url": "https://github.com/cline/cline/commit/00ba2ff7dafe7d72349dd1bfd0beb0fe9b170a88"
-  }
- },
- {
-  "date": "2026-07-28",
-  "lanes": [
-   "laguna-s-2.1-cline"
-  ],
-  "kind": "listed",
-  "text": "Added to Cline's model list: Laguna S 2.1",
-  "source": {
-   "label": "Cline repo commit",
-   "url": "https://github.com/cline/cline/commit/a6239c420c1dcc58da3fa511054784d1e49d0f85"
-  }
- },
- {
-  "date": "2026-07-03",
-  "lanes": [
-   "laguna-xs-2.1-cline"
-  ],
-  "kind": "listed",
-  "text": "Added to Cline's model list: Laguna XS 2.1",
-  "source": {
-   "label": "Cline repo commit",
-   "url": "https://github.com/cline/cline/commit/a2a46ae600207b47e4fc2e6706d5bd023e7fa689"
-  }
- },
- {
-  "date": "2026-08-13",
-  "lanes": [
-   "lfm-2.5-2.6b-cline"
-  ],
-  "kind": "listed",
-  "text": "Added to Cline's model list: LFM 2.5 2.6B",
-  "source": {
-   "label": "Cline repo commit",
-   "url": "https://github.com/cline/cline/commit/3f39c46026b64b961980573ead0355b24dfa6228"
-  }
- },
- {
-  "date": "2026-10-02",
-  "lanes": [
-   "apodex-1.1-mini-cline"
-  ],
-  "kind": "listed",
-  "text": "Added to Cline's model list: Apodex 1.1 Mini",
-  "source": {
-   "label": "Cline repo commit",
-   "url": "https://github.com/cline/cline/commit/a7ad50bae34c43823facf2c2ee726b45dc7c0145"
-  }
- },
- {
-  "date": "2026-08-14",
-  "lanes": [
-   "dots-3-note-preview-cline"
-  ],
-  "kind": "listed",
-  "text": "Added to Cline's model list: Dots3-Note Preview",
-  "source": {
-   "label": "Cline repo commit",
-   "url": "https://github.com/cline/cline/commit/225f65cc0e16298d21e392d1597039562765de0b"
-  }
- },
- {
-  "date": "2026-04-09",
-  "lanes": [
-   "gemma-4-26b-a4b-it-cline",
-   "gemma-4-31b-it-cline"
-  ],
-  "kind": "listed",
-  "text": "Added to Cline's model list: Gemma 4 26B A4B, Gemma 4 31B",
-  "source": {
-   "label": "Cline repo commit",
-   "url": "https://github.com/cline/cline/commit/27c93efeedfb7469dad748996a6292bf9642809c"
-  }
- },
- {
-  "date": "2026-08-22",
-  "lanes": [
-   "inkling-cline"
-  ],
-  "kind": "listed",
-  "text": "Added to Cline's model list: Inkling",
-  "source": {
-   "label": "Cline repo commit",
-   "url": "https://github.com/cline/cline/commit/21cb8d2525bcedf1f4b6890b27a74a14fe7451e4"
-  }
- },
- {
-  "date": "2025-10-17",
-  "lanes": [
-   "big-pickle-zen"
-  ],
-  "kind": "listed",
-  "text": "Added to OpenCode's model catalogue (models.dev): Big Pickle",
-  "source": {
-   "label": "models.dev commit",
-   "url": "https://github.com/sst/models.dev/commit/72053ca66"
-  }
- },
- {
-  "date": "2026-05-27",
-  "lanes": [
-   "mimo-v2.5-zen"
-  ],
-  "kind": "listed",
-  "text": "Added to the Zen model docs: MiMo V2.5",
-  "source": {
-   "label": "OpenCode repo commit",
-   "url": "https://github.com/anomalyco/opencode/commit/5a5d981c4e"
-  }
- },
- {
-  "date": "2026-06-04",
-  "lanes": [
-   "nemotron-3-ultra-zen"
-  ],
-  "kind": "listed",
-  "text": "Added to the Zen model docs: Nemotron 3 Ultra (550B-A55B)",
-  "source": {
-   "label": "OpenCode repo commit",
-   "url": "https://github.com/anomalyco/opencode/commit/f5d1ae6a9e"
-  }
- },
- {
-  "date": "2026-08-11",
-  "lanes": [
-   "nemotron-3.5-lightning-zen"
-  ],
-  "kind": "listed",
-  "text": "Added to the Zen model docs: Nemotron 3.5 Lightning",
-  "source": {
-   "label": "OpenCode repo commit",
-   "url": "https://github.com/anomalyco/opencode/commit/9fdd4824d3"
-  }
- },
- {
-  "date": "2026-08-20",
-  "lanes": [
-   "muse-spark-1.2-contributor-zen"
-  ],
-  "kind": "listed",
-  "text": "Added to the Zen model docs: Muse Spark 1.2 (Contributor)",
-  "source": {
-   "label": "OpenCode repo commit",
-   "url": "https://github.com/anomalyco/opencode/commit/3d26b12251"
-  }
- },
- {
-  "date": "2026-08-28",
-  "lanes": [
-   "ling-3.0-flash-fin-zen"
-  ],
-  "kind": "listed",
-  "text": "Added to the Zen model docs: Ling 3.0 Flash Fin",
-  "source": {
-   "label": "OpenCode repo commit",
-   "url": "https://github.com/anomalyco/opencode/commit/df35e842f5"
-  }
- },
- {
-  "date": "2026-09-02",
-  "lanes": [
-   "muse-spark-1.3-contributor-zen"
-  ],
-  "kind": "listed",
-  "text": "Added to the Zen model docs: Muse Spark 1.3 (Contributor)",
-  "source": {
-   "label": "OpenCode repo commit",
-   "url": "https://github.com/anomalyco/opencode/commit/77aec36da1"
-  }
- },
- {
-  "date": "2026-09-19",
-  "lanes": [
-   "jev-1.13-zen"
-  ],
-  "kind": "listed",
-  "text": "Added to the Zen model docs: JEV 1.13",
-  "source": {
-   "label": "OpenCode repo commit",
-   "url": "https://github.com/anomalyco/opencode/commit/61eae8811a"
-  }
- },
- {
-  "date": "2026-09-23",
-  "lanes": [
-   "bunny-zen"
-  ],
-  "kind": "listed",
-  "text": "Added to the Zen model docs: Space Bunny (stealth)",
-  "source": {
-   "label": "OpenCode repo commit",
-   "url": "https://github.com/anomalyco/opencode/commit/1b4a6dbc65"
-  }
- },
- {
-  "date": "2026-09-26",
-  "lanes": [
-   "longcat-2.5-preview-zen"
-  ],
-  "kind": "listed",
-  "text": "Added to the Zen model docs: LongCat 2.5 Preview",
-  "source": {
-   "label": "OpenCode repo commit",
-   "url": "https://github.com/anomalyco/opencode/commit/b65de4d694"
-  }
- },
- {
-  "date": "2026-10-01",
-  "lanes": [
-   "fledge-alpha-zen"
-  ],
-  "kind": "listed",
-  "text": "Added to OpenCode's model catalogue (models.dev): Fledge Alpha",
-  "source": {
-   "label": "models.dev commit",
-   "url": "https://github.com/sst/models.dev/commit/355fca0c6"
-  }
- },
- {
-  "date": "2026-10-02",
-  "lanes": [
-   "ling-3.1-flash-zen"
-  ],
-  "kind": "listed",
-  "text": "Added to the Zen model docs: Ling 3.1 Flash",
-  "source": {
-   "label": "OpenCode repo commit",
-   "url": "https://github.com/anomalyco/opencode/commit/c42ae0d56b"
-  }
- },
- {
-  "date": "2026-01-19",
-  "lanes": [
-   "glm-4.7-flash-zai"
-  ],
-  "kind": "available",
-  "text": "Launched on Z.ai: GLM-4.7-Flash",
-  "source": {
-   "label": "Z.ai release notes",
-   "url": "https://docs.z.ai/release-notes/new-released"
-  }
- },
- {
-  "date": "2025-07-30",
-  "lanes": [
-   "glm-4.5-flash-zai"
-  ],
-  "kind": "listed",
-  "text": "Listed as free on Z.ai's pricing page (archived snapshot): GLM-4.5-Flash",
-  "source": {
-   "label": "Z.ai pricing, archived",
-   "url": "https://web.archive.org/web/20250730192638/https://docs.z.ai/guides/overview/pricing"
-  }
- },
- {
-  "date": "2026-01-19",
-  "lanes": [
-   "glm-4.7-flash-bigmodel"
-  ],
-  "kind": "available",
-  "text": "Launched free on BigModel: GLM-4.7-Flash",
-  "source": {
-   "label": "Zhipu news",
-   "url": "https://www.zhipuai.cn/zh/news/148"
-  }
- },
- {
-  "date": "2025-04-15",
-  "lanes": [
-   "glm-4-flash-250414-bigmodel"
-  ],
-  "kind": "available",
-  "text": "First public mention: GLM-4-Flash-250414",
-  "source": {
-   "label": "news report",
-   "url": "https://finance.sina.com.cn/tech/csj/2025-04-15/doc-inetftfy1161190.shtml"
-  }
- },
- {
-  "date": "2026-09-30",
-  "lanes": [
-   "ling-3.1-flash-vercel"
-  ],
-  "kind": "available",
-  "text": "Announced on the Vercel changelog: Ling 3.1 Flash",
-  "source": {
-   "label": "Vercel changelog",
-   "url": "https://vercel.com/changelog/ling-3-1-flash-is-now-available-on-ai-gateway"
-  }
- },
- {
-  "date": "2026-07-21",
-  "lanes": [
-   "laguna-s-2.1-vercel"
-  ],
-  "kind": "available",
-  "text": "Announced on the Vercel changelog: Laguna S 2.1",
-  "source": {
-   "label": "Vercel changelog",
-   "url": "https://vercel.com/changelog/laguna-s-2-1-is-now-available-on-ai-gateway"
-  }
- },
- {
-  "date": "2026-10-06",
-  "lanes": [
-   "exo-zen"
-  ],
-  "kind": "listed",
-  "text": "Added to OpenCode's model catalogue (models.dev): Exo",
-  "source": {
-   "label": "models.dev commit",
-   "url": "https://github.com/sst/models.dev/commit/0773f61a19"
-  }
- },
- {
-  "date": "2026-10-07",
-  "lanes": [
-   "mimo-v2.5-zen"
-  ],
-  "kind": "ended",
-  "text": "No longer in OpenCode Zen's model list (free catalogue check)",
-  "source": {
-   "label": "own check of opencode.ai/zen/v1/models",
-   "url": "https://opencode.ai/zen/v1/models"
-  }
- },
- {
-  "date": "2026-09-24",
-  "lanes": [
-   "bunny-cc"
-  ],
-  "kind": "announced",
-  "text": "Announced as free on Command Code on X: Space Bunny (stealth)",
-  "source": {
-   "label": "X post by @CommandCodeAI",
-   "url": "https://x.com/CommandCodeAI/status/2102941840811135057"
-  }
- },
- {
-  "date": "2026-09-05",
-  "kind": "announced",
-  "text": "Announced as free on Freebuff on X: Solar Pro 4",
-  "source": {
-   "label": "X post by @jahooma",
-   "url": "https://x.com/jahooma/status/2096169643035840581"
+  {
+    "date": "2026-10-04T02:45Z",
+    "lanes": [
+      "ling-cc"
+    ],
+    "kind": "limit_changed",
+    "text": "Free limit raised to 300 requests/day",
+    "source": {
+      "label": "Command Code",
+      "url": "https://x.com/CommandCodeAI/status/2106576422655680856"
+    }
   },
-  "offers": [
-   "freebuff"
-  ]
- },
- {
-  "date": "2026-10-03",
-  "kind": "announced",
-  "text": "Announced as free on Freebuff on X: Solar Mini 4",
-  "source": {
-   "label": "X post by @jahooma",
-   "url": "https://x.com/jahooma/status/2106192400788107619"
+  {
+    "date": "2026-10-04",
+    "lanes": [
+      "dsflash-zen"
+    ],
+    "kind": "unavailable",
+    "text": "Shown as unavailable in the Zen catalogue",
+    "source": {
+      "label": "own check",
+      "url": null
+    }
   },
-  "offers": [
-   "freebuff"
-  ]
- },
- {
-  "date": "2026-09-22",
-  "kind": "available",
-  "text": "Mentioned as free on Freebuff on X (earliest mention found): MiMo V2.6 Flash, MiMo V2.6 Pro",
-  "source": {
-   "label": "X post by @BilalGreyrat",
-   "url": "https://x.com/BilalGreyrat/status/2102256208950460895"
+  {
+    "date": "2026-10-01T02:57Z",
+    "lanes": [
+      "bunny-cc"
+    ],
+    "kind": "end_announced",
+    "end_date": "2026-10-05",
+    "text": "\"Continues to be free … till Oct 5 on all plans\"",
+    "source": {
+      "label": "Command Code",
+      "url": "https://x.com/CommandCodeAI/status/2105492145033330916"
+    }
   },
-  "offers": [
-   "freebuff"
-  ]
- },
- {
-  "date": "2026-08-28",
-  "kind": "announced",
-  "text": "Announced as free on Freebuff on X: GLM 5.3 Flash",
-  "source": {
-   "label": "X post by @jahooma",
-   "url": "https://x.com/jahooma/status/2093137551918051624"
+  {
+    "date": "2026-09-30T01:10Z",
+    "lanes": [
+      "ling-cc"
+    ],
+    "kind": "announced",
+    "text": "Made free in Command Code (\"while it lasts\")",
+    "source": {
+      "label": "Command Code on X",
+      "url": "https://x.com/CommandCodeAI/status/2105102930999492729",
+      "note": "link not recorded"
+    }
   },
-  "offers": [
-   "freebuff"
-  ]
- },
- {
-  "date": "2026-09-11",
-  "kind": "available",
-  "text": "Mentioned as free on Freebuff on X (earliest mention found): DeepSeek V4.1 Flash",
-  "source": {
-   "label": "X post by @dextune",
-   "url": "https://x.com/dextune/status/2098398998805766538"
+  {
+    "date": "2026-09-26T13:38Z",
+    "lanes": [
+      "longcat-go"
+    ],
+    "kind": "announced",
+    "text": "Free on OpenCode \"for two weeks\"",
+    "source": {
+      "label": "OpenCode and Meituan on X",
+      "url": "https://x.com/opencode/status/2103841640171614322",
+      "note": "link not recorded"
+    }
   },
-  "offers": [
-   "freebuff"
-  ]
- },
- {
-  "date": "2026-09-17",
-  "kind": "available",
-  "text": "Mentioned as free on Freebuff on X (earliest mention found): GPT-6 Luna",
-  "source": {
-   "label": "X post by @ah4alt",
-   "url": "https://x.com/ah4alt/status/2100431181682802917"
+  {
+    "date": "2026-09-23T14:49Z",
+    "lanes": [
+      "bunny-or"
+    ],
+    "kind": "listed",
+    "text": "Launched as a free stealth model (1M context; text, image and video input)",
+    "source": {
+      "label": "OpenRouter",
+      "url": "https://x.com/OpenRouter/status/2102772427105407270"
+    }
   },
-  "offers": [
-   "freebuff"
-  ]
- },
- {
-  "date": "2026-10-05",
-  "kind": "announced",
-  "text": "Announced as free on Freebuff on X: DeepSeek V4.1 Flash",
-  "source": {
-   "label": "X post by @FreebuffHQ",
-   "url": "https://x.com/FreebuffHQ/status/2107254693378568575"
+  {
+    "date": "2026-09-23T14:31Z",
+    "lanes": [
+      "bunny-go"
+    ],
+    "kind": "announced",
+    "end_date": "2026-09-30",
+    "text": "Free \"for the next week\"",
+    "source": {
+      "label": "OpenCode",
+      "url": "https://x.com/opencode/status/2102767716666941864"
+    }
   },
-  "offers": [
-   "freebuff"
-  ]
- },
- {
-  "date": "2026-09-30",
-  "kind": "announced",
-  "text": "Announced as free on Freebuff on X: GPT-6.1 Sol",
-  "source": {
-   "label": "X post by @jahooma",
-   "url": "https://x.com/jahooma/status/2105302144098177024"
+  {
+    "date": "2026-09-21T21:19Z",
+    "lanes": [
+      "mimo-zen"
+    ],
+    "kind": "announced",
+    "end_date": "2026-09-28",
+    "text": "Free \"for the next week\"",
+    "source": {
+      "label": "OpenCode on X",
+      "url": "https://x.com/opencode/status/2102145730999730611",
+      "note": "link not recorded"
+    }
   },
-  "offers": [
-   "freebuff"
-  ]
- },
- {
-  "date": "2024-10-06",
-  "lanes": [
-   "qwen2.5-7b-instruct-siliconflow"
-  ],
-  "kind": "available",
-  "text": "Mentioned as free on SiliconFlow on X (earliest mention found): Qwen2.5 7B Instruct",
-  "source": {
-   "label": "X post by @immazzystar",
-   "url": "https://x.com/immazzystar/status/1842817923217346560"
-  }
- },
- {
-  "date": "2025-09-02",
-  "lanes": [
-   "qwen3-8b-siliconflow"
-  ],
-  "kind": "available",
-  "text": "Mentioned as free on SiliconFlow on X (earliest mention found): Qwen3 8B",
-  "source": {
-   "label": "X post by @YinsenW_",
-   "url": "https://x.com/YinsenW_/status/1962730167291527290"
-  }
- },
- {
-  "date": "2026-09-11",
-  "lanes": [
-   "qwen3.5-4b-siliconflow"
-  ],
-  "kind": "available",
-  "text": "Mentioned as free on SiliconFlow on X (earliest mention found): Qwen3.5 4B",
-  "source": {
-   "label": "X post by @wanghejun114387",
-   "url": "https://x.com/wanghejun114387/status/2098372678306644284"
-  }
- },
- {
-  "date": "2025-07-20",
-  "lanes": [
-   "glm-4-9b-0414-siliconflow"
-  ],
-  "kind": "available",
-  "text": "Mentioned as free on SiliconFlow on X (earliest mention found): GLM-4 9B 0414",
-  "source": {
-   "label": "X post by @OipsAnthony",
-   "url": "https://x.com/OipsAnthony/status/1946819692649390481"
-  }
- },
- {
-  "date": "2026-09-03",
-  "lanes": [
-   "gemini-3.8-flash-gai"
-  ],
-  "kind": "available",
-  "text": "Mentioned as free on Google AI Studio on X (earliest mention found): Gemini 3.8 Flash",
-  "source": {
-   "label": "X post by @toshinobu65",
-   "url": "https://x.com/toshinobu65/status/2095607179558679013"
-  }
- },
- {
-  "date": "2026-08-14",
-  "lanes": [
-   "gemini-3.7-flash-gai"
-  ],
-  "kind": "available",
-  "text": "Mentioned as free on Google AI Studio on X (earliest mention found): Gemini 3.7 Flash",
-  "source": {
-   "label": "X post by @toshinobu65",
-   "url": "https://x.com/toshinobu65/status/2088245502609674418"
-  }
- },
- {
-  "date": "2026-08-23",
-  "lanes": [
-   "coding-kimi-k3-aihubmix"
-  ],
-  "kind": "available",
-  "text": "Mentioned as free on AIHubMix on X (earliest mention found): Coding Kimi K3",
-  "source": {
-   "label": "X post by @shesaidmewakeup",
-   "url": "https://x.com/shesaidmewakeup/status/2091527248419467335"
-  }
- },
- {
-  "date": "2026-09-25",
-  "kind": "available",
-  "text": "Mentioned as free on NVIDIA build on X (earliest mention found): DeepSeek V4.1 Flash, GLM 5.3, Kimi K3",
-  "source": {
-   "label": "X post by @pengsonal",
-   "url": "https://x.com/pengsonal/status/2103525364656161209"
+  {
+    "date": "2026-08-16",
+    "lanes": [
+      "dsflash-zen"
+    ],
+    "kind": "available",
+    "text": "Free tier back in the catalogue (HTTP 200)",
+    "source": {
+      "label": "own check",
+      "url": null
+    }
   },
-  "offers": [
-   "nvidia-build-nim"
-  ]
- },
- {
-  "date": "2026-05-23",
-  "kind": "available",
-  "text": "Mentioned as free on NVIDIA build on X (earliest mention found): Nemotron 3 Super",
-  "source": {
-   "label": "X post by @X_SUZQ",
-   "url": "https://x.com/X_SUZQ/status/2058196916958343363"
+  {
+    "date": "2026-06",
+    "lanes": [
+      "nemotron-or"
+    ],
+    "kind": "listed",
+    "text": "Listed as free on OpenRouter",
+    "source": {
+      "label": "OpenRouter",
+      "url": null,
+      "note": "link not recorded"
+    }
   },
-  "offers": [
-   "nvidia-build-nim"
-  ]
- },
- {
-  "date": "2026-10-07",
-  "lanes": [
-   "gemma-4-26b-a4b-it-kilo",
-   "hy3-kilo",
-   "hy3-preview-kilo",
-   "ling-2.6-1t-kilo",
-   "ling-2.6-flash-kilo",
-   "ling-3.0-flash-kilo",
-   "ling-3.0-flash-vl-kilo",
-   "minimax-m2.7-kilo",
-   "minimax-m3-kilo",
-   "nex-n2-pro-kilo",
-   "nex-n2.5-pro-kilo",
-   "ring-2.6-1t-kilo"
-  ],
-  "kind": "ended",
-  "text": "Not in Kilo's free model list any more: the signed-in Kilo CLI (7.8.3) lists 14 free models, none of these; most remain only as paid models",
-  "source": {
-   "label": "own check: kilo models kilo, signed in",
-   "url": "https://kilo.ai/models"
-  }
- },
- {
-  "date": "2026-10-07",
-  "lanes": [
-   "apodex-1.1-mini-kilo"
-  ],
-  "kind": "ended",
-  "text": "Not in Kilo's model list any more (signed-in Kilo CLI 7.8.3: model not found)",
-  "source": {
-   "label": "own check: kilo models kilo, signed in",
-   "url": "https://kilo.ai/models"
-  }
- },
- {
-  "date": "2026-08-14",
-  "lanes": [
-   "qwen3.8-27b-or"
-  ],
-  "kind": "available",
-  "text": "Guide published for using Qwen3.8 27B (free) through OpenRouter: Qwen3.8 27B",
-  "source": {
-   "label": "TypingMind guide",
-   "url": "https://www.typingmind.com/guide/openrouter/qwen3.8-27b-free"
-  }
- },
- {
-  "date": "2026-10-08",
-  "lanes": [
-   "qwen3.8-27b-or"
-  ],
-  "kind": "ended",
-  "text": "qwen/qwen3.8-27b:free is no longer in OpenRouter's model list; only the paid qwen/qwen3.8-27b remains",
-  "source": {
-   "label": "own check of openrouter.ai/api/v1/models",
-   "url": "https://openrouter.ai/api/v1/models"
-  }
- },
- {
-  "date": "2026-08-17",
-  "kind": "listed",
-  "text": "Added to the Workers AI model catalogue: Qwen3.8 27B",
-  "source": {
-   "label": "Workers AI model page",
-   "url": "https://developers.cloudflare.com/workers-ai/models/qwen3.8-27b/"
+  {
+    "date": "2026-10-05T16:02Z",
+    "lanes": [
+      "bunny-or"
+    ],
+    "kind": "ended",
+    "text": "\"Space Bunny Alpha's stealth period has ended\"; the model behind it to be revealed",
+    "source": {
+      "label": "OpenRouter",
+      "url": "https://x.com/OpenRouter/status/2107139469174542636"
+    }
   },
-  "offers": [
-   "cloudflare-workers-ai"
-  ]
- },
- {
-  "date": "2026-08-19",
-  "kind": "listed",
-  "text": "Registered on ModelScope's free API-Inference gateway (model list timestamp): Qwen3.8 27B",
-  "source": {
-   "label": "ModelScope API-Inference model list",
-   "url": "https://api-inference.modelscope.cn/v1/models"
+  {
+    "date": "2026-09-30T20:06Z",
+    "lanes": [
+      "bunny-or"
+    ],
+    "kind": "end_announced",
+    "end_date": "2026-10-05",
+    "text": "\"The stealth period is now extended through October 5\"",
+    "source": {
+      "label": "OpenRouter",
+      "url": "https://x.com/OpenRouter/status/2105388935014990311"
+    }
   },
-  "offers": [
-   "modelscope-api-inference"
-  ]
- },
- {
-  "date": "2026-09-30",
-  "lanes": [
-   "ling-3.1-flash-antling"
-  ],
-  "kind": "announced",
-  "text": "Ling 3.1 Flash launched on the official Ant Ling API, free for 2 weeks: Ling 3.1 Flash",
-  "end_date": "2026-10-14",
-  "source": {
-   "label": "Ant Ling pricing",
-   "url": "https://developer.ant-ling.com/zh-CN/docs/models/price/"
+  {
+    "date": "2026-10-05",
+    "lanes": [
+      "bunny-kilo"
+    ],
+    "kind": "end_announced",
+    "end_date": "2026-10-05",
+    "text": "Kilo's model name reads \"Space Bunny Alpha (retires Oct 5)\" (date we saw it, not when it was posted)",
+    "source": {
+      "label": "Kilo Code model page",
+      "url": "https://kilo.ai/models/stealth-space-bunny-alpha"
+    }
+  },
+  {
+    "date": "2026-10-02T06:52Z",
+    "kind": "announced",
+    "text": "\"We just added 3 more 100% free models … Ling 3.1 Flash, Space Bunny Alpha, Laguna S 2.1\"",
+    "source": {
+      "label": "Freebuff founder on X",
+      "url": "https://x.com/jahooma/status/2105913758124286311"
+    },
+    "offers": [
+      "freebuff"
+    ]
+  },
+  {
+    "date": "2026-09-07",
+    "lanes": [
+      "dots-3-note-preview-kilo"
+    ],
+    "kind": "listed",
+    "text": "Added to Kilo's model catalogue as \"Dots Studio: Dots3-Note Preview (free)\" at $0 per token (Kilo's own record date)",
+    "source": {
+      "label": "Kilo model page",
+      "url": "https://kilo.ai/models/dots-studio-dots-3-note-preview-free"
+    }
+  },
+  {
+    "date": "2026-04-21",
+    "lanes": [
+      "gemma-4-26b-a4b-it-kilo"
+    ],
+    "kind": "listed",
+    "text": "Added to Kilo's model catalogue as \"Google: Gemma 4 26B A4B  (free)\" at $0 per token (Kilo's own record date)",
+    "source": {
+      "label": "Kilo model page",
+      "url": "https://kilo.ai/models/google-gemma-4-26b-a4b-it-free"
+    }
+  },
+  {
+    "date": "2026-07-24",
+    "lanes": [
+      "ling-3.0-flash-kilo"
+    ],
+    "kind": "listed",
+    "text": "Added to Kilo's model catalogue as \"Ling-3.0-flash (free)\" at $0 per token (Kilo's own record date)",
+    "source": {
+      "label": "Kilo model page",
+      "url": "https://kilo.ai/models/inclusionai-ling-3-0-flash-free"
+    }
+  },
+  {
+    "date": "2026-09-07",
+    "lanes": [
+      "minimax-m2.7-kilo"
+    ],
+    "kind": "listed",
+    "text": "Added to Kilo's model catalogue as \"MiniMax: MiniMax M2.7 (free)\" at $0 per token (Kilo's own record date)",
+    "source": {
+      "label": "Kilo model page",
+      "url": "https://kilo.ai/models/minimax-minimax-m2-7-free"
+    }
+  },
+  {
+    "date": "2026-08-31",
+    "lanes": [
+      "minimax-m3-kilo"
+    ],
+    "kind": "listed",
+    "text": "Added to Kilo's model catalogue as \"MiniMax: MiniMax M3 (free)\" at $0 per token (Kilo's own record date)",
+    "source": {
+      "label": "Kilo model page",
+      "url": "https://kilo.ai/models/minimax-minimax-m3-free"
+    }
+  },
+  {
+    "date": "2026-03-12",
+    "lanes": [
+      "nemotron-3-super-120b-a12b-kilo"
+    ],
+    "kind": "listed",
+    "text": "Added to Kilo's model catalogue as \"NVIDIA: Nemotron 3 Super (free)\" at $0 per token (Kilo's own record date)",
+    "source": {
+      "label": "Kilo model page",
+      "url": "https://kilo.ai/models/nvidia-nemotron-3-super-120b-a12b-free"
+    }
+  },
+  {
+    "date": "2026-06-04",
+    "lanes": [
+      "nemotron-3-ultra-kilo"
+    ],
+    "kind": "listed",
+    "text": "Added to Kilo's model catalogue as \"NVIDIA: Nemotron 3 Ultra (free)\" at $0 per token (Kilo's own record date)",
+    "source": {
+      "label": "Kilo model page",
+      "url": "https://kilo.ai/models/nvidia-nemotron-3-ultra-550b-a55b-free"
+    }
+  },
+  {
+    "date": "2026-06-11",
+    "lanes": [
+      "nex-n2-pro-kilo"
+    ],
+    "kind": "listed",
+    "text": "Added to Kilo's model catalogue as \"Nex AGI: Nex-N2-Pro (free)\" at $0 per token (Kilo's own record date)",
+    "source": {
+      "label": "Kilo model page",
+      "url": "https://kilo.ai/models/nex-agi-nex-n2-pro-free"
+    }
+  },
+  {
+    "date": "2026-09-09",
+    "lanes": [
+      "nex-n2.5-pro-kilo"
+    ],
+    "kind": "listed",
+    "text": "Added to Kilo's model catalogue as \"Nex AGI: Nex-N2.5-Pro (free)\" at $0 per token (Kilo's own record date)",
+    "source": {
+      "label": "Kilo model page",
+      "url": "https://kilo.ai/models/nex-agi-nex-n2-5-pro-free"
+    }
+  },
+  {
+    "date": "2026-07-21",
+    "lanes": [
+      "laguna-s-2.1-kilo"
+    ],
+    "kind": "listed",
+    "text": "Added to Kilo's model catalogue as \"Poolside: Laguna S 2.1 (free)\" at $0 per token (Kilo's own record date)",
+    "source": {
+      "label": "Kilo model page",
+      "url": "https://kilo.ai/models/poolside-laguna-s-2-1-free"
+    }
+  },
+  {
+    "date": "2026-07-06",
+    "lanes": [
+      "hy3-kilo"
+    ],
+    "kind": "listed",
+    "text": "Added to Kilo's model catalogue as \"Tencent: Hy3 (free)\" at $0 per token (Kilo's own record date)",
+    "source": {
+      "label": "Kilo model page",
+      "url": "https://kilo.ai/models/tencent-hy3-free"
+    }
+  },
+  {
+    "date": "2026-04-23",
+    "lanes": [
+      "hy3-preview-kilo"
+    ],
+    "kind": "listed",
+    "text": "Added to Kilo's model catalogue as \"Tencent: Hy3 preview (free)\" at $0 per token (Kilo's own record date)",
+    "source": {
+      "label": "Kilo model page",
+      "url": "https://kilo.ai/models/tencent-hy3-preview-free"
+    }
+  },
+  {
+    "date": "2026-09-11",
+    "lanes": [
+      "ling-3.0-flash-vl-kilo"
+    ],
+    "kind": "listed",
+    "text": "Added to Kilo's model catalogue as \"inclusionAI: Ling 3.0 Flash VL (free)\" at $0 per token (Kilo's own record date)",
+    "source": {
+      "label": "Kilo model page",
+      "url": "https://kilo.ai/models/inclusionai-ling-3-0-flash-vl-free"
+    }
+  },
+  {
+    "date": "2026-10-02",
+    "lanes": [
+      "ling-3.1-flash-kilo"
+    ],
+    "kind": "listed",
+    "text": "Added to Kilo's model catalogue as \"inclusionAI: Ling 3.1 Flash (new)\" at $0 per token (Kilo's own record date)",
+    "source": {
+      "label": "Kilo model page",
+      "url": "https://kilo.ai/models/inclusionai-ling-3-1-flash"
+    }
+  },
+  {
+    "date": "2026-04-23",
+    "lanes": [
+      "ling-2.6-1t-kilo"
+    ],
+    "kind": "listed",
+    "text": "Added to Kilo's model catalogue as \"inclusionAI: Ling-2.6-1T (free)\" at $0 per token (Kilo's own record date)",
+    "source": {
+      "label": "Kilo model page",
+      "url": "https://kilo.ai/models/inclusionai-ling-2-6-1t-free"
+    }
+  },
+  {
+    "date": "2026-04-22",
+    "lanes": [
+      "ling-2.6-flash-kilo"
+    ],
+    "kind": "listed",
+    "text": "Added to Kilo's model catalogue as \"inclusionAI: Ling-2.6-flash (free)\" at $0 per token (Kilo's own record date)",
+    "source": {
+      "label": "Kilo model page",
+      "url": "https://kilo.ai/models/inclusionai-ling-2-6-flash-free"
+    }
+  },
+  {
+    "date": "2026-05-09",
+    "lanes": [
+      "ring-2.6-1t-kilo"
+    ],
+    "kind": "listed",
+    "text": "Added to Kilo's model catalogue as \"inclusionAI: Ring-2.6-1T (free)\" at $0 per token (Kilo's own record date)",
+    "source": {
+      "label": "Kilo model page",
+      "url": "https://kilo.ai/models/inclusionai-ring-2-6-1t-free"
+    }
+  },
+  {
+    "date": "2026-08-13",
+    "lanes": [
+      "dsv4flash-letta"
+    ],
+    "kind": "available",
+    "text": "Letta: \"DeepSeek V4 Flash are now available on Letta Cloud. Use your Letta API credits to run either model.\" Paid credits then, not free",
+    "source": {
+      "label": "Letta on LinkedIn",
+      "url": "https://www.linkedin.com/posts/letta-ai_grok-46-and-deepseek-v4-flash-are-now-available-activity-7493785231003398144-QbkR"
+    }
+  },
+  {
+    "date": "2026-10-06",
+    "lanes": [
+      "dsv41flash-letta",
+      "dsv4flash-letta"
+    ],
+    "kind": "listed",
+    "text": "Both carry a green \"Free\" badge in the Letta app's Hosted model list (other hosted models show \"Quota\" or \"Out of credits\"); V4.1 Flash ran an agent session on a free account. No official start or end date found",
+    "source": {
+      "label": "own check",
+      "url": null
+    }
+  },
+  {
+    "date": "2026-10-06",
+    "lanes": [
+      "dots-3-note-preview-kilo",
+      "laguna-s-2.1-kilo",
+      "ling-3.1-flash-kilo",
+      "nemotron-3-super-120b-a12b-kilo",
+      "nemotron-3-ultra-kilo",
+      "apodex-1.1-mini-kilo",
+      "north-mini-code-kilo",
+      "ling-3.0-flash-sante-kilo",
+      "lfm-2.5-2.6b-kilo",
+      "nemotron-3-nano-omni-30b-a3b-kilo",
+      "nemotron-3.5-lightning-kilo",
+      "laguna-xs-2.1-kilo",
+      "step-3.7-flash-kilo"
+    ],
+    "kind": "available",
+    "text": "Answered a test prompt through the Kilo CLI (7.8.3, roll-call) without signing in",
+    "source": {
+      "label": "own check",
+      "url": null
+    }
+  },
+  {
+    "date": "2026-10-06",
+    "lanes": [
+      "inkling-small-kilo"
+    ],
+    "kind": "limit_changed",
+    "text": "Listed free in the Kilo CLI; the first test call hit \"Daily limit reached … Credits don't affect this cap\"",
+    "source": {
+      "label": "own check",
+      "url": null
+    }
+  },
+  {
+    "date": "2026-10-06",
+    "lanes": [
+      "north-mini-code-cline",
+      "ling-3.0-flash-sante-cline",
+      "nemotron-3-nano-omni-30b-a3b-cline",
+      "nemotron-3-super-120b-a12b-cline",
+      "nemotron-3-ultra-cline",
+      "nemotron-3.5-lightning-cline",
+      "laguna-s-2.1-cline",
+      "laguna-xs-2.1-cline",
+      "lfm-2.5-2.6b-cline"
+    ],
+    "kind": "available",
+    "text": "Answered a test prompt in the Cline CLI (3.0.68, signed in, plan mode)",
+    "source": {
+      "label": "own check",
+      "url": null
+    }
+  },
+  {
+    "date": "2026-10-06",
+    "lanes": [
+      "apodex-1.1-mini-cline",
+      "dots-3-note-preview-cline",
+      "gemma-4-26b-a4b-it-cline",
+      "gemma-4-31b-it-cline",
+      "inkling-small-cline",
+      "inkling-cline"
+    ],
+    "kind": "listed",
+    "text": "In the Cline CLI's free-model list; the test call returned no text or an upstream error (429). Qwen 3.8 27B (404) and Step 3.7 Flash (not found) are listed but gone",
+    "source": {
+      "label": "Cline free models",
+      "url": "https://docs.cline.bot/getting-started/free-models"
+    }
+  },
+  {
+    "date": "2026-10-02",
+    "lanes": [
+      "ling-3.1-flash-or"
+    ],
+    "kind": "listed",
+    "text": "Listed on OpenRouter as inclusionai/ling-3.1-flash at $0 (OpenRouter's catalogue record date)",
+    "source": {
+      "label": "OpenRouter model page",
+      "url": "https://openrouter.ai/inclusionai/ling-3.1-flash"
+    }
+  },
+  {
+    "date": "2026-10-01",
+    "lanes": [
+      "apodex-1.1-mini-or"
+    ],
+    "kind": "listed",
+    "text": "Listed on OpenRouter as apodex/apodex-1.1-mini:free at $0 (OpenRouter's catalogue record date)",
+    "source": {
+      "label": "OpenRouter model page",
+      "url": "https://openrouter.ai/apodex/apodex-1.1-mini"
+    }
+  },
+  {
+    "date": "2026-09-04",
+    "lanes": [
+      "ling-3.0-flash-sante-or"
+    ],
+    "kind": "listed",
+    "text": "Listed on OpenRouter as inclusionai/ling-3.0-flash-sante:free at $0 (OpenRouter's catalogue record date)",
+    "source": {
+      "label": "OpenRouter model page",
+      "url": "https://openrouter.ai/inclusionai/ling-3.0-flash-sante"
+    }
+  },
+  {
+    "date": "2026-08-14",
+    "lanes": [
+      "dots-3-note-preview-or"
+    ],
+    "kind": "listed",
+    "text": "Listed on OpenRouter as dots-studio/dots-3-note-preview:free at $0 (OpenRouter's catalogue record date)",
+    "source": {
+      "label": "OpenRouter model page",
+      "url": "https://openrouter.ai/dots-studio/dots-3-note-preview"
+    }
+  },
+  {
+    "date": "2026-08-11",
+    "lanes": [
+      "lfm-2.5-2.6b-or"
+    ],
+    "kind": "listed",
+    "text": "Listed on OpenRouter as liquid/lfm-2.5-2.6b:free at $0 (OpenRouter's catalogue record date)",
+    "source": {
+      "label": "OpenRouter model page",
+      "url": "https://openrouter.ai/liquid/lfm-2.5-2.6b"
+    }
+  },
+  {
+    "date": "2026-08-11",
+    "lanes": [
+      "nemotron-3.5-lightning-or"
+    ],
+    "kind": "listed",
+    "text": "Listed on OpenRouter as nvidia/nemotron-3.5-lightning:free at $0 (OpenRouter's catalogue record date)",
+    "source": {
+      "label": "OpenRouter model page",
+      "url": "https://openrouter.ai/nvidia/nemotron-3.5-lightning"
+    }
+  },
+  {
+    "date": "2026-07-30",
+    "lanes": [
+      "inkling-small-or"
+    ],
+    "kind": "listed",
+    "text": "Listed on OpenRouter as thinkingmachines/inkling-small:free at $0 (OpenRouter's catalogue record date)",
+    "source": {
+      "label": "OpenRouter model page",
+      "url": "https://openrouter.ai/thinkingmachines/inkling-small"
+    }
+  },
+  {
+    "date": "2026-07-21",
+    "lanes": [
+      "laguna-s-2.1-or"
+    ],
+    "kind": "listed",
+    "text": "Listed on OpenRouter as poolside/laguna-s-2.1:free at $0 (OpenRouter's catalogue record date)",
+    "source": {
+      "label": "OpenRouter model page",
+      "url": "https://openrouter.ai/poolside/laguna-s-2.1"
+    }
+  },
+  {
+    "date": "2026-07-17",
+    "lanes": [
+      "inkling-or"
+    ],
+    "kind": "listed",
+    "text": "Listed on OpenRouter as thinkingmachines/inkling:free at $0 (OpenRouter's catalogue record date)",
+    "source": {
+      "label": "OpenRouter model page",
+      "url": "https://openrouter.ai/thinkingmachines/inkling"
+    }
+  },
+  {
+    "date": "2026-07-02",
+    "lanes": [
+      "laguna-xs-2.1-or"
+    ],
+    "kind": "listed",
+    "text": "Listed on OpenRouter as poolside/laguna-xs-2.1:free at $0 (OpenRouter's catalogue record date)",
+    "source": {
+      "label": "OpenRouter model page",
+      "url": "https://openrouter.ai/poolside/laguna-xs-2.1"
+    }
+  },
+  {
+    "date": "2026-06-17",
+    "lanes": [
+      "north-mini-code-or"
+    ],
+    "kind": "listed",
+    "text": "Listed on OpenRouter as cohere/north-mini-code:free at $0 (OpenRouter's catalogue record date)",
+    "source": {
+      "label": "OpenRouter model page",
+      "url": "https://openrouter.ai/cohere/north-mini-code"
+    }
+  },
+  {
+    "date": "2026-04-28",
+    "lanes": [
+      "nemotron-3-nano-omni-30b-a3b-or"
+    ],
+    "kind": "listed",
+    "text": "Listed on OpenRouter as nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free at $0 (OpenRouter's catalogue record date)",
+    "source": {
+      "label": "OpenRouter model page",
+      "url": "https://openrouter.ai/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning"
+    }
+  },
+  {
+    "date": "2026-04-03",
+    "lanes": [
+      "gemma-4-26b-a4b-it-or"
+    ],
+    "kind": "listed",
+    "text": "Listed on OpenRouter as google/gemma-4-26b-a4b-it:free at $0 (OpenRouter's catalogue record date)",
+    "source": {
+      "label": "OpenRouter model page",
+      "url": "https://openrouter.ai/google/gemma-4-26b-a4b-it"
+    }
+  },
+  {
+    "date": "2026-04-02",
+    "lanes": [
+      "gemma-4-31b-it-or"
+    ],
+    "kind": "listed",
+    "text": "Listed on OpenRouter as google/gemma-4-31b-it:free at $0 (OpenRouter's catalogue record date)",
+    "source": {
+      "label": "OpenRouter model page",
+      "url": "https://openrouter.ai/google/gemma-4-31b-it"
+    }
+  },
+  {
+    "date": "2026-03-11",
+    "lanes": [
+      "nemotron-3-super-120b-a12b-or"
+    ],
+    "kind": "listed",
+    "text": "Listed on OpenRouter as nvidia/nemotron-3-super-120b-a12b:free at $0 (OpenRouter's catalogue record date)",
+    "source": {
+      "label": "OpenRouter model page",
+      "url": "https://openrouter.ai/nvidia/nemotron-3-super-120b-a12b"
+    }
+  },
+  {
+    "date": "2026-10-06",
+    "lanes": [
+      "bunny-zen",
+      "longcat-2.5-preview-zen",
+      "ling-3.1-flash-zen",
+      "nemotron-3.5-lightning-zen",
+      "fledge-alpha-zen"
+    ],
+    "kind": "available",
+    "text": "Answered a test prompt through the OpenCode CLI (opencode run) with no account",
+    "source": {
+      "label": "own check",
+      "url": null
+    }
+  },
+  {
+    "date": "2026-10-06",
+    "lanes": [
+      "nemotron-3-ultra-zen",
+      "ling-3.0-flash-fin-zen",
+      "mimo-v2.5-zen",
+      "jev-1.13-zen",
+      "big-pickle-zen",
+      "muse-spark-1.3-contributor-zen",
+      "muse-spark-1.2-contributor-zen"
+    ],
+    "kind": "listed",
+    "text": "In OpenCode Zen's free list (-free models); our test call failed (server error, upstream overload or timeout)",
+    "source": {
+      "label": "OpenCode Zen docs",
+      "url": "https://opencode.ai/docs/zen/"
+    }
+  },
+  {
+    "date": "2026-10-06",
+    "lanes": [
+      "ling-3.1-flash-kilo"
+    ],
+    "kind": "available",
+    "text": "Kilo marks inclusionai/ling-3.1-flash free on purpose (Kilo-Org/cloud PR #7114); it answers without signing in and passed headless agent tasks, with an upstream 429 under load",
+    "source": {
+      "label": "Kilo-Org/cloud PR #7114",
+      "url": "https://github.com/Kilo-Org/cloud/pull/7114"
+    }
+  },
+  {
+    "date": "2026-10-06",
+    "kind": "listed",
+    "text": "On Freebuff's \"Free hours per day, by model\" table; not tested by us because Freebuff's terms forbid scripted use",
+    "source": {
+      "label": "Freebuff",
+      "url": "https://freebuff.com/"
+    },
+    "offers": [
+      "freebuff"
+    ]
+  },
+  {
+    "date": "2026-10-06",
+    "lanes": [
+      "glm-4.7-flash-zai",
+      "glm-4.5-flash-zai"
+    ],
+    "kind": "listed",
+    "text": "Listed at $0 in Z.ai's own catalogue (standing free tier); not called by us yet",
+    "source": {
+      "label": "Z.ai pricing / models",
+      "url": "https://docs.z.ai/guides/overview/pricing"
+    }
+  },
+  {
+    "date": "2026-10-06",
+    "lanes": [
+      "glm-4.7-flash-bigmodel",
+      "glm-4-flash-250414-bigmodel"
+    ],
+    "kind": "listed",
+    "text": "Listed at $0 in Zhipu BigModel's own catalogue (standing free tier); not called by us yet",
+    "source": {
+      "label": "Zhipu BigModel pricing / models",
+      "url": "https://docs.bigmodel.cn/cn/guide/start/pricing"
+    }
+  },
+  {
+    "date": "2026-10-06",
+    "lanes": [
+      "ling-3.1-flash-vercel",
+      "laguna-s-2.1-vercel"
+    ],
+    "kind": "listed",
+    "text": "Listed at $0 in Vercel AI Gateway's own catalogue (standing free tier); not called by us yet",
+    "source": {
+      "label": "Vercel AI Gateway pricing / models",
+      "url": "https://ai-gateway.vercel.sh/v1/models"
+    }
+  },
+  {
+    "date": "2026-10-06",
+    "lanes": [
+      "qwen2.5-7b-instruct-siliconflow",
+      "qwen3-8b-siliconflow",
+      "qwen3.5-4b-siliconflow",
+      "glm-4-9b-0414-siliconflow",
+      "glm-z1-9b-0414-siliconflow",
+      "xing4.0-29b-siliconflow",
+      "deepseek-r1-0528-qwen3-8b-siliconflow"
+    ],
+    "kind": "listed",
+    "text": "Listed at $0 in SiliconFlow's own catalogue (standing free tier); not called by us yet",
+    "source": {
+      "label": "SiliconFlow pricing / models",
+      "url": "https://siliconflow.cn/pricing"
+    }
+  },
+  {
+    "date": "2026-10-06",
+    "lanes": [
+      "gemini-3.8-flash-gai",
+      "gemini-3.7-flash-gai",
+      "gemini-3.6-flash-gai",
+      "gemini-3.5-flash-gai",
+      "gemini-3.5-flash-lite-gai"
+    ],
+    "kind": "listed",
+    "text": "Free of charge on Google AI Studio's free tier (standing); not called by us yet",
+    "source": {
+      "label": "Google AI Studio docs",
+      "url": "https://ai.google.dev/gemini-api/docs/pricing"
+    }
+  },
+  {
+    "date": "2026-10-06T15:30Z",
+    "lanes": [
+      "muse-spark-1.3-contributor-zen",
+      "muse-spark-1.2-contributor-zen"
+    ],
+    "kind": "unavailable",
+    "text": "Retested through the OpenCode CLI without an account: 1.3 timed out after 180 s, 1.2 returned \"Unexpected server error\"; both stay listed. Possibly needs a signed-in account that grants the training permission (not verified)",
+    "source": {
+      "label": "own check",
+      "url": null
+    }
+  },
+  {
+    "date": "2026-10-06",
+    "lanes": [
+      "ling-3.1-flash-vercel",
+      "laguna-s-2.1-vercel"
+    ],
+    "kind": "limit_changed",
+    "text": "Tested with a Vercel AI Gateway key: Ling 3.1 Flash (Free) answers but is capped at 5 requests per minute per team (per region); Laguna S 2.1 Free returned 503",
+    "source": {
+      "label": "own check",
+      "url": null
+    }
+  },
+  {
+    "date": "2026-10-06",
+    "lanes": [
+      "ling-3.1-flash-vercel"
+    ],
+    "kind": "limit_changed",
+    "text": "After buying AI Gateway credits (paid tier removes Vercel's per-model limit) the free Ling 3.1 Flash still costs $0 but the Novita upstream returned 503 for most calls: 10/10 once, then mostly 503 at 3–15 parallel",
+    "source": {
+      "label": "own check",
+      "url": null
+    }
+  },
+  {
+    "date": "2026-10-06T05:37Z",
+    "lanes": [
+      "bunny-go"
+    ],
+    "kind": "ended",
+    "text": "Calls through OpenCode Go return \"Unexpected server error\" from 05:37 UTC; OpenCode Go's model list now has space-bunny without the -free suffix (a paid, seat-quota model), not space-bunny-free (checked 2026-10-06). Still free on OpenCode Zen",
+    "source": {
+      "label": "OpenCode Go models",
+      "url": "https://opencode.ai/zen/go/v1/models"
+    }
+  },
+  {
+    "date": "2026-10-06",
+    "lanes": [
+      "bunny-kilo"
+    ],
+    "kind": "ended",
+    "text": "No longer in the Kilo CLI's model list (kilo models, 7.8.3); Kilo had announced Oct 5 as the end",
+    "source": {
+      "label": "own check",
+      "url": null
+    }
+  },
+  {
+    "date": "2026-10-06",
+    "lanes": [
+      "muse-spark-1.3-contributor-zen",
+      "muse-spark-1.2-contributor-zen"
+    ],
+    "kind": "limit_changed",
+    "text": "Conditions found: the Contributor models need a signed-in Zen account with an explicit data-training opt-in, use the Responses API, and are limited to Meta's allowed regions (many RegionError reports outside the US); this explains our anonymous test failures",
+    "source": {
+      "label": "OpenCode Zen docs",
+      "url": "https://opencode.ai/docs/zen/"
+    }
+  },
+  {
+    "date": "2026-09-18T02:00Z",
+    "lanes": [
+      "qwen3.8-flash-qoder"
+    ],
+    "kind": "announced",
+    "text": "Qoder international: Qwen3.8-Flash free for all personal users (billing 0.1× → 0.0×), first until Sep 30, then extended from Oct 1 with the end to be announced",
+    "source": {
+      "label": "Qoder event page",
+      "url": "https://docs.qoder.com/zh/events/flashoffer"
+    }
+  },
+  {
+    "date": "2026-09-18",
+    "lanes": [
+      "kimi-k3-cline"
+    ],
+    "kind": "announced",
+    "text": "Kimi K3 free in Cline for a limited time (Cline on X on Sep 20: \"Kimi K3 is still free in the app for a limited time\"); no end date",
+    "source": {
+      "label": "Cline on X",
+      "url": "https://x.com/cline/status/2101754721677840702"
+    }
+  },
+  {
+    "date": "2026-10-06",
+    "lanes": [
+      "coding-kimi-k3-aihubmix",
+      "dots-3-note-preview-aihubmix"
+    ],
+    "kind": "listed",
+    "text": "Listed at $0 on AIHubMix",
+    "source": {
+      "label": "AIHubMix",
+      "url": "https://aihubmix.com/model/coding-kimi-k3-free"
+    }
+  },
+  {
+    "date": "2026-10-06",
+    "lanes": [
+      "qwen3.8-flash-qoder"
+    ],
+    "kind": "available",
+    "text": "Answered through the Qoder CLI (qodercli 1.1.65, headless -p) on a free personal account: 16 of 16 multi-step agent tasks passed at up to 10 parallel, every run 0 credits",
+    "source": {
+      "label": "own check",
+      "url": null
+    }
+  },
+  {
+    "date": "2026-10-06",
+    "kind": "listed",
+    "text": "Tested with a new NVIDIA build key: the key works (Nemotron 3 Super answered in 0.6 s) but GLM 5.3, Kimi K3 and DeepSeek V4.1 Flash returned nothing within 150–180 s, apparently queued on the free endpoints",
+    "source": {
+      "label": "own check",
+      "url": null
+    },
+    "offers": [
+      "nvidia-build-nim"
+    ]
+  },
+  {
+    "date": "2026-10-06",
+    "lanes": [
+      "qwen3.8-flash-qoder",
+      "dsv41flash-letta"
+    ],
+    "kind": "available",
+    "text": "Admitted to Dim's free worker pool after agent benchmarks: Qwen3.8-Flash via the Qoder CLI, and DeepSeek V4.1 Flash via the Letta Code CLI (about 3 parallel on the free plan)",
+    "source": {
+      "label": "own check",
+      "url": null
+    }
+  },
+  {
+    "date": "2026-09-23",
+    "lanes": [
+      "bunny-kilo"
+    ],
+    "kind": "listed",
+    "text": "First seen in Kilo's model catalogue (models.dev sync): Space Bunny (stealth)",
+    "source": {
+      "label": "models.dev commit",
+      "url": "https://github.com/sst/models.dev/commit/8905fbe7173a1ee019b24442cc8fc0fb9edfdb2c"
+    }
+  },
+  {
+    "date": "2026-10-01",
+    "lanes": [
+      "apodex-1.1-mini-kilo"
+    ],
+    "kind": "listed",
+    "text": "First seen in Kilo's model catalogue (models.dev sync): Apodex 1.1 Mini",
+    "source": {
+      "label": "models.dev commit",
+      "url": "https://github.com/sst/models.dev/commit/675a573d01a86e5168fbd2559c9e5a5c1d901248"
+    }
+  },
+  {
+    "date": "2026-08-03",
+    "lanes": [
+      "laguna-xs-2.1-kilo",
+      "north-mini-code-kilo",
+      "step-3.7-flash-kilo"
+    ],
+    "kind": "listed",
+    "text": "First seen in Kilo's model catalogue (models.dev sync): Laguna XS 2.1, North Mini Code, Step 3.7 Flash",
+    "source": {
+      "label": "models.dev commit",
+      "url": "https://github.com/sst/models.dev/commit/0a375c8387ef827ecb568415d735cf812c6be60f"
+    }
+  },
+  {
+    "date": "2026-09-04",
+    "lanes": [
+      "ling-3.0-flash-sante-kilo"
+    ],
+    "kind": "listed",
+    "text": "First seen in Kilo's model catalogue (models.dev sync): Ling 3.0 Flash Sante",
+    "source": {
+      "label": "models.dev commit",
+      "url": "https://github.com/sst/models.dev/commit/2acdca31bd1c0481260109c375444d61544455a5"
+    }
+  },
+  {
+    "date": "2026-08-12",
+    "lanes": [
+      "lfm-2.5-2.6b-kilo"
+    ],
+    "kind": "listed",
+    "text": "First seen in Kilo's model catalogue (models.dev sync): LFM 2.5 2.6B",
+    "source": {
+      "label": "models.dev commit",
+      "url": "https://github.com/sst/models.dev/commit/8f00edbbb386b9ae5d119c3538ffc6e98d458594"
+    }
+  },
+  {
+    "date": "2026-05-01",
+    "lanes": [
+      "nemotron-3-nano-omni-30b-a3b-kilo"
+    ],
+    "kind": "listed",
+    "text": "First seen in Kilo's model catalogue (models.dev sync): Nemotron 3 Nano Omni 30B A3B (reasoning)",
+    "source": {
+      "label": "models.dev commit",
+      "url": "https://github.com/sst/models.dev/commit/aec3f94081ea76edc37bdcc76c45fc5f11dab3aa"
+    }
+  },
+  {
+    "date": "2026-08-11",
+    "lanes": [
+      "nemotron-3.5-lightning-kilo"
+    ],
+    "kind": "listed",
+    "text": "First seen in Kilo's model catalogue (models.dev sync): Nemotron 3.5 Lightning",
+    "source": {
+      "label": "models.dev commit",
+      "url": "https://github.com/sst/models.dev/commit/0721d2d7a589a7bdef889ce9c60795c7b5835877"
+    }
+  },
+  {
+    "date": "2026-08-21",
+    "lanes": [
+      "inkling-small-kilo"
+    ],
+    "kind": "listed",
+    "text": "First seen in Kilo's model catalogue (models.dev sync): Inkling Small",
+    "source": {
+      "label": "models.dev commit",
+      "url": "https://github.com/sst/models.dev/commit/500275da0b4f49f4419b688dab75671645413377"
+    }
+  },
+  {
+    "date": "2026-06-19",
+    "lanes": [
+      "north-mini-code-cline"
+    ],
+    "kind": "listed",
+    "text": "Added to Cline's model list: North Mini Code",
+    "source": {
+      "label": "Cline repo commit",
+      "url": "https://github.com/cline/cline/commit/cdff084652e46a4f9aa7e8f4ed57766a3e10f712"
+    }
+  },
+  {
+    "date": "2026-09-09",
+    "lanes": [
+      "ling-3.0-flash-sante-cline"
+    ],
+    "kind": "listed",
+    "text": "Added to Cline's model list: Ling 3.0 Flash Sante",
+    "source": {
+      "label": "Cline repo commit",
+      "url": "https://github.com/cline/cline/commit/1063db45d80f5bac76fba5bbc8f310f56055b506"
+    }
+  },
+  {
+    "date": "2026-04-28",
+    "lanes": [
+      "nemotron-3-nano-omni-30b-a3b-cline"
+    ],
+    "kind": "listed",
+    "text": "Added to Cline's model list: Nemotron 3 Nano Omni 30B A3B (reasoning)",
+    "source": {
+      "label": "Cline repo commit",
+      "url": "https://github.com/cline/cline/commit/c6a111e82a7de486359bc0130ad6d955fb786c52"
+    }
+  },
+  {
+    "date": "2026-03-31",
+    "lanes": [
+      "nemotron-3-super-120b-a12b-cline"
+    ],
+    "kind": "listed",
+    "text": "Added to Cline's model list: Nemotron 3 Super",
+    "source": {
+      "label": "Cline repo commit",
+      "url": "https://github.com/cline/cline/commit/7f415abb5b34087a6dfeecb4c71b02f845270504"
+    }
+  },
+  {
+    "date": "2026-06-04",
+    "lanes": [
+      "nemotron-3-ultra-cline"
+    ],
+    "kind": "listed",
+    "text": "Added to Cline's model list: Nemotron 3 Ultra (550B-A55B)",
+    "source": {
+      "label": "Cline repo commit",
+      "url": "https://github.com/cline/cline/commit/48316027a7846ba1cc977834213970347cb29939"
+    }
+  },
+  {
+    "date": "2026-08-11",
+    "lanes": [
+      "nemotron-3.5-lightning-cline"
+    ],
+    "kind": "listed",
+    "text": "Added to Cline's model list: Nemotron 3.5 Lightning",
+    "source": {
+      "label": "Cline repo commit",
+      "url": "https://github.com/cline/cline/commit/00ba2ff7dafe7d72349dd1bfd0beb0fe9b170a88"
+    }
+  },
+  {
+    "date": "2026-07-28",
+    "lanes": [
+      "laguna-s-2.1-cline"
+    ],
+    "kind": "listed",
+    "text": "Added to Cline's model list: Laguna S 2.1",
+    "source": {
+      "label": "Cline repo commit",
+      "url": "https://github.com/cline/cline/commit/a6239c420c1dcc58da3fa511054784d1e49d0f85"
+    }
+  },
+  {
+    "date": "2026-07-03",
+    "lanes": [
+      "laguna-xs-2.1-cline"
+    ],
+    "kind": "listed",
+    "text": "Added to Cline's model list: Laguna XS 2.1",
+    "source": {
+      "label": "Cline repo commit",
+      "url": "https://github.com/cline/cline/commit/a2a46ae600207b47e4fc2e6706d5bd023e7fa689"
+    }
+  },
+  {
+    "date": "2026-08-13",
+    "lanes": [
+      "lfm-2.5-2.6b-cline"
+    ],
+    "kind": "listed",
+    "text": "Added to Cline's model list: LFM 2.5 2.6B",
+    "source": {
+      "label": "Cline repo commit",
+      "url": "https://github.com/cline/cline/commit/3f39c46026b64b961980573ead0355b24dfa6228"
+    }
+  },
+  {
+    "date": "2026-10-02",
+    "lanes": [
+      "apodex-1.1-mini-cline"
+    ],
+    "kind": "listed",
+    "text": "Added to Cline's model list: Apodex 1.1 Mini",
+    "source": {
+      "label": "Cline repo commit",
+      "url": "https://github.com/cline/cline/commit/a7ad50bae34c43823facf2c2ee726b45dc7c0145"
+    }
+  },
+  {
+    "date": "2026-08-14",
+    "lanes": [
+      "dots-3-note-preview-cline"
+    ],
+    "kind": "listed",
+    "text": "Added to Cline's model list: Dots3-Note Preview",
+    "source": {
+      "label": "Cline repo commit",
+      "url": "https://github.com/cline/cline/commit/225f65cc0e16298d21e392d1597039562765de0b"
+    }
+  },
+  {
+    "date": "2026-04-09",
+    "lanes": [
+      "gemma-4-26b-a4b-it-cline",
+      "gemma-4-31b-it-cline"
+    ],
+    "kind": "listed",
+    "text": "Added to Cline's model list: Gemma 4 26B A4B, Gemma 4 31B",
+    "source": {
+      "label": "Cline repo commit",
+      "url": "https://github.com/cline/cline/commit/27c93efeedfb7469dad748996a6292bf9642809c"
+    }
+  },
+  {
+    "date": "2026-08-22",
+    "lanes": [
+      "inkling-cline"
+    ],
+    "kind": "listed",
+    "text": "Added to Cline's model list: Inkling",
+    "source": {
+      "label": "Cline repo commit",
+      "url": "https://github.com/cline/cline/commit/21cb8d2525bcedf1f4b6890b27a74a14fe7451e4"
+    }
+  },
+  {
+    "date": "2025-10-17",
+    "lanes": [
+      "big-pickle-zen"
+    ],
+    "kind": "listed",
+    "text": "Added to OpenCode's model catalogue (models.dev): Big Pickle",
+    "source": {
+      "label": "models.dev commit",
+      "url": "https://github.com/sst/models.dev/commit/72053ca66"
+    }
+  },
+  {
+    "date": "2026-05-27",
+    "lanes": [
+      "mimo-v2.5-zen"
+    ],
+    "kind": "listed",
+    "text": "Added to the Zen model docs: MiMo V2.5",
+    "source": {
+      "label": "OpenCode repo commit",
+      "url": "https://github.com/anomalyco/opencode/commit/5a5d981c4e"
+    }
+  },
+  {
+    "date": "2026-06-04",
+    "lanes": [
+      "nemotron-3-ultra-zen"
+    ],
+    "kind": "listed",
+    "text": "Added to the Zen model docs: Nemotron 3 Ultra (550B-A55B)",
+    "source": {
+      "label": "OpenCode repo commit",
+      "url": "https://github.com/anomalyco/opencode/commit/f5d1ae6a9e"
+    }
+  },
+  {
+    "date": "2026-08-11",
+    "lanes": [
+      "nemotron-3.5-lightning-zen"
+    ],
+    "kind": "listed",
+    "text": "Added to the Zen model docs: Nemotron 3.5 Lightning",
+    "source": {
+      "label": "OpenCode repo commit",
+      "url": "https://github.com/anomalyco/opencode/commit/9fdd4824d3"
+    }
+  },
+  {
+    "date": "2026-08-20",
+    "lanes": [
+      "muse-spark-1.2-contributor-zen"
+    ],
+    "kind": "listed",
+    "text": "Added to the Zen model docs: Muse Spark 1.2 (Contributor)",
+    "source": {
+      "label": "OpenCode repo commit",
+      "url": "https://github.com/anomalyco/opencode/commit/3d26b12251"
+    }
+  },
+  {
+    "date": "2026-08-28",
+    "lanes": [
+      "ling-3.0-flash-fin-zen"
+    ],
+    "kind": "listed",
+    "text": "Added to the Zen model docs: Ling 3.0 Flash Fin",
+    "source": {
+      "label": "OpenCode repo commit",
+      "url": "https://github.com/anomalyco/opencode/commit/df35e842f5"
+    }
+  },
+  {
+    "date": "2026-09-02",
+    "lanes": [
+      "muse-spark-1.3-contributor-zen"
+    ],
+    "kind": "listed",
+    "text": "Added to the Zen model docs: Muse Spark 1.3 (Contributor)",
+    "source": {
+      "label": "OpenCode repo commit",
+      "url": "https://github.com/anomalyco/opencode/commit/77aec36da1"
+    }
+  },
+  {
+    "date": "2026-09-19",
+    "lanes": [
+      "jev-1.13-zen"
+    ],
+    "kind": "listed",
+    "text": "Added to the Zen model docs: JEV 1.13",
+    "source": {
+      "label": "OpenCode repo commit",
+      "url": "https://github.com/anomalyco/opencode/commit/61eae8811a"
+    }
+  },
+  {
+    "date": "2026-09-23",
+    "lanes": [
+      "bunny-zen"
+    ],
+    "kind": "listed",
+    "text": "Added to the Zen model docs: Space Bunny (stealth)",
+    "source": {
+      "label": "OpenCode repo commit",
+      "url": "https://github.com/anomalyco/opencode/commit/1b4a6dbc65"
+    }
+  },
+  {
+    "date": "2026-09-26",
+    "lanes": [
+      "longcat-2.5-preview-zen"
+    ],
+    "kind": "listed",
+    "text": "Added to the Zen model docs: LongCat 2.5 Preview",
+    "source": {
+      "label": "OpenCode repo commit",
+      "url": "https://github.com/anomalyco/opencode/commit/b65de4d694"
+    }
+  },
+  {
+    "date": "2026-10-01",
+    "lanes": [
+      "fledge-alpha-zen"
+    ],
+    "kind": "listed",
+    "text": "Added to OpenCode's model catalogue (models.dev): Fledge Alpha",
+    "source": {
+      "label": "models.dev commit",
+      "url": "https://github.com/sst/models.dev/commit/355fca0c6"
+    }
+  },
+  {
+    "date": "2026-10-02",
+    "lanes": [
+      "ling-3.1-flash-zen"
+    ],
+    "kind": "listed",
+    "text": "Added to the Zen model docs: Ling 3.1 Flash",
+    "source": {
+      "label": "OpenCode repo commit",
+      "url": "https://github.com/anomalyco/opencode/commit/c42ae0d56b"
+    }
+  },
+  {
+    "date": "2026-01-19",
+    "lanes": [
+      "glm-4.7-flash-zai"
+    ],
+    "kind": "available",
+    "text": "Launched on Z.ai: GLM-4.7-Flash",
+    "source": {
+      "label": "Z.ai release notes",
+      "url": "https://docs.z.ai/release-notes/new-released"
+    }
+  },
+  {
+    "date": "2025-07-30",
+    "lanes": [
+      "glm-4.5-flash-zai"
+    ],
+    "kind": "listed",
+    "text": "Listed as free on Z.ai's pricing page (archived snapshot): GLM-4.5-Flash",
+    "source": {
+      "label": "Z.ai pricing, archived",
+      "url": "https://web.archive.org/web/20250730192638/https://docs.z.ai/guides/overview/pricing"
+    }
+  },
+  {
+    "date": "2026-01-19",
+    "lanes": [
+      "glm-4.7-flash-bigmodel"
+    ],
+    "kind": "available",
+    "text": "Launched free on BigModel: GLM-4.7-Flash",
+    "source": {
+      "label": "Zhipu news",
+      "url": "https://www.zhipuai.cn/zh/news/148"
+    }
+  },
+  {
+    "date": "2025-04-15",
+    "lanes": [
+      "glm-4-flash-250414-bigmodel"
+    ],
+    "kind": "available",
+    "text": "First public mention: GLM-4-Flash-250414",
+    "source": {
+      "label": "news report",
+      "url": "https://finance.sina.com.cn/tech/csj/2025-04-15/doc-inetftfy1161190.shtml"
+    }
+  },
+  {
+    "date": "2026-09-30",
+    "lanes": [
+      "ling-3.1-flash-vercel"
+    ],
+    "kind": "available",
+    "text": "Announced on the Vercel changelog: Ling 3.1 Flash",
+    "source": {
+      "label": "Vercel changelog",
+      "url": "https://vercel.com/changelog/ling-3-1-flash-is-now-available-on-ai-gateway"
+    }
+  },
+  {
+    "date": "2026-07-21",
+    "lanes": [
+      "laguna-s-2.1-vercel"
+    ],
+    "kind": "available",
+    "text": "Announced on the Vercel changelog: Laguna S 2.1",
+    "source": {
+      "label": "Vercel changelog",
+      "url": "https://vercel.com/changelog/laguna-s-2-1-is-now-available-on-ai-gateway"
+    }
+  },
+  {
+    "date": "2026-10-06",
+    "lanes": [
+      "exo-zen"
+    ],
+    "kind": "listed",
+    "text": "Added to OpenCode's model catalogue (models.dev): Exo",
+    "source": {
+      "label": "models.dev commit",
+      "url": "https://github.com/sst/models.dev/commit/0773f61a19"
+    }
+  },
+  {
+    "date": "2026-10-07",
+    "lanes": [
+      "mimo-v2.5-zen"
+    ],
+    "kind": "ended",
+    "text": "No longer in OpenCode Zen's model list (free catalogue check)",
+    "source": {
+      "label": "own check of opencode.ai/zen/v1/models",
+      "url": "https://opencode.ai/zen/v1/models"
+    }
+  },
+  {
+    "date": "2026-09-24",
+    "lanes": [
+      "bunny-cc"
+    ],
+    "kind": "announced",
+    "text": "Announced as free on Command Code on X: Space Bunny (stealth)",
+    "source": {
+      "label": "X post by @CommandCodeAI",
+      "url": "https://x.com/CommandCodeAI/status/2102941840811135057"
+    }
+  },
+  {
+    "date": "2026-09-05",
+    "kind": "announced",
+    "text": "Announced as free on Freebuff on X: Solar Pro 4",
+    "source": {
+      "label": "X post by @jahooma",
+      "url": "https://x.com/jahooma/status/2096169643035840581"
+    },
+    "offers": [
+      "freebuff"
+    ]
+  },
+  {
+    "date": "2026-10-03",
+    "kind": "announced",
+    "text": "Announced as free on Freebuff on X: Solar Mini 4",
+    "source": {
+      "label": "X post by @jahooma",
+      "url": "https://x.com/jahooma/status/2106192400788107619"
+    },
+    "offers": [
+      "freebuff"
+    ]
+  },
+  {
+    "date": "2026-09-22",
+    "kind": "available",
+    "text": "Mentioned as free on Freebuff on X (earliest mention found): MiMo V2.6 Flash, MiMo V2.6 Pro",
+    "source": {
+      "label": "X post by @BilalGreyrat",
+      "url": "https://x.com/BilalGreyrat/status/2102256208950460895"
+    },
+    "offers": [
+      "freebuff"
+    ]
+  },
+  {
+    "date": "2026-08-28",
+    "kind": "announced",
+    "text": "Announced as free on Freebuff on X: GLM 5.3 Flash",
+    "source": {
+      "label": "X post by @jahooma",
+      "url": "https://x.com/jahooma/status/2093137551918051624"
+    },
+    "offers": [
+      "freebuff"
+    ]
+  },
+  {
+    "date": "2026-09-11",
+    "kind": "available",
+    "text": "Mentioned as free on Freebuff on X (earliest mention found): DeepSeek V4.1 Flash",
+    "source": {
+      "label": "X post by @dextune",
+      "url": "https://x.com/dextune/status/2098398998805766538"
+    },
+    "offers": [
+      "freebuff"
+    ]
+  },
+  {
+    "date": "2026-09-17",
+    "kind": "available",
+    "text": "Mentioned as free on Freebuff on X (earliest mention found): GPT-6 Luna",
+    "source": {
+      "label": "X post by @ah4alt",
+      "url": "https://x.com/ah4alt/status/2100431181682802917"
+    },
+    "offers": [
+      "freebuff"
+    ]
+  },
+  {
+    "date": "2026-10-05",
+    "kind": "announced",
+    "text": "Announced as free on Freebuff on X: DeepSeek V4.1 Flash",
+    "source": {
+      "label": "X post by @FreebuffHQ",
+      "url": "https://x.com/FreebuffHQ/status/2107254693378568575"
+    },
+    "offers": [
+      "freebuff"
+    ]
+  },
+  {
+    "date": "2026-09-30",
+    "kind": "announced",
+    "text": "Announced as free on Freebuff on X: GPT-6.1 Sol",
+    "source": {
+      "label": "X post by @jahooma",
+      "url": "https://x.com/jahooma/status/2105302144098177024"
+    },
+    "offers": [
+      "freebuff"
+    ]
+  },
+  {
+    "date": "2024-10-06",
+    "lanes": [
+      "qwen2.5-7b-instruct-siliconflow"
+    ],
+    "kind": "available",
+    "text": "Mentioned as free on SiliconFlow on X (earliest mention found): Qwen2.5 7B Instruct",
+    "source": {
+      "label": "X post by @immazzystar",
+      "url": "https://x.com/immazzystar/status/1842817923217346560"
+    }
+  },
+  {
+    "date": "2025-09-02",
+    "lanes": [
+      "qwen3-8b-siliconflow"
+    ],
+    "kind": "available",
+    "text": "Mentioned as free on SiliconFlow on X (earliest mention found): Qwen3 8B",
+    "source": {
+      "label": "X post by @YinsenW_",
+      "url": "https://x.com/YinsenW_/status/1962730167291527290"
+    }
+  },
+  {
+    "date": "2026-09-11",
+    "lanes": [
+      "qwen3.5-4b-siliconflow"
+    ],
+    "kind": "available",
+    "text": "Mentioned as free on SiliconFlow on X (earliest mention found): Qwen3.5 4B",
+    "source": {
+      "label": "X post by @wanghejun114387",
+      "url": "https://x.com/wanghejun114387/status/2098372678306644284"
+    }
+  },
+  {
+    "date": "2025-07-20",
+    "lanes": [
+      "glm-4-9b-0414-siliconflow"
+    ],
+    "kind": "available",
+    "text": "Mentioned as free on SiliconFlow on X (earliest mention found): GLM-4 9B 0414",
+    "source": {
+      "label": "X post by @OipsAnthony",
+      "url": "https://x.com/OipsAnthony/status/1946819692649390481"
+    }
+  },
+  {
+    "date": "2026-09-03",
+    "lanes": [
+      "gemini-3.8-flash-gai"
+    ],
+    "kind": "available",
+    "text": "Mentioned as free on Google AI Studio on X (earliest mention found): Gemini 3.8 Flash",
+    "source": {
+      "label": "X post by @toshinobu65",
+      "url": "https://x.com/toshinobu65/status/2095607179558679013"
+    }
+  },
+  {
+    "date": "2026-08-14",
+    "lanes": [
+      "gemini-3.7-flash-gai"
+    ],
+    "kind": "available",
+    "text": "Mentioned as free on Google AI Studio on X (earliest mention found): Gemini 3.7 Flash",
+    "source": {
+      "label": "X post by @toshinobu65",
+      "url": "https://x.com/toshinobu65/status/2088245502609674418"
+    }
+  },
+  {
+    "date": "2026-08-23",
+    "lanes": [
+      "coding-kimi-k3-aihubmix"
+    ],
+    "kind": "available",
+    "text": "Mentioned as free on AIHubMix on X (earliest mention found): Coding Kimi K3",
+    "source": {
+      "label": "X post by @shesaidmewakeup",
+      "url": "https://x.com/shesaidmewakeup/status/2091527248419467335"
+    }
+  },
+  {
+    "date": "2026-09-25",
+    "kind": "available",
+    "text": "Mentioned as free on NVIDIA build on X (earliest mention found): DeepSeek V4.1 Flash, GLM 5.3, Kimi K3",
+    "source": {
+      "label": "X post by @pengsonal",
+      "url": "https://x.com/pengsonal/status/2103525364656161209"
+    },
+    "offers": [
+      "nvidia-build-nim"
+    ]
+  },
+  {
+    "date": "2026-05-23",
+    "kind": "available",
+    "text": "Mentioned as free on NVIDIA build on X (earliest mention found): Nemotron 3 Super",
+    "source": {
+      "label": "X post by @X_SUZQ",
+      "url": "https://x.com/X_SUZQ/status/2058196916958343363"
+    },
+    "offers": [
+      "nvidia-build-nim"
+    ]
+  },
+  {
+    "date": "2026-10-07",
+    "lanes": [
+      "gemma-4-26b-a4b-it-kilo",
+      "hy3-kilo",
+      "hy3-preview-kilo",
+      "ling-2.6-1t-kilo",
+      "ling-2.6-flash-kilo",
+      "ling-3.0-flash-kilo",
+      "ling-3.0-flash-vl-kilo",
+      "minimax-m2.7-kilo",
+      "minimax-m3-kilo",
+      "nex-n2-pro-kilo",
+      "nex-n2.5-pro-kilo",
+      "ring-2.6-1t-kilo"
+    ],
+    "kind": "ended",
+    "text": "Not in Kilo's free model list any more: the signed-in Kilo CLI (7.8.3) lists 14 free models, none of these; most remain only as paid models",
+    "source": {
+      "label": "own check: kilo models kilo, signed in",
+      "url": "https://kilo.ai/models"
+    }
+  },
+  {
+    "date": "2026-10-07",
+    "lanes": [
+      "apodex-1.1-mini-kilo"
+    ],
+    "kind": "ended",
+    "text": "Not in Kilo's model list any more (signed-in Kilo CLI 7.8.3: model not found)",
+    "source": {
+      "label": "own check: kilo models kilo, signed in",
+      "url": "https://kilo.ai/models"
+    }
+  },
+  {
+    "date": "2026-08-14",
+    "lanes": [
+      "qwen3.8-27b-or"
+    ],
+    "kind": "available",
+    "text": "Guide published for using Qwen3.8 27B (free) through OpenRouter: Qwen3.8 27B",
+    "source": {
+      "label": "TypingMind guide",
+      "url": "https://www.typingmind.com/guide/openrouter/qwen3.8-27b-free"
+    }
+  },
+  {
+    "date": "2026-10-08",
+    "lanes": [
+      "qwen3.8-27b-or"
+    ],
+    "kind": "ended",
+    "text": "qwen/qwen3.8-27b:free is no longer in OpenRouter's model list; only the paid qwen/qwen3.8-27b remains",
+    "source": {
+      "label": "own check of openrouter.ai/api/v1/models",
+      "url": "https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2026-08-17",
+    "kind": "listed",
+    "text": "Added to the Workers AI model catalogue: Qwen3.8 27B",
+    "source": {
+      "label": "Workers AI model page",
+      "url": "https://developers.cloudflare.com/workers-ai/models/qwen3.8-27b/"
+    },
+    "offers": [
+      "cloudflare-workers-ai"
+    ]
+  },
+  {
+    "date": "2026-08-19",
+    "kind": "listed",
+    "text": "Registered on ModelScope's free API-Inference gateway (model list timestamp): Qwen3.8 27B",
+    "source": {
+      "label": "ModelScope API-Inference model list",
+      "url": "https://api-inference.modelscope.cn/v1/models"
+    },
+    "offers": [
+      "modelscope-api-inference"
+    ]
+  },
+  {
+    "date": "2026-09-30",
+    "lanes": [
+      "ling-3.1-flash-antling"
+    ],
+    "kind": "announced",
+    "text": "Ling 3.1 Flash launched on the official Ant Ling API, free for 2 weeks: Ling 3.1 Flash",
+    "end_date": "2026-10-14",
+    "source": {
+      "label": "Ant Ling pricing",
+      "url": "https://developer.ant-ling.com/zh-CN/docs/models/price/"
+    }
+  },
+  {
+    "date": "2026-10-07",
+    "lanes": [
+      "glyph-cluster-vercel"
+    ],
+    "kind": "announced",
+    "text": "Early access on AI Gateway for Pro or Enterprise teams with purchased credits; token price $0 during the stealth period: Glyph Cluster",
+    "source": {
+      "label": "Vercel changelog",
+      "url": "https://vercel.com/changelog/glyph-cluster-is-now-available-in-stealth-for-free-on-ai-gateway"
+    }
+  },
+  {
+    "date": "2026-10-09",
+    "lanes": [
+      "step-5-preview-zen"
+    ],
+    "kind": "listed",
+    "text": "First seen in the OpenCode Zen free catalogue; the listing may predate this check: Step 5 Preview",
+    "source": {
+      "label": "OpenCode Zen model list",
+      "url": "https://opencode.ai/zen/v1/models"
+    }
+  },
+  {
+    "date": "2026-10-09",
+    "lanes": [
+      "step-5-preview-go"
+    ],
+    "kind": "listed",
+    "text": "First seen in the OpenCode Go free catalogue; the listing may predate this check: Step 5 Preview",
+    "source": {
+      "label": "OpenCode Go model list",
+      "url": "https://opencode.ai/zen/go/v1/models"
+    }
+  },
+  {
+    "date": "2026-10-11",
+    "lanes": [
+      "exo-zen"
+    ],
+    "kind": "unavailable",
+    "text": "Still listed in the Zen catalogue; a call returned HTTP 410 ModelDeprecated: Exo",
+    "source": {
+      "label": "OpenCode Zen model list",
+      "url": "https://opencode.ai/zen/v1/models"
+    }
   }
- },
- {
-  "date": "2026-10-07",
-  "lanes": [
-   "glyph-cluster-vercel"
-  ],
-  "kind": "announced",
-  "text": "Early access on AI Gateway for Pro or Enterprise teams with purchased credits; token price $0 during the stealth period: Glyph Cluster",
-  "source": {
-   "label": "Vercel changelog",
-   "url": "https://vercel.com/changelog/glyph-cluster-is-now-available-in-stealth-for-free-on-ai-gateway"
-  }
- },
- {
-  "date": "2026-10-09",
-  "lanes": [
-   "step-5-preview-zen"
-  ],
-  "kind": "listed",
-  "text": "First seen in the OpenCode Zen free catalogue; the listing may predate this check: Step 5 Preview",
-  "source": {
-   "label": "OpenCode Zen model list",
-   "url": "https://opencode.ai/zen/v1/models"
-  }
- },
- {
-  "date": "2026-10-09",
-  "lanes": [
-   "step-5-preview-go"
-  ],
-  "kind": "listed",
-  "text": "First seen in the OpenCode Go free catalogue; the listing may predate this check: Step 5 Preview",
-  "source": {
-   "label": "OpenCode Go model list",
-   "url": "https://opencode.ai/zen/go/v1/models"
-  }
- },
- {
-  "date": "2026-10-11",
-  "lanes": [
-   "exo-zen"
-  ],
-  "kind": "unavailable",
-  "text": "Still listed in the Zen catalogue; a call returned HTTP 410 ModelDeprecated: Exo",
-  "source": {
-   "label": "OpenCode Zen model list",
-   "url": "https://opencode.ai/zen/v1/models"
-  }
- }
 ]
