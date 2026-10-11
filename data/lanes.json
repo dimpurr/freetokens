@@ -3253,7 +3253,11 @@
   "limits_stated": {
    "basis": "unpublished"
   },
-  "limits_observed": null,
+  "limits_observed": {
+   "date": "2026-10-11",
+   "reach": "missing",
+   "note": "HTTP 410 ModelDeprecated"
+  },
   "started": {
    "date": "2026-10-06",
    "note": "added to OpenCode's model catalogue (models.dev)"
@@ -3264,14 +3268,14 @@
    "confidence": "none"
   },
   "data_policy": "may_train",
-  "status": "listed",
+  "status": "unavailable",
   "checked": {
-   "date": "2026-10-07",
-   "method": "catalogue"
+   "date": "2026-10-11",
+   "method": "agent_run"
   },
   "volume": {
    "tier": "daily",
-   "basis": "channel rule: Zen's free allowance is per IP per day; this model not load-tested"
+   "basis": "channel rule: Zen's free allowance is per IP per day; the call failed before a load test"
   }
  },
  {
@@ -3864,7 +3868,12 @@
   "limits_stated": {
    "basis": "unpublished"
   },
-  "limits_observed": null,
+  "limits_observed": {
+   "date": "2026-10-11",
+   "reach": "works",
+   "parallel": 10,
+   "note": "10 parallel short calls answered"
+  },
   "started": {
    "date": "2026-10-09",
    "note": "first seen in the daily free-catalogue check; may predate it"
@@ -3875,14 +3884,14 @@
    "confidence": "none"
   },
   "data_policy": "zero_retention",
-  "status": "listed",
+  "status": "live",
   "checked": {
-   "date": "2026-10-10",
-   "method": "catalogue"
+   "date": "2026-10-11",
+   "method": "agent_run"
   },
   "volume": {
    "tier": "daily",
-   "basis": "channel rule: Zen's free allowance is per IP per day; this model not load-tested"
+   "basis": "channel rule: Zen's free allowance is per IP per day; 10 short calls in parallel answered"
   }
  },
  {
@@ -3897,7 +3906,12 @@
    "note": "Go rate table lists it as Unlimited",
    "source": "https://opencode.ai/docs/go/"
   },
-  "limits_observed": null,
+  "limits_observed": {
+   "date": "2026-10-11",
+   "reach": "works",
+   "parallel": 10,
+   "note": "10 parallel short calls answered"
+  },
   "started": {
    "date": "2026-10-09",
    "note": "first seen in the daily free-catalogue check; may predate it"
@@ -3908,10 +3922,10 @@
    "confidence": "none"
   },
   "data_policy": "not_checked",
-  "status": "listed",
+  "status": "live",
   "checked": {
-   "date": "2026-10-10",
-   "method": "catalogue"
+   "date": "2026-10-11",
+   "method": "agent_run"
   }
  }
 ]

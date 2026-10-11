@@ -1804,5 +1804,17 @@
    "label": "OpenCode Go model list",
    "url": "https://opencode.ai/zen/go/v1/models"
   }
+ },
+ {
+  "date": "2026-10-11",
+  "lanes": [
+   "exo-zen"
+  ],
+  "kind": "unavailable",
+  "text": "Still listed in the Zen catalogue; a call returned HTTP 410 ModelDeprecated: Exo",
+  "source": {
+   "label": "OpenCode Zen model list",
+   "url": "https://opencode.ai/zen/v1/models"
+  }
  }
 ]
