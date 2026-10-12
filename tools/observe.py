@@ -131,7 +131,8 @@ def lanes_stale(today=None):
 
 def health(watch_path=None):
     h = {"checked": dt.datetime.now(dt.timezone.utc).isoformat(timespec="minutes"), "pages": {}, "problems": []}
-    for p in ("/", "/lanes", "/timeline", "/makers", "/feed.xml", "/sitemap.xml", "/llms.txt"):
+    for p in ("/", "/lanes", "/timeline", "/makers", "/feed.xml", "/sitemap.xml", "/llms.txt",
+              "/zh/", "/zh/feed.xml"):
         try:
             h["pages"][p] = get(SITE + p, head=True)[0]
         except Exception as e:

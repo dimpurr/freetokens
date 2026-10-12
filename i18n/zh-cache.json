@@ -27,7 +27,7 @@
  "1000/day once 10+ credits have been bought": "购买 10+ credits 后为 1000/天",
  "1025K": "1025K",
  "10M tokens a day on the promo models; resets at 24:00 UTC+8, first come first served": "促销模型每天 10M tokens；24:00 UTC+8 重置，先到先得",
- "12-month Google AI Plus student trial at no cost; 2x higher Gemini usage limits": "12 个月 Google AI Plus 学生试用，零费用；Gemini usage limits 高 2 倍",
+ "12-month Google AI Plus student trial at no cost; 2x higher Gemini usage limits": "12 个月 Google AI Plus 学生试用，零费用；Gemini 用量上限高 2 倍",
  "128K": "128K",
  "195K": "195K",
  "197K": "197K",
@@ -580,5 +580,13 @@
  "no AA page (coding variant of Kimi K3, AA 44)": "无 AA 页面（Kimi K3 的编码变体，AA 44）",
  "not on Artificial Analysis": "Artificial Analysis 上没有",
  "not ranked": "未排名",
- "not ranked (LongCat 2.0: 19)": "未排名（LongCat 2.0：19）"
+ "not ranked (LongCat 2.0: 19)": "未排名（LongCat 2.0：19）",
+ "Alibaba": "Alibaba",
+ "Ant Group": "Ant Group",
+ "China Telecom": "China Telecom",
+ "Meituan": "Meituan",
+ "Tencent": "Tencent",
+ "Xiaohongshu (rednote)": "Xiaohongshu (rednote)",
+ "Xiaomi": "Xiaomi",
+ "Zhipu AI; THUDM is its research lab": "Zhipu AI；THUDM 是其研究实验室"
 }

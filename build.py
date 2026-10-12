@@ -902,6 +902,8 @@ def translate_dataset(base):
     for mk in z.get("makers", []):
         if mk.get("note"):
             mk["note"] = zh_text(mk["note"])
+        if mk.get("parent"):
+            mk["parent"] = zh_text(mk["parent"])
     for c in z.get("chans", []):
         c["free_condition"] = zh_text(c.get("free_condition") or "")
         c["entry"]["note"] = zh_text((c.get("entry") or {}).get("note") or "")
@@ -1224,7 +1226,7 @@ def site_extras(pages, lanes, events, models, today, pages_zh=None):
             entries.append(f"  <entry><title>{x(title)}</title><link href=\"{x(link)}\"/><id>{x(link)}</id><updated>{when}</updated><summary>{x(body)}</summary></entry>")
         flang = ' xml:lang="zh-CN"' if lang == "zh" else ""
         return ('<?xml version="1.0" encoding="utf-8"?>\n<feed xmlns="http://www.w3.org/2005/Atom"' + flang + '>\n'
-                f'  <title>freetokens: free LLM events</title>\n  <link href="{FU}/"/>\n  <link rel="self" href="{FU}/feed.xml"/>\n'
+                f'  <title>freetokens: free LLM events</title>\n  <link href="{FU}/"/>\n  <link rel="self" href="{FU}/feed.xml"/>\n' if lang == "en" else f'  <title>freetokens：免费 LLM 动态</title>\n  <link href="{FU}/"/>\n  <link rel="self" href="{FU}/feed.xml"/>\n'
                 f'  <id>{FU}/feed.xml</id>\n  <updated>{today.isoformat()}T00:00:00Z</updated>\n  <author><name>freetokens</name></author>\n'
                 + "\n".join(entries) + "\n</feed>\n")
 
@@ -1376,6 +1378,7 @@ def collect_free_keys(lanes, events, models):
         add((m.get("aa_index") or {}).get("note"))
     for mk in load_optional("makers", []):
         add(mk.get("note"))
+        add(mk.get("parent"))
     for c in (load_optional("benchmarks", {}).get("claims", [])):
         add(c.get("excluded"))
         add(c.get("variant"))

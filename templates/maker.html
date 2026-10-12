@@ -57,7 +57,7 @@ onView(() => {
   const free = KM.filter(freeNow).sort(byScore), best = free.find((m) => aaValue(m) != null);
   const lk = K.links || {};
   $("kh").innerHTML = `<span class="kicker">${esc([K.parent, K.country].filter(Boolean).join(" · ") || Tx("Model maker", "Model maker"))}</span>
-    <h1>${esc(K.name)}</h1>
+    <h1>${esc(ZH && D.maker === "undisclosed" ? "未公开" : K.name)}</h1>
     ${K.note ? `<p class="notes">${esc(K.note)}</p>` : ""}
     <p class="chlinks">${lk.site ? `<a class="extlink" href="${esc(lk.site)}" target="_blank" rel="noopener">Website ${I.ext()}</a>` : ""}${lk.models ? `<a class="extlink" href="${esc(lk.models)}" target="_blank" rel="noopener">${Tx("Models on Hugging Face", "Models on Hugging Face")} ${I.ext()}</a>` : ""}</p>
     <div class="stats">
