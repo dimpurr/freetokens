@@ -1859,10 +1859,7 @@
    "note": "Promo models rotate; the app's model picker is authoritative"
   },
   "status": "live",
-  "started": {
-   "date": "2026-08-19",
-   "note": "IDE and plugins; desktop and web from 2026-09-15"
-  },
+  "started": "2026-08-19",
   "ends": null,
   "checked": {
    "date": "2026-10-09",
@@ -1873,6 +1870,6 @@
    "url": "https://support.huaweicloud.com/offers-codeartsagent/codeartsagent_offers_0001.html"
   },
   "quote": "每位用户每日可领取1000万Tokens。福利Token将于当日24:00清零，不累积至次日。……结束时间：另行通知",
-  "note": "Only inside CodeArts IDE, VS Code/JetBrains plugins, desktop, web or mini-program; no API key. End date not announced."
+  "note": "Only inside CodeArts IDE, VS Code/JetBrains plugins, desktop, web or mini-program; no API key. Desktop and web since 2026-09-15."
  }
 ]

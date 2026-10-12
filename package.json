@@ -1,0 +1,9 @@
+{
+  "name": "freetokens-prerender",
+  "private": true,
+  "description": "Build-time only: prerenders the site with happy-dom (tools/prerender.mjs). Not needed to edit data: python3 build.py --validate is stdlib only.",
+  "type": "module",
+  "devDependencies": {
+    "happy-dom": "21.0.1"
+  }
+}

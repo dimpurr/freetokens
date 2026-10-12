@@ -41,7 +41,7 @@ $("od").innerHTML = row("You get", getsHTML(O)) + row("Needs", reqHTML(O)) +
   row("Comes with", O.paid_plan ? `${esc(O.paid_plan.name)}${O.paid_plan.usd ? ` · $${O.paid_plan.usd}/${O.paid_plan.period === "year" ? "year" : "month"}` : ""}` : "") +
   row("Where", O.region ? `only ${esc(O.region)}` : "worldwide") + row("Use it", accessHTML(offerAccess(O))) +
   row("Provider", O.channel ? `${clink(O.channel)} <span class="muted">${esc(O.provider)}</span>` : esc(O.provider)) +
-  row("Started", O.started ? esc(absDate(O.started)) : "") + row("Ends", O.ends ? esc(absDate(O.ends)) : '<span class="muted">no end announced</span>') +
+  row("Started", O.started ? esc(absDate(O.started.date ?? O.started)) : "") + row("Ends", O.ends ? esc(absDate(O.ends)) : '<span class="muted">no end announced</span>') +
   row("Source", `<a href="${esc(O.source.url)}" target="_blank" rel="noopener">${esc(O.source.label || O.source.url)}</a>${O.quote ? ` <span class="muted">"${esc(O.quote)}"</span>` : ""}`);
 const m = O.models || {}, tracked = (m.tracked || []).filter((x) => models[x]), other = (m.ids || []).filter((x) => !tracked.some((t) => models[t].name === x));
 $("om").innerHTML = (m.kind === "catalogue" ? `<p>The whole catalogue${m.count ? ` (${m.count} models)` : ""} draws on the same allowance${m.note ? `: ${esc(m.note)}` : "."}</p>` : m.note ? `<p>${esc(m.note)}</p>` : "") +

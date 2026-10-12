@@ -227,6 +227,9 @@ def validate_offers(offers, channels, models):
             errs.append(f"{w}: an entitlement names the paid plan it comes with")
         if not str((o.get("source") or {}).get("url", "")).startswith("http"):
             errs.append(f"{w}: source.url is required")
+        for f in ("started", "ends"):  # the offer page reads these as plain dates (2026-10-12: an object broke /offers/huawei-…)
+            if o.get(f) is not None and not (isinstance(o[f], str) and re.fullmatch(r"\d{4}-\d{2}(-\d{2}(T\d{2}:\d{2}Z)?)?", o[f])):
+                errs.append(f"{w}: {f} must be a date string like 2026-10-12 (put context in note)")
         for mid in (o.get("models") or {}).get("tracked", []):
             if mid not in {m["id"] for m in models}:
                 errs.append(f"{w}: models.tracked {mid!r} is not in models.json")
@@ -766,7 +769,10 @@ def build_pages(lanes, events, models, today, mode):
     offers = load_optional("offers", [])
     for o in offers:
         url = f"{SITE}/offers/{o['id']}"
-        title = f"{o['name']}: {o['gets']['text']} | freetokens"
+        # search results show ~60 characters: name plus the first clause of what you get, brand only if it still fits
+        clause = re.split(r"[;；]|,\s|\s\(", o["gets"]["text"])[0].strip()
+        core = f"{o['name']}: {clause}" if len(o["name"]) + 2 + len(clause) <= 60 else clip(o["name"], 70)
+        title = f"{core} | freetokens" if len(core) <= 57 else core
         desc = clip(f"{o['name']} ({label('offer_type', o['type'])}, {o['provider']}): {o['gets']['text']} {label('per', o['gets']['per'])}. "
                     f"Needs: {', '.join(label('requirement', r) for r in o.get('requires', [])) or 'nothing'}. Status and source checked {o['checked']['date'] if isinstance(o['checked'], dict) else o['checked']}.")
         ld = [crumbs([("freetokens", SITE + "/"), ("Free programs", SITE + "/offers"), (o["name"], url)]),
@@ -934,56 +940,21 @@ def site_extras(pages, lanes, events, models, today):
 
 
 def prerender(dist):
-    """Run each page once in headless Chrome and keep the rendered DOM, so crawlers get full HTML without running JS."""
+    """Run each page's own JavaScript once and keep the rendered HTML, so crawlers and AI readers get full pages without JS.
+    happy-dom in Node, no browser (ADR-026; headless Chrome kept failing to start). Returns the number of pages rendered."""
     import shutil, subprocess
-    chrome = next((c for c in ("/Applications/Google Chrome.app/Contents/MacOS/Google Chrome", shutil.which("google-chrome") or "",
-                               shutil.which("chromium") or "") if c and Path(c).exists()), None)
-    if not chrome:
+    node = shutil.which("node")
+    if not node or not (ROOT / "node_modules" / "happy-dom").exists():
         if os.environ.get("FT_ALLOW_NO_PRERENDER") == "1":  # local experiments only: never deploy such a build
-            print("! Chrome not found: skipped prerendering (FT_ALLOW_NO_PRERENDER=1)", file=sys.stderr)
+            print("! node or happy-dom missing: skipped prerendering (FT_ALLOW_NO_PRERENDER=1)", file=sys.stderr)
             return 0
-        sys.exit("✗ Chrome not found: refusing to build an unprerendered site (crawlers and AI readers would get empty pages). "
-                 "Fix Chrome, or set FT_ALLOW_NO_PRERENDER=1 for a local test build that must not be deployed.")
-    import functools, http.server, threading
-    class Quiet(http.server.SimpleHTTPRequestHandler):
-        def log_message(self, *a):
-            pass
-    handler = functools.partial(Quiet, directory=str(dist))
-    srv = http.server.ThreadingHTTPServer(("127.0.0.1", 0), handler)
-    threading.Thread(target=srv.serve_forever, daemon=True).start()
-    port = srv.server_address[1]
-    n = 0
-    pages_ = [p for p in sorted(dist.rglob("*.html")) if p.name not in ("404.html", "methodology.html")]
-    try:
-        from playwright.sync_api import sync_playwright
-    except ImportError:
-        sync_playwright = None
-    if sync_playwright:
-        with sync_playwright() as pw:
-            browser = pw.chromium.launch(channel="chrome", headless=True)
-            ctx = browser.new_context(viewport={"width": 1280, "height": 900})
-            for p in pages_:
-                page = ctx.new_page()
-                page.goto(f"http://127.0.0.1:{port}/{p.relative_to(dist).as_posix()}", wait_until="load", timeout=30000)
-                page.wait_for_timeout(300)
-                out = page.content()
-                page.close()
-                if 'class="wrap"' not in out:
-                    sys.exit(f"✗ prerender failed for {p}")
-                p.write_text(out if out.lstrip().lower().startswith("<!doctype") else "<!doctype html>\n" + out)
-                n += 1
-            browser.close()
-    else:
-        for p in pages_:
-            url = f"http://127.0.0.1:{port}/{p.relative_to(dist).as_posix()}"
-            out = subprocess.run([chrome, "--headless=new", "--disable-gpu", "--virtual-time-budget=3000", "--dump-dom", url],
-                                 capture_output=True, text=True, timeout=90).stdout
-            if 'class="wrap"' not in out:
-                sys.exit(f"✗ prerender failed for {p}")
-            p.write_text("<!doctype html>\n" + out.strip() + "\n")
-            n += 1
-    srv.shutdown()
-    return n
+        sys.exit("✗ prerendering needs node and happy-dom: run `npm install` in the repo "
+                 "(or set FT_ALLOW_NO_PRERENDER=1 for a local test build that must not be deployed)")
+    r = subprocess.run([node, str(ROOT / "tools" / "prerender.mjs"), str(dist)], capture_output=True, text=True, timeout=600)
+    if r.returncode:
+        sys.exit(r.stderr.strip() or "✗ prerender failed")
+    m = re.search(r"prerendered (\d+) pages", r.stdout)
+    return int(m.group(1)) if m else 0
 
 
 def og_image(dist, lanes, models, today):
