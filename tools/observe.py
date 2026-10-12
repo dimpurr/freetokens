@@ -16,6 +16,7 @@ import json
 import os
 import re
 import sys
+import urllib.error
 import urllib.request
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -27,7 +28,7 @@ UA = {"User-Agent": "freetokens-observe/1 (+https://freetokens.fyi)"}
 
 LINE = re.compile(r'(\S+) \S+ \S+ \[(\d+/\w+/\d+):[^\]]+\] "(\S+) (\S+)[^"]*" (\d+) \S+ "([^"]*)" "([^"]*)"')
 # paths only freetokens serves: used to pick our lines out of kafu's shared log (before 2026-10-08 the site had no log of its own)
-SITE_PATH = re.compile(r"^/(models/|channels/|makers|offers|lanes|timeline|methodology|assets/(data|common)\.js|assets/hi\.txt|feed\.xml|og\.png|llms\.txt)")
+SITE_PATH = re.compile(r"^/zh(\?|$)|^/(zh/)?(models/|channels/|makers|offers|lanes|timeline|methodology|blog|about|assets/(data|common)\.js|assets/hi\.txt|feed\.xml|og\.png|llms\.txt)")  # /zh: Chinese pages (ADR-010)
 BEACON = "/assets/hi.txt"  # the count request (build.py BEACON_SNIPPET)
 BOT = re.compile(r"(?i)bot|crawl|spider|slurp|preview|facebookexternal|curl|python|wget|go-http|headless|playwright|httpx|axios|"
                  r"node-fetch|scrapy|ahrefs|semrush|petal|bytespider|gpt|claude|perplexity|anthropic|cohere|google-|feedfetcher|"
@@ -42,6 +43,49 @@ LLM_BOTS = ["GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-User
             "PerplexityBot", "Perplexity-User", "Google-Extended", "Applebot-Extended", "Bytespider", "CCBot", "cohere-ai",
             "meta-externalagent", "Amazonbot", "DuckAssistBot", "MistralAI-User", "OpenCode-User"]
 SEARCH_BOTS = ["Googlebot", "bingbot", "YandexBot", "Baiduspider", "DuckDuckBot", "Applebot", "Sogou", "360Spider"]
+
+
+class _NoRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, *a, **k):
+        return None
+
+
+def hop(url, timeout=20):
+    """One request without following redirects -> (status, Location or '')."""
+    req = urllib.request.Request(url, headers=UA, method="HEAD")
+    try:
+        with urllib.request.build_opener(_NoRedirect).open(req, timeout=timeout) as r:
+            return r.status, ""
+    except urllib.error.HTTPError as e:
+        return e.code, e.headers.get("Location", "")
+
+
+def url_contract():
+    """Every page is /x (no .html, no trailing slash; only the root keeps its slash). Sitemap URLs must answer 200
+    directly; their variants must reach them in exactly one 301; nothing may loop (2026-10-12 /zh/ <-> /zh)."""
+    from concurrent.futures import ThreadPoolExecutor
+    problems = []
+    xml = get(SITE + "/sitemap.xml")[1].decode()
+    locs = sorted(set(re.findall(r"<loc>([^<]+)</loc>", xml)))
+    with ThreadPoolExecutor(16) as ex:
+        for u, (st, loc) in zip(locs, ex.map(hop, locs)):
+            if st != 200:
+                problems.append(f"sitemap URL {u[len(SITE):] or '/'} answers {st} {loc}".rstrip())
+    samples = ["/", "/lanes", "/models/space-bunny", "/zh", "/zh/models/space-bunny"]
+    for canon in samples:
+        base = canon.rstrip("/")
+        variants = ["/index.html", "/index"] if canon == "/" else [base + "/", base + ".html", base + "/index.html"]
+        for v in variants:
+            url, chain = SITE + v, []
+            for _ in range(3):
+                st, loc = hop(url)
+                chain.append(st)
+                if st not in (301, 302, 307, 308):
+                    break
+                url = loc if loc.startswith("http") else SITE + loc
+            if chain != [301, 200] or url != SITE + canon:
+                problems.append(f"{v} -> {url[len(SITE):] or '/'} via {chain} (want one 301 to {canon})")
+    return {"sitemap_urls": len(locs), "problems": problems}
 
 
 def get(url, timeout=30, head=False):
@@ -131,7 +175,7 @@ def lanes_stale(today=None):
 
 def health(watch_path=None):
     h = {"checked": dt.datetime.now(dt.timezone.utc).isoformat(timespec="minutes"), "pages": {}, "problems": []}
-    for p in ("/", "/lanes", "/timeline", "/makers", "/feed.xml", "/sitemap.xml", "/llms.txt"):
+    for p in ("/", "/lanes", "/timeline", "/makers", "/feed.xml", "/sitemap.xml", "/llms.txt", "/zh", "/zh/feed.xml"):
         try:
             h["pages"][p] = get(SITE + p, head=True)[0]
         except Exception as e:
@@ -158,6 +202,12 @@ def health(watch_path=None):
         h["deploy_matches_repo"] = len(re.findall(r'"model_id"', js)) >= len(local)
     except Exception as e:
         h["problems"].append(f"cannot read the deployed data: {str(e)[:60]}")
+    try:
+        c = url_contract()
+        h["sitemap_urls"] = c["sitemap_urls"]
+        h["problems"] += c["problems"]
+    except Exception as e:
+        h["problems"].append(f"cannot check URLs: {str(e)[:60]}")
     h["stale_lanes"] = lanes_stale()
     today = dt.date.today()
     h["stale_offers"] = [o["id"] for o in json.loads((ROOT / "data/offers.json").read_text())

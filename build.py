@@ -946,14 +946,15 @@ def build_pages(lanes, events, models, today, mode, lang="en"):
         base = dict(base, **translate_dataset(base))
     P = "zh/" if zh else ""          # output path prefix
     U = SITE + "/zh" if zh else SITE  # canonical URL base
-    RT = "/zh/" if zh else "/"        # site root for links
+    RT = "/zh/" if zh else "/"        # prefix for links to other pages
+    HU = U if zh else U + "/"       # the home page URL: /zh has no trailing slash, like every page but the site root
     og = f"{SITE}/og.png"
 
     def alt(path):
         """hreflang set for a page path (no leading slash, no extension): en + zh-CN + x-default (ADR-010)."""
         if not site:
             return ()
-        return (("en", f"{SITE}/{path}"), ("zh-CN", f"{SITE}/zh/{path}"), ("x-default", f"{SITE}/{path}"))
+        return (("en", f"{SITE}/{path}"), ("zh-CN", f"{SITE}/zh/{path}" if path else f"{SITE}/zh"), ("x-default", f"{SITE}/{path}"))
 
     pages = {}  # relative output path -> (head, body)
     names = {m["id"]: m["name"] for m in models}
@@ -962,10 +963,10 @@ def build_pages(lanes, events, models, today, mode, lang="en"):
     title, desc = seo_home(lanes, models, today)
     ds_name = "freetokens: 免费 LLM 线路、截止日期与实测限额" if zh else "freetokens: free LLM lanes, end dates and measured limits"
     il_name = "freetokens 跟踪的模型" if zh else "Models tracked on freetokens"
-    ld = [{"@context": "https://schema.org", "@type": "WebSite", "name": "freetokens", "url": U + "/",
+    ld = [{"@context": "https://schema.org", "@type": "WebSite", "name": "freetokens", "url": HU,
            "description": desc},
           {"@context": "https://schema.org", "@type": "Dataset", "name": ds_name,
-           "description": desc, "url": U + "/", "sameAs": REPO, "isAccessibleForFree": True,
+           "description": desc, "url": HU, "sameAs": REPO, "isAccessibleForFree": True,
            "license": "https://creativecommons.org/licenses/by/4.0/", "dateModified": today.isoformat(),
            "creator": {"@type": "Person", "name": "dimpurr", "url": "https://github.com/dimpurr"},
            "keywords": ["free LLM", "free AI models", "free LLM API", "stealth models", "OpenRouter free models", "coding agents"],
@@ -974,14 +975,14 @@ def build_pages(lanes, events, models, today, mode, lang="en"):
           {"@context": "https://schema.org", "@type": "ItemList", "name": il_name,
            "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": m["name"], "url": f"{U}/models/{m['id']}"}
                                for i, m in enumerate(models)]}]
-    home_href = "/zh/" if (site and zh) else ("/" if site else "index.html")
-    pages[P + "index.html"] = (head_html(title, desc, U + "/", today, ld, og, lang, alt("")),
+    home_href = "/zh" if (site and zh) else ("/" if site else "index.html")
+    pages[P + "index.html"] = (head_html(title, desc, HU, today, ld, og, lang, alt("")),
                                render_body("home.html", dict(base, root=RT if site else ""), RT if site else "", home_href, site and SHARED_ASSETS, lang))
-    sub_root, sub_home = ((RT, RT) if zh else ("/", "/")) if site else ("../", "../index.html")
+    sub_root, sub_home = ((RT, "/zh") if zh else ("/", "/")) if site else ("../", "../index.html")
     for m in models:
         title, desc = seo_model(m, lanes)
         url = f"{U}/models/{m['id']}"
-        ld = [crumbs([("freetokens", U + "/"), (tr("Models"), U + "/#h-models"), (m["name"], url)]),
+        ld = [crumbs([("freetokens", HU), (tr("Models"), HU + "#h-models"), (m["name"], url)]),
               {"@context": "https://schema.org", "@type": "WebPage", "name": title, "url": url, "description": desc,
                "dateModified": today.isoformat(), "about": {"@type": "Thing", "name": m["name"]}}]
         pages[P + f"models/{m['id']}.html"] = (head_html(title, desc, url, today, ld, og, lang, alt(f"models/{m['id']}")),
@@ -989,7 +990,7 @@ def build_pages(lanes, events, models, today, mode, lang="en"):
     for c in chans:
         title, desc = seo_channel(c, lanes, models)
         url = f"{U}/channels/{slug(c)}"
-        ld = [crumbs([("freetokens", U + "/"), (tr("Channels"), U + "/#h-channels"), (c, url)]),
+        ld = [crumbs([("freetokens", HU), (tr("Channels"), HU + "#h-channels"), (c, url)]),
               {"@context": "https://schema.org", "@type": "WebPage", "name": title, "url": url, "description": desc,
                "dateModified": today.isoformat()}]
         pages[P + f"channels/{slug(c)}.html"] = (head_html(title, desc, url, today, ld, og, lang, alt(f"channels/{slug(c)}")),
@@ -1006,7 +1007,7 @@ def build_pages(lanes, events, models, today, mode, lang="en"):
                 f"Every recorded change to free LLM offers ({len(events)} events): free periods starting and ending, end dates announced, limits measured."))
     for pg, title, desc in hub:
         url = f"{U}/{pg}"
-        pages[P + f"{pg}.html"] = (head_html(title, desc, url, today, [crumbs([("freetokens", U + "/"), (tr(pg.title()), url)])], og, lang, alt(pg)),
+        pages[P + f"{pg}.html"] = (head_html(title, desc, url, today, [crumbs([("freetokens", HU), (tr(pg.title()), url)])], og, lang, alt(pg)),
                                render_body(f"{pg}.html", dict(base, root=RT if site else ""), RT if site else "", home_href, site and SHARED_ASSETS, lang))
     offers = load_optional("offers", [])
     for o in offers:
@@ -1021,7 +1022,7 @@ def build_pages(lanes, events, models, today, mode, lang="en"):
         else:
             desc = clip(f"{o['name']} ({label('offer_type', o['type'])}, {o['provider']}): {o['gets']['text']} {label('per', o['gets']['per'])}. "
                         f"Needs: {', '.join(label('requirement', r) for r in o.get('requires', [])) or 'nothing'}. Status and source checked {o['checked']['date'] if isinstance(o['checked'], dict) else o['checked']}.")
-        ld = [crumbs([("freetokens", U + "/"), (tr("Free programs"), U + "/offers"), (o["name"], url)]),
+        ld = [crumbs([("freetokens", HU), (tr("Free programs"), U + "/offers"), (o["name"], url)]),
               {"@context": "https://schema.org", "@type": "Offer", "name": o["name"], "url": url, "price": 0, "priceCurrency": "USD",
                "offeredBy": {"@type": "Organization", "name": o["provider"]}}]
         pages[P + f"offers/{o['id']}.html"] = (head_html(title, desc, url, today, ld, og, lang, alt(f"offers/{o['id']}")),
@@ -1034,13 +1035,13 @@ def build_pages(lanes, events, models, today, mode, lang="en"):
         title = "Free LLM programs: student plans, credits and daily allowances | freetokens"
         desc = clip(f"{len(offers)} free programs that pay for model use: student plans, sign-up credits, daily and monthly allowances, perks bundled with plans. "
                     "Amounts in each provider's own unit, with what each one needs.")
-    pages[P + "offers.html"] = (head_html(title, desc, U + "/offers", today, [crumbs([("freetokens", U + "/"), (tr("Free programs"), U + "/offers")])], og, lang, alt("offers")),
+    pages[P + "offers.html"] = (head_html(title, desc, U + "/offers", today, [crumbs([("freetokens", HU), (tr("Free programs"), U + "/offers")])], og, lang, alt("offers")),
                             render_body("offers.html", dict(base, root=RT if site else ""), RT if site else "", home_href, site and SHARED_ASSETS, lang))
     makers = load_optional("makers", [])
     for mk in makers:
         title, desc = seo_maker(mk, lanes, models)
         url = f"{U}/makers/{mk['id']}"
-        ld = [crumbs([("freetokens", U + "/"), (tr("Makers"), U + "/makers"), (mk["name"], url)]),
+        ld = [crumbs([("freetokens", HU), (tr("Makers"), U + "/makers"), (mk["name"], url)]),
               {"@context": "https://schema.org", "@type": "Organization", "name": mk["name"], "url": (mk.get("links") or {}).get("site") or url}]
         pages[P + f"makers/{mk['id']}.html"] = (head_html(title, desc, url, today, ld, og, lang, alt(f"makers/{mk['id']}")),
                                             render_body("maker.html", dict(base, root=sub_root, maker=mk["id"]), sub_root, sub_home, site and SHARED_ASSETS, lang))
@@ -1048,7 +1049,7 @@ def build_pages(lanes, events, models, today, mode, lang="en"):
         title, desc = "有免费模型的 LLM 厂商：谁现在有什么 | freetokens", f"{len(makers)} 家模型厂商，按当前免费模型数排名，每家附最强的免费模型。"
     else:
         title, desc = "LLM makers with free models: who offers what, right now | freetokens", f"{len(makers)} model makers, ranked by how many of their models are free right now, with the best free model of each."
-    pages[P + "makers.html"] = (head_html(title, desc, U + "/makers", today, [crumbs([("freetokens", U + "/"), (tr("Makers"), U + "/makers")])], og, lang, alt("makers")),
+    pages[P + "makers.html"] = (head_html(title, desc, U + "/makers", today, [crumbs([("freetokens", HU), (tr("Makers"), U + "/makers")])], og, lang, alt("makers")),
                             render_body("makers.html", dict(base, root=RT if site else ""), RT if site else "", home_href, site and SHARED_ASSETS, lang))
     if site:
         pages["__base__"] = base
@@ -1057,11 +1058,11 @@ def build_pages(lanes, events, models, today, mode, lang="en"):
         else:
             mtitle, mdesc = "How freetokens works: lanes, checks, and the EST estimate | freetokens", "What a lane, status and end-date confidence mean, how 'Tested by us' limits are measured, and how the EST estimate of the AA index is computed."
         method_body = zh_methodology() if zh else (ROOT / "METHOD.md").read_text()
-        topbar = ('<div class="topbar"><div class="in">' + BRAND.replace("__HOME__", RT) + '<nav aria-label="Site">'
+        topbar = ('<div class="topbar"><div class="in">' + BRAND.replace("__HOME__", RT.rstrip("/") or "/") + '<nav aria-label="Site">'
                   + "".join(f'<a href="{RT}{a}">{tr(t)}</a>' for a, t in
                              (("#h-models", "Models"), ("#h-channels", "Channels"), ("offers", "Offers"), ("lanes", "Lanes"), ("timeline", "Timeline")))
                   + '</nav>' + GH + '</div></div>')
-        pages[P + "methodology.html"] = (head_html(mtitle, mdesc, U + "/methodology", today, [crumbs([("freetokens", U + "/"), (tr("Methodology"), U + "/methodology")])], og, lang, alt("methodology")),
+        pages[P + "methodology.html"] = (head_html(mtitle, mdesc, U + "/methodology", today, [crumbs([("freetokens", HU), (tr("Methodology"), U + "/methodology")])], og, lang, alt("methodology")),
                                      topbar + '<div class="wrap prose">' + md_to_html(method_body) + '</div>')
     if site:
         # language switch (topbar, next to the GitHub button): each page links to its counterpart
@@ -1071,10 +1072,11 @@ def build_pages(lanes, events, models, today, mode, lang="en"):
             h, b = pages[path]
             if '<a class="gh"' not in b:
                 continue
-            loc = path[:-5]
-            if loc == "index":
-                loc = ""
-            other = SITE + "/" + loc[3:] if zh else SITE + "/zh/" + loc
+            loc = path[:-5].removesuffix("index").rstrip("/")  # "index" -> "", "zh/index" -> "zh"
+            if zh:
+                other = SITE + "/" + loc[3:]
+            else:
+                other = SITE + "/zh/" + loc if loc else SITE + "/zh"
             pages[path] = (h, b.replace('<a class="gh"', f'<a class="langsw" href="{other}">{"EN" if zh else "中文"}</a><a class="gh"', 1))
     return pages
 
@@ -1181,12 +1183,13 @@ def site_extras(pages, lanes, events, models, today, pages_zh=None):
             continue
         loc = SITE + "/" if p == "index.html" else f"{SITE}/{p[:-5]}"
         rel = "" if p == "index.html" else p[:-5]
+        zh_loc = f"{SITE}/zh/{rel}" if rel else f"{SITE}/zh"
         if rel in zh_paths:
             alt = (f'<xhtml:link rel="alternate" hreflang="en" href="{loc}"/>'
-                   f'<xhtml:link rel="alternate" hreflang="zh-CN" href="{SITE}/zh/{rel}"/>'
+                   f'<xhtml:link rel="alternate" hreflang="zh-CN" href="{zh_loc}"/>'
                    f'<xhtml:link rel="alternate" hreflang="x-default" href="{loc}"/>')
             urls.append(f"  <url><loc>{loc}</loc><lastmod>{lastmod(p)}</lastmod>{alt}</url>")
-            urls.append(f"  <url><loc>{SITE}/zh/{rel}</loc><lastmod>{lastmod(p)}</lastmod>{alt}</url>")
+            urls.append(f"  <url><loc>{zh_loc}</loc><lastmod>{lastmod(p)}</lastmod>{alt}</url>")
         else:
             urls.append(f"  <url><loc>{loc}</loc><lastmod>{lastmod(p)}</lastmod></url>")
     sitemap = ('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
@@ -1224,7 +1227,7 @@ def site_extras(pages, lanes, events, models, today, pages_zh=None):
             entries.append(f"  <entry><title>{x(title)}</title><link href=\"{x(link)}\"/><id>{x(link)}</id><updated>{when}</updated><summary>{x(body)}</summary></entry>")
         flang = ' xml:lang="zh-CN"' if lang == "zh" else ""
         return ('<?xml version="1.0" encoding="utf-8"?>\n<feed xmlns="http://www.w3.org/2005/Atom"' + flang + '>\n'
-                f'  <title>freetokens: free LLM events</title>\n  <link href="{FU}/"/>\n  <link rel="self" href="{FU}/feed.xml"/>\n'
+                f'  <title>freetokens: free LLM events</title>\n  <link href="{FU if lang == "zh" else FU + "/"}"/>\n  <link rel="self" href="{FU}/feed.xml"/>\n'
                 f'  <id>{FU}/feed.xml</id>\n  <updated>{today.isoformat()}T00:00:00Z</updated>\n  <author><name>freetokens</name></author>\n'
                 + "\n".join(entries) + "\n</feed>\n")
 
@@ -1588,9 +1591,13 @@ def main():
         (dist / "assets" / "common.js").write_text(common_js)
         (dist / "assets" / "hi.txt").write_text("")  # target of the count request (BEACON_SNIPPET)
         for p, (h, b) in list(site.items()) + list(site_zh.items()):
-            (dist / p).parent.mkdir(parents=True, exist_ok=True)
             lang = "zh" if p.startswith("zh/") else "en"
-            (dist / p).write_text(full_doc(h, b, lang))
+            out = dist / ("zh.html" if p == "zh/index.html" else p)  # /zh, not /zh/ (see nested_index check)
+            out.parent.mkdir(parents=True, exist_ok=True)
+            out.write_text(full_doc(h, b, lang))
+        nested = [str(x.relative_to(dist)) for x in dist.rglob("index.html") if x.parent != dist]
+        if nested:  # every page is x.html served at /x; a nested index.html would need /x/ and loop with nginx's slash rule
+            sys.exit(f"✗ nested index.html is not allowed (use <dir>.html): {nested}")
         for p, c in site_extras(site, lanes, events, models, today, site_zh).items():
             (dist / p).parent.mkdir(parents=True, exist_ok=True)
             (dist / p).write_text(c)
