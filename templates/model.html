@@ -55,12 +55,12 @@ const ML = lanesOf(M.id);
     <h1>${esc(M.name)}</h1>
     ${M.notes ? `<p class="notes">${esc(M.notes)}</p>` : ""}
     <div class="stats">
-      ${stat("AA index", `${M.est || a.value != null ? aaHTML(M) : `<span class="muted" style="font:500 0.9rem var(--f-body)">${esc(a.note || "not ranked")}</span>`}${aaSource(M)}`,
+      ${stat(Tx("AA index", "AA index"), `${M.est || a.value != null ? aaHTML(M) : `<span class="muted" style="font:500 0.9rem var(--f-body)">${esc(a.note || Tx("not ranked", "not ranked"))}</span>`}${aaSource(M)}`,
         rankText(M) ? esc(rankText(M)) : "")}
-      ${stat("Context", c ? esc(c[1]) : `<span class="muted" style="font:500 0.9rem var(--f-body)">${esc(M.context.split(" (")[0])}</span>`, c ? esc(c[2]) : esc((M.context.split(" (")[1] || "").replace(/\)$/, "")))}
-      ${stat("Images", esc(lab("image_input", M.image_input)))}
-      ${stat("Free now", `${ML.filter(isFree).length} of ${ML.length}`, "channels")}
-      ${tested.length ? stat(`${I.bolt()} Tested by us`, `${tested.length} of ${ML.length}`, "channels measured", "measured-stat") : ""}
+      ${stat(Tx("Context", "Context"), c ? esc(c[1]) : `<span class="muted" style="font:500 0.9rem var(--f-body)">${esc(M.context.split(" (")[0])}</span>`, c ? esc(c[2]) : esc((M.context.split(" (")[1] || "").replace(/\)$/, "")))}
+      ${stat(Tx("Images", "Images"), esc(lab("image_input", M.image_input)))}
+      ${stat(Tx("Free now", "Free now"), `${ML.filter(isFree).length} of ${ML.length}`, Tx("channels", "channels"))}
+      ${tested.length ? stat(`${I.bolt()} ${Tx("Tested by us", "Tested by us")}`, `${tested.length} of ${ML.length}`, Tx("channels measured", "channels measured"), "measured-stat") : ""}
     </div>`;
 })();
 
@@ -68,7 +68,7 @@ const ML = lanesOf(M.id);
 (function () {
   const order = { live: 0, overdue: 1, listed: 2, unavailable: 3, ended: 4 };
   const rows = [...ML].sort((a, b) => order[a.status] - order[b.status]);
-  $("now-sub").textContent = `${rows.length} channel${rows.length === 1 ? "" : "s"} tracked`;
+  $("now-sub").textContent = ZH ? `${rows.length} 个渠道在跟踪` : `${rows.length} channel${rows.length === 1 ? "" : "s"} tracked`;
   $("now").innerHTML = rows.map((l) => {
     const e = endInfo(l);
     return `<article class="chcard ${l.status}">
@@ -91,21 +91,21 @@ $("details").innerHTML = ML.map((l) => {
   const row = (k, v) => `<dt>${k}</dt><dd>${v}</dd>`;
   const e = endInfo(l);
   return `<div class="detail" data-lane="${l.id}"><h3>${clink(l.channel)} ${statusHTML(l.status)}<span class="usemarks">${useMarks(l)}</span></h3><dl>
-    ${row(`${I.bolt()} Tested by us`, `${measuredHTML(l)}`)}
-    ${row("Model ID", idHTML(l))}
-    ${row("To start", `${costHTML(l.channel)} <span class="muted">${esc(CH[l.channel] ? CH[l.channel].entry.note : "")}</span>`)}
-    ${row("Use it", accessHTML(accessOf(l)))}
-    ${row("Free condition", esc(conditionOf(l)))}
-    ${row("Limit (stated)", limitHTML(l))}
-    ${row("Started", l.started.date ? whenLink(l.started.date, startEvent(l)) : `<span class="muted">${esc(l.started.note)}</span>`)}
-    ${row("End", `<b>${esc(e.main)}</b> ${e.sub}${l.ends.note ? `<span class="sub">${esc(l.ends.note)}</span>` : ""}`)}
-    ${row("Data policy", policyHTML(l.data_policy))}
-    ${row("Channel type", esc(lab("channel_type", l.type)))}
-    ${row("Checked", `${esc(absDate(l.checked.date))} · ${esc(lab("check_method", l.checked.method))}`)}
+    ${row(`${I.bolt()} ${Tx("Tested by us", "Tested by us")}`, `${measuredHTML(l)}`)}
+    ${row(Tx("Model ID", "Model ID"), idHTML(l))}
+    ${row(Tx("To start", "To start"), `${costHTML(l.channel)} <span class="muted">${esc(CH[l.channel] ? CH[l.channel].entry.note : "")}</span>`)}
+    ${row(Tx("Use it", "Use it"), accessHTML(accessOf(l)))}
+    ${row(Tx("Free condition", "Free condition"), esc(conditionOf(l)))}
+    ${row(Tx("Limit (stated)", "Limit (stated)"), limitHTML(l))}
+    ${row(Tx("Started", "Started"), l.started.date ? whenLink(l.started.date, startEvent(l)) : `<span class="muted">${esc(l.started.note)}</span>`)}
+    ${row(Tx("End", "End"), `<b>${esc(e.main)}</b> ${e.sub}${l.ends.note ? `<span class="sub">${esc(l.ends.note)}</span>` : ""}`)}
+    ${row(Tx("Data policy", "Data policy"), policyHTML(l.data_policy))}
+    ${row(Tx("Channel type", "Channel type"), esc(lab("channel_type", l.type)))}
+    ${row(Tx("Checked", "Checked"), `${esc(absDate(l.checked.date))} · ${esc(lab("check_method", l.checked.method))}`)}
   </dl></div>`;
 }).join("");
 
-$("stamp").innerHTML = `Data as of ${esc(absDate(D.built))}.`;
+$("stamp").innerHTML = `${Tx("Data as of", "Data as of")} ${esc(absDate(D.built))}.`;
 onView(() => document.querySelectorAll("[data-lane]").forEach((el) => {
   const l = lanes[el.dataset.lane], w = VIEW === "all" ? "" : whyNot(l, VIEW);
   el.classList.toggle("off", !!w); el.title = w ? `Not usable by ${VIEW}: ${w}` : "";

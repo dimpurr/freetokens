@@ -37,15 +37,15 @@ $("oh").innerHTML = `<span class="kicker">${esc(lab("offer_type", O.type))} · $
     <div class="stat"><span class="k">Status</span><span class="v" style="font-size:1rem">${statusHTML(O.status)}</span><span class="s">checked ${esc(absDate(O.checked.date || O.checked))}</span></div>
   </div>`;
 const row = (k, v) => v ? `<dt>${k}</dt><dd>${v}</dd>` : "";
-$("od").innerHTML = row("You get", getsHTML(O)) + row("Needs", reqHTML(O)) +
-  row("Comes with", O.paid_plan ? `${esc(O.paid_plan.name)}${O.paid_plan.usd ? ` · $${O.paid_plan.usd}/${O.paid_plan.period === "year" ? "year" : "month"}` : ""}` : "") +
-  row("Where", O.region ? `only ${esc(O.region)}` : "worldwide") + row("Use it", accessHTML(offerAccess(O))) +
-  row("Provider", O.channel ? `${clink(O.channel)} <span class="muted">${esc(O.provider)}</span>` : esc(O.provider)) +
-  row("Started", O.started ? esc(absDate(O.started.date ?? O.started)) : "") + row("Ends", O.ends ? esc(absDate(O.ends)) : '<span class="muted">no end announced</span>') +
-  row("Source", `<a href="${esc(O.source.url)}" target="_blank" rel="noopener">${esc(O.source.label || O.source.url)}</a>${O.quote ? ` <span class="muted">"${esc(O.quote)}"</span>` : ""}`);
+$("od").innerHTML = row(Tx("You get", "You get"), getsHTML(O)) + row(Tx("Needs", "Needs"), reqHTML(O)) +
+  row(Tx("Comes with", "Comes with"), O.paid_plan ? `${esc(O.paid_plan.name)}${O.paid_plan.usd ? ` · $${O.paid_plan.usd}/${O.paid_plan.period === "year" ? Tx("year", "year") : Tx("month", "month")}` : ""}` : "") +
+  row(Tx("Where", "Where"), O.region ? `only ${esc(O.region)}` : Tx("worldwide", "worldwide")) + row(Tx("Use it", "Use it"), accessHTML(offerAccess(O))) +
+  row(Tx("Provider", "Provider"), O.channel ? `${clink(O.channel)} <span class="muted">${esc(O.provider)}</span>` : esc(O.provider)) +
+  row(Tx("Started", "Started"), O.started ? esc(absDate(O.started.date ?? O.started)) : "") + row(Tx("Ends", "Ends"), O.ends ? esc(absDate(O.ends)) : '<span class="muted">'+Tx("no end announced", "no end announced")+'</span>') +
+  row(Tx("Source", "Source"), `<a href="${esc(O.source.url)}" target="_blank" rel="noopener">${esc(O.source.label || O.source.url)}</a>${O.quote ? ` <span class="muted">"${esc(O.quote)}"</span>` : ""}`);
 const m = O.models || {}, tracked = (m.tracked || []).filter((x) => models[x]), other = (m.ids || []).filter((x) => !tracked.some((t) => models[t].name === x));
-$("om").innerHTML = (m.kind === "catalogue" ? `<p>The whole catalogue${m.count ? ` (${m.count} models)` : ""} draws on the same allowance${m.note ? `: ${esc(m.note)}` : "."}</p>` : m.note ? `<p>${esc(m.note)}</p>` : "") +
-  (tracked.length ? `<div class="row"><span class="muted">Tracked here:</span> <span class="chips">${tracked.map((x) => `<a class="chip" href="${modelHref(x)}">${esc(models[x].name)} ${aaValue(models[x]) != null ? `<small>${esc(isEst(models[x]) ? "EST ≈" + Math.round(aaValue(models[x])) : "AA " + aaValue(models[x]))}</small>` : ""}</a>`).join("")}</span></div>` : "") +
+$("om").innerHTML = (m.kind === "catalogue" ? `<p>${Tx("The whole catalogue", "The whole catalogue")}${m.count ? ` (${m.count} ${Tx("models", "models")})` : ""} ${Tx("draws on the same allowance", "draws on the same allowance")}${m.note ? `: ${esc(m.note)}` : "."}</p>` : m.note ? `<p>${esc(m.note)}</p>` : "") +
+  (tracked.length ? `<div class="row"><span class="muted">${Tx("Tracked here:", "Tracked here:")}</span> <span class="chips">${tracked.map((x) => `<a class="chip" href="${modelHref(x)}">${esc(models[x].name)} ${aaValue(models[x]) != null ? `<small>${esc(isEst(models[x]) ? "EST ≈" + Math.round(aaValue(models[x])) : "AA " + aaValue(models[x]))}</small>` : ""}</a>`).join("")}</span></div>` : "") +
   (other.length ? `<div class="row"><span class="muted">Also:</span> ${esc(other.join(", "))}</div>` : "") || '<p class="muted">Not recorded.</p>';
 $("tl").innerHTML = timelineHTML(D.events.filter((e) => (e.offers || []).includes(O.id))) || '<p class="muted">No events recorded yet.</p>';
 </script>

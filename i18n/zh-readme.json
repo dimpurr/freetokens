@@ -1,0 +1,32 @@
+{
+  "meta": {
+    "readme_sha1": "d5bc9101d765"
+  },
+  "prose": {
+    "# freetokens": "# freetokens",
+    "Where can you use a capable LLM for free **right now**, through which channel, under which conditions, and **until when**?": "哪里能**此刻**免费用到一个够强的 LLM，经由哪个渠道、满足哪个条件，并且**能用到哪一天**？",
+    "freetokens tracks **free lanes**: one model × one channel × one free condition. It focuses on what other lists miss: limited-time free models inside **subscription and agent tools** (OpenCode Zen / Go, Command Code, …) and on routers, **when each offer started and is expected to end**, and limits **we measured ourselves** (for example, how many agents can run in parallel).": "freetokens 追踪的是**免费线路**：一个模型 × 一个渠道 × 一个免费条件。它关注别的清单漏掉的东西：**订阅与 agent 工具**（OpenCode Zen / Go、Command Code，……）以及路由器内部的限时免费模型、**每个免费计划何时开始、预计何时结束**，还有**我们实测**的限制（例如能同时跑多少个 agent）。",
+    "**Website:** https://freetokens.fyi (ending-soon countdown, a chart against today, a page for every model and channel).": "**网站：** https://freetokens.fyi（即将到期倒计时、对照今天的图表、每个模型和每个渠道各有一个页面）。",
+    "## How to contribute": "## 如何贡献",
+    "Spotted a new free model, an end date, a takedown, or a limit you measured? Two ways:": "发现了新的免费模型、一个结束日期、一次下架，或你自己测出的限制？两种方式：",
+    "1. **Open an issue** with the link and what changed. Anyone can do this; we turn it into data.\n2. **Open a pull request** that edits the JSON in [`data/`](data/). Every fact needs a source link and a date. Run `python3 build.py --validate` before you submit.": "1. **开一个 issue**，附上链接和变了什么。任何人都能这样做；我们把它整理成数据。\n2. **开一个 pull request**，修改 [`data/`](data/) 里的 JSON。每条事实都需要来源链接和一个日期。提交之前运行 `python3 build.py --validate`。",
+    "Full guide and rules: **[CONTRIBUTING.md](CONTRIBUTING.md)**.": "完整指引与规则：**[CONTRIBUTING.md](CONTRIBUTING.md)**。",
+    "The tables below are generated from `data/` by `build.py`. Don't edit them by hand.": "下面的表格由 `build.py` 从 `data/` 生成。请不要手工编辑它们。",
+    "## Ending soon": "## 即将到期",
+    "## 1 · Free lanes": "## 1 · 免费线路",
+    "Also seen but not yet tracked (unverified): Ling 3.1 Flash on Cline (reportedly free until 10-13) and on OpenCode (reportedly free from 10-02); Space Bunny on Nous Portal (announced free on Sep 25, not visible on the portal on Oct 5) and in Tencent WorkBuddy (discounted, not free, until Oct 7).": "也见到、但尚未纳入追踪（未核实）：Cline 上的 Ling 3.1 Flash（据称免费到 10-13）以及 OpenCode 上的 Ling 3.1 Flash（据称自 10-02 起免费）；Nous Portal 上的 Space Bunny（Sep 25 宣布免费，Oct 5 在 portal 上已看不到），以及 Tencent WorkBuddy 中的 Space Bunny（是折扣，并非免费，到 Oct 7）。",
+    "## 2 · Timeline": "## 2 · 时间线",
+    "Newest first. Expected future ends are in **Ending soon** above; they are computed from the lanes, not stored as events.": "最新的在前。预计的未来截止列在上方**即将到期**里；它们由免费线路算出，并不作为事件存储。",
+    "## 3 · Models": "## 3 · 模型",
+    "Benchmarks are kept here once per model rather than repeated on every lane. **AA index** = the [Artificial Analysis](https://artificialanalysis.ai) Intelligence Index.": "基准分数在这里每个模型只存一份，而不是在每条免费线路上重复。**AA 指数** = [Artificial Analysis](https://artificialanalysis.ai) Intelligence Index。",
+    "## 4 · Channels": "## 4 · 渠道",
+    "Each channel links to its own page. Everything here is derived from the lanes above.": "每个渠道都链接到它自己的页面。这里的一切都由上面的免费线路推导得出。",
+    "## How to read this": "## 如何阅读本文",
+    "- **Every fact carries a date and a source.** A row is only as good as its check date; old means stale.\n- **Unknown is written as unknown:** `unstated` = the provider says nothing; `not checked` = we haven't looked; `not recorded` = we saw it but didn't keep the detail.\n- **Measured limits** are one-off light readings from our own account, with their date. They are not load tests and not guarantees.\n- Post times on X are decoded from the post ID (UTC).": "- **每条事实都带日期和来源。** 一行的可靠程度只等于它的核查日期；旧就意味着过期。\n- **不知道就写成不知道：** `unstated` = 厂商没有说明；`not checked` = 我们还没去看；`not recorded` = 我们看到了但没保留细节。\n- **我们实测**的限制是出自我们自己账号的一次性轻量读数，附有日期。它们不是压力测试，也不是保证。\n- X 上的发帖时间由帖子 ID 解出（UTC）。",
+    "## Scope": "## 范围",
+    "- **In scope:** models you can call for free (no per-token charge) through a public channel, including those that need an account or a paid plan in which the model costs zero credits.\n- **Out of scope (for now):** subscription prices and quotas in general (see [tokenplans.dev](https://tokenplans.dev)); permanent free API tiers in general (see [freellm.net](https://freellm.net)); institutional or private gateways.\n- Nothing here is a load test. Please don't stress-test shared free tiers.": "- **在范围内：** 你可以通过公开渠道免费调用（不按 token 计费）的模型，包括那些需要先有账号、或需要先有付费套餐而模型本身消耗零额度的。\n- **不在范围内（暂时）：** 泛指的订阅价格与配额（见 [tokenplans.dev](https://tokenplans.dev)）；泛指的常设免费 API 档位（见 [freellm.net](https://freellm.net)）；机构或私有网关。\n- 这里没有任何内容是压力测试。请不要对共享的免费额度做压力测试。",
+    "## License": "## 许可",
+    "- **Data** (`data/`): [CC BY 4.0](data/LICENSE.md). Reuse it anywhere; credit \"freetokens (freetokens.fyi)\" with a link.\n- **Build script and schema** (`build.py`, `schema/`): [MIT](LICENSE).\n- **Website design and generated pages** (`templates/`, `index.html`, `models/`, `channels/`): all rights reserved. You can read them and run them locally to preview your changes, but please don't redeploy the site.": "- **数据**（`data/`）：[CC BY 4.0](data/LICENSE.md)。可在任何地方复用；请署名 \"freetokens (freetokens.fyi)\" 并给出链接。\n- **构建脚本与 schema**（`build.py`、`schema/`）：[MIT](LICENSE)。\n- **网站设计与生成的页面**（`templates/`、`index.html`、`models/`、`channels/`）：保留所有权利。你可以阅读它们、在本地运行以预览自己的改动，但请不要重新部署该站点。",
+    "See [LICENSE](LICENSE) for the full terms.": "完整条款见 [LICENSE](LICENSE)。"
+  }
+}

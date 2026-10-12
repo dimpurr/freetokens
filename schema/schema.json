@@ -1,518 +1,870 @@
 {
-  "$comment": "Single definition of every table's fields and every legend vocabulary. build.py validates data/*.json against this file and generates the legends from it.",
-  "vocab": {
-    "channel_type": {
-      "agent_tool": {
-        "label": "agent tool",
-        "help": "A coding-agent product or its gateway (OpenCode Zen / Go, Command Code, …)"
-      },
-      "router": {
-        "label": "router",
-        "help": "A multi-provider API router (OpenRouter, …)"
-      },
-      "first_party": {
-        "label": "first-party",
-        "help": "The model maker's own API or app"
-      }
-    },
-    "status": {
-      "live": {
-        "label": "live",
-        "icon": "🟢",
-        "help": "Answering requests at the last check",
-        "short": "live"
-      },
-      "listed": {
-        "label": "listed as free (not tested by us)",
-        "icon": "🔵",
-        "help": "The provider's page lists it as free; we have not made a call",
-        "short": "listed"
-      },
-      "overdue": {
-        "label": "past announced end",
-        "icon": "🟡",
-        "help": "Still live after its announced end date; can stop without notice",
-        "short": "past end"
-      },
-      "unavailable": {
-        "label": "listed, not answering",
-        "icon": "⚪",
-        "help": "Shown in the catalogue but not usable at the last check",
-        "short": "not answering"
-      },
-      "ended": {
-        "label": "ended",
-        "icon": "🔴",
-        "help": "No longer free",
-        "short": "ended"
-      }
-    },
-    "end_confidence": {
-      "official": {
-        "label": "official",
-        "help": "The provider published a date"
-      },
-      "inferred": {
-        "label": "inferred",
-        "help": "Derived from an announced duration or a sibling channel"
-      },
-      "none": {
-        "label": "none",
-        "help": "No end announced; it can still stop at any time"
-      }
-    },
-    "check_method": {
-      "agent_run": {
-        "label": "agent run",
-        "help": "A real coding-agent task completed and independently verified"
-      },
-      "api_call": {
-        "label": "API call",
-        "help": "A successful direct API request"
-      },
-      "catalogue": {
-        "label": "catalogue",
-        "help": "Read the provider's model list, no successful call"
-      },
-      "listing": {
-        "label": "listing only",
-        "help": "Read the model's web page, no call"
-      }
-    },
-    "data_policy": {
-      "zero_retention": {
-        "label": "zero retention, no training",
-        "short": "no retention"
-      },
-      "may_train": {
-        "label": "may be logged / used for training",
-        "short": "may train"
-      },
-      "unstated": {
-        "label": "unstated",
-        "help": "The provider says nothing",
-        "short": "unstated"
-      },
-      "not_checked": {
-        "label": "not checked",
-        "help": "We have not looked",
-        "short": "not checked"
-      }
-    },
-    "image_input": {
-      "yes": {
-        "label": "yes"
-      },
-      "partial": {
-        "label": "accepts images, unreliable"
-      },
-      "no": {
-        "label": "no"
-      },
-      "not_checked": {
-        "label": "not checked"
-      }
-    },
-    "event_kind": {
-      "announced": {
-        "label": "free offer announced"
-      },
-      "listed": {
-        "label": "listed"
-      },
-      "available": {
-        "label": "became available"
-      },
-      "end_announced": {
-        "label": "end date announced"
-      },
-      "limit_changed": {
-        "label": "limit changed"
-      },
-      "unavailable": {
-        "label": "stopped answering"
-      },
-      "ended": {
-        "label": "ended"
-      }
-    },
-    "entry_kind": {
-      "none": {
-        "label": "$0, no account",
-        "short": "$0 · no account",
-        "help": "Usable without paying or signing up",
-        "tier": "free"
-      },
-      "account": {
-        "label": "$0 with an account",
-        "short": "$0 · account",
-        "help": "Free after signing up; no card",
-        "tier": "free"
-      },
-      "invite": {
-        "label": "$0, invitation only",
-        "short": "$0 · invite only",
-        "help": "Free, but sign-up needs an invitation or an established account elsewhere",
-        "tier": "gate"
-      },
-      "subscription": {
-        "label": "paid plan first",
-        "short": "plan first",
-        "help": "A paid subscription must be active before the free models work",
-        "tier": "paid"
-      },
-      "topup": {
-        "label": "top-up first",
-        "short": "top-up first",
-        "help": "A minimum credit purchase is needed before use",
-        "tier": "paid"
-      }
-    },
-    "access_form": {
-      "api": {
-        "label": "API",
-        "help": "Reachable with an API key from your own tools"
-      },
-      "own_cli": {
-        "label": "CLI only",
-        "help": "Free models work only inside the vendor's own CLI or app"
-      },
-      "own_app": {
-        "label": "App only",
-        "help": "Free models work only inside the vendor's desktop or web app"
-      }
-    },
-    "protocol": {
-      "openai_chat": {
-        "label": "OpenAI chat"
-      },
-      "openai_responses": {
-        "label": "OpenAI Responses"
-      },
-      "anthropic_messages": {
-        "label": "Anthropic Messages"
-      },
-      "gemini": {
-        "label": "Gemini"
-      }
-    },
-    "access_rule": {
-      "no_automation": {
-        "label": "human only",
-        "help": "The terms forbid scripts, bots or autonomous agents"
-      }
-    },
-    "volume_tier": {
-      "taste": {
-        "label": "A few dozen a day",
-        "help": "Roughly 100 requests a day or fewer"
-      },
-      "daily": {
-        "label": "Hundreds a day",
-        "help": "Hundreds of requests a day, or only a few at once"
-      },
-      "bulk": {
-        "label": "10+ at once, all day",
-        "help": "Ten or more parallel agent runs worked in our tests"
-      }
-    },
-    "reach": {
-      "works": {
-        "label": "works",
-        "help": "Answered correctly in our checks"
-      },
-      "busy": {
-        "label": "often busy",
-        "help": "Upstream rate-limited or overloaded in repeated checks"
-      },
-      "no_reply": {
-        "label": "no reply",
-        "help": "No answer within our time limit in repeated checks"
-      },
-      "refused": {
-        "label": "refused",
-        "help": "The route answers with an error that blocks use (not a temporary limit)"
-      },
-      "missing": {
-        "label": "not in the client",
-        "help": "Still listed by the channel, but its current client no longer offers the model"
-      }
-    },
-    "limit_scope": {
-      "per_ip": {
-        "label": "per-IP limit",
-        "help": "The free allowance is counted per IP address per day (Zen: reset at 00:00 UTC); heavy use from one network uses it up while other networks still work"
-      },
-      "per_key": {
-        "label": "per-key limit",
-        "help": "Counted per API key"
-      },
-      "per_account": {
-        "label": "per-account limit",
-        "help": "Counted per account"
-      },
-      "shared": {
-        "label": "shared cap",
-        "help": "One cap shared by all users of the route"
-      }
-    },
-    "under_load": {
-      "throttled": {
-        "label": "throttled under load",
-        "help": "Works, but sustained or repeated calls get rate-limited"
-      },
-      "queues": {
-        "label": "queues when busy",
-        "help": "Requests wait in a queue instead of failing"
-      }
-    },
-    "cost_seen": {
-      "zero": {
-        "label": "0 credits used",
-        "help": "Our runs were not charged"
-      }
-    },
-    "quirk": {
-      "region_limited": {
-        "label": "region-limited",
-        "help": "Refused from some countries"
-      },
-      "bad_tool_calls": {
-        "label": "malformed tool calls",
-        "help": "Some tool calls came back malformed in agent tasks"
-      },
-      "harness_only": {
-        "label": "agent harnesses only",
-        "help": "Refused as a plain API call; works only inside supported agent tools"
-      },
-      "fails_silently": {
-        "label": "fails silently over limit",
-        "help": "Runs above the limit exit without an error message"
-      },
-      "uptime_zero": {
-        "label": "status page: 0% uptime",
-        "help": "The channel's own status page showed 0% uptime"
-      }
-    },
-    "limit_basis": {
-      "official": {
-        "label": "published",
-        "help": "The channel publishes this limit"
-      },
-      "community": {
-        "label": "community readout",
-        "help": "Not published by the channel; numbers reported by users"
-      },
-      "unpublished": {
-        "label": "not published",
-        "help": "The channel does not publish a number"
-      },
-      "not_checked": {
-        "label": "not checked",
-        "help": "We have not looked for a published limit yet"
-      }
-    },
-    "offer_type": {
-      "student": {
-        "label": "education",
-        "help": "For verified students or teachers"
-      },
-      "entitlement": {
-        "label": "comes with a plan",
-        "help": "Included in a paid plan you may already have"
-      },
-      "check_in": {
-        "label": "check-in",
-        "help": "Earned by signing in or checking in regularly"
-      },
-      "signup_trial": {
-        "label": "sign-up credit",
-        "help": "A one-off grant for new accounts"
-      },
-      "time_window": {
-        "label": "limited-time",
-        "help": "Free for a set period"
-      },
-      "daily_allowance": {
-        "label": "daily allowance",
-        "help": "A fresh allowance every day, spendable across many models"
-      },
-      "monthly_credit": {
-        "label": "monthly credit",
-        "help": "A credit grant renewed every month"
-      },
-      "free_plan": {
-        "label": "free plan",
-        "help": "A recurring allowance inside a tool's free plan"
-      }
-    },
-    "requirement": {
-      "account": {
-        "label": "account",
-        "help": "Needs an account"
-      },
-      "card": {
-        "label": "card",
-        "help": "Needs a payment card on file"
-      },
-      "phone_cn": {
-        "label": "+86 phone",
-        "help": "Needs a mainland China phone number"
-      },
-      "phone_intl": {
-        "label": "phone",
-        "help": "Needs a phone number"
-      },
-      "student": {
-        "label": "student",
-        "help": "Needs student verification"
-      },
-      "real_name": {
-        "label": "real-name ID",
-        "help": "Needs real-name identity verification"
-      },
-      "paid_plan": {
-        "label": "paid plan",
-        "help": "Needs a paid subscription"
-      },
-      "invite": {
-        "label": "invite",
-        "help": "Needs an invitation"
-      },
-      "region": {
-        "label": "region",
-        "help": "Only in some countries"
-      },
-      "github": {
-        "label": "GitHub",
-        "help": "Needs a GitHub account"
-      }
-    },
-    "per": {
-      "once": {
-        "label": "once"
-      },
-      "day": {
-        "label": "a day"
-      },
-      "week": {
-        "label": "a week"
-      },
-      "month": {
-        "label": "a month"
-      },
-      "year": {
-        "label": "a year"
-      }
+ "$comment": "Single definition of every table's fields and every legend vocabulary. build.py validates data/*.json against this file and generates the legends from it.",
+ "vocab": {
+  "channel_type": {
+   "agent_tool": {
+    "label": "agent tool",
+    "help": "A coding-agent product or its gateway (OpenCode Zen / Go, Command Code, …)",
+    "zh": {
+     "label": "agent 工具",
+     "help": "编码 agent 产品或其网关（OpenCode Zen / Go、Command Code……）"
     }
-  },
-  "tables": {
-    "lanes": {
-      "required": [
-        "id",
-        "model",
-        "channel",
-        "type",
-        "model_id",
-        "free_condition",
-        "limits_stated",
-        "limits_observed",
-        "started",
-        "ends",
-        "data_policy",
-        "status",
-        "checked"
-      ],
-      "vocab_fields": {
-        "type": "channel_type",
-        "data_policy": "data_policy",
-        "status": "status",
-        "ends.confidence": "end_confidence",
-        "checked.method": "check_method"
-      },
-      "unknown_words": [
-        "unstated",
-        "not checked",
-        "not recorded"
-      ]
-    },
-    "events": {
-      "required": [
-        "date",
-        "kind",
-        "text",
-        "source"
-      ],
-      "vocab_fields": {
-        "kind": "event_kind"
-      }
-    },
-    "models": {
-      "required": [
-        "id",
-        "name",
-        "maker",
-        "context",
-        "image_input",
-        "aa_index"
-      ],
-      "vocab_fields": {
-        "image_input": "image_input"
-      }
-    },
-    "channels": {
-      "required": [
-        "name",
-        "entry",
-        "access",
-        "source",
-        "checked"
-      ],
-      "vocab_fields": {
-        "entry.kind": "entry_kind"
-      }
-    },
-    "makers": {
-      "required": [
-        "id",
-        "name"
-      ]
-    },
-    "offers": {
-      "required": [
-        "id",
-        "name",
-        "provider",
-        "type",
-        "gets",
-        "requires",
-        "status",
-        "checked",
-        "source"
-      ],
-      "vocab_fields": {
-        "type": "offer_type",
-        "status": "status"
-      }
+   },
+   "router": {
+    "label": "router",
+    "help": "A multi-provider API router (OpenRouter, …)",
+    "zh": {
+     "label": "聚合商",
+     "help": "多供应商 API 聚合（OpenRouter……）"
     }
+   },
+   "first_party": {
+    "label": "first-party",
+    "help": "The model maker's own API or app",
+    "zh": {
+     "label": "官方",
+     "help": "模型厂商自己的 API 或应用"
+    }
+   }
   },
-  "est_rules": {
-    "$comment": "ADR-004 method v1 / ADR-006 ranking. Change values here, not in code.",
-    "min_anchors": 4,
-    "min_r": 0.6,
-    "min_benchmarks": 1,
-    "min_sources": 1,
-    "band_width": 5,
-    "weights": {
-      "official": 1.0,
-      "leaderboard": 1.0,
-      "third_party": 0.75,
-      "community": 0.5,
-      "leak": 0.5
-    },
-    "peer_max_gap": 10,
-    "peer_scale": 5,
-    "vendor_only_band": 10,
-    "$comment_peers": "ADR-023: a claim that comes from a comparison table carries peers [{name, aa, aa_url, score}] measured in the same table; implied AA = peer AA + fit slope x (score - peer score), using peers within peer_max_gap points, weighted 1/(1 + gap/peer_scale). Vendor-only claims without usable peers get a vendor_only_band wide band and low confidence."
+  "status": {
+   "live": {
+    "label": "live",
+    "icon": "🟢",
+    "help": "Answering requests at the last check",
+    "short": "live",
+    "zh": {
+     "label": "有效",
+     "help": "上次核查时可正常请求",
+     "short": "有效"
+    }
+   },
+   "listed": {
+    "label": "listed as free (not tested by us)",
+    "icon": "🔵",
+    "help": "The provider's page lists it as free; we have not made a call",
+    "short": "listed",
+    "zh": {
+     "label": "标称免费（未实测）",
+     "help": "供应方页面写免费，我们尚未实际调用",
+     "short": "标称"
+    }
+   },
+   "overdue": {
+    "label": "past announced end",
+    "icon": "🟡",
+    "help": "Still live after its announced end date; can stop without notice",
+    "short": "past end",
+    "zh": {
+     "label": "已过公布截止",
+     "help": "过了公布的截止日期但仍有效，随时可能停止",
+     "short": "已逾期"
+    }
+   },
+   "unavailable": {
+    "label": "listed, not answering",
+    "icon": "⚪",
+    "help": "Shown in the catalogue but not usable at the last check",
+    "short": "not answering",
+    "zh": {
+     "label": "标称但无响应",
+     "help": "目录里有，但上次核查不可用",
+     "short": "无响应"
+    }
+   },
+   "ended": {
+    "label": "ended",
+    "icon": "🔴",
+    "help": "No longer free",
+    "short": "ended",
+    "zh": {
+     "label": "已结束",
+     "help": "不再免费",
+     "short": "已结束"
+    }
+   }
+  },
+  "end_confidence": {
+   "official": {
+    "label": "official",
+    "help": "The provider published a date",
+    "zh": {
+     "label": "官方",
+     "help": "供应方公布了日期"
+    }
+   },
+   "inferred": {
+    "label": "inferred",
+    "help": "Derived from an announced duration or a sibling channel",
+    "zh": {
+     "label": "推算",
+     "help": "由公布的时长或同渠道推导"
+    }
+   },
+   "none": {
+    "label": "none",
+    "help": "No end announced; it can still stop at any time",
+    "zh": {
+     "label": "无",
+     "help": "未公布截止，随时可能停止"
+    }
+   }
+  },
+  "check_method": {
+   "agent_run": {
+    "label": "agent run",
+    "help": "A real coding-agent task completed and independently verified",
+    "zh": {
+     "label": "agent 实测",
+     "help": "真实编码 agent 任务跑通并独立核验"
+    }
+   },
+   "api_call": {
+    "label": "API call",
+    "help": "A successful direct API request",
+    "zh": {
+     "label": "API 调用",
+     "help": "一次成功的直接 API 请求"
+    }
+   },
+   "catalogue": {
+    "label": "catalogue",
+    "help": "Read the provider's model list, no successful call",
+    "zh": {
+     "label": "查目录",
+     "help": "只读了供应方模型列表，未成功调用"
+    }
+   },
+   "listing": {
+    "label": "listing only",
+    "help": "Read the model's web page, no call",
+    "zh": {
+     "label": "仅看页面",
+     "help": "只读了模型网页，未调用"
+    }
+   }
+  },
+  "data_policy": {
+   "zero_retention": {
+    "label": "zero retention, no training",
+    "short": "no retention",
+    "zh": {
+     "label": "零保留、不训练",
+     "short": "不保留"
+    }
+   },
+   "may_train": {
+    "label": "may be logged / used for training",
+    "short": "may train",
+    "zh": {
+     "label": "可能记录／用于训练",
+     "short": "可能训练"
+    }
+   },
+   "unstated": {
+    "label": "unstated",
+    "help": "The provider says nothing",
+    "short": "unstated",
+    "zh": {
+     "label": "未说明",
+     "help": "供应方未说明",
+     "short": "未说明"
+    }
+   },
+   "not_checked": {
+    "label": "not checked",
+    "help": "We have not looked",
+    "short": "not checked",
+    "zh": {
+     "label": "未核查",
+     "help": "我们尚未核查",
+     "short": "未核查"
+    }
+   }
+  },
+  "image_input": {
+   "yes": {
+    "label": "yes",
+    "zh": {
+     "label": "支持"
+    }
+   },
+   "partial": {
+    "label": "accepts images, unreliable",
+    "zh": {
+     "label": "支持但不稳定"
+    }
+   },
+   "no": {
+    "label": "no",
+    "zh": {
+     "label": "不支持"
+    }
+   },
+   "not_checked": {
+    "label": "not checked",
+    "zh": {
+     "label": "未核查"
+    }
+   }
+  },
+  "event_kind": {
+   "announced": {
+    "label": "free offer announced",
+    "zh": {
+     "label": "公布免费"
+    }
+   },
+   "listed": {
+    "label": "listed",
+    "zh": {
+     "label": "收录"
+    }
+   },
+   "available": {
+    "label": "became available",
+    "zh": {
+     "label": "变为可用"
+    }
+   },
+   "end_announced": {
+    "label": "end date announced",
+    "zh": {
+     "label": "公布截止"
+    }
+   },
+   "limit_changed": {
+    "label": "limit changed",
+    "zh": {
+     "label": "限额变化"
+    }
+   },
+   "unavailable": {
+    "label": "stopped answering",
+    "zh": {
+     "label": "停止响应"
+    }
+   },
+   "ended": {
+    "label": "ended",
+    "zh": {
+     "label": "已结束"
+    }
+   }
+  },
+  "entry_kind": {
+   "none": {
+    "label": "$0, no account",
+    "short": "$0 · no account",
+    "help": "Usable without paying or signing up",
+    "tier": "free",
+    "zh": {
+     "label": "$0，免账号",
+     "help": "无需付费、无需注册即可用",
+     "short": "$0 · 免账号"
+    }
+   },
+   "account": {
+    "label": "$0 with an account",
+    "short": "$0 · account",
+    "help": "Free after signing up; no card",
+    "tier": "free",
+    "zh": {
+     "label": "$0，需账号",
+     "help": "注册后免费，无需绑卡",
+     "short": "$0 · 需账号"
+    }
+   },
+   "invite": {
+    "label": "$0, invitation only",
+    "short": "$0 · invite only",
+    "help": "Free, but sign-up needs an invitation or an established account elsewhere",
+    "tier": "gate",
+    "zh": {
+     "label": "$0，需邀请",
+     "help": "免费，但注册需要邀请或已有账号",
+     "short": "$0 · 需邀请"
+    }
+   },
+   "subscription": {
+    "label": "paid plan first",
+    "short": "plan first",
+    "help": "A paid subscription must be active before the free models work",
+    "tier": "paid",
+    "zh": {
+     "label": "需先订阅",
+     "help": "免费模型生效前须有付费订阅",
+     "short": "需先订阅"
+    }
+   },
+   "topup": {
+    "label": "top-up first",
+    "short": "top-up first",
+    "help": "A minimum credit purchase is needed before use",
+    "tier": "paid",
+    "zh": {
+     "label": "需先充值",
+     "help": "使用前须先购买最低额度",
+     "short": "需先充值"
+    }
+   }
+  },
+  "access_form": {
+   "api": {
+    "label": "API",
+    "help": "Reachable with an API key from your own tools",
+    "zh": {
+     "label": "API",
+     "help": "用自己的工具＋API key 可达"
+    }
+   },
+   "own_cli": {
+    "label": "CLI only",
+    "help": "Free models work only inside the vendor's own CLI or app",
+    "zh": {
+     "label": "仅 CLI",
+     "help": "免费模型只在厂商自己的 CLI 或应用内可用"
+    }
+   },
+   "own_app": {
+    "label": "App only",
+    "help": "Free models work only inside the vendor's desktop or web app",
+    "zh": {
+     "label": "仅应用",
+     "help": "免费模型只在厂商桌面／网页应用内可用"
+    }
+   }
+  },
+  "protocol": {
+   "openai_chat": {
+    "label": "OpenAI chat",
+    "zh": {
+     "label": "OpenAI 对话"
+    }
+   },
+   "openai_responses": {
+    "label": "OpenAI Responses",
+    "zh": {
+     "label": "OpenAI Responses"
+    }
+   },
+   "anthropic_messages": {
+    "label": "Anthropic Messages",
+    "zh": {
+     "label": "Anthropic Messages"
+    }
+   },
+   "gemini": {
+    "label": "Gemini",
+    "zh": {
+     "label": "Gemini"
+    }
+   }
+  },
+  "access_rule": {
+   "no_automation": {
+    "label": "human only",
+    "help": "The terms forbid scripts, bots or autonomous agents",
+    "zh": {
+     "label": "仅限人工",
+     "help": "条款禁止脚本、机器人或自主 agent"
+    }
+   }
+  },
+  "volume_tier": {
+   "taste": {
+    "label": "A few dozen a day",
+    "help": "Roughly 100 requests a day or fewer",
+    "zh": {
+     "label": "每天几十次",
+     "help": "每天约 100 次请求或更少"
+    }
+   },
+   "daily": {
+    "label": "Hundreds a day",
+    "help": "Hundreds of requests a day, or only a few at once",
+    "zh": {
+     "label": "每天几百次",
+     "help": "每天几百次请求，或同时只能跑几个"
+    }
+   },
+   "bulk": {
+    "label": "10+ at once, all day",
+    "help": "Ten or more parallel agent runs worked in our tests",
+    "zh": {
+     "label": "全天 10＋ 并行",
+     "help": "我们的测试中 10 个以上 agent 并行可用"
+    }
+   }
+  },
+  "reach": {
+   "works": {
+    "label": "works",
+    "help": "Answered correctly in our checks",
+    "zh": {
+     "label": "可用",
+     "help": "我们的核查中正确响应"
+    }
+   },
+   "busy": {
+    "label": "often busy",
+    "help": "Upstream rate-limited or overloaded in repeated checks",
+    "zh": {
+     "label": "经常繁忙",
+     "help": "多次核查中上游限流或过载"
+    }
+   },
+   "no_reply": {
+    "label": "no reply",
+    "help": "No answer within our time limit in repeated checks",
+    "zh": {
+     "label": "无响应",
+     "help": "多次核查中限时内无应答"
+    }
+   },
+   "refused": {
+    "label": "refused",
+    "help": "The route answers with an error that blocks use (not a temporary limit)",
+    "zh": {
+     "label": "拒绝",
+     "help": "线路返回阻断使用的错误（非临时限流）"
+    }
+   },
+   "missing": {
+    "label": "not in the client",
+    "help": "Still listed by the channel, but its current client no longer offers the model",
+    "zh": {
+     "label": "客户端已无",
+     "help": "渠道仍收录，但当前客户端已不提供该模型"
+    }
+   }
+  },
+  "limit_scope": {
+   "per_ip": {
+    "label": "per-IP limit",
+    "help": "The free allowance is counted per IP address per day (Zen: reset at 00:00 UTC); heavy use from one network uses it up while other networks still work",
+    "zh": {
+     "label": "按 IP 限",
+     "help": "免费额度按 IP 每天计（Zen：UTC 0 点重置）"
+    }
+   },
+   "per_key": {
+    "label": "per-key limit",
+    "help": "Counted per API key",
+    "zh": {
+     "label": "按 key 限",
+     "help": "按 API key 计"
+    }
+   },
+   "per_account": {
+    "label": "per-account limit",
+    "help": "Counted per account",
+    "zh": {
+     "label": "按账号限",
+     "help": "按账号计"
+    }
+   },
+   "shared": {
+    "label": "shared cap",
+    "help": "One cap shared by all users of the route",
+    "zh": {
+     "label": "共享额度",
+     "help": "该线路所有用户共用一个额度"
+    }
+   }
+  },
+  "under_load": {
+   "throttled": {
+    "label": "throttled under load",
+    "help": "Works, but sustained or repeated calls get rate-limited",
+    "zh": {
+     "label": "高负载限流",
+     "help": "可用，但持续或重复调用会被限流"
+    }
+   },
+   "queues": {
+    "label": "queues when busy",
+    "help": "Requests wait in a queue instead of failing",
+    "zh": {
+     "label": "忙时排队",
+     "help": "请求排队等待而非失败"
+    }
+   }
+  },
+  "cost_seen": {
+   "zero": {
+    "label": "0 credits used",
+    "help": "Our runs were not charged",
+    "zh": {
+     "label": "0 点数消耗",
+     "help": "我们的调用未被计费"
+    }
+   }
+  },
+  "quirk": {
+   "region_limited": {
+    "label": "region-limited",
+    "help": "Refused from some countries",
+    "zh": {
+     "label": "地区限定",
+     "help": "部分国家拒绝"
+    }
+   },
+   "bad_tool_calls": {
+    "label": "malformed tool calls",
+    "help": "Some tool calls came back malformed in agent tasks",
+    "zh": {
+     "label": "工具调用异常",
+     "help": "agent 任务中部分工具调用返回异常"
+    }
+   },
+   "harness_only": {
+    "label": "agent harnesses only",
+    "help": "Refused as a plain API call; works only inside supported agent tools",
+    "zh": {
+     "label": "仅 agent 工具内可用",
+     "help": "纯 API 调用拒绝，仅支持的 agent 工具内可用"
+    }
+   },
+   "fails_silently": {
+    "label": "fails silently over limit",
+    "help": "Runs above the limit exit without an error message",
+    "zh": {
+     "label": "超限静默失败",
+     "help": "超限的调用无错误信息直接退出"
+    }
+   },
+   "uptime_zero": {
+    "label": "status page: 0% uptime",
+    "help": "The channel's own status page showed 0% uptime",
+    "zh": {
+     "label": "状态页 0% 可用",
+     "help": "渠道自己的状态页显示 0% 可用"
+    }
+   }
+  },
+  "limit_basis": {
+   "official": {
+    "label": "published",
+    "help": "The channel publishes this limit",
+    "zh": {
+     "label": "已公布",
+     "help": "渠道公布了该限额"
+    }
+   },
+   "community": {
+    "label": "community readout",
+    "help": "Not published by the channel; numbers reported by users",
+    "zh": {
+     "label": "社区实测",
+     "help": "渠道未公布，用户上报的数字"
+    }
+   },
+   "unpublished": {
+    "label": "not published",
+    "help": "The channel does not publish a number",
+    "zh": {
+     "label": "未公布",
+     "help": "渠道未公布数字"
+    }
+   },
+   "not_checked": {
+    "label": "not checked",
+    "help": "We have not looked for a published limit yet",
+    "zh": {
+     "label": "未核查",
+     "help": "尚未查找公布的限额"
+    }
+   }
+  },
+  "offer_type": {
+   "student": {
+    "label": "education",
+    "help": "For verified students or teachers",
+    "zh": {
+     "label": "教育",
+     "help": "面向认证学生或教师"
+    }
+   },
+   "entitlement": {
+    "label": "comes with a plan",
+    "help": "Included in a paid plan you may already have",
+    "zh": {
+     "label": "订阅附带",
+     "help": "已付费订阅里包含的权益"
+    }
+   },
+   "check_in": {
+    "label": "check-in",
+    "help": "Earned by signing in or checking in regularly",
+    "zh": {
+     "label": "签到",
+     "help": "定期登录／签到获得"
+    }
+   },
+   "signup_trial": {
+    "label": "sign-up credit",
+    "help": "A one-off grant for new accounts",
+    "zh": {
+     "label": "注册赠金",
+     "help": "新账号一次性赠送"
+    }
+   },
+   "time_window": {
+    "label": "limited-time",
+    "help": "Free for a set period",
+    "zh": {
+     "label": "限时",
+     "help": "一段时间内免费"
+    }
+   },
+   "daily_allowance": {
+    "label": "daily allowance",
+    "help": "A fresh allowance every day, spendable across many models",
+    "zh": {
+     "label": "每日额度",
+     "help": "每天刷新、可花在多个模型上"
+    }
+   },
+   "monthly_credit": {
+    "label": "monthly credit",
+    "help": "A credit grant renewed every month",
+    "zh": {
+     "label": "每月点数",
+     "help": "每月续的点数"
+    }
+   },
+   "free_plan": {
+    "label": "free plan",
+    "help": "A recurring allowance inside a tool's free plan",
+    "zh": {
+     "label": "免费版",
+     "help": "工具免费版内的常规额度"
+    }
+   }
+  },
+  "requirement": {
+   "account": {
+    "label": "account",
+    "help": "Needs an account",
+    "zh": {
+     "label": "账号",
+     "help": "需要账号"
+    }
+   },
+   "card": {
+    "label": "card",
+    "help": "Needs a payment card on file",
+    "zh": {
+     "label": "绑卡",
+     "help": "需要绑定付款卡"
+    }
+   },
+   "phone_cn": {
+    "label": "+86 phone",
+    "help": "Needs a mainland China phone number",
+    "zh": {
+     "label": "+86 手机",
+     "help": "需要中国大陆手机号"
+    }
+   },
+   "phone_intl": {
+    "label": "phone",
+    "help": "Needs a phone number",
+    "zh": {
+     "label": "手机",
+     "help": "需要手机号"
+    }
+   },
+   "student": {
+    "label": "student",
+    "help": "Needs student verification",
+    "zh": {
+     "label": "学生",
+     "help": "需要学生认证"
+    }
+   },
+   "real_name": {
+    "label": "real-name ID",
+    "help": "Needs real-name identity verification",
+    "zh": {
+     "label": "实名",
+     "help": "需要实名身份认证"
+    }
+   },
+   "paid_plan": {
+    "label": "paid plan",
+    "help": "Needs a paid subscription",
+    "zh": {
+     "label": "付费订阅",
+     "help": "需要付费订阅"
+    }
+   },
+   "invite": {
+    "label": "invite",
+    "help": "Needs an invitation",
+    "zh": {
+     "label": "邀请",
+     "help": "需要邀请"
+    }
+   },
+   "region": {
+    "label": "region",
+    "help": "Only in some countries",
+    "zh": {
+     "label": "地区",
+     "help": "仅部分国家"
+    }
+   },
+   "github": {
+    "label": "GitHub",
+    "help": "Needs a GitHub account",
+    "zh": {
+     "label": "GitHub",
+     "help": "需要 GitHub 账号"
+    }
+   }
+  },
+  "per": {
+   "once": {
+    "label": "once",
+    "zh": {
+     "label": "一次"
+    }
+   },
+   "day": {
+    "label": "a day",
+    "zh": {
+     "label": "每天"
+    }
+   },
+   "week": {
+    "label": "a week",
+    "zh": {
+     "label": "每周"
+    }
+   },
+   "month": {
+    "label": "a month",
+    "zh": {
+     "label": "每月"
+    }
+   },
+   "year": {
+    "label": "a year",
+    "zh": {
+     "label": "每年"
+    }
+   }
   }
+ },
+ "tables": {
+  "lanes": {
+   "required": [
+    "id",
+    "model",
+    "channel",
+    "type",
+    "model_id",
+    "free_condition",
+    "limits_stated",
+    "limits_observed",
+    "started",
+    "ends",
+    "data_policy",
+    "status",
+    "checked"
+   ],
+   "vocab_fields": {
+    "type": "channel_type",
+    "data_policy": "data_policy",
+    "status": "status",
+    "ends.confidence": "end_confidence",
+    "checked.method": "check_method"
+   },
+   "unknown_words": [
+    "unstated",
+    "not checked",
+    "not recorded"
+   ]
+  },
+  "events": {
+   "required": [
+    "date",
+    "kind",
+    "text",
+    "source"
+   ],
+   "vocab_fields": {
+    "kind": "event_kind"
+   }
+  },
+  "models": {
+   "required": [
+    "id",
+    "name",
+    "maker",
+    "context",
+    "image_input",
+    "aa_index"
+   ],
+   "vocab_fields": {
+    "image_input": "image_input"
+   }
+  },
+  "channels": {
+   "required": [
+    "name",
+    "entry",
+    "access",
+    "source",
+    "checked"
+   ],
+   "vocab_fields": {
+    "entry.kind": "entry_kind"
+   }
+  },
+  "makers": {
+   "required": [
+    "id",
+    "name"
+   ]
+  },
+  "offers": {
+   "required": [
+    "id",
+    "name",
+    "provider",
+    "type",
+    "gets",
+    "requires",
+    "status",
+    "checked",
+    "source"
+   ],
+   "vocab_fields": {
+    "type": "offer_type",
+    "status": "status"
+   }
+  }
+ },
+ "est_rules": {
+  "$comment": "ADR-004 method v1 / ADR-006 ranking. Change values here, not in code.",
+  "min_anchors": 4,
+  "min_r": 0.6,
+  "min_benchmarks": 1,
+  "min_sources": 1,
+  "band_width": 5,
+  "weights": {
+   "official": 1.0,
+   "leaderboard": 1.0,
+   "third_party": 0.75,
+   "community": 0.5,
+   "leak": 0.5
+  },
+  "peer_max_gap": 10,
+  "peer_scale": 5,
+  "vendor_only_band": 10,
+  "$comment_peers": "ADR-023: a claim that comes from a comparison table carries peers [{name, aa, aa_url, score}] measured in the same table; implied AA = peer AA + fit slope x (score - peer score), using peers within peer_max_gap points, weighted 1/(1 + gap/peer_scale). Vendor-only claims without usable peers get a vendor_only_band wide band and low confidence."
+ }
 }

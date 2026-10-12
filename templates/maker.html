@@ -62,13 +62,13 @@ onView(() => {
     <p class="chlinks">${lk.site ? `<a class="extlink" href="${esc(lk.site)}" target="_blank" rel="noopener">Website ${I.ext()}</a>` : ""}${lk.models ? `<a class="extlink" href="${esc(lk.models)}" target="_blank" rel="noopener">Models on Hugging Face ${I.ext()}</a>` : ""}</p>
     <div class="stats">
       <div class="stat"><span class="k">Tracked</span><span class="v">${KM.length}</span><span class="s">models</span></div>
-      <div class="stat"><span class="k">Free now${viewNote()}</span><span class="v">${free.length}</span><span class="s">models</span></div>
-      ${best ? `<div class="stat"><span class="k">Best free now</span><span class="v" style="font-size:1rem">${mlink(best.id)}</span><span class="s">${aaHTML(best)}</span></div>` : ""}
+      <div class="stat"><span class="k">${Tx("Free now", "Free now")}${viewNote()}</span><span class="v">${free.length}</span><span class="s">${Tx("models", "models")}</span></div>
+      ${best ? `<div class="stat"><span class="k">${Tx("Best free now", "Best free now")}</span><span class="v" style="font-size:1rem">${mlink(best.id)}</span><span class="s">${aaHTML(best)}</span></div>` : ""}
     </div>`;
   const rest = KM.filter((m) => !freeNow(m)).sort(byScore);
-  $("models-sub").textContent = `${free.length} free now${VIEW === "all" ? "" : " for " + VIEW} · ${rest.length} not`;
+  $("models-sub").textContent = ZH ? `${free.length} 当前免费${VIEW === "all" ? "" : byV(VIEW)} · ${rest.length} 无` : `${free.length} free now${VIEW === "all" ? "" : " for " + VIEW} · ${rest.length} not`;
   $("models").innerHTML = free.map((m, i) => modelRow(m, i, false, 999)).join("") +
-    (rest.length ? `<tr class="group"><td colspan="7">Not free now<span class="muted"> · ${rest.length} tracked model${rest.length === 1 ? "" : "s"} with no free lane${VIEW === "all" ? "" : " usable by " + VIEW}</span></td></tr>` + rest.map((m) => modelRow(m, 999, true, 999)).join("") : "");
+    (rest.length ? `<tr class="group"><td colspan="7">${Tx("Not free now", "Not free now")}<span class="muted"> · ${rest.length} ${ZH ? "个跟踪模型没有免费线路" : `tracked model${rest.length === 1 ? "" : "s"} with no free lane`}${VIEW === "all" ? "" : " " + byV(VIEW)}</span></td></tr>` + rest.map((m) => modelRow(m, 999, true, 999)).join("") : "");
   $("suspect-sec").hidden = !KS.length;
   $("suspect").innerHTML = KS.map((m) => modelRow(m, 999, false, 999).replace("</td>", `<br><span class="suspect" title="${esc(m.suspected_maker.basis)}">unconfirmed · <a href="${esc(m.suspected_maker.url)}" target="_blank" rel="noopener">source</a></span></td>`)).join("");
   const kl = D.lanes.filter((l) => KM.some((m) => m.id === l.model) && usable(l));

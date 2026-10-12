@@ -1,10 +1,16 @@
 /* shared by every page; D is inlined by build.py */
 const V = D.vocab;
+const ZH = D.lang === "zh";
+/* UI strings (i18n/zh.json): zh pages carry D.i18n, English pages fall back to the source literal (byte-identical) */
+const T = D.i18n || {};
+const Tx = (k, fb) => (T[k] !== undefined ? T[k] : fb);
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const DAY = 86400000;
-const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-const WD = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const MON = ZH ? ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"]
+  : ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const WD = ZH ? ["周日", "周一", "周二", "周三", "周四", "周五", "周六"]
+  : ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 /* ---------- dates: one style everywhere (relative on top, exact below) ---------- */
 function pd(s) {
@@ -20,17 +26,22 @@ const daysTo = (t) => Math.round((Math.floor(t / DAY) * DAY - todayT) / DAY); //
 function absDate(s) {
   const d = pd(s); if (!d) return "";
   const x = new Date(d.t), y = x.getUTCFullYear();
+  if (ZH) {
+    if (d.p === "month") return `${y}年${x.getUTCMonth() + 1}月`;
+    const day = `${y !== thisYear ? `${y}年` : ""}${x.getUTCMonth() + 1}月${x.getUTCDate()}日`;
+    return d.p === "minute" ? `${day} ${x.toISOString().slice(11, 16)} UTC` : day;
+  }
   if (d.p === "month") return `${MON[x.getUTCMonth()]} ${y}`;
   const day = `${MON[x.getUTCMonth()]} ${x.getUTCDate()}${y !== thisYear ? ", " + y : ""}`;
   return d.p === "minute" ? `${day}, ${x.toISOString().slice(11, 16)} UTC` : day;
 }
 function relDays(t) {
   const n = daysTo(t);
-  if (n === 0) return "today";
-  if (n === 1) return "tomorrow";
-  if (n === -1) return "yesterday";
+  if (n === 0) return Tx("today", "today");
+  if (n === 1) return Tx("tomorrow", "tomorrow");
+  if (n === -1) return Tx("yesterday", "yesterday");
   if (Math.abs(n) > 45) return null;
-  return n > 0 ? `in ${n} days` : `${-n} days ago`;
+  return n > 0 ? (ZH ? `${n} 天后` : `in ${n} days`) : (ZH ? `${-n} 天前` : `${-n} days ago`);
 }
 
 /* ---------- icons (inline SVG, stroke = currentColor) ---------- */
@@ -99,21 +110,21 @@ function endInfo(l) {
   const conf = l.ends.confidence;
   if (l.status === "ended") {
     const e = endedEvent(l);
-    return { main: e ? `ended ${relDays(pd(e.date).t) || absDate(e.date)}` : "ended", sub: e ? whenLink(e.date, e) : "" };
+    return { main: e ? `${Tx("ended", "ended")} ${relDays(pd(e.date).t) || absDate(e.date)}` : Tx("ended", "ended"), sub: e ? whenLink(e.date, e) : "" };
   }
-  if (l.status === "unavailable") return { main: "not answering", sub: `at last check, ${esc(absDate(l.checked.date))}` };
+  if (l.status === "unavailable") return { main: Tx("not answering", "not answering"), sub: `${Tx("at last check,", "at last check,")} ${esc(absDate(l.checked.date))}` };
   const end = effEnd(l);
   if (!end) {
     const se = startEvent(l);
-    return { main: "no end announced", sub: l.started.date ? `free since ${whenLink(l.started.date, se)}` : "" };
+    return { main: Tx("no end announced", "no end announced"), sub: l.started.date ? `${Tx("free since", "free since")} ${whenLink(l.started.date, se)}` : "" };
   }
-  const t = pd(end).t, n = daysTo(t);
+  const t2 = pd(end).t, n = daysTo(t2);
   if (l.status === "overdue" && !l.ends.expected) {
-    return { main: `${-n} day${-n === 1 ? "" : "s"} overdue`, sub: `${confHTML(conf)} end was ${whenLink(l.ends.announced, announceEvent(l))}` };
+    return { main: ZH ? `已逾期 ${-n} 天` : `${-n} day${-n === 1 ? "" : "s"} overdue`, sub: `${confHTML(conf)} ${Tx("end was", "end was")} ${whenLink(l.ends.announced, announceEvent(l))}` };
   }
-  const main = n === 0 ? "ends today" : n > 0 ? `ends ${relDays(t) || absDate(end)}` : `end passed ${absDate(end)}`;
+  const main = n === 0 ? Tx("ends today", "ends today") : n > 0 ? (ZH ? `${Tx("ends", "ends")} ${relDays(t2) || absDate(end)}` : `ends ${relDays(t2) || absDate(end)}`) : `${Tx("end passed", "end passed")} ${absDate(end)}`;
   let sub = `${confHTML(conf)} ${l.ends.expected ? esc(absDate(end)) : whenLink(end, announceEvent(l))}`;
-  if (l.status === "overdue" && l.ends.announced) sub += ` · was ${whenLink(l.ends.announced, announceEvent(l))}`;
+  if (l.status === "overdue" && l.ends.announced) sub += ` · ${Tx("was", "was")} ${whenLink(l.ends.announced, announceEvent(l))}`;
   return { main, sub };
 }
 
@@ -121,13 +132,14 @@ function endInfo(l) {
 /* the state in words, so a chip never relies on colour alone: "free · ends in 4 days", "listed free · no end announced" */
 const stateWords = (l) => {
   const main = endInfo(l).main;
-  return l.status === "live" ? `free · ${main}` : l.status === "listed" ? `listed free · ${main}` : main;
+  return l.status === "live" ? `${Tx("free ·", "free ·")} ${main}` : l.status === "listed" ? `${Tx("listed free ·", "listed free ·")} ${main}` : main;
 };
 /* cost to start a channel (data/channels.json): badge text, tier colour, source on hover */
 const CH = Object.fromEntries((D.chans || []).map((c) => [c.name, c]));
 function costText(name) {
   const e = CH[name] && CH[name].entry; if (!e) return "";
-  return e.kind === "subscription" ? `$${e.usd}/${e.period === "month" ? "mo" : e.period} plan first` : e.kind === "topup" ? `$${e.usd} top-up first` : short("entry_kind", e.kind);
+  const mo = e.period === "month" ? Tx("mo", "mo") : e.period;
+  return e.kind === "subscription" ? `$${e.usd}/${mo} ${Tx("plan first", "plan first")}` : e.kind === "topup" ? `$${e.usd} ${Tx("top-up first", "top-up first")}` : short("entry_kind", e.kind);
 }
 const costTier = (name) => CH[name] ? V.entry_kind[CH[name].entry.kind].tier : "";
 const needsPay = (name) => costTier(name) === "paid";
@@ -143,36 +155,41 @@ const accessOf = (l) => (l && l.access) || (CH[l.channel] && CH[l.channel].acces
 const viaAPI = (l) => { const a = accessOf(l); return !!a && a.form === "api"; };
 function accessHTML(a) {
   if (!a) return "";
-  const ps = a.protocols || [], label = a.form === "api" ? (ps.length === 1 ? `API · ${lab("protocol", ps[0])}` : ps.length ? `API · ${ps.length} formats` : "API") : lab("access_form", a.form);
-  const tip = (a.form === "api" ? "Formats: " + (a.protocols || []).map((p) => lab("protocol", p)).join(", ") : V.access_form[a.form].help) + (a.source ? `. Source: ${a.source.label}` : "");
+  const ps = a.protocols || [], label = a.form === "api" ? (ps.length === 1 ? `${Tx("API ·", "API ·")} ${lab("protocol", ps[0])}` : ps.length ? `${Tx("API ·", "API ·")} ${ps.length} ${Tx("formats", "formats")}` : "API") : lab("access_form", a.form);
+  const tip = (a.form === "api" ? Tx("Formats:", "Formats:") + " " + (a.protocols || []).map((p) => lab("protocol", p)).join(", ") : V.access_form[a.form].help) + (a.source ? `. ${Tx("Source:", "Source:")} ${a.source.label}` : "");
   const rules = (a.rules || []).map((r) => `<span class="rule" title="${esc(V.access_rule[r].help)}">${esc(lab("access_rule", r))}</span>`).join("");
   return (a.source ? `<a class="access ${a.form}" href="${esc(a.source.url)}" target="_blank" rel="noopener" title="${esc(tip)}">${esc(label)}</a>` : `<span class="access ${a.form}" title="${esc(tip)}">${esc(label)}</span>`) + rules;
 }
 /* region-limited lanes (e.g. free in the US only): a small tag wherever the lane appears; worldwide = no region */
-const regionTag = (l) => l.region ? `<span class="regiontag" title="Free only in ${esc(l.region)}">${esc(l.region)} only</span>` : "";
+const regionTag = (l) => !l.region ? "" : ZH
+  ? `<span class="regiontag" title="仅 ${esc(l.region)} 可用">仅限${esc(l.region)}</span>`
+  : `<span class="regiontag" title="Free only in ${esc(l.region)}">${esc(l.region)} only</span>`;
 const worldwide = (l) => !l.region;
 /* official links of a channel: its site and its model / price list (data/channels.json links) */
 function chLinks(name, short = false) {
   const c = CH[name]; if (!c || !c.links) return "";
-  const a = (u, t) => `<a class="extlink" href="${esc(u)}" target="_blank" rel="noopener">${t} ${I.ext()}</a>`;
-  if (short) return a(c.links.models, "prices");
-  return a(c.links.site, "Website") + (c.links.models !== c.links.site ? a(c.links.models, "Models & prices") : "");
+  const a = (u, lbl) => `<a class="extlink" href="${esc(u)}" target="_blank" rel="noopener">${lbl} ${I.ext()}</a>`;
+  if (short) return a(c.links.models, Tx("prices", "prices"));
+  return a(c.links.site, Tx("Website", "Website")) + (c.links.models !== c.links.site ? a(c.links.models, Tx("Models & prices", "Models & prices")) : "");
 }
 /* ---------- use-case views (ADR-020): All · Humans · Agents ---------- */
 const VIEWS = {
-  all: { label: "All", long: "All free lanes" },
-  humans: { label: "Humans", long: "Usable by a human: free, no payment first (any app, CLI or API)" },
-  agents: { label: "Agents", long: "Usable by agents and scripts: free, and an API key or a CLI that allows automation" },
+  all: { label: Tx("All", "All"), long: Tx("All free lanes", "All free lanes") },
+  humans: { label: Tx("Humans", "Humans"), long: Tx("Usable by a human: free, no payment first (any app, CLI or API)", "Usable by a human: free, no payment first (any app, CLI or API)") },
+  agents: { label: Tx("Agents", "Agents"), long: Tx("Usable by agents and scripts: free, and an API key or a CLI that allows automation", "Usable by agents and scripts: free, and an API key or a CLI that allows automation") },
 };
+/* display name of a view value in running text (?use= values stay English so URLs are shareable across languages) */
+const viewName = (v) => ZH ? (v === "all" ? Tx("All", "All") : v === "humans" ? Tx("Humans", "Humans") : v === "agents" ? Tx("Agents", "Agents") : v) : v;
+const byV = (v) => ZH ? `${viewName(v)}可用` : `usable by ${v}`;
 /* why a free lane is not usable in a view ("" = usable); one definition for every page */
 function whyNot(l, v) {
-  if (!isFree(l)) return "not free now";
-  if (v === "humans" && needsPay(l.channel)) return "needs payment first";
+  if (!isFree(l)) return Tx("not free now", "not free now");
+  if (v === "humans" && needsPay(l.channel)) return Tx("needs payment first", "needs payment first");
   if (v === "agents") {
     const a = accessOf(l);
-    if (!a) return "access not recorded";
-    if ((a.rules || []).includes("no_automation")) return "terms forbid automation";
-    if (a.form === "own_app") return "app only";
+    if (!a) return Tx("access not recorded", "access not recorded");
+    if ((a.rules || []).includes("no_automation")) return Tx("terms forbid automation", "terms forbid automation");
+    if (a.form === "own_app") return Tx("app only", "app only");
   }
   return "";
 }
@@ -194,7 +211,7 @@ function setView(v) {
   viewHooks.forEach((fn) => fn());
   drawViewSwitch();
   const live = document.getElementById("view-live");
-  if (live) live.textContent = `Showing ${D.lanes.filter(usable).length} lanes${v === "all" ? "" : " usable by " + v}`;
+  if (live) live.textContent = ZH ? `当前显示${D.lanes.filter(usable).length}条线路${v === "all" ? "" : byV(v)}` : `Showing ${D.lanes.filter(usable).length} lanes${v === "all" ? "" : " usable by " + v}`;
 }
 function drawViewSwitch() {
   const el = document.getElementById("viewsw"); if (!el) return;
@@ -216,11 +233,11 @@ function mountViewSwitch() {
   });
   drawViewSwitch();
 }
-const viewNote = () => VIEW === "all" ? "" : `<span class="viewnote">for ${VIEW}</span>`;
+const viewNote = () => VIEW === "all" ? "" : (ZH ? `<span class="viewnote">（${viewName(VIEW)}）</span>` : `<span class="viewnote">for ${VIEW}</span>`);
 /* small per-lane marks on model and channel pages */
-const useMarks = (l) => ["humans", "agents"].map((v) => { const w = whyNot(l, v); return `<span class="usemark ${w ? "no" : "yes"}" title="${esc(w ? v + ": " + w : "usable by " + v)}">${w ? "✕" : "✓"} ${v}</span>`; }).join("");
+const useMarks = (l) => ["humans", "agents"].map((v) => { const w = whyNot(l, v); return `<span class="usemark ${w ? "no" : "yes"}" title="${esc(w ? viewName(v) + "：" + w : byV(v))}">${w ? "✕" : "✓"} ${viewName(v)}</span>`; }).join("");
 /* a chip prints only the exception (an end, past end, ended, not answering); the icon carries the state, the tooltip says it in full */
-const chipNote = (l) => { const m = endInfo(l).main; return m === "no end announced" ? "" : m; };
+const chipNote = (l) => { const m = endInfo(l).main; return (m === "no end announced" || m === Tx("no end announced", "no end announced")) ? "" : m; };
 const chipTo = (href, text, l) => `<a class="chip" href="${href}" title="${esc(text + ": " + stateWords(l))}" aria-label="${esc(text + ", " + stateWords(l))}">${statusHTML(l.status, text)}${regionTag(l)}${chipNote(l) ? `<small>${esc(chipNote(l))}</small>` : ""}</a>`;
 const channelChip = (l) => chipTo(channelHref(l.channel), l.channel, l).replace("</a>", needsPay(l.channel) ? `<span class="paymark" title="${esc(costText(l.channel))}">$</span></a>` : "</a>");
 const modelChip = (l) => chipTo(modelHref(l.model), models[l.model].name, l);
@@ -232,7 +249,7 @@ function obsParts(l) {
   const lo = l.limits_observed; if (!lo) return [];
   const p = [];
   if (lo.reach) p.push({ t: lab("reach", lo.reach) + (lo.reach === "works" ? ` · ${shortDate(lo.date)}` : lo.checks > 1 ? ` ×${lo.checks}` : ""), c: "r-" + lo.reach, h: V.reach[lo.reach].help });
-  if (lo.parallel) p.push({ t: `${lo.parallel} parallel`, c: "cap", h: `${lo.parallel} parallel runs worked in our test` });
+  if (lo.parallel) p.push({ t: `${lo.parallel} ${Tx("parallel", "parallel")}`, c: "cap", h: Tx("parallel runs worked in our test", `${lo.parallel} parallel runs worked in our test`) });
   const scope = lo.scope || (CH[l.channel] && CH[l.channel].limit_scope && CH[l.channel].limit_scope.value);
   if (scope) p.push({ t: lab("limit_scope", scope), c: "cap", h: V.limit_scope[scope].help });
   if (lo.load) p.push({ t: lab("under_load", lo.load), c: "cap", h: V.under_load[lo.load].help });
@@ -244,26 +261,26 @@ const shortDate = (d) => { const x = new Date(pd(d).t); return `${MON[x.getUTCMo
 const obsText = (l) => obsParts(l).map((x) => x.t).concat(l.limits_observed && l.limits_observed.note ? [l.limits_observed.note] : []).join(" · ");
 function measuredHTML(l, badge = false) {
   const lo = l.limits_observed;
-  if (!lo) return `<span class="muted">not measured</span>`;
+  if (!lo) return `<span class="muted">${Tx("not measured", "not measured")}</span>`;
   const parts = obsParts(l), shown = badge ? parts.slice(0, 2) : parts;
-  const prov = [lo.note, `checked ${absDate(lo.date)}`, lo.checks > 1 ? `${lo.checks} checks` : "", lo.networks > 1 ? `from ${lo.networks} networks` : ""].filter(Boolean).join(" · ");
+  const prov = [lo.note, `${Tx("checked", "checked")} ${absDate(lo.date)}`, lo.checks > 1 ? `${lo.checks} ${Tx("checks", "checks")}` : "", lo.networks > 1 ? `${Tx("from", "from")} ${lo.networks} ${Tx("networks", "networks")}` : ""].filter(Boolean).join(" · ");
   return `<span class="obs${badge ? " badge" : ""}">${I.bolt()}${shown.map((x) => `<span class="ob ${x.c}" title="${esc(x.h)}">${esc(x.t)}</span>`).join("")}` +
-    (badge ? "" : `<details class="obs-i"><summary aria-label="Details of our check">ⓘ</summary><span>${esc(prov)}</span></details>`) + `</span>`;
+    (badge ? "" : `<details class="obs-i"><summary aria-label="${esc(Tx("Details of our check", "Details of our check"))}">ⓘ</summary><span>${esc(prov)}</span></details>`) + `</span>`;
 }
 /* a live lane not re-checked for 7 days is due for a re-check: shown, and not counted as confirmed (OBSERVE.md) */
 const STALE_DAYS = 7;
 const isStale = (l) => (l.status === "live" || l.status === "overdue") && -daysTo(pd(l.checked.date).t) > STALE_DAYS;
 const checkedSub = (l) => {
   const age = -daysTo(pd(l.checked.date).t), due = isStale(l), old = age > 30;
-  return `<span class="sub">${esc(lab("check_method", l.checked.method))} · <span class="${due || old ? "stale" : ""}" title="${due ? `Last checked ${age} days ago; live lanes are re-checked within ${STALE_DAYS} days` : ""}">${esc(absDate(l.checked.date))}${due ? " · re-check due" : old ? " · stale" : ""}</span></span>`;
+  return `<span class="sub">${esc(lab("check_method", l.checked.method))} · <span class="${due || old ? "stale" : ""}" title="${due ? esc(Tx("Last checked", "Last checked") + ` ${age} ` + Tx("days ago; live lanes are re-checked within", "days ago; live lanes are re-checked within") + ` ${STALE_DAYS} ` + Tx("days", "days")) : ""}">${esc(absDate(l.checked.date))}${due ? ` · ${Tx("re-check due", "re-check due")}` : old ? ` · ${Tx("stale", "stale")}` : ""}</span></span>`;
 };
 function policyHTML(k) {
   const icon = k === "zero_retention" ? I.lock() : k === "may_train" ? I.eye() : I.help();
   return `<span class="pol ${k}" title="${esc(lab("data_policy", k))}">${icon}${esc(short("data_policy", k))}</span>`;
 }
 const idHTML = (l) => l.model_id === "not recorded"
-  ? `<span class="muted">not recorded</span>`
-  : `<code class="id">${esc(l.model_id)}</code><button type="button" class="copy" data-copy="${esc(l.model_id)}" aria-label="Copy model ID ${esc(l.model_id)}">${I.copy()}</button>`;
+  ? `<span class="muted">${Tx("not recorded", "not recorded")}</span>`
+  : `<code class="id">${esc(l.model_id)}</code><button type="button" class="copy" data-copy="${esc(l.model_id)}" aria-label="${esc(Tx("Copy model ID", "Copy model ID") + " " + esc(l.model_id))}">${I.copy()}</button>`;
 /* published limits (lanes.limits_stated): numbers first, "≈" for community readouts; the note folds into ⓘ */
 const statedNums = (ls) => [ls.per_day && `${ls.per_day}/day`, ls.per_minute && `${ls.per_minute}/min`, ls.hours_day && `${ls.hours_day} h/day`, ls.tokens_day && `${ls.tokens_day / 1e6}M tok/day`].filter(Boolean).join(" · ");
 const limitHTML = (l) => {
@@ -271,7 +288,7 @@ const limitHTML = (l) => {
   const head = nums ? `<b class="mono">${ls.basis === "community" ? "≈" : ""}${esc(nums)}</b>` : `<span class="muted">${esc(lab("limit_basis", ls.basis))}</span>`;
   const tip = V.limit_basis[ls.basis].help;
   const main = ls.source ? `<a href="${esc(ls.source)}" target="_blank" rel="noopener" title="${esc(tip)}">${head}</a>` : `<span title="${esc(tip)}">${head}</span>`;
-  return main + (ls.note ? `<details class="obs-i"><summary aria-label="About this limit">ⓘ</summary><span>${esc(ls.note)}</span></details>` : "");
+  return main + (ls.note ? `<details class="obs-i"><summary aria-label="${esc(Tx("About this limit", "About this limit"))}">ⓘ</summary><span>${esc(ls.note)}</span></details>` : "");
 };
 /* AA: official label (links to AA) · EST band with evidence (ADR-004/006) · or not ranked */
 const aaValue = (m) => m.aa_index.value != null ? m.aa_index.value : (m.est && m.est.status === "ok" ? m.est.center : null);
@@ -292,48 +309,52 @@ function rankOf(m) {
 const rankLabel = (r) => `${r.est ? "≈" : ""}#${r.a}${r.b > r.a ? "–" + r.b : ""}`;
 function rankText(m) {
   const r = rankOf(m); if (!r) return "";
-  const n = viewScored().filter((x) => !isEst(x)).length, where = VIEW === "all" ? "with an AA score" : `with an AA score, usable by ${VIEW}`;
-  return r.est ? (r.b > r.a ? `estimate: between #${r.a} and #${r.b} of the ${n} ${where}` : `estimate: around #${r.a} of the ${n} ${where}`) : `#${r.a} of ${n} ${where}`;
+  const n = viewScored().filter((x) => !isEst(x)).length, where = VIEW === "all" ? Tx("with an AA score", "with an AA score") : `${Tx("with an AA score", "with an AA score")}，${byV(VIEW)}`;
+  return r.est ? (r.b > r.a ? (ZH ? `估算：共 ${n} 个${where}，介于 #${r.a} 和 #${r.b} 之间` : `estimate: between #${r.a} and #${r.b} of the ${n} ${where}`) : (ZH ? `估算：共 ${n} 个${where}，约 #${r.a}` : `estimate: around #${r.a} of the ${n} ${where}`)) : (ZH ? `共 ${n} 个${where}中排 #${r.a}` : `#${r.a} of ${n} ${where}`);
 }
 function estPanel(m) {
   const e = m.est;
-  const rows = e.evidence.map((c) => `<li>${c.implied != null ? `<b class="mono">≈${c.implied}</b> ` : ""}<a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(({ aicodingdaily: "AI Coding Daily", swe_bench_verified: "SWE-bench Verified", swe_bench_pro: "SWE-bench Pro", terminal_bench_2_1: "Terminal-Bench 2.1" })[c.benchmark] || c.benchmark)}</a>: ${esc(c.score)}${c.variant ? ` <span class="muted">(${esc(c.variant)})</span>` : ""} · ${esc(c.source_type)}${c.implied != null ? (c.method === "peer" ? ` · compared with ${esc(c.peers_used.join(", "))} in the same table` : ` · fit r=${c.r}, ${c.anchors} reference models`) : ` · <span class="muted">not used: ${esc(c.why)}</span>`}</li>`).join("");
+  const tail = (c) => c.implied != null
+    ? (c.method === "peer" ? (ZH ? ` · 对照同表已知 AA 分数的模型换算（${esc(c.peers_used.join("、"))}）` : ` · compared with ${esc(c.peers_used.join(", "))} in the same table`) : (ZH ? ` · 拟合 r=${c.r}，${c.anchors} 个参考模型` : ` · fit r=${c.r}, ${c.anchors} reference models`))
+    : (ZH ? ` · <span class="muted">未采用：${esc(c.why)}</span>` : ` · <span class="muted">not used: ${esc(c.why)}</span>`);
+  const rows = e.evidence.map((c) => `<li>${c.implied != null ? `<b class="mono">≈${c.implied}</b> ` : ""}<a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(({ aicodingdaily: "AI Coding Daily", swe_bench_verified: "SWE-bench Verified", swe_bench_pro: "SWE-bench Pro", terminal_bench_2_1: "Terminal-Bench 2.1" })[c.benchmark] || c.benchmark)}</a>: ${esc(c.score)}${c.variant ? ` <span class="muted">(${esc(c.variant)})</span>` : ""} · ${esc(c.source_type)}${tail(c)}</li>`).join("");
   const head = e.status === "ok"
-    ? `Estimated from ${e.benchmarks} benchmark${e.benchmarks === 1 ? " (one source only: a rough guide)" : "s"}: centre ${e.center}${e.spread > 10 ? " · sources disagree widely" : ""}.` +
-      (e.method === "peer" ? " Vendor numbers are read against the other models in the vendor's own comparison table, whose AA scores are known." : "") +
-      (e.vendor_only ? " Vendor-reported only, with no comparison models: treat as low confidence (wider band)." : "")
-    : `Not enough evidence yet: ${e.benchmarks} of the required benchmarks (rule: ${esc(D.est_rule)}).`;
-  return `<div class="estpanel"><p>${head}</p><ul>${rows}</ul><p class="muted">An estimate, not an Artificial Analysis score. Method: <a href="https://github.com/dimpurr/freetokens/blob/main/METHOD.md">how EST works</a>.</p></div>`;
+    ? (ZH ? `根据 ${e.benchmarks} 个基准估算${e.benchmarks === 1 ? "（只有一个来源，仅供参考）" : ""}：中心 ${e.center}${e.spread > 10 ? " · 来源分歧较大" : ""}。` :
+      `Estimated from ${e.benchmarks} benchmark${e.benchmarks === 1 ? " (one source only: a rough guide)" : "s"}: centre ${e.center}${e.spread > 10 ? " · sources disagree widely" : ""}.`) +
+      (e.method === "peer" ? Tx(" Vendor numbers are read against the other models in the vendor's own comparison table, whose AA scores are known.", " Vendor numbers are read against the other models in the vendor's own comparison table, whose AA scores are known.") : "") +
+      (e.vendor_only ? Tx(" Vendor-reported only, with no comparison models: treat as low confidence (wider band).", " Vendor-reported only, with no comparison models: treat as low confidence (wider band).") : "")
+    : (ZH ? `证据还不够：已有 ${e.benchmarks} 个所需基准（规则：${esc(D.est_rule)}）。` : `Not enough evidence yet: ${e.benchmarks} of the required benchmarks (rule: ${esc(D.est_rule)}).`);
+  return `<div class="estpanel"><p>${head}</p><ul>${rows}</ul><p class="muted">${Tx("An estimate, not an Artificial Analysis score. Method:", "An estimate, not an Artificial Analysis score. Method:")} <a href="https://github.com/dimpurr/freetokens/blob/main/METHOD.md">${Tx("how EST works", "how EST works")}</a>.</p></div>`;
 }
 function aaHTML(m) {
   const a = m.aa_index;
   if (a.value != null) {
-    const title = `Artificial Analysis Intelligence Index, ${absDate(a.date)}`;
+    const title = ZH ? `Artificial Analysis 智能指数，${absDate(a.date)}` : `Artificial Analysis Intelligence Index, ${absDate(a.date)}`;
     const inner = `<small>AA</small>${a.approx ? "≈" : ""}${a.value}`;
     return a.url ? `<a class="aa" href="${esc(a.url)}" target="_blank" rel="noopener" title="${esc(title)}">${inner}${I.ext()}</a>` : `<span class="aa" title="${esc(title)}">${inner}</span>`;
   }
   if (m.est) {
     const label = m.est.status === "ok" ? `${m.est.low}–${m.est.high}` : "—";
-    return `<details class="estd"><summary class="aa est" title="Estimated AA index: tap for the evidence"><small>EST</small>${label} ${I.help()}</summary>${estPanel(m)}</details>`;
+    return `<details class="estd"><summary class="aa est" title="${esc(Tx("Estimated AA index: tap for the evidence", "Estimated AA index: tap for the evidence"))}"><small>EST</small>${label} ${I.help()}</summary>${estPanel(m)}</details>`;
   }
-  return `<span class="muted">${esc(a.note || "not ranked")}</span>`;
+  return `<span class="muted">${esc(a.note || Tx("not ranked", "not ranked"))}</span>`;
 }
 /* P7: one line under the score chip saying where the number comes from */
 const aaSource = (m) => m.aa_index.value != null
   ? `<span class="sub">Artificial Analysis · ${esc(absDate(m.aa_index.date))}</span>`
-  : isEst(m) ? `<span class="sub">${m.est.benchmarks} benchmark${m.est.benchmarks === 1 ? "" : "s"} · estimate</span>`
+  : isEst(m) ? `<span class="sub">${m.est.benchmarks} ${ZH ? "个基准" : `benchmark${m.est.benchmarks === 1 ? "" : "s"}`} · ${Tx("estimate", "estimate")}</span>`
   : "";
 
 /* compact key shown above tables */
 const keyHTML = () => [
   ...Object.keys(V.status).map((k) => statusHTML(k)),
-  `<span class="measured">${I.bolt()}tested by us</span>`,
-  `<span class="pol zero_retention">${I.lock()}no retention</span>`,
-  `<span class="pol may_train">${I.eye()}may train</span>`,
-  `<span><span class="conf official">official</span> <span class="conf inferred">inferred</span> end date</span>`,
+  `<span class="measured">${I.bolt()}${Tx("tested by us", "tested by us")}</span>`,
+  `<span class="pol zero_retention">${I.lock()}${Tx("no retention", "no retention")}</span>`,
+  `<span class="pol may_train">${I.eye()}${Tx("may train", "may train")}</span>`,
+  `<span><span class="conf official">${esc(lab("end_confidence", "official"))}</span> <span class="conf inferred">${esc(lab("end_confidence", "inferred"))}</span> ${Tx("end date", "end date")}</span>`,
 ].map((x) => `<span>${x}</span>`).join("");
 
-const legendHTML = () => [["status", "Status"], ["entry_kind", "Cost to start a channel"], ["access_form", "How the free models can be used"], ["access_rule", "Rules"], ["end_confidence", "End-date confidence"], ["check_method", "Checked by"], ["channel_type", "Channel type"], ["data_policy", "Data policy"]].map(([v, name]) =>
+const legendHTML = () => [["status", Tx("Status", "Status")], ["entry_kind", Tx("Cost to start a channel", "Cost to start a channel")], ["access_form", Tx("How the free models can be used", "How the free models can be used")], ["access_rule", Tx("Rules", "Rules")], ["end_confidence", Tx("End-date confidence", "End-date confidence")], ["check_method", Tx("Checked by", "Checked by")], ["channel_type", Tx("Channel type", "Channel type")], ["data_policy", Tx("Data policy", "Data policy")]].map(([v, name]) =>
   `<div><h3>${name}</h3><dl>${Object.entries(V[v]).map(([k, o]) => `<dt>${v === "status" ? statusHTML(k, o.label) : esc(o.label)}</dt>${o.help ? `<dd>${esc(o.help)}</dd>` : ""}`).join("")}</dl></div>`
 ).join("");
 
@@ -348,7 +369,7 @@ function renderChart(el, rows, fit = false) {
   let ticks = "";
   const dow = new Date(t0).getUTCDay();
   for (let t = t0 + ((8 - dow) % 7) * DAY; t <= t1; t += 7 * DAY) ticks += `<div class="tick" style="left:${pct(t)}"><span>${MON[new Date(t).getUTCMonth()]} ${new Date(t).getUTCDate()}</span></div>`;
-  let html = `<div class="lbl axis-l"></div><div class="axis">${ticks}<div class="todayline" style="left:${pct(todayT)}"><span>today</span></div></div>`;
+  let html = `<div class="lbl axis-l"></div><div class="axis">${ticks}<div class="todayline" style="left:${pct(todayT)}"><span>${Tx("today", "today")}</span></div></div>`;
   for (const l of rows) {
     const s = l.started.date ? pd(l.started.date).t : null;
     const ann = l.ends.announced ? pd(l.ends.announced).t : null;
@@ -372,17 +393,17 @@ function renderChart(el, rows, fit = false) {
         segs += `<div class="note" style="left:calc(${pct(end)} + 8px)">${esc(absDate(effEnd(l)).replace(/, \d\d:\d\d UTC/, ""))} · ${esc(lab("end_confidence", conf))}</div>`;
       } else if (!end) {
         segs += `<div class="seg fut none" style="left:${pct(todayT)};width:calc(${pct(t1)} - ${pct(todayT)})"></div>`;
-        segs += `<div class="note" style="left:calc(${pct(todayT)} + 8px)">no end announced</div>`;
+        segs += `<div class="note" style="left:calc(${pct(todayT)} + 8px)">${Tx("no end announced", "no end announced")}</div>`;
       } else if (l.status === "overdue") {
-        segs += `<div class="note" style="left:calc(${pct(todayT)} + 8px)">no new date</div>`;
+        segs += `<div class="note" style="left:calc(${pct(end)} + 8px)">${Tx("no new date", "no new date")}</div>`;
       }
     }
-    if (s && s < t0) segs += `<div class="since">◀ since ${esc(absDate(l.started.date))}</div>`;
-    if (!s) segs += `<div class="since" style="left:calc(${pct(from)} + 4px)">start not recorded</div>`;
+    if (s && s < t0) segs += `<div class="since">◀ ${Tx("since", "since")} ${esc(absDate(l.started.date))}</div>`;
+    if (!s) segs += `<div class="since" style="left:calc(${pct(from)} + 4px)">${Tx("start not recorded", "start not recorded")}</div>`;
     for (const e of D.events.filter((e) => (e.lanes || []).includes(l.id))) {
-      const t = pd(e.date).t; if (t < t0) continue;
+      const tt = pd(e.date).t; if (tt < t0) continue;
       const tip = `${absDate(e.date)}: ${lab("event_kind", e.kind)}. ${e.text}`;
-      segs += `<a class="ev ${e.kind}" href="#${evId(e)}" style="left:${pct(t)}" title="${esc(tip)}" aria-label="${esc(tip)}"></a>`;
+      segs += `<a class="ev ${e.kind}" href="#${evId(e)}" style="left:${pct(tt)}" title="${esc(tip)}" aria-label="${esc(tip)}"></a>`;
     }
     html += `<div class="lbl"><div class="m">${mlink(l.model)}</div><div class="c">${clink(l.channel)} ${statusHTML(l.status)}</div></div><div class="trk">${segs}</div>`;
   }
@@ -392,13 +413,13 @@ function renderChart(el, rows, fit = false) {
   requestAnimationFrame(() => { if (sc.scrollWidth > sc.clientWidth) sc.scrollLeft = Math.max(0, sc.scrollWidth * (x(todayT) / 100) - sc.clientWidth * 0.55); });
 }
 const chartKey = [
-  `<span><i style="background:var(--live)"></i>free so far</span>`,
-  `<span><i style="background:repeating-linear-gradient(135deg,var(--overdue) 0 4px,var(--overdue-soft) 4px 8px)"></i>past announced end</span>`,
-  `<span><i style="background:var(--live-soft);border:2px solid var(--live)"></i>official end ahead</span>`,
-  `<span><i style="border:2px dashed var(--live)"></i>inferred end ahead</span>`,
-  `<span><i style="background:linear-gradient(90deg,var(--live-soft),transparent)"></i>no end announced</span>`,
-  `<span><i style="background:var(--off)"></i>ended / not answering</span>`,
-  `<span>● event · ◆ end announced · tap one to see it</span>`,
+  `<span><i style="background:var(--live)"></i>${Tx("free so far", "free so far")}</span>`,
+  `<span><i style="background:repeating-linear-gradient(135deg,var(--overdue) 0 4px,var(--overdue-soft) 4px 8px)"></i>${Tx("past announced end", "past announced end")}</span>`,
+  `<span><i style="background:var(--live-soft);border:2px solid var(--live)"></i>${Tx("official end ahead", "official end ahead")}</span>`,
+  `<span><i style="border:2px dashed var(--live)"></i>${Tx("inferred end ahead", "inferred end ahead")}</span>`,
+  `<span><i style="background:linear-gradient(90deg,var(--live-soft),transparent)"></i>${Tx("no end announced", "no end announced")}</span>`,
+  `<span><i style="background:var(--off)"></i>${Tx("ended / not answering", "ended / not answering")}</span>`,
+  `<span>${Tx("● event · ◆ end announced · tap one to see it", "● event · ◆ end announced · tap one to see it")}</span>`,
 ].join("");
 
 /* ---------- timeline grouped by UTC day; times link to the source ---------- */
@@ -419,25 +440,25 @@ function timelineHTML(evs) {
     const src = e.source.url ? `<a href="${esc(e.source.url)}" target="_blank" rel="noopener">${esc(e.source.label)} ${I.ext()}</a>` : esc(e.source.label);
     out += `<div class="it" id="${evId(e)}"><div class="t">${timeHTML}</div><div class="b">
       <div class="h"><span class="k">${esc(lab("event_kind", e.kind))}</span>${(e.lanes || []).map((i) => `<span class="lane">${mlink(lanes[i].model)} · ${clink(lanes[i].channel)}</span>${statusHTML(lanes[i].status)}`).join(" ")}${(e.offers || []).map((o) => OF[o] ? `<span class="lane">${olink(o)}</span>${statusHTML(OF[o].status)}` : "").join(" ")}</div>
-      <div class="x">${esc(e.text)}${e.end_date ? ` <span class="muted">→ end date ${esc(absDate(e.end_date))}</span>` : ""}</div>
-      <div class="s">Source: ${src}${e.source.note ? ` · ${esc(e.source.note)}` : ""}</div>
+      <div class="x">${esc(e.text)}${e.end_date ? ` <span class="muted">→ ${Tx("end date", "end date")} ${esc(absDate(e.end_date))}</span>` : ""}</div>
+      <div class="s">${Tx("Source:", "Source:")} ${src}${e.source.note ? ` · ${esc(e.source.note)}` : ""}</div>
     </div></div>`;
   }
-  return out || `<p class="muted" style="padding:12px 16px;margin:0">No events recorded.</p>`;
+  return out || `<p class="muted" style="padding:12px 16px;margin:0">${Tx("No events recorded.", "No events recorded.")}</p>`;
 }
 
 /* ---------- copy buttons ---------- */
 document.addEventListener("click", (ev) => {
   const b = ev.target.closest("[data-copy]"); if (!b) return;
   const old = b.innerHTML;
-  const done = () => { b.textContent = "copied"; setTimeout(() => (b.innerHTML = old), 1500); };
-  const fallback = () => { const r = document.createRange(); r.selectNodeContents(b.previousElementSibling); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = "selected"; setTimeout(() => (b.innerHTML = old), 2500); };
+  const done = () => { b.textContent = Tx("copied", "copied"); setTimeout(() => (b.innerHTML = old), 1500); };
+  const fallback = () => { const r = document.createRange(); r.selectNodeContents(b.previousElementSibling); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = Tx("selected", "selected"); setTimeout(() => (b.innerHTML = old), 2500); };
   try { navigator.clipboard.writeText(b.dataset.copy).then(done, fallback); } catch (e) { fallback(); }
 });
 
-const stamp = () => `<span>data as of <b>${esc(absDate(D.built))}</b></span><span>today <b>${esc(absDate(new Date(now).toISOString().slice(0, 10)))}</b> UTC</span>`;
+const stamp = () => `<span>${Tx("data as of", "data as of")} <b>${esc(absDate(D.built))}</b></span><span>${Tx("today", "today")} <b>${esc(absDate(new Date(now).toISOString().slice(0, 10)))}</b> UTC</span>`;
 /* P3: catalogue size + freshness in one line (home) */
-const metaStrip = () => (VIEW === "all" ? "" : `<span class="viewcount"><b>${D.lanes.filter(usable).length}</b> usable by ${VIEW}</span>`) + `<span><b>${D.models.length}</b> models</span><span><b>${D.lanes.length}</b> lanes · <b>${D.lanes.filter(isFree).length}</b> free now</span><span><b>${channels.length}</b> channels</span><span><b>${D.events.length}</b> events</span>` + stamp();
+const metaStrip = () => (VIEW === "all" ? "" : `<span class="viewcount"><b>${D.lanes.filter(usable).length}</b> ${byV(VIEW)}</span>`) + `<span><b>${D.models.length}</b> ${Tx("models", "models")}</span><span><b>${D.lanes.length}</b> ${Tx("lanes", "lanes")} · <b>${D.lanes.filter(isFree).length}</b> ${Tx("free now", "free now")}</span><span><b>${channels.length}</b> ${Tx("channels", "channels")}</span><span><b>${D.events.length}</b> ${Tx("events", "events")}</span>` + stamp();
 
 /* ---------- shared sections (home highlights and the full /lanes page) ---------- */
 /* lanes: the view is the base filter; buttons refine it ("no payment needed" hides in Humans, where it is always true) */
@@ -458,9 +479,9 @@ function mountLanes(limit) {
     };
     const present = (f) => [...new Set(D.lanes.filter(base).map((l) => l[f]))];
     $("filters").innerHTML =
-      `<span class="lab">Show</span>` + btn("tested", "", "all lanes") + btn("tested", "yes", `${I.bolt()} tested by us`) + btn("ends", "yes", "has end date") + (VIEW === "humans" ? "" : btn("nopay", "yes", "no payment needed")) + btn("api", "yes", "API key works") + btn("world", "yes", "available worldwide") + `<span class="gap"></span>` +
-      `<span class="lab">Status</span>` + btn("status", "", "any") + present("status").map((k) => btn("status", k, statusHTML(k))).join("") + `<span class="gap"></span>` +
-      `<span class="lab">Type</span>` + btn("type", "", "any") + present("type").map((k) => btn("type", k, esc(lab("channel_type", k)))).join("");
+      `<span class="lab">${Tx("Show", "Show")}</span>` + btn("tested", "", Tx("all lanes", "all lanes")) + btn("tested", "yes", `${I.bolt()} ${Tx("tested by us", "tested by us")}`) + btn("ends", "yes", Tx("has end date", "has end date")) + (VIEW === "humans" ? "" : btn("nopay", "yes", Tx("no payment needed", "no payment needed"))) + btn("api", "yes", Tx("API key works", "API key works")) + btn("world", "yes", Tx("available worldwide", "available worldwide")) + `<span class="gap"></span>` +
+      `<span class="lab">${Tx("Status", "Status")}</span>` + btn("status", "", Tx("any", "any")) + present("status").map((k) => btn("status", k, statusHTML(k))).join("") + `<span class="gap"></span>` +
+      `<span class="lab">${Tx("Type", "Type")}</span>` + btn("type", "", Tx("any", "any")) + present("type").map((k) => btn("type", k, esc(lab("channel_type", k)))).join("");
   }
   function renderLanes() {
     let rows = D.lanes.filter((l) => base(l) && (limit || keys.every((k) => passes(l, k, filt[k]))));
@@ -469,20 +490,20 @@ function mountLanes(limit) {
       /* home: the lanes most worth a look: free now, tested by us, ending soonest, best scored */
       const sc = (l) => aaValue(models[l.model]) ?? -1, end = (l) => effEnd(l) ? pd(effEnd(l)).t : Infinity;
       rows = rows.filter(isFree).sort((a, b) => (b.status === "live") - (a.status === "live") || !!b.limits_observed - !!a.limits_observed || end(a) - end(b) || sc(b) - sc(a)).slice(0, limit);
-      $("lanes-count").textContent = `${rows.length} of ${total}${VIEW === "all" ? "" : " usable by " + VIEW} · free now, tested by us first`;
-      $("lanes-more").innerHTML = `<a class="seeall" href="${D.root}lanes${D.ext}${VIEW === "all" ? "" : "?use=" + VIEW}">All ${total} lanes, with filters and the full chart →</a>`;
-    } else $("lanes-count").textContent = `${rows.length} of ${D.lanes.length}${VIEW === "all" ? "" : " · usable by " + VIEW}`;
+      $("lanes-count").textContent = ZH ? `${rows.length}／${total} 条${VIEW === "all" ? "" : byV(VIEW)} · ${Tx("free now", "free now")}，${Tx("tested by us", "tested by us")}优先` : `${rows.length} of ${total}${VIEW === "all" ? "" : " usable by " + VIEW} · free now, tested by us first`;
+      $("lanes-more").innerHTML = `<a class="seeall" href="${D.root}lanes${D.ext}${VIEW === "all" ? "" : "?use=" + VIEW}">${ZH ? `全部 ${total} 条线路，含筛选与完整图表 →` : `All ${total} lanes, with filters and the full chart →`}</a>`;
+    } else $("lanes-count").textContent = ZH ? `${rows.length}／${D.lanes.length} 条${VIEW === "all" ? "" : " · " + byV(VIEW)}` : `${rows.length} of ${D.lanes.length}${VIEW === "all" ? "" : " · usable by " + VIEW}`;
     $("lanes").innerHTML = rows.map((l) => {
       const e = endInfo(l);
       return `<tr>
         <td><span class="name">${mlink(l.model)}</span><span class="sub">${clink(l.channel)} · ${esc(lab("channel_type", l.type))}</span></td>
-        <td class="nowrap" data-label="Status · end"><span title="${esc(lab("status", l.status))}">${statusHTML(l.status, e.main)}</span><span class="sub">${e.sub}</span></td>
-        <td data-label="Tested by us">${measuredHTML(l)}${checkedSub(l)}</td>
-        <td class="cond" data-label="Limit · condition">${costHTML(l.channel)} ${regionTag(l)} ${limitHTML(l)}${l.free_condition ? `<span class="sub">${esc(l.free_condition)}</span>` : ""}</td>
-        <td data-label="Data">${policyHTML(l.data_policy)}</td>
-        <td class="nowrap" data-label="Model ID">${idHTML(l)}</td>
+        <td class="nowrap" data-label="${Tx("Status · end", "Status · end")}"><span title="${esc(lab("status", l.status))}">${statusHTML(l.status, e.main)}</span><span class="sub">${e.sub}</span></td>
+        <td data-label="${Tx("Tested by us", "Tested by us")}">${measuredHTML(l)}${checkedSub(l)}</td>
+        <td class="cond" data-label="${Tx("Limit · condition", "Limit · condition")}">${costHTML(l.channel)} ${regionTag(l)} ${limitHTML(l)}${l.free_condition ? `<span class="sub">${esc(l.free_condition)}</span>` : ""}</td>
+        <td data-label="${Tx("Data", "Data")}">${policyHTML(l.data_policy)}</td>
+        <td class="nowrap" data-label="${Tx("Model ID", "Model ID")}">${idHTML(l)}</td>
       </tr>`;
-    }).join("") || `<tr><td colspan="6" class="muted">No lanes match these filters.</td></tr>`;
+    }).join("") || `<tr><td colspan="6" class="muted">${Tx("No lanes match these filters.", "No lanes match these filters.")}</td></tr>`;
   }
   if ($("filters")) $("filters").addEventListener("click", (ev) => {
     const b = ev.target.closest("button"); if (!b) return;
@@ -515,16 +536,16 @@ function modelRow(m, i, off, TOP = 10) {
     const img = { yes: `<span class="st live">${I.image()} yes</span>`, partial: `<span class="pol may_train">${I.image()} unreliable</span>`, no: `<span class="muted">no</span>`, not_checked: `<span class="muted">not checked</span>` }[m.image_input];
     const r = off ? null : rankOf(m);
     const ls = lanesOf(m.id), ok = VIEW === "all" ? ls : ls.filter(usable), rest = VIEW === "all" ? [] : ls.filter((l) => !usable(l));
-    const restChips = rest.map((l) => channelChip(l).replace('class="chip"', `class="chip off" title="${esc(l.channel + ": " + (whyNot(l, VIEW) || "not free now"))}"`)).join("");
+    const restChips = rest.map((l) => channelChip(l).replace('class="chip"', `class="chip off" title="${esc(l.channel + ": " + (whyNot(l, VIEW) || Tx("not free now", "not free now")))}"`)).join("");
     const regionOnly = r && ok.some(isFree) && !ok.some((l) => isFree(l) && worldwide(l));
     return `<tr class="${i >= TOP ? "more" : ""}${off ? " offrow" : ""}">
       <td class="rank nowrap" data-label="">${r ? `<span class="${r.est ? "est" : ""}" title="${esc(rankText(m))}">${esc(rankLabel(r))}</span>` : ""}${regionOnly ? `<br>${regionTag(ok.find(isFree))}` : ""}</td>
       <td><span class="name">${mlink(m.id)}</span><span class="sub">${mklink(m.maker)}</span></td>
-      <td class="nowrap" data-label="AA index">${aaHTML(m)}${aaSource(m)}</td>
-      <td data-label="Free on"><div class="chips">${ok.map(channelChip).join("")}${offersFor(m.id).filter((o) => offerUsable(o)).map((o) => `<a class="chip offerchip" href="${offerHref(o.id)}" title="${esc(o.name + ": " + o.gets.text + " " + lab("per", o.gets.per) + " (an allowance shared with other models)")}">via ${esc(o.channel || o.provider)}</a>`).join("")}${restChips}${rest.length ? `<button type="button" class="morechips" aria-expanded="false" data-label="+${rest.length} other">+${rest.length} other</button>` : ""}</div></td>
-      <td class="m-hide" data-label="Context">${ctx}</td>
-      <td class="nowrap m-hide" data-label="Images">${img}</td>
-      <td class="nowrap m-hide" data-label="Events">${n ? `<a href="${modelHref(m.id)}#events">${n} event${n === 1 ? "" : "s"}</a>` : `<span class="muted">none</span>`}</td>
+      <td class="nowrap" data-label="${Tx("AA index", "AA index")}">${aaHTML(m)}${aaSource(m)}</td>
+      <td data-label="${Tx("Free on", "Free on")}"><div class="chips">${ok.map(channelChip).join("")}${offersFor(m.id).filter((o) => offerUsable(o)).map((o) => `<a class="chip offerchip" href="${offerHref(o.id)}" title="${esc(o.name + ": " + o.gets.text + " " + lab("per", o.gets.per) + (ZH ? "（与其他模型共用的额度）" : " (an allowance shared with other models)"))}">via ${esc(o.channel || o.provider)}</a>`).join("")}${restChips}${rest.length ? `<button type="button" class="morechips" aria-expanded="false" data-label="+${rest.length} other">+${rest.length} ${Tx("other", "other")}</button>` : ""}</div></td>
+      <td class="m-hide" data-label="${Tx("Context", "Context")}">${ctx}</td>
+      <td class="nowrap m-hide" data-label="${Tx("Images", "Images")}">${img}</td>
+      <td class="nowrap m-hide" data-label="${Tx("Events", "Events")}">${n ? `<a href="${modelHref(m.id)}#events">${n} ${ZH ? "个事件" : `event${n === 1 ? "" : "s"}`}</a>` : `<span class="muted">${Tx("none", "none")}</span>`}</td>
     </tr>`;
   }
 

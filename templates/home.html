@@ -96,21 +96,21 @@ onView(() => {
   const rel = newest ? relDays(pd(newest.started.date).t) : null;
   $("answers").innerHTML = [
     top
-      ? tile("Highest-scored, free now",
+      ? tile(Tx("Highest-scored, free now", "Highest-scored, free now"),
           `<div class="who">${mlink(top.id)} <span class="mono">${esc(rankLabel(rankOf(top)))}</span></div>` +
           `<div class="row">${aaHTML(top)}</div>` +
           `<div class="chips">${chs.slice(0, 3).map(clink).join("")}${chs.length > 3 ? `<span class="muted">+${chs.length - 3}</span>` : ""}</div>`)
-      : tile("Highest-scored, free now", `<div class="row"><span class="muted">none</span></div>`),
+      : tile(Tx("Highest-scored, free now", "Highest-scored, free now"), `<div class="row"><span class="muted">${Tx("none", "none")}</span></div>`),
     up
-      ? tile("Ending soonest",
-          `<div class="who">${mlink(up.model)} <span class="muted">on</span> ${clink(up.channel)}</div>` +
+      ? tile(Tx("Ending soonest", "Ending soonest"),
+          `<div class="who">${mlink(up.model)} <span class="muted">${Tx("on", "on")}</span> ${clink(up.channel)}</div>` +
           `<div class="row"><b>${esc(endInfo(up).main)}</b> <span class="muted">${esc(absDate(effEnd(up)))}</span></div>`)
-      : tile("Ending soonest", `<div class="row"><span class="muted">No upcoming end dates</span></div>`),
+      : tile(Tx("Ending soonest", "Ending soonest"), `<div class="row"><span class="muted">${Tx("No upcoming end dates", "No upcoming end dates")}</span></div>`),
     newest
-      ? tile("Newest free lane",
-          `<div class="who">${mlink(newest.model)} <span class="muted">on</span> ${clink(newest.channel)}</div>` +
-          `<div class="row">free since ${esc(absDate(newest.started.date))}${rel ? ` <span class="muted">(${esc(rel)})</span>` : ""}</div>`)
-      : tile("Newest free lane", `<div class="row"><span class="muted">none</span></div>`),
+      ? tile(Tx("Newest free lane", "Newest free lane"),
+          `<div class="who">${mlink(newest.model)} <span class="muted">${Tx("on", "on")}</span> ${clink(newest.channel)}</div>` +
+          `<div class="row">${Tx("free since", "free since")} ${esc(absDate(newest.started.date))}${rel ? ` <span class="muted">(${esc(rel)})</span>` : ""}</div>`)
+      : tile(Tx("Newest free lane", "Newest free lane"), `<div class="row"><span class="muted">${Tx("none", "none")}</span></div>`),
   ].join("");
 });
 
@@ -134,7 +134,7 @@ onView(() => {
     rungs.reverse();
     const on = new Set(rungs.flatMap((r) => [r.lead, ...r.alts]));
     const out = all.filter((l) => !on.has(l) && sc(l) >= 30).map((l) => {
-      if (!pool.includes(l)) return { l, why: "Not confirmed yet" + (l.limits_observed ? `: ${obsText(l)}` : "") };
+      if (!pool.includes(l)) return { l, why: Tx("Not confirmed yet", "Not confirmed yet") + (l.limits_observed ? `: ${obsText(l)}` : "") };
       const by = rungs.slice().reverse().find((r) => ti(r.lead) >= ti(l) && sc(r.lead) >= sc(l) - 2) || rungs[0];
       return { l, why: `Beaten by ${name(by.lead)}` };
     }).sort((a, b) => sc(b.l) - sc(a.l));
@@ -207,10 +207,10 @@ onView(() => {
   $("soon").innerHTML = rows.map(({ l, t }) => {
     const n = daysTo(t);
     const overdue = n < 0;
-    const count = overdue ? `<b>${-n}</b><span>day${-n === 1 ? "" : "s"} overdue</span>` : n === 0 ? `<b>Today</b><span>last day</span>` : `<b>${n}</b><span>day${n === 1 ? "" : "s"} left</span>`;
+    const count = overdue ? (ZH ? `<b>${-n}</b><span>天已逾期</span>` : `<b>${-n}</b><span>day${-n === 1 ? "" : "s"} overdue</span>`) : n === 0 ? (ZH ? `<b>今天</b><span>最后一天</span>` : `<b>Today</b><span>last day</span>`) : (ZH ? `<b>${n}</b><span>天后到期</span>` : `<b>${n}</b><span>day${n === 1 ? "" : "s"} left</span>`);
     return `<article class="card ${overdue ? "overdue" : ""}">
       <div class="count">${count}</div>
-      <div class="who">${mlink(l.model)} <span class="muted">on</span> ${clink(l.channel)}</div>
+      <div class="who">${mlink(l.model)} <span class="muted">${Tx("on", "on")}</span> ${clink(l.channel)}</div>
       <div class="row">${confHTML(l.ends.confidence)} ${esc(absDate(effEnd(l)))}</div>
       ${l.limits_observed ? `<div class="row">${measuredHTML(l, true)}</div>` : ""}
       ${overdue ? `<div class="row">Still live at the last check. It can stop without notice.</div>` : ""}
@@ -224,14 +224,14 @@ onView(() => {
   const t = $("models-t"), more = $("models-more");
   const draw = (total, shown, hidden) => {
     const open = !t.classList.contains("collapsed");
-    more.innerHTML = hidden ? `<span>Showing ${open ? total : shown} of ${total}</span><button type="button" aria-expanded="${open}" aria-controls="models-t">${open ? "Show top " + shown + " only" : "Show all " + total + " models"}</button>` : "";
+    more.innerHTML = hidden ? (ZH ? `<span>显示 ${open ? total : shown}／${total}</span><button type="button" aria-expanded="${open}" aria-controls="models-t">${open ? `只显示前 ${shown} 个` : `展开全部 ${total} 个模型`}</button>` : `<span>Showing ${open ? total : shown} of ${total}</span><button type="button" aria-expanded="${open}" aria-controls="models-t">${open ? "Show top " + shown + " only" : "Show all " + total + " models"}</button>`) : "";
   };
   let last = [0, 0, 0];
   more.addEventListener("click", (ev) => { if (!ev.target.closest("button")) return; t.classList.toggle("collapsed"); draw(...last); });
   $("models").addEventListener("click", (ev) => {
     const b = ev.target.closest(".morechips"); if (!b) return;
     const row = b.closest("tr"); const open = row.classList.toggle("showall");
-    b.setAttribute("aria-expanded", open); b.textContent = open ? "hide" : b.dataset.label;
+    b.setAttribute("aria-expanded", open); b.textContent = open ? Tx("hide", "hide") : b.dataset.label;
   });
   onView(() => {
     const inView = (m) => VIEW === "all" || lanesOf(m.id).some(usable);
@@ -244,9 +244,9 @@ onView(() => {
     const total = sc.length + unscored.length + unusable.length;
     $("models").innerHTML = top.map((m, i) => row(m, i)).join("") +
       restScored.map((m, i) => row(m, TOP + i)).join("") +
-      (unscored.length ? `<tr class="group more"><td colspan="7">Not scored <span class="muted">· ${unscored.length} models with no AA index and too little benchmark evidence for an estimate</span></td></tr>` : "") +
+      (unscored.length ? `<tr class="group more"><td colspan="7">${Tx("Not scored", "Not scored")} <span class="muted">· ${unscored.length} ${Tx("models with no AA index and too little benchmark evidence for an estimate", "models with no AA index and too little benchmark evidence for an estimate")}</span></td></tr>` : "") +
       unscored.map((m) => row(m, TOP)).join("") +
-      (unusable.length ? `<tr class="group more"><td colspan="7">Not usable this way <span class="muted">· ${unusable.length} models free only through lanes that don't fit "${VIEWS[VIEW].label}"</span></td></tr>` : "") +
+      (unusable.length ? `<tr class="group more"><td colspan="7">${Tx("Not usable this way", "Not usable this way")} <span class="muted">· ${unusable.length} ${Tx("models free only through lanes that do not fit", "models free only through lanes that do not fit")} "${VIEWS[VIEW].label}"</span></td></tr>` : "") +
       unusable.map((m) => row(m, TOP, true)).join("");
     last = [total, top.length, total - top.length];
     draw(...last);

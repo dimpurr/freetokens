@@ -32,7 +32,7 @@ document.querySelectorAll("a[data-ext]").forEach((a) => a.setAttribute("href", a
     api: (o) => { const a = offerAccess(o); return !!a && a.form === "api"; },
     world: (o) => !o.region,
   };
-  const labels = { nocard: "no card", nophone: "no phone number", nostudent: "not student-only", api: "API key works", world: "available worldwide" };
+  const labels = { nocard: Tx("no card", "no card"), nophone: Tx("no phone number", "no phone number"), nostudent: Tx("not student-only", "not student-only"), api: Tx("API key works", "API key works"), world: Tx("available worldwide", "available worldwide") };
   const base = () => (D.offers || []).filter((o) => offerUsable(o) || (VIEW === "all" && o.status === "ended"));
   const pass = (o, skip) => (!F.type || skip === "type" || o.type === F.type) && Object.keys(tests).every((k) => !F[k] || k === skip || tests[k](o));
   function draw() {
@@ -42,7 +42,7 @@ document.querySelectorAll("a[data-ext]").forEach((a) => a.setAttribute("href", a
       '<span class="gap"></span><span class="lab">Type</span>' + btn("type", "", "any", b.filter((o) => pass(o, "type")).length) +
       Object.keys(V.offer_type).filter((t) => b.some((o) => o.type === t)).map((t) => btn("type", t, esc(lab("offer_type", t)), b.filter((o) => pass(o, "type") && o.type === t).length)).join("");
     const rows = b.filter((o) => pass(o)).sort((a, c) => (a.status === "ended") - (c.status === "ended") || offerSort(a, c));
-    $("of-count").textContent = `${rows.length} of ${(D.offers || []).length}${VIEW === "all" ? "" : " · usable by " + VIEW}`;
+    $("of-count").textContent = ZH ? `${rows.length}／${(D.offers || []).length} 个${VIEW === "all" ? "" : " · " + byV(VIEW)}` : `${rows.length} of ${(D.offers || []).length}${VIEW === "all" ? "" : " · usable by " + VIEW}`;
     $("of-rows").innerHTML = rows.map((o) => {
       const m = o.models || {}, tracked = (m.tracked || []).filter((x) => models[x]);
       const mods = m.kind === "catalogue" ? `whole catalogue${m.count ? ` (${m.count})` : ""}` : tracked.length ? tracked.slice(0, 3).map(mlink).join(", ") + (tracked.length > 3 ? ` +${tracked.length - 3}` : "") : esc((m.ids || []).slice(0, 3).join(", ") || "—");
