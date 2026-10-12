@@ -8,8 +8,8 @@
    "note": "Free models run inside the OpenCode app with no account; the Zen API key route needs billing details"
   },
   "source": {
-   "url": "https://opencode.ai/docs/zen/",
-   "label": "OpenCode Zen docs"
+   "url": "https://opencode.ai/v2/docs/console/models/",
+   "label": "OpenCode console docs: models"
   },
   "checked": "2026-10-06",
   "access": {
@@ -17,13 +17,13 @@
    "protocols": [],
    "rules": [],
    "source": {
-    "url": "https://opencode.ai/docs/zen/",
-    "label": "OpenCode Zen docs; free models answer 403 FreeTierError outside OpenCode (our check)"
+    "url": "https://opencode.ai/v2/docs/console/models/",
+    "label": "OpenCode console docs; free models answer 403 FreeTierError outside OpenCode (our check)"
    }
   },
   "links": {
    "site": "https://opencode.ai/zen",
-   "models": "https://opencode.ai/docs/zen/"
+   "models": "https://opencode.ai/v2/docs/console/models/"
   },
   "limit_scope": {
    "value": "per_ip",
@@ -197,7 +197,7 @@
    "note": "Free models need an OpenCode Go subscription; they don't use plan quota"
   },
   "source": {
-   "url": "https://opencode.ai/docs/go/",
+   "url": "https://opencode.ai/v2/docs/console/go/",
    "label": "OpenCode Go docs"
   },
   "checked": "2026-10-06",
@@ -210,13 +210,13 @@
    ],
    "rules": [],
    "source": {
-    "url": "https://opencode.ai/docs/go/",
+    "url": "https://opencode.ai/v2/docs/console/go/",
     "label": "OpenCode Go docs"
    }
   },
   "links": {
    "site": "https://opencode.ai/go",
-   "models": "https://opencode.ai/docs/go/"
+   "models": "https://opencode.ai/v2/docs/console/go/"
   },
   "free_condition": "OpenCode Go plan; free models don't use the plan's quota"
  },

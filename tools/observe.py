@@ -8,7 +8,8 @@
                                                      # text for Telegram; --daily prints nothing when all is well
 
 Traffic counts exclude bots (by user agent) and the IPs in FT_OBSERVE_IGNORE_IPS (comma-separated: own machines).
-"Browsers" = distinct IPs that loaded /assets/data.js, i.e. ran the page's JavaScript: the closest thing to real visitors.
+"Humans" = distinct IPs that sent the page's count request (/assets/hi.txt, sent by JavaScript once a page is visible): real visitors.
+Page views are split three ways: by humans · by declared bots · unverified (no count request: scrapers that fetch HTML only, no-JS readers).
 """
 import datetime as dt
 import json
@@ -26,13 +27,20 @@ UA = {"User-Agent": "freetokens-observe/1 (+https://freetokens.fyi)"}
 
 LINE = re.compile(r'(\S+) \S+ \S+ \[(\d+/\w+/\d+):[^\]]+\] "(\S+) (\S+)[^"]*" (\d+) \S+ "([^"]*)" "([^"]*)"')
 # paths only freetokens serves: used to pick our lines out of kafu's shared log (before 2026-10-08 the site had no log of its own)
-SITE_PATH = re.compile(r"^/(models/|channels/|makers|lanes|timeline|methodology|assets/(data|common)\.js|feed\.xml|og\.png|llms\.txt)")
+SITE_PATH = re.compile(r"^/(models/|channels/|makers|offers|lanes|timeline|methodology|assets/(data|common)\.js|assets/hi\.txt|feed\.xml|og\.png|llms\.txt)")
+BEACON = "/assets/hi.txt"  # the count request (build.py BEACON_SNIPPET)
 BOT = re.compile(r"(?i)bot|crawl|spider|slurp|preview|facebookexternal|curl|python|wget|go-http|headless|playwright|httpx|axios|"
                  r"node-fetch|scrapy|ahrefs|semrush|petal|bytespider|gpt|claude|perplexity|anthropic|cohere|google-|feedfetcher|"
                  r"lighthouse|monitor|freetokens-")
+GENERIC_BOT = re.compile(r"(?i)seek|discovery|fetcher|reader|\+https?://|^(?!Mozilla/)")  # a link in the UA or a non-browser UA: some bot or tool we have no name for
+try:  # community list (tools/crawler-patterns.json, MIT): catches declared crawlers our short list misses
+    CRAWLERS = re.compile("|".join(json.loads((Path(__file__).resolve().parent / "crawler-patterns.json").read_text())["patterns"]))
+except Exception:
+    CRAWLERS = re.compile(r"(?!x)x")
+FEED_SUBS = re.compile(r"(?i)(\d+) (?:subscribers?|readers?)")
 LLM_BOTS = ["GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-User", "Claude-SearchBot", "anthropic-ai",
             "PerplexityBot", "Perplexity-User", "Google-Extended", "Applebot-Extended", "Bytespider", "CCBot", "cohere-ai",
-            "meta-externalagent", "Amazonbot", "DuckAssistBot", "MistralAI-User"]
+            "meta-externalagent", "Amazonbot", "DuckAssistBot", "MistralAI-User", "OpenCode-User"]
 SEARCH_BOTS = ["Googlebot", "bingbot", "YandexBot", "Baiduspider", "DuckDuckBot", "Applebot", "Sogou", "360Spider"]
 
 
@@ -46,10 +54,10 @@ def get(url, timeout=30, head=False):
 
 def parse_logs(files):
     ignore = {x.strip() for x in os.environ.get("FT_OBSERVE_IGNORE_IPS", "").split(",") if x.strip()}
-    days = defaultdict(lambda: {"views": 0, "visitors": set(), "browsers": set(), "pages": Counter(), "referrers": Counter(),
+    days = defaultdict(lambda: {"views": 0, "visitors": set(), "browsers": set(), "humans": set(), "beacons": 0, "view_ips": Counter(), "unknown_ua": Counter(), "feed_subs": {}, "pages": Counter(), "referrers": Counter(),
                                 "llm_bots": Counter(), "search_bots": Counter(), "other_bots": 0, "feed": 0, "llms_txt": 0,
                                 "ai_user_pages": Counter(), "ai_landings": Counter()})
-    USER_FETCH = ("ChatGPT-User", "Perplexity-User", "Claude-User", "MistralAI-User")  # an assistant reading a page for a person, live
+    USER_FETCH = ("ChatGPT-User", "Perplexity-User", "Claude-User", "MistralAI-User", "OpenCode-User")  # an assistant reading a page for a person, live
     for f in files:
         own_log = "freetokens" in Path(f).name  # site-specific log: every line is ours; shared log: our paths only
         for line in open(f, errors="ignore"):
@@ -70,8 +78,15 @@ def parse_logs(files):
                 continue
             if srch:
                 d["search_bots"][srch] += 1; continue
-            if BOT.search(ua):
-                d["other_bots"] += 1; continue
+            named = BOT.search(ua) or CRAWLERS.search(ua)
+            if named or GENERIC_BOT.search(ua):
+                d["other_bots"] += 1
+                if not named:
+                    d["unknown_ua"][ua[:90]] += 1  # weekly report lists these so they get a name
+                if path.split("?")[0] == "/feed.xml" and (n := FEED_SUBS.search(ua)):  # feed readers report their subscriber count
+                    reader = re.split(r"[/ (;]", ua, 1)[0][:40]
+                    d["feed_subs"][reader] = max(int(n.group(1)), d["feed_subs"].get(reader, 0))
+                continue
             if ip in ignore:
                 continue
             p = path.split("?")[0]
@@ -80,15 +95,20 @@ def parse_logs(files):
                 d["ai_landings"][f"{p} ← {src.group(1)}"] += 1
             if p == "/feed.xml": d["feed"] += 1
             if p == "/llms.txt": d["llms_txt"] += 1
-            if p.startswith("/assets/data.js"):
+            if p == BEACON:
+                d["humans"].add(ip); d["beacons"] += 1; continue
+            if p.startswith("/assets/data.js"):  # old proxy for "ran the JavaScript"; kept one week next to humans for comparison
                 d["browsers"].add(ip); continue
             if status.startswith("2") and not p.startswith("/assets") and p not in ("/favicon.svg", "/robots.txt"):
-                d["views"] += 1; d["visitors"].add(ip); d["pages"][p] += 1
+                d["views"] += 1; d["visitors"].add(ip); d["pages"][p] += 1; d["view_ips"][ip] += 1
                 if ref not in ("", "-") and not own_ref:
                     d["referrers"][re.sub(r"^https?://(www\.)?([^/]+).*", r"\2", ref)] += 1
     out = {}
     for k, d in sorted(days.items()):
+        hv = sum(n for ip, n in d["view_ips"].items() if ip in d["humans"])
         out[k] = {"views": d["views"], "visitors": len(d["visitors"]), "browsers": len(d["browsers"]),
+                  "humans": len(d["humans"]), "human_views": hv, "unverified_views": d["views"] - hv, "beacons": d["beacons"],
+                  "feed_subscribers": d["feed_subs"], "unknown_bots": d["unknown_ua"].most_common(10),
                   "top_pages": d["pages"].most_common(8), "referrers": d["referrers"].most_common(8),
                   "llm_bots": dict(d["llm_bots"]), "search_bots": dict(d["search_bots"]), "other_bots": d["other_bots"],
                   "feed": d["feed"], "llms_txt": d["llms_txt"],
@@ -118,6 +138,18 @@ def health(watch_path=None):
             h["pages"][p] = str(e)[:60]
         if h["pages"][p] != 200:
             h["problems"].append(f"{p} answers {h['pages'][p]}")
+    try:  # the home page must be the deploy.sh build: prerendered, count request present, dataset in /assets (2026-10-11 a raw repo page went live)
+        home = get(SITE + "/")[1].decode("utf-8", "ignore")
+        words = len(re.sub(r"<[^>]+>", " ", re.sub(r"(?s)<script.*?</script>|<style.*?</style>", "", home)).split())
+        h["home"] = {"kb": len(home) // 1024, "words_without_js": words, "count_request": BEACON in home, "shared_assets": "/assets/data.js" in home}
+        if words < 1500:
+            h["problems"].append(f"home page is not prerendered ({words} words without JavaScript): deploy with .private/deploy.sh")
+        if BEACON not in home:
+            h["problems"].append("home page has no count request: visitor counts will read zero")
+        if len(home) > 450 * 1024:
+            h["problems"].append(f"home page is {len(home) // 1024} KB (expected under 450): wrong build deployed?")
+    except Exception as e:
+        h["problems"].append(f"cannot read the home page: {str(e)[:60]}")
     try:
         js = get(SITE + "/assets/data.js")[1].decode("utf-8", "ignore")
         built = re.search(r'"built":\s*"(\d{4}-\d{2}-\d{2})"', js).group(1)
@@ -264,13 +296,20 @@ def report(kind, log_files, watch_path):
                 pages.update(dict(days[d]["top_pages"])); refs.update(dict(days[d]["referrers"]))
                 aiu.update(dict(days[d]["ai_user_pages"])); ail.update(dict(days[d]["ai_landings"]))
                 llm.update(days[d]["llm_bots"]); srch.update(days[d]["search_bots"])
-            lines.append(f"Visitors (7 d): {tot('browsers')} browser loads · {tot('visitors')} IPs · {tot('views')} page views · "
-                         f"daily browsers {', '.join(str(days[d]['browsers']) for d in last)}")
+            unk, subs = Counter(), {}
+            for d in last:
+                unk.update(dict(days[d]["unknown_bots"]))
+                for r, n in days[d]["feed_subscribers"].items(): subs[r] = max(n, subs.get(r, 0))
+            lines.append(f"Visitors (7 d): {tot('human_views')} page views by humans · {tot('unverified_views')} unverified · "
+                         f"daily humans {', '.join(str(days[d]['humans']) for d in last)} · old browser count {tot('browsers')} · {tot('visitors')} IPs")
             lines.append("Top pages: " + ", ".join(f"{p} {n}" for p, n in pages.most_common(6)))
             lines.append("Referrers: " + (", ".join(f"{r} {n}" for r, n in refs.most_common(6)) or "none recorded"))
             lines.append("AI crawlers: " + (", ".join(f"{b} {n}" for b, n in llm.most_common()) or "none") +
                          " · search bots: " + (", ".join(f"{b} {n}" for b, n in srch.most_common(5)) or "none") +
-                         f" · feed {tot('feed')} · llms.txt {tot('llms_txt')}")
+                         f" · feed {tot('feed')} · llms.txt {tot('llms_txt')}"
+                         + (" · feed subscribers: " + ", ".join(f"{r} {n}" for r, n in sorted(subs.items(), key=lambda x: -x[1])) if subs else ""))
+            if unk:
+                lines.append("Unnamed bots (add to observe.py if they recur): " + "; ".join(f"{u} ×{n}" for u, n in unk.most_common(5)))
             lines.append("Pages AI assistants read for someone: " + (", ".join(f"{p} {n}" for p, n in aiu.most_common(8)) or "none"))
             lines.append("Visitors who came from an AI answer: " + (", ".join(f"{p} {n}" for p, n in ail.most_common(6)) or "none"))
         ph = posthog()

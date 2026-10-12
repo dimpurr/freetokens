@@ -50,10 +50,12 @@ The runner scripts that hold host names and own IPs are private: `.private/obser
 
 ## §3 Definitions
 
-- **Browsers**: distinct IPs that loaded `/assets/data.js`, i.e. a real browser ran the page. This is the best "real visitor" number.
+- **Humans**: distinct IPs that sent the count request: once a page is visible, its JavaScript fetches the empty file `/assets/hi.txt` (random query, no cookie, nothing else sent; skipped for automation). Scrapers that fetch HTML only never send it. This is the "real visitor" number since 2026-10-12.
+- **Page views by humans / unverified**: page views from IPs that sent the count request that day, and the rest. Unverified is mostly scrapers that rotate ordinary browser user agents (8–9 in 10 log views in October 2026); it also includes people without JavaScript.
+- **Browsers** (until 2026-10-19, then removed): distinct IPs that loaded `/assets/data.js`. It stopped working when a build without that file went live on 2026-10-11, and it counted OAI-SearchBot, which loads it too.
 - **Visitors**: distinct IPs with a page view. This includes link previews and scanners that don't announce themselves, so treat it as an upper bound.
 - **Page views**: 2xx responses for pages (not assets).
-- **Excluded**: bots by user agent (see `BOT`, `LLM_BOTS`, `SEARCH_BOTS` in observe.py) and the IPs in `FT_OBSERVE_IGNORE_IPS` (our own machines). A maintainer's phone on mobile data is not excluded.
+- **Excluded**: bots by user agent (`BOT`, `LLM_BOTS`, `SEARCH_BOTS` in observe.py, the community list in `tools/crawler-patterns.json`, and `GENERIC_BOT`: a link in the user agent or a non-browser user agent; those unnamed ones are listed in the weekly report so they can be named) and the IPs in `FT_OBSERVE_IGNORE_IPS` (our own machines). A maintainer's phone on mobile data is not excluded.
 - **Pages AI assistants read for someone**: hits from ChatGPT-User, Perplexity-User, Claude-User on our own paths. The assistant sends only the URL, never the person's question; the page tells you the topic. Scanners fake these user agents, so hits on paths we don't serve are dropped.
 - **Visitors who came from an AI answer**: landings with `utm_source=chatgpt.com` (or perplexity, claude.ai, copilot, gemini): a person clicked a citation. We see the landing page, not the question.
 - **AI crawlers**: OAI-SearchBot and ChatGPT-User (ChatGPT fetching a page for a user, i.e. a real person asked about it), ClaudeBot, PerplexityBot, GPTBot, Bytespider and others. ChatGPT-User and Perplexity-User are the closest thing to "an AI assistant cited us".
@@ -81,6 +83,8 @@ python3 tools/observe.py report --weekly --watch ~/scratch/DimResearchS/freetoke
 
 ## §6 Known blind spots and pending work
 
+- **2026-10-11 to 10-12: a raw repository page went live** instead of the `deploy.sh` build: no prerendered HTML (364 words without JavaScript instead of ~4,200) and no `/assets/data.js`, so "Browsers" read zero. `observe.py health` now fails when the home page is not prerendered, lacks the count request or is oversized. Deploy only with `.private/deploy.sh`.
+
 - **No returning visitors.** Memory-only persistence means every page load is a new anonymous id: we count views and clicks, not people.
 - **Bots and automation are invisible to PostHog** (by design); the server log still sees them.
 - **Test events**: 3 events on 2026-10-09 04:26 BST (`/offers`, `freebuff.com`) came from the setup check.
@@ -90,7 +94,7 @@ python3 tools/observe.py report --weekly --watch ~/scratch/DimResearchS/freetoke
 
 ## §7 Maintenance checklist (quarterly)
 
-- [ ] Compare `LLM_BOTS` / `SEARCH_BOTS` with the user agents in the logs; add new crawlers.
+- [ ] Compare `LLM_BOTS` / `SEARCH_BOTS` with the user agents in the logs; name the recurring "Unnamed bots" from the weekly report; refresh `tools/crawler-patterns.json` from github.com/monperrus/crawler-user-agents.
 - [ ] Check that `freetokens.access.log` is still written and rotated (`/etc/logrotate.d/nginx` covers `*.log`).
 - [ ] Run `observe.py links` by hand and read the bot-blocked list: a site that blocks us might also be gone.
 - [ ] Re-read §6: drop items that shipped, add new blind spots.

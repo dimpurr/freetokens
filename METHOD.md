@@ -97,7 +97,7 @@ Vendors report their own models' benchmark scores in their own harness, and smal
 
 ## Privacy and re-checks
 
-The site sets no cookies and records no sessions. It counts page views and which outbound links are clicked with PostHog (EU-hosted, memory only, anonymised IPs, Do Not Track respected), and reads the standard web server log (page, time, referrer, user agent) to count visits and AI crawlers. Nothing identifies you across visits; how it works is in OBSERVE.md. A live lane that hasn't been re-checked for 7 days is marked "re-check due" and is no longer counted as confirmed until it is checked again.
+The site sets no cookies and records no sessions. It counts page views and which outbound links are clicked with PostHog (EU-hosted, memory only, anonymised IPs, Do Not Track respected), sends one empty request to its own server when a page is shown (to tell people from scrapers; it carries no identifier), and reads the standard web server log (page, time, referrer, user agent) to count visits and AI crawlers. Nothing identifies you across visits; how it works is in OBSERVE.md. A live lane that hasn't been re-checked for 7 days is marked "re-check due" and is no longer counted as confirmed until it is checked again.
 
 ## Free programs (offers)
 

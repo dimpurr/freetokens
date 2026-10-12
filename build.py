@@ -655,8 +655,18 @@ posthog.init("__KEY__", {api_host: "https://eu.i.posthog.com", persistence: "mem
 """
 
 
+BEACON_SNIPPET = """<script>
+/* count request (OBSERVE.md §3 "Humans"): one empty first-party request once the page is visible; no cookie, no id, nothing sent */
+if (!navigator.webdriver) { (function () { var sent = false, go = function () { if (sent || document.visibilityState !== "visible") return; sent = true;
+  setTimeout(function () { fetch("/assets/hi.txt?" + Math.random().toString(36).slice(2), {cache: "no-store", keepalive: true}).catch(function () {}); }, 1000); };
+  go(); document.addEventListener("visibilitychange", go); })(); }
+</script>
+"""
+SHARED_ASSETS = True  # deployed pages load the dataset from /assets/data.js (cached across pages); readers without JavaScript get the prerendered HTML (prerender())
+
+
 def head_html(title, desc, url, today, extra_ld, og_image):
-    return ((POSTHOG_SNIPPET.replace("__KEY__", POSTHOG_KEY) if POSTHOG_KEY and url.startswith(SITE) else "") + f'<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
+    return ((POSTHOG_SNIPPET.replace("__KEY__", POSTHOG_KEY) if POSTHOG_KEY and url.startswith(SITE) else "") + BEACON_SNIPPET + f'<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
             f'<title>{html.escape(title)}</title>\n<meta name="description" content="{html.escape(desc)}">\n'
             f'<link rel="canonical" href="{url}">\n<meta name="robots" content="index, follow, max-image-preview:large">\n'
             f'<meta name="theme-color" content="#0a7f8a">\n<link rel="icon" href="/favicon.svg" type="image/svg+xml">\n'
@@ -727,7 +737,7 @@ def build_pages(lanes, events, models, today, mode):
                                for i, m in enumerate(models)]}]
     home_href = "/" if site else "index.html"
     pages["index.html"] = (head_html(title, desc, SITE + "/", today, ld, og),
-                           render_body("home.html", dict(base, root="/" if site else ""), "/" if site else "", home_href, site))
+                           render_body("home.html", dict(base, root="/" if site else ""), "/" if site else "", home_href, site and SHARED_ASSETS))
     sub_root, sub_home = ("/", "/") if site else ("../", "../index.html")
     for m in models:
         title, desc = seo_model(m, lanes)
@@ -736,7 +746,7 @@ def build_pages(lanes, events, models, today, mode):
               {"@context": "https://schema.org", "@type": "WebPage", "name": title, "url": url, "description": desc,
                "dateModified": today.isoformat(), "about": {"@type": "Thing", "name": m["name"]}}]
         pages[f"models/{m['id']}.html"] = (head_html(title, desc, url, today, ld, og),
-                                            render_body("model.html", dict(base, root=sub_root, model=m["id"]), sub_root, sub_home, site))
+                                            render_body("model.html", dict(base, root=sub_root, model=m["id"]), sub_root, sub_home, site and SHARED_ASSETS))
     for c in chans:
         title, desc = seo_channel(c, lanes, models)
         url = f"{SITE}/channels/{slug(c)}"
@@ -744,14 +754,14 @@ def build_pages(lanes, events, models, today, mode):
               {"@context": "https://schema.org", "@type": "WebPage", "name": title, "url": url, "description": desc,
                "dateModified": today.isoformat()}]
         pages[f"channels/{slug(c)}.html"] = (head_html(title, desc, url, today, ld, og),
-                                              render_body("channel.html", dict(base, root=sub_root, channel=c), sub_root, sub_home, site))
+                                              render_body("channel.html", dict(base, root=sub_root, channel=c), sub_root, sub_home, site and SHARED_ASSETS))
     for pg, title, desc in (("lanes", "All free LLM lanes: status, end dates and measured limits | freetokens",
                              f"All {len(lanes)} free model × channel routes we track, with status, end dates, our own measured limits and exact model IDs."),
                             ("timeline", "Timeline of free LLM offers: starts, ends and changes | freetokens",
                              f"Every recorded change to free LLM offers ({len(events)} events): free periods starting and ending, end dates announced, limits measured.")):
         url = f"{SITE}/{pg}"
         pages[f"{pg}.html"] = (head_html(title, desc, url, today, [crumbs([("freetokens", SITE + "/"), (pg.title(), url)])], og),
-                               render_body(f"{pg}.html", dict(base, root="/" if site else ""), "/" if site else "", home_href, site))
+                               render_body(f"{pg}.html", dict(base, root="/" if site else ""), "/" if site else "", home_href, site and SHARED_ASSETS))
     offers = load_optional("offers", [])
     for o in offers:
         url = f"{SITE}/offers/{o['id']}"
@@ -762,12 +772,12 @@ def build_pages(lanes, events, models, today, mode):
               {"@context": "https://schema.org", "@type": "Offer", "name": o["name"], "url": url, "price": 0, "priceCurrency": "USD",
                "offeredBy": {"@type": "Organization", "name": o["provider"]}}]
         pages[f"offers/{o['id']}.html"] = (head_html(title, desc, url, today, ld, og),
-                                           render_body("offer.html", dict(base, root=sub_root, offer=o["id"]), sub_root, sub_home, site))
+                                           render_body("offer.html", dict(base, root=sub_root, offer=o["id"]), sub_root, sub_home, site and SHARED_ASSETS))
     title = "Free LLM programs: student plans, credits and daily allowances | freetokens"
     desc = clip(f"{len(offers)} free programs that pay for model use: student plans, sign-up credits, daily and monthly allowances, perks bundled with plans. "
                 "Amounts in each provider's own unit, with what each one needs.")
     pages["offers.html"] = (head_html(title, desc, SITE + "/offers", today, [crumbs([("freetokens", SITE + "/"), ("Free programs", SITE + "/offers")])], og),
-                            render_body("offers.html", dict(base, root="/" if site else ""), "/" if site else "", home_href, site))
+                            render_body("offers.html", dict(base, root="/" if site else ""), "/" if site else "", home_href, site and SHARED_ASSETS))
     makers = load_optional("makers", [])
     for mk in makers:
         title, desc = seo_maker(mk, lanes, models)
@@ -775,10 +785,10 @@ def build_pages(lanes, events, models, today, mode):
         ld = [crumbs([("freetokens", SITE + "/"), ("Makers", SITE + "/makers"), (mk["name"], url)]),
               {"@context": "https://schema.org", "@type": "Organization", "name": mk["name"], "url": (mk.get("links") or {}).get("site") or url}]
         pages[f"makers/{mk['id']}.html"] = (head_html(title, desc, url, today, ld, og),
-                                            render_body("maker.html", dict(base, root=sub_root, maker=mk["id"]), sub_root, sub_home, site))
+                                            render_body("maker.html", dict(base, root=sub_root, maker=mk["id"]), sub_root, sub_home, site and SHARED_ASSETS))
     title, desc = "LLM makers with free models: who offers what, right now | freetokens", f"{len(makers)} model makers, ranked by how many of their models are free right now, with the best free model of each."
     pages["makers.html"] = (head_html(title, desc, SITE + "/makers", today, [crumbs([("freetokens", SITE + "/"), ("Makers", SITE + "/makers")])], og),
-                            render_body("makers.html", dict(base, root="/" if site else ""), "/" if site else "", home_href, site))
+                            render_body("makers.html", dict(base, root="/" if site else ""), "/" if site else "", home_href, site and SHARED_ASSETS))
     if site:
         pages["__base__"] = base
         title = "How freetokens works: lanes, checks, and the EST estimate | freetokens"
@@ -1096,6 +1106,7 @@ def main():
         (dist / "assets").mkdir(parents=True, exist_ok=True)
         (dist / "assets" / "data.js").write_text(data_js)
         (dist / "assets" / "common.js").write_text(common_js)
+        (dist / "assets" / "hi.txt").write_text("")  # target of the count request (BEACON_SNIPPET)
         for p, (h, b) in site.items():
             (dist / p).parent.mkdir(parents=True, exist_ok=True)
             (dist / p).write_text(full_doc(h, b))
