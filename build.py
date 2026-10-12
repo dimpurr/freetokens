@@ -10,6 +10,7 @@
 Standard library only. Hand-written prose in README.md lives outside the <!-- BEGIN:x --> / <!-- END:x --> markers.
 """
 import argparse
+import os
 import datetime as dt
 import html
 import json
@@ -938,8 +939,11 @@ def prerender(dist):
     chrome = next((c for c in ("/Applications/Google Chrome.app/Contents/MacOS/Google Chrome", shutil.which("google-chrome") or "",
                                shutil.which("chromium") or "") if c and Path(c).exists()), None)
     if not chrome:
-        print("! Chrome not found: skipped prerendering (pages still work, but content is rendered client-side)", file=sys.stderr)
-        return 0
+        if os.environ.get("FT_ALLOW_NO_PRERENDER") == "1":  # local experiments only: never deploy such a build
+            print("! Chrome not found: skipped prerendering (FT_ALLOW_NO_PRERENDER=1)", file=sys.stderr)
+            return 0
+        sys.exit("✗ Chrome not found: refusing to build an unprerendered site (crawlers and AI readers would get empty pages). "
+                 "Fix Chrome, or set FT_ALLOW_NO_PRERENDER=1 for a local test build that must not be deployed.")
     import functools, http.server, threading
     class Quiet(http.server.SimpleHTTPRequestHandler):
         def log_message(self, *a):
@@ -1113,6 +1117,9 @@ def main():
         for p, c in site_extras(site, lanes, events, models, today).items():
             (dist / p).write_text(c)
         n = prerender(dist)
+        expected = len([p for p in dist.rglob("*.html") if p.name not in ("404.html", "methodology.html")])
+        if n < expected and os.environ.get("FT_ALLOW_NO_PRERENDER") != "1":
+            sys.exit(f"✗ only {n} of {expected} pages prerendered: not deploying")
         ok = og_image(dist, lanes, models, today)
         msg += f"\n✓ site → {dist}/ ({len(site)} pages, {n} prerendered, sitemap, robots, favicon, 404{', og.png' if ok else ''})"
     print(msg)
