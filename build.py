@@ -1162,9 +1162,10 @@ def llms_txt(lanes, models, today):
             "## Channels\n\n" + "\n".join(f"- [{c}]({SITE}/channels/{slug(c)})" for c in sorted({l['channel'] for l in lanes})) + "\n")
 
 
-def site_extras(pages, lanes, events, models, today, pages_zh=None):
+def site_extras(pages, lanes, events, models, today, pages_zh=None, blog=None):
     """robots.txt, sitemap.xml, favicon, 404 page: only for the deployed site.
-    pages_zh: zh build_pages output (paths under zh/); sitemap lists both with xhtml:link alternates (ADR-010)."""
+    pages_zh: zh build_pages output (paths under zh/); sitemap lists both with xhtml:link alternates (ADR-010).
+    blog: {"en": [(loc, lastmod)], "zh": [...]} article URLs (ADR-028); same xhtml treatment as pages."""
     def lastmod(path):
         if path.startswith("models/"):
             mid = path[7:-5]
@@ -1191,6 +1192,18 @@ def site_extras(pages, lanes, events, models, today, pages_zh=None):
             urls.append(f"  <url><loc>{SITE}/zh/{rel}</loc><lastmod>{lastmod(p)}</lastmod>{alt}</url>")
         else:
             urls.append(f"  <url><loc>{loc}</loc><lastmod>{lastmod(p)}</lastmod></url>")
+    for loc, lastmod_v in sorted((blog or {}).get("en", [])):
+        rel = loc.replace(SITE + "/", "")
+        alt = (f'<xhtml:link rel="alternate" hreflang="en" href="{loc}"/>'
+               f'<xhtml:link rel="alternate" hreflang="zh-CN" href="{SITE}/zh/{rel}"/>'
+               f'<xhtml:link rel="alternate" hreflang="x-default" href="{loc}"/>')
+        urls.append(f"  <url><loc>{loc}</loc><lastmod>{lastmod_v}</lastmod>{alt}</url>")
+    for loc, lastmod_v in sorted((blog or {}).get("zh", [])):
+        rel = loc.replace(SITE + "/zh/", "")
+        alt = (f'<xhtml:link rel="alternate" hreflang="en" href="{SITE}/{rel}"/>'
+               f'<xhtml:link rel="alternate" hreflang="zh-CN" href="{loc}"/>'
+               f'<xhtml:link rel="alternate" hreflang="x-default" href="{SITE}/{rel}"/>')
+        urls.append(f"  <url><loc>{loc}</loc><lastmod>{lastmod_v}</lastmod>{alt}</url>")
     sitemap = ('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
                'xmlns:xhtml="http://www.w3.org/1999/xhtml">\n' + "\n".join(urls) + "\n</urlset>\n")
     robots = f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n"
@@ -1224,6 +1237,9 @@ def site_extras(pages, lanes, events, models, today, pages_zh=None):
             if elang == "zh":
                 body = zh_text(e["text"]) + (f"（截止日期 {fmt_date(e['end_date'])}）" if e.get("end_date") else "") + f"。出处：{zh_text(e['source']['label'])}" + (f" {e['source'].get('url')}" if e['source'].get('url') else "")
             entries.append(f"  <entry><title>{x(title)}</title><link href=\"{x(link)}\"/><id>{x(link)}</id><updated>{when}</updated><summary>{x(body)}</summary></entry>")
+        for bloc, btitle, bdesc, bupdated in (blog or {}).get("feed_" + lang, []):
+            when = (bupdated + "T00:00:00Z") if len(bupdated) == 10 else bupdated
+            entries.append(f"  <entry><title>{x(btitle)}</title><link href=\"{x(bloc)}\"/><id>{x(bloc)}</id><updated>{when}</updated><summary>{x(bdesc)}</summary></entry>")
         flang = ' xml:lang="zh-CN"' if lang == "zh" else ""
         return ('<?xml version="1.0" encoding="utf-8"?>\n<feed xmlns="http://www.w3.org/2005/Atom"' + flang + '>\n'
                 f'  <title>freetokens: free LLM events</title>\n  <link href="{FU}/"/>\n  <link rel="self" href="{FU}/feed.xml"/>\n' if lang == "en" else f'  <title>freetokens：免费 LLM 动态</title>\n  <link href="{FU}/"/>\n  <link rel="self" href="{FU}/feed.xml"/>\n'
@@ -1399,6 +1415,447 @@ def collect_free_keys(lanes, events, models):
     return keys
 
 
+# ---------- blog (ADR-028): articles live in content/blog/<slug>/{en.md, zh.md, img/} ----------
+
+BLOG_SECTIONS = ("档案", "指南", "盘点")
+BLOG_STATUS = ("developing", "settled")
+BLOG = {"en": [], "zh": []}  # filled by build_blog: [(loc, lastmod, title)] per lang, read by sitemap/feeds
+
+
+def parse_frontmatter(text, where):
+    """Minimal frontmatter: scalars, flow lists [a, b], block scalar lists and one-level list-of-maps. Errors carry file + line."""
+    if not text.startswith("---\n"):
+        sys.exit(f"✗ {where}: missing frontmatter")
+    end = text.index("\n---", 4)
+    meta, body = {}, text[4:end].split("\n")
+    cur, curmap = None, None
+    for i, line in enumerate(body, 1):
+        if not line.strip() or line.strip().startswith("#"):
+            continue
+        if re.match(r"^  - ", line) and cur:
+            if curmap is not None:
+                curmap.append(line[4:].strip())
+            else:
+                meta[cur].append(line[4:].strip())
+        elif re.match(r"^    [a-z_]+: ", line) and cur and isinstance(meta.get(cur), list) and curmap is None and meta[cur] and isinstance(meta[cur][-1], dict):
+            k, v = line.strip().split(": ", 1)
+            meta[cur][-1][k] = v.strip()
+        elif re.match(r"^  - ([a-z_]+): ", line) and cur:
+            m = re.match(r"^  - ([a-z_]+): (.*)", line)
+            meta[cur].append({m.group(1): m.group(2).strip()})
+            curmap = True
+        elif re.match(r"^[a-z_]+: ", line):
+            k, v = line.split(": ", 1)
+            v = v.strip()
+            if v.startswith("[") and v.endswith("]"):
+                meta[k] = [x.strip().strip("'\"") for x in v[1:-1].split(",") if x.strip()]
+            elif v in ("true", "false"):
+                meta[k] = v == "true"
+            else:
+                meta[k] = v.strip("'\"")
+            cur = k if isinstance(meta[k], list) else None
+            curmap = None
+        else:
+            sys.exit(f"✗ {where}:{i}: cannot parse frontmatter line: {line[:60]}")
+    return meta
+
+
+def load_articles():
+    """Read content/blog/*/{en,zh}.md. Returns {slug: {'en': (meta, body), 'zh': (meta, body)}}."""
+    out = {}
+    base = ROOT / "content" / "blog"
+    if not base.exists():
+        return out
+    for d in sorted(base.iterdir()):
+        if not d.is_dir():
+            continue
+        item = {}
+        for lang in ("en", "zh"):
+            p = d / f"{lang}.md"
+            if p.exists():
+                item[lang] = parse_frontmatter(p.read_text(), f"content/blog/{d.name}/{lang}.md")
+        if item:
+            out[d.name] = item
+    return out
+
+
+def img_dims(path):
+    """PNG/JPEG/WebP dimensions from headers only (stdlib). Returns (w, h) or None."""
+    raw = path.read_bytes()
+    try:
+        if raw[:8] == b"\x89PNG\r\n\x1a\n":
+            import struct
+            w, h = struct.unpack(">II", raw[16:24])
+            return w, h
+        if raw[:2] == b"\xff\xd8":
+            i = 2
+            while i < len(raw):
+                if raw[i] != 0xFF:
+                    break
+                m = raw[i + 1]
+                if m in (0xC0, 0xC1, 0xC2):
+                    import struct
+                    h, w = struct.unpack(">HH", raw[i + 5:i + 9])
+                    return w, h
+                ln = int.from_bytes(raw[i + 2:i + 4], "big")
+                i += 2 + ln
+        if raw[:4] == b"RIFF" and raw[8:12] == b"WEBP":
+            import struct
+            if raw[12:16] == b"VP8 ":
+                w, h = struct.unpack("<HH", raw[26:30])
+                return w & 0x3FFF, h & 0x3FFF
+            if raw[12:16] == b"VP8L":
+                b0, b1, b2, b3 = raw[21:25]
+                return (b0 | ((b1 & 0x3F) << 8)) + 1, (((b1 >> 6) | (b2 << 2) | ((b3 & 0xF) << 10)) + 1)
+    except Exception:
+        pass
+    return None
+
+
+def render_live_block(spec, lanes, models, today):
+    """{{live:where-to-use model=X}} / {{count:live-lanes model=X|channel=Y}}: rendered from current data, both langs."""
+    m = re.fullmatch(r"\{\{\s*(live:where-to-use|count:live-lanes)\s+([^}]*)\}\}", spec.strip())
+    if not m:
+        sys.exit(f"✗ bad live block syntax: {spec[:60]}")
+    kind, args = m.groups()
+    kv = dict(a.split("=", 1) for a in args.split() if "=" in a)
+    if kind == "count:live-lanes":
+        if "model" in kv:
+            n = sum(1 for l in lanes if l["model"] == kv["model"] and l["status"] in FREE)
+        elif "channel" in kv:
+            n = sum(1 for l in lanes if l["channel"] == kv["channel"] and l["status"] in FREE)
+        else:
+            sys.exit(f"✗ count:live-lanes needs model= or channel=: {spec[:60]}")
+        return str(n)
+    if "model" not in kv:
+        sys.exit(f"✗ live:where-to-use needs model=: {spec[:60]}")
+    rows = [l for l in lanes if l["model"] == kv["model"] and l["status"] in FREE]
+    names = {mm["id"]: mm["name"] for mm in models}
+    items = "".join(f"<li>{esc(l['channel'])} · {esc(label('status', l['status']))} · {esc(ends_text(l))}</li>" for l in rows) or (f"<li>{tr('none')}</li>")
+    head = tr("Where it's free now")
+    return f'<div class="livebox-rows"><b>{head}</b><ul>{items}</ul><p class="muted">{tr("As of the build date")} {today.isoformat()}</p></div>'
+
+
+def render_md_article(md_text, ctx, slug):
+    """Article Markdown: md_to_html subset + images (caption/source/date, webp, dims) + [^id] citations + {#anchors} + live blocks."""
+    lines, cites, seen_anchors = [], [], set()
+    h2n = [0]
+
+    def inline(t):
+        t = html.escape(t)
+        t = re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", t)
+        t = re.sub(r"`(.+?)`", r"<code>\1</code>", t)
+        t = re.sub(r"\[([^\]]+?)\]\((.+?)\)", lambda m: f'<a href="{m.group(2) if m.group(2).startswith("http") else REPO + "/blob/main/" + m.group(2)}">{m.group(1)}</a>', t)
+        t = re.sub(r"\{\{.+?\}\}", lambda m: render_live_block(m.group(0), ctx["lanes"], ctx["models"], ctx["today"]), t)
+        def cite(m):
+            cid = m.group(1)
+            if cid not in ctx["sources"]:
+                sys.exit(f"✗ {slug}: cites unknown source [{cid}]")
+            if cid not in cites:
+                cites.append(cid)
+            n = cites.index(cid) + 1
+            return f'<sup id="cite-{n}"><a href="#src-{n}">[{n}]</a></sup>'
+        return re.sub(r"\[\^([a-z0-9-]+)\]", cite, t)
+
+    def img_tag(m):
+        alt, src, cap = m.group(1), m.group(2), m.group(3) or ""
+        if not alt.strip():
+            sys.exit(f"✗ {slug}: image needs alt text: {src[:60]}")
+        if "来源：" not in cap and "Source:" not in cap:
+            sys.exit(f"✗ {slug}: image caption needs a source URL: {src[:60]}")
+        if not re.search(r"截图：\d{4}-\d{2}-\d{2}|shot: \d{4}-\d{2}-\d{2}", cap):
+            sys.exit(f"✗ {slug}: image caption needs a screenshot date: {src[:60]}")
+        if not src.endswith(".webp"):
+            sys.exit(f"✗ {slug}: images must be committed as .webp: {src[:60]}")
+        p = ROOT / "content" / "blog" / slug / src
+        if not p.exists():
+            sys.exit(f"✗ {slug}: image missing: {src[:60]}")
+        wh = img_dims(p)
+        if not wh:
+            sys.exit(f"✗ {slug}: cannot read image dimensions: {src[:60]}")
+        ctx["imgs"].append((slug, src))
+        return f'<figure><img src="/blog/{slug}/{src}" alt="{html.escape(alt)}" width="{wh[0]}" height="{wh[1]}" loading="lazy"><figcaption>{html.escape(cap)}</figcaption></figure>'
+
+    out, lst = [], None
+    for line in md_text.splitlines() + [""]:
+        mi = re.match(r"^!\[(.*?)\]\((\S+?)(?:\s+\"(.*?)\")?\)$", line.strip())
+        if mi:
+            if lst:
+                out.append(f"</{lst}>"); lst = None
+            out.append(img_tag(mi))
+            continue
+        mh = re.match(r"^(#{1,3})\s+(.*?)(?:\s+\{#([a-z0-9-]+)\})?$", line)
+        if mh:
+            if lst:
+                out.append(f"</{lst}>"); lst = None
+            level, title, custom = len(mh.group(1)), mh.group(2), mh.group(3)
+            aid = custom or re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")
+            if aid in seen_anchors:
+                sys.exit(f"✗ {slug}: duplicate anchor id #{aid}")
+            seen_anchors.add(aid)
+            if level == 1:
+                out.append(f"<h1>{inline(title)}</h1>")
+            else:
+                out.append(f"<h2 id=\"{aid}\">{inline(title)}</h2>")
+                if level == 2:
+                    h2n[0] += 1
+            continue
+        m = re.match(r"^(\s*)(-|\d+\.)\s+(.*)", line)
+        if m:
+            tag = "ul" if m.group(2) == "-" else "ol"
+            if lst != tag:
+                if lst:
+                    out.append(f"</{lst}>")
+                out.append(f"<{tag}>"); lst = tag
+            out.append(f"<li>{inline(m.group(3))}</li>"); continue
+        if lst and line.strip() == "":
+            out.append(f"</{lst}>"); lst = None
+        if line.strip():
+            out.append(f"<p>{inline(line)}</p>")
+    return "\n".join(out), cites
+
+
+def check_blog(lanes, events, models):
+    """ADR-028 frontmatter/tags/pairing/citation/image rules. Returns error list."""
+    errs = []
+    arts = load_articles()
+    model_ids = {m["id"] for m in models}
+    chan_slugs = {slug(c["name"]) for c in load_optional("channels", [])} | {slug(l["channel"]) for l in lanes}
+    maker_ids = {m["id"] for m in load_optional("makers", [])}
+    for s_, vers in arts.items():
+        for lang in ("en", "zh"):
+            if lang not in vers:
+                errs.append(f"blog/{s_}: missing {lang}.md (EN/ZH must pair)")
+        for lang, (meta, body) in vers.items():
+            where = f"content/blog/{slug}/{lang}.md"
+            for f in ("title", "description", "slug", "section", "tags", "published", "updated", "status", "author", "draft"):
+                if f not in meta:
+                    errs.append(f"{where}: missing frontmatter {f}")
+            if meta.get("slug") != s_:
+                errs.append(f"{where}: slug mismatch")
+            if meta.get("section") not in BLOG_SECTIONS:
+                errs.append(f"{where}: bad section {meta.get('section')!r}")
+            if meta.get("status") not in BLOG_STATUS:
+                errs.append(f"{where}: bad status {meta.get('status')!r}")
+            for t in meta.get("tags", []):
+                if t not in model_ids and t not in chan_slugs and t not in maker_ids:
+                    errs.append(f"{where}: unknown tag {t!r}")
+            for c in re.findall(r"\{\{.+?\}\}", body):
+                if not re.fullmatch(r"\{\{\s*(live:where-to-use|count:live-lanes)\s+(model|channel)=[a-z0-9][a-z0-9.-]*\s*\}\}", c.strip()):
+                    errs.append(f"{where}: bad live block {c[:50]}")
+    return errs
+
+
+def build_blog(lanes, events, models, today, mode, lang="en"):
+    """Returns (pages, feed_entries, related) for the blog. pages: path -> (head, body) like build_pages.
+    Drafts only land in preview (main flow); related maps (kind, id) -> [(title, url, updated)]."""
+    global LANG
+    LANG = lang
+    zh = lang == "zh"
+    if zh:
+        load_zh()
+    site = mode == "site"
+    P = "zh/" if zh else ""
+    U = SITE + "/zh" if zh else SITE
+    RT = "/zh/" if zh else "/"
+    og = f"{SITE}/og.png"
+    pages, entries, related = {}, [], {}
+    arts = load_articles()
+    live = {s: v for s, v in arts.items() if not v.get("en", ({}, ""))[0].get("draft", False) and not v.get("zh", ({}, ""))[0].get("draft", False)}
+    ctx_base = {"lanes": lanes, "models": models, "today": today, "sources": {}, "imgs": []}
+
+    def alt(path):
+        if not site:
+            return ()
+        return (("en", f"{SITE}/{path}"), ("zh-CN", f"{SITE}/zh/{path}"), ("x-default", f"{SITE}/{path}"))
+
+    for slug_ in sorted(live):
+        meta, body_md = live[slug_][lang]
+        srcs = {s["id"]: s for s in meta.get("sources", [])}
+        ctx = dict(ctx_base, sources=srcs, imgs=[])
+        html_body, cites = render_md_article(body_md, ctx, slug_)
+        unused = [s["id"] for s in meta.get("sources", []) if s["id"] not in cites]
+        if unused:
+            sys.exit(f"✗ blog/{slug_}: unused sources {unused}")
+        url = f"{U}/blog/{slug_}"
+        toc = "".join(f'<li><a href="#{a}">{html.escape(t)}</a></li>' for a, t in render_md_article_toc(body_md))
+        changes = "".join(f"<div class=\"it\"><div class=\"t\">{html.escape(c.split('：', 1)[0])}</div><div class=\"b\">{html.escape(c.split('：', 1)[1] if '：' in c else c)}</div></div>" for c in meta.get("changelog", []))
+        srclist = "".join(f'<li id="src-{i + 1}"><a href="{html.escape(srcs[c]["url"])}" target="_blank" rel="noopener">{html.escape(srcs[c].get("title", c))}</a> <a href="#cite-{i + 1}">↩</a></li>' for i, c in enumerate(cites))
+        byline = f'<a href="{RT}about">Dim</a>'
+        t = (ROOT / "templates" / "article.html").read_text()
+        t = t.replace("__BRAND__", BRAND).replace("__GH__", GH).replace("__HOME__", RT).replace("__ROOT__", RT)
+        if zh:
+            t = apply_zh_template(t)
+        body = (t.replace("__SECTION__", esc_section(meta.get("section", ""))).replace("__STATUS__", esc_status(meta.get("status", "")))
+                 .replace("__TITLE__", html.escape(meta["title"])).replace("__DESCRIPTION__", html.escape(meta.get("description", "")))
+                 .replace("__AUTHOR__", byline).replace("__PUBLISHED__", html.escape(str(meta.get("published", "")))).replace("__UPDATED__", html.escape(str(meta.get("updated", ""))))
+                 .replace("__LIVEBOX__", "").replace("__TOC__", toc).replace("__BODY__", html_body)
+                 .replace("__CHANGES_H__", tr("Changelog")).replace("__CHANGELOG__", changes)
+                 .replace("__SOURCES_H__", tr("Sources")).replace("__SOURCES__", srclist)
+                 .replace("__FOOTER__", tr("Collected by hand. Data: CC BY 4.0.")))
+        title = meta["title"] + " | freetokens"
+        desc = meta.get("description", "")
+        ld = [crumbs([("freetokens", U + "/"), (tr("Blog") if zh else "Blog", U + "/blog"), (meta["title"], url)]),
+              {"@context": "https://schema.org", "@type": "BlogPosting", "headline": meta["title"], "description": desc,
+               "url": url, "datePublished": str(meta.get("published", "")), "dateModified": str(meta.get("updated", "")),
+               "author": {"@type": "Person", "name": "Dim", "url": f"{SITE}/about"},
+               "inLanguage": "zh-CN" if zh else "en"}]
+        pages[P + f"blog/{slug_}.html"] = (head_html(title, desc, url, today, ld, og, lang, alt(f"blog/{slug_}")), body)
+        entries.append((url, meta["title"], desc, str(meta.get("updated", today.isoformat()))))
+        for tg in meta.get("tags", []):
+            kind = "model" if tg in {m["id"] for m in models} else ("channel" if tg in {slug(c["name"]) for c in load_optional("channels", [])} | {slug(l["channel"]) for l in lanes} else "maker")
+            related.setdefault((kind, tg), []).append((meta["title"], url, str(meta.get("updated", ""))))
+        for _, src in ctx["imgs"]:
+            BLOG_IMGS.append((slug, src))
+    for kind_map in related.values():
+        kind_map.sort(key=lambda x: x[2], reverse=True)
+    return pages, entries, related
+
+
+BLOG_IMGS = []
+
+
+def esc_section(s):
+    en = {"档案": "Profiles", "指南": "Guides", "盘点": "Roundups"}
+    return s if LANG == "zh" else en.get(s, s)
+
+
+def esc_status(s):
+    zh = {"developing": "连载更新", "settled": "已完结"}
+    en = {"developing": "developing", "settled": "settled"}
+    return (zh if LANG == "zh" else en).get(s, s)
+
+
+def render_md_article_toc(md_text):
+    out = []
+    for line in md_text.splitlines():
+        mh = re.match(r"^(#{1,3})\s+(.*?)(?:\s+\{#([a-z0-9-]+)\})?$", line)
+        if mh and len(mh.group(1)) >= 2:
+            title = mh.group(2)
+            aid = mh.group(3) or re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")
+            out.append((aid, re.sub(r"\{\{.+?\}\}|\[\^[^\]]+\]", "", title)))
+    return out
+
+
+def build_blog_pages(lanes, events, models, today, mode, lang="en"):
+    """Blog index, tag pages, about page, draft previews. Returns (pages, drafts) with same (head, body) shape."""
+    global LANG
+    LANG = lang
+    zh = lang == "zh"
+    if zh:
+        load_zh()
+    site = mode == "site"
+    P = "zh/" if zh else ""
+    U = SITE + "/zh" if zh else SITE
+    og = f"{SITE}/og.png"
+    pages, drafts = {}, {}
+    arts = load_articles()
+    live = {s: v for s, v in arts.items() if not v.get("en", ({}, ""))[0].get("draft", False)}
+    mine = [(s, v[lang][0]) for s, v in sorted(live.items(), key=lambda kv: str(kv[1].get(lang, ({}, ""))[0].get("published", "")), reverse=True) if lang in v]
+
+    def alt(path):
+        if not site:
+            return ()
+        return (("en", f"{SITE}/{path}"), ("zh-CN", f"{SITE}/zh/{path}"), ("x-default", f"{SITE}/{path}"))
+
+    def idx_body(tag=None):
+        parts = []
+        secs = BLOG_SECTIONS if tag is None else [None]
+        for sec in secs:
+            items = [(s, m) for s, m in mine if (sec is None or m.get("section") == sec) and (tag is None or tag in m.get("tags", []))]
+            if not items and sec is not None:
+                continue
+            if sec:
+                secname = sec if zh else {"档案": "Profiles", "指南": "Guides", "盘点": "Roundups"}.get(sec, sec)
+                parts.append(f"<h2>{html.escape(secname)}</h2>")
+            if items:
+                parts.append("<ul>" + "".join(
+                    f'<li><a href="{U}/blog/{s}">{html.escape(m["title"])}</a> <span class="muted">{html.escape(str(m.get("updated", "")))}</span></li>'
+                    for s, m in items) + "</ul>")
+        if not parts:
+            parts.append(f"<p>{tr('No articles yet.')}</p>")
+        return "\n".join(parts)
+
+    idx_title = tr("Blog")
+    idx_url = f"{U}/blog"
+    idx_ld = [crumbs([("freetokens", U + "/"), (idx_title, idx_url)]),
+              {"@context": "https://schema.org", "@type": "Blog", "name": idx_title, "url": idx_url,
+               "inLanguage": "zh-CN" if zh else "en"}]
+    idx_desc = tr("All articles, grouped by section.")
+    pages[P + "blog.html"] = (head_html(f"{idx_title} | freetokens", idx_desc, idx_url, today, idx_ld, og, lang, alt("blog")),
+                              full_blog_shell(idx_title, idx_body(None), U, lang))
+    tag_counts = {}
+    for s, m in mine:
+        for tg in m.get("tags", []):
+            tag_counts[tg] = tag_counts.get(tg, 0) + 1
+    for tg, n in sorted(tag_counts.items()):
+        turl = f"{U}/blog/tag/{tg}"
+        indexable = n >= 3
+        head = head_html(f"{tg} | freetokens", "", turl, today,
+                         [crumbs([("freetokens", U + "/"), (idx_title, idx_url), (tg, turl)])], og, lang, alt(f"blog/tag/{tg}") if indexable else ())
+        if not indexable:
+            head = head.replace('content="index, follow', 'content="noindex, nofollow')
+        pages[P + f"blog/tag/{tg}.html"] = (head, full_blog_shell(tg, idx_body(tag=tg), U, lang))
+    about_title = tr("About")
+    about_url = f"{U}/about"
+    about_body = (f"<p>{tr('freetokens is maintained by Dim and tracks where capable LLMs are free right now.')}</p>"
+                  "<p><a href=\"https://dimchen.com\">Dim</a></p>")
+    about_ld = [crumbs([("freetokens", U + "/"), (about_title, about_url)]),
+                {"@context": "https://schema.org", "@type": "Person", "name": "Dim", "url": about_url,
+                 "sameAs": ["https://dimchen.com"], "inLanguage": "zh-CN" if zh else "en"}]
+    pages[P + "about.html"] = (head_html(f"{about_title} | freetokens", "", about_url, today, about_ld, og, lang, alt("about")),
+                               full_blog_shell(about_title, about_body, U, lang))
+    for s_, vers in arts.items():
+        meta, body_md = vers.get(lang, (None, None))
+        if meta is None or not meta.get("draft", False):
+            continue
+        url = f"{U}/preview/{slug}"
+        title = meta.get("title", slug) + ("（预览）" if zh else " (preview)")
+        head = head_html(title, meta.get("description", ""), url, today, [], og, lang, ())
+        head = head.replace('content="index, follow', 'content="noindex, nofollow')
+        drafts[P + f"preview/{slug}.html"] = (head, full_blog_shell(title, "<p>draft</p>", U, lang))
+    return pages, drafts
+
+
+def full_blog_shell(title, inner, root, lang):
+    t = (ROOT / "templates" / "article.html").read_text()
+    t = t.replace("__BRAND__", BRAND).replace("__GH__", GH).replace("__HOME__", root + "/").replace("__ROOT__", root + "/")
+    if lang == "zh":
+        t = apply_zh_template(t)
+    return t.replace("__SECTION__", "").replace("__STATUS__", "").replace("__TITLE__", html.escape(title)).replace("__DESCRIPTION__", "").replace("__AUTHOR__", "").replace("__PUBLISHED__", "").replace("__UPDATED__", "").replace("__LIVEBOX__", "").replace("__TOC__", "").replace("__BODY__", inner).replace("__CHANGES_H__", "").replace("__CHANGELOG__", "").replace("__SOURCES_H__", "").replace("__SOURCES__", "").replace("__FOOTER__", "")
+
+
+def check_blog(lanes, events, models):
+    """ADR-028 frontmatter/tags/pairing/citation/image rules. Returns error list."""
+    errs = []
+    arts = load_articles()
+    model_ids = {m["id"] for m in models}
+    chan_slugs = {slug(c["name"]) for c in load_optional("channels", [])} | {slug(l["channel"]) for l in lanes}
+    maker_ids = {m["id"] for m in load_optional("makers", [])}
+    for s_, vers in arts.items():
+        for lang in ("en", "zh"):
+            if lang not in vers:
+                errs.append(f"blog/{s_}: missing {lang}.md (EN/ZH must pair)")
+        for lang, (meta, body) in vers.items():
+            where = f"content/blog/{slug}/{lang}.md"
+            for f in ("title", "description", "slug", "section", "tags", "published", "updated", "status", "author", "draft"):
+                if f not in meta:
+                    errs.append(f"{where}: missing frontmatter {f}")
+            if meta.get("slug") != s_:
+                errs.append(f"{where}: slug mismatch")
+            if meta.get("section") not in BLOG_SECTIONS:
+                errs.append(f"{where}: bad section {meta.get('section')!r}")
+            if meta.get("status") not in BLOG_STATUS:
+                errs.append(f"{where}: bad status {meta.get('status')!r}")
+            for t in meta.get("tags", []):
+                if t not in model_ids and t not in chan_slugs and t not in maker_ids:
+                    errs.append(f"{where}: unknown tag {t!r}")
+            for c in re.findall(r"\{\{.+?\}\}", body):
+                if not re.fullmatch(r"\{\{\s*(live:where-to-use|count:live-lanes)\s+(model|channel)=[a-z0-9][a-z0-9.-]*\s*\}\}", c.strip()):
+                    errs.append(f"{where}: bad live block {c[:50]}")
+    return errs
+
+
 def check_i18n(lanes, events, models):
     """ADR-010: missing translations fail the build. Returns error list (empty = green)."""
     errs = []
@@ -1538,7 +1995,11 @@ def main():
         if ierr:
             print("✗ i18n incomplete:", *ierr, sep="\n  ", file=sys.stderr)
             sys.exit(1)
-        print("✓ data valid, generated files up to date, i18n complete")
+        berr = check_blog(lanes, events, models)
+        if berr:
+            print("✗ blog invalid:", *berr, sep="\n  ", file=sys.stderr)
+            sys.exit(1)
+        print("✓ data valid, generated files up to date, i18n complete, blog valid")
         return
     (ROOT / "models").mkdir(exist_ok=True)
     (ROOT / "channels").mkdir(exist_ok=True)
@@ -1585,6 +2046,41 @@ def main():
         site_zh = build_pages(lanes, events, models, today, "site", "zh")
         site_zh.pop("__base__", None)
         LANG = "en"
+        blog_en, entries_en, rel_en = build_blog(lanes, events, models, today, "site", "en")
+        blog_zh, entries_zh, rel_zh = build_blog(lanes, events, models, today, "site", "zh")
+        site.update(blog_en)
+        site_zh.update(blog_zh)
+        blog_idx, blog_idx_zh = build_blog_pages(lanes, events, models, today, "site"), build_blog_pages(lanes, events, models, today, "site", "zh")
+        site.update(blog_idx[0])
+        site_zh.update(blog_idx_zh[0])
+        drafts_all = dict(blog_idx[1])
+        drafts_all.update(blog_idx_zh[1])
+        # related-article cards on model/channel pages (only when articles exist)
+        for store, related in ((site, rel_en), (site_zh, rel_zh)):
+            for path, (h, b) in list(store.items()):
+                m = re.fullmatch(r"(zh/)?models/([a-z0-9.-]+)\.html", path)
+                c = re.fullmatch(r"(zh/)?channels/([a-z0-9-]+)\.html", path)
+                card = ""
+                if m:
+                    arts = related.get(("model", m.group(2)), [])[:3]
+                elif c:
+                    arts = related.get(("channel", c.group(2)), [])[:3]
+                else:
+                    continue
+                if arts:
+                    items = "".join(f'<li><a href="{u}">{html.escape(t)}</a></li>' for t, u, _ in arts)
+                    h2 = "相关文章" if path.startswith("zh/") else "Related articles"
+                    card = f'<section class="related"><h2>{h2}</h2><ul>{items}</ul></section>'
+                store[path] = (h, b.replace("<!--RELATED-->", card))
+        # topbar Blog entry (shared builds only; preview keeps dev links)
+        for store, lang in ((site, "en"), (site_zh, "zh")):
+            rt = "/zh/" if lang == "zh" else "/"
+            lbl = "博客" if lang == "zh" else "Blog"
+            for path, (h, b) in list(store.items()):
+                if "<nav " in b and f">{lbl}</a>" not in b:
+                    b2, n = re.subn(r"(<nav aria-label=\"(?:Site|Sections)\">.*?</nav>)", lambda m: m.group(1).replace("</nav>", f'<a href="{rt}blog">{lbl}</a></nav>', 1), b, count=1, flags=re.S)
+                    if n:
+                        store[path] = (h, b2)
         (dist / "assets").mkdir(parents=True, exist_ok=True)
         (dist / "assets" / "data.js").write_text(data_js)
         (dist / "assets" / "data.zh.js").write_text(data_zh_js)
@@ -1594,7 +2090,26 @@ def main():
             (dist / p).parent.mkdir(parents=True, exist_ok=True)
             lang = "zh" if p.startswith("zh/") else "en"
             (dist / p).write_text(full_doc(h, b, lang))
-        for p, c in site_extras(site, lanes, events, models, today, site_zh).items():
+        import shutil as _sh
+        for slug, src in BLOG_IMGS:
+            s = ROOT / "content" / "blog" / slug / src
+            d = dist / "blog" / slug / src
+            d.parent.mkdir(parents=True, exist_ok=True)
+            _sh.copyfile(s, d)
+        for p, (h, b) in drafts_all.items():
+            (dist / p).parent.mkdir(parents=True, exist_ok=True)
+            lang = "zh" if p.startswith("zh/") else "en"
+            (dist / p).write_text(full_doc(h, b, lang))
+            review = dist / p.replace(".html", ".review.md")
+            review.write_text(f"# review: {p}\n\n- claims: check titles, numbers, dates against sources\n- speculation flagged with 推测/可能\n- diff vs previous on update\n")
+        blogmap = {"en": [], "zh": [], "feed_en": [], "feed_zh": []}
+        for u, ti, de, up in entries_en:
+            blogmap["en"].append((u, up))
+            blogmap["feed_en"].append((u, ti, de, up))
+        for u, ti, de, up in entries_zh:
+            blogmap["zh"].append((u, up))
+            blogmap["feed_zh"].append((u, ti, de, up))
+        for p, c in site_extras(site, lanes, events, models, today, site_zh, blogmap).items():
             (dist / p).parent.mkdir(parents=True, exist_ok=True)
             (dist / p).write_text(c)
         n = prerender(dist)
