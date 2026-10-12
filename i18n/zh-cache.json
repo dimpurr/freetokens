@@ -268,7 +268,7 @@
  "ModelScope API-Inference model list": "ModelScope API-Inference 模型列表",
  "ModelScope account and access token; community reports say an Alibaba Cloud account with real-name verification must be bound": "ModelScope 账户和 access token；社区报告称须绑定已完成实名认证的阿里云账户",
  "NIM API Catalog (build.nvidia.com/explore), many hosted models": "NIM API 目录（build.nvidia.com/explore），众多托管模型",
- "NVIDIA Developer Program API key; free to prototype, rate-limited": "NVIDIA Developer Program API key；用于原型制作免费，有速率限制",
+ "NVIDIA Developer Program API key; free to prototype, rate-limited": "NVIDIA 开发者计划 API key；用于原型制作免费，有速率限制",
  "NVIDIA Developer Program account and an nvapi- key (\"for API testing use only\", valid 1 year); free tier is rate-limited (about 40 requests/min for most models)": "NVIDIA Developer Program 账户和 nvapi- 密钥（\"仅供 API 测试使用\"，有效期 1 年）；免费档有速率限制（多数模型约 40 requests/min）",
  "NVIDIA NIM docs": "NVIDIA NIM 文档",
  "NVIDIA build": "NVIDIA build",
@@ -567,5 +567,18 @@
  "The AA page is \"Qwen3.8-Flash-Next\"; we assume it is the model Qoder calls Qwen3.8-Flash (not confirmed).": "AA 页面是 \"Qwen3.8-Flash-Next\"；我们假定它就是 Qoder 所说的 Qwen3.8-Flash（未确认）。",
  "Zen describes it as a free-tier preview reasoning model with text and image input and tool use": "Zen 称其为免费档预览推理模型，支持文本和图片输入及工具调用",
  "≈1.6T total / 48B active MoE; released 2026-09-25. One colour test on an image was answered wrongly.": "≈1.6T 总量／48B 激活 MoE；2026-09-25 发布。一次图片颜色测试答错。",
- "Stealth models shipped without a maker's name. Community attributions are shown on each model as unconfirmed.": "未公开厂商名的 stealth 模型。社区推测的归属在每个模型页标注为未确认。"
+ "Stealth models shipped without a maker's name. Community attributions are shown on each model as unconfirmed.": "未公开厂商名的 stealth 模型。社区推测的归属在每个模型页标注为未确认。",
+ "300-question subset": "300 题子集",
+ "55-question subset, 31 of 55": "55 题子集，对其中 31 题",
+ "60-question subset": "60 题子集",
+ "LongCat-2.5-Preview, tested with OpenCode, evaluated Oct 2": "LongCat-2.5-Preview，用 OpenCode 实测，Oct 2 评估",
+ "Space Bunny (Max), tested with OpenCode, evaluated Sep 30": "Space Bunny (Max)，用 OpenCode 实测，Sep 30 评估",
+ "overall, high effort (out of 10)": "overall，high effort（out of 10）",
+ "vendor model card, SWE-agent harness, 210K context": "厂商模型卡，SWE-agent harness，210K 上下文",
+ "vendor model card, terminus-2, average of 3 runs": "厂商模型卡，terminus-2，跑 3 次取平均",
+ "vendor-reported": "厂商自报",
+ "no AA page (coding variant of Kimi K3, AA 44)": "无 AA 页面（Kimi K3 的编码变体，AA 44）",
+ "not on Artificial Analysis": "Artificial Analysis 上没有",
+ "not ranked": "未排名",
+ "not ranked (LongCat 2.0: 19)": "未排名（LongCat 2.0：19）"
 }

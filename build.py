@@ -800,11 +800,14 @@ SHARED_KEYS = ("lanes", "events", "models", "chans", "makers", "offers", "vocab"
 
 
 def _zh_swap(text):
-    for en in sorted(T, key=len, reverse=True):
-        if len(en) < 4:
-            continue
-        if en in text:
-            text = text.replace(en, T[en])
+    """Replace only when the whole run matches a key (whitespace/leading-dot tolerant).
+    Never swaps a word inside a sentence: partial matches stay English and surface in the residue gate."""
+    m = re.match(r"^(\s*[.·•]?\s*)(.*?)(\s*)$", text, re.S)
+    if not m:
+        return text
+    pre, core, post = m.groups()
+    if core in T:
+        return pre + T[core] + post
     return text
 
 
@@ -839,6 +842,9 @@ def render_body(template, payload, root, home, shared=False, lang="en"):
         payload = dict(payload, lang="zh", i18n=T)
     else:
         payload = dict(payload, lang="en")
+    nlanes = len(payload.get("lanes", []))
+    body = re.sub(r"All \d+ lanes on the chart →",
+                  f"全部 {nlanes} 条线路见图表 →" if lang == "zh" else f"All {nlanes} lanes on the chart →", body)
     if shared:
         page = {k: v for k, v in payload.items() if k not in SHARED_KEYS}
         data_asset = "data.zh.js" if lang == "zh" else "data.js"
@@ -886,9 +892,13 @@ def translate_dataset(base):
         m["context"] = zh_text(m.get("context") or "")
         if m.get("notes"):
             m["notes"] = zh_text(m["notes"])
+        if (m.get("aa_index") or {}).get("note"):
+            m["aa_index"]["note"] = zh_text(m["aa_index"]["note"])
         for c in ((m.get("est") or {}).get("evidence") or []):
             if c.get("why"):
                 c["why"] = zh_text(c["why"])
+            if c.get("variant"):
+                c["variant"] = zh_text(c["variant"])
     for mk in z.get("makers", []):
         if mk.get("note"):
             mk["note"] = zh_text(mk["note"])
@@ -1234,6 +1244,57 @@ def site_extras(pages, lanes, events, models, today, pages_zh=None):
             "BingSiteAuth.xml": '<?xml version="1.0"?>\n<users>\n\t<user>440E125693FE785938B213DB73F48541</user>\n</users>\n'}
 
 
+def residue_gate(dist, lanes, events, models):
+    """Post-build gate (fix-round1): zh visible text must not contain ≥3-word English runs
+    outside the whitelist (brands/models/formal names + quoted/code originals). Returns error list."""
+    whitelist = set()
+    for m in models:
+        whitelist.update([m["name"], m["id"]])
+    for l in lanes:
+        whitelist.update([l["channel"], l.get("model_id", "")])
+    for mk in load_optional("makers", []):
+        whitelist.update([mk["name"], mk.get("parent", "") or ""])
+    for o in load_optional("offers", []):
+        whitelist.update([o["name"], o.get("provider", "") or ""])
+    whitelist |= {"Artificial Analysis", "OpenAI", "Anthropic", "GitHub", "CC BY",
+                  "AI Coding Daily", "SWE-bench", "Terminal-Bench", "freetokens"}
+    wl_words = set()
+    for entry in whitelist:
+        wl_words.update(entry.split())
+    wl_lower = {w.lower() for w in wl_words}
+    # reviewed data identifiers kept in English on purpose (model/SKU IDs, formal program names)
+    exempt = {"Web Search (basic)", "Kimi models (K3 excluded from voucher)", "AMD AI Dev Program"}
+    errs = []
+    for p in sorted((dist / "zh").rglob("*.html")):
+        t = p.read_text()
+        t = re.sub(r"<script.*?</script>", "\x00", t, flags=re.S)
+        t = re.sub(r"<style.*?</style>", "\x00", t, flags=re.S)
+        t = re.sub(r"<code.*?</code>", "\x00", t, flags=re.S)
+        text = re.sub(r"<[^>]+>", "\x00", t)
+        for q in re.findall(r'"([^"\x00]{8,})"', text):
+            text = text.replace(f'"{q}"', "\x00")
+        for q in re.findall(r"&quot;(.{8,}?)&quot;", text):
+            text = text.replace(f"&quot;{q}&quot;", "\x00")
+        for q in re.findall(r"“(.{2,}?)”", text):
+            text = text.replace(f"“{q}”", "\x00")
+        for m in re.finditer(r"[A-Za-z][A-Za-z0-9'’\-.,;:!?()/%$]*(\s+[A-Za-z0-9'’\-.,;:!?()/%$]+){2,}", text):
+            frag = re.sub(r"\s+", " ", m.group(0)).strip()
+            if "\x00" in frag or re.search(r"[*/=_\"`~<>|\\]|https?://", frag):
+                continue  # cross-element soup, code, URLs, paths: not prose
+            words = [w.strip(".,;:!?()\"'’").strip() for w in frag.split()]
+            # numbers, dates, IDs, codes and model IDs stay English by rule: drop any token with a digit
+            words = [w for w in words if w and not re.search(r"\d", w) and not re.fullmatch(r"[×→·/$-]+", w)]
+            if len(words) < 3:
+                continue
+            bad = [w for w in words if w.lower() not in wl_lower]
+            if len(bad) >= 3 and not any(entry in frag for entry in whitelist if len(entry) > 12) and frag not in exempt and not any(e in frag for e in exempt):
+                errs.append(f"{p.relative_to(dist)}: {frag[:100]}")
+            if len(errs) > 30:
+                errs.append("... (truncated)")
+                return errs
+    return errs
+
+
 def prerender(dist):
     """Run each page's own JavaScript once and keep the rendered HTML, so crawlers and AI readers get full pages without JS.
     happy-dom in Node, no browser (ADR-026; headless Chrome kept failing to start). Returns the number of pages rendered."""
@@ -1312,10 +1373,12 @@ def collect_free_keys(lanes, events, models):
     for m in models:
         add(m.get("context"))
         add(m.get("notes"))
+        add((m.get("aa_index") or {}).get("note"))
     for mk in load_optional("makers", []):
         add(mk.get("note"))
     for c in (load_optional("benchmarks", {}).get("claims", [])):
         add(c.get("excluded"))
+        add(c.get("variant"))
     for c in chans.values():
         add(c.get("free_condition"))
         add((c.get("entry") or {}).get("note"))
@@ -1535,6 +1598,10 @@ def main():
         expected = len([p for p in dist.rglob("*.html") if p.name not in ("404.html", "methodology.html")])
         if n < expected and os.environ.get("FT_ALLOW_NO_PRERENDER") != "1":
             sys.exit(f"✗ only {n} of {expected} pages prerendered: not deploying")
+        rg = residue_gate(dist, lanes, events, models)
+        if rg:
+            print("✗ Chinese residue gate:", *rg, sep="\n  ", file=sys.stderr)
+            sys.exit(1)
         ok = og_image(dist, lanes, models, today)
         msg += f"\n✓ site → {dist}/ ({len(site)} pages, {n} prerendered, sitemap, robots, favicon, 404{', og.png' if ok else ''})"
     print(msg)

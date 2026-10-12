@@ -56,10 +56,10 @@ const CL = lanesOn(C);
     ${CH[C] && CH[C].free_condition ? `<p class="chcond"><b>${Tx("Free if:", "Free if:")}</b> ${esc(CH[C].free_condition)}</p>` : ""}
     ${CH[C] ? `<p class="costline">${Tx("To start:", "To start:")} ${costHTML(C)} <span class="muted">${esc(CH[C].entry.note)}</span></p><p class="costline">${Tx("Use it:", "Use it:")} ${accessHTML(CH[C].access)}</p>` : ""}
     <div class="stats">
-      ${stat(Tx("Free now", "Free now"), `${CL.filter(isFree).length} of ${CL.length}`, Tx("models", "models"))}
+      ${stat(Tx("Free now", "Free now"), `${CL.filter(isFree).length}${ZH ? "／" : " of "}${CL.length}`, Tx("models", "models"))}
       ${stat(Tx("Ended", "Ended"), String(CL.filter((l) => l.status === "ended").length), Tx("tracked lanes that stopped", "tracked lanes that stopped"))}
       ${stat(Tx("Last checked", "Last checked"), esc(absDate(last)))}
-      ${tested.length ? stat(`${I.bolt()} ${Tx("Tested by us", "Tested by us")}`, `${tested.length} of ${CL.length}`, Tx("lanes measured", "lanes measured"), "measured-stat") : ""}
+      ${tested.length ? stat(`${I.bolt()} ${Tx("Tested by us", "Tested by us")}`, `${tested.length}${ZH ? "／" : " of "}${CL.length}`, Tx("lanes measured", "lanes measured"), "measured-stat") : ""}
     </div>`;
 })();
 

@@ -46,6 +46,6 @@ $("od").innerHTML = row(Tx("You get", "You get"), getsHTML(O)) + row(Tx("Needs",
 const m = O.models || {}, tracked = (m.tracked || []).filter((x) => models[x]), other = (m.ids || []).filter((x) => !tracked.some((t) => models[t].name === x));
 $("om").innerHTML = (m.kind === "catalogue" ? `<p>${Tx("The whole catalogue", "The whole catalogue")}${m.count ? ` (${m.count} ${Tx("models", "models")})` : ""} ${Tx("draws on the same allowance", "draws on the same allowance")}${m.note ? `: ${esc(m.note)}` : "."}</p>` : m.note ? `<p>${esc(m.note)}</p>` : "") +
   (tracked.length ? `<div class="row"><span class="muted">${Tx("Tracked here:", "Tracked here:")}</span> <span class="chips">${tracked.map((x) => `<a class="chip" href="${modelHref(x)}">${esc(models[x].name)} ${aaValue(models[x]) != null ? `<small>${esc(isEst(models[x]) ? "EST ≈" + Math.round(aaValue(models[x])) : "AA " + aaValue(models[x]))}</small>` : ""}</a>`).join("")}</span></div>` : "") +
-  (other.length ? `<div class="row"><span class="muted">Also:</span> ${esc(other.join(", "))}</div>` : "") || '<p class="muted">Not recorded.</p>';
+  (other.length ? `<div class="row"><span class="muted">${Tx("Also:", "Also:")}</span> ${esc(other.join(", "))}</div>` : "") || '<p class="muted">Not recorded.</p>';
 $("tl").innerHTML = timelineHTML(D.events.filter((e) => (e.offers || []).includes(O.id))) || '<p class="muted">No events recorded yet.</p>';
 </script>

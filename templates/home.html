@@ -213,7 +213,7 @@ onView(() => {
       <div class="who">${mlink(l.model)} <span class="muted">${Tx("on", "on")}</span> ${clink(l.channel)}</div>
       <div class="row">${confHTML(l.ends.confidence)} ${esc(absDate(effEnd(l)))}</div>
       ${l.limits_observed ? `<div class="row">${measuredHTML(l, true)}</div>` : ""}
-      ${overdue ? `<div class="row">Still live at the last check. It can stop without notice.</div>` : ""}
+      ${overdue ? `<div class="row">${Tx("Still live at the last check. It can stop without notice.", "Still live at the last check. It can stop without notice.")}</div>` : ""}
     </article>`;
   }).join("") || `<p class="muted">Nothing with an end date${VIEW === "all" ? "" : " in this view"}.</p>`;
 });
@@ -267,7 +267,7 @@ const renderChannels = () => {
   $("channels").innerHTML = shown.map(({ c, ls, free, ok, next }) => `<article class="ch${VIEW !== "all" && !ok ? " off" : ""}">
     <div class="ch-h">
       <span class="name">${clink(c)}</span>${chLinks(c, true)}<span class="tag">${esc(lab("channel_type", ls[0].type))}</span>${costHTML(c)}${accessHTML(CH[c] && CH[c].access)}
-      <span class="ch-free"><span class="bar" role="img" aria-label="${free} of ${ls.length} lanes free"><i style="width:${(100 * free / ls.length).toFixed(1)}%"></i></span><b>${free}</b><span class="muted">of ${ls.length} free</span></span>
+      <span class="ch-free"><span class="bar" role="img" aria-label="${ZH ? `${free}／${ls.length} 条线路免费` : `${free} of ${ls.length} lanes free`}"><i style="width:${(100 * free / ls.length).toFixed(1)}%"></i></span><b>${free}</b><span class="muted">${ZH ? `／${ls.length} 条免费` : `of ${ls.length} free`}</span></span>
       ${VIEW !== "all" && !ok ? `<span class="viewnote">not usable by ${VIEW}: ${esc(whyNot(ls.find(isFree) || ls[0], VIEW))}</span>` : ""}
       ${next ? `<span class="ch-next"><span class="muted">next end</span> <b>${esc(endInfo(next).main)}</b> <span class="muted">·</span> ${mlink(next.model)} ${confHTML(next.ends.confidence)}</span>` : ""}
     </div>
@@ -289,7 +289,7 @@ onView(() => {
   $("home-offers").innerHTML = all.slice(0, 5).map((o) => `<tr>
     <td><span class="otype">${esc(lab("offer_type", o.type))}</span><span class="name">${olink(o.id)}</span><span class="sub">${o.channel ? clink(o.channel) : esc(o.provider)}${o.region ? " · " + regionTag(o) : ""}</span></td>
     <td data-label="You get">${getsHTML(o)}</td><td data-label="Needs">${reqHTML(o)}</td><td data-label="Use it">${accessHTML(offerAccess(o))}</td></tr>`).join("");
-  $("offers-more").innerHTML = `<a class="seeall" href="${D.root}offers${D.ext}${VIEW === "all" ? "" : "?use=" + VIEW}">All ${all.length} programs${VIEW === "all" ? "" : " usable by " + VIEW}, with filters →</a>`;
+  $("offers-more").innerHTML = `<a class="seeall" href="${D.root}offers${D.ext}${VIEW === "all" ? "" : "?use=" + VIEW}">${ZH ? `全部 ${all.length} 个计划${VIEW === "all" ? "" : " " + byV(VIEW)}，含筛选 →` : `All ${all.length} programs${VIEW === "all" ? "" : " usable by " + VIEW}, with filters →`}</a>`;
 });
 mountChart(30);
 

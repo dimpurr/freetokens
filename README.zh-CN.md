@@ -387,10 +387,10 @@ freetokens 追踪的是**免费线路**：一个模型 × 一个渠道 × 一个
 | [Qwen2.5 7B Instruct](https://freetokens.fyi/models/qwen2.5-7b-instruct) | 🔵 SiliconFlow (未公布截止) | 2 | 未检查 (2026-10-06) | 32K | 未核查 | Qwen | — |
 | [GLM-4 9B 0414](https://freetokens.fyi/models/glm-4-9b-0414) | 🔵 SiliconFlow (未公布截止) | 2 | 未检查 (2026-10-06) | 32K | 未核查 | Z.ai | — |
 | [GLM-Z1 9B 0414](https://freetokens.fyi/models/glm-z1-9b-0414) | 🔵 SiliconFlow (未公布截止) | 1 | 未检查 (2026-10-06) | 128K | 未核查 | Z.ai | — |
-| [Coding Kimi K3](https://freetokens.fyi/models/coding-kimi-k3) | 🔵 AIHubMix (未公布截止) | 2 | no AA page (coding variant of Kimi K3, AA 44) (2026-10-06) | 1M | 未核查 | Moonshot AI (Kimi) | — |
+| [Coding Kimi K3](https://freetokens.fyi/models/coding-kimi-k3) | 🔵 AIHubMix (未公布截止) | 2 | 无 AA 页面（Kimi K3 的编码变体，AA 44） (2026-10-06) | 1M | 未核查 | Moonshot AI (Kimi) | — |
 | [Glyph Cluster](https://freetokens.fyi/models/glyph-cluster) | 🔵 Vercel AI Gateway (未公布截止) | 1 | EST — (0 个基准（目前）) (2026-10-10) | 256K | 不支持 | Undisclosed (stealth) | — |
-| [Qwen2.5 VL 72B Instruct](https://freetokens.fyi/models/qwen2.5-vl-72b) | 🔵 OVHcloud AI Endpoints (未公布截止) | 0 | not on Artificial Analysis (2026-10-08) | 未检查 | 支持 | Qwen | — |
-| [Mistral Nemo Instruct 2407](https://freetokens.fyi/models/mistral-nemo) | 🔵 OVHcloud AI Endpoints (未公布截止) | 0 | not on Artificial Analysis (2026-10-08) | 未检查 | 不支持 | Mistral AI | — |
+| [Qwen2.5 VL 72B Instruct](https://freetokens.fyi/models/qwen2.5-vl-72b) | 🔵 OVHcloud AI Endpoints (未公布截止) | 0 | Artificial Analysis 上没有 (2026-10-08) | 未检查 | 支持 | Qwen | — |
+| [Mistral Nemo Instruct 2407](https://freetokens.fyi/models/mistral-nemo) | 🔵 OVHcloud AI Endpoints (未公布截止) | 0 | Artificial Analysis 上没有 (2026-10-08) | 未检查 | 不支持 | Mistral AI | — |
 | [GPT-6.1 Sol](https://freetokens.fyi/models/gpt-6.1-sol) | — | 0 | 52 (2026-10-06) | 1025K | 支持 | OpenAI | — |
 | [MiMo V2.6 Pro](https://freetokens.fyi/models/mimo-v2.6-pro) | — | 0 | 46 (2026-10-06) | 1M | 支持 | Xiaomi MiMo | — |
 | [GLM 5.3](https://freetokens.fyi/models/glm-5.3) | — | 0 | 45 (2026-10-06) | 1M | 未核查 | Z.ai | — |

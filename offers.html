@@ -645,7 +645,7 @@ const reqHTML = (o) => (o.requires || []).length
   ? o.requires.map((r) => `<span class="req${r === "account" ? " soft" : ""}" title="${esc(V.requirement[r].help)}">${esc(lab("requirement", r))}</span>`).join("")
   : `<span class="req none">nothing</span>`;
 const offersFor = (mid) => (D.offers || []).filter((o) => o.status !== "ended" && ((o.models || {}).tracked || []).includes(mid));
-const suspectedHTML = (m) => m.suspected_maker ? ` <span class="suspect" title="${esc(m.suspected_maker.basis)}">possibly ${mklink(m.suspected_maker.maker)} · unconfirmed</span>` : "";
+const suspectedHTML = (m) => m.suspected_maker ? (ZH ? ` <span class="suspect" title="${esc(m.suspected_maker.basis)}">可能归属${mklink(m.suspected_maker.maker)}·未确认</span>` : ` <span class="suspect" title="${esc(m.suspected_maker.basis)}">possibly ${mklink(m.suspected_maker.maker)} · unconfirmed</span>`) : "";
 const channels = [...new Set(D.lanes.map((l) => l.channel))];
 const lanesOf = (mid) => D.lanes.filter((l) => l.model === mid);
 const lanesOn = (name) => D.lanes.filter((l) => l.channel === name);
@@ -770,7 +770,7 @@ function setView(v) {
 }
 function drawViewSwitch() {
   const el = document.getElementById("viewsw"); if (!el) return;
-  el.innerHTML = `<span class="vs-lab">View</span><span role="radiogroup" aria-label="Show lanes usable by">` + Object.entries(VIEWS).map(([k, o]) =>
+  el.innerHTML = `<span class="vs-lab">${Tx("View", "View")}</span><span role="radiogroup" aria-label="${Tx("Show lanes usable by", "Show lanes usable by")}">` + Object.entries(VIEWS).map(([k, o]) =>
     `<button type="button" role="radio" data-view="${k}" aria-checked="${k === VIEW}" tabindex="${k === VIEW ? 0 : -1}" title="${esc(o.long)}">${o.label}<small>${D.lanes.filter((l) => usableFor(l, k)).length}</small></button>`).join("") +
     `</span><a class="vs-help" href="${D.root}methodology${D.ext}#use-case-views" title="What these views mean">${I.help("What these views mean")}</a>`;
 }

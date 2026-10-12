@@ -59,8 +59,8 @@ const ML = lanesOf(M.id);
         rankText(M) ? esc(rankText(M)) : "")}
       ${stat(Tx("Context", "Context"), c ? esc(c[1]) : `<span class="muted" style="font:500 0.9rem var(--f-body)">${esc(M.context.split(" (")[0])}</span>`, c ? esc(c[2]) : esc((M.context.split(" (")[1] || "").replace(/\)$/, "")))}
       ${stat(Tx("Images", "Images"), esc(lab("image_input", M.image_input)))}
-      ${stat(Tx("Free now", "Free now"), `${ML.filter(isFree).length} of ${ML.length}`, Tx("channels", "channels"))}
-      ${tested.length ? stat(`${I.bolt()} ${Tx("Tested by us", "Tested by us")}`, `${tested.length} of ${ML.length}`, Tx("channels measured", "channels measured"), "measured-stat") : ""}
+      ${stat(Tx("Free now", "Free now"), `${ML.filter(isFree).length}${ZH ? "／" : " of "}${ML.length}`, Tx("channels", "channels"))}
+      ${tested.length ? stat(`${I.bolt()} ${Tx("Tested by us", "Tested by us")}`, `${tested.length}${ZH ? "／" : " of "}${ML.length}`, Tx("channels measured", "channels measured"), "measured-stat") : ""}
     </div>`;
 })();
 

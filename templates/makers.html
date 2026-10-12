@@ -28,7 +28,7 @@ onView(() => {
     const best = [...free].filter((m) => aaValue(m) != null).sort((a, b) => aaValue(b) - aaValue(a))[0];
     return { k, ms, free, best };
   }).sort((a, b) => b.free.length - a.free.length || (b.best ? aaValue(b.best) : -1) - (a.best ? aaValue(a.best) : -1) || a.k.name.localeCompare(b.k.name));
-  $("mk-sub").textContent = `${rows.length} makers · ${rows.filter((r) => r.free.length).length} with a free model${VIEW === "all" ? "" : " usable by " + VIEW}`;
+  $("mk-sub").textContent = ZH ? `${rows.length} 厂商 · ${rows.filter((r) => r.free.length).length} 家有免费模型${VIEW === "all" ? "" : " " + byV(VIEW)}` : `${rows.length} makers · ${rows.filter((r) => r.free.length).length} with a free model${VIEW === "all" ? "" : " usable by " + VIEW}`;
   $("mk").innerHTML = rows.map(({ k, ms, free, best }) => `<tr class="${free.length ? "" : "offrow"}">
     <td><span class="name">${mklink(k.id)}</span><span class="sub">${esc([k.parent, k.country].filter(Boolean).join(" · "))}</span></td>
     <td class="nowrap" data-label="Free now"><b class="mono">${free.length}</b></td>

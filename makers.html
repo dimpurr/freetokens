@@ -644,7 +644,7 @@ const reqHTML = (o) => (o.requires || []).length
   ? o.requires.map((r) => `<span class="req${r === "account" ? " soft" : ""}" title="${esc(V.requirement[r].help)}">${esc(lab("requirement", r))}</span>`).join("")
   : `<span class="req none">nothing</span>`;
 const offersFor = (mid) => (D.offers || []).filter((o) => o.status !== "ended" && ((o.models || {}).tracked || []).includes(mid));
-const suspectedHTML = (m) => m.suspected_maker ? ` <span class="suspect" title="${esc(m.suspected_maker.basis)}">possibly ${mklink(m.suspected_maker.maker)} · unconfirmed</span>` : "";
+const suspectedHTML = (m) => m.suspected_maker ? (ZH ? ` <span class="suspect" title="${esc(m.suspected_maker.basis)}">可能归属${mklink(m.suspected_maker.maker)}·未确认</span>` : ` <span class="suspect" title="${esc(m.suspected_maker.basis)}">possibly ${mklink(m.suspected_maker.maker)} · unconfirmed</span>`) : "";
 const channels = [...new Set(D.lanes.map((l) => l.channel))];
 const lanesOf = (mid) => D.lanes.filter((l) => l.model === mid);
 const lanesOn = (name) => D.lanes.filter((l) => l.channel === name);
@@ -769,7 +769,7 @@ function setView(v) {
 }
 function drawViewSwitch() {
   const el = document.getElementById("viewsw"); if (!el) return;
-  el.innerHTML = `<span class="vs-lab">View</span><span role="radiogroup" aria-label="Show lanes usable by">` + Object.entries(VIEWS).map(([k, o]) =>
+  el.innerHTML = `<span class="vs-lab">${Tx("View", "View")}</span><span role="radiogroup" aria-label="${Tx("Show lanes usable by", "Show lanes usable by")}">` + Object.entries(VIEWS).map(([k, o]) =>
     `<button type="button" role="radio" data-view="${k}" aria-checked="${k === VIEW}" tabindex="${k === VIEW ? 0 : -1}" title="${esc(o.long)}">${o.label}<small>${D.lanes.filter((l) => usableFor(l, k)).length}</small></button>`).join("") +
     `</span><a class="vs-help" href="${D.root}methodology${D.ext}#use-case-views" title="What these views mean">${I.help("What these views mean")}</a>`;
 }
@@ -1129,7 +1129,7 @@ onView(() => {
     const best = [...free].filter((m) => aaValue(m) != null).sort((a, b) => aaValue(b) - aaValue(a))[0];
     return { k, ms, free, best };
   }).sort((a, b) => b.free.length - a.free.length || (b.best ? aaValue(b.best) : -1) - (a.best ? aaValue(a.best) : -1) || a.k.name.localeCompare(b.k.name));
-  $("mk-sub").textContent = `${rows.length} makers · ${rows.filter((r) => r.free.length).length} with a free model${VIEW === "all" ? "" : " usable by " + VIEW}`;
+  $("mk-sub").textContent = ZH ? `${rows.length} 厂商 · ${rows.filter((r) => r.free.length).length} 家有免费模型${VIEW === "all" ? "" : " " + byV(VIEW)}` : `${rows.length} makers · ${rows.filter((r) => r.free.length).length} with a free model${VIEW === "all" ? "" : " usable by " + VIEW}`;
   $("mk").innerHTML = rows.map(({ k, ms, free, best }) => `<tr class="${free.length ? "" : "offrow"}">
     <td><span class="name">${mklink(k.id)}</span><span class="sub">${esc([k.parent, k.country].filter(Boolean).join(" · "))}</span></td>
     <td class="nowrap" data-label="Free now"><b class="mono">${free.length}</b></td>

@@ -596,7 +596,7 @@ ol.rungs > li.muted::before { content: none; }
     <h2 id="h-chart">Free periods <small>free lanes scoring 30+ or with an end date · bars against today</small></h2>
     <div class="key keyrow" id="chartkey"></div>
     <div class="chart-scroll"><div class="chart" id="chart" role="img" aria-label="Chart of each free lane's free period against today's date"></div></div>
-    <div class="more-row"><a class="seeall" href="lanes#h-chart">All 115 lanes on the chart →</a></div>
+    <div class="more-row"><a class="seeall" href="lanes#h-chart">All 121 lanes on the chart →</a></div>
   </section>
 
   <section aria-labelledby="h-tl">
@@ -707,7 +707,7 @@ const reqHTML = (o) => (o.requires || []).length
   ? o.requires.map((r) => `<span class="req${r === "account" ? " soft" : ""}" title="${esc(V.requirement[r].help)}">${esc(lab("requirement", r))}</span>`).join("")
   : `<span class="req none">nothing</span>`;
 const offersFor = (mid) => (D.offers || []).filter((o) => o.status !== "ended" && ((o.models || {}).tracked || []).includes(mid));
-const suspectedHTML = (m) => m.suspected_maker ? ` <span class="suspect" title="${esc(m.suspected_maker.basis)}">possibly ${mklink(m.suspected_maker.maker)} · unconfirmed</span>` : "";
+const suspectedHTML = (m) => m.suspected_maker ? (ZH ? ` <span class="suspect" title="${esc(m.suspected_maker.basis)}">可能归属${mklink(m.suspected_maker.maker)}·未确认</span>` : ` <span class="suspect" title="${esc(m.suspected_maker.basis)}">possibly ${mklink(m.suspected_maker.maker)} · unconfirmed</span>`) : "";
 const channels = [...new Set(D.lanes.map((l) => l.channel))];
 const lanesOf = (mid) => D.lanes.filter((l) => l.model === mid);
 const lanesOn = (name) => D.lanes.filter((l) => l.channel === name);
@@ -832,7 +832,7 @@ function setView(v) {
 }
 function drawViewSwitch() {
   const el = document.getElementById("viewsw"); if (!el) return;
-  el.innerHTML = `<span class="vs-lab">View</span><span role="radiogroup" aria-label="Show lanes usable by">` + Object.entries(VIEWS).map(([k, o]) =>
+  el.innerHTML = `<span class="vs-lab">${Tx("View", "View")}</span><span role="radiogroup" aria-label="${Tx("Show lanes usable by", "Show lanes usable by")}">` + Object.entries(VIEWS).map(([k, o]) =>
     `<button type="button" role="radio" data-view="${k}" aria-checked="${k === VIEW}" tabindex="${k === VIEW ? 0 : -1}" title="${esc(o.long)}">${o.label}<small>${D.lanes.filter((l) => usableFor(l, k)).length}</small></button>`).join("") +
     `</span><a class="vs-help" href="${D.root}methodology${D.ext}#use-case-views" title="What these views mean">${I.help("What these views mean")}</a>`;
 }
@@ -1316,7 +1316,7 @@ onView(() => {
       <div class="who">${mlink(l.model)} <span class="muted">${Tx("on", "on")}</span> ${clink(l.channel)}</div>
       <div class="row">${confHTML(l.ends.confidence)} ${esc(absDate(effEnd(l)))}</div>
       ${l.limits_observed ? `<div class="row">${measuredHTML(l, true)}</div>` : ""}
-      ${overdue ? `<div class="row">Still live at the last check. It can stop without notice.</div>` : ""}
+      ${overdue ? `<div class="row">${Tx("Still live at the last check. It can stop without notice.", "Still live at the last check. It can stop without notice.")}</div>` : ""}
     </article>`;
   }).join("") || `<p class="muted">Nothing with an end date${VIEW === "all" ? "" : " in this view"}.</p>`;
 });
@@ -1370,7 +1370,7 @@ const renderChannels = () => {
   $("channels").innerHTML = shown.map(({ c, ls, free, ok, next }) => `<article class="ch${VIEW !== "all" && !ok ? " off" : ""}">
     <div class="ch-h">
       <span class="name">${clink(c)}</span>${chLinks(c, true)}<span class="tag">${esc(lab("channel_type", ls[0].type))}</span>${costHTML(c)}${accessHTML(CH[c] && CH[c].access)}
-      <span class="ch-free"><span class="bar" role="img" aria-label="${free} of ${ls.length} lanes free"><i style="width:${(100 * free / ls.length).toFixed(1)}%"></i></span><b>${free}</b><span class="muted">of ${ls.length} free</span></span>
+      <span class="ch-free"><span class="bar" role="img" aria-label="${ZH ? `${free}／${ls.length} 条线路免费` : `${free} of ${ls.length} lanes free`}"><i style="width:${(100 * free / ls.length).toFixed(1)}%"></i></span><b>${free}</b><span class="muted">${ZH ? `／${ls.length} 条免费` : `of ${ls.length} free`}</span></span>
       ${VIEW !== "all" && !ok ? `<span class="viewnote">not usable by ${VIEW}: ${esc(whyNot(ls.find(isFree) || ls[0], VIEW))}</span>` : ""}
       ${next ? `<span class="ch-next"><span class="muted">next end</span> <b>${esc(endInfo(next).main)}</b> <span class="muted">·</span> ${mlink(next.model)} ${confHTML(next.ends.confidence)}</span>` : ""}
     </div>
@@ -1392,7 +1392,7 @@ onView(() => {
   $("home-offers").innerHTML = all.slice(0, 5).map((o) => `<tr>
     <td><span class="otype">${esc(lab("offer_type", o.type))}</span><span class="name">${olink(o.id)}</span><span class="sub">${o.channel ? clink(o.channel) : esc(o.provider)}${o.region ? " · " + regionTag(o) : ""}</span></td>
     <td data-label="You get">${getsHTML(o)}</td><td data-label="Needs">${reqHTML(o)}</td><td data-label="Use it">${accessHTML(offerAccess(o))}</td></tr>`).join("");
-  $("offers-more").innerHTML = `<a class="seeall" href="${D.root}offers${D.ext}${VIEW === "all" ? "" : "?use=" + VIEW}">All ${all.length} programs${VIEW === "all" ? "" : " usable by " + VIEW}, with filters →</a>`;
+  $("offers-more").innerHTML = `<a class="seeall" href="${D.root}offers${D.ext}${VIEW === "all" ? "" : "?use=" + VIEW}">${ZH ? `全部 ${all.length} 个计划${VIEW === "all" ? "" : " " + byV(VIEW)}，含筛选 →` : `All ${all.length} programs${VIEW === "all" ? "" : " usable by " + VIEW}, with filters →`}</a>`;
 });
 mountChart(30);
 

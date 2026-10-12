@@ -666,7 +666,7 @@ const reqHTML = (o) => (o.requires || []).length
   ? o.requires.map((r) => `<span class="req${r === "account" ? " soft" : ""}" title="${esc(V.requirement[r].help)}">${esc(lab("requirement", r))}</span>`).join("")
   : `<span class="req none">nothing</span>`;
 const offersFor = (mid) => (D.offers || []).filter((o) => o.status !== "ended" && ((o.models || {}).tracked || []).includes(mid));
-const suspectedHTML = (m) => m.suspected_maker ? ` <span class="suspect" title="${esc(m.suspected_maker.basis)}">possibly ${mklink(m.suspected_maker.maker)} · unconfirmed</span>` : "";
+const suspectedHTML = (m) => m.suspected_maker ? (ZH ? ` <span class="suspect" title="${esc(m.suspected_maker.basis)}">可能归属${mklink(m.suspected_maker.maker)}·未确认</span>` : ` <span class="suspect" title="${esc(m.suspected_maker.basis)}">possibly ${mklink(m.suspected_maker.maker)} · unconfirmed</span>`) : "";
 const channels = [...new Set(D.lanes.map((l) => l.channel))];
 const lanesOf = (mid) => D.lanes.filter((l) => l.model === mid);
 const lanesOn = (name) => D.lanes.filter((l) => l.channel === name);
@@ -791,7 +791,7 @@ function setView(v) {
 }
 function drawViewSwitch() {
   const el = document.getElementById("viewsw"); if (!el) return;
-  el.innerHTML = `<span class="vs-lab">View</span><span role="radiogroup" aria-label="Show lanes usable by">` + Object.entries(VIEWS).map(([k, o]) =>
+  el.innerHTML = `<span class="vs-lab">${Tx("View", "View")}</span><span role="radiogroup" aria-label="${Tx("Show lanes usable by", "Show lanes usable by")}">` + Object.entries(VIEWS).map(([k, o]) =>
     `<button type="button" role="radio" data-view="${k}" aria-checked="${k === VIEW}" tabindex="${k === VIEW ? 0 : -1}" title="${esc(o.long)}">${o.label}<small>${D.lanes.filter((l) => usableFor(l, k)).length}</small></button>`).join("") +
     `</span><a class="vs-help" href="${D.root}methodology${D.ext}#use-case-views" title="What these views mean">${I.help("What these views mean")}</a>`;
 }
@@ -1158,10 +1158,10 @@ const CL = lanesOn(C);
     ${CH[C] && CH[C].free_condition ? `<p class="chcond"><b>${Tx("Free if:", "Free if:")}</b> ${esc(CH[C].free_condition)}</p>` : ""}
     ${CH[C] ? `<p class="costline">${Tx("To start:", "To start:")} ${costHTML(C)} <span class="muted">${esc(CH[C].entry.note)}</span></p><p class="costline">${Tx("Use it:", "Use it:")} ${accessHTML(CH[C].access)}</p>` : ""}
     <div class="stats">
-      ${stat(Tx("Free now", "Free now"), `${CL.filter(isFree).length} of ${CL.length}`, Tx("models", "models"))}
+      ${stat(Tx("Free now", "Free now"), `${CL.filter(isFree).length}${ZH ? "／" : " of "}${CL.length}`, Tx("models", "models"))}
       ${stat(Tx("Ended", "Ended"), String(CL.filter((l) => l.status === "ended").length), Tx("tracked lanes that stopped", "tracked lanes that stopped"))}
       ${stat(Tx("Last checked", "Last checked"), esc(absDate(last)))}
-      ${tested.length ? stat(`${I.bolt()} ${Tx("Tested by us", "Tested by us")}`, `${tested.length} of ${CL.length}`, Tx("lanes measured", "lanes measured"), "measured-stat") : ""}
+      ${tested.length ? stat(`${I.bolt()} ${Tx("Tested by us", "Tested by us")}`, `${tested.length}${ZH ? "／" : " of "}${CL.length}`, Tx("lanes measured", "lanes measured"), "measured-stat") : ""}
     </div>`;
 })();
 
