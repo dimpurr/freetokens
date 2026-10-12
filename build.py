@@ -1431,36 +1431,39 @@ def parse_frontmatter(text, where):
         sys.exit(f"✗ {where}: missing frontmatter")
     end = text.index("\n---", 4)
     meta, body = {}, text[4:end].split("\n")
-    cur, curmap = None, None
+    rest = text[end + 4:].lstrip("\n")
+    cur, inmap = None, False
     for i, line in enumerate(body, 1):
         if not line.strip() or line.strip().startswith("#"):
             continue
-        if re.match(r"^  - ", line) and cur:
-            if curmap is not None:
-                curmap.append(line[4:].strip())
-            else:
-                meta[cur].append(line[4:].strip())
-        elif re.match(r"^    [a-z_]+: ", line) and cur and isinstance(meta.get(cur), list) and curmap is None and meta[cur] and isinstance(meta[cur][-1], dict):
-            k, v = line.strip().split(": ", 1)
-            meta[cur][-1][k] = v.strip()
-        elif re.match(r"^  - ([a-z_]+): ", line) and cur:
-            m = re.match(r"^  - ([a-z_]+): (.*)", line)
+        m = re.match(r"^  - ([a-z_]+): (.*)", line)
+        if m and cur and isinstance(meta.get(cur), list):
             meta[cur].append({m.group(1): m.group(2).strip()})
-            curmap = True
-        elif re.match(r"^[a-z_]+: ", line):
-            k, v = line.split(": ", 1)
-            v = v.strip()
-            if v.startswith("[") and v.endswith("]"):
+            inmap = True
+            continue
+        if re.match(r"^  - ", line) and cur and isinstance(meta.get(cur), list) and not inmap:
+            meta[cur].append(line[4:].strip())
+            continue
+        m2 = re.match(r"^    ([a-z_]+): (.*)", line)
+        if m2 and cur and isinstance(meta.get(cur), list) and meta[cur] and isinstance(meta[cur][-1], dict):
+            meta[cur][-1][m2.group(1)] = m2.group(2).strip()
+            continue
+        m3 = re.match(r"^([a-z_]+): ?(.*)$", line)
+        if m3 and not line.startswith(" "):
+            k, v = m3.group(1), m3.group(2).strip()
+            if v == "":
+                meta[k] = []
+            elif v.startswith("[") and v.endswith("]"):
                 meta[k] = [x.strip().strip("'\"") for x in v[1:-1].split(",") if x.strip()]
             elif v in ("true", "false"):
                 meta[k] = v == "true"
             else:
                 meta[k] = v.strip("'\"")
             cur = k if isinstance(meta[k], list) else None
-            curmap = None
-        else:
-            sys.exit(f"✗ {where}:{i}: cannot parse frontmatter line: {line[:60]}")
-    return meta
+            inmap = False
+            continue
+        sys.exit(f"✗ {where}:{i}: cannot parse frontmatter line: {line[:60]}")
+    return meta, rest
 
 
 def load_articles():
@@ -1534,7 +1537,7 @@ def render_live_block(spec, lanes, models, today):
         sys.exit(f"✗ live:where-to-use needs model=: {spec[:60]}")
     rows = [l for l in lanes if l["model"] == kv["model"] and l["status"] in FREE]
     names = {mm["id"]: mm["name"] for mm in models}
-    items = "".join(f"<li>{esc(l['channel'])} · {esc(label('status', l['status']))} · {esc(ends_text(l))}</li>" for l in rows) or (f"<li>{tr('none')}</li>")
+    items = "".join(f"<li>{html.escape(l['channel'])} · {html.escape(label('status', l['status']))} · {html.escape(ends_text(l))}</li>" for l in rows) or (f"<li>{tr('none')}</li>")
     head = tr("Where it's free now")
     return f'<div class="livebox-rows"><b>{head}</b><ul>{items}</ul><p class="muted">{tr("As of the build date")} {today.isoformat()}</p></div>'
 
@@ -1566,7 +1569,7 @@ def render_md_article(md_text, ctx, slug):
             sys.exit(f"✗ {slug}: image needs alt text: {src[:60]}")
         if "来源：" not in cap and "Source:" not in cap:
             sys.exit(f"✗ {slug}: image caption needs a source URL: {src[:60]}")
-        if not re.search(r"截图：\d{4}-\d{2}-\d{2}|shot: \d{4}-\d{2}-\d{2}", cap):
+        if not re.search(r"截图：\d{4}-\d{2}-\d{2}|[Ss]hot: \d{4}-\d{2}-\d{2}", cap):
             sys.exit(f"✗ {slug}: image caption needs a screenshot date: {src[:60]}")
         if not src.endswith(".webp"):
             sys.exit(f"✗ {slug}: images must be committed as .webp: {src[:60]}")
@@ -1673,15 +1676,13 @@ def build_blog(lanes, events, models, today, mode, lang="en"):
             return ()
         return (("en", f"{SITE}/{path}"), ("zh-CN", f"{SITE}/zh/{path}"), ("x-default", f"{SITE}/{path}"))
 
-    for slug_ in sorted(live):
-        meta, body_md = live[slug_][lang]
+    def render_one(slug_, meta, body_md, url):
         srcs = {s["id"]: s for s in meta.get("sources", [])}
         ctx = dict(ctx_base, sources=srcs, imgs=[])
         html_body, cites = render_md_article(body_md, ctx, slug_)
         unused = [s["id"] for s in meta.get("sources", []) if s["id"] not in cites]
         if unused:
             sys.exit(f"✗ blog/{slug_}: unused sources {unused}")
-        url = f"{U}/blog/{slug_}"
         toc = "".join(f'<li><a href="#{a}">{html.escape(t)}</a></li>' for a, t in render_md_article_toc(body_md))
         changes = "".join(f"<div class=\"it\"><div class=\"t\">{html.escape(c.split('：', 1)[0])}</div><div class=\"b\">{html.escape(c.split('：', 1)[1] if '：' in c else c)}</div></div>" for c in meta.get("changelog", []))
         srclist = "".join(f'<li id="src-{i + 1}"><a href="{html.escape(srcs[c]["url"])}" target="_blank" rel="noopener">{html.escape(srcs[c].get("title", c))}</a> <a href="#cite-{i + 1}">↩</a></li>' for i, c in enumerate(cites))
@@ -1704,16 +1705,33 @@ def build_blog(lanes, events, models, today, mode, lang="en"):
                "url": url, "datePublished": str(meta.get("published", "")), "dateModified": str(meta.get("updated", "")),
                "author": {"@type": "Person", "name": "Dim", "url": f"{SITE}/about"},
                "inLanguage": "zh-CN" if zh else "en"}]
+        for _, src in ctx["imgs"]:
+            BLOG_IMGS.append((slug_, src))
+        return (title, desc, ld, body)
+
+    drafts = {}
+    for slug_ in sorted(arts):
+        if lang not in arts[slug_]:
+            continue
+        meta, body_md = arts[slug_][lang]
+        if meta.get("draft", False):
+            url = f"{U}/preview/{slug_}"
+            title, desc, ld, body = render_one(slug_, dict(meta, title=meta.get("title", slug_) + ("（预览）" if zh else " (preview)")), body_md, url)
+            head = head_html(title, desc, url, today, ld, og, lang, ())
+            head = head.replace('content="index, follow', 'content="noindex, nofollow')
+            drafts[P + f"preview/{slug_}.html"] = (head, body)
+    for slug_ in sorted(live):
+        meta, body_md = live[slug_][lang]
+        url = f"{U}/blog/{slug_}"
+        title, desc, ld, body = render_one(slug_, meta, body_md, url)
         pages[P + f"blog/{slug_}.html"] = (head_html(title, desc, url, today, ld, og, lang, alt(f"blog/{slug_}")), body)
         entries.append((url, meta["title"], desc, str(meta.get("updated", today.isoformat()))))
         for tg in meta.get("tags", []):
             kind = "model" if tg in {m["id"] for m in models} else ("channel" if tg in {slug(c["name"]) for c in load_optional("channels", [])} | {slug(l["channel"]) for l in lanes} else "maker")
             related.setdefault((kind, tg), []).append((meta["title"], url, str(meta.get("updated", ""))))
-        for _, src in ctx["imgs"]:
-            BLOG_IMGS.append((slug, src))
     for kind_map in related.values():
         kind_map.sort(key=lambda x: x[2], reverse=True)
-    return pages, entries, related
+    return pages, entries, related, drafts
 
 
 BLOG_IMGS = []
@@ -1810,15 +1828,6 @@ def build_blog_pages(lanes, events, models, today, mode, lang="en"):
                  "sameAs": ["https://dimchen.com"], "inLanguage": "zh-CN" if zh else "en"}]
     pages[P + "about.html"] = (head_html(f"{about_title} | freetokens", "", about_url, today, about_ld, og, lang, alt("about")),
                                full_blog_shell(about_title, about_body, U, lang))
-    for s_, vers in arts.items():
-        meta, body_md = vers.get(lang, (None, None))
-        if meta is None or not meta.get("draft", False):
-            continue
-        url = f"{U}/preview/{slug}"
-        title = meta.get("title", slug) + ("（预览）" if zh else " (preview)")
-        head = head_html(title, meta.get("description", ""), url, today, [], og, lang, ())
-        head = head.replace('content="index, follow', 'content="noindex, nofollow')
-        drafts[P + f"preview/{slug}.html"] = (head, full_blog_shell(title, "<p>draft</p>", U, lang))
     return pages, drafts
 
 
@@ -2051,15 +2060,15 @@ def main():
         site_zh = build_pages(lanes, events, models, today, "site", "zh")
         site_zh.pop("__base__", None)
         LANG = "en"
-        blog_en, entries_en, rel_en = build_blog(lanes, events, models, today, "site", "en")
-        blog_zh, entries_zh, rel_zh = build_blog(lanes, events, models, today, "site", "zh")
+        blog_en, entries_en, rel_en, drafts_en = build_blog(lanes, events, models, today, "site", "en")
+        blog_zh, entries_zh, rel_zh, drafts_zh = build_blog(lanes, events, models, today, "site", "zh")
         site.update(blog_en)
         site_zh.update(blog_zh)
         blog_idx, blog_idx_zh = build_blog_pages(lanes, events, models, today, "site"), build_blog_pages(lanes, events, models, today, "site", "zh")
         site.update(blog_idx[0])
         site_zh.update(blog_idx_zh[0])
-        drafts_all = dict(blog_idx[1])
-        drafts_all.update(blog_idx_zh[1])
+        drafts_all = dict(drafts_en)
+        drafts_all.update(drafts_zh)
         # related-article cards on model/channel pages (only when articles exist)
         for store, related in ((site, rel_en), (site_zh, rel_zh)):
             for path, (h, b) in list(store.items()):
@@ -2111,6 +2120,14 @@ def main():
             (dist / p).write_text(full_doc(h, b, lang))
             review = dist / p.replace(".html", ".review.md")
             review.write_text(f"# review: {p}\n\n- claims: check titles, numbers, dates against sources\n- speculation flagged with 推测/可能\n- diff vs previous on update\n")
+        blogmap = {"en": [], "zh": [], "feed_en": [], "feed_zh": []}
+        for u, ti, de, up in entries_en:
+            blogmap["en"].append((u, up))
+            blogmap["feed_en"].append((u, ti, de, up))
+        for u, ti, de, up in entries_zh:
+            blogmap["zh"].append((u, up))
+            blogmap["feed_zh"].append((u, ti, de, up))
+        for p, c in site_extras(site, lanes, events, models, today, site_zh, blogmap).items():
             (dist / p).parent.mkdir(parents=True, exist_ok=True)
             (dist / p).write_text(c)
         n = prerender(dist)
