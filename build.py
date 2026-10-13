@@ -1605,16 +1605,51 @@ def render_md_article(md_text, ctx, slug):
         ctx["imgs"].append((slug, src))
         return f'<figure><img src="/blog/{slug}/{src}" alt="{html.escape(alt)}" width="{wh[0]}" height="{wh[1]}" loading="lazy"><figcaption>{html.escape(cap)}</figcaption></figure>'
 
-    out, lst = [], None
+    def table_html(rows):
+        sep = len(rows) > 1 and re.fullmatch(r"\|[\s|:-]+\|", rows[1])
+        body = rows[2:] if sep else rows[1:]
+        cells = lambda r: [inline(c.strip()) for c in r.strip().strip("|").split("|")]
+        head = "".join(f"<th>{c}</th>" for c in cells(rows[0])) if rows else ""
+        tr = "".join("<tr>" + "".join(f"<td>{c}</td>" for c in cells(r)) + "</tr>" for r in body)
+        return f'<div class="tbl-scroll"><table><thead><tr>{head}</tr></thead><tbody>{tr}</tbody></table></div>'
+
+    def bq_html(parts):
+        return "<blockquote>" + "".join(f"<p>{x}</p>" for x in parts if x) + "</blockquote>"
+
+    out, lst, bq, tb = [], None, None, None
     for line in md_text.splitlines() + [""]:
         mi = re.match(r"^!\[(.*?)\]\((\S+?)(?:\s+\"(.*?)\")?\)$", line.strip())
         if mi:
             if lst:
                 out.append(f"</{lst}>"); lst = None
+            if tb is not None:
+                out.append(table_html(tb)); tb = None
+            if bq is not None:
+                out.append(bq_html(bq)); bq = None
             out.append(img_tag(mi))
             continue
+        if line.startswith(">"):                      # blockquote (answer box)
+            if lst:
+                out.append(f"</{lst}>"); lst = None
+            if tb is not None:
+                out.append(table_html(tb)); tb = None
+            if bq is None:
+                bq = []
+            bq.append(inline(line[1:].strip())); continue
+        if line.strip().startswith("|"):              # table
+            if lst:
+                out.append(f"</{lst}>"); lst = None
+            if bq is not None:
+                out.append(bq_html(bq)); bq = None
+            tb = (tb or []) + [line.strip()]; continue
+        if tb is not None:
+            out.append(table_html(tb)); tb = None
+        if bq is not None and not line.strip():
+            out.append(bq_html(bq)); bq = None
         mh = re.match(r"^(#{1,3})\s+(.*?)(?:\s+\{#([a-z0-9-]+)\})?$", line)
         if mh:
+            if bq is not None:
+                out.append(bq_html(bq)); bq = None
             if lst:
                 out.append(f"</{lst}>"); lst = None
             level, title, custom = len(mh.group(1)), mh.group(2), mh.group(3)
@@ -1631,6 +1666,8 @@ def render_md_article(md_text, ctx, slug):
             continue
         m = re.match(r"^(\s*)(-|\d+\.)\s+(.*)", line)
         if m:
+            if bq is not None:
+                out.append(bq_html(bq)); bq = None
             tag = "ul" if m.group(2) == "-" else "ol"
             if lst != tag:
                 if lst:
