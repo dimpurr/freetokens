@@ -1581,10 +1581,20 @@ def render_live_block(spec, lanes, models, today):
     if "model" not in kv:
         sys.exit(f"✗ live:where-to-use needs model=: {spec[:60]}")
     rows = [l for l in lanes if l["model"] == kv["model"] and l["status"] in FREE]
-    names = {mm["id"]: mm["name"] for mm in models}
-    items = "".join(f"<li>{html.escape(l['channel'])} · {html.escape(label('status', l['status']))} · {html.escape(ends_text(l))}</li>" for l in rows) or (f"<li>{tr('none')}</li>")
+    pre = "/zh" if LANG == "zh" else ""
+
+    def end_note(l):
+        e = l["ends"]
+        if e.get("announced"):
+            return f"{tr('ends')} {fmt_date(e['announced'])}"
+        if e.get("expected"):
+            return f"{tr('expected to end')} {fmt_date(e['expected'])}"
+        return tr("no end date announced")
+    chips = "".join(f'<a class="chip" href="{pre}/channels/{slug(l["channel"])}">{html.escape(l["channel"])}<small>{html.escape(end_note(l))}</small></a>' for l in rows) \
+        or f'<span class="muted">{tr("none")}</span>'
     head = tr("Where it's free now")
-    return f'<div class="livebox-rows"><b>{head}</b><ul>{items}</ul><p class="muted">{tr("As of the build date")} {today.isoformat()}</p></div>'
+    return (f'<div class="livebox"><div class="livebox-head"><b>{head}</b><span class="muted">{tr("As of the build date")} {today.isoformat()}</span></div>'
+            f'<div class="chips">{chips}</div></div>')
 
 
 def render_md_article(md_text, ctx, slug):
