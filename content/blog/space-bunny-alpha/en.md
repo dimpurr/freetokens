@@ -216,7 +216,7 @@ We know the neighbourhood, not the house.
 
 ## What we're watching {#watching}
 
-- **When Zen stops.** We re-check the Zen lane regularly and will update this page the day it ends.
+- **When Zen stops.** OpenCode hasn't said. The "Where it's free now" box at the top is rebuilt from current data every time the site is built.
 - **A name.** The maker section changes only if OpenRouter or the maker names the model.
 - **A comeback** on the other four channels. None has been announced, and Go now sells it as a paid model.
 - **A proper benchmark.** Once the model is named, Artificial Analysis will probably score it, and our estimate will give way to a real number.
