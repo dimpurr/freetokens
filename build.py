@@ -1420,6 +1420,22 @@ def collect_free_keys(lanes, events, models):
 
 # ---------- blog (ADR-028): articles live in content/blog/<slug>/{en.md, zh.md, img/} ----------
 
+
+def article_where(s_, lang):
+    """Path label for error messages: content/blog/ or .private/drafts/, whichever holds the file."""
+    if (ROOT / ".private" / "drafts" / s_ / f"{lang}.md").exists():
+        return f".private/drafts/{s_}/{lang}.md"
+    return f"content/blog/{s_}/{lang}.md"
+
+
+def article_img_path(slug, src):
+    """Image source for an article slug: content/blog/ first, then .private/drafts/. None if missing."""
+    for base in (ROOT / "content" / "blog", ROOT / ".private" / "drafts"):
+        p = base / slug / src
+        if p.exists():
+            return p
+    return None
+
 BLOG_SECTIONS = ("档案", "指南", "盘点")
 BLOG_STATUS = ("developing", "settled")
 BLOG = {"en": [], "zh": []}  # filled by build_blog: [(loc, lastmod, title)] per lang, read by sitemap/feeds
@@ -1467,21 +1483,28 @@ def parse_frontmatter(text, where):
 
 
 def load_articles():
-    """Read content/blog/*/{en,zh}.md. Returns {slug: {'en': (meta, body), 'zh': (meta, body)}}."""
+    """Read content/blog/*/{en,zh}.md plus .private/drafts/*/{en,zh}.md (drafts only, preview only).
+    Returns {slug: {'en': (meta, body), 'zh': (meta, body)}}."""
     out = {}
-    base = ROOT / "content" / "blog"
-    if not base.exists():
-        return out
-    for d in sorted(base.iterdir()):
-        if not d.is_dir():
+    for base, tag in ((ROOT / "content" / "blog", None), (ROOT / ".private" / "drafts", "draft")):
+        if not base.exists():
             continue
-        item = {}
-        for lang in ("en", "zh"):
-            p = d / f"{lang}.md"
-            if p.exists():
-                item[lang] = parse_frontmatter(p.read_text(), f"content/blog/{d.name}/{lang}.md")
-        if item:
-            out[d.name] = item
+        for d in sorted(base.iterdir()):
+            if not d.is_dir():
+                continue
+            item = {}
+            for lang in ("en", "zh"):
+                p = d / f"{lang}.md"
+                if p.exists():
+                    item[lang] = parse_frontmatter(p.read_text(), f"{base.parent.name}/{base.name}/{d.name}/{lang}.md")
+            if item:
+                if tag == "draft":
+                    for lang, (meta, _body) in item.items():
+                        if not meta.get("draft", False):
+                            sys.exit(f"✗ .private/drafts/{d.name}/{lang}.md: must be draft:true (publish = move to content/blog/)")
+                if d.name in out:
+                    sys.exit(f"✗ slug collision: {d.name} in both content/blog/ and .private/drafts/")
+                out[d.name] = item
     return out
 
 
@@ -1573,8 +1596,8 @@ def render_md_article(md_text, ctx, slug):
             sys.exit(f"✗ {slug}: image caption needs a screenshot date: {src[:60]}")
         if not src.endswith(".webp"):
             sys.exit(f"✗ {slug}: images must be committed as .webp: {src[:60]}")
-        p = ROOT / "content" / "blog" / slug / src
-        if not p.exists():
+        p = article_img_path(slug, src)
+        if p is None:
             sys.exit(f"✗ {slug}: image missing: {src[:60]}")
         wh = img_dims(p)
         if not wh:
@@ -1633,7 +1656,7 @@ def check_blog(lanes, events, models):
             if lang not in vers:
                 errs.append(f"blog/{s_}: missing {lang}.md (EN/ZH must pair)")
         for lang, (meta, body) in vers.items():
-            where = f"content/blog/{slug}/{lang}.md"
+            where = article_where(s_, lang)
             for f in ("title", "description", "slug", "section", "tags", "published", "updated", "status", "author", "draft"):
                 if f not in meta:
                     errs.append(f"{where}: missing frontmatter {f}")
@@ -1851,7 +1874,7 @@ def check_blog(lanes, events, models):
             if lang not in vers:
                 errs.append(f"blog/{s_}: missing {lang}.md (EN/ZH must pair)")
         for lang, (meta, body) in vers.items():
-            where = f"content/blog/{slug}/{lang}.md"
+            where = article_where(s_, lang)
             for f in ("title", "description", "slug", "section", "tags", "published", "updated", "status", "author", "draft"):
                 if f not in meta:
                     errs.append(f"{where}: missing frontmatter {f}")
@@ -2115,7 +2138,9 @@ def main():
             sys.exit(f"✗ nested index.html is not allowed (use <dir>.html): {nested}")
         import shutil as _sh
         for slug, src in BLOG_IMGS:
-            s = ROOT / "content" / "blog" / slug / src
+            s = article_img_path(slug, src)
+            if s is None:
+                sys.exit(f"✗ {slug}: image missing at copy: {src[:60]}")
             d = dist / "blog" / slug / src
             d.parent.mkdir(parents=True, exist_ok=True)
             _sh.copyfile(s, d)
