@@ -611,5 +611,9 @@
  "每账号免费月额度（金额只 dashboard 可见，未公布），按模型真实单价扣；免费档 30请求/10s、3并发": "每账号免费月额度（金额只 dashboard 可见，未公布），按模型真实单价扣；免费档 30请求/10s、3并发",
  "混元生文8模型共享（a13b/role/translation系列/vision/t1等）+ embedding另100万": "混元生文8模型共享（a13b/role/translation系列/vision/t1等）+ embedding另100万",
  "需腾讯云企业/个人实名，首次点立即使用即得。caveat：文档称混元相关功能将逐步迁移至TokenHub；TokenHub新人包（至2026-12-31）只见第三方，未在官方页独立核到。": "需腾讯云企业/个人实名，首次点立即使用即得。caveat：文档称混元相关功能将逐步迁移至TokenHub；TokenHub新人包（至2026-12-31）只见第三方，未在官方页独立核到。",
- "首次开通腾讯混元大模型服务后，混元生文将发放一定量级的免费调用额度……共100万tokens，共享消耗。资源包有效期为1年": "首次开通腾讯混元大模型服务后，混元生文将发放一定量级的免费调用额度……共100万tokens，共享消耗。资源包有效期为1年"
+ "首次开通腾讯混元大模型服务后，混元生文将发放一定量级的免费调用额度……共100万tokens，共享消耗。资源包有效期为1年": "首次开通腾讯混元大模型服务后，混元生文将发放一定量级的免费调用额度……共100万tokens，共享消耗。资源包有效期为1年",
+ "Free :free variant removed from OpenRouter (pricing>0); paid version remains": "OpenRouter 下架免费 :free 变体（定价>0）；付费版仍在",
+ "opencode/fledge-alpha-free no longer in the Zen model list": "opencode/fledge-alpha-free 已不在 Zen 模型列表",
+ "opencode/ling-3.0-flash-fin-free no longer in the Zen model list": "opencode/ling-3.0-flash-fin-free 已不在 Zen 模型列表",
+ "opencode/nemotron-3-ultra-free no longer in the Zen model list": "opencode/nemotron-3-ultra-free 已不在 Zen 模型列表"
 }
