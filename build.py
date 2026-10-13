@@ -1089,20 +1089,24 @@ def build_pages(lanes, events, models, today, mode, lang="en"):
         pages[P + "methodology.html"] = (head_html(mtitle, mdesc, U + "/methodology", today, [crumbs([("freetokens", HU), (tr("Methodology"), U + "/methodology")])], og, lang, alt("methodology")),
                                      topbar + '<div class="wrap prose">' + md_to_html(method_body) + '</div>')
     if site:
-        # language switch (topbar, next to the GitHub button): each page links to its counterpart
-        for path in list(pages):
-            if path == "__base__":
-                continue
-            h, b = pages[path]
-            if '<a class="gh"' not in b:
-                continue
-            loc = path[:-5].removesuffix("index").rstrip("/")  # "index" -> "", "zh/index" -> "zh"
-            if zh:
-                other = SITE + "/" + loc[3:]
-            else:
-                other = SITE + "/zh/" + loc if loc else SITE + "/zh"
-            pages[path] = (h, b.replace('<a class="gh"', f'<a class="langsw" href="{other}">{"EN" if zh else "中文"}</a><a class="gh"', 1))
+        add_langsw(pages, zh)
     return pages
+
+
+def add_langsw(pages, zh):
+    """Language switch (topbar, next to the GitHub button): each page links to its counterpart."""
+    for path in list(pages):
+        if path == "__base__":
+            continue
+        h, b = pages[path]
+        if '<a class="gh"' not in b:
+            continue
+        loc = path[:-5].removesuffix("index").rstrip("/")  # "index" -> "", "zh/index" -> "zh"
+        if zh:
+            other = SITE + "/" + loc[3:]
+        else:
+            other = SITE + "/zh/" + loc if loc else SITE + "/zh"
+        pages[path] = (h, b.replace('<a class="gh"', f'<a class="langsw" href="{other}">{"EN" if zh else "中文"}</a><a class="gh"', 1))
 
 
 def md_to_html(md):
@@ -1485,7 +1489,7 @@ def parse_frontmatter(text, where):
             inmap = True
             continue
         if re.match(r"^  - ", line) and cur and isinstance(meta.get(cur), list) and not inmap:
-            meta[cur].append(line[4:].strip())
+            meta[cur].append(line[4:].strip().strip("'\""))
             continue
         m2 = re.match(r"^    ([a-z_]+): (.*)", line)
         if m2 and cur and isinstance(meta.get(cur), list) and meta[cur] and isinstance(meta[cur][-1], dict):
@@ -1640,15 +1644,25 @@ def render_md_article(md_text, ctx, slug):
         if not wh:
             sys.exit(f"✗ {slug}: cannot read image dimensions: {src[:60]}")
         ctx["imgs"].append((slug, src))
-        return f'<figure><img src="/blog/{slug}/{src}" alt="{html.escape(alt)}" width="{wh[0]}" height="{wh[1]}" loading="lazy"><figcaption>{html.escape(cap)}</figcaption></figure>'
+        img = f'<a class="fig-img" href="/blog/{slug}/{src}"><img src="/blog/{slug}/{src}" alt="{html.escape(alt)}" width="{wh[0]}" height="{wh[1]}" loading="lazy"></a>'
+        mc = re.match(r"^(.*?)\s*(?:Source:|来源：)\s*(\S+)\s*(?:[Ss]hot:|截图：)\s*(\d{4}-\d{2}-\d{2})\s*$", cap)
+        if not mc:
+            return f'<figure>{img}<figcaption>{html.escape(cap)}</figcaption></figure>'
+        desc, url, shot = mc.groups()
+        meta = (f'<span class="fig-meta"><a href="{html.escape(url)}" target="_blank" rel="noopener">{html.escape(src_label(url))}</a>'
+                f' · {tr("captured")} {html.escape(shot)}</span>')
+        return f'<figure>{img}<figcaption>{html.escape(desc)} {meta}</figcaption></figure>'
 
     def table_html(rows):
         sep = len(rows) > 1 and re.fullmatch(r"\|[\s|:-]+\|", rows[1])
         body = rows[2:] if sep else rows[1:]
         cells = lambda r: [inline(c.strip()) for c in r.strip().strip("|").split("|")]
-        head = "".join(f"<th>{c}</th>" for c in cells(rows[0])) if rows else ""
-        tr = "".join("<tr>" + "".join(f"<td>{c}</td>" for c in cells(r)) + "</tr>" for r in body)
-        return f'<div class="tbl-scroll"><table><thead><tr>{head}</tr></thead><tbody>{tr}</tbody></table></div>'
+        hs = cells(rows[0]) if rows else []
+        head = "".join(f"<th>{c}</th>" for c in hs)
+        lab = lambda i: html.escape(re.sub(r"<[^>]+>", "", hs[i]), quote=True) if i < len(hs) else ""
+        tr = "".join("<tr>" + "".join(f'<td data-label="{lab(i)}">{c}</td>' for i, c in enumerate(cells(r))) + "</tr>" for r in body)
+        card = " cardify" if len(hs) >= 3 else ""  # 3+ columns don't fit a phone: each row becomes a card (style.css P6)
+        return f'<div class="tbl-scroll"><table class="atable{card}"><thead><tr>{head}</tr></thead><tbody>{tr}</tbody></table></div>'
 
     def bq_html(parts):
         return "<blockquote>" + "".join(f"<p>{x}</p>" for x in parts if x) + "</blockquote>"
@@ -1697,9 +1711,16 @@ def render_md_article(md_text, ctx, slug):
             if level == 1:
                 out.append(f"<h1>{inline(title)}</h1>")
             else:
-                out.append(f"<h2 id=\"{aid}\">{inline(title)}</h2>")
+                out.append(f"<h{level} id=\"{aid}\">{inline(title)}</h{level}>")
                 if level == 2:
                     h2n[0] += 1
+            continue
+        if line.strip() == "---":                     # part divider (e.g. before the deep dive)
+            if bq is not None:
+                out.append(bq_html(bq)); bq = None
+            if lst:
+                out.append(f"</{lst}>"); lst = None
+            out.append('<hr class="part">')
             continue
         m = re.match(r"^(\s*)(-|\d+\.)\s+(.*)", line)
         if m:
@@ -1780,21 +1801,28 @@ def build_blog(lanes, events, models, today, mode, lang="en"):
         unused = [s["id"] for s in meta.get("sources", []) if s["id"] not in cites]
         if unused:
             sys.exit(f"✗ blog/{slug_}: unused sources {unused}")
-        toc = "".join(f'<li><a href="#{a}">{html.escape(t)}</a></li>' for a, t in render_md_article_toc(body_md))
-        changes = "".join(f"<div class=\"it\"><div class=\"t\">{html.escape(c.split('：', 1)[0])}</div><div class=\"b\">{html.escape(c.split('：', 1)[1] if '：' in c else c)}</div></div>" for c in meta.get("changelog", []))
-        srclist = "".join(f'<li id="src-{i + 1}"><a href="{html.escape(srcs[c]["url"])}" target="_blank" rel="noopener">{html.escape(srcs[c].get("title", c))}</a> <a href="#cite-{i + 1}">↩</a></li>' for i, c in enumerate(cites))
-        byline = f'<a href="{RT}about">Dim</a>'
+        toc = toc_html(render_md_article_toc(body_md))
+        changes = ""
+        for c in meta.get("changelog", []):
+            mc = re.match(r"^(\d{4}-\d{2}-\d{2})\s*[:：]\s*(.*)$", str(c))
+            d_, what = (mc.group(1), mc.group(2)) if mc else ("", str(c))
+            changes += f'<li><time>{html.escape(fmt_date(d_) if d_ else "")}</time><span>{html.escape(what)}</span></li>'
+        srclist = "".join(f'<li id="src-{i + 1}"><a href="{html.escape(srcs[c]["url"])}" target="_blank" rel="noopener">{html.escape(srcs[c].get("title", c))}</a>'
+                          f' <span class="src-dom">{html.escape(src_label(srcs[c]["url"]))}</span>'
+                          f' <a class="src-back" href="#cite-{i + 1}" aria-label="{tr("Back to text")}">↩</a></li>' for i, c in enumerate(cites))
+        byline = byline_html(meta, body_md, RT)
         t = (ROOT / "templates" / "article.html").read_text()
         t = t.replace("__BRAND__", BRAND).replace("__GH__", GH).replace("__HOME__", RT).replace("__ROOT__", RT)
         if zh:
             t = apply_zh_template(t)
         body = (t.replace("__SECTION__", esc_section(meta.get("section", ""))).replace("__STATUS__", esc_status(meta.get("status", "")))
+                 .replace("__STATUS_CLASS__", html.escape(meta.get("status", "")))
                  .replace("__TITLE__", html.escape(meta["title"])).replace("__DESCRIPTION__", html.escape(meta.get("description", "")))
-                 .replace("__AUTHOR__", byline).replace("__PUBLISHED__", html.escape(str(meta.get("published", "")))).replace("__UPDATED__", html.escape(str(meta.get("updated", ""))))
-                 .replace("__LIVEBOX__", "").replace("__TOC__", toc).replace("__BODY__", html_body)
+                 .replace("__BYLINE__", byline).replace("__TOC__", toc).replace("__BODY__", html_body)
                  .replace("__CHANGES_H__", tr("Changelog")).replace("__CHANGELOG__", changes)
                  .replace("__SOURCES_H__", tr("Sources")).replace("__SOURCES__", srclist)
                  .replace("__FOOTER__", tr("Collected by hand. Data: CC BY 4.0.")))
+        no_slots(body, f"blog/{slug_}")
         title = meta["title"] + " | freetokens"
         desc = meta.get("description", "")
         ld = [crumbs([("freetokens", HU), (tr("Blog") if zh else "Blog", U + "/blog"), (meta["title"], url)]),
@@ -1828,6 +1856,8 @@ def build_blog(lanes, events, models, today, mode, lang="en"):
             related.setdefault((kind, tg), []).append((meta["title"], url, str(meta.get("updated", ""))))
     for kind_map in related.values():
         kind_map.sort(key=lambda x: x[2], reverse=True)
+    if site:
+        add_langsw(pages, zh)
     return pages, entries, related, drafts
 
 
@@ -1846,14 +1876,62 @@ def esc_status(s):
 
 
 def render_md_article_toc(md_text):
+    """[(level, anchor, title)] for ## and ### headings."""
     out = []
     for line in md_text.splitlines():
         mh = re.match(r"^(#{1,3})\s+(.*?)(?:\s+\{#([a-z0-9-]+)\})?$", line)
         if mh and len(mh.group(1)) >= 2:
             title = mh.group(2)
             aid = mh.group(3) or re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")
-            out.append((aid, re.sub(r"\{\{.+?\}\}|\[\^[^\]]+\]", "", title)))
+            out.append((len(mh.group(1)), aid, re.sub(r"\{\{.+?\}\}|\[\^[^\]]+\]", "", title)))
     return out
+
+
+def toc_html(items):
+    """Nested contents list: ### entries sit under the ## before them."""
+    out, open_sub = ["<ol>"], False
+    for i, (lvl, aid, title) in enumerate(items):
+        if lvl == 3 and not open_sub:
+            out.append("<ol>"); open_sub = True
+        elif lvl == 2 and open_sub:
+            out.append("</ol></li>"); open_sub = False
+        elif lvl == 2 and i:
+            out.append("</li>")
+        out.append(f'<li><a href="#{aid}">{html.escape(title)}</a>' + ("</li>" if lvl == 3 else ""))
+    out.append("</ol></li></ol>" if open_sub else ("</li></ol>" if items else "</ol>"))
+    return "".join(out)
+
+
+def src_label(url):
+    """Short source label for captions and the source list: domain, plus the account on x.com / github.com."""
+    m = re.match(r"https?://(?:www\.)?([^/]+)(?:/([^/?#]+))?", url)
+    if not m:
+        return url
+    host, first = m.group(1), m.group(2)
+    if host in ("x.com", "twitter.com", "github.com", "threads.net", "www.threads.net") and first:
+        return f"{host}/{first}"
+    return host
+
+
+def read_minutes(body_md, lang):
+    """Reading time from the body only: images, footnote marks and live blocks don't count."""
+    t = re.sub(r"!\[.*?\]\(.*?\)|\[\^[^\]]+\]|\{\{.+?\}\}|\{#[a-z0-9-]+\}", " ", body_md)
+    t = re.sub(r"\]\([^)]*\)", "]", t)
+    words = len(re.findall(r"[A-Za-z0-9][A-Za-z0-9'’.-]*", t))
+    cjk = len(re.findall(r"[\u4e00-\u9fff]", t))
+    return max(1, round(words / 230 + cjk / 450))
+
+
+def byline_html(meta, body_md, root):
+    pub, upd = str(meta.get("published", "")), str(meta.get("updated", ""))
+    parts = [f'{tr("By")} <a href="{root}about">Dim</a>']
+    if pub:
+        parts.append(f'{tr("Published")} <time datetime="{html.escape(pub)}">{html.escape(fmt_date(pub))}</time>')
+    if upd and upd != pub:
+        parts.append(f'{tr("Updated")} <time datetime="{html.escape(upd)}">{html.escape(fmt_date(upd))}</time>')
+    n = read_minutes(body_md, LANG)
+    parts.append(f"{n} {tr('min read')}")
+    return '<span class="sep">·</span>'.join(f"<span>{x}</span>" for x in parts)
 
 
 def build_blog_pages(lanes, events, models, today, mode, lang="en"):
@@ -1887,11 +1965,9 @@ def build_blog_pages(lanes, events, models, today, mode, lang="en"):
                 continue
             if sec:
                 secname = sec if zh else {"档案": "Profiles", "指南": "Guides", "盘点": "Roundups"}.get(sec, sec)
-                parts.append(f"<h2>{html.escape(secname)}</h2>")
+                parts.append(f'<h2 class="bsec">{html.escape(secname)} <small>{len(items)}</small></h2>')
             if items:
-                parts.append("<ul>" + "".join(
-                    f'<li><a href="{U}/blog/{s}">{html.escape(m["title"])}</a> <span class="muted">{html.escape(str(m.get("updated", "")))}</span></li>'
-                    for s, m in items) + "</ul>")
+                parts.append('<div class="posts">' + "".join(post_card(s, m, arts[s][lang][1], U, show_section=sec is None) for s, m in items) + "</div>")
         if not parts:
             parts.append(f"<p>{tr('No articles yet.')}</p>")
         return "\n".join(parts)
@@ -1903,7 +1979,7 @@ def build_blog_pages(lanes, events, models, today, mode, lang="en"):
                "inLanguage": "zh-CN" if zh else "en"}]
     idx_desc = tr("All articles, grouped by section.")
     pages[P + "blog.html"] = (head_html(f"{idx_title} | freetokens", idx_desc, idx_url, today, idx_ld, og, lang, alt("blog")),
-                              full_blog_shell(idx_title, idx_body(None), U, lang))
+                              full_blog_shell(idx_title, idx_body(None), U, lang, intro=tr("Long reads on free LLM channels: what happened, what is still free, and how we know.")))
     tag_counts = {}
     for s, m in mine:
         for tg in m.get("tags", []):
@@ -1915,7 +1991,7 @@ def build_blog_pages(lanes, events, models, today, mode, lang="en"):
                          [crumbs([("freetokens", HU), (idx_title, idx_url), (tg, turl)])], og, lang, alt(f"blog/tag/{tg}") if indexable else ())
         if not indexable:
             head = head.replace('content="index, follow', 'content="noindex, nofollow')
-        pages[P + f"blog/tag/{tg}.html"] = (head, full_blog_shell(tg, idx_body(tag=tg), U, lang))
+        pages[P + f"blog/tag/{tg}.html"] = (head, full_blog_shell(tg, idx_body(tag=tg), U, lang, intro=f'<a href="{idx_url}">{tr("All articles")}</a>', raw_intro=True))
     about_title = tr("About")
     about_url = f"{U}/about"
     about_body = (f"<p>{tr('freetokens is maintained by Dim and tracks where capable LLMs are free right now.')}</p>"
@@ -1925,15 +2001,41 @@ def build_blog_pages(lanes, events, models, today, mode, lang="en"):
                  "sameAs": ["https://dimchen.com"], "inLanguage": "zh-CN" if zh else "en"}]
     pages[P + "about.html"] = (head_html(f"{about_title} | freetokens", "", about_url, today, about_ld, og, lang, alt("about")),
                                full_blog_shell(about_title, about_body, U, lang))
+    if site:
+        add_langsw(pages, zh)
     return pages, drafts
 
 
-def full_blog_shell(title, inner, root, lang):
-    t = (ROOT / "templates" / "article.html").read_text()
+def no_slots(body, where):
+    """Template slots must all be filled: a leftover __X__ means a template and its renderer drifted apart (2026-10-13)."""
+    m = re.search(r"__[A-Z_]{3,}__", body)
+    if m:
+        sys.exit(f"✗ {where}: template slot left unfilled: {m.group(0)}")
+    return body
+
+
+def post_card(slug_, m, body_md, U, show_section=True):
+    """Blog index card: section · status, title, description, date · reading time."""
+    upd = str(m.get("updated") or m.get("published") or "")
+    st = m.get("status", "")
+    sec = f'<span class="secbadge">{html.escape(esc_section(m.get("section", "")))}</span>' if show_section else ""
+    return (f'<a class="post" href="{U}/blog/{slug_}"><span class="meta-top">{sec}'
+            + (f'<span class="statusbadge {html.escape(st)}">{html.escape(esc_status(st))}</span>' if st else "")
+            + f'</span><span class="post-t">{html.escape(m["title"])}</span>'
+            f'<span class="post-d">{html.escape(m.get("description", ""))}</span>'
+            f'<span class="post-m"><time datetime="{html.escape(upd)}">{html.escape(fmt_date(upd) if upd else "")}</time>'
+            f'<span class="sep">·</span>{read_minutes(body_md, LANG)} {tr("min read")}</span></a>')
+
+
+def full_blog_shell(title, inner, root, lang, intro="", raw_intro=False):
+    """Blog index, tag and about pages: own template (no article slots left empty)."""
+    t = (ROOT / "templates" / "blog.html").read_text()
     t = t.replace("__BRAND__", BRAND).replace("__GH__", GH).replace("__HOME__", root + "/").replace("__ROOT__", root + "/")
     if lang == "zh":
         t = apply_zh_template(t)
-    return t.replace("__SECTION__", "").replace("__STATUS__", "").replace("__TITLE__", html.escape(title)).replace("__DESCRIPTION__", "").replace("__AUTHOR__", "").replace("__PUBLISHED__", "").replace("__UPDATED__", "").replace("__LIVEBOX__", "").replace("__TOC__", "").replace("__BODY__", inner).replace("__CHANGES_H__", "").replace("__CHANGELOG__", "").replace("__SOURCES_H__", "").replace("__SOURCES__", "").replace("__FOOTER__", "")
+    intro_html = (f'<p class="standfirst">{intro if raw_intro else html.escape(intro)}</p>' if intro else "")
+    return no_slots(t.replace("__TITLE__", html.escape(title)).replace("__INTRO__", intro_html).replace("__BODY__", inner)
+                    .replace("__FOOTER__", tr("Collected by hand. Data: CC BY 4.0.")), f"blog shell {title}")
 
 
 def check_blog(lanes, events, models):

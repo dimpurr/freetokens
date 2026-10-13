@@ -31,7 +31,7 @@ for (const p of pages) {
   const errors = window.happyDOM.virtualConsolePrinter.readAsString().split("\n").filter((l) => /^\w*Error/.test(l));
   const html = "<!doctype html>\n" + window.document.documentElement.outerHTML + "\n";
   await window.happyDOM.close();
-  if (errors.length || !html.includes('class="wrap"')) { console.error(`✗ prerender failed for ${p}: ${errors[0] || "no content"}`); process.exit(1); }
+  if (errors.length || !/class="wrap[ "]/.test(html)) { console.error(`✗ prerender failed for ${p}: ${errors[0] || "no content"}`); process.exit(1); }
   writeFileSync(outDir ? join(outDir, relative(dist, p).replaceAll("/", "__")) : p, html); n++;
 }
 console.log(`✓ prerendered ${n} pages with happy-dom in ${((Date.now() - t0) / 1000).toFixed(1)} s`);

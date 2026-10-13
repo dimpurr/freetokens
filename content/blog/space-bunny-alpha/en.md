@@ -221,6 +221,8 @@ We know the neighbourhood, not the house.
 - **A comeback** on the other four channels. None has been announced, and Go now sells it as a paid model.
 - **A proper benchmark.** Once the model is named, Artificial Analysis will probably score it, and our estimate will give way to a real number.
 
+---
+
 ## Deep dive {#deep-dive}
 
 Everything below is detail behind the conclusions above, for anyone who wants to check our work or follow a thread further.

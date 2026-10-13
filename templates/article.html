@@ -4,33 +4,42 @@
   __GH__
 </div></div>
 
-<div class="wrap">
+<div class="wrap blog">
   <nav class="back"><a href="__HOME__#h-models">← All models</a> <span class="sep">·</span> <a href="__ROOT__blog">← Blog</a></nav>
 
-  <header class="ahead">
-    <div class="meta-top"><span class="secbadge">__SECTION__</span> <span class="statusbadge">__STATUS__</span></div>
-    <h1>__TITLE__</h1>
-    <p class="standfirst">__DESCRIPTION__</p>
-    <p class="byline">__AUTHOR__ · <span class="dates">__PUBLISHED__ · __UPDATED__</span></p>
-  </header>
+  <div class="a-layout">
+    <aside class="a-side">
+      <details class="toc" id="toc"><summary>Contents</summary>__TOC__</details>
+    </aside>
 
-  <div class="livebox" id="livebox">__LIVEBOX__</div>
+    <div class="a-main">
+      <header class="ahead">
+        <div class="meta-top"><span class="secbadge">__SECTION__</span><span class="statusbadge __STATUS_CLASS__">__STATUS__</span></div>
+        <h1>__TITLE__</h1>
+        <p class="standfirst">__DESCRIPTION__</p>
+        <p class="byline">__BYLINE__</p>
+      </header>
 
-  <nav class="toc" aria-label="Contents">__TOC__</nav>
-
-  <article class="prose article">
+      <article class="prose article">
 __BODY__
-  </article>
+      </article>
 
-  <section aria-labelledby="h-changes">
-    <h2 id="h-changes">__CHANGES_H__</h2>
-    <div class="tl" id="changes">__CHANGELOG__</div>
-  </section>
+      <section class="endmatter" aria-labelledby="h-changes">
+        <h2 id="h-changes">__CHANGES_H__</h2>
+        <ol class="changes" id="changes">__CHANGELOG__</ol>
+      </section>
 
-  <section aria-labelledby="h-sources">
-    <h2 id="h-sources">__SOURCES_H__</h2>
-    <ol class="sources" id="sources">__SOURCES__</ol>
-  </section>
+      <section class="endmatter" aria-labelledby="h-sources">
+        <h2 id="h-sources">__SOURCES_H__</h2>
+        <ol class="sources" id="sources">__SOURCES__</ol>
+      </section>
+    </div>
+  </div>
 
   <footer>__FOOTER__</footer>
 </div>
+<script>(function(){var t=document.getElementById('toc');if(!t)return;var m=matchMedia('(min-width: 1200px)');function s(){t.open=m.matches}s();m.addEventListener('change',s);t.addEventListener('click',function(e){if(e.target.tagName==='A'&&!m.matches)t.open=false});
+t.querySelectorAll('a.on').forEach(function(a){a.classList.remove('on')});var L={};t.querySelectorAll('a[href^="#"]').forEach(function(a){L[a.getAttribute('href').slice(1)]=a});var H=[].slice.call(document.querySelectorAll('.article h2[id],.article h3[id]')).filter(function(h){return L[h.id]});if(!H.length||/HappyDOM/.test(navigator.userAgent))return;var cur=null;
+function on(id){if(cur)cur.classList.remove('on');cur=L[id];if(cur)cur.classList.add('on')}
+function pick(){var y=innerHeight*0.25,best=null;H.forEach(function(h){if(h.getBoundingClientRect().top<y)best=h});on(best?best.id:null)}
+addEventListener('scroll',function(){requestAnimationFrame(pick)},{passive:true});pick()})();</script>
