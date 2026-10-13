@@ -182,6 +182,16 @@ def health(watch_path=None):
             h["pages"][p] = str(e)[:60]
         if h["pages"][p] != 200:
             h["problems"].append(f"{p} answers {h['pages'][p]}")
+    for p in ("/preview/__auth_probe__", "/zh/preview/__auth_probe__"):  # drafts behind basic auth (2026-10-13: /zh/preview/ shipped without auth); auth runs before file lookup so a missing path still answers 401
+        try:
+            code = get(SITE + p, head=True)[0]
+        except urllib.error.HTTPError as e:
+            code = e.code
+        except Exception as e:
+            code = str(e)[:60]
+        h["pages"][p] = code
+        if code != 401:
+            h["problems"].append(f"{p} answers {code} without credentials (want 401): drafts would be public")
     try:  # the home page must be the deploy.sh build: prerendered, count request present, dataset in /assets (2026-10-11 a raw repo page went live)
         home = get(SITE + "/")[1].decode("utf-8", "ignore")
         words = len(re.sub(r"<[^>]+>", " ", re.sub(r"(?s)<script.*?</script>|<style.*?</style>", "", home)).split())
