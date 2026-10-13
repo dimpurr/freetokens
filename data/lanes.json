@@ -42,10 +42,11 @@
       "basis": "unpublished"
     },
     "limits_observed": {
-      "date": "2026-10-06",
-      "reach": "works",
-      "checks": 2,
-      "networks": 2
+      "date": "2026-10-13",
+      "reach": "busy",
+      "checks": 3,
+      "networks": 2,
+      "note": "our IP rate-limited; sibling Zen free model answered"
     },
     "started": {
       "date": "2026-09-21T21:19Z"
@@ -3259,9 +3260,9 @@
       "basis": "unpublished"
     },
     "limits_observed": {
-      "date": "2026-10-11",
+      "date": "2026-10-13",
       "reach": "missing",
-      "note": "HTTP 410 ModelDeprecated"
+      "note": "HTTP 410 ModelDeprecated (10-11 and 10-13)"
     },
     "started": {
       "date": "2026-10-06",
@@ -3275,8 +3276,8 @@
     "data_policy": "may_train",
     "status": "unavailable",
     "checked": {
-      "date": "2026-10-11",
-      "method": "agent_run"
+      "date": "2026-10-13",
+      "method": "api_call"
     },
     "volume": {
       "tier": "daily",
