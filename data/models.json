@@ -1050,13 +1050,13 @@
     "id": "cat-jam",
     "name": "Cat Jam",
     "maker": "undisclosed",
-    "context": "unknown",
-    "image_input": "not_checked",
+    "context": "262K",
+    "image_input": "partial",
     "aa_index": {
       "value": null,
       "date": "2026-10-13",
       "note": "not ranked"
     },
-    "notes": "Listed from catalogue 2026-10-13; no public benchmarks yet."
+    "notes": "Context 262,144 per models.dev + video title (secondary, 2026-10-13). Zen lane answers text; image via agentic tool-use, not native vision (W6 2026-10-13)."
   }
 ]

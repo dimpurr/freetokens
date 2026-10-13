@@ -3976,7 +3976,11 @@
     "limits_stated": {
       "basis": "unpublished"
     },
-    "limits_observed": null,
+    "limits_observed": {
+      "date": "2026-10-13",
+      "reach": "works",
+      "parallel": 5
+    },
     "started": {
       "date": "2026-10-13",
       "note": "found in channel model list by watch"
@@ -3987,10 +3991,10 @@
       "confidence": "none"
     },
     "data_policy": "not_checked",
-    "status": "listed",
+    "status": "live",
     "checked": {
       "date": "2026-10-13",
-      "method": "catalogue"
+      "method": "agent_run"
     }
   },
   {
@@ -4018,6 +4022,7 @@
     "checked": {
       "date": "2026-10-13",
       "method": "catalogue"
-    }
+    },
+    "note": "W6 2026-10-13: 4x Unexpected server error + Model not found; needs repeat check (ADR-022)"
   }
 ]

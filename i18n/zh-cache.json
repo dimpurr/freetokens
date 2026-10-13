@@ -624,5 +624,7 @@
  "Listed from catalogue 2026-10-13; no public benchmarks yet.": "2026-10-13 从目录收录；暂无公开跑分。",
  "found in channel model list by watch": "watch 在渠道模型列表发现",
  "cat-jam-free found in channel model list (watch)": "watch 在渠道模型列表发现 cat-jam-free",
- "own check of channel model list": "自查渠道模型列表"
+ "own check of channel model list": "自查渠道模型列表",
+ "Context 262,144 per models.dev + video title (secondary, 2026-10-13). Zen lane answers text; image via agentic tool-use, not native vision (W6 2026-10-13).": "上下文 262,144（models.dev＋视频标题，转述，2026-10-13）。Zen 线路文本可答；图像靠 agentic 工具调用，非原生视觉（W6 2026-10-13）。",
+ "W6 2026-10-13: 4x Unexpected server error + Model not found; needs repeat check (ADR-022)": "W6 2026-10-13：4 次 Unexpected server error＋Model not found；需重复核查（ADR-022）"
 }
