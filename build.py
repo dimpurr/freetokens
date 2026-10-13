@@ -2065,8 +2065,11 @@ def main():
         site.update(blog_en)
         site_zh.update(blog_zh)
         blog_idx, blog_idx_zh = build_blog_pages(lanes, events, models, today, "site"), build_blog_pages(lanes, events, models, today, "site", "zh")
-        site.update(blog_idx[0])
-        site_zh.update(blog_idx_zh[0])
+        # B评审补：零已发布时不输出顶栏 Blog 入口、/blog 目录页、博客 sitemap 条目（draft 照常进 preview）
+        has_blog = bool(entries_en or entries_zh)
+        if has_blog:
+            site.update(blog_idx[0])
+            site_zh.update(blog_idx_zh[0])
         drafts_all = dict(drafts_en)
         drafts_all.update(drafts_zh)
         # related-article cards on model/channel pages (only when articles exist)
@@ -2086,8 +2089,10 @@ def main():
                     h2 = "相关文章" if path.startswith("zh/") else "Related articles"
                     card = f'<section class="related"><h2>{h2}</h2><ul>{items}</ul></section>'
                 store[path] = (h, b.replace("<!--RELATED-->", card))
-        # topbar Blog entry (shared builds only; preview keeps dev links)
-        for store, lang in ((site, "en"), (site_zh, "zh")):
+        # topbar Blog entry (shared builds only; preview keeps dev links; skipped when zero published)
+        topbar_targets = ((site, "en"), (site_zh, "zh")) if has_blog else ()
+        for store, lang in topbar_targets:
+            rt = "/zh/" if lang == "zh" else "/"
             rt = "/zh/" if lang == "zh" else "/"
             lbl = "博客" if lang == "zh" else "Blog"
             for path, (h, b) in list(store.items()):
