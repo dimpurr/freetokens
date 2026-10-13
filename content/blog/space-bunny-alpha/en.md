@@ -231,7 +231,7 @@ Everything below is detail behind the conclusions above, for anyone who wants to
 
 **[OpenRouter](https://freetokens.fyi/channels/openrouter)** carried it as `stealth/space-bunny-alpha` from launch day.[^openrouter-sep23] The stealth period was meant to be short. On 30 September OpenRouter extended it through 5 October,[^openrouter-sep30] and at 16:02 UTC that day it posted that the period had ended.[^openrouter-oct5-end] The model page now carries a banner saying the free period is over.[^or-model]
 
-![OpenRouter's post saying the Space Bunny Alpha stealth period has ended](img/2026-10-12-openrouter-end-tweet.webp "OpenRouter announces the end of the stealth period, posted 5 Oct, captured 12 Oct. Source: https://x.com/OpenRouter/status/2107139469174542636 Shot: 2026-10-12")
+![OpenRouter's post saying the Space Bunny Alpha stealth period has ended](img/2026-10-13-openrouter-end-tweet.webp "OpenRouter announces the end of the stealth period, posted 5 Oct, captured 13 Oct. Source: https://x.com/OpenRouter/status/2107139469174542636 Shot: 2026-10-13")
 
 **[Command Code](https://freetokens.fyi/channels/command-code)** joined a day late, announcing it on 24 September for all plans.[^command-blog] On 1 October it set an end date, free "till Oct 5 on all plans",[^command-oct1] and kept to it. From 19:02 UTC on 5 October our calls came back with a 404, and the next day's changelog retired "the two free stealth preview models".[^command-changelog] Of the five, this lane has the cleanest paper trail.
 
@@ -261,7 +261,7 @@ All times are UTC.
 
 We found no sighting before 14:31 on 23 September. One Chinese investment blog says it went live on the 22nd, but nothing else we could read supports that date.[^xueqiu-maker]
 
-![OpenCode's post announcing Space Bunny free for the next week](img/2026-10-12-opencode-announce-tweet.webp "OpenCode's launch post, posted 23 Sep, captured 12 Oct. Source: https://x.com/opencode/status/2102767716666941864 Shot: 2026-10-12")
+![OpenCode's post announcing Space Bunny free for the next week](img/2026-10-13-opencode-announce-tweet.webp "OpenCode's launch post, posted 23 Sep, captured 13 Oct. Source: https://x.com/opencode/status/2102767716666941864 Shot: 2026-10-13")
 
 ### Every outside test {#tests}
 

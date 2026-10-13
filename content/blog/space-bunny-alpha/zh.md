@@ -236,7 +236,7 @@ Artificial Analysis 还没给它打分，没公开身份的模型一般都这样
 
 **[OpenRouter](https://freetokens.fyi/zh/channels/openrouter)** 从第一天起就以 `stealth/space-bunny-alpha` 上架。[^openrouter-sep23] 隐身期本来不长，9 月 30 日延长到 10 月 5 日，[^openrouter-sep30] 当天 16:02（UTC）发帖宣布结束。[^openrouter-oct5-end] 模型页现在挂着“免费期已结束”的横幅。[^or-model]
 
-![OpenRouter 宣布 Space Bunny Alpha 隐身期结束的推文](img/2026-10-12-openrouter-end-tweet.webp "OpenRouter 宣布隐身期结束，10 月 5 日发布，10 月 12 日截图。来源：https://x.com/OpenRouter/status/2107139469174542636 截图：2026-10-12")
+![OpenRouter 宣布 Space Bunny Alpha 隐身期结束的推文](img/2026-10-13-openrouter-end-tweet.webp "OpenRouter 宣布隐身期结束，10 月 5 日发布，10 月 13 日截图。来源：https://x.com/OpenRouter/status/2107139469174542636 截图：2026-10-13")
 
 **[Command Code](https://freetokens.fyi/zh/channels/command-code)** 晚一天加入，9 月 24 日宣布所有套餐可用。[^command-blog] 10 月 1 日给出截止日：“till Oct 5 on all plans”，[^command-oct1] 说到做到。10 月 5 日 19:02（UTC）起，我们的调用都返回 404，第二天的更新日志里写着下线“两个免费隐身预览模型”。[^command-changelog] 五家里，它的记录最完整。
 
@@ -266,7 +266,7 @@ Artificial Analysis 还没给它打分，没公开身份的模型一般都这样
 
 9 月 23 日 14:31 之前，我们没找到任何痕迹。雪球上有一篇投资帖说它 22 日就上线了，但别的来源都对不上这个日期。[^xueqiu-maker]
 
-![OpenCode 宣布 Space Bunny 免费一周的推文](img/2026-10-12-opencode-announce-tweet.webp "OpenCode 的发布推文，9 月 23 日发布，10 月 12 日截图。来源：https://x.com/opencode/status/2102767716666941864 截图：2026-10-12")
+![OpenCode 宣布 Space Bunny 免费一周的推文](img/2026-10-13-opencode-announce-tweet.webp "OpenCode 的发布推文，9 月 23 日发布，10 月 13 日截图。来源：https://x.com/opencode/status/2102767716666941864 截图：2026-10-13")
 
 ### 所有外部测评 {#tests}
 
