@@ -1647,6 +1647,15 @@ def render_md_article(md_text, ctx, slug):
             sys.exit(f"✗ {slug}: cannot read image dimensions: {src[:60]}")
         ctx["imgs"].append((slug, src))
         img = f'<a class="fig-img" href="/blog/{slug}/{src}"><img src="/blog/{slug}/{src}" alt="{html.escape(alt)}" width="{wh[0]}" height="{wh[1]}" loading="lazy"></a>'
+        dark = src[:-len("-light.webp")] + "-dark.webp" if src.endswith("-light.webp") else None
+        dp = article_img_path(slug, dark) if dark else None
+        if dp is not None:  # light/dark pair (article-images: shot.py --theme both): the reader's mode picks one; CSS hides the other, lazy loading skips it
+            dwh = img_dims(dp)
+            if not dwh:
+                sys.exit(f"✗ {slug}: cannot read image dimensions: {dark[:60]}")
+            ctx["imgs"].append((slug, dark))
+            img = (f'<a class="fig-img theme-light" href="/blog/{slug}/{src}"><img src="/blog/{slug}/{src}" alt="{html.escape(alt)}" width="{wh[0]}" height="{wh[1]}" loading="lazy"></a>'
+                   f'<a class="fig-img theme-dark" href="/blog/{slug}/{dark}"><img src="/blog/{slug}/{dark}" alt="{html.escape(alt)}" width="{dwh[0]}" height="{dwh[1]}" loading="lazy"></a>')
         mc = re.match(r"^(.*?)\s*(?:Source:|来源：)\s*(\S+)\s*(?:[Ss]hot:|截图：)\s*(\d{4}-\d{2}-\d{2})\s*$", cap)
         if not mc:
             return f'<figure>{img}<figcaption>{html.escape(cap)}</figcaption></figure>'
