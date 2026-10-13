@@ -615,5 +615,7 @@
  "Free :free variant removed from OpenRouter (pricing>0); paid version remains": "OpenRouter 下架免费 :free 变体（定价>0）；付费版仍在",
  "opencode/fledge-alpha-free no longer in the Zen model list": "opencode/fledge-alpha-free 已不在 Zen 模型列表",
  "opencode/ling-3.0-flash-fin-free no longer in the Zen model list": "opencode/ling-3.0-flash-fin-free 已不在 Zen 模型列表",
- "opencode/nemotron-3-ultra-free no longer in the Zen model list": "opencode/nemotron-3-ultra-free 已不在 Zen 模型列表"
+ "opencode/nemotron-3-ultra-free no longer in the Zen model list": "opencode/nemotron-3-ultra-free 已不在 Zen 模型列表",
+ "10-13: 2x upstream 502 then OK via AtlasCloud, cost 0": "10-13：上游 502 两次后经 AtlasCloud 应答，cost 0",
+ "free while it lasts; credits never draw down": "活动期间免费，不扣 credits"
 }
