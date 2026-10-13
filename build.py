@@ -1206,6 +1206,10 @@ def site_extras(pages, lanes, events, models, today, pages_zh=None, blog=None):
     for p in sorted(pages):
         if p == "__base__":
             continue
+        if p.startswith("blog/") and not p.startswith("blog/tag/"):
+            continue  # articles are listed below from the blog map (lastmod = updated); listing them here too duplicated them
+        if p.startswith("blog/tag/") and "noindex" in str(pages[p][0] if isinstance(pages[p], tuple) else pages[p]):
+            continue  # tag pages with fewer than 3 articles are noindex (ADR-028) and stay out of the sitemap
         loc = SITE + "/" if p == "index.html" else f"{SITE}/{p[:-5]}"
         rel = "" if p == "index.html" else p[:-5]
         zh_loc = f"{SITE}/zh/{rel}" if rel else f"{SITE}/zh"
