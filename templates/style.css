@@ -116,8 +116,8 @@ a.when:hover { color: var(--accent); border-bottom-color: var(--accent); }
 /* tables: two lines per cell, first column pinned when the table scrolls */
 .tbl-scroll { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
 /* article live box: where the model is free now, rebuilt from data on every build */
-.livebox { margin: 12px 0; padding: 10px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; display: grid; gap: 8px; }
-.livebox-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; font-size: 0.9rem; }
+.where-now { margin: 12px 0; padding: 10px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; display: grid; gap: 8px; }
+.where-now-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; font-size: 0.9rem; }
 /* article answer box (ADR-028 blockquote) */
 blockquote { margin: 0; padding: 12px 16px; background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--measured); border-radius: 0 10px 10px 0; display: grid; gap: 6px; }
 blockquote p { margin: 0; }

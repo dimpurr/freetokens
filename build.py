@@ -1593,7 +1593,7 @@ def render_live_block(spec, lanes, models, today):
     chips = "".join(f'<a class="chip" href="{pre}/channels/{slug(l["channel"])}">{html.escape(l["channel"])}<small>{html.escape(end_note(l))}</small></a>' for l in rows) \
         or f'<span class="muted">{tr("none")}</span>'
     head = tr("Where it's free now")
-    return (f'<div class="livebox"><div class="livebox-head"><b>{head}</b><span class="muted">{tr("As of the build date")} {today.isoformat()}</span></div>'
+    return (f'<div class="where-now"><div class="where-now-head"><b>{head}</b><span class="muted">{tr("As of the build date")} {today.isoformat()}</span></div>'
             f'<div class="chips">{chips}</div></div>')
 
 
