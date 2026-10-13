@@ -1567,6 +1567,8 @@ def img_dims(path):
             if raw[12:16] == b"VP8L":
                 b0, b1, b2, b3 = raw[21:25]
                 return (b0 | ((b1 & 0x3F) << 8)) + 1, (((b1 >> 6) | (b2 << 2) | ((b3 & 0xF) << 10)) + 1)
+            if raw[12:16] == b"VP8X":  # extended format (alpha, e.g. screenshots with transparent corners)
+                return int.from_bytes(raw[24:27], "little") + 1, int.from_bytes(raw[27:30], "little") + 1
     except Exception:
         pass
     return None
@@ -2066,6 +2068,12 @@ def check_blog(lanes, events, models):
             for c in re.findall(r"\{\{.+?\}\}", body):
                 if not re.fullmatch(r"\{\{\s*(live:where-to-use|count:live-lanes)\s+(model|channel)=[a-z0-9][a-z0-9.-]*\s*\}\}", c.strip()):
                     errs.append(f"{where}: bad live block {c[:50]}")
+            for src in re.findall(r"^!\[.*?\]\((\S+?)(?:\s+\".*?\")?\)$", body, flags=re.M):  # same image gates as the site build (10-13: VP8X webp only failed at deploy)
+                p_ = article_img_path(s_, src)
+                if p_ is None:
+                    errs.append(f"{where}: image missing: {src}")
+                elif not img_dims(p_):
+                    errs.append(f"{where}: cannot read image dimensions: {src}")
     return errs
 
 
