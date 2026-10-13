@@ -664,34 +664,56 @@ def seo_home(lanes, models, today):
     free = [l for l in lanes if l["status"] in FREE]
     if LANG == "zh":
         title = "免费 LLM 与 API：哪里免费、免费到何时 | freetokens"
-        desc = clip(f"{len(free)} 条免费 LLM 线路，覆盖 {len(chans)} 个渠道（{', '.join(chans[:4])}…）：截止日期、下架记录与我们实测的限额。每条事实都有出处和日期，{today.year}年{today.month}月{today.day}日更新。")
+        desc = clip(f"哪些 LLM 现在免费、在哪个渠道、免费到何时：{len(free)} 条免费线路，覆盖 {len(chans)} 个渠道，截止日期与我们实测的限额。")
         return title, desc
     title = "Free LLMs and APIs: where they are free and until when | freetokens"
-    desc = clip(f"{len(free)} free LLM lanes across {len(chans)} channels ({', '.join(chans[:4])}…): end dates, takedowns and "
-                f"limits we measured ourselves. Every fact sourced and dated; updated {today:%b %-d, %Y}.")
+    desc = clip(f"Which LLMs are free right now, on which channel, and until when: {len(free)} free lanes across {len(chans)} channels, "
+                f"with the end dates and limits we measured ourselves.")
     return title, desc
 
 
-def seo_model(m, lanes):
+def seo_model(m, lanes, today):
     ml = [l for l in lanes if l["model"] == m["id"]]
     free = [l for l in ml if l["status"] in FREE]
+    chs = [l["channel"] for l in free]
+    n = len(chs)
     if LANG == "zh":
-        title = f"{m['name']} 免费：{len(ml)} 个渠道中有 {len(free)} 个，截止日期与限额 | freetokens"
+        if n == 0:
+            title = f"{m['name']}：当前没有免费渠道 | freetokens"
+        elif n == 1:
+            title = f"{m['name']} 在 {chs[0]} 免费 | freetokens"
+        elif n == 2:
+            title = f"{m['name']} 在 {chs[0]}、{chs[1]} 免费 | freetokens"
+        else:
+            title = f"{m['name']} 在 {chs[0]}、{chs[1]} 等 {n} 个渠道免费 | freetokens"
         nxt = sorted((l for l in free if effective_end(l)), key=lambda l: effective_end(l))
         a = m["aa_index"]
-        parts = [f"{m['name']} 现在哪些渠道免费：{', '.join(l['channel'] for l in free) or '暂无渠道'}。"]
-        if nxt:
-            parts.append(f"最近到期：{nxt[0]['channel']}，{fmt_date(effective_end(nxt[0]))}。")
+        parts = [f"{m['name']} 现在哪些渠道免费：{', '.join(chs) or '暂无渠道'}。"]
+        up = [l for l in nxt if day(effective_end(l)) >= today]
+        if up:
+            parts.append(f"最近到期：{up[0]['channel']}，{fmt_date(effective_end(up[0]))}。")
+        elif nxt:
+            parts.append(f"上次已知结束 {nxt[-1]['channel']}，{fmt_date(effective_end(nxt[-1]))}（已过，待复测）。")
         if a.get("value") is not None:
             parts.append(f"AA 指数 {a['value']}。")
         parts.append(f"{zh_text(m['context'])}。每条事实都有出处和日期。")
         return title, clip(" ".join(parts))
-    title = f"{m['name']} free: {len(free)} of {len(ml)} channels, end dates and limits | freetokens"
+    if n == 0:
+        title = f"{m['name']}: no channel free right now | freetokens"
+    elif n == 1:
+        title = f"{m['name']} is free on {chs[0]} | freetokens"
+    elif n == 2:
+        title = f"{m['name']} is free on {chs[0]} and {chs[1]} | freetokens"
+    else:
+        title = f"{m['name']} is free on {chs[0]} and {chs[1]} +{n - 2} more | freetokens"
     nxt = sorted((l for l in free if effective_end(l)), key=lambda l: effective_end(l))
     a = m["aa_index"]
-    parts = [f"Where {m['name']} is free right now: {', '.join(l['channel'] for l in free) or 'no channel at the moment'}."]
-    if nxt:
-        parts.append(f"Next end: {nxt[0]['channel']}, {fmt_date(effective_end(nxt[0]))[:10]}.")
+    parts = [f"Where {m['name']} is free right now: {', '.join(chs) or 'no channel at the moment'}."]
+    up = [l for l in nxt if day(effective_end(l)) >= today]
+    if up:
+        parts.append(f"Next end: {up[0]['channel']}, {fmt_date(effective_end(up[0]))[:10]}.")
+    elif nxt:
+        parts.append(f"last known end {nxt[-1]['channel']}, {fmt_date(effective_end(nxt[-1]))[:10]} (passed; re-check due).")
     if a.get("value") is not None:
         parts.append(f"AA index {a['value']}.")
     parts.append(f"{m['context']} context. Sources and dates for every fact.")
@@ -982,7 +1004,7 @@ def build_pages(lanes, events, models, today, mode, lang="en"):
                                render_body("home.html", dict(base, root=RT if site else ""), RT if site else "", home_href, site and SHARED_ASSETS, lang))
     sub_root, sub_home = ((RT, "/zh") if zh else ("/", "/")) if site else ("../", "../index.html")
     for m in models:
-        title, desc = seo_model(m, lanes)
+        title, desc = seo_model(m, lanes, today)
         url = f"{U}/models/{m['id']}"
         ld = [crumbs([("freetokens", HU), (tr("Models"), HU + "#h-models"), (m["name"], url)]),
               {"@context": "https://schema.org", "@type": "WebPage", "name": title, "url": url, "description": desc,
