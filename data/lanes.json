@@ -1727,15 +1727,16 @@
       "confidence": "none"
     },
     "data_policy": "unstated",
-    "status": "live",
+    "status": "unavailable",
     "checked": {
-      "date": "2026-10-06",
+      "date": "2026-10-13",
       "method": "api_call"
     },
     "volume": {
       "tier": "taste",
       "basis": "50 requests a day without credits (stated)"
-    }
+    },
+    "note": "Free :free variant removed from OpenRouter 2026-10-13; paid inclusionai/ling-3.0-flash-sante remains at non-zero pricing"
   },
   {
     "id": "dots-3-note-preview-or",
@@ -2299,15 +2300,16 @@
       "confidence": "none"
     },
     "data_policy": "may_train",
-    "status": "live",
+    "status": "ended",
     "checked": {
-      "date": "2026-10-06",
-      "method": "api_call"
+      "date": "2026-10-13",
+      "method": "catalogue"
     },
     "volume": {
       "tier": "daily",
       "basis": "channel rule: Zen's free allowance is per IP per day; this model not load-tested"
-    }
+    },
+    "note": "Removed from Zen catalogue observed 2026-10-13"
   },
   {
     "id": "nemotron-3-ultra-zen",
@@ -2335,15 +2337,16 @@
       "confidence": "none"
     },
     "data_policy": "may_train",
-    "status": "live",
+    "status": "ended",
     "checked": {
-      "date": "2026-10-06",
-      "method": "api_call"
+      "date": "2026-10-13",
+      "method": "catalogue"
     },
     "volume": {
       "tier": "daily",
       "basis": "channel rule: Zen's free allowance is per IP per day; this model not load-tested"
-    }
+    },
+    "note": "Removed from Zen catalogue observed 2026-10-13; OpenRouter nvidia/nemotron-3-ultra-550b-a55b:free is a separate lane"
   },
   {
     "id": "ling-3.0-flash-fin-zen",
@@ -2371,15 +2374,16 @@
       "confidence": "none"
     },
     "data_policy": "may_train",
-    "status": "listed",
+    "status": "ended",
     "checked": {
-      "date": "2026-10-06",
-      "method": "api_call"
+      "date": "2026-10-13",
+      "method": "catalogue"
     },
     "volume": {
       "tier": "daily",
       "basis": "channel rule: Zen's free allowance is per IP per day; this model not load-tested"
-    }
+    },
+    "note": "Removed from Zen catalogue observed 2026-10-13; OpenRouter paid inclusionai/ling-3.0-flash-fin remains"
   },
   {
     "id": "mimo-v2.5-zen",

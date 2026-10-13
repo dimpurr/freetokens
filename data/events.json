@@ -1855,5 +1855,53 @@
       "label": "Hetzner Inference API experiment docs",
       "url": "https://docs.hetzner.com/general/company-and-policy/experiments/inference/"
     }
+  },
+  {
+    "date": "2026-10-13",
+    "lanes": [
+      "ling-3.0-flash-sante-or"
+    ],
+    "kind": "ended",
+    "text": "Free :free variant removed from OpenRouter (pricing>0); paid version remains",
+    "source": {
+      "label": "own check of openrouter.ai/api/v1/models",
+      "url": "https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2026-10-13",
+    "lanes": [
+      "fledge-alpha-zen"
+    ],
+    "kind": "ended",
+    "text": "opencode/fledge-alpha-free no longer in the Zen model list",
+    "source": {
+      "label": "own check of opencode.ai/zen/v1/models",
+      "url": "https://opencode.ai/zen/v1/models"
+    }
+  },
+  {
+    "date": "2026-10-13",
+    "lanes": [
+      "nemotron-3-ultra-zen"
+    ],
+    "kind": "ended",
+    "text": "opencode/nemotron-3-ultra-free no longer in the Zen model list",
+    "source": {
+      "label": "own check of opencode.ai/zen/v1/models",
+      "url": "https://opencode.ai/zen/v1/models"
+    }
+  },
+  {
+    "date": "2026-10-13",
+    "lanes": [
+      "ling-3.0-flash-fin-zen"
+    ],
+    "kind": "ended",
+    "text": "opencode/ling-3.0-flash-fin-free no longer in the Zen model list",
+    "source": {
+      "label": "own check of opencode.ai/zen/v1/models",
+      "url": "https://opencode.ai/zen/v1/models"
+    }
   }
 ]
