@@ -1266,9 +1266,10 @@ def site_extras(pages, lanes, events, models, today, pages_zh=None, blog=None):
             when = (bupdated + "T00:00:00Z") if len(bupdated) == 10 else bupdated
             entries.append(f"  <entry><title>{x(btitle)}</title><link href=\"{x(bloc)}\"/><id>{x(bloc)}</id><updated>{when}</updated><summary>{x(bdesc)}</summary></entry>")
         flang = ' xml:lang="zh-CN"' if lang == "zh" else ""
-        return ('<?xml version="1.0" encoding="utf-8"?>\n<feed xmlns="http://www.w3.org/2005/Atom"' + flang + '>\n'
-                f'  <title>freetokens: free LLM events</title>\n  <link href="{FU if lang == "zh" else FU + "/"}"/>\n  <link rel="self" href="{FU}/feed.xml"/>\n' if lang == "en" else f'  <title>freetokens：免费 LLM 动态</title>\n  <link href="{FU}"/>\n  <link rel="self" href="{FU}/feed.xml"/>\n'
-                f'  <id>{FU}/feed.xml</id>\n  <updated>{today.isoformat()}T00:00:00Z</updated>\n  <author><name>freetokens</name></author>\n'
+        head = (f'  <title>freetokens: free LLM events</title>\n  <link href="{FU}/"/>\n  <link rel="self" href="{FU}/feed.xml"/>\n' if lang == "en"
+                else f'  <title>freetokens：免费 LLM 动态</title>\n  <link href="{FU}"/>\n  <link rel="self" href="{FU}/feed.xml"/>\n')
+        return ('<?xml version="1.0" encoding="utf-8"?>\n<feed xmlns="http://www.w3.org/2005/Atom"' + flang + '>\n' + head
+                + f'  <id>{FU}/feed.xml</id>\n  <updated>{today.isoformat()}T00:00:00Z</updated>\n  <author><name>freetokens</name></author>\n'
                 + "\n".join(entries) + "\n</feed>\n")
 
     def x(t):

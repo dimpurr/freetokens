@@ -18,6 +18,7 @@ import re
 import sys
 import urllib.error
 import urllib.request
+import xml.etree.ElementTree as ET
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -192,6 +193,14 @@ def health(watch_path=None):
         h["pages"][p] = code
         if code != 401:
             h["problems"].append(f"{p} answers {code} without credentials (want 401): drafts would be public")
+    for p in ("/feed.xml", "/zh/feed.xml"):  # a feed must parse and carry entries (2026-10-13: the English feed shipped as a bare header for days)
+        try:
+            root = ET.fromstring(get(SITE + p)[1])
+            n = len(root.findall("{http://www.w3.org/2005/Atom}entry"))
+            if n == 0:
+                h["problems"].append(f"{p} has no entries")
+        except Exception as e:
+            h["problems"].append(f"{p} does not parse as XML: {str(e)[:60]}")
     try:  # the home page must be the deploy.sh build: prerendered, count request present, dataset in /assets (2026-10-11 a raw repo page went live)
         home = get(SITE + "/")[1].decode("utf-8", "ignore")
         words = len(re.sub(r"<[^>]+>", " ", re.sub(r"(?s)<script.*?</script>|<style.*?</style>", "", home)).split())
