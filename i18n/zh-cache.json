@@ -619,5 +619,10 @@
  "10-13: 2x upstream 502 then OK via AtlasCloud, cost 0": "10-13：上游 502 两次后经 AtlasCloud 应答，cost 0",
  "free while it lasts; credits never draw down": "活动期间免费，不扣 credits",
  "HTTP 410 ModelDeprecated (10-11 and 10-13)": "HTTP 410 模型已退役（10-11 与 10-13 均见）",
- "our IP rate-limited; sibling Zen free model answered": "我方 IP 被限流；同渠道另一免费模型应答正常"
+ "our IP rate-limited; sibling Zen free model answered": "我方 IP 被限流；同渠道另一免费模型应答正常",
+ "unknown": "未知",
+ "Listed from catalogue 2026-10-13; no public benchmarks yet.": "2026-10-13 从目录收录；暂无公开跑分。",
+ "found in channel model list by watch": "watch 在渠道模型列表发现",
+ "cat-jam-free found in channel model list (watch)": "watch 在渠道模型列表发现 cat-jam-free",
+ "own check of channel model list": "自查渠道模型列表"
 }

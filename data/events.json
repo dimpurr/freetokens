@@ -1903,5 +1903,29 @@
       "label": "own check of opencode.ai/zen/v1/models",
       "url": "https://opencode.ai/zen/v1/models"
     }
+  },
+  {
+    "date": "2026-10-13",
+    "lanes": [
+      "cat-jam-free-zen"
+    ],
+    "kind": "listed",
+    "text": "cat-jam-free found in channel model list (watch)",
+    "source": {
+      "label": "own check of channel model list",
+      "url": "https://opencode.ai/zen/v1/models"
+    }
+  },
+  {
+    "date": "2026-10-13",
+    "lanes": [
+      "cat-jam-free-go"
+    ],
+    "kind": "listed",
+    "text": "cat-jam-free found in channel model list (watch)",
+    "source": {
+      "label": "own check of channel model list",
+      "url": "https://opencode.ai/zen/go/v1/models"
+    }
   }
 ]
