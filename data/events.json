@@ -1843,5 +1843,17 @@
       "label": "OpenCode Zen model list",
       "url": "https://opencode.ai/zen/v1/models"
     }
+  },
+  {
+    "date": "2026-07",
+    "lanes": [
+      "qwen3.8-27b-hetzner"
+    ],
+    "kind": "listed",
+    "text": "Inference experiment live; model table lists Qwen3.8-27B (docs Last change 2026-07-24)",
+    "source": {
+      "label": "Hetzner Inference API experiment docs",
+      "url": "https://docs.hetzner.com/general/company-and-policy/experiments/inference/"
+    }
   }
 ]

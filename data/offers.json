@@ -1871,5 +1871,141 @@
   },
   "quote": "每位用户每日可领取1000万Tokens。福利Token将于当日24:00清零，不累积至次日。……结束时间：另行通知",
   "note": "Only inside CodeArts IDE, VS Code/JetBrains plugins, desktop, web or mini-program; no API key. Desktop and web since 2026-09-15."
+ },
+ {
+  "id": "tencent-hunyuan-first-1m",
+  "name": "腾讯混元首次开通免费资源包",
+  "provider": "腾讯云",
+  "channel": null,
+  "type": "signup_trial",
+  "gets": {
+   "amount": 1000000,
+   "unit": "token",
+   "per": "once",
+   "text": "主力8模型共享100万tokens（Hunyuan-embedding另100万）；自开通1年内有效"
+  },
+  "requires": [
+   "account",
+   "real_name"
+  ],
+  "paid_plan": null,
+  "region": "CN",
+  "access": {
+   "form": "api",
+   "rules": []
+  },
+  "models": {
+   "kind": "list",
+   "ids": [],
+   "tracked": [],
+   "count": null,
+   "note": "混元生文8模型共享（a13b/role/translation系列/vision/t1等）+ embedding另100万"
+  },
+  "status": "live",
+  "started": null,
+  "ends": null,
+  "source": {
+   "label": "混元生文计费概述",
+   "url": "https://cloud.tencent.com/document/product/1729/97731"
+  },
+  "quote": "首次开通腾讯混元大模型服务后，混元生文将发放一定量级的免费调用额度……共100万tokens，共享消耗。资源包有效期为1年",
+  "note": "需腾讯云企业/个人实名，首次点立即使用即得。caveat：文档称混元相关功能将逐步迁移至TokenHub；TokenHub新人包（至2026-12-31）只见第三方，未在官方页独立核到。",
+  "checked": {
+   "date": "2026-10-13",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "gitee-moark-trial-100day",
+  "name": "Gitee AI 模力方舟免费体验（100次/日）",
+  "provider": "Gitee",
+  "channel": null,
+  "type": "daily_allowance",
+  "gets": {
+   "amount": 100,
+   "unit": "calls",
+   "per": "day",
+   "text": "免费体验访问令牌，每日100次免费调用（全目录共用）"
+  },
+  "requires": [
+   "account",
+   "paid_plan"
+  ],
+  "paid_plan": "需购买任意金额全模型资源包再建免费体验令牌（官方FAQ Q1）",
+  "region": "CN",
+  "access": {
+   "form": "api",
+   "rules": []
+  },
+  "models": {
+   "kind": "list",
+   "ids": [
+    "qwen3.8-27b"
+   ],
+   "tracked": [
+    "qwen3.8-27b"
+   ],
+   "count": null,
+   "note": "开放目录208个id含qwen3.8-27b；但免费体验集是否覆盖该模型需登录，未实测（目录在列≠免费可调）"
+  },
+  "status": "live",
+  "started": null,
+  "ends": null,
+  "source": {
+   "label": "模力方舟FAQ",
+   "url": "https://moark.com/docs/FAQ"
+  },
+  "quote": "在购买之前，您可以在AI模型广场免费体验所有精选模型。每位用户每日拥有100次免费调用次数；免费模型需购买任意金额资源包并创建令牌方可调用",
+  "note": "Q6（100次/日）与Q1（需先买资源包）口径有张力；qwen3.8-27b免费体验覆盖度未登录核实。",
+  "checked": {
+   "date": "2026-10-13",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "puter-monthly-allowance",
+  "name": "Puter.js 免费月额度",
+  "provider": "Puter",
+  "channel": null,
+  "type": "monthly_credit",
+  "gets": {
+   "amount": null,
+   "unit": "USD",
+   "per": "month",
+   "text": "每账号免费月额度（金额只 dashboard 可见，未公布），按模型真实单价扣；免费档 30请求/10s、3并发"
+  },
+  "requires": [
+   "account"
+  ],
+  "paid_plan": null,
+  "region": null,
+  "access": {
+   "form": "own_app",
+   "rules": []
+  },
+  "models": {
+   "kind": "list",
+   "ids": [
+    "qwen3.8-27b"
+   ],
+   "tracked": [
+    "qwen3.8-27b"
+   ],
+   "count": null,
+   "note": "官方模型页列qwen3.8-27b免费可试；OpenAI兼容端点免费账号402不可用，只能puter.ai.*/drivers/call"
+  },
+  "status": "live",
+  "started": null,
+  "ends": null,
+  "source": {
+   "label": "Puter rate limits and quotas",
+   "url": "https://docs.puter.com/rate-limits-and-quotas/"
+  },
+  "quote": "Every account gets a free monthly allowance (shown in the dashboard). Paid plans get more. The allowance resets monthly and doesn't roll over.",
+  "note": "月额度金额未公布；Qwen3.8-27B单价$0.5/M in、$3/M out。",
+  "checked": {
+   "date": "2026-10-13",
+   "method": "listing"
+  }
  }
 ]

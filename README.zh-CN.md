@@ -165,6 +165,7 @@ freetokens 追踪的是**免费线路**：一个模型 × 一个渠道 × 一个
 | Glyph Cluster | Vercel AI Gateway | 聚合商 | `stealth/glyph-cluster` | Vercel AI Gateway 密钥；标记为 Free 的模型; 含已购 AI Gateway credits 的 Pro 或 Enterprise 计划；未公开期间 token 价格为 $0 | 未公布 | 未实测 | 2026年10月7日 | — (无) | 可能记录／用于训练 | 🔵 标称免费（未实测） | 2026-10-10 · 查目录 |
 | Step 5 Preview | OpenCode Zen | agent 工具 | `opencode/step-5-preview-free` | 在 OpenCode 应用内，无需账户；原始 API 拒绝免费模型（403 FreeTierError）; 限时；未公布结束日期 | 未公布 | 可用 · 10 并行 · 10 个并行短呼叫已应答 (2026-10-11) | 2026年10月9日 | — (无) | 零保留、不训练 | 🟢 有效 | 2026-10-11 · agent 实测 |
 | Step 5 Preview | OpenCode Go | agent 工具 | `opencode-go/step-5-preview-free` | OpenCode Go 计划；免费模型不使用该计划的额度; 限时；未公布结束日期 | [已公布 (Go 价目表将其列为 Unlimited)](https://opencode.ai/docs/go/) | 可用 · 10 并行 · 10 个并行短呼叫已应答 (2026-10-11) | 2026年10月9日 | — (无) | 未核查 | 🟢 有效 | 2026-10-11 · agent 实测 |
+| Qwen3.8 27B | Hetzner Experiments | 官方 | `Qwen3.8-27B` | Hetzner 账号＋API key；实验期间免费，变更前邮件提前通知; 推理 API 实验期间免费（变更前邮件提前通知） | [10/min (每 key 每 60 秒：10 请求、400 万输入 token＋10 万输出 token)](https://docs.hetzner.com/general/company-and-policy/experiments/inference/) | 未实测 | 2026年7月 | — (无); 实验性质，无 SLA；转付费前承诺邮件提前通知 | 零保留、不训练 | 🔵 标称免费（未实测） | 2026-10-13 · 仅看页面 |
 <!-- END:lanes -->
 
 也见到、但尚未纳入追踪（未核实）：Cline 上的 Ling 3.1 Flash（据称免费到 10-13）以及 OpenCode 上的 Ling 3.1 Flash（据称自 10-02 起免费）；Nous Portal 上的 Space Bunny（Sep 25 宣布免费，Oct 5 在 portal 上已看不到），以及 Tencent WorkBuddy 中的 Space Bunny（是折扣，并非免费，到 Oct 7）。
@@ -292,6 +293,7 @@ freetokens 追踪的是**免费线路**：一个模型 × 一个渠道 × 一个
 | 2026年7月6日 | Hy3 · Kilo Code | 收录 | 已加入 Kilo 的模型目录，记为 "Tencent: Hy3 (free)"，每 token $0（Kilo 自己的记录日期） | [Kilo 模型页面](https://kilo.ai/models/tencent-hy3-free) |
 | 2026年7月3日 | Laguna XS 2.1 · Cline | 收录 | 已加入 Cline 的模型列表：Laguna XS 2.1 | [Cline 仓库 commit](https://github.com/cline/cline/commit/a2a46ae600207b47e4fc2e6706d5bd023e7fa689) |
 | 2026年7月2日 | Laguna XS 2.1 · OpenRouter | 收录 | 在 OpenRouter 上列为 poolside/laguna-xs-2.1:free，价格 $0（OpenRouter 目录记录日期） | [OpenRouter 模型页面](https://openrouter.ai/poolside/laguna-xs-2.1) |
+| 2026年7月 | Qwen3.8 27B · Hetzner Experiments | 收录 | 推理实验在线；模型表列 Qwen3.8-27B（文档最后更新 2026-07-24） | [Hetzner 推理 API 实验文档](https://docs.hetzner.com/general/company-and-policy/experiments/inference/) |
 | 2026年6月19日 | North Mini Code · Cline | 收录 | 已加入 Cline 的模型列表：North Mini Code | [Cline 仓库 commit](https://github.com/cline/cline/commit/cdff084652e46a4f9aa7e8f4ed57766a3e10f712) |
 | 2026年6月17日 | North Mini Code · OpenRouter | 收录 | 在 OpenRouter 上列作 cohere/north-mini-code:free，$0（OpenRouter 目录记录日期），标称免费（未实测） | [OpenRouter 模型页面](https://openrouter.ai/cohere/north-mini-code) |
 | 2026年6月11日 | Nex-N2-Pro · Kilo Code | 收录 | 已加入 Kilo 的模型目录，名为 "Nex AGI: Nex-N2-Pro (free)"，每 token $0（Kilo 自己的记录日期） | [Kilo 模型页面](https://kilo.ai/models/nex-agi-nex-n2-pro-free) |
@@ -346,7 +348,7 @@ freetokens 追踪的是**免费线路**：一个模型 × 一个渠道 × 一个
 | [LongCat 2.5 Preview](https://freetokens.fyi/models/longcat-2.5-preview) | 🟢 OpenCode Go (截止 2026年10月10) · 🟢 OpenCode Zen (未公布截止) | 3 | EST 34–39 （估算） (2026-10-04) | 1M | 支持但不稳定 | Meituan LongCat | ≈1.6T 总量／48B 激活 MoE；2026-09-25 发布。一次图片颜色测试答错。 |
 | [DeepSeek V4 Flash](https://freetokens.fyi/models/deepseek-v4-flash) | ⚪ OpenCode Zen (暂无响应) · 🔵 Letta (未公布截止) | 4 | 34 (2026-10-08) | Zen 免费档 200K | 不支持 | DeepSeek | AA 页面是 0731 更新版（34）；4 月 0420 发布版得 24 分（artificialanalysis.ai/models/deepseek-v4-flash-0420）。渠道称其为 plain "deepseek-v4-flash"。 |
 | [Gemini 3.6 Flash](https://freetokens.fyi/models/gemini-3.6-flash) | 🔵 Google AI Studio (未公布截止) | 1 | 34 (2026-10-06) | 1M | 未核查 | Google | — |
-| [Qwen3.8 27B](https://freetokens.fyi/models/qwen3.8-27b) | 🔴 OpenRouter (已结束 2026年10月8日) · 🔵 Groq (未公布截止) · 🟢 OVHcloud AI Endpoints (未公布截止) | 2 | 34 (2026-10-08) | 262K | 支持 | Qwen | Dense 27B 开放权重视觉语言模型，2026-08 发布（AA 指数 33.7）。 |
+| [Qwen3.8 27B](https://freetokens.fyi/models/qwen3.8-27b) | 🔴 OpenRouter (已结束 2026年10月8日) · 🔵 Groq (未公布截止) · 🟢 OVHcloud AI Endpoints (未公布截止) · 🔵 Hetzner Experiments (未公布截止) | 3 | 34 (2026-10-08) | 262K | 支持 | Qwen | Dense 27B 开放权重视觉语言模型，2026-08 发布（AA 指数 33.7）。 |
 | [Gemini 3.5 Flash](https://freetokens.fyi/models/gemini-3.5-flash) | 🔵 Google AI Studio (未公布截止) | 1 | 33 (2026-10-06) | 1M | 未核查 | Google | — |
 | [Dots3-Note Preview](https://freetokens.fyi/models/dots-3-note-preview) | 🟢 Kilo Code (未公布截止) · 🔴 Cline (已结束 2026年10月11) · 🟢 OpenRouter (未公布截止) · 🔵 AIHubMix (未公布截止) | 7 | EST 28–33 （估算） (2026-10-05) | 512K | 支持 | Dots Studio | — |
 | [Laguna S 2.1](https://freetokens.fyi/models/laguna-s-2.1) | 🟢 Kilo Code (未公布截止) · 🔴 Cline (已结束 2026年10月11) · 🟢 OpenRouter (未公布截止) · 🟢 Vercel AI Gateway (未公布截止) | 9 | EST 27–32 （估算） (2026-10-05) | 262K | 不支持 | Poolside | — |
@@ -437,6 +439,7 @@ freetokens 追踪的是**免费线路**：一个模型 × 一个渠道 × 一个
 | [Zhipu BigModel](https://freetokens.fyi/channels/zhipu-bigmodel) | 官方 | [$0，需账号](https://docs.bigmodel.cn/cn/guide/start/pricing) | [API · 3 种格式](https://docs.bigmodel.cn/cn/guide/start/pricing) | 2 / 2 | 未公布 | 🔵 GLM-4.7-Flash · 🔵 GLM-4-Flash-250414 |
 | [Ant Ling](https://freetokens.fyi/channels/ant-ling) | 官方 | [$0，需账号](https://developer.ant-ling.com/zh-CN/docs/models/price/) | [API · 2 种格式](https://developer.ant-ling.com/zh-CN/docs/) | 1 / 1 | Ling 3.1 Flash · 2026年10月14 (推算) | 🟢 Ling 3.1 Flash |
 | [Command Code](https://freetokens.fyi/channels/command-code) | agent 工具 | [$1/month 需先订阅](https://commandcode.ai/docs/plans/go) | [API · 3 种格式 · 仅限人工](https://commandcode.ai/terms) | 1 / 2 | 未公布 | 🟢 Ling 3.1 Flash · 🔴 Space Bunny (stealth) |
+| [Hetzner Experiments](https://freetokens.fyi/channels/hetzner-experiments) | 官方 | [$0，需账号](https://docs.hetzner.com/general/company-and-policy/experiments/inference/) | [API · OpenAI 对话](https://docs.hetzner.com/general/company-and-policy/experiments/inference/) | 1 / 1 | 未公布 | 🔵 Qwen3.8 27B |
 | [Qoder](https://freetokens.fyi/channels/qoder) | agent 工具 | [$0，需账号](https://docs.qoder.com/zh/events/flashoffer) | [仅 CLI](https://docs.qoder.com/zh/events/flashoffer) | 1 / 1 | 未公布 | 🟢 Qwen3.8 Flash |
 | [Cline](https://freetokens.fyi/channels/cline) | agent 工具 | [$0，需账号](https://docs.cline.bot/getting-started/free-models) | [仅 CLI · 仅限人工](https://cline.bot/tos) | 0 / 16 | 未公布 | 🔴 North Mini Code · 🔴 Ling 3.0 Flash Sante · 🔴 Nemotron 3 Nano Omni 30B A3B (reasoning) · 🔴 Nemotron 3 Super · 🔴 Nemotron 3 Ultra (550B-A55B) · 🔴 Nemotron 3.5 Lightning · 🔴 Laguna S 2.1 · 🔴 Laguna XS 2.1 · 🔴 LFM 2.5 2.6B · 🔴 Apodex 1.1 Mini · 🔴 Dots3-Note Preview · 🔴 Gemma 4 26B A4B · 🔴 Gemma 4 31B · 🔴 Inkling Small · 🔴 Inkling · 🔴 Kimi K3 |
 <!-- END:channels -->

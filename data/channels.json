@@ -644,5 +644,35 @@
    "models": "https://developer.ant-ling.com/zh-CN/docs/models/price/"
   },
   "free_condition": "Official Ant Ling API: models priced 0 during their launch promotions"
+ },
+ {
+  "name": "Hetzner Experiments",
+  "entry": {
+   "kind": "account",
+   "usd": null,
+   "period": null,
+   "note": "Inference API experiment: free while experimental; API key required; no SLA, not for production"
+  },
+  "source": {
+   "url": "https://docs.hetzner.com/general/company-and-policy/experiments/inference/",
+   "label": "Hetzner Inference API experiment docs"
+  },
+  "checked": "2026-10-13",
+  "access": {
+   "form": "api",
+   "protocols": [
+    "openai_chat"
+   ],
+   "rules": [],
+   "source": {
+    "url": "https://docs.hetzner.com/general/company-and-policy/experiments/inference/",
+    "label": "Hetzner Inference API experiment docs"
+   }
+  },
+  "links": {
+   "site": "https://www.hetzner.com/",
+   "models": "https://docs.hetzner.com/general/company-and-policy/experiments/inference/"
+  },
+  "free_condition": "Hetzner account + API key; free while experimental, advance email notice before change"
  }
 ]

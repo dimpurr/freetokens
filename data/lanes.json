@@ -3927,5 +3927,37 @@
       "date": "2026-10-11",
       "method": "agent_run"
     }
+  },
+  {
+    "id": "qwen3.8-27b-hetzner",
+    "model": "qwen3.8-27b",
+    "channel": "Hetzner Experiments",
+    "type": "first_party",
+    "model_id": "Qwen3.8-27B",
+    "free_condition": "free while the Inference API is experimental (advance email notice before any change)",
+    "limits_stated": {
+      "basis": "official",
+      "per_minute": 10,
+      "note": "per key per 60s: 10 req, 4M in + 100k out tokens",
+      "source": "https://docs.hetzner.com/general/company-and-policy/experiments/inference/"
+    },
+    "limits_observed": null,
+    "started": {
+      "date": "2026-07",
+      "note": "inference experiment live (docs Last change 2026-07-24)"
+    },
+    "ends": {
+      "announced": null,
+      "expected": null,
+      "confidence": "none",
+      "note": "experimental, no SLA; advance email notice promised before paid change"
+    },
+    "data_policy": "zero_retention",
+    "status": "listed",
+    "checked": {
+      "date": "2026-10-13",
+      "method": "listing"
+    },
+    "note": "E2 2026-10-13: official doc model table lists Qwen3.8-27B (262,144 ctx); models.dev $0.00/$0.00; GET /api/v1/models 401 (online, needs key). Needs Hetzner account for a live call (HUMAN-TODO)."
   }
 ]
