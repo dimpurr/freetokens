@@ -1927,5 +1927,32 @@
       "label": "own check of channel model list",
       "url": "https://opencode.ai/zen/go/v1/models"
     }
+  },
+  {
+    "date": "2026-10-14",
+    "lanes": [
+      "ling-3.1-flash-or",
+      "ling-3.1-flash-kilo",
+      "ling-3.1-flash-vercel"
+    ],
+    "kind": "ended",
+    "end_date": "2026-10-13",
+    "text": "Ant's official two-week trial ended 2026-10-13: OpenRouter bills $0.075/$0.225 per 1M (75% off promo), Kilo Code and Vercel AI Gateway $0.30/$0.90; Vercel's -free model ID stops serving and OpenRouter's free variant is gone from the catalogue",
+    "source": {
+      "label": "Vercel changelog (\"free to use through October 13, 2026\") plus own checks of the OpenRouter models API, Kilo Code and Vercel model pages",
+      "url": "https://vercel.com/changelog/ling-3-1-flash-is-now-available-on-ai-gateway"
+    }
+  },
+  {
+    "date": "2026-10-14",
+    "lanes": [
+      "ling-cc"
+    ],
+    "kind": "available",
+    "text": "Still $0.00/M on input, output and cache after the trial ended elsewhere: \"free while it lasts\", credits never draw down, available on the Go plan and above",
+    "source": {
+      "label": "Command Code model page",
+      "url": "https://commandcode.ai/models/ling-3-1-flash-free"
+    }
   }
 ]

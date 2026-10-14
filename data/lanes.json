@@ -22,12 +22,13 @@
     "ends": {
       "announced": null,
       "expected": null,
-      "confidence": "none"
+      "confidence": "none",
+      "note": "no end date published: \"free while it lasts\", needs a Go plan or above - re-check daily"
     },
     "data_policy": "may_train",
     "status": "live",
     "checked": {
-      "date": "2026-10-13",
+      "date": "2026-10-14",
       "method": "listing"
     }
   },
@@ -714,20 +715,21 @@
       "date": "2026-10-02"
     },
     "ends": {
-      "announced": null,
+      "announced": "2026-10-13",
       "expected": null,
-      "confidence": "none"
+      "confidence": "official"
     },
     "data_policy": "unstated",
-    "status": "live",
+    "status": "ended",
     "checked": {
-      "date": "2026-10-06",
-      "method": "api_call"
+      "date": "2026-10-14",
+      "method": "listing"
     },
     "volume": {
       "tier": "bulk",
       "basis": "own check: 10 parallel agent runs"
-    }
+    },
+    "note": "Trial ended 2026-10-13: now $0.30/$0.90 per 1M (cache read $0.06), pricing via OpenRouter; the page's \"(free)\" marker is gone (seen 2026-10-14)"
   },
   {
     "id": "ling-2.6-1t-kilo",
@@ -1658,20 +1660,21 @@
       "date": "2026-10-02"
     },
     "ends": {
-      "announced": null,
+      "announced": "2026-10-13",
       "expected": null,
-      "confidence": "none"
+      "confidence": "official"
     },
     "data_policy": "unstated",
-    "status": "live",
+    "status": "ended",
     "checked": {
-      "date": "2026-10-13",
+      "date": "2026-10-14",
       "method": "catalogue"
     },
     "volume": {
       "tier": "taste",
       "basis": "50 requests a day without credits (stated)"
-    }
+    },
+    "note": "Trial ended 2026-10-13: standard ID now $0.075/$0.225 per 1M (75% off, cache read $0.015); the free variant is gone from OpenRouter's catalogue (seen 2026-10-14)"
   },
   {
     "id": "apodex-1.1-mini-or",
@@ -2241,7 +2244,8 @@
     "volume": {
       "tier": "daily",
       "basis": "channel rule: Zen's free allowance is per IP per day; this model not load-tested"
-    }
+    },
+    "note": "Probe timed out at 60s on 2026-10-14 behind Zen's shared limiter; no pricing change seen, and one failed check is not a negative finding - re-check due"
   },
   {
     "id": "nemotron-3.5-lightning-zen",
@@ -2693,16 +2697,17 @@
       "note": "announced on the Vercel changelog"
     },
     "ends": {
-      "announced": null,
+      "announced": "2026-10-13",
       "expected": null,
-      "confidence": "none"
+      "confidence": "official"
     },
     "data_policy": "unstated",
-    "status": "live",
+    "status": "ended",
     "checked": {
-      "date": "2026-10-13",
-      "method": "catalogue"
-    }
+      "date": "2026-10-14",
+      "method": "listing"
+    },
+    "note": "Changelog: free through 2026-10-13, then the standard ID begins billing ($0.3/$0.9 per 1M) and this -free ID stops serving (seen 2026-10-14)"
   },
   {
     "id": "laguna-s-2.1-vercel",
@@ -3835,7 +3840,8 @@
     "volume": {
       "tier": "daily",
       "basis": "own check: 5 parallel agent runs; starts capped at 2 a second"
-    }
+    },
+    "note": "Ends today on our inference; Ant has not published post-trial pricing and its pricing page needs a login, so the flip is unverified - re-check"
   },
   {
     "id": "glyph-cluster-vercel",
