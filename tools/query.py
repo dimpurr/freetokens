@@ -72,7 +72,7 @@ def main(argv):
         out = [lane_view(l) for l in ls]
     elif cmd == "events":
         since, lane = opt("--since", ""), opt("--lane")
-        out = [e for e in sorted(EVENTS, key=lambda e: e["date"], reverse=True) if e["date"][:10] >= since and (not lane or lane in e["lanes"])]
+        out = [e for e in sorted(EVENTS, key=lambda e: e["date"], reverse=True) if e["date"][:10] >= since and (not lane or lane in e.get("lanes", []))]
     elif cmd == "pool":
         mn = float(opt("--min", 30))
         out = []
