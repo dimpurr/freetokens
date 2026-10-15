@@ -2236,16 +2236,16 @@
       "confidence": "none"
     },
     "data_policy": "may_train",
-    "status": "live",
+    "status": "ended",
     "checked": {
-      "date": "2026-10-06",
-      "method": "api_call"
+      "date": "2026-10-15",
+      "method": "catalogue"
     },
     "volume": {
       "tier": "daily",
       "basis": "channel rule: Zen's free allowance is per IP per day; this model not load-tested"
     },
-    "note": "Probe timed out at 60s on 2026-10-14 behind Zen's shared limiter; no pricing change seen, and one failed check is not a negative finding - re-check due"
+    "note": "Gone from Zen's free catalogue and the chat endpoint answers \"Model is unavailable\" (HTTP 400, 0.4-0.6s, two probes on 2026-10-15; a control free model still answered 403 FreeTierError, so not the shared-limiter hang); last seen in the catalogue 2026-10-14T08:00Z, not moved to the paid catalogue and no changelog entry"
   },
   {
     "id": "nemotron-3.5-lightning-zen",
@@ -3829,19 +3829,19 @@
       "announced": null,
       "expected": "2026-10-14",
       "confidence": "inferred",
-      "note": "\"free for 2 weeks\" from the 2026-09-30 launch"
+      "note": "\"free for 2 weeks\" from the 2026-09-30 launch; flip seen on the pricing page dated 2026-10-14 (checked 2026-10-15)"
     },
     "data_policy": "unstated",
-    "status": "live",
+    "status": "ended",
     "checked": {
-      "date": "2026-10-09",
-      "method": "agent_run"
+      "date": "2026-10-15",
+      "method": "listing"
     },
     "volume": {
       "tier": "daily",
       "basis": "own check: 5 parallel agent runs; starts capped at 2 a second"
     },
-    "note": "Ends today on our inference; Ant has not published post-trial pricing and its pricing page needs a login, so the flip is unverified - re-check"
+    "note": "Official two-week trial over: the pricing page (updated 2026-10-14) now bills pay-as-you-go at ¥0.50/¥1.50 per 1M with a limited-time 75% discount (list ¥2.00/¥6.00, cache read ¥0.125), so the post-trial pricing is out after \"rates to be announced\"; the standing daily 500K-token free quota becomes a monthly ¥10 voucher at the 2026-10-31 billing upgrade (seen 2026-10-15)"
   },
   {
     "id": "glyph-cluster-vercel",

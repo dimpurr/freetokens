@@ -631,5 +631,11 @@
   "Ant's official two-week trial ended 2026-10-13: OpenRouter bills $0.075/$0.225 per 1M (75% off promo), Kilo Code and Vercel AI Gateway $0.30/$0.90; Vercel's -free model ID stops serving and OpenRouter's free variant is gone from the catalogue": "官方两周试用已于 2026-10-13 结束：OpenRouter 按每 1M $0.075/$0.225 计费（75% off 促销），Kilo Code 与 Vercel AI Gateway 每 1M $0.30/$0.90；Vercel 的 -free 模型 ID 停止服务，OpenRouter 的免费变体已从目录移除",
   "Vercel changelog (\"free to use through October 13, 2026\") plus own checks of the OpenRouter models API, Kilo Code and Vercel model pages": "Vercel changelog（\"free to use through October 13, 2026\"，10 月 13 日前免费）＋自行检查 OpenRouter 模型 API、Kilo Code 与 Vercel 模型页面",
   "Still $0.00/M on input, output and cache after the trial ended elsewhere: \"free while it lasts\", credits never draw down, available on the Go plan and above": "其他渠道试用结束后仍为每 M $0.00（输入、输出、缓存）：\"free while it lasts\"（活动期内免费），点数不会被扣减，需 Go 及以上套餐",
-  "Command Code model page": "Command Code 模型页面"
+  "Command Code model page": "Command Code 模型页面",
+  "\"free for 2 weeks\" from the 2026-09-30 launch; flip seen on the pricing page dated 2026-10-14 (checked 2026-10-15)": "\"免费 2 周\"，自 2026-09-30 发布起；已在日期为 2026-10-14 的定价页上看到翻转（核查于 2026-10-15）",
+  "Ant's own pricing page now bills Ling-3.1-flash pay-as-you-go at ¥0.50/¥1.50 per 1M with a limited-time 75% discount (list ¥2.00/¥6.00), replacing \"限时免费 2 周\"; the post-trial pricing is published after \"rates to be announced\"": "官方定价页现改为按量计费：Ling-3.1-flash 每 1M ¥0.50/¥1.50（限时 2.5 折＝75% off，标价 ¥2.00/¥6.00），取代\"限时免费 2 周\"；此前\"费率有待公布\"的试后定价现已公布",
+  "Ant Ling official pricing page (ZH+EN, updated 2026-10-14)": "Ant Ling 官方定价页（中英双语，更新于 2026-10-14）",
+  "OpenCode Zen dropped Ling 3.1 Flash: no longer in the free model catalogue or the paid one, and the chat endpoint answers \"Model is unavailable\" (a control free model still answered 403 FreeTierError); no changelog entry": "OpenCode Zen 下架 Ling 3.1 Flash：免费模型目录与付费目录均已无此模型，chat 端点返回\"Model is unavailable\"（对照组免费模型仍返回 403 FreeTierError）；无 changelog 公告",
+  "OpenCode Zen models API and chat endpoint (own checks)": "OpenCode Zen 模型 API 与 chat 端点（自查）",
+  "removal window 2026-10-14T08:00Z - 2026-10-15T00:05Z; still in the catalogue on 10-14 08:00Z": "移除窗口 2026-10-14T08:00Z - 2026-10-15T00:05Z；10-14 08:00Z 时仍在目录中"
 }
