@@ -1700,15 +1700,16 @@
       "confidence": "none"
     },
     "data_policy": "unstated",
-    "status": "live",
+    "status": "ended",
     "checked": {
-      "date": "2026-10-06",
-      "method": "api_call"
+      "date": "2026-10-16",
+      "method": "catalogue"
     },
     "volume": {
       "tier": "taste",
       "basis": "50 requests a day without credits (stated)"
-    }
+    },
+    "note": "Gone from OpenRouter: neither apodex/apodex-1.1-mini nor the :free ID is in the model list any more, and the endpoints API returns 0 endpoints for both (2026-10-16); no end date announced"
   },
   {
     "id": "ling-3.0-flash-sante-or",
@@ -3897,15 +3898,16 @@
       "confidence": "none"
     },
     "data_policy": "zero_retention",
-    "status": "live",
+    "status": "ended",
     "checked": {
-      "date": "2026-10-11",
-      "method": "agent_run"
+      "date": "2026-10-16",
+      "method": "catalogue"
     },
     "volume": {
       "tier": "daily",
       "basis": "channel rule: Zen's free allowance is per IP per day; 10 short calls in parallel answered"
-    }
+    },
+    "note": "Dropped from Zen: not in the model catalogue, the Zen model docs or the OpenCode client; the free-tier endpoint answers 400 \"Model is unavailable\" (0.3s) while live free models answer 403 FreeTierError; models.dev flags it deprecated; no end date announced"
   },
   {
     "id": "step-5-preview-go",
@@ -3935,11 +3937,12 @@
       "confidence": "none"
     },
     "data_policy": "not_checked",
-    "status": "live",
+    "status": "ended",
     "checked": {
-      "date": "2026-10-11",
-      "method": "agent_run"
-    }
+      "date": "2026-10-16",
+      "method": "catalogue"
+    },
+    "note": "Free ID dropped from Go: the plan's own model list keeps paid Step 5 Preview ($1.00/$2.70) with no free variant; models.dev flags opencode-go/step-5-preview-free deprecated; an authenticated call answers 400 \"Model is unavailable\" while a control free model answered 200"
   },
   {
     "id": "qwen3.8-27b-hetzner",
@@ -4031,5 +4034,234 @@
       "method": "catalogue"
     },
     "note": "W6 2026-10-13: 4x Unexpected server error + Model not found; needs repeat check (ADR-022)"
+  },
+  {
+    "id": "glm-5.3-flash-zen",
+    "model": "glm-5.3-flash",
+    "channel": "OpenCode Zen",
+    "type": "agent_tool",
+    "model_id": "opencode/glm-5.3-flash-free",
+    "free_condition": "Limited time; no end date published",
+    "limits_stated": {
+      "basis": "unpublished"
+    },
+    "limits_observed": {
+      "date": "2026-10-16",
+      "reach": "works",
+      "load": "throttled",
+      "cost": "zero",
+      "checks": 3,
+      "note": "3 coding-agent runs: 2 passed, 3rd hit upstream limit"
+    },
+    "started": {
+      "date": "2026-10-16",
+      "note": "first seen in the daily free-catalogue check; may predate it"
+    },
+    "ends": {
+      "announced": null,
+      "expected": null,
+      "confidence": "none"
+    },
+    "data_policy": "zero_retention",
+    "status": "live",
+    "checked": {
+      "date": "2026-10-16",
+      "method": "agent_run"
+    },
+    "volume": {
+      "tier": "daily",
+      "basis": "channel rule: Zen's free allowance is per IP per day; 2 agent runs passed, 1 aborted on an upstream rate limit"
+    }
+  },
+  {
+    "id": "deepseek-v4.1-flash-zen",
+    "model": "deepseek-v4.1-flash",
+    "channel": "OpenCode Zen",
+    "type": "agent_tool",
+    "model_id": "opencode/deepseek-v4.1-flash-free",
+    "free_condition": "Limited time; no end date published",
+    "limits_stated": {
+      "basis": "unpublished"
+    },
+    "limits_observed": {
+      "date": "2026-10-16",
+      "reach": "works",
+      "cost": "zero",
+      "checks": 3,
+      "note": "3 sequential coding-agent runs, all passed"
+    },
+    "started": {
+      "date": "2026-10-16",
+      "note": "first seen in the daily free-catalogue check; may predate it"
+    },
+    "ends": {
+      "announced": null,
+      "expected": null,
+      "confidence": "none"
+    },
+    "data_policy": "zero_retention",
+    "status": "live",
+    "checked": {
+      "date": "2026-10-16",
+      "method": "agent_run"
+    },
+    "volume": {
+      "tier": "daily",
+      "basis": "channel rule: Zen's free allowance is per IP per day; 3 runs in one session passed"
+    }
+  },
+  {
+    "id": "nemotron-3.5-super-vl-zen",
+    "model": "nemotron-3.5-super-vl",
+    "channel": "OpenCode Zen",
+    "type": "agent_tool",
+    "model_id": "opencode/nemotron-3.5-super-vl-free",
+    "free_condition": "Limited time; no end date published",
+    "limits_stated": {
+      "basis": "unpublished"
+    },
+    "limits_observed": null,
+    "started": {
+      "date": "2026-10-16",
+      "note": "first seen in the daily free-catalogue check; may predate it"
+    },
+    "ends": {
+      "announced": null,
+      "expected": null,
+      "confidence": "none"
+    },
+    "data_policy": "may_train",
+    "status": "listed",
+    "checked": {
+      "date": "2026-10-16",
+      "method": "catalogue"
+    },
+    "volume": {
+      "tier": "daily",
+      "basis": "channel rule: Zen's free allowance is per IP per day; this model not load-tested"
+    }
+  },
+  {
+    "id": "ll-alpha-zen",
+    "model": "ll-alpha",
+    "channel": "OpenCode Zen",
+    "type": "agent_tool",
+    "model_id": "opencode/ll-alpha-free",
+    "free_condition": "Limited time; no end date published",
+    "limits_stated": {
+      "basis": "unpublished"
+    },
+    "limits_observed": null,
+    "started": {
+      "date": "2026-10-16",
+      "note": "first seen in the daily free-catalogue check; may predate it"
+    },
+    "ends": {
+      "announced": null,
+      "expected": null,
+      "confidence": "none"
+    },
+    "data_policy": "may_train",
+    "status": "listed",
+    "checked": {
+      "date": "2026-10-16",
+      "method": "catalogue"
+    },
+    "volume": {
+      "tier": "daily",
+      "basis": "channel rule: Zen's free allowance is per IP per day; this model not load-tested"
+    }
+  },
+  {
+    "id": "nemotron-3.5-super-vl-or",
+    "model": "nemotron-3.5-super-vl",
+    "channel": "OpenRouter",
+    "type": "router",
+    "model_id": "nvidia/nemotron-3.5-super-vl:free",
+    "free_condition": null,
+    "limits_stated": {
+      "basis": "official",
+      "per_day": 50,
+      "note": "1000/day once 10+ credits have been bought",
+      "source": "https://openrouter.ai/pricing"
+    },
+    "limits_observed": null,
+    "started": {
+      "date": "2026-10-15",
+      "note": "OpenRouter model API created date for this ID"
+    },
+    "ends": {
+      "announced": null,
+      "expected": null,
+      "confidence": "none"
+    },
+    "data_policy": "not_checked",
+    "status": "listed",
+    "checked": {
+      "date": "2026-10-16",
+      "method": "catalogue"
+    },
+    "volume": {
+      "tier": "taste",
+      "basis": "50 requests a day without credits (stated)"
+    }
+  },
+  {
+    "id": "nemotron-3.5-lightning-vercel",
+    "model": "nemotron-3.5-lightning",
+    "channel": "Vercel AI Gateway",
+    "type": "router",
+    "model_id": "nvidia/nemotron-3.5-lightning-free",
+    "free_condition": null,
+    "limits_stated": {
+      "basis": "unpublished",
+      "note": "lower per-model rate limits on the free tier",
+      "source": "https://ai-gateway.vercel.sh/v1/models"
+    },
+    "limits_observed": null,
+    "started": {
+      "date": "2026-10-14",
+      "note": "release date on the model's own AI Gateway page"
+    },
+    "ends": {
+      "announced": null,
+      "expected": null,
+      "confidence": "none"
+    },
+    "data_policy": "may_train",
+    "status": "listed",
+    "checked": {
+      "date": "2026-10-16",
+      "method": "catalogue"
+    }
+  },
+  {
+    "id": "cat-jam-vercel",
+    "model": "cat-jam",
+    "channel": "Vercel AI Gateway",
+    "type": "router",
+    "model_id": "stealth/cat-jam",
+    "free_condition": null,
+    "limits_stated": {
+      "basis": "unpublished",
+      "note": "lower per-model rate limits on the free tier",
+      "source": "https://ai-gateway.vercel.sh/v1/models"
+    },
+    "limits_observed": null,
+    "started": {
+      "date": "2026-10-15",
+      "note": "Vercel changelog: free in stealth on AI Gateway"
+    },
+    "ends": {
+      "announced": null,
+      "expected": null,
+      "confidence": "none"
+    },
+    "data_policy": "may_train",
+    "status": "listed",
+    "checked": {
+      "date": "2026-10-16",
+      "method": "catalogue"
+    }
   }
 ]

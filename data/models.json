@@ -1050,13 +1050,39 @@
     "id": "cat-jam",
     "name": "Cat Jam",
     "maker": "undisclosed",
-    "context": "262K",
+    "context": "1M",
     "image_input": "partial",
     "aa_index": {
       "value": null,
       "date": "2026-10-13",
       "note": "not ranked"
     },
-    "notes": "Context 262,144 per models.dev + video title (secondary, 2026-10-13). Zen lane answers text; image via agentic tool-use, not native vision (W6 2026-10-13)."
+    "notes": "Context 262,144 per models.dev + video title (secondary, 2026-10-13); models.dev and the Vercel AI Gateway model page now both say 1,048,576 (2026-10-16). Zen lane answers text; image via agentic tool-use, not native vision (W6 2026-10-13)."
+  },
+  {
+    "id": "nemotron-3.5-super-vl",
+    "name": "Nemotron 3.5 Super VL",
+    "maker": "nvidia",
+    "context": "1M",
+    "image_input": "yes",
+    "aa_index": {
+      "value": 26,
+      "date": "2026-10-16",
+      "url": "https://artificialanalysis.ai/models/nemotron-3-5-super-vl"
+    },
+    "notes": null
+  },
+  {
+    "id": "ll-alpha",
+    "name": "LL Alpha",
+    "maker": "undisclosed",
+    "context": "262K",
+    "image_input": "not_checked",
+    "aa_index": {
+      "value": null,
+      "date": "2026-10-16",
+      "note": "not ranked"
+    },
+    "notes": "Stealth model: OpenCode Zen lists it as free for a limited time, no maker named. Context 262,144 and output 65,536 per models.dev (2026-10-16)."
   }
 ]

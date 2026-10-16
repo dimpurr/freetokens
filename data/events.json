@@ -1995,5 +1995,131 @@
       "url": "https://commandcode.ai/models/ling-3-1-flash-free",
       "note": "free-to-paid window 2026-10-14 - 2026-10-16 (still $0.00/M on 2026-10-14, paid by 2026-10-16T00:01Z); also checked the model catalogue, pricing-limits docs and a 2026-10-09 Wayback snapshot of the model page"
     }
+  },
+  {
+    "date": "2026-10-16",
+    "lanes": [
+      "glm-5.3-flash-zen"
+    ],
+    "kind": "available",
+    "text": "GLM 5.3 Flash is free on OpenCode Zen: listed Free for input, output and cached reads in the Zen price table and present in the model catalogue; three coding-agent runs on 2026-10-16 cost nothing (two passed, the third aborted on an upstream rate limit)",
+    "source": {
+      "label": "OpenCode Zen model list, price table and our own agent runs",
+      "url": "https://opencode.ai/v2/docs/console/models/"
+    }
+  },
+  {
+    "date": "2026-10-16",
+    "lanes": [
+      "deepseek-v4.1-flash-zen"
+    ],
+    "kind": "available",
+    "text": "DeepSeek V4.1 Flash is free on OpenCode Zen: listed Free for input, output and cached reads in the Zen price table, in the model catalogue, and three coding-agent runs on 2026-10-16 passed at zero cost",
+    "source": {
+      "label": "OpenCode Zen model list, price table and our own agent runs",
+      "url": "https://opencode.ai/v2/docs/console/models/"
+    }
+  },
+  {
+    "date": "2026-10-16",
+    "lanes": [
+      "nemotron-3.5-super-vl-zen"
+    ],
+    "kind": "available",
+    "text": "NVIDIA Nemotron 3.5 Super VL is free on OpenCode Zen: in the model catalogue and listed Free in the Zen price table, \"available on OpenCode for a limited time\"; the NVIDIA free endpoints log use for product improvement",
+    "source": {
+      "label": "OpenCode Zen model list, price table and privacy notes",
+      "url": "https://opencode.ai/v2/docs/console/models/"
+    }
+  },
+  {
+    "date": "2026-10-16",
+    "lanes": [
+      "ll-alpha-zen"
+    ],
+    "kind": "available",
+    "text": "LL Alpha is free on OpenCode Zen: a stealth model, \"free on OpenCode for a limited time\", listed Free in the price table and present in the model catalogue; collected data may be used to improve the model and is retained 30 days",
+    "source": {
+      "label": "OpenCode Zen model list, price table and privacy notes",
+      "url": "https://opencode.ai/v2/docs/console/models/"
+    }
+  },
+  {
+    "date": "2026-10-15",
+    "lanes": [
+      "nemotron-3.5-super-vl-or"
+    ],
+    "kind": "available",
+    "text": "Nemotron 3.5 Super VL (free) appears on OpenRouter at $0 prompt and $0 completion, served by an NVIDIA endpoint with 1M context and 131K max output (text, image and video input)",
+    "source": {
+      "label": "OpenRouter models API and endpoints API",
+      "url": "https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2026-10-14",
+    "lanes": [
+      "nemotron-3.5-lightning-vercel"
+    ],
+    "kind": "available",
+    "text": "Nemotron 3.5 Lightning Free joins Vercel AI Gateway at $0 input and $0 output, 1M context and 65K max output, release date 10/14/2026; the provider may retain prompts and responses for model improvement",
+    "source": {
+      "label": "Vercel AI Gateway models API and model page",
+      "url": "https://vercel.com/ai-gateway/models/nemotron-3.5-lightning-free"
+    }
+  },
+  {
+    "date": "2026-10-15",
+    "lanes": [
+      "cat-jam-vercel"
+    ],
+    "kind": "available",
+    "text": "Cat Jam is now available in stealth for free on Vercel AI Gateway: $0 input and $0 output, 1M context, 131K max output, release date 10/15/2026; prompts and responses may be used for training",
+    "source": {
+      "label": "Vercel AI Gateway changelog, models API and model page",
+      "url": "https://vercel.com/changelog/cat-jam-is-now-available-in-stealth-for-free-on-ai-gateway"
+    }
+  },
+  {
+    "date": "2026-10-16",
+    "lanes": [
+      "apodex-1.1-mini-or"
+    ],
+    "kind": "ended",
+    "end_date": "2026-10-16",
+    "text": "Apodex 1.1 Mini is gone from OpenRouter: the model list holds no apodex ID any more and the endpoints API returns 0 endpoints for both the standard and the :free ID, so nothing serves it",
+    "source": {
+      "label": "OpenRouter models API and endpoints API (own checks)",
+      "url": "https://openrouter.ai/api/v1/models",
+      "note": "last answer we hold: 2026-10-06 API call; absent on the 2026-10-16T08:00Z watch and again at 15:31Z"
+    }
+  },
+  {
+    "date": "2026-10-16",
+    "lanes": [
+      "step-5-preview-zen"
+    ],
+    "kind": "ended",
+    "end_date": "2026-10-16",
+    "text": "OpenCode Zen dropped Step 5 Preview Free: not in the model catalogue, not in the Zen model list or price table, hidden from the client, and the free-tier endpoint answers \"Model is unavailable\" (HTTP 400) where live free models answer 403 FreeTierError",
+    "source": {
+      "label": "OpenCode Zen models API, model docs and free-tier endpoint (own checks)",
+      "url": "https://opencode.ai/zen/v1/models",
+      "note": "answered 10 parallel calls on 2026-10-11; models.dev flags the ID deprecated as of 2026-10-16"
+    }
+  },
+  {
+    "date": "2026-10-16",
+    "lanes": [
+      "step-5-preview-go"
+    ],
+    "kind": "ended",
+    "end_date": "2026-10-16",
+    "text": "OpenCode Go dropped Step 5 Preview Free: the plan's model list keeps the paid Step 5 Preview ($1.00/$2.70) with no free variant, the free ID is out of the catalogue, and an authenticated call answers \"Model is unavailable\" (HTTP 400) while a control free model still answered 200",
+    "source": {
+      "label": "OpenCode Go docs, models API and models.dev (own checks)",
+      "url": "https://opencode.ai/v2/docs/console/go/",
+      "note": "models.dev flags the ID deprecated; deprecation falls between 2026-10-12T16:24Z and 2026-10-16T13:08Z from registry snapshots"
+    }
   }
 ]
