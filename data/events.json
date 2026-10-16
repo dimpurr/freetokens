@@ -1981,5 +1981,19 @@
       "url": "https://opencode.ai/zen/v1/models",
       "note": "removal window 2026-10-14T08:00Z - 2026-10-15T00:05Z; still in the catalogue on 10-14 08:00Z"
     }
+  },
+  {
+    "date": "2026-10-16",
+    "lanes": [
+      "ling-cc"
+    ],
+    "kind": "ended",
+    "end_date": "2026-10-16",
+    "text": "Command Code delisted the free variant inclusionai/ling-3.1-flash:free; the model page now bills $0.30/$0.90/$0.06 per 1M (input/output/cache read, Go plan and above); no end date announced - the \"free while it lasts\" deal was replaced by a boosted credits deal (GOAT $100 / Pro $110)",
+    "source": {
+      "label": "Command Code model page, model catalogue and pricing-limits docs, plus Wayback snapshot of 2026-10-09 (own checks)",
+      "url": "https://commandcode.ai/models/ling-3-1-flash-free",
+      "note": "free-to-paid window 2026-10-14 - 2026-10-16 (still $0.00/M on 2026-10-14, paid by 2026-10-16T00:01Z); also checked: https://commandcode.ai/models, https://commandcode.ai/docs/resources/pricing-limits, https://web.archive.org/web/20261009035358/https://commandcode.ai/models/ling-3-1-flash-free"
+    }
   }
 ]

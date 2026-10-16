@@ -26,11 +26,12 @@
       "note": "no end date published: \"free while it lasts\", needs a Go plan or above - re-check daily"
     },
     "data_policy": "may_train",
-    "status": "live",
+    "status": "ended",
     "checked": {
-      "date": "2026-10-14",
+      "date": "2026-10-16",
       "method": "listing"
-    }
+    },
+    "note": "free variant delisted; now paid $0.30/$0.90/$0.06 per M, Go+; no end date announced"
   },
   {
     "id": "mimo-zen",
