@@ -1809,17 +1809,18 @@
   },
   "status": "live",
   "started": null,
-  "ends": null,
+  "ends": "2026-10-31",
   "checked": {
-   "date": "2026-10-09",
+   "date": "2026-10-16",
    "method": "listing"
   },
   "source": {
    "label": "Ant Ling FAQ",
-   "url": "https://developer.ant-ling.com/zh-CN/docs/faq/"
+   "url": "https://developer.ant-ling.com/zh-CN/docs/faq/",
+   "note": "billing upgrade notice: https://developer.ant-ling.com/zh-CN/docs/getting-started/changelog/billing-upgrade/ (daily quota ends 2026-10-31)"
   },
   "quote": "额度：每日 50 万 tokens（含输入和输出）；发放时间：每日 02:00 前自动发放；当日未使用额度不结转至次日",
-  "note": "Unclear if cached input counts; free-period calls aren't in usage records. Verified accounts also get ¥20 credit. Pauses at cap w/o Alipay."
+  "note": "Pre-quota calls draw from balance; zero quota without auto-debit pauses API. Unified switch day; ¥20 on verification; cache counts unclear."
  },
  {
   "id": "huawei-codearts-daily-10m",

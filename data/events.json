@@ -2115,11 +2115,28 @@
     ],
     "kind": "ended",
     "end_date": "2026-10-16",
-    "text": "OpenCode Go dropped Step 5 Preview Free: the plan's model list keeps the paid Step 5 Preview ($1.00/$2.70) with no free variant, the free ID is out of the catalogue, and an authenticated call answers \"Model is unavailable\" (HTTP 400) while a control free model still answered 200",
+    "text": "OpenCode Go dropped Step 5 Preview Free: the plan's model list keeps the paid Step 5 Preview ($1.00/$2.70) with no free variant, the free ID is out of the catalogue, and an authenticated call answers 400 \"Upstream request failed: Model is unavailable.\" (0.37s) while a control free model still answered 200",
     "source": {
       "label": "OpenCode Go docs, models API and models.dev (own checks)",
       "url": "https://opencode.ai/v2/docs/console/go/",
       "note": "models.dev flags the ID deprecated; deprecation falls between 2026-10-12T16:24Z and 2026-10-16T13:08Z from registry snapshots"
+    }
+  },
+  {
+    "date": "2026-10-16",
+    "lanes": [
+      "ling-3.1-flash-antling"
+    ],
+    "offers": [
+      "ant-ling-daily-500k"
+    ],
+    "kind": "end_announced",
+    "end_date": "2026-10-31",
+    "text": "Ant Ling's billing upgrade notice sets the end of the daily 500K-token free allowance: 2026-10-31 23:59:59 (Beijing time), after which free credits become a ¥10 voucher issued on the 1st of each month (accounts that upgrade early get a one-off ¥20 voucher, valid 60 days); the official API still answered 200 on 2026-10-16 (usage 36/30/66 tokens, no cost field in the response)",
+    "source": {
+      "label": "Ant Ling billing upgrade notice (zh-CN)",
+      "url": "https://developer.ant-ling.com/zh-CN/docs/getting-started/changelog/billing-upgrade/",
+      "note": "the FAQ still lists the daily quota with no end date; the upgrade notice sets 2026-10-31 - both sources kept"
     }
   }
 ]

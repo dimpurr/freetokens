@@ -44,11 +44,10 @@
       "basis": "unpublished"
     },
     "limits_observed": {
-      "date": "2026-10-13",
-      "reach": "busy",
-      "checks": 3,
-      "networks": 2,
-      "note": "our IP rate-limited; sibling Zen free model answered"
+      "date": "2026-10-16",
+      "reach": "works",
+      "cost": "zero",
+      "note": "PONG-1016, 3.61 s"
     },
     "started": {
       "date": "2026-09-21T21:19Z"
@@ -62,8 +61,8 @@
     "data_policy": "may_train",
     "status": "overdue",
     "checked": {
-      "date": "2026-10-13",
-      "method": "catalogue"
+      "date": "2026-10-16",
+      "method": "agent_run"
     },
     "volume": {
       "tier": "daily",
@@ -707,10 +706,9 @@
       "basis": "unpublished"
     },
     "limits_observed": {
-      "date": "2026-10-06",
+      "date": "2026-10-16",
       "reach": "works",
-      "parallel": 10,
-      "load": "throttled"
+      "note": "answered but billed $0.0088; anonymous 401"
     },
     "started": {
       "date": "2026-10-02"
@@ -723,8 +721,8 @@
     "data_policy": "unstated",
     "status": "ended",
     "checked": {
-      "date": "2026-10-14",
-      "method": "listing"
+      "date": "2026-10-16",
+      "method": "agent_run"
     },
     "volume": {
       "tier": "bulk",
@@ -3934,13 +3932,14 @@
     "ends": {
       "announced": null,
       "expected": null,
-      "confidence": "none"
+      "confidence": "none",
+      "note": "no end announced; observed gone on 2026-10-16 (400 \"Upstream request failed: Model is unavailable.\", models.dev deprecated); last answer 2026-10-11"
     },
     "data_policy": "not_checked",
     "status": "ended",
     "checked": {
       "date": "2026-10-16",
-      "method": "catalogue"
+      "method": "agent_run"
     },
     "note": "Free ID dropped from Go: the plan's own model list keeps paid Step 5 Preview ($1.00/$2.70) with no free variant; models.dev flags opencode-go/step-5-preview-free deprecated; an authenticated call answers 400 \"Model is unavailable\" while a control free model answered 200"
   },

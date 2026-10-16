@@ -70,7 +70,7 @@
    "kind": "none",
    "usd": null,
    "period": null,
-   "note": "\":free\" models answered in the Kilo CLI without signing in (our test, Oct 6); other models need a Kilo account"
+   "note": "\":free\" models answered in the Kilo CLI without signing in (our test, Oct 6); other models need a Kilo account; non-\":free\" models answer 401 without sign-in (PAID_MODEL_AUTH_REQUIRED, seen 2026-10-16)"
   },
   "source": {
    "url": "https://kilo.ai/pricing",
