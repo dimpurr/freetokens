@@ -1,6 +1,6 @@
 ---
-title: "Space Bunny Alpha: one free channel left, and how to use it (Oct 2026)"
-description: "Space Bunny Alpha is still free on OpenCode Zen, with no account and no announced end date. The other four channels stopped on 5 and 6 October. How good it is, where it came from, and who might have made it."
+title: "Space Bunny Alpha is still free on one channel (Oct 2026)"
+description: "Space Bunny Alpha is still free on OpenCode Zen: no account, no announced end date. Four other channels stopped on 5–6 Oct. How good it is, and who made it."
 slug: space-bunny-alpha
 section: 档案
 tags: [space-bunny, opencode-zen, opencode-go, openrouter, kilo-code, command-code]

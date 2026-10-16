@@ -1,5 +1,5 @@
 ---
-title: "太空兔还能免费用吗？五个渠道只剩最后一个（2026 年 10 月）"
+title: "太空兔还能免费用吗？只剩一个渠道（2026 年 10 月）"
 description: "太空兔（Space Bunny Alpha）现在只有 OpenCode Zen 还免费，不用账号，没说什么时候停。另外四个渠道 10 月 5 日、6 日已停。它有多强、怎么冒出来的、谁做的。"
 slug: space-bunny-alpha
 section: 档案

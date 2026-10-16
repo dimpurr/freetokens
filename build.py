@@ -656,6 +656,57 @@ def clip(s, n=158):
     return s[: n - 1].rsplit(" ", 1)[0].rstrip(",;:·") + "…"
 
 
+# ---------- SEO: title width in display pixels ----------
+# Google shows about 580px of a title in a 20px Arial line, so titles are measured in pixels, not in
+# characters (SEO INBOX 2026-10-16). The table is Arial's own advance width in 1/1000 em: the build
+# needs no font library, no PIL and no headless browser. CJK and fullwidth glyphs count as one em.
+ARIAL_W = {
+    " ": 278, "!": 278, "\"": 355, "#": 556, "$": 556, "%": 889, "&": 667, "'": 191, "(": 333,
+    ")": 333, "*": 389, "+": 584, ",": 278, "-": 333, ".": 278, "/": 278, "0": 556, "1": 556,
+    "2": 556, "3": 556, "4": 556, "5": 556, "6": 556, "7": 556, "8": 556, "9": 556, ":": 278,
+    ";": 278, "<": 584, "=": 584, ">": 584, "?": 556, "@": 1015, "A": 667, "B": 667, "C": 722,
+    "D": 722, "E": 667, "F": 611, "G": 778, "H": 722, "I": 278, "J": 500, "K": 667, "L": 556,
+    "M": 833, "N": 722, "O": 778, "P": 667, "Q": 778, "R": 722, "S": 667, "T": 611, "U": 722,
+    "V": 667, "W": 944, "X": 667, "Y": 667, "Z": 611, "[": 278, "\\": 278, "]": 278, "^": 469,
+    "_": 556, "`": 333, "a": 556, "b": 556, "c": 500, "d": 556, "e": 556, "f": 278, "g": 556,
+    "h": 556, "i": 222, "j": 222, "k": 500, "l": 222, "m": 833, "n": 556, "o": 556, "p": 556,
+    "q": 556, "r": 333, "s": 500, "t": 278, "u": 556, "v": 500, "w": 722, "x": 500, "y": 500,
+    "z": 500, "{": 334, "|": 260, "}": 334, "~": 584, "¥": 556, "·": 333, "×": 584, "–": 556,
+    "—": 1000, "“": 333, "”": 333, "…": 1000, "→": 1000, "≈": 549, "≠": 549,
+}
+ARIAL_W_DEFAULT = 556  # any other glyph under U+2E80 that the table does not know (Latin-1 letters)
+TITLE_LIMIT = 580      # px of a title Google shows before it cuts the line
+TITLE_SUFFIX = " | freetokens"
+
+
+def text_px(s):
+    """Display width of s in pixels at Arial 20px (1 em = 1000 units = 20px)."""
+    return sum(1000 if ord(ch) > 0x2E80 else ARIAL_W.get(ch, ARIAL_W_DEFAULT) for ch in s) / 50
+
+
+def brand_title(core):
+    """Append " | freetokens" only while the whole title still fits the ~580px title line."""
+    return core + TITLE_SUFFIX if text_px(core + TITLE_SUFFIX) <= TITLE_LIMIT else core
+
+
+def step_down(core, alts):
+    """Fall back through progressively shorter titles while the core itself is still over the limit."""
+    for a in alts:
+        if text_px(core) > TITLE_LIMIT:
+            core = a
+    return core
+
+
+def unmeasured_chars(s):
+    """Title characters with no width in the table: a new name with a glyph the build cannot measure."""
+    return sorted({ch for ch in s if ord(ch) <= 0x2E80 and ch not in ARIAL_W})
+
+
+def offer_name(o, zh=False):
+    """Offer display name: the English source name, or the Chinese one the zh site keeps (SEO INBOX 5)."""
+    return (o.get("name_zh") or o["name"]) if zh else o["name"]
+
+
 FREE = ("live", "overdue", "listed")
 
 
@@ -663,10 +714,10 @@ def seo_home(lanes, models, today):
     chans = sorted({l["channel"] for l in lanes})
     free = [l for l in lanes if l["status"] in FREE]
     if LANG == "zh":
-        title = "免费 LLM 与 API：哪里免费、免费到何时 | freetokens"
+        title = brand_title("免费 LLM 与 API：哪里免费、免费到何时")
         desc = clip(f"哪些 LLM 现在免费、在哪个渠道、免费到何时：{len(free)} 条免费线路，覆盖 {len(chans)} 个渠道，截止日期与我们实测的限额。")
         return title, desc
-    title = "Free LLMs and APIs: where they are free and until when | freetokens"
+    title = brand_title("Free LLM APIs: where they're free and until when")
     desc = clip(f"Which LLMs are free right now, on which channel, and until when: {len(free)} free lanes across {len(chans)} channels, "
                 f"with the end dates and limits we measured ourselves.")
     return title, desc
@@ -679,13 +730,19 @@ def seo_model(m, lanes, today):
     n = len(chs)
     if LANG == "zh":
         if n == 0:
-            title = f"{m['name']}：当前没有免费渠道 | freetokens"
+            core = f"{m['name']}：当前没有免费渠道"
         elif n == 1:
-            title = f"{m['name']} 在 {chs[0]} 免费 | freetokens"
+            core = f"{m['name']} 在 {chs[0]} 免费"
         elif n == 2:
-            title = f"{m['name']} 在 {chs[0]}、{chs[1]} 免费 | freetokens"
+            core = f"{m['name']} 在 {chs[0]}、{chs[1]} 免费"
         else:
-            title = f"{m['name']} 在 {chs[0]}、{chs[1]} 等 {n} 个渠道免费 | freetokens"
+            core = f"{m['name']} 在 {chs[0]}、{chs[1]} 等 {n} 个渠道免费"
+        mx = re.match(r"(.+) 在 (.+?)、(.+?)(?: 等 (\d+) 个渠道)? ?免费$", core)
+        alts = []
+        if mx:
+            k = int(mx[4] or 2)
+            alts = [f"{mx[1]} 在 {mx[2]} 等 {k} 个渠道免费", f"{mx[1]} 在 {k} 个渠道免费"]
+        title = brand_title(step_down(core, alts))
         nxt = sorted((l for l in free if effective_end(l)), key=lambda l: effective_end(l))
         a = m["aa_index"]
         parts = [f"{m['name']} 现在哪些渠道免费：{', '.join(chs) or '暂无渠道'}。"]
@@ -699,13 +756,19 @@ def seo_model(m, lanes, today):
         parts.append(f"{zh_text(m['context'])}。每条事实都有出处和日期。")
         return title, clip(" ".join(parts))
     if n == 0:
-        title = f"{m['name']}: no channel free right now | freetokens"
+        core = f"{m['name']}: no channel free right now"
     elif n == 1:
-        title = f"{m['name']} is free on {chs[0]} | freetokens"
+        core = f"{m['name']} is free on {chs[0]}"
     elif n == 2:
-        title = f"{m['name']} is free on {chs[0]} and {chs[1]} | freetokens"
+        core = f"{m['name']} is free on {chs[0]} and {chs[1]}"
     else:
-        title = f"{m['name']} is free on {chs[0]} and {chs[1]} +{n - 2} more | freetokens"
+        core = f"{m['name']} is free on {chs[0]} and {chs[1]} +{n - 2} more"
+    mx = re.match(r"(.+) is free on (.+?) and (.+?)(?: \+(\d+) more)?$", core)
+    alts = []
+    if mx:
+        k = 2 + int(mx[4] or 0)
+        alts = [f"{mx[1]} is free on {mx[2]} +{k - 1} more", f"{mx[1]}: free on {k} channels"]
+    title = brand_title(step_down(core, alts))
     nxt = sorted((l for l in free if effective_end(l)), key=lambda l: effective_end(l))
     a = m["aa_index"]
     parts = [f"Where {m['name']} is free right now: {', '.join(chs) or 'no channel at the moment'}."]
@@ -725,19 +788,19 @@ def seo_channel(c, lanes, models):
     if not cl:  # a channel that now holds only free programs (ADR-025)
         os_ = [o for o in load_optional("offers", []) if o.get("channel") == c]
         if LANG == "zh":
-            return (f"{c}：免费额度与点数 | freetokens",
-                    clip(f"{c} 给的是覆盖多个模型的免费额度，而不是某个模型的单价免费：" + "; ".join(f"{o['name']}：{zh_text(o['gets']['text'])}" for o in os_) + "。条件、出处与日期。"))
-        return (f"{c}: free allowance and credits | freetokens",
+            return (brand_title(f"{c}：免费额度与点数"),
+                    clip(f"{c} 给的是覆盖多个模型的免费额度，而不是某个模型的单价免费：" + "; ".join(f"{offer_name(o, True)}：{zh_text(o['gets']['text'])}" for o in os_) + "。条件、出处与日期。"))
+        return (brand_title(f"{c}: free allowance and credits"),
                 clip(f"{c} gives a free allowance that covers many models rather than free models of its own: "
                      + "; ".join(f"{o['name']}: {o['gets']['text']}" for o in os_) + ". Conditions, sources and dates."))
     free = [l for l in cl if l["status"] in FREE]
     names = {m["id"]: m["name"] for m in models}
     if LANG == "zh":
-        title = f"{c} 上免费的模型：当前 {len(free)} 个，截止日期与限额 | freetokens"
+        title = brand_title(f"{c} 上的免费模型：当前 {len(free)} 个")
         desc = clip(f"{c} 上跟踪的 {len(cl)} 个模型中有 {len(free)} 个免费（{label('channel_type', cl[0]['type'])}）："
                     f"{', '.join(names[l['model']] for l in free) or '当前没有'}。截止日期、下架与限额，都有出处。")
         return title, desc
-    title = f"Free models on {c}: {len(free)} now, end dates and limits | freetokens"
+    title = brand_title(f"Free models on {c}: {len(free)} now, until when")
     desc = clip(f"{len(free)} of {len(cl)} tracked models free on {c} ({label('channel_type', cl[0]['type'])}): "
                 f"{', '.join(names[l['model']] for l in free) or 'none right now'}. End dates, takedowns and limits, with sources.")
     return title, desc
@@ -749,15 +812,42 @@ def seo_maker(mk, lanes, models):
     who = "stealth models with no maker named" if mk["id"] == "undisclosed" else f"{mk['name']} models"
     if LANG == "zh":
         if mk["id"] == "undisclosed":
-            title = f"未公开的免费模型：当前 {len(free)} 个，在哪用、用到何时 | freetokens"
+            title = brand_title(f"未公开的免费模型：当前 {len(free)} 个，在哪用、用到何时")
             desc = clip(f"跟踪的 {len(ms)} 个未公开厂商的模型中有 {len(free)} 个当前免费。渠道、截止日期、分数与出处。")
         else:
-            title = f"{mk['name']}免费模型：当前 {len(free)} 个，在哪用、用到何时 | freetokens"
+            title = brand_title(f"{mk['name']}免费模型：当前 {len(free)} 个，在哪用、用到何时")
             desc = clip(f"跟踪的 {len(ms)} 个{mk['name']}模型中有 {len(free)} 个当前免费：{', '.join(m['name'] for m in free) or '无'}。渠道、截止日期、分数与出处。")
         return title, desc
-    title = f"Free {who}: {len(free)} now, where and until when | freetokens" if mk["id"] != "undisclosed" else f"Stealth LLMs free now ({len(free)}): suspected makers and where to use them | freetokens"
+    title = (brand_title(f"Free {who}: {len(free)} now, where and until when") if mk["id"] != "undisclosed"
+             else brand_title(f"Stealth LLMs free now ({len(free)}) and where to use them"))
     desc = clip(f"{len(free)} of {len(ms)} tracked {who} are free right now: {', '.join(m['name'] for m in free) or 'none'}. Channels, end dates, scores and sources.")
     return title, desc
+
+
+BLOG_TAGS = {  # slug -> display name for the blog tag pages (built from article tags, ADR-028)
+    "opencode-zen": "OpenCode Zen", "opencode-go": "OpenCode Go", "openrouter": "OpenRouter",
+    "kilo-code": "Kilo Code", "command-code": "Command Code", "space-bunny": "Space Bunny",
+}
+
+
+def seo_tag(slug_):
+    """Blog tag page title + description ("{channel} articles" / "{channel} 相关文章")."""
+    name = BLOG_TAGS.get(slug_, slug_)
+    if LANG == "zh":
+        return (brand_title(f"{name} 相关文章"),
+                f"freetokens 上关于 {name} 的文章：免费渠道、截止日期与证据。")
+    return (brand_title(f"{name} articles"),
+            f"freetokens articles about {name}: free channels, end dates and the evidence behind them.")
+
+
+def seo_methodology():
+    """Methodology page (site build only): title + description, also what --check audits for it."""
+    if LANG == "zh":
+        return (brand_title("freetokens 怎么运作：线路、核查与 EST 估算"),
+                "什么是一条线路、状态与截止可信度、“我们实测”限额怎么测、AA 指数的 EST 估算怎么算。")
+    return (brand_title("How freetokens works: lanes, checks and EST"),
+            "What a lane, status and end-date confidence mean, how 'Tested by us' limits are measured, "
+            "and how the EST estimate of the AA index is computed.")
 
 
 def jsonld(obj):
@@ -934,6 +1024,7 @@ def translate_dataset(base):
         if (a.get("source") or {}).get("label"):
             a["source"]["label"] = zh_text(a["source"]["label"])
     for o in z.get("offers", []):
+        o["name"] = offer_name(o, True)  # the zh site keeps its own name (SEO INBOX 5)
         o["gets"]["text"] = zh_text((o.get("gets") or {}).get("text") or "")
         if ((o.get("models") or {}).get("note")):
             o["models"]["note"] = zh_text(o["models"]["note"])
@@ -1020,43 +1111,46 @@ def build_pages(lanes, events, models, today, mode, lang="en"):
         pages[P + f"channels/{slug(c)}.html"] = (head_html(title, desc, url, today, ld, og, lang, alt(f"channels/{slug(c)}")),
                                               render_body("channel.html", dict(base, root=sub_root, channel=c), sub_root, sub_home, site and SHARED_ASSETS, lang))
     if zh:
-        hub = (("lanes", "全部免费线路：状态、截止日期与实测限额 | freetokens",
+        hub = (("lanes", "全部免费线路：状态、截止日期与实测限额",
                 f"我们跟踪的全部 {len(lanes)} 条免费模型 × 渠道线路：状态、截止日期、我们实测的限额与准确模型 ID。"),
-               ("timeline", "免费 LLM 动态时间线：开始、结束与变化 | freetokens",
+               ("timeline", "免费 LLM 动态时间线：开始、结束与变化",
                 f"免费 LLM 动态的全部记录（{len(events)} 个事件）：免费期开始与结束、公布的截止日期、实测的限额。"))
     else:
-        hub = (("lanes", "All free LLM lanes: status, end dates and measured limits | freetokens",
+        hub = (("lanes", "All free LLM lanes: status, end dates, limits",
                 f"All {len(lanes)} free model × channel routes we track, with status, end dates, our own measured limits and exact model IDs."),
-               ("timeline", "Timeline of free LLM offers: starts, ends and changes | freetokens",
+               ("timeline", "Free LLM timeline: starts, ends and changes",
                 f"Every recorded change to free LLM offers ({len(events)} events): free periods starting and ending, end dates announced, limits measured."))
-    for pg, title, desc in hub:
+    for pg, core, desc in hub:
+        title = brand_title(core)
         url = f"{U}/{pg}"
         pages[P + f"{pg}.html"] = (head_html(title, desc, url, today, [crumbs([("freetokens", HU), (tr(pg.title()), url)])], og, lang, alt(pg)),
                                render_body(f"{pg}.html", dict(base, root=RT if site else ""), RT if site else "", home_href, site and SHARED_ASSETS, lang))
     offers = load_optional("offers", [])
     for o in offers:
         url = f"{U}/offers/{o['id']}"
-        # search results show ~60 characters: name plus the first clause of what you get, brand only if it still fits
+        oname = offer_name(o, zh)  # the zh site keeps its own name; the English pages carry the English one
         clause = re.split(r"[;；]|,\s|\s\(", zh_text(o["gets"]["text"]) if zh else o["gets"]["text"])[0].strip()
-        core = f"{o['name']}: {clause}" if len(o["name"]) + 2 + len(clause) <= 60 else clip(o["name"], 70)
-        title = f"{core} | freetokens" if len(core) <= 57 else core
+        # name + the first clause of what you get while the whole line still fits 580px, else just the
+        # name; the brand suffix only when that fits too (SEO INBOX 1-2). A title is never cut.
+        full = f"{oname}: {clause}"
+        title = brand_title(full if text_px(full) <= TITLE_LIMIT else oname)
         if zh:
-            desc = clip(f"{o['name']}（{label('offer_type', o['type'])}，{o['provider']}）：{zh_text(o['gets']['text'])} {label('per', o['gets']['per'])}。"
+            desc = clip(f"{oname}（{label('offer_type', o['type'])}，{o['provider']}）：{zh_text(o['gets']['text'])} {label('per', o['gets']['per'])}。"
                         f"需要：{', '.join(label('requirement', r) for r in o.get('requires', [])) or tr('nothing')}。状态与出处已核查 {o['checked']['date'] if isinstance(o['checked'], dict) else o['checked']}。")
         else:
-            desc = clip(f"{o['name']} ({label('offer_type', o['type'])}, {o['provider']}): {o['gets']['text']} {label('per', o['gets']['per'])}. "
+            desc = clip(f"{oname} ({label('offer_type', o['type'])}, {o['provider']}): {o['gets']['text']} {label('per', o['gets']['per'])}. "
                         f"Needs: {', '.join(label('requirement', r) for r in o.get('requires', [])) or 'nothing'}. Status and source checked {o['checked']['date'] if isinstance(o['checked'], dict) else o['checked']}.")
-        ld = [crumbs([("freetokens", HU), (tr("Free programs"), U + "/offers"), (o["name"], url)]),
-              {"@context": "https://schema.org", "@type": "Offer", "name": o["name"], "url": url, "price": 0, "priceCurrency": "USD",
+        ld = [crumbs([("freetokens", HU), (tr("Free programs"), U + "/offers"), (oname, url)]),
+              {"@context": "https://schema.org", "@type": "Offer", "name": oname, "url": url, "price": 0, "priceCurrency": "USD",
                "offeredBy": {"@type": "Organization", "name": o["provider"]}}]
         pages[P + f"offers/{o['id']}.html"] = (head_html(title, desc, url, today, ld, og, lang, alt(f"offers/{o['id']}")),
                                            render_body("offer.html", dict(base, root=sub_root, offer=o["id"]), sub_root, sub_home, site and SHARED_ASSETS, lang))
     if zh:
-        title = "免费 LLM 计划：学生优惠、点数与每日额度 | freetokens"
+        title = brand_title("免费 LLM 计划：学生优惠、点数与每日额度")
         desc = clip(f"{len(offers)} 个为模型付费的免费计划：学生优惠、注册点数、每日与每月额度、订阅附带权益。"
                     "金额用各家自己的单位，写明各自需要什么。")
     else:
-        title = "Free LLM programs: student plans, credits and daily allowances | freetokens"
+        title = brand_title("Free LLM credits, student plans and allowances")
         desc = clip(f"{len(offers)} free programs that pay for model use: student plans, sign-up credits, daily and monthly allowances, perks bundled with plans. "
                     "Amounts in each provider's own unit, with what each one needs.")
     pages[P + "offers.html"] = (head_html(title, desc, U + "/offers", today, [crumbs([("freetokens", HU), (tr("Free programs"), U + "/offers")])], og, lang, alt("offers")),
@@ -1070,17 +1164,14 @@ def build_pages(lanes, events, models, today, mode, lang="en"):
         pages[P + f"makers/{mk['id']}.html"] = (head_html(title, desc, url, today, ld, og, lang, alt(f"makers/{mk['id']}")),
                                             render_body("maker.html", dict(base, root=sub_root, maker=mk["id"]), sub_root, sub_home, site and SHARED_ASSETS, lang))
     if zh:
-        title, desc = "有免费模型的 LLM 厂商：谁现在有什么 | freetokens", f"{len(makers)} 家模型厂商，按当前免费模型数排名，每家附最强的免费模型。"
+        title, desc = brand_title("有免费模型的 LLM 厂商：谁现在有什么"), f"{len(makers)} 家模型厂商，按当前免费模型数排名，每家附最强的免费模型。"
     else:
-        title, desc = "LLM makers with free models: who offers what, right now | freetokens", f"{len(makers)} model makers, ranked by how many of their models are free right now, with the best free model of each."
+        title, desc = brand_title("LLM makers with free models right now"), f"{len(makers)} model makers, ranked by how many of their models are free right now, with the best free model of each."
     pages[P + "makers.html"] = (head_html(title, desc, U + "/makers", today, [crumbs([("freetokens", HU), (tr("Makers"), U + "/makers")])], og, lang, alt("makers")),
                             render_body("makers.html", dict(base, root=RT if site else ""), RT if site else "", home_href, site and SHARED_ASSETS, lang))
     if site:
         pages["__base__"] = base
-        if zh:
-            mtitle, mdesc = "freetokens 怎么运作：线路、核查与 EST 估算 | freetokens", "什么是一条线路、状态与截止可信度、“我们实测”限额怎么测、AA 指数的 EST 估算怎么算。"
-        else:
-            mtitle, mdesc = "How freetokens works: lanes, checks, and the EST estimate | freetokens", "What a lane, status and end-date confidence mean, how 'Tested by us' limits are measured, and how the EST estimate of the AA index is computed."
+        mtitle, mdesc = seo_methodology()
         method_body = zh_methodology() if zh else (ROOT / "METHOD.md").read_text()
         topbar = ('<div class="topbar"><div class="in">' + BRAND.replace("__HOME__", RT.rstrip("/") or "/") + '<nav aria-label="Site">'
                   + "".join(f'<a href="{RT}{a}">{tr(t)}</a>' for a, t in
@@ -1264,7 +1355,7 @@ def site_extras(pages, lanes, events, models, today, pages_zh=None, blog=None):
             else:  # an event about a free program (offers.json)
                 oid = e["offers"][0]
                 link = f"{FU}/offers/{oid}#ev-{re.sub(r'[^0-9]', '', e['date'])}"
-                oname = next((o["name"] for o in load_optional("offers", []) if o["id"] == oid), oid)
+                oname = next((offer_name(o, elang == "zh") for o in load_optional("offers", []) if o["id"] == oid), oid)
                 title = f"{label('event_kind', e['kind'])}：{oname}" if elang == "zh" else f"{label('event_kind', e['kind'])}: {oname}"
             body = e["text"] + (f" (end date {fmt_date(e['end_date'])})" if e.get("end_date") else "") + f". Source: {e['source']['label']}" + (f" {e['source'].get('url')}" if e['source'].get('url') else "")
             if elang == "zh":
@@ -1834,7 +1925,7 @@ def build_blog(lanes, events, models, today, mode, lang="en"):
                  .replace("__SOURCES_H__", tr("Sources")).replace("__SOURCES__", srclist)
                  .replace("__FOOTER__", tr("Collected by hand. Data: CC BY 4.0.")))
         no_slots(body, f"blog/{slug_}")
-        title = meta["title"] + " | freetokens"
+        title = brand_title(meta["title"])
         desc = meta.get("description", "")
         ld = [crumbs([("freetokens", HU), (tr("Blog") if zh else "Blog", U + "/blog"), (meta["title"], url)]),
               {"@context": "https://schema.org", "@type": "BlogPosting", "headline": meta["title"], "description": desc,
@@ -1988,8 +2079,8 @@ def build_blog_pages(lanes, events, models, today, mode, lang="en"):
     idx_ld = [crumbs([("freetokens", HU), (idx_title, idx_url)]),
               {"@context": "https://schema.org", "@type": "Blog", "name": idx_title, "url": idx_url,
                "inLanguage": "zh-CN" if zh else "en"}]
-    idx_desc = tr("All articles, grouped by section.")
-    pages[P + "blog.html"] = (head_html(f"{idx_title} | freetokens", idx_desc, idx_url, today, idx_ld, og, lang, alt("blog")),
+    idx_desc = tr("Long reads on free LLM channels: what happened, what is still free, and how we know.")
+    pages[P + "blog.html"] = (head_html(brand_title(idx_title), idx_desc, idx_url, today, idx_ld, og, lang, alt("blog")),
                               full_blog_shell(idx_title, idx_body(None), U, lang, intro=tr("Long reads on free LLM channels: what happened, what is still free, and how we know.")))
     tag_counts = {}
     for s, m in mine:
@@ -1998,7 +2089,8 @@ def build_blog_pages(lanes, events, models, today, mode, lang="en"):
     for tg, n in sorted(tag_counts.items()):
         turl = f"{U}/blog/tag/{tg}"
         indexable = n >= 3
-        head = head_html(f"{tg} | freetokens", "", turl, today,
+        ttitle, tdesc = seo_tag(tg)
+        head = head_html(ttitle, tdesc, turl, today,
                          [crumbs([("freetokens", HU), (idx_title, idx_url), (tg, turl)])], og, lang, alt(f"blog/tag/{tg}") if indexable else ())
         if not indexable:
             head = head.replace('content="index, follow', 'content="noindex, nofollow')
@@ -2010,7 +2102,9 @@ def build_blog_pages(lanes, events, models, today, mode, lang="en"):
     about_ld = [crumbs([("freetokens", HU), (about_title, about_url)]),
                 {"@context": "https://schema.org", "@type": "Person", "name": "Dim", "url": about_url,
                  "sameAs": ["https://dimchen.com"], "inLanguage": "zh-CN" if zh else "en"}]
-    pages[P + "about.html"] = (head_html(f"{about_title} | freetokens", "", about_url, today, about_ld, og, lang, alt("about")),
+    about_desc = tr("Who runs freetokens, what it tracks and why: free LLM channels, their end dates and limits, "
+                    "checked by hand and by our own calls.")
+    pages[P + "about.html"] = (head_html(brand_title(about_title), about_desc, about_url, today, about_ld, og, lang, alt("about")),
                                full_blog_shell(about_title, about_body, U, lang))
     if site:
         add_langsw(pages, zh)
@@ -2118,6 +2212,33 @@ def check_i18n(lanes, events, models):
         gone = [k[:60] for k in pmap if k not in readme]
         if gone:
             errs.append(f"i18n/zh-readme.json stale: {len(gone)} EN blocks no longer in README.md (first: {gone[0]!r})")
+    return errs
+
+
+def head_seo(head):
+    """(title, description) of a rendered head, for the SEO gate."""
+    t = re.search(r"<title>(.*?)</title>", head, re.S)
+    d = re.search(r'<meta name="description" content="([^"]*)"', head)
+    return (html.unescape(t.group(1)) if t else "", html.unescape(d.group(1)) if d else "")
+
+
+def check_seo(pages, extra=()):
+    """SEO INBOX 6 (2026-10-16): a title must fit the ~580px Google shows, and every page needs a
+    description. 404 is exempt (it is deliberately description-less). `extra` carries pages --check
+    cannot render itself, as (path, title, desc)."""
+    errs = []
+    audited = {p: head_seo(h) for p, (h, _b) in pages.items() if p != "__base__"}
+    audited.update({p: (t, d) for p, t, d in extra})
+    for path, (title, desc) in sorted(audited.items()):
+        if path.endswith("404.html"):
+            continue
+        unknown = unmeasured_chars(title)
+        if unknown:
+            errs.append(f"{path}: title has no width in ARIAL_W for {''.join(unknown)!r} (add the character)")
+        if text_px(title) > TITLE_LIMIT:
+            errs.append(f"{path}: title {text_px(title):.0f}px > {TITLE_LIMIT}px ({title})")
+        if not desc.strip():
+            errs.append(f"{path}: no meta description")
     return errs
 
 
@@ -2229,7 +2350,22 @@ def main():
         if berr:
             print("✗ blog invalid:", *berr, sep="\n  ", file=sys.stderr)
             sys.exit(1)
-        print("✓ data valid, generated files up to date, i18n complete, blog valid")
+        # SEO gate (INBOX 6): audit the title/description of every page kind, both languages. The blog,
+        # tag and about pages only exist in the site build, so render them here too (same code path).
+        seo_pages = dict(preview)
+        extra = []
+        for lang in ("en", "zh"):
+            LANG = lang
+            seo_pages.update(build_blog(lanes, events, models, today, "preview", lang)[0])
+            seo_pages.update(build_blog_pages(lanes, events, models, today, "preview", lang)[0])
+            extra.append((("zh/" if lang == "zh" else "") + "methodology.html", *seo_methodology()))
+        LANG = "en"
+        serr = check_seo(seo_pages, extra)
+        if serr:
+            print("✗ SEO titles/descriptions:", *serr, sep="\n  ", file=sys.stderr)
+            sys.exit(1)
+        print(f"✓ data valid, generated files up to date, i18n complete, blog valid, "
+              f"{len(seo_pages) + len(extra)} titles ≤{TITLE_LIMIT}px with descriptions")
         return
     (ROOT / "models").mkdir(exist_ok=True)
     (ROOT / "channels").mkdir(exist_ok=True)

@@ -371,6 +371,7 @@
   "About": "关于",
   "All articles, grouped by section.": "按栏目分组的全部文章。",
   "freetokens is maintained by Dim and tracks where capable LLMs are free right now.": "freetokens 由 Dim 维护，记录哪里能免费调用有能力的 LLM。",
+  "Who runs freetokens, what it tracks and why: free LLM channels, their end dates and limits, checked by hand and by our own calls.": "freetokens 是谁在做、追踪什么、为什么做：免费 LLM 渠道、截止日期与限额，人工核查加我们自己的实测调用。",
   "Changelog": "变更记录",
   "Sources": "出处",
   "Contents": "目录",

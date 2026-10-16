@@ -442,7 +442,8 @@
  },
  {
   "id": "aliyun-university-300-voucher",
-  "name": "阿里云 云工开物 300 元抵扣金",
+  "name": "Alibaba Cloud 300 CNY voucher",
+  "name_zh": "阿里云 云工开物 300 元抵扣金",
   "provider": "Alibaba Cloud (阿里云 云工开物)",
   "channel": null,
   "type": "student",
@@ -489,7 +490,8 @@
  },
  {
   "id": "trae-cn-free-credits",
-  "name": "TRAE CN 免费用户积分",
+  "name": "TRAE CN free-user credits",
+  "name_zh": "TRAE CN 免费用户积分",
   "provider": "ByteDance (字节跳动 TRAE)",
   "channel": null,
   "type": "check_in",
@@ -536,7 +538,8 @@
  },
  {
   "id": "codebuddy-signup-250",
-  "name": "CodeBuddy 新用户 250 Credits",
+  "name": "CodeBuddy 250 credits for new users",
+  "name_zh": "CodeBuddy 新用户 250 Credits",
   "provider": "Buddy AI (CodeBuddy 国际版)",
   "channel": null,
   "type": "signup_trial",
@@ -578,7 +581,8 @@
  },
  {
   "id": "codebuddy-free-monthly",
-  "name": "CodeBuddy Free 计划 100 Credits/月",
+  "name": "CodeBuddy Free plan 100 credits/month",
+  "name_zh": "CodeBuddy Free 计划 100 Credits/月",
   "provider": "Buddy AI (CodeBuddy 国际版)",
   "channel": null,
   "type": "free_plan",
@@ -620,7 +624,8 @@
  },
  {
   "id": "codebuddy-pro-trial-7day",
-  "name": "CodeBuddy Pro 7 天免费试用 (500 Credits)",
+  "name": "CodeBuddy Pro 7-day free trial (500 credits)",
+  "name_zh": "CodeBuddy Pro 7 天免费试用 (500 Credits)",
   "provider": "Buddy AI (CodeBuddy 国际版)",
   "channel": null,
   "type": "signup_trial",
@@ -663,7 +668,8 @@
  },
  {
   "id": "workbuddy-experience-500",
-  "name": "WorkBuddy 体验版 500 积分/月",
+  "name": "WorkBuddy experience plan 500 credits/month",
+  "name_zh": "WorkBuddy 体验版 500 积分/月",
   "provider": "Tencent (WorkBuddy / CodeBuddy)",
   "channel": null,
   "type": "free_plan",
@@ -706,7 +712,8 @@
  },
  {
   "id": "volcengine-ark-free-quota",
-  "name": "火山方舟 免费推理额度",
+  "name": "Volcengine Ark free inference quota",
+  "name_zh": "火山方舟 免费推理额度",
   "provider": "Volcengine (火山引擎 / 字节跳动)",
   "channel": null,
   "type": "signup_trial",
@@ -752,7 +759,8 @@
  },
  {
   "id": "kimi-api-free-trial",
-  "name": "Kimi 开放平台免费测试权益",
+  "name": "Kimi Open Platform free trial credit",
+  "name_zh": "Kimi 开放平台免费测试权益",
   "provider": "Moonshot AI (月之暗面)",
   "channel": null,
   "type": "signup_trial",
@@ -801,7 +809,8 @@
  },
  {
   "id": "iflow-free-plan",
-  "name": "iFlow 心流 Free 计划",
+  "name": "iFlow Free plan",
+  "name_zh": "iFlow 心流 Free 计划",
   "provider": "iFlow (心流)",
   "channel": null,
   "type": "free_plan",
@@ -849,7 +858,8 @@
  },
  {
   "id": "doubao-work-30day",
-  "name": "豆包工作 30 天订阅权益",
+  "name": "Doubao for Work 30-day subscription",
+  "name_zh": "豆包工作 30 天订阅权益",
   "provider": "ByteDance (字节跳动 豆包)",
   "channel": null,
   "type": "signup_trial",
@@ -892,7 +902,8 @@
  },
  {
   "id": "workbuddy-campus-freshman-1000",
-  "name": "WorkBuddy 开学季新生福利 1000 积分",
+  "name": "WorkBuddy campus freshman 1,000 credits",
+  "name_zh": "WorkBuddy 开学季新生福利 1000 积分",
   "provider": "Tencent (腾讯 WorkBuddy)",
   "channel": null,
   "type": "student",
@@ -940,7 +951,8 @@
  },
  {
   "id": "qoderwork-cn-student-4000",
-  "name": "QoderWork CN 高校学生/教师认证 4,000 Credits",
+  "name": "QoderWork CN student/teacher 4,000 Credits",
+  "name_zh": "QoderWork CN 高校学生/教师认证 4,000 Credits",
   "provider": "Alibaba (阿里云 · QoderWork CN / 通义灵码)",
   "channel": null,
   "type": "student",
@@ -1473,7 +1485,8 @@
  },
  {
   "id": "aliyun-bailian-new-free-quota",
-  "name": "阿里云百炼 新人免费额度",
+  "name": "Alibaba Cloud Bailian new-user free quota",
+  "name_zh": "阿里云百炼 新人免费额度",
   "provider": "阿里云 (Alibaba Cloud)",
   "channel": null,
   "type": "signup_trial",
@@ -1518,7 +1531,8 @@
  },
  {
   "id": "siliconflow-signup-voucher",
-  "name": "硅基流动 SiliconFlow 注册免费额度",
+  "name": "SiliconFlow sign-up free credit",
+  "name_zh": "硅基流动 SiliconFlow 注册免费额度",
   "provider": "硅基流动 (SiliconFlow)",
   "channel": "SiliconFlow",
   "type": "signup_trial",
@@ -1558,7 +1572,8 @@
  },
  {
   "id": "qianwen-ai-platform-free-quota",
-  "name": "千问AI平台 新用户免费额度",
+  "name": "Qwen AI Platform (Qianwen) new-user free quota",
+  "name_zh": "千问AI平台 新用户免费额度",
   "provider": "千问AI平台 (Alibaba)",
   "channel": null,
   "type": "signup_trial",
@@ -1875,7 +1890,8 @@
  },
  {
   "id": "tencent-hunyuan-first-1m",
-  "name": "腾讯混元首次开通免费资源包",
+  "name": "Tencent Hunyuan first-time free package",
+  "name_zh": "腾讯混元首次开通免费资源包",
   "provider": "腾讯云",
   "channel": null,
   "type": "signup_trial",
@@ -1918,7 +1934,8 @@
  },
  {
   "id": "gitee-moark-trial-100day",
-  "name": "Gitee AI 模力方舟免费体验（100次/日）",
+  "name": "Gitee AI Moark free trial (100 calls/day)",
+  "name_zh": "Gitee AI 模力方舟免费体验（100次/日）",
   "provider": "Gitee",
   "channel": null,
   "type": "daily_allowance",
@@ -1965,7 +1982,8 @@
  },
  {
   "id": "puter-monthly-allowance",
-  "name": "Puter.js 免费月额度",
+  "name": "Puter.js monthly free allowance",
+  "name_zh": "Puter.js 免费月额度",
   "provider": "Puter",
   "channel": null,
   "type": "monthly_credit",
