@@ -265,14 +265,14 @@ a.ev:hover::before, a.ev:focus-visible::before { background: var(--accent); bord
 .tl .day + .it { border-top: 0; }
 .tl .it:target { background: var(--accent-soft); }
 .tl .t { font: 0.78rem var(--f-mono); color: var(--muted); padding-top: 2px; }
-.tl .b { display: grid; gap: 3px; min-width: 0; }
+.tl .b { display: grid; grid-template-columns: minmax(0, 1fr); gap: 3px; min-width: 0; }
 .tl .h { display: flex; gap: 6px 10px; flex-wrap: wrap; align-items: center; font-size: 0.86rem; }
 .tl .h .lane { font-weight: 600; }
 .tl .h .lane a { color: var(--fg); text-decoration: none; }
 .tl .h .lane a:hover { color: var(--accent); }
 .tl .k { font: 600 0.68rem var(--f-body); text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); }
 .tl .x { font-size: 0.88rem; overflow-wrap: anywhere; }
-.tl .s { font-size: 0.76rem; color: var(--muted); }
+.tl .s { font-size: 0.76rem; color: var(--muted); overflow-wrap: anywhere; }
 
 /* model & channel pages */
 .back { font-size: 0.85rem; }
