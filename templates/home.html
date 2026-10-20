@@ -85,7 +85,7 @@ onView(() => { $("stamp").innerHTML = metaStrip(); });
 onView(() => {
   const freeNow = (l) => usable(l) && l.status !== "overdue" && worldwide(l);
   const tile = (label, body, cls = "") => `<article class="tile${cls}"><h3>${label}${viewNote()}</h3>${body}</article>`;
-  const who = (l) => `<div class="who">${makerTile(models[l.model].maker)}<span>${mlink(l.model)} <span class="muted">${Tx("on", "on")}</span> ${clink(l.channel)}</span></div>`;
+  const who = (l) => `<div class="who">${modelTile(models[l.model])}<span>${mlink(l.model)} <span class="muted">${Tx("on", "on")}</span> ${clink(l.channel)}</span></div>`;
   const top = viewScored().find((m) => lanesOf(m.id).some(freeNow));
   const chs = top ? [...new Set(lanesOf(top.id).filter(freeNow).map((l) => l.channel))] : [];
   const soon = D.lanes.filter((l) => effEnd(l) && usable(l)).map((l) => ({ l, t: pd(effEnd(l)).t })).sort((a, b) => a.t - b.t);
@@ -102,14 +102,14 @@ onView(() => {
   $("answers").innerHTML = [
     top
       ? tile(Tx("Highest-scored, free now", "Highest-scored, free now"),
-          `<div class="who">${makerTile(top.maker)}<span>${mlink(top.id)} <span class="mono muted">${esc(rankLabel(rankOf(top)))}</span></span></div>` +
+          `<div class="who">${modelTile(top)}<span>${mlink(top.id)} <span class="mono muted">${esc(rankLabel(rankOf(top)))}</span></span></div>` +
           `<div class="row score">${aaHTML(top)}${scoreBar(top)}<span class="sub">${esc(rankText(top))} · Artificial Analysis, ${esc(absDate(top.aa_index.date))}</span></div>` +
           `<div class="chips foot">${chs.slice(0, 2).map((c) => `<a class="chip" href="${channelHref(c)}">${chanLogo(c)}${esc(c)}</a>`).join("")}${chs.length > 2 ? `<a class="chip more" href="${modelHref(top.id)}">+${chs.length - 2}</a>` : ""}</div>`)
       : tile(Tx("Highest-scored, free now", "Highest-scored, free now"), `<div class="row"><span class="muted">${Tx("none", "none")}</span></div>`),
     tile(`<span id="h-soon">${Tx("Ending soon", "Ending soon")}</span> <span class="hint">${Tx("counted from your clock, UTC days", "counted from your clock, UTC days")}</span>`,
       soon.length ? `<div class="soonlist">${soon.map(soonRow).join("")}</div>` : `<div class="row"><span class="muted">${VIEW === "all" ? Tx("Nothing with an end date.", "Nothing with an end date.") : Tx("Nothing with an end date in this view.", "Nothing with an end date in this view.")}</span></div>`, " wide"),
     tile(Tx("Newest free lanes", "Newest free lanes"),
-      newest.length ? `<div class="newlist">${newest.map(({ l, chs }) => { const rel = relDays(pd(l.started.date).t); return `<div class="newrow"><div class="who">${makerTile(models[l.model].maker)}<span><span class="nm">${mlink(l.model)}</span><span class="sub">${esc(absDate(l.started.date))}${rel ? ` (${esc(rel)})` : ""} · ${clink(chs[0])}${chs.length > 1 ? ` +${chs.length - 1}` : ""}</span></span></div></div>`; }).join("")}</div>`
+      newest.length ? `<div class="newlist">${newest.map(({ l, chs }) => { const rel = relDays(pd(l.started.date).t); return `<div class="newrow"><div class="who">${modelTile(models[l.model])}<span><span class="nm">${mlink(l.model)}</span><span class="sub">${esc(absDate(l.started.date))}${rel ? ` (${esc(rel)})` : ""} · ${clink(chs[0])}${chs.length > 1 ? ` +${chs.length - 1}` : ""}</span></span></div></div>`; }).join("")}</div>`
         : `<div class="row"><span class="muted">${Tx("none", "none")}</span></div>`),
   ].join("");
 });

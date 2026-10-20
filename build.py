@@ -908,7 +908,7 @@ def head_html(title, desc, url, today, extra_ld, og_image, lang="en", alternates
 
 # ---------- pages ----------
 
-SHARED_KEYS = ("lanes", "events", "models", "chans", "makers", "offers", "vocab", "built", "ext", "est_rule")
+SHARED_KEYS = ("lanes", "events", "models", "chans", "makers", "offers", "logos", "vocab", "built", "ext", "est_rule")
 
 
 def _zh_swap(text):
@@ -1055,7 +1055,7 @@ def build_pages(lanes, events, models, today, mode, lang="en"):
     est, _ = estimate(models, load_optional("benchmarks", {}), load_optional("anchors", []))
     models = [dict(m, est=est[m["id"]]) if m["id"] in est else m for m in models]
     R = SCHEMA["est_rules"]
-    base = {"lanes": lanes, "events": events, "models": models, "chans": load_optional("channels", []), "makers": load_optional("makers", []), "offers": load_optional("offers", []), "vocab": VOCAB, "built": today.isoformat(), "ext": ext,
+    base = {"lanes": lanes, "events": events, "models": models, "chans": load_optional("channels", []), "makers": load_optional("makers", []), "offers": load_optional("offers", []), "logos": json.loads((ROOT / "templates" / "logos" / "index.json").read_text()), "vocab": VOCAB, "built": today.isoformat(), "ext": ext,
             "est_rule": f"{R['min_benchmarks']} benchmarks from {R['min_sources']} independent sources, each fitted on ≥{R['min_anchors']} reference models with r ≥ {R['min_r']}"}
     if zh:
         base = dict(base, **translate_dataset(base))

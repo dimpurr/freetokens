@@ -57,27 +57,33 @@ const I = {
   minus: (l) => svg('<path d="M5 12h14"/>', l),
 };
 
-/* ---------- logos: maker and channel marks (templates/logos, @lobehub/icons-static-svg, MIT; see NOTICE.md) ---------- */
-/* key = maker id or channel name → file. One-colour marks are drawn as a mask so they follow the text colour in both themes. */
-const LOGO = {
-  google: "google-color", zai: "zai", nvidia: "nvidia-color", qwen: "qwen-color", deepseek: "deepseek-color",
-  minimax: "minimax-color", poolside: "poolside", tencent: "hunyuan-color", meta: "meta-color", upstage: "upstage-color",
-  openai: "openai", moonshot: "kimi", meituan: "longcat-color", cohere: "cohere-color", liquid: "liquid", stepfun: "stepfun-color",
-  mistral: "mistral-color", inclusionai: "antgroup-color",
-  "OpenCode Zen": "opencode", "OpenCode Go": "opencode", "Kilo Code": "kilocode", "OpenRouter": "openrouter", "Command Code": "commandcode",
-  "Cline": "cline", "Z.ai": "zai", "Zhipu BigModel": "zhipu-color", "Vercel AI Gateway": "vercel", "SiliconFlow": "siliconcloud-color",
-  "Google AI Studio": "aistudio", "Qoder": "qoder-color", "AIHubMix": "aihubmix", "NVIDIA build": "nvidia-color", "Groq": "groq",
-  "Cloudflare Workers AI": "cloudflare-color", "ModelScope": "modelscope-color", "Ant Ling": "antgroup-color", "Huawei Cloud": "huawei-color",
-};
-/* no mark on file: up to two initials on the same tile, so every row keeps the same shape */
+/* ---------- logos: maker, channel and provider marks ----------
+   templates/logos/index.json (written by tools/logos.py): key → file, source, mono. Keys are maker ids and slugs of
+   channel / provider names. One-colour marks are drawn as a mask so they follow the text colour in both themes.
+   No mark on file: a stealth model gets a picture from its own name (Space Bunny → 🐰); anything else a tile in a
+   colour derived from the name, with its initial. Never a blank. */
+const LOGOS = D.logos || {};
+const logoSlug = (s) => String(s || "").replace(/\s*\(.*\)$/, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+const NAME_PICS = [[/\b(cat|kitten|kitty|jam)\b/, "🐱"], [/\b(bunny|rabbit|hare)\b/, "🐰"], [/\b(dog|puppy|doge)\b/, "🐶"], [/\bfox\b/, "🦊"],
+  [/\bbear\b/, "🐻"], [/\bpanda\b/, "🐼"], [/\bowl\b/, "🦉"], [/\b(whale|orca)\b/, "🐳"], [/\bdolphin\b/, "🐬"], [/\bshark\b/, "🦈"],
+  [/\bdragon\b/, "🐉"], [/\btiger\b/, "🐯"], [/\blion\b/, "🦁"], [/\bwolf\b/, "🐺"], [/\b(horse|pony)\b/, "🐴"], [/\bunicorn\b/, "🦄"],
+  [/\b(ox|bull|cow|yak|bison)\b/, "🐮"], [/\b(bird|sparrow|robin)\b/, "🐦"], [/\b(fledge|fledgling|chick)\b/, "🐣"], [/\b(eagle|hawk|falcon)\b/, "🦅"], [/\bfish\b/, "🐟"],
+  [/\boctopus\b/, "🐙"], [/\bbee\b/, "🐝"], [/\bbutterfly\b/, "🦋"], [/\b(monkey|ape)\b/, "🐵"], [/\bpickle\b/, "🥒"],
+  [/\brocket\b/, "🚀"], [/\bstar\b/, "⭐"], [/\bmoon\b/, "🌙"], [/\b(sun|solar)\b/, "☀️"], [/\bghost\b/, "👻"], [/\brobot\b/, "🤖"]];
+const hue = (s) => [...String(s)].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7) % 360;
 const initials = (name) => String(name || "?").replace(/\(.*\)/, "").split(/[\s.\-]+/).filter(Boolean).slice(0, 2).map((w) => w[0]).join("").toUpperCase();
-function logo(key, name) {
-  const f = LOGO[key] || LOGO[String(key).replace(/\s*\(.*\)$/, "")];
-  if (!f) return `<span class="lg txt" aria-hidden="true">${key === "undisclosed" ? "?" : esc(initials(name || key))}</span>`;
-  const u = `${D.root}assets/logos/${f}.svg`;
-  return f.endsWith("-color") ? `<img class="lg" src="${u}" alt="" width="16" height="16" decoding="async">` : `<span class="lg m" style="--u:url('${u}')" aria-hidden="true"></span>`;
+function logo(key, name, pictureFrom) {
+  const e = LOGOS[key] || LOGOS[logoSlug(key)] || LOGOS[logoSlug(name)] || LOGOS[logoSlug(name).split("-")[0]];
+  if (e) {
+    const u = `${D.root}assets/logos/${e.file}`;
+    return e.mono ? `<span class="lg m" style="--u:url('${u}')" aria-hidden="true"></span>` : `<img class="lg" src="${u}" alt="" width="16" height="16" decoding="async">`;
+  }
+  const pic = pictureFrom && (NAME_PICS.find(([re]) => re.test(pictureFrom.toLowerCase())) || [])[1];
+  if (pic) return `<span class="lg pic" aria-hidden="true">${pic}</span>`;
+  const who = pictureFrom || name || key;
+  return `<span class="lg gen" style="--h:${hue(who)}" aria-hidden="true">${esc(initials(who).slice(0, 1))}</span>`;
 }
-const logoTile = (key, name, xl = false) => `<span class="lgt${xl ? " xl" : ""}">${logo(key, name)}</span>`;
+const logoTile = (key, name, xl = false, pictureFrom) => `<span class="lgt${xl ? " xl" : ""}">${logo(key, name, pictureFrom)}</span>`;
 
 /* ---------- vocab + entities ---------- */
 const lab = (v, k) => V[v][k].label;
@@ -98,6 +104,8 @@ const MK = Object.fromEntries((D.makers || []).map((x) => [x.id, x]));
 const makerHref = (id) => `${D.root}makers/${encodeURIComponent(id)}${D.ext}`;
 const mklink = (id) => MK[id] ? `<a class="mklink" href="${makerHref(id)}">${esc(MK[id].name)}</a>` : esc(id);
 const makerTile = (id, xl = false) => logoTile(id, MK[id] ? MK[id].name : id, xl);
+/* a model's mark: its maker's, or for an undisclosed maker a picture from the model's own name */
+const modelTile = (m, xl = false) => logoTile(m.maker, MK[m.maker] ? MK[m.maker].name : m.maker, xl, m.maker === "undisclosed" ? m.name : "");
 const chanLogo = (name) => logo(name, name);
 /* free programs (data/offers.json, ADR-005 / 025): allowances and grants, never ranked with $0 model lanes */
 const OF = Object.fromEntries((D.offers || []).map((o) => [o.id, o]));
@@ -530,7 +538,7 @@ function mountLanes(limit) {
     $("lanes").innerHTML = rows.map((l) => {
       const e = endInfo(l);
       return `<tr>
-        <td class="lane"><span class="ent">${makerTile(models[l.model].maker)}<span><span class="name">${mlink(l.model)}</span><span class="sub chan">${chanLogo(l.channel)} ${clink(l.channel)} <span class="tag" title="${esc(Tx("Channel type", "Channel type"))}">${esc(lab("channel_type", l.type))}</span></span><span class="mid">${idHTML(l)}</span></span></span></td>
+        <td class="lane"><span class="ent">${modelTile(models[l.model])}<span><span class="name">${mlink(l.model)}</span><span class="sub chan">${chanLogo(l.channel)} ${clink(l.channel)} <span class="tag" title="${esc(Tx("Channel type", "Channel type"))}">${esc(lab("channel_type", l.type))}</span></span><span class="mid">${idHTML(l)}</span></span></span></td>
         <td class="nowrap" data-label="${Tx("Status · end", "Status · end")}"><span title="${esc(lab("status", l.status))}">${statusHTML(l.status, e.main)}</span><span class="sub">${e.sub}</span></td>
         <td data-label="${Tx("Tested by us", "Tested by us")}">${measuredHTML(l)}${checkedSub(l)}</td>
         <td class="cond" data-label="${Tx("Limit · condition", "Limit · condition")}">${costHTML(l.channel)} ${regionTag(l)} ${limitHTML(l)}${l.free_condition ? `<span class="sub">${esc(l.free_condition)}</span>` : ""}</td>
@@ -582,7 +590,7 @@ function modelRow(m, i, off, TOP = 10) {
     const regionOnly = r && ok.some(isFree) && !ok.some((l) => isFree(l) && worldwide(l));
     const aaDate = m.aa_index.value != null && m.aa_index.date ? `<span class="aad">${esc(shortDate(m.aa_index.date))}</span>` : "";
     return `<tr class="${i >= TOP ? "more" : ""}${off ? " offrow" : ""}">
-      <td><span class="ent"><span class="rk${r && r.est ? " est" : ""}"${r ? ` title="${esc(rankText(m))}"` : ""}>${r ? esc(rankLabel(r)) : ""}</span>${makerTile(m.maker)}<span><span class="name">${mlink(m.id)}</span><span class="sub">${mklink(m.maker)}${regionOnly ? " " + regionTag(ok.find(isFree)) : ""}</span></span></span></td>
+      <td><span class="ent"><span class="rk${r && r.est ? " est" : ""}"${r ? ` title="${esc(rankText(m))}"` : ""}>${r ? esc(rankLabel(r)) : ""}</span>${modelTile(m)}<span><span class="name">${mlink(m.id)}</span><span class="sub">${mklink(m.maker)}${regionOnly ? " " + regionTag(ok.find(isFree)) : ""}</span></span></span></td>
       <td class="nowrap" data-label="${Tx("AA index", "AA index")}"><span class="aacell">${aaHTML(m)}${scoreBar(m)}${aaDate}</span>${m.aa_index.value != null ? "" : aaSource(m)}</td>
       <td data-label="${Tx("Free on", "Free on")}"><div class="chips">${shown.map(channelChip).join("")}${offersFor(m.id).filter((o) => offerUsable(o)).map((o) => `<a class="chip offerchip" href="${offerHref(o.id)}" title="${esc(o.name + ": " + o.gets.text + " " + lab("per", o.gets.per) + (ZH ? "（与其他模型共用的额度）" : " (an allowance shared with other models)"))}">via ${esc(o.channel || o.provider)}</a>`).join("")}${folded}${nFold ? `<button type="button" class="morechips" aria-expanded="false" data-label="${esc(foldLabel)}">${esc(foldLabel)}</button>` : ""}</div></td>
       <td class="m-hide" data-label="${Tx("Context", "Context")}">${ctx}</td>

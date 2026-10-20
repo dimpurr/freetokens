@@ -1,0 +1,350 @@
+{
+ "aihubmix": {
+  "file": "aihubmix.svg",
+  "src": "lobehub",
+  "mono": true
+ },
+ "alibaba": {
+  "file": "alibabacloud-color.svg",
+  "src": "lobehub",
+  "mono": false
+ },
+ "alibaba-cloud": {
+  "file": "alibabacloud-color.svg",
+  "src": "lobehub",
+  "mono": false
+ },
+ "ant-ling": {
+  "file": "antgroup-color.svg",
+  "src": "lobehub",
+  "mono": false
+ },
+ "anthropic": {
+  "file": "anthropic.svg",
+  "src": "lobehub",
+  "mono": true
+ },
+ "apodex": {
+  "file": "hugg-apodex.jpg",
+  "src": "huggingface",
+  "url": "https://cdn-avatars.huggingface.co/v1/production/uploads/68bf96f0ca298a370d66adbb/T4Bt5ELjozQxgkKsHM_gg.jpeg",
+  "mono": false
+ },
+ "aws": {
+  "file": "aws-color.svg",
+  "src": "lobehub",
+  "mono": false
+ },
+ "buddy-ai": {
+  "file": "codebuddy.svg",
+  "src": "lobehub",
+  "mono": true
+ },
+ "bytedance": {
+  "file": "bytedance-color.svg",
+  "src": "lobehub",
+  "mono": false
+ },
+ "cerebras": {
+  "file": "cerebras-color.svg",
+  "src": "lobehub",
+  "mono": false
+ },
+ "cline": {
+  "file": "cline.svg",
+  "src": "lobehub",
+  "mono": true
+ },
+ "cloudflare-workers-ai": {
+  "file": "workersai-color.svg",
+  "src": "lobehub",
+  "mono": false
+ },
+ "cohere": {
+  "file": "cohere-color.svg",
+  "src": "lobehub",
+  "mono": false
+ },
+ "command-code": {
+  "file": "commandcode.svg",
+  "src": "lobehub",
+  "mono": true
+ },
+ "cursor": {
+  "file": "cursor.svg",
+  "src": "lobehub",
+  "mono": true
+ },
+ "deepseek": {
+  "file": "deepseek-color.svg",
+  "src": "lobehub",
+  "mono": false
+ },
+ "dots-studio": {
+  "file": "si-xiaohongshu.svg",
+  "src": "simple-icons",
+  "mono": true
+ },
+ "fireworks-ai": {
+  "file": "fireworks-color.svg",
+  "src": "lobehub",
+  "mono": false
+ },
+ "freebuff": {
+  "file": "site-freebuff.png",
+  "src": "site",
+  "url": "https://freebuff.com/favicon/apple-touch-icon.png?v=2026-09-21",
+  "mono": false
+ },
+ "gitee": {
+  "file": "si-gitee.svg",
+  "src": "simple-icons",
+  "mono": true
+ },
+ "github": {
+  "file": "github.svg",
+  "src": "lobehub",
+  "mono": true
+ },
+ "google": {
+  "file": "google-color.svg",
+  "src": "lobehub",
+  "mono": false
+ },
+ "google-ai-studio": {
+  "file": "aistudio.svg",
+  "src": "lobehub",
+  "mono": true
+ },
+ "groq": {
+  "file": "groq.svg",
+  "src": "lobehub",
+  "mono": true
+ },
+ "hetzner-experiments": {
+  "file": "si-hetzner.svg",
+  "src": "simple-icons",
+  "mono": true
+ },
+ "huawei-cloud": {
+  "file": "huawei-color.svg",
+  "src": "lobehub",
+  "mono": false
+ },
+ "hugging-face": {
+  "file": "huggingface-color.svg",
+  "src": "lobehub",
+  "mono": false
+ },
+ "inclusionai": {
+  "file": "antgroup-color.svg",
+  "src": "lobehub",
+  "mono": false
+ },
+ "jetbrains": {
+  "file": "si-jetbrains.svg",
+  "src": "simple-icons",
+  "mono": true
+ },
+ "kilo-code": {
+  "file": "kilocode.svg",
+  "src": "lobehub",
+  "mono": true
+ },
+ "letta": {
+  "file": "site-letta.png",
+  "src": "site",
+  "url": "https://www.letta.com/assets/images/webclip.png",
+  "mono": false
+ },
+ "liquid": {
+  "file": "liquid.svg",
+  "src": "lobehub",
+  "mono": true
+ },
+ "meituan": {
+  "file": "longcat-color.svg",
+  "src": "lobehub",
+  "mono": false
+ },
+ "meta": {
+  "file": "meta-color.svg",
+  "src": "lobehub",
+  "mono": false
+ },
+ "minimax": {
+  "file": "minimax-color.svg",
+  "src": "lobehub",
+  "mono": false
+ },
+ "mistral": {
+  "file": "mistral-color.svg",
+  "src": "lobehub",
+  "mono": false
+ },
+ "modelscope": {
+  "file": "modelscope-color.svg",
+  "src": "lobehub",
+  "mono": false
+ },
+ "moonshot": {
+  "file": "kimi.svg",
+  "src": "lobehub",
+  "mono": true
+ },
+ "moonshot-ai": {
+  "file": "kimi.svg",
+  "src": "lobehub",
+  "mono": true
+ },
+ "nebius": {
+  "file": "nebius.svg",
+  "src": "lobehub",
+  "mono": true
+ },
+ "nex-agi": {
+  "file": "hugg-nex-agi.jpg",
+  "src": "huggingface",
+  "url": "https://cdn-avatars.huggingface.co/v1/production/uploads/65435cad429b80b14922ab8d/a_O9jT_daz_NXTfxtcw6S.png",
+  "mono": false
+ },
+ "novita-ai": {
+  "file": "novita-color.svg",
+  "src": "lobehub",
+  "mono": false
+ },
+ "nvidia": {
+  "file": "nvidia-color.svg",
+  "src": "lobehub",
+  "mono": false
+ },
+ "nvidia-build": {
+  "file": "nvidia-color.svg",
+  "src": "lobehub",
+  "mono": false
+ },
+ "openai": {
+  "file": "openai.svg",
+  "src": "lobehub",
+  "mono": true
+ },
+ "opencode-go": {
+  "file": "opencode.svg",
+  "src": "lobehub",
+  "mono": true
+ },
+ "opencode-zen": {
+  "file": "opencode.svg",
+  "src": "lobehub",
+  "mono": true
+ },
+ "openrouter": {
+  "file": "openrouter.svg",
+  "src": "lobehub",
+  "mono": true
+ },
+ "ovhcloud-ai-endpoints": {
+  "file": "si-ovh.svg",
+  "src": "simple-icons",
+  "mono": true
+ },
+ "poolside": {
+  "file": "poolside.svg",
+  "src": "lobehub",
+  "mono": true
+ },
+ "puter": {
+  "file": "site-puter.png",
+  "src": "site",
+  "url": "https://docs.puter.com/assets/favicon/android-icon-192x192.png",
+  "mono": false
+ },
+ "qoder": {
+  "file": "qoder-color.svg",
+  "src": "lobehub",
+  "mono": false
+ },
+ "qwen": {
+  "file": "qwen-color.svg",
+  "src": "lobehub",
+  "mono": false
+ },
+ "qwencloud": {
+  "file": "qwen-color.svg",
+  "src": "lobehub",
+  "mono": false
+ },
+ "reflection": {
+  "file": "site-reflection.svg",
+  "src": "site",
+  "url": "https://reflection.ai/icon0.svg?icon0.1vnx0yihdq5x-.svg",
+  "mono": false
+ },
+ "siliconflow": {
+  "file": "siliconcloud-color.svg",
+  "src": "lobehub",
+  "mono": false
+ },
+ "stepfun": {
+  "file": "stepfun-color.svg",
+  "src": "lobehub",
+  "mono": false
+ },
+ "tencent": {
+  "file": "hunyuan-color.svg",
+  "src": "lobehub",
+  "mono": false
+ },
+ "thinking-machines": {
+  "file": "hugg-thinking-machines.jpg",
+  "src": "huggingface",
+  "url": "https://cdn-avatars.huggingface.co/v1/production/uploads/680a76de1b8d08640089fab0/r60-JyW_pv4llgjEyDYj9.png",
+  "mono": false
+ },
+ "upstage": {
+  "file": "upstage-color.svg",
+  "src": "lobehub",
+  "mono": false
+ },
+ "vercel-ai-gateway": {
+  "file": "vercel.svg",
+  "src": "lobehub",
+  "mono": true
+ },
+ "volcengine": {
+  "file": "volcengine-color.svg",
+  "src": "lobehub",
+  "mono": false
+ },
+ "xiaomi": {
+  "file": "si-xiaomi.svg",
+  "src": "simple-icons",
+  "mono": true
+ },
+ "xingchen": {
+  "file": "hugg-xingchen.jpg",
+  "src": "huggingface",
+  "url": "https://cdn-avatars.huggingface.co/v1/production/uploads/64368160eef1f55654ab21dc/HGow19-5fgUcp_IEMZoXG.png",
+  "mono": false
+ },
+ "z-ai": {
+  "file": "zai.svg",
+  "src": "lobehub",
+  "mono": true
+ },
+ "zai": {
+  "file": "zai.svg",
+  "src": "lobehub",
+  "mono": true
+ },
+ "zed-industries": {
+  "file": "si-zedindustries.svg",
+  "src": "simple-icons",
+  "mono": true
+ },
+ "zhipu-bigmodel": {
+  "file": "zhipu-color.svg",
+  "src": "lobehub",
+  "mono": false
+ }
+}

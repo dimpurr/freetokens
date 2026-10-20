@@ -52,7 +52,7 @@ const ML = lanesOf(M.id);
   const c = M.context.match(/^([\d.]+[KM])\s*(.*)$/);
   const tested = ML.filter((l) => l.limits_observed);
   $("mhead").innerHTML = `
-    <div class="id-row">${makerTile(M.maker, true)}<div>
+    <div class="id-row">${modelTile(M, true)}<div>
       <span class="kicker">${mklink(M.maker)}${suspectedHTML(M)}</span>
       <h1>${esc(M.name)}</h1>
     </div></div>
