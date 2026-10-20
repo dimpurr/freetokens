@@ -98,11 +98,20 @@ def get(url, timeout=30, head=False):
 
 # ---------- logs ----------
 
+def fam(ua):
+    u = ua.lower()  # mobile first: Android/iPhone go to mobile even when they contain Chrome (weekly-report convention)
+    if "android" in u or "iphone" in u or "ipad" in u or "mobile" in u: return "mobile"
+    if "firefox" in u or "fxios" in u: return "firefox"
+    if "edg" in u: return "edge"
+    if "chrome" in u or "chromium" in u or "crios" in u: return "chrome"
+    return "other"
+
+
 def parse_logs(files):
     ignore = {x.strip() for x in os.environ.get("FT_OBSERVE_IGNORE_IPS", "").split(",") if x.strip()}
     days = defaultdict(lambda: {"views": 0, "visitors": set(), "browsers": set(), "humans": set(), "beacons": 0, "view_ips": Counter(), "unknown_ua": Counter(), "feed_subs": {}, "pages": Counter(), "referrers": Counter(),
                                 "llm_bots": Counter(), "search_bots": Counter(), "other_bots": 0, "feed": 0, "llms_txt": 0,
-                                "ai_user_pages": Counter(), "ai_landings": Counter()})
+                                 "ai_user_pages": Counter(), "ai_landings": Counter(), "famviews": Counter()})
     USER_FETCH = ("ChatGPT-User", "Perplexity-User", "Claude-User", "MistralAI-User", "OpenCode-User")  # an assistant reading a page for a person, live
     for f in files:
         own_log = "freetokens" in Path(f).name  # site-specific log: every line is ours; shared log: our paths only
@@ -146,14 +155,15 @@ def parse_logs(files):
             if p.startswith("/assets/data.js"):  # old proxy for "ran the JavaScript"; kept one week next to humans for comparison
                 d["browsers"].add(ip); continue
             if status.startswith("2") and not p.startswith("/assets") and p not in ("/favicon.svg", "/robots.txt"):
-                d["views"] += 1; d["visitors"].add(ip); d["pages"][p] += 1; d["view_ips"][ip] += 1
+                d["views"] += 1; d["visitors"].add(ip); d["pages"][p] += 1; d["view_ips"][ip] += 1; d["famviews"][(fam(ua), ip)] += 1
                 if ref not in ("", "-") and not own_ref and "freetoken.fyi" not in ref:  # typo-squat scanner ref denoised (2026-10-20)
                     d["referrers"][re.sub(r"^https?://(www\.)?([^/]+).*", r"\2", ref)] += 1
     out = {}
     for k, d in sorted(days.items()):
         hv = sum(n for ip, n in d["view_ips"].items() if ip in d["humans"])
+        fhv = {f: sum(n for (ff, ip), n in d["famviews"].items() if ff == f and ip in d["humans"]) for f in ("chrome", "firefox", "edge", "mobile")}
         out[k] = {"views": d["views"], "visitors": len(d["visitors"]), "browsers": len(d["browsers"]),
-                  "humans": len(d["humans"]), "human_views": hv, "unverified_views": d["views"] - hv, "beacons": d["beacons"],
+                  "humans": len(d["humans"]), "human_views": hv, "fam_human_views": fhv, "unverified_views": d["views"] - hv, "beacons": d["beacons"],
                   "feed_subscribers": d["feed_subs"], "unknown_bots": d["unknown_ua"].most_common(10),
                   "top_pages": d["pages"].most_common(8), "referrers": d["referrers"].most_common(8),
                   "llm_bots": dict(d["llm_bots"]), "search_bots": dict(d["search_bots"]), "other_bots": d["other_bots"],
@@ -342,7 +352,8 @@ def posthog(days=7, project=299433):
     try:
         return {"events": hogql(f"select event, count() from events where {since} group by event order by count() desc limit 12"),
                 "outbound": hogql(f"select properties.host, count() from events where event = 'outbound_click' and {since} group by properties.host order by count() desc limit 8"),
-                "pages": hogql(f"select properties.$pathname, count() from events where event = '$pageview' and {since} group by properties.$pathname order by count() desc limit 6")}
+                "pages": hogql(f"select properties.$pathname, count() from events where event = '$pageview' and {since} group by properties.$pathname order by count() desc limit 6"),
+                "browser": hogql(f"select properties.$browser, properties.$device_type, count() from events where event = '$pageview' and {since} group by properties.$browser, properties.$device_type limit 30")}
     except Exception as e:
         return {"error": str(e)[:120]}
 
@@ -390,6 +401,16 @@ def report(kind, log_files, watch_path):
             lines.append(f"In-page (PostHog, 7 d): {ev.get('$pageview', 0)} page views · {ev.get('outbound_click', 0)} outbound clicks"
                          + (" → " + ", ".join(f"{h} {n}" for h, n in ph["outbound"]) if ph["outbound"] else "")
                          + " · features: " + (", ".join(f"{e} {n}" for e, n in ph["events"] if not e.startswith("$") and e != "outbound_click") or "none"))
+            if log_files:  # PostHog coverage = PH $pageview ÷ log human_views; families split both sides (mobile first)
+                phf = Counter()
+                for b, t, n in ph.get("browser", []):
+                    bl = (b or "").lower()
+                    f = "mobile" if t == "Mobile" else ("firefox" if "firefox" in bl or "fxios" in bl else ("edge" if "edge" in bl or bl.startswith("edg") else ("chrome" if "chrome" in bl or "chromium" in bl else "other")))
+                    phf[f] += n
+                fhv = {f: sum(days[d]["fam_human_views"][f] for d in last) for f in ("chrome", "firefox", "edge", "mobile")}
+                pc = lambda a, b: f"{a / b:.0%}" if b else "n/a"
+                lines.append(f"PostHog coverage (7 d): {ev.get('$pageview', 0)}/{tot('human_views')} = {pc(ev.get('$pageview', 0), tot('human_views'))} · " +
+                             " · ".join(f"{f} {pc(phf[f], fhv[f])} ({phf[f]}/{fhv[f]})" for f in ("chrome", "firefox", "edge", "mobile")))
         g = gsc()
         if g.get("error"):
             lines.append("Google Search: unavailable (" + g["error"] + ")")

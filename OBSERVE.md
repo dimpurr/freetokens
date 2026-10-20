@@ -83,6 +83,7 @@ python3 tools/observe.py report --weekly --watch ~/scratch/DimResearchS/freetoke
 
 ## §6 Known blind spots and pending work
 
+- **PostHog undercounts, investigated 2026-10-20**: gap ≈28% = ~3/4 privacy blocking + ~1/4 definition drift. Firefox coverage ≈18% vs Chrome ≈86% (Disconnect/EasyPrivacy/uBO/AdGuard/DuckDuckGo block `*.i.posthog.com`; EasyPrivacy hits `||i.posthog.com/i/` and `/static/array.js`, uBO also blocks `/ingest/*ip=` — see DimCollabS Web-Analytics-SEO-Stack §1.5). Drift: nginx counts blog images as pages, bot filters differ, beacons ≠ views 1:1. Weekly report now prints a "PostHog coverage" line (overall + Chrome/Firefox/Edge/mobile). First-party proxy deferred, see ADR-024.
 - **2026-10-11 to 10-12: a raw repository page went live** instead of the `deploy.sh` build: no prerendered HTML (364 words without JavaScript instead of ~4,200) and no `/assets/data.js`, so "Browsers" read zero. `observe.py health` now fails when the home page is not prerendered, lacks the count request or is oversized. Deploy only with `.private/deploy.sh`.
 
 - **No returning visitors.** Memory-only persistence means every page load is a new anonymous id: we count views and clicks, not people.
