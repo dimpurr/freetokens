@@ -9,6 +9,7 @@
   <header class="pagehead">
     <h1>Timeline</h1>
     <p>Every change we recorded: free periods starting and ending, end dates announced, limits measured. Newest first; each time links to its source. Also as an <a href="https://freetokens.fyi/feed.xml">Atom feed</a>.</p>
+    <div class="stamp" id="stamp"></div>
   </header>
   <section aria-labelledby="h-tl">
     <h2 id="h-tl">All events <small id="tl-count"></small></h2>
@@ -20,6 +21,7 @@
 /*__COMMON__*/
 
 document.querySelectorAll("a[data-ext]").forEach((a) => a.setAttribute("href", a.getAttribute("href") + D.ext));
+$("stamp").innerHTML = stamp();
 $("tl-count").textContent = D.events.length + " events";
 $("tl").innerHTML = timelineHTML(D.events);
 </script>

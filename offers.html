@@ -281,7 +281,8 @@ td.lane .sub.chan { white-space: nowrap; display: flex; align-items: center; gap
 td.lane .sub.chan .tag { margin-left: 2px; }
 td.lane .mid { display: flex; align-items: flex-start; gap: 2px; margin-top: 5px; }
 td.lane code.id { font-size: 0.7rem; overflow-wrap: anywhere; }
-.offers td:first-child { min-width: 250px; }
+.offers td:first-child { min-width: 300px; }
+.offers td { overflow-wrap: anywhere; }
 /* offers: the tag columns take only what their tags need */
 .offers th:nth-child(3), .offers th:nth-child(4) { width: 1%; }
 .offers td:nth-child(2) { min-width: 260px; }
@@ -405,6 +406,10 @@ a.ev:hover::before, a.ev:focus-visible::before { background: var(--accent); bord
 .stats:not(:has(.measured-stat)) { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 @media (max-width: 899px) { .stats, .stats:not(:has(.measured-stat)) { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .stat.aa-stat { grid-column: span 2; }
+/* offer pages: three facts, one row (the gets text and the needs chips need the width a 5/6-slot grid would not leave);
+   the 3-line floor keeps the short values (a chip, a status) from sitting in a half-empty card next a wrapped gets text */
+.stats.o3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.stats.o3 .v { min-height: 3em; }
 .stat .s .sub { display: inline; }
 .stat .aacell .sbar { width: 140px; max-width: none; margin-top: 0; }
 .stat { padding: 14px 16px; display: grid; gap: 4px; align-content: start; }
@@ -419,7 +424,7 @@ a.ev:hover::before, a.ev:focus-visible::before { background: var(--accent); bord
 .stat.measured-stat { background: var(--measured-soft); box-shadow: 0 0 0 1px color-mix(in srgb, var(--measured) 35%, transparent); }
 .stat.measured-stat .k, .stat.measured-stat .v { color: var(--measured); }
 .chcards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 270px), 1fr)); gap: 12px; }
-.chcard { padding: 16px 18px; display: grid; gap: 8px; align-content: start; }
+.chcard { padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; }
 .chcard.live { box-shadow: var(--ring), inset 3px 0 0 var(--live); }
 .chcard.overdue { box-shadow: var(--ring), inset 3px 0 0 var(--overdue); }
 .chcard.listed { box-shadow: var(--ring), inset 3px 0 0 var(--accent); }
@@ -429,6 +434,8 @@ a.ev:hover::before, a.ev:focus-visible::before { background: var(--accent); bord
 .chcard .name a:hover { color: var(--accent); }
 .chcard .big { font: 600 1.25rem var(--f-display); letter-spacing: -0.01em; }
 .chcard .row { font-size: 0.8rem; color: var(--muted); display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+/* the "Checked …" line sits at the bottom edge of every card, so a row of cards reads as one baseline, not ragged bottoms */
+.chcard > .row:last-child { margin-top: auto; }
 .details { display: grid; gap: 12px; }
 .detail { padding: 16px 18px; }
 .detail h3 { margin: 0 0 12px; font: 600 1.02rem var(--f-display); display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
@@ -443,7 +450,7 @@ a.ev:hover::before, a.ev:focus-visible::before { background: var(--accent); bord
 .prose { max-width: 760px; gap: 14px; }
 .prose h1 { margin-top: 8px; } .prose h2 { margin-top: 18px; }
 .prose p, .prose li { color: var(--fg); line-height: 1.6; } .prose ul, .prose ol { margin: 0; padding-left: 22px; display: grid; gap: 6px; }
-.prose code { font: 0.85em var(--f-mono); background: var(--surface-2); border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; }
+.prose code { font: 0.85em var(--f-mono); background: var(--surface-2); box-shadow: inset 0 0 0 1px var(--line); border-radius: 4px; padding: 0 4px; }
 
 footer { font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 18px; line-height: 1.6; }
 
@@ -464,6 +471,7 @@ footer { font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--li
   .detail dd { border-top: 0; padding-top: 2px; }
   .chart { grid-template-columns: 150px 1fr; }
   .stats, .stats:not(:has(.measured-stat)) { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .stats.o3 { grid-template-columns: 1fr; }
   .stamp { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 0; }
   .stamp > span { padding: 0 12px; }
   .stamp > span:nth-child(3n + 1) { padding-left: 0; border-left: 0; }
@@ -845,13 +853,14 @@ li:target { background: var(--accent-soft); border-radius: 4px; }
   <header class="pagehead">
     <h1>Free programs</h1>
     <p>Allowances, credits and plans that pay for model use: student plans, sign-up credits, daily allowances, perks bundled with a plan you may already have. Unlike the free lanes, these are not tied to one model, so they are listed here and never ranked with the models. Amounts are in each provider's own unit. Easiest to get comes first.</p>
+    <div class="stamp" id="stamp"></div>
   </header>
   <section aria-labelledby="h-offers">
     <h2 id="h-offers">Programs <small id="of-count"></small></h2>
     <div class="filters" id="of-filters"></div>
     <div class="tbl-scroll"><table class="lanes offers cardify"><thead><tr><th>Program</th><th>You get</th><th>Needs</th><th>Use it</th><th>Models</th><th>Status · checked</th></tr></thead><tbody id="of-rows"></tbody></table></div>
   </section>
-  <footer>Generated by <span class="mono">build.py</span> from <span class="mono">data/*.json</span>. Measured limits are one-off light readings from our own account, not load tests. <span id="stamp"></span> Data: <a href="https://github.com/dimpurr/freetokens/blob/main/data/LICENSE.md">CC BY 4.0</a> · <a href="https://github.com/dimpurr/freetokens/blob/main/CONTRIBUTING.md">contribute</a> · <a href="https://freetokens.fyi/methodology">methodology</a> · <a href="https://freetokens.fyi/feed.xml">events feed</a>.</footer>
+  <footer>Generated by <span class="mono">build.py</span> from <span class="mono">data/*.json</span>. Measured limits are one-off light readings from our own account, not load tests. Data: <a href="https://github.com/dimpurr/freetokens/blob/main/data/LICENSE.md">CC BY 4.0</a> · <a href="https://github.com/dimpurr/freetokens/blob/main/CONTRIBUTING.md">contribute</a> · <a href="https://freetokens.fyi/methodology">methodology</a> · <a href="https://freetokens.fyi/feed.xml">events feed</a>.</footer>
 </div>
 
 <script>
@@ -1476,6 +1485,7 @@ document.addEventListener("click", (ev) => {
 
 
 mountViewSwitch();
+onView(() => { $("stamp").innerHTML = metaStrip(); });
 document.querySelectorAll("a[data-ext]").forEach((a) => a.setAttribute("href", a.getAttribute("href") + D.ext));
 (function () {
   const F = { type: null, nocard: false, nophone: false, nostudent: false, api: false, world: false };
@@ -1501,7 +1511,7 @@ document.querySelectorAll("a[data-ext]").forEach((a) => a.setAttribute("href", a
       const m = o.models || {}, tracked = (m.tracked || []).filter((x) => models[x]);
       const mods = m.kind === "catalogue" ? `whole catalogue${m.count ? ` (${m.count})` : ""}` : tracked.length ? tracked.slice(0, 3).map(mlink).join(", ") + (tracked.length > 3 ? ` +${tracked.length - 3}` : "") : esc((m.ids || []).slice(0, 3).join(", ") || "—");
       return `<tr class="${o.status === "ended" ? "offrow" : ""}">
-        <td><span class="otype">${esc(lab("offer_type", o.type))}</span><span class="name">${olink(o.id)}</span><span class="sub">${o.channel ? clink(o.channel) : esc(o.provider)}${o.region ? " · " + regionTag(o) : ""}</span></td>
+        <td><span class="ent">${logoTile(o.channel || o.provider, o.channel || o.provider)}<span><span class="otype">${esc(lab("offer_type", o.type))}</span><span class="name">${olink(o.id)}</span><span class="sub">${o.channel ? clink(o.channel) : esc(o.provider)}${o.region ? " · " + regionTag(o) : ""}</span></span></span></td>
         <td data-label="You get">${getsHTML(o)}${o.paid_plan ? `<span class="sub">with ${esc(o.paid_plan.name)}${o.paid_plan.usd ? ` ($${o.paid_plan.usd}/${o.paid_plan.period === "year" ? "yr" : "mo"})` : ""}</span>` : ""}</td>
         <td data-label="Needs">${reqHTML(o)}</td>
         <td data-label="Use it">${accessHTML(offerAccess(o))}</td>

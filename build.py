@@ -1177,8 +1177,21 @@ def build_pages(lanes, events, models, today, mode, lang="en"):
                   + "".join(f'<a href="{RT}{a}">{tr(t)}</a>' for a, t in
                              (("#h-models", "Models"), ("#h-channels", "Channels"), ("offers", "Offers"), ("lanes", "Lanes"), ("timeline", "Timeline")))
                   + '</nav>' + GH + '</div></div>')
+        back = f'<nav class="back"><a href="{RT}">{tr("← Overview")}</a></nav>'
+        # the same figures row as the home stamp (metaStrip), built here because this page carries no JS
+        mfig = lambda n, label: f"<span><b>{n}</b>{label}</span>"
+        m_tested = sum(1 for l in lanes if l.get("limits_observed"))
+        m_bolt = '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>'
+        m_stamp = ('<div class="stamp">'
+                   + mfig(sum(1 for l in lanes if l["status"] in FREE), tr("free now"))
+                   + mfig(len(lanes), tr("lanes"))
+                   + (f'<span class="tested" title="{html.escape(tr("Tested by us") + " " + tr("marks limits we measured on our own account, which you won\'t find in announcements."))}"><b>{m_tested}</b><span>{m_bolt} {tr("tested by us")}</span></span>' if m_tested else "")
+                   + mfig(len(models), tr("models"))
+                   + mfig(len({l["channel"] for l in lanes}), tr("channels"))
+                   + mfig(len(events), tr("events"))
+                   + f'<span class="fresh">{tr("data as of")} <b>{html.escape(fmt_date(today.isoformat()))}</b></span></div>')
         pages[P + "methodology.html"] = (head_html(mtitle, mdesc, U + "/methodology", today, [crumbs([("freetokens", HU), (tr("Methodology"), U + "/methodology")])], og, lang, alt("methodology")),
-                                     topbar + '<div class="wrap prose">' + md_to_html(method_body) + '</div>')
+                                     topbar + '<div class="wrap prose">' + back + m_stamp + md_to_html(method_body) + '</div>')
     if site:
         add_langsw(pages, zh)
     return pages
@@ -1200,6 +1213,11 @@ def add_langsw(pages, zh):
         pages[path] = (h, b.replace('<a class="gh"', f'<a class="langsw" href="{other}">{"EN" if zh else "中文"}</a><a class="gh"', 1))
 
 
+# section headings other pages link to (common.js view switch, home ladder): EN and ZH text -> the same anchor
+MD_ANCHORS = {"Use-case views": "use-case-views", "Fallback ladder": "fallback-ladder",
+              "使用场景视图": "use-case-views", "备用顺序": "fallback-ladder"}
+
+
 def md_to_html(md):
     """Small Markdown subset for METHOD.md: #/## headings, paragraphs, - and 1. lists, **bold**, `code`, [links](url)."""
     def inline(t):
@@ -1218,9 +1236,15 @@ def md_to_html(md):
             out.append(f"<li>{inline(m.group(3))}</li>"); continue
         if lst and line.strip() == "":
             out.append(f"</{lst}>"); lst = None
-        if line.startswith("# "): out.append(f"<h1>{inline(line[2:])}</h1>")
-        elif line.startswith("## "): out.append(f"<h2>{inline(line[3:])}</h2>")
-        elif line.strip(): out.append(f"<p>{inline(line)}</p>")
+        for lvl in (1, 2):
+            pre = "#" * lvl + " "
+            if line.startswith(pre):
+                core = line[len(pre):]
+                aid = MD_ANCHORS.get(core)
+                out.append(f'<h{lvl} id="{aid}">{inline(core)}</h{lvl}>' if aid else f"<h{lvl}>{inline(core)}</h{lvl}>")
+                break
+        else:
+            if line.strip(): out.append(f"<p>{inline(line)}</p>")
     return "\n".join(out)
 
 

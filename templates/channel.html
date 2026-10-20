@@ -50,16 +50,22 @@ const CL = lanesOn(C);
   const stat = (k, v, s, cls = "") => `<div class="stat ${cls}"><span class="k">${k}</span><span class="v">${v}</span>${s ? `<span class="s">${s}</span>` : ""}</div>`;
   const last = CL.map((l) => l.checked.date).sort().pop();
   const tested = CL.filter((l) => l.limits_observed);
+  const nOffer = (D.offers || []).filter((o) => o.channel === C).length;
+  const nEvent = eventsOn(C).length;
   $("chead").innerHTML = `
-    <span class="kicker">${esc(CL[0] ? lab("channel_type", CL[0].type) : Tx("free programs only", "free programs only"))}</span>
-    <h1>${esc(C)}</h1>
+    <div class="id-row">${logoTile(C, C, true)}<div>
+      <span class="kicker">${esc(CL[0] ? lab("channel_type", CL[0].type) : Tx("free programs only", "free programs only"))}</span>
+      <h1>${esc(C)}</h1>
+    </div></div>
     <p class="chlinks">${chLinks(C)}</p>
     ${CH[C] && CH[C].free_condition ? `<p class="chcond"><b>${Tx("Free if:", "Free if:")}</b> ${esc(CH[C].free_condition)}</p>` : ""}
     ${CH[C] ? `<p class="costline">${Tx("To start:", "To start:")} ${costHTML(C)} <span class="muted">${esc(CH[C].entry.note)}</span></p><p class="costline">${Tx("Use it:", "Use it:")} ${accessHTML(CH[C].access)}</p>` : ""}
     <div class="stats">
       ${stat(Tx("Free now", "Free now"), `${CL.filter(isFree).length}${ZH ? "／" : " of "}${CL.length}`, Tx("models", "models"))}
-      ${stat(Tx("Ended", "Ended"), String(CL.filter((l) => l.status === "ended").length), Tx("tracked lanes that stopped", "tracked lanes that stopped"))}
+      ${stat(Tx("Ended", "Ended"), String(CL.filter((l) => l.status === "ended").length), Tx("lanes", "lanes"))}
+      ${stat(Tx("Free programs", "Free programs"), String(nOffer), Tx("on this channel", "on this channel"))}
       ${stat(Tx("Last checked", "Last checked"), esc(absDate(last)))}
+      ${stat(Tx("Events", "Events"), String(nEvent))}
       ${tested.length ? stat(`${I.bolt()} ${Tx("Tested by us", "Tested by us")}`, `${tested.length}${ZH ? "／" : " of "}${CL.length}`, Tx("lanes measured", "lanes measured"), "measured-stat") : ""}
     </div>`;
 })();
@@ -90,7 +96,7 @@ mountViewSwitch();
 $("details").innerHTML = CL.map((l) => {
   const row = (k, v) => `<dt>${k}</dt><dd>${v}</dd>`;
   const e = endInfo(l);
-  return `<div class="detail" data-lane="${l.id}"><h3>${mlink(l.model)} ${statusHTML(l.status)}<span class="usemarks">${useMarks(l)}</span></h3><dl>
+  return `<div class="detail" data-lane="${l.id}"><h3>${modelTile(models[l.model])}${mlink(l.model)} ${statusHTML(l.status)}<span class="usemarks">${useMarks(l)}</span></h3><dl>
     ${row(`${I.bolt()} ${Tx("Tested by us", "Tested by us")}`, `${measuredHTML(l)}`)}
     ${row(Tx("Model ID", "Model ID"), idHTML(l))}
     ${row(Tx("Free condition", "Free condition"), esc(conditionOf(l)))}
@@ -110,5 +116,5 @@ onView(() => document.querySelectorAll("[data-lane]").forEach((el) => {
 /* free programs that cover this page (ADR-025) */
 { const os = (D.offers || []).filter((o) => o.channel === C).sort(offerSort);
   $("also-sec").hidden = !os.length;
-  $("also").innerHTML = os.map((o) => `<div class="row">${olink(o.id)} ${statusHTML(o.status)} ${getsHTML(o)} <span>${reqHTML(o)}</span></div>`).join(""); }
+  $("also").innerHTML = os.map((o) => `<div class="row">${logoTile(o.channel || o.provider, o.channel || o.provider)}<span class="o-name">${olink(o.id)} ${statusHTML(o.status)}</span><span class="o-get">${getsHTML(o)} ${reqHTML(o)}</span></div>`).join(""); }
 </script>

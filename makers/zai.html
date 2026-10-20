@@ -282,7 +282,8 @@ td.lane .sub.chan { white-space: nowrap; display: flex; align-items: center; gap
 td.lane .sub.chan .tag { margin-left: 2px; }
 td.lane .mid { display: flex; align-items: flex-start; gap: 2px; margin-top: 5px; }
 td.lane code.id { font-size: 0.7rem; overflow-wrap: anywhere; }
-.offers td:first-child { min-width: 250px; }
+.offers td:first-child { min-width: 300px; }
+.offers td { overflow-wrap: anywhere; }
 /* offers: the tag columns take only what their tags need */
 .offers th:nth-child(3), .offers th:nth-child(4) { width: 1%; }
 .offers td:nth-child(2) { min-width: 260px; }
@@ -406,6 +407,10 @@ a.ev:hover::before, a.ev:focus-visible::before { background: var(--accent); bord
 .stats:not(:has(.measured-stat)) { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 @media (max-width: 899px) { .stats, .stats:not(:has(.measured-stat)) { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .stat.aa-stat { grid-column: span 2; }
+/* offer pages: three facts, one row (the gets text and the needs chips need the width a 5/6-slot grid would not leave);
+   the 3-line floor keeps the short values (a chip, a status) from sitting in a half-empty card next a wrapped gets text */
+.stats.o3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.stats.o3 .v { min-height: 3em; }
 .stat .s .sub { display: inline; }
 .stat .aacell .sbar { width: 140px; max-width: none; margin-top: 0; }
 .stat { padding: 14px 16px; display: grid; gap: 4px; align-content: start; }
@@ -420,7 +425,7 @@ a.ev:hover::before, a.ev:focus-visible::before { background: var(--accent); bord
 .stat.measured-stat { background: var(--measured-soft); box-shadow: 0 0 0 1px color-mix(in srgb, var(--measured) 35%, transparent); }
 .stat.measured-stat .k, .stat.measured-stat .v { color: var(--measured); }
 .chcards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 270px), 1fr)); gap: 12px; }
-.chcard { padding: 16px 18px; display: grid; gap: 8px; align-content: start; }
+.chcard { padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; }
 .chcard.live { box-shadow: var(--ring), inset 3px 0 0 var(--live); }
 .chcard.overdue { box-shadow: var(--ring), inset 3px 0 0 var(--overdue); }
 .chcard.listed { box-shadow: var(--ring), inset 3px 0 0 var(--accent); }
@@ -430,6 +435,8 @@ a.ev:hover::before, a.ev:focus-visible::before { background: var(--accent); bord
 .chcard .name a:hover { color: var(--accent); }
 .chcard .big { font: 600 1.25rem var(--f-display); letter-spacing: -0.01em; }
 .chcard .row { font-size: 0.8rem; color: var(--muted); display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+/* the "Checked …" line sits at the bottom edge of every card, so a row of cards reads as one baseline, not ragged bottoms */
+.chcard > .row:last-child { margin-top: auto; }
 .details { display: grid; gap: 12px; }
 .detail { padding: 16px 18px; }
 .detail h3 { margin: 0 0 12px; font: 600 1.02rem var(--f-display); display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
@@ -444,7 +451,7 @@ a.ev:hover::before, a.ev:focus-visible::before { background: var(--accent); bord
 .prose { max-width: 760px; gap: 14px; }
 .prose h1 { margin-top: 8px; } .prose h2 { margin-top: 18px; }
 .prose p, .prose li { color: var(--fg); line-height: 1.6; } .prose ul, .prose ol { margin: 0; padding-left: 22px; display: grid; gap: 6px; }
-.prose code { font: 0.85em var(--f-mono); background: var(--surface-2); border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; }
+.prose code { font: 0.85em var(--f-mono); background: var(--surface-2); box-shadow: inset 0 0 0 1px var(--line); border-radius: 4px; padding: 0 4px; }
 
 footer { font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 18px; line-height: 1.6; }
 
@@ -465,6 +472,7 @@ footer { font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--li
   .detail dd { border-top: 0; padding-top: 2px; }
   .chart { grid-template-columns: 150px 1fr; }
   .stats, .stats:not(:has(.measured-stat)) { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .stats.o3 { grid-template-columns: 1fr; }
   .stamp { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 0; }
   .stamp > span { padding: 0 12px; }
   .stamp > span:nth-child(3n + 1) { padding-left: 0; border-left: 0; }
@@ -1511,14 +1519,21 @@ const byScore = (a, b) => (aaValue(b) ?? -1) - (aaValue(a) ?? -1) || a.name.loca
 onView(() => {
   const free = KM.filter(freeNow).sort(byScore), best = free.find((m) => aaValue(m) != null);
   const lk = K.links || {};
-  $("kh").innerHTML = `<span class="kicker">${esc([K.parent, K.country].filter(Boolean).join(" · ") || Tx("Model maker", "Model maker"))}</span>
+  const kl0 = D.lanes.filter((l) => KM.some((m) => m.id === l.model) && usable(l));
+  const nCh = new Set(kl0.map((l) => l.channel)).size;
+  const nEv = D.events.filter((e) => (e.lanes || []).some((i) => KM.some((m) => m.id === lanes[i].model))).length;
+  $("kh").innerHTML = `<div class="id-row">${makerTile(K.id, true)}<div>
+    <span class="kicker">${esc([K.parent, K.country].filter(Boolean).join(" · ") || Tx("Model maker", "Model maker"))}</span>
     <h1>${esc(ZH && D.maker === "undisclosed" ? "未公开" : K.name)}</h1>
+  </div></div>
     ${K.note ? `<p class="notes">${esc(K.note)}</p>` : ""}
     <p class="chlinks">${lk.site ? `<a class="extlink" href="${esc(lk.site)}" target="_blank" rel="noopener">Website ${I.ext()}</a>` : ""}${lk.models ? `<a class="extlink" href="${esc(lk.models)}" target="_blank" rel="noopener">${Tx("Models on Hugging Face", "Models on Hugging Face")} ${I.ext()}</a>` : ""}</p>
     <div class="stats">
       <div class="stat"><span class="k">${Tx("Tracked", "Tracked")}</span><span class="v">${KM.length}</span><span class="s">${Tx("models", "models")}</span></div>
       <div class="stat"><span class="k">${Tx("Free now", "Free now")}${viewNote()}</span><span class="v">${free.length}</span><span class="s">${Tx("models", "models")}</span></div>
-      ${best ? `<div class="stat"><span class="k">${Tx("Best free now", "Best free now")}</span><span class="v" style="font-size:1rem">${mlink(best.id)}</span><span class="s">${aaHTML(best)}</span></div>` : ""}
+      <div class="stat"><span class="k">${Tx("Best free now", "Best free now")}</span><span class="v" style="font-size:1rem">${best ? mlink(best.id) : `<span class="muted">${Tx("none", "none")}</span>`}</span>${best ? `<span class="s">${aaHTML(best)}</span>` : ""}</div>
+      <div class="stat"><span class="k">${Tx("Free channels", "Free channels")}</span><span class="v">${nCh}</span></div>
+      <div class="stat"><span class="k">${Tx("Events", "Events")}</span><span class="v">${nEv}</span></div>
     </div>`;
   const rest = KM.filter((m) => !freeNow(m)).sort(byScore);
   $("models-sub").textContent = ZH ? `${free.length} 当前免费${VIEW === "all" ? "" : byV(VIEW)} · ${rest.length} 无` : `${free.length} free now${VIEW === "all" ? "" : " for " + VIEW} · ${rest.length} not`;
@@ -1533,6 +1548,7 @@ onView(() => {
   $("chartkey").innerHTML = chartKey;
 });
 $("tl").innerHTML = timelineHTML(D.events.filter((e) => (e.lanes || []).some((i) => KM.some((m) => m.id === lanes[i].model))));
+$("stamp").innerHTML = `${Tx("Data as of", "Data as of")} ${esc(absDate(D.built))}.`;
 </script>
 
 </body>

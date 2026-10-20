@@ -9,6 +9,7 @@
   <header class="pagehead">
     <h1>All free lanes</h1>
     <p>Every model × channel route we track, with its status, end date, what we measured, and the exact model ID. Filter below; the chart shows each free period against today.</p>
+    <div class="stamp" id="stamp"></div>
   </header>
 
   <section aria-labelledby="h-lanes">
@@ -35,6 +36,7 @@
 /*__COMMON__*/
 
 mountViewSwitch();
+onView(() => { $("stamp").innerHTML = metaStrip(); });
 document.querySelectorAll("a[data-ext]").forEach((a) => a.setAttribute("href", a.getAttribute("href") + D.ext));
 mountLanes(null);
 mountChart(null);

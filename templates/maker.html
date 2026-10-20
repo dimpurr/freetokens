@@ -56,14 +56,21 @@ const byScore = (a, b) => (aaValue(b) ?? -1) - (aaValue(a) ?? -1) || a.name.loca
 onView(() => {
   const free = KM.filter(freeNow).sort(byScore), best = free.find((m) => aaValue(m) != null);
   const lk = K.links || {};
-  $("kh").innerHTML = `<span class="kicker">${esc([K.parent, K.country].filter(Boolean).join(" · ") || Tx("Model maker", "Model maker"))}</span>
+  const kl0 = D.lanes.filter((l) => KM.some((m) => m.id === l.model) && usable(l));
+  const nCh = new Set(kl0.map((l) => l.channel)).size;
+  const nEv = D.events.filter((e) => (e.lanes || []).some((i) => KM.some((m) => m.id === lanes[i].model))).length;
+  $("kh").innerHTML = `<div class="id-row">${makerTile(K.id, true)}<div>
+    <span class="kicker">${esc([K.parent, K.country].filter(Boolean).join(" · ") || Tx("Model maker", "Model maker"))}</span>
     <h1>${esc(ZH && D.maker === "undisclosed" ? "未公开" : K.name)}</h1>
+  </div></div>
     ${K.note ? `<p class="notes">${esc(K.note)}</p>` : ""}
     <p class="chlinks">${lk.site ? `<a class="extlink" href="${esc(lk.site)}" target="_blank" rel="noopener">Website ${I.ext()}</a>` : ""}${lk.models ? `<a class="extlink" href="${esc(lk.models)}" target="_blank" rel="noopener">${Tx("Models on Hugging Face", "Models on Hugging Face")} ${I.ext()}</a>` : ""}</p>
     <div class="stats">
       <div class="stat"><span class="k">${Tx("Tracked", "Tracked")}</span><span class="v">${KM.length}</span><span class="s">${Tx("models", "models")}</span></div>
       <div class="stat"><span class="k">${Tx("Free now", "Free now")}${viewNote()}</span><span class="v">${free.length}</span><span class="s">${Tx("models", "models")}</span></div>
-      ${best ? `<div class="stat"><span class="k">${Tx("Best free now", "Best free now")}</span><span class="v" style="font-size:1rem">${mlink(best.id)}</span><span class="s">${aaHTML(best)}</span></div>` : ""}
+      <div class="stat"><span class="k">${Tx("Best free now", "Best free now")}</span><span class="v" style="font-size:1rem">${best ? mlink(best.id) : `<span class="muted">${Tx("none", "none")}</span>`}</span>${best ? `<span class="s">${aaHTML(best)}</span>` : ""}</div>
+      <div class="stat"><span class="k">${Tx("Free channels", "Free channels")}</span><span class="v">${nCh}</span></div>
+      <div class="stat"><span class="k">${Tx("Events", "Events")}</span><span class="v">${nEv}</span></div>
     </div>`;
   const rest = KM.filter((m) => !freeNow(m)).sort(byScore);
   $("models-sub").textContent = ZH ? `${free.length} 当前免费${VIEW === "all" ? "" : byV(VIEW)} · ${rest.length} 无` : `${free.length} free now${VIEW === "all" ? "" : " for " + VIEW} · ${rest.length} not`;
@@ -78,4 +85,5 @@ onView(() => {
   $("chartkey").innerHTML = chartKey;
 });
 $("tl").innerHTML = timelineHTML(D.events.filter((e) => (e.lanes || []).some((i) => KM.some((m) => m.id === lanes[i].model))));
+$("stamp").innerHTML = `${Tx("Data as of", "Data as of")} ${esc(absDate(D.built))}.`;
 </script>
