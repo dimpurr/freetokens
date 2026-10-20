@@ -5,12 +5,13 @@ slug: space-bunny-alpha
 section: 档案
 tags: [space-bunny, opencode-zen, opencode-go, openrouter, kilo-code, command-code]
 published: "2026-10-13"
-updated: "2026-10-13"
+updated: "2026-10-20"
 status: developing
 author: dim
 draft: false
 changelog:
   - "2026-10-13: first published"
+  - "2026-10-20: OpenCode Zen dropped opencode/space-bunny-free at the daily catalogue check, with no end announced - the last free channel is gone, so Space Bunny Alpha is not free anywhere"
 sources:
   - id: opencode-sep23
     title: OpenCode announces Space Bunny free for the next week

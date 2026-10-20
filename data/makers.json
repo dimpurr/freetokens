@@ -221,5 +221,10 @@
   "id": "undisclosed",
   "name": "Undisclosed (stealth)",
   "note": "Stealth models shipped without a maker's name. Community attributions are shown on each model as unconfirmed."
+ },
+ {
+  "id": "reflection",
+  "name": "Reflection AI",
+  "note": "Taken from the provider namespace on the Vercel AI Gateway free ID reflection/beam-free (daily catalogue check, 2026-10-20); nothing else checked"
  }
 ]

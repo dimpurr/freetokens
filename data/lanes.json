@@ -280,18 +280,19 @@
       "announced": null,
       "expected": null,
       "confidence": "none",
-      "note": "docs say \"limited time\", no date"
+      "note": "no end date published (Zen said \"limited time\"); gone from the Zen free catalogue at the 2026-10-20 daily check"
     },
     "data_policy": "zero_retention",
-    "status": "live",
+    "status": "ended",
     "checked": {
-      "date": "2026-10-13",
+      "date": "2026-10-20",
       "method": "catalogue"
     },
     "volume": {
       "tier": "daily",
       "basis": "own check: 10 parallel agent runs; Zen's free allowance is per IP per day"
-    }
+    },
+    "note": "Dropped from OpenCode Zen: opencode/space-bunny-free is not in the free model list at the 2026-10-20T08:00Z daily catalogue check; last present 2026-10-13 (own check, catalogue); no end date announced"
   },
   {
     "id": "bunny-kilo",
@@ -2514,18 +2515,20 @@
     "ends": {
       "announced": null,
       "expected": null,
-      "confidence": "none"
+      "confidence": "none",
+      "note": "no end announced; observed gone from the Zen free catalogue on 2026-10-20"
     },
     "data_policy": "may_train",
-    "status": "live",
+    "status": "ended",
     "checked": {
-      "date": "2026-10-07",
-      "method": "agent_run"
+      "date": "2026-10-20",
+      "method": "catalogue"
     },
     "volume": {
       "tier": "daily",
       "basis": "own check: 10 parallel agent runs; Zen's free allowance is per IP per day"
-    }
+    },
+    "note": "Dropped from OpenCode Zen: opencode/muse-spark-1.3-contributor-free is not in the free model list at the 2026-10-20T08:00Z daily catalogue check; last present 2026-10-07 (agent run, 10 parallel). Watch note (2026-10-20), kept verbatim: \"tell m1max-dimmodel to cancel its 4-hourly Muse probe timer (set 2026-10-06)\""
   },
   {
     "id": "muse-spark-1.2-contributor-zen",
@@ -2551,14 +2554,16 @@
     "ends": {
       "announced": null,
       "expected": null,
-      "confidence": "none"
+      "confidence": "none",
+      "note": "no end announced; observed gone from the Zen free catalogue on 2026-10-20"
     },
     "data_policy": "may_train",
-    "status": "listed",
+    "status": "ended",
     "checked": {
-      "date": "2026-10-06",
-      "method": "api_call"
-    }
+      "date": "2026-10-20",
+      "method": "catalogue"
+    },
+    "note": "Dropped from OpenCode Zen: opencode/muse-spark-1.2-contributor-free is not in the free model list at the 2026-10-20T08:00Z daily catalogue check; last present 2026-10-06 (checked 2026-10-06, api_call, reach missing)"
   },
   {
     "id": "glm-4.7-flash-zai",
@@ -3998,14 +4003,16 @@
     "ends": {
       "announced": null,
       "expected": null,
-      "confidence": "none"
+      "confidence": "none",
+      "note": "no end announced; observed gone from the Zen free catalogue on 2026-10-20"
     },
     "data_policy": "not_checked",
-    "status": "live",
+    "status": "ended",
     "checked": {
-      "date": "2026-10-13",
-      "method": "agent_run"
-    }
+      "date": "2026-10-20",
+      "method": "catalogue"
+    },
+    "note": "Dropped from OpenCode Zen: opencode/cat-jam-free is not in the free model list at the 2026-10-20T08:00Z daily catalogue check; last present 2026-10-13 (agent run, 5 parallel)"
   },
   {
     "id": "cat-jam-free-go",
@@ -4025,15 +4032,16 @@
     "ends": {
       "announced": null,
       "expected": null,
-      "confidence": "none"
+      "confidence": "none",
+      "note": "no end announced; observed gone from the Go free catalogue on 2026-10-20"
     },
     "data_policy": "not_checked",
-    "status": "listed",
+    "status": "ended",
     "checked": {
-      "date": "2026-10-13",
+      "date": "2026-10-20",
       "method": "catalogue"
     },
-    "note": "W6 2026-10-13: 4x Unexpected server error + Model not found; needs repeat check (ADR-022)"
+    "note": "Dropped from OpenCode Go: opencode-go/cat-jam-free is not in the free model list at the 2026-10-20T08:00Z daily catalogue check; last present 2026-10-13 (catalogue). Was: W6 2026-10-13: 4x Unexpected server error + Model not found; needs repeat check (ADR-022)"
   },
   {
     "id": "glm-5.3-flash-zen",
@@ -4160,18 +4168,20 @@
     "ends": {
       "announced": null,
       "expected": null,
-      "confidence": "none"
+      "confidence": "none",
+      "note": "no end announced; observed gone from the Zen free catalogue on 2026-10-20"
     },
     "data_policy": "may_train",
-    "status": "listed",
+    "status": "ended",
     "checked": {
-      "date": "2026-10-16",
+      "date": "2026-10-20",
       "method": "catalogue"
     },
     "volume": {
       "tier": "daily",
       "basis": "channel rule: Zen's free allowance is per IP per day; this model not load-tested"
-    }
+    },
+    "note": "Dropped from OpenCode Zen: opencode/ll-alpha-free is not in the free model list at the 2026-10-20T08:00Z daily catalogue check; last present 2026-10-16 (catalogue); no end date announced"
   },
   {
     "id": "nemotron-3.5-super-vl-or",
@@ -4256,13 +4266,260 @@
     "ends": {
       "announced": null,
       "expected": null,
-      "confidence": "none"
+      "confidence": "none",
+      "note": "no end announced; observed gone from the AI Gateway free list on 2026-10-20"
     },
     "data_policy": "may_train",
+    "status": "ended",
+    "checked": {
+      "date": "2026-10-20",
+      "method": "catalogue"
+    },
+    "note": "Dropped from Vercel AI Gateway: stealth/cat-jam is not in the free list at the 2026-10-20T08:00Z daily catalogue check (the models API either drops the ID or stops reporting $0 input and output); last present 2026-10-16 (catalogue)"
+  },
+  {
+    "id": "minimax-m3.1-flash-or",
+    "model": "minimax-m3.1-flash",
+    "channel": "OpenRouter",
+    "type": "router",
+    "model_id": "minimax/minimax-m3.1-flash:free",
+    "free_condition": null,
+    "limits_stated": {
+      "basis": "official",
+      "per_day": 50,
+      "note": "1000/day once 10+ credits have been bought",
+      "source": "https://openrouter.ai/pricing"
+    },
+    "limits_observed": null,
+    "started": {
+      "date": "2026-10-20",
+      "note": "first seen in the daily free-catalogue check; may predate it"
+    },
+    "ends": {
+      "announced": null,
+      "expected": null,
+      "confidence": "none"
+    },
+    "data_policy": "not_checked",
     "status": "listed",
     "checked": {
-      "date": "2026-10-16",
+      "date": "2026-10-20",
+      "method": "catalogue"
+    },
+    "volume": {
+      "tier": "taste",
+      "basis": "50 requests a day without credits (stated)"
+    }
+  },
+  {
+    "id": "minimax-m3.1-flash-zen",
+    "model": "minimax-m3.1-flash",
+    "channel": "OpenCode Zen",
+    "type": "agent_tool",
+    "model_id": "opencode/minimax-m3.1-flash-free",
+    "free_condition": null,
+    "limits_stated": {
+      "basis": "unpublished"
+    },
+    "limits_observed": null,
+    "started": {
+      "date": "2026-10-20",
+      "note": "first seen in the daily free-catalogue check; may predate it"
+    },
+    "ends": {
+      "announced": null,
+      "expected": null,
+      "confidence": "none"
+    },
+    "data_policy": "not_checked",
+    "status": "listed",
+    "checked": {
+      "date": "2026-10-20",
+      "method": "catalogue"
+    },
+    "volume": {
+      "tier": "daily",
+      "basis": "channel rule: Zen's free allowance is per IP per day; this model not load-tested"
+    }
+  },
+  {
+    "id": "minimax-m3.1-flash-go",
+    "model": "minimax-m3.1-flash",
+    "channel": "OpenCode Go",
+    "type": "agent_tool",
+    "model_id": "opencode-go/minimax-m3.1-flash-free",
+    "free_condition": null,
+    "limits_stated": {
+      "basis": "unpublished"
+    },
+    "limits_observed": null,
+    "started": {
+      "date": "2026-10-20",
+      "note": "first seen in the daily free-catalogue check; may predate it"
+    },
+    "ends": {
+      "announced": null,
+      "expected": null,
+      "confidence": "none"
+    },
+    "data_policy": "not_checked",
+    "status": "listed",
+    "checked": {
+      "date": "2026-10-20",
       "method": "catalogue"
     }
+  },
+  {
+    "id": "minimax-m3.1-flash-vercel",
+    "model": "minimax-m3.1-flash",
+    "channel": "Vercel AI Gateway",
+    "type": "router",
+    "model_id": "minimax/minimax-m3.1-flash",
+    "free_condition": null,
+    "limits_stated": {
+      "basis": "unpublished",
+      "note": "lower per-model rate limits on the free tier",
+      "source": "https://ai-gateway.vercel.sh/v1/models"
+    },
+    "limits_observed": null,
+    "started": {
+      "date": "2026-10-20",
+      "note": "first seen in the daily free-catalogue check; may predate it"
+    },
+    "ends": {
+      "announced": null,
+      "expected": null,
+      "confidence": "none"
+    },
+    "data_policy": "not_checked",
+    "status": "listed",
+    "checked": {
+      "date": "2026-10-20",
+      "method": "catalogue"
+    },
+    "note": "Admitted from the free-catalogue check: the AI Gateway models API reports $0 input and output for this ID. It carries no -free suffix, and it is the only MiniMax M3.1 Flash ID on the free list, so it is kept; a Vercel ID at $0 per token is not automatically free to call (precedent: stealth/glyph-cluster needs a paid plan plus credits)"
+  },
+  {
+    "id": "beam-zen",
+    "model": "beam",
+    "channel": "OpenCode Zen",
+    "type": "agent_tool",
+    "model_id": "opencode/beam-free",
+    "free_condition": null,
+    "limits_stated": {
+      "basis": "unpublished"
+    },
+    "limits_observed": null,
+    "started": {
+      "date": "2026-10-20",
+      "note": "first seen in the daily free-catalogue check; may predate it"
+    },
+    "ends": {
+      "announced": null,
+      "expected": null,
+      "confidence": "none"
+    },
+    "data_policy": "not_checked",
+    "status": "listed",
+    "checked": {
+      "date": "2026-10-20",
+      "method": "catalogue"
+    },
+    "volume": {
+      "tier": "daily",
+      "basis": "channel rule: Zen's free allowance is per IP per day; this model not load-tested"
+    }
+  },
+  {
+    "id": "beam-go",
+    "model": "beam",
+    "channel": "OpenCode Go",
+    "type": "agent_tool",
+    "model_id": "opencode-go/beam-free",
+    "free_condition": null,
+    "limits_stated": {
+      "basis": "unpublished"
+    },
+    "limits_observed": null,
+    "started": {
+      "date": "2026-10-20",
+      "note": "first seen in the daily free-catalogue check; may predate it"
+    },
+    "ends": {
+      "announced": null,
+      "expected": null,
+      "confidence": "none"
+    },
+    "data_policy": "not_checked",
+    "status": "listed",
+    "checked": {
+      "date": "2026-10-20",
+      "method": "catalogue"
+    }
+  },
+  {
+    "id": "beam-vercel",
+    "model": "beam",
+    "channel": "Vercel AI Gateway",
+    "type": "router",
+    "model_id": "reflection/beam-free",
+    "free_condition": null,
+    "limits_stated": {
+      "basis": "unpublished",
+      "note": "lower per-model rate limits on the free tier",
+      "source": "https://ai-gateway.vercel.sh/v1/models"
+    },
+    "limits_observed": null,
+    "started": {
+      "date": "2026-10-20",
+      "note": "first seen in the daily free-catalogue check; may predate it"
+    },
+    "ends": {
+      "announced": null,
+      "expected": null,
+      "confidence": "none"
+    },
+    "data_policy": "not_checked",
+    "status": "listed",
+    "checked": {
+      "date": "2026-10-20",
+      "method": "catalogue"
+    },
+    "note": "The same check also shows reflection/beam, without the -free suffix, at $0; not admitted as a second free lane on this channel: Vercel's own pattern is that the standard ID bills and the -free ID is the free one (see the Ling 3.1 Flash Vercel lane), and whether reflection/beam is free to call cannot be settled without a new check (ADR-022 keeps unverified negatives and duplicates off the page)"
+  },
+  {
+    "id": "xing4.0-29b-or",
+    "model": "xing4.0-29b",
+    "channel": "OpenRouter",
+    "type": "router",
+    "model_id": "xingchen-agi/xing4.0-29b-a4b:free",
+    "free_condition": null,
+    "limits_stated": {
+      "basis": "official",
+      "per_day": 50,
+      "note": "1000/day once 10+ credits have been bought",
+      "source": "https://openrouter.ai/pricing"
+    },
+    "limits_observed": null,
+    "started": {
+      "date": "2026-10-20",
+      "note": "first seen in the daily free-catalogue check; may predate it"
+    },
+    "ends": {
+      "announced": null,
+      "expected": null,
+      "confidence": "none"
+    },
+    "data_policy": "not_checked",
+    "status": "listed",
+    "checked": {
+      "date": "2026-10-20",
+      "method": "catalogue"
+    },
+    "volume": {
+      "tier": "taste",
+      "basis": "50 requests a day without credits (stated)"
+    },
+    "note": "OpenRouter's free ID is the A4B spelling of Xing 4.0 29B (huggingface.co/XingChen-AGI/Xing4.0-29B-A4B, the same repo our benchmark claims cite), so it lands on the existing xing4.0-29b model rather than a duplicate page"
   }
 ]

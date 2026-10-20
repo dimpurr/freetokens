@@ -2163,5 +2163,192 @@
       "label": "OpenRouter models API and the DeepSeek changelog (own check)",
       "url": "https://openrouter.ai/deepseek/deepseek-v4.1-flash-1017"
     }
+  },
+  {
+    "date": "2026-10-20",
+    "lanes": [
+      "bunny-zen"
+    ],
+    "kind": "ended",
+    "end_date": "2026-10-20",
+    "text": "opencode/space-bunny-free is no longer in the OpenCode Zen free model list at the 2026-10-20T08:00Z daily check; the ID was there on 2026-10-13; no end date was ever published, so the free window closed without notice",
+    "source": {
+      "label": "Daily free-catalogue check of the OpenCode Zen model list (own tool)",
+      "url": "https://opencode.ai/zen/v1/models"
+    }
+  },
+  {
+    "date": "2026-10-20",
+    "lanes": [
+      "muse-spark-1.3-contributor-zen"
+    ],
+    "kind": "ended",
+    "end_date": "2026-10-20",
+    "text": "opencode/muse-spark-1.3-contributor-free is no longer in the OpenCode Zen free model list at the 2026-10-20T08:00Z daily check; it was there, and answering 10 parallel agent runs, on 2026-10-07; no end date announced",
+    "source": {
+      "label": "Daily free-catalogue check of the OpenCode Zen model list (own tool)",
+      "url": "https://opencode.ai/zen/v1/models"
+    }
+  },
+  {
+    "date": "2026-10-20",
+    "lanes": [
+      "muse-spark-1.2-contributor-zen"
+    ],
+    "kind": "ended",
+    "end_date": "2026-10-20",
+    "text": "opencode/muse-spark-1.2-contributor-free is no longer in the OpenCode Zen free model list at the 2026-10-20T08:00Z daily check; last in the catalogue on 2026-10-06, when our API call could not reach it; no end date announced",
+    "source": {
+      "label": "Daily free-catalogue check of the OpenCode Zen model list (own tool)",
+      "url": "https://opencode.ai/zen/v1/models"
+    }
+  },
+  {
+    "date": "2026-10-20",
+    "lanes": [
+      "cat-jam-free-zen"
+    ],
+    "kind": "ended",
+    "end_date": "2026-10-20",
+    "text": "opencode/cat-jam-free is no longer in the OpenCode Zen free model list at the 2026-10-20T08:00Z daily check; it was added 2026-10-13 and answered 5 parallel runs the same day; no end date announced",
+    "source": {
+      "label": "Daily free-catalogue check of the OpenCode Zen model list (own tool)",
+      "url": "https://opencode.ai/zen/v1/models"
+    }
+  },
+  {
+    "date": "2026-10-20",
+    "lanes": [
+      "cat-jam-free-go"
+    ],
+    "kind": "ended",
+    "end_date": "2026-10-20",
+    "text": "opencode-go/cat-jam-free is no longer in the OpenCode Go free model list at the 2026-10-20T08:00Z daily check; it was listed on 2026-10-13 and never reached by our own calls; no end date announced",
+    "source": {
+      "label": "Daily free-catalogue check of the OpenCode Go model list (own tool)",
+      "url": "https://opencode.ai/zen/go/v1/models"
+    }
+  },
+  {
+    "date": "2026-10-20",
+    "lanes": [
+      "ll-alpha-zen"
+    ],
+    "kind": "ended",
+    "end_date": "2026-10-20",
+    "text": "opencode/ll-alpha-free is no longer in the OpenCode Zen free model list at the 2026-10-20T08:00Z daily check; first seen 2026-10-16, never load-tested by us; no end date announced",
+    "source": {
+      "label": "Daily free-catalogue check of the OpenCode Zen model list (own tool)",
+      "url": "https://opencode.ai/zen/v1/models"
+    }
+  },
+  {
+    "date": "2026-10-20",
+    "lanes": [
+      "cat-jam-vercel"
+    ],
+    "kind": "ended",
+    "end_date": "2026-10-20",
+    "text": "stealth/cat-jam is no longer on the Vercel AI Gateway free list at the 2026-10-20T08:00Z daily check: the models API either drops the ID or stops reporting $0 input and output; it was listed at $0 on 2026-10-15 and 2026-10-16; no end date announced",
+    "source": {
+      "label": "Daily free-catalogue check of the Vercel AI Gateway models API (own tool)",
+      "url": "https://ai-gateway.vercel.sh/v1/models"
+    }
+  },
+  {
+    "date": "2026-10-20",
+    "lanes": [
+      "minimax-m3.1-flash-or"
+    ],
+    "kind": "available",
+    "text": "MiniMax M3.1 Flash is on OpenRouter's free catalogue as minimax/minimax-m3.1-flash:free ($0 per token on the models API): first seen by the daily free-catalogue check at 2026-10-20T08:00Z, Artificial Analysis index 43; we have not called it",
+    "source": {
+      "label": "Daily free-catalogue check of the OpenRouter models API (own tool)",
+      "url": "https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2026-10-20",
+    "lanes": [
+      "minimax-m3.1-flash-zen"
+    ],
+    "kind": "available",
+    "text": "MiniMax M3.1 Flash is on OpenCode Zen's free model list as opencode/minimax-m3.1-flash-free: first seen by the daily free-catalogue check at 2026-10-20T08:00Z; we have not called it",
+    "source": {
+      "label": "Daily free-catalogue check of the OpenCode Zen model list (own tool)",
+      "url": "https://opencode.ai/zen/v1/models"
+    }
+  },
+  {
+    "date": "2026-10-20",
+    "lanes": [
+      "minimax-m3.1-flash-go"
+    ],
+    "kind": "available",
+    "text": "MiniMax M3.1 Flash is on OpenCode Go's free model list as opencode-go/minimax-m3.1-flash-free: first seen by the daily free-catalogue check at 2026-10-20T08:00Z; we have not called it",
+    "source": {
+      "label": "Daily free-catalogue check of the OpenCode Go model list (own tool)",
+      "url": "https://opencode.ai/zen/go/v1/models"
+    }
+  },
+  {
+    "date": "2026-10-20",
+    "lanes": [
+      "minimax-m3.1-flash-vercel"
+    ],
+    "kind": "available",
+    "text": "MiniMax M3.1 Flash is on the Vercel AI Gateway free list as minimax/minimax-m3.1-flash at $0 input and $0 output: first seen by the daily free-catalogue check at 2026-10-20T08:00Z; we have not called it",
+    "source": {
+      "label": "Daily free-catalogue check of the Vercel AI Gateway models API (own tool)",
+      "url": "https://ai-gateway.vercel.sh/v1/models"
+    }
+  },
+  {
+    "date": "2026-10-20",
+    "lanes": [
+      "beam-zen"
+    ],
+    "kind": "available",
+    "text": "Beam 1.0 is on OpenCode Zen's free model list as opencode/beam-free: first seen by the daily free-catalogue check at 2026-10-20T08:00Z; we have not called it",
+    "source": {
+      "label": "Daily free-catalogue check of the OpenCode Zen model list (own tool)",
+      "url": "https://opencode.ai/zen/v1/models"
+    }
+  },
+  {
+    "date": "2026-10-20",
+    "lanes": [
+      "beam-go"
+    ],
+    "kind": "available",
+    "text": "Beam 1.0 is on OpenCode Go's free model list as opencode-go/beam-free: first seen by the daily free-catalogue check at 2026-10-20T08:00Z; we have not called it",
+    "source": {
+      "label": "Daily free-catalogue check of the OpenCode Go model list (own tool)",
+      "url": "https://opencode.ai/zen/go/v1/models"
+    }
+  },
+  {
+    "date": "2026-10-20",
+    "lanes": [
+      "beam-vercel"
+    ],
+    "kind": "available",
+    "text": "Beam 1.0 is on the Vercel AI Gateway free list as reflection/beam-free, shown as \"Beam 1.0 (Free)\": first seen by the daily free-catalogue check at 2026-10-20T08:00Z; we have not called it",
+    "source": {
+      "label": "Daily free-catalogue check of the Vercel AI Gateway models API (own tool)",
+      "url": "https://ai-gateway.vercel.sh/v1/models"
+    }
+  },
+  {
+    "date": "2026-10-20",
+    "lanes": [
+      "xing4.0-29b-or"
+    ],
+    "kind": "available",
+    "text": "Xing 4.0 29B is on OpenRouter's free catalogue as xingchen-agi/xing4.0-29b-a4b:free ($0 per token on the models API): first seen by the daily free-catalogue check at 2026-10-20T08:00Z; we have not called it",
+    "source": {
+      "label": "Daily free-catalogue check of the OpenRouter models API (own tool)",
+      "url": "https://openrouter.ai/api/v1/models"
+    }
   }
 ]

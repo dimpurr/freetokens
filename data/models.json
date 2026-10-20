@@ -1084,5 +1084,31 @@
       "note": "not ranked"
     },
     "notes": "Stealth model: OpenCode Zen lists it as free for a limited time, no maker named. Context 262,144 and output 65,536 per models.dev (2026-10-16)."
+  },
+  {
+    "id": "minimax-m3.1-flash",
+    "name": "MiniMax M3.1 Flash",
+    "maker": "minimax",
+    "context": "not checked",
+    "image_input": "not_checked",
+    "aa_index": {
+      "value": 43,
+      "date": "2026-10-20",
+      "url": "https://artificialanalysis.ai/models/minimax-m3-1-flash"
+    },
+    "notes": null
+  },
+  {
+    "id": "beam",
+    "name": "Beam 1.0",
+    "maker": "reflection",
+    "context": "not checked",
+    "image_input": "not_checked",
+    "aa_index": {
+      "value": null,
+      "date": "2026-10-20",
+      "note": "not ranked"
+    },
+    "notes": null
   }
 ]

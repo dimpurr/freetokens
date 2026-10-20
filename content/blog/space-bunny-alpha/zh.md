@@ -5,12 +5,13 @@ slug: space-bunny-alpha
 section: 档案
 tags: [space-bunny, opencode-zen, opencode-go, openrouter, kilo-code, command-code]
 published: "2026-10-13"
-updated: "2026-10-13"
+updated: "2026-10-20"
 status: developing
 author: dim
 draft: false
 changelog:
   - "2026-10-13：首次发布"
+  - "2026-10-20：每日目录检查发现 OpenCode Zen 已下架 opencode/space-bunny-free，没有任何公告——最后一个免费渠道也没了，太空兔在所有渠道都不再免费"
 sources:
   - id: zen-docs
     title: OpenCode Zen 文档：Space Bunny Free“限时免费”
