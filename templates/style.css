@@ -500,17 +500,20 @@ footer { font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--li
 .more-row:empty { display: none; }
 .more-row button { font: 600 0.85rem var(--f-body); color: var(--fg); background: var(--surface); border: 0; box-shadow: var(--ring); border-radius: 8px; padding: 7px 14px; cursor: pointer; }
 .more-row button:hover { box-shadow: var(--ring-hover); }
-/* the meta line under the model name carries Context, Images and Events; it shows only where those columns are folded (641-1099px) */
+/* the meta line under the model name carries Context, Images and Events; it shows only where those columns are folded (641-1099px).
+   There the table has fixed columns: Model 54%, AA 140px, Free on the rest. The AA date moves to the cell's tooltip and the bar shortens. */
 .fold-meta { display: none; }
 @media (min-width: 641px) and (max-width: 1099px) {
+  table.models { table-layout: fixed; }
+  table.models th:nth-child(1), table.models td:nth-child(1) { width: 54%; }
+  table.models th:nth-child(2), table.models td:nth-child(2) { width: 140px; }
   table.models th.fold, table.models td.fold { display: none; }
-  table.models .fold-meta { display: block; margin-top: 3px; font-size: 0.78rem; color: var(--muted); }
   table.models th, table.models td { padding-inline: 12px; }
-  table.models td:nth-child(1) { min-width: 240px; }
-  @media (min-width: 900px) { table.models td:nth-child(1) { min-width: 290px; } }
-  table.models td:nth-child(2) { white-space: normal; }
-  table.models td:nth-child(2) .aacell { flex-wrap: wrap; row-gap: 4px; }
-  table.models td:nth-child(3) { min-width: 150px; }
+  table.models td:nth-child(2) .aad { display: none; }
+  table.models td:nth-child(2) .sbar { width: 40px; }
+  table.models td:nth-child(3) .chip, table.models td:nth-child(3) .offerchip { white-space: normal; max-width: 100%; }
+  table.models td:nth-child(3) .chip .st { white-space: normal; }
+  table.models .fold-meta { display: block; margin-top: 3px; font-size: 0.78rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 }
 
 /* P6: below 640px the main tables reflow to cards (no sideways scrolling) */

@@ -619,11 +619,15 @@ function modelRow(m, i, off, TOP = 10) {
     const foldLabel = rest.length ? `+${nFold} ${Tx("other", "other")}` : `+${nFold} ${Tx("ended", "ended")}`;
     const regionOnly = r && ok.some(isFree) && !ok.some((l) => isFree(l) && worldwide(l));
     const aaDate = m.aa_index.value != null && m.aa_index.date ? `<span class="aad">${esc(shortDate(m.aa_index.date))}</span>` : "";
-    const sep = ` <span class="muted">·</span> `, ctxShort = c ? `<b class="mono">${esc(c[1])}</b>` : `<span>${esc(m.context.split(" (")[0])}</span>`;
-    const foldMeta = [ctxShort, img, n ? `<a href="${modelHref(m.id)}#events">${n} ${ZH ? "个事件" : `event${n === 1 ? "" : "s"}`}</a>` : `<span class="muted">${Tx("none", "none")}</span>`].join(sep);
+    /* meta line for the folded table (641-1099px): context, image icon, events; a value that is not there is left out */
+    const sep = ` <span class="muted">·</span> `, aaTitle = aaDate ? ` title="${esc(shortDate(m.aa_index.date))}"` : "";
+    const ctxMeta = c ? (c[2] ? `<b class="mono" title="${esc(m.context)}">${esc(c[1])}*</b>` : `<b class="mono">${esc(c[1])}</b>`) : `<span title="${esc(m.context)}">${esc(m.context.split(" (")[0])}</span>`;
+    const imgMeta = { yes: `<span title="${esc(Tx("image input", "image input"))}">${I.image()}</span>`, partial: `<span class="pol may_train" title="${esc(Tx("image input unreliable", "image input unreliable"))}">${I.image()}</span>`, no: "", not_checked: `<span class="muted" title="${esc(Tx("image input not checked", "image input not checked"))}">${Tx("img ?", "img ?")}</span>` }[m.image_input];
+    const evMeta = n ? `<a href="${modelHref(m.id)}#events">${n} ${ZH ? "个事件" : `event${n === 1 ? "" : "s"}`}</a>` : "";
+    const foldMeta = [ctxMeta, imgMeta, evMeta].filter(Boolean).join(sep);
     return `<tr class="${i >= TOP ? "more" : ""}${off ? " offrow" : ""}">
       <td><span class="ent"><span class="rk${r && r.est ? " est" : ""}"${r ? ` title="${esc(rankText(m))}"` : ""}>${r ? esc(rankLabel(r)) : ""}</span>${modelTile(m)}<span><span class="name">${mlink(m.id)}</span><span class="sub">${mklink(m.maker)}${regionOnly ? " " + regionTag(ok.find(isFree)) : ""}</span><span class="sub fold-meta">${foldMeta}</span></span></span></td>
-      <td class="nowrap" data-label="${Tx("AA index", "AA index")}"><span class="aacell">${aaHTML(m)}${scoreBar(m)}${aaDate}</span>${m.aa_index.value != null ? "" : aaSource(m)}</td>
+      <td class="nowrap" data-label="${Tx("AA index", "AA index")}"><span class="aacell"${aaTitle}>${aaHTML(m)}${scoreBar(m)}${aaDate}</span>${m.aa_index.value != null ? "" : aaSource(m)}</td>
       <td data-label="${Tx("Free on", "Free on")}"><div class="chips">${shown.map(channelChip).join("")}${offersFor(m.id).filter((o) => offerUsable(o)).map((o) => `<a class="chip offerchip" href="${offerHref(o.id)}" title="${esc(o.name + ": " + o.gets.text + " " + lab("per", o.gets.per) + (ZH ? "（与其他模型共用的额度）" : " (an allowance shared with other models)"))}">via ${esc(o.channel || o.provider)}</a>`).join("")}${folded}${nFold ? `<button type="button" class="morechips" aria-expanded="false" data-label="${esc(foldLabel)}">${esc(foldLabel)}</button>` : ""}</div></td>
       <td class="m-hide fold" data-label="${Tx("Context", "Context")}">${ctx}</td>
       <td class="nowrap m-hide fold" data-label="${Tx("Images", "Images")}">${img}</td>
