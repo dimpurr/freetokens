@@ -16,14 +16,14 @@
     "id": "mimo-v2.6-flash",
     "name": "MiMo V2.6 Flash",
     "maker": "xiaomi",
-    "context": "not checked (the Zen free tier has been capped at 200K before)",
+    "context": "1050K (200K on the Zen free tier)",
     "image_input": "no",
     "aa_index": {
       "value": 38,
       "date": "2026-10-05",
       "url": "https://artificialanalysis.ai/models/mimo-v2-6-flash"
     },
-    "notes": null
+    "notes": "1,050,000 per OpenRouter (Vercel says 1,048,576); the OpenCode Zen free tier caps it at 200K, per the models.dev Zen entry (2026-10-20)."
   },
   {
     "id": "longcat-2.5-preview",
@@ -617,27 +617,27 @@
     "name": "GLM-4.7-Flash",
     "maker": "zai",
     "context": "200K",
-    "image_input": "not_checked",
+    "image_input": "no",
     "aa_index": {
       "value": 15,
       "date": "2026-10-06",
       "url": "https://artificialanalysis.ai/models/glm-4-7-flash",
       "approx": true
     },
-    "notes": null
+    "notes": "Text in, text out per OpenRouter and Vercel; no vision encoder in the HF zai-org/GLM-4.7-Flash config (2026-10-20)."
   },
   {
     "id": "glm-4.5-flash",
     "name": "GLM-4.5-Flash",
     "maker": "zai",
     "context": "200K",
-    "image_input": "not_checked",
+    "image_input": "no",
     "aa_index": {
       "value": null,
       "date": "2026-10-06",
       "note": "not checked"
     },
-    "notes": null
+    "notes": "The BigModel model page states input modality: text (2026-10-20)."
   },
   {
     "id": "glm-4-flash-250414",
@@ -657,211 +657,211 @@
     "name": "Qwen2.5 7B Instruct",
     "maker": "qwen",
     "context": "32K",
-    "image_input": "not_checked",
+    "image_input": "no",
     "aa_index": {
       "value": null,
       "date": "2026-10-06",
       "note": "not checked"
     },
-    "notes": null
+    "notes": "Text-only: no vision encoder in the HF Qwen/Qwen2.5-7B-Instruct config; OpenRouter lists text input (2026-10-20)."
   },
   {
     "id": "qwen3-8b",
     "name": "Qwen3 8B",
     "maker": "qwen",
     "context": "128K",
-    "image_input": "not_checked",
+    "image_input": "no",
     "aa_index": {
       "value": 7,
       "date": "2026-10-06",
       "url": "https://artificialanalysis.ai/models/qwen3-8b-instruct-reasoning",
       "approx": true
     },
-    "notes": null
+    "notes": "Text-only per the HF Qwen/Qwen3-8B config; vision sizes ship as the separate Qwen3-VL line (2026-10-20)."
   },
   {
     "id": "qwen3.5-4b",
     "name": "Qwen3.5 4B",
     "maker": "qwen",
     "context": "256K",
-    "image_input": "not_checked",
+    "image_input": "yes",
     "aa_index": {
       "value": 13,
       "date": "2026-10-06",
       "url": "https://artificialanalysis.ai/models/qwen3-5-4b",
       "approx": true
     },
-    "notes": null
+    "notes": "Image input: the HF Qwen/Qwen3.5-4B config carries a vision encoder (262,144 native context, 2026-10-20)."
   },
   {
     "id": "glm-4-9b-0414",
     "name": "GLM-4 9B 0414",
     "maker": "zai",
     "context": "32K",
-    "image_input": "not_checked",
+    "image_input": "no",
     "aa_index": {
       "value": null,
       "date": "2026-10-06",
       "note": "not checked"
     },
-    "notes": null
+    "notes": "No vision encoder in the HF zai-org/GLM-4-9B-0414 config (2026-10-20)."
   },
   {
     "id": "glm-z1-9b-0414",
     "name": "GLM-Z1 9B 0414",
     "maker": "zai",
     "context": "128K",
-    "image_input": "not_checked",
+    "image_input": "no",
     "aa_index": {
       "value": null,
       "date": "2026-10-06",
       "note": "not checked"
     },
-    "notes": null
+    "notes": "No vision encoder in the HF zai-org/GLM-Z1-9B-0414 config (2026-10-20)."
   },
   {
     "id": "xing4.0-29b",
     "name": "Xing 4.0 29B",
     "maker": "xingchen",
     "context": "256K",
-    "image_input": "not_checked",
+    "image_input": "no",
     "aa_index": {
       "value": null,
       "date": "2026-10-06",
       "note": "not checked"
     },
-    "notes": null
+    "notes": "OpenRouter lists xingchen-agi/xing4.0-29b-a4b:free (our own OR lane’s id) as text→text; the HF XingChen-AGI org’s only 29B chat release is the A4B (2026-10-20)."
   },
   {
     "id": "deepseek-r1-0528-qwen3-8b",
     "name": "DeepSeek R1 0528 Qwen3 8B",
     "maker": "deepseek",
     "context": "128K",
-    "image_input": "not_checked",
+    "image_input": "no",
     "aa_index": {
       "value": 8,
       "date": "2026-10-07",
       "url": "https://artificialanalysis.ai/models/deepseek-r1-qwen3-8b"
     },
-    "notes": null
+    "notes": "Text-only per the HF deepseek-ai/DeepSeek-R1-0528-Qwen3-8B config (2026-10-20)."
   },
   {
     "id": "gemini-3.8-flash",
     "name": "Gemini 3.8 Flash",
     "maker": "google",
     "context": "1M",
-    "image_input": "not_checked",
+    "image_input": "yes",
     "aa_index": {
       "value": 41,
       "date": "2026-10-06",
       "url": "https://artificialanalysis.ai/models/gemini-3-8-flash"
     },
-    "notes": null
+    "notes": "Image+video input per the OpenRouter and Vercel AI Gateway catalogues (2026-10-20)."
   },
   {
     "id": "gemini-3.7-flash",
     "name": "Gemini 3.7 Flash",
     "maker": "google",
     "context": "1M",
-    "image_input": "not_checked",
+    "image_input": "yes",
     "aa_index": {
       "value": 39,
       "date": "2026-10-06",
       "url": "https://artificialanalysis.ai/models/gemini-3-7-flash"
     },
-    "notes": null
+    "notes": "Image+video input per the OpenRouter and Vercel AI Gateway catalogues (2026-10-20)."
   },
   {
     "id": "gemini-3.6-flash",
     "name": "Gemini 3.6 Flash",
     "maker": "google",
     "context": "1M",
-    "image_input": "not_checked",
+    "image_input": "yes",
     "aa_index": {
       "value": 34,
       "date": "2026-10-06",
       "url": "https://artificialanalysis.ai/models/gemini-3-6-flash"
     },
-    "notes": null
+    "notes": "Image+video input per the OpenRouter and Vercel AI Gateway catalogues (2026-10-20)."
   },
   {
     "id": "gemini-3.5-flash",
     "name": "Gemini 3.5 Flash",
     "maker": "google",
     "context": "1M",
-    "image_input": "not_checked",
+    "image_input": "yes",
     "aa_index": {
       "value": 33,
       "date": "2026-10-06",
       "url": "https://artificialanalysis.ai/models/gemini-3-5-flash"
     },
-    "notes": null
+    "notes": "Image+video input per the OpenRouter and Vercel AI Gateway catalogues (2026-10-20)."
   },
   {
     "id": "gemini-3.5-flash-lite",
     "name": "Gemini 3.5 Flash-Lite",
     "maker": "google",
     "context": "1M",
-    "image_input": "not_checked",
+    "image_input": "yes",
     "aa_index": {
       "value": 22,
       "date": "2026-10-06",
       "url": "https://artificialanalysis.ai/models/gemini-3-5-flash-lite"
     },
-    "notes": null
+    "notes": "Image+video input per the OpenRouter and Vercel AI Gateway catalogues (2026-10-20)."
   },
   {
     "id": "qwen3.8-flash",
     "name": "Qwen3.8 Flash",
     "maker": "qwen",
-    "context": "not checked",
-    "image_input": "not_checked",
+    "context": "1M",
+    "image_input": "yes",
     "aa_index": {
       "value": 40,
       "date": "2026-10-06",
       "url": "https://artificialanalysis.ai/models/qwen3-8-flash-next",
       "approx": true
     },
-    "notes": "The AA page is \"Qwen3.8-Flash-Next\"; we assume it is the model Qoder calls Qwen3.8-Flash (not confirmed)."
+    "notes": "The AA page is \"Qwen3.8-Flash-Next\"; we assume it is the model Qoder calls Qwen3.8-Flash (not confirmed). Context 1M and image+video input per OpenRouter; Qoder’s promo page calls it multimodal with image understanding (2026-10-20)."
   },
   {
     "id": "kimi-k3",
     "name": "Kimi K3",
     "maker": "moonshot",
     "context": "1M",
-    "image_input": "not_checked",
+    "image_input": "yes",
     "aa_index": {
       "value": 44,
       "date": "2026-10-06",
       "url": "https://artificialanalysis.ai/models/kimi-k3"
     },
-    "notes": null
+    "notes": "Image+video input per OpenRouter and Vercel (2026-10-20)."
   },
   {
     "id": "coding-kimi-k3",
     "name": "Coding Kimi K3",
     "maker": "moonshot",
     "context": "1M",
-    "image_input": "not_checked",
+    "image_input": "yes",
     "aa_index": {
       "value": null,
       "date": "2026-10-06",
       "note": "no AA page (coding variant of Kimi K3, AA 44)"
     },
-    "notes": null
+    "notes": "Per the AIHubMix catalogue: the coding-kimi-k3-free model page lists Text / Vision / Video input (2026-10-20)."
   },
   {
     "id": "glm-5.3",
     "name": "GLM 5.3",
     "maker": "zai",
     "context": "1M",
-    "image_input": "not_checked",
+    "image_input": "no",
     "aa_index": {
       "value": 45,
       "date": "2026-10-06",
       "url": "https://artificialanalysis.ai/models/glm-5-3"
     },
-    "notes": null
+    "notes": "Text-only on OpenRouter (z-ai/glm-5.3) and Vercel (zai/glm-5.3); image input sits on the GLM-5.3-Flash variants (2026-10-20)."
   },
   {
     "id": "exo",
@@ -920,131 +920,131 @@
     "id": "qwen3.5-397b-a17b",
     "name": "Qwen3.5 397B A17B",
     "maker": "qwen",
-    "context": "not checked",
-    "image_input": "not_checked",
+    "context": "262K",
+    "image_input": "yes",
     "aa_index": {
       "value": 21,
       "date": "2026-10-08",
       "url": "https://artificialanalysis.ai/models/qwen3-5-397b-a17b"
     },
-    "notes": null
+    "notes": "Context 262,144 and image+video input per OpenRouter; OVHcloud (the free lane) lists the same 262,144 (2026-10-20)."
   },
   {
     "id": "qwen3.6-27b",
     "name": "Qwen3.6 27B",
     "maker": "qwen",
-    "context": "not checked",
-    "image_input": "not_checked",
+    "context": "262K",
+    "image_input": "yes",
     "aa_index": {
       "value": 21,
       "date": "2026-10-08",
       "url": "https://artificialanalysis.ai/models/qwen3-6-27b"
     },
-    "notes": null
+    "notes": "Context 262K and image+video input per OpenRouter (Vercel says 256K); OVHcloud lists 262,144 (2026-10-20)."
   },
   {
     "id": "qwen3.5-9b",
     "name": "Qwen3.5 9B",
     "maker": "qwen",
-    "context": "not checked",
-    "image_input": "not_checked",
+    "context": "262K",
+    "image_input": "yes",
     "aa_index": {
       "value": 13,
       "date": "2026-10-08",
       "url": "https://artificialanalysis.ai/models/qwen3-5-9b"
     },
-    "notes": null
+    "notes": "Context 262K and image+video input per OpenRouter; same on OVHcloud (2026-10-20)."
   },
   {
     "id": "qwen2.5-vl-72b",
     "name": "Qwen2.5 VL 72B Instruct",
     "maker": "qwen",
-    "context": "not checked",
+    "context": "128K (32K on OVHcloud)",
     "image_input": "yes",
     "aa_index": {
       "value": null,
       "date": "2026-10-08",
       "note": "not on Artificial Analysis"
     },
-    "notes": null
+    "notes": "Native 128,000 per the HF Qwen2.5-VL-72B-Instruct config and OpenRouter; the OVHcloud endpoint serves 32,768 (2026-10-20)."
   },
   {
     "id": "llama-3.3-70b",
     "name": "Llama 3.3 70B Instruct",
     "maker": "meta",
-    "context": "not checked",
+    "context": "128K",
     "image_input": "no",
     "aa_index": {
       "value": 8,
       "date": "2026-10-08",
       "url": "https://artificialanalysis.ai/models/llama-3-3-instruct-70b"
     },
-    "notes": null
+    "notes": "131,072 per OpenRouter, Vercel and OVHcloud (2026-10-20)."
   },
   {
     "id": "mistral-small-3.2",
     "name": "Mistral Small 3.2 24B",
     "maker": "mistral",
-    "context": "not checked",
-    "image_input": "not_checked",
+    "context": "256K (128K on OVHcloud)",
+    "image_input": "yes",
     "aa_index": {
       "value": 8,
       "date": "2026-10-08",
       "url": "https://artificialanalysis.ai/models/mistral-small-3-2"
     },
-    "notes": null
+    "notes": "Native 256K with image input per OpenRouter and the HF Mistral-Small-3.2-24B-Instruct-2506 card; OVHcloud serves 131,072 (2026-10-20)."
   },
   {
     "id": "mistral-nemo",
     "name": "Mistral Nemo Instruct 2407",
     "maker": "mistral",
-    "context": "not checked",
+    "context": "128K (64K on OVHcloud)",
     "image_input": "no",
     "aa_index": {
       "value": null,
       "date": "2026-10-08",
       "note": "not on Artificial Analysis"
     },
-    "notes": null
+    "notes": "131,072 per OpenRouter and Vercel; the OVHcloud endpoint lists 65,536 (2026-10-20)."
   },
   {
     "id": "mistral-7b-instruct",
     "name": "Mistral 7B Instruct v0.3",
     "maker": "mistral",
-    "context": "not checked",
+    "context": "32K",
     "image_input": "no",
     "aa_index": {
       "value": 5,
       "date": "2026-10-08",
       "url": "https://artificialanalysis.ai/models/mistral-7b-instruct"
     },
-    "notes": null
+    "notes": "32,768 per the HF Mistral-7B-Instruct-v0.3 config (2026-10-20)."
   },
   {
     "id": "gpt-oss-120b",
     "name": "gpt-oss-120b",
     "maker": "openai",
-    "context": "not checked",
+    "context": "128K",
     "image_input": "no",
     "aa_index": {
       "value": 12,
       "date": "2026-10-08",
       "url": "https://artificialanalysis.ai/models/gpt-oss-120b"
     },
-    "notes": null
+    "notes": "131,072 per OpenRouter, Vercel and OVHcloud (2026-10-20)."
   },
   {
     "id": "gpt-oss-20b",
     "name": "gpt-oss-20b",
     "maker": "openai",
-    "context": "not checked",
+    "context": "128K",
     "image_input": "no",
     "aa_index": {
       "value": 10,
       "date": "2026-10-08",
       "url": "https://artificialanalysis.ai/models/gpt-oss-20b"
     },
-    "notes": null
+    "notes": "131,072 per OpenRouter, Vercel and OVHcloud (2026-10-20)."
   },
   {
     "id": "cat-jam",
@@ -1077,38 +1077,38 @@
     "name": "LL Alpha",
     "maker": "undisclosed",
     "context": "262K",
-    "image_input": "not_checked",
+    "image_input": "no",
     "aa_index": {
       "value": null,
       "date": "2026-10-16",
       "note": "not ranked"
     },
-    "notes": "Stealth model: OpenCode Zen lists it as free for a limited time, no maker named. Context 262,144 and output 65,536 per models.dev (2026-10-16)."
+    "notes": "Stealth model: OpenCode Zen lists it as free for a limited time, no maker named. Context 262,144 and output 65,536 per models.dev (2026-10-16). The models.dev OpenCode Zen entry lists text input only (2026-10-20)."
   },
   {
     "id": "minimax-m3.1-flash",
     "name": "MiniMax M3.1 Flash",
     "maker": "minimax",
-    "context": "not checked",
-    "image_input": "not_checked",
+    "context": "1M",
+    "image_input": "yes",
     "aa_index": {
       "value": 43,
       "date": "2026-10-20",
       "url": "https://artificialanalysis.ai/models/minimax-m3-1-flash"
     },
-    "notes": null
+    "notes": "Context 1,000,000 and image+video input per the OpenRouter free listing and Vercel AI Gateway (2026-10-20)."
   },
   {
     "id": "beam",
     "name": "Beam 1.0",
     "maker": "reflection",
-    "context": "not checked",
-    "image_input": "not_checked",
+    "context": "1M",
+    "image_input": "no",
     "aa_index": {
-      "value": null,
+      "value": 30,
       "date": "2026-10-20",
-      "note": "not ranked"
+      "url": "https://artificialanalysis.ai/models/reflection-beam"
     },
-    "notes": null
+    "notes": "Released 2026-10-16; AA Intelligence Index 30, checked on the AA page 2026-10-20. 501B/23B-active MoE, Apache 2.0 open weights (HF reflection/Beam-1.0-501B-A23B); text-only with a 1M context per the card, OpenRouter and Vercel."
   }
 ]

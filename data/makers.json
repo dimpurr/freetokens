@@ -225,6 +225,10 @@
  {
   "id": "reflection",
   "name": "Reflection AI",
-  "note": "Taken from the provider namespace on the Vercel AI Gateway free ID reflection/beam-free (daily catalogue check, 2026-10-20); nothing else checked"
+  "note": "Taken from the provider namespace on the Vercel AI Gateway free ID reflection/beam-free (daily catalogue check, 2026-10-20); links added 2026-10-20 from the Beam model card (huggingface.co/reflection/Beam-1.0-501B-A23B, which points at reflection.ai)",
+  "links": {
+   "site": "https://reflection.ai",
+   "models": "https://huggingface.co/reflection"
+  }
  }
 ]
