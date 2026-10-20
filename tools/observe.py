@@ -35,6 +35,7 @@ BOT = re.compile(r"(?i)bot|crawl|spider|slurp|preview|facebookexternal|curl|pyth
                  r"node-fetch|scrapy|ahrefs|semrush|petal|bytespider|gpt|claude|perplexity|anthropic|cohere|google-|feedfetcher|"
                  r"lighthouse|monitor|freetokens-")
 GENERIC_BOT = re.compile(r"(?i)seek|discovery|fetcher|reader|\+https?://|^(?!Mozilla/)")  # a link in the UA or a non-browser UA: some bot or tool we have no name for
+WP_PROBE = re.compile(r"^/(wp-|wordpress|xmlrpc\.php)")  # scanner noise: WP probe paths, excluded from unknown_ua denoise (2026-10-20)
 try:  # community list (tools/crawler-patterns.json, MIT): catches declared crawlers our short list misses
     CRAWLERS = re.compile("|".join(json.loads((Path(__file__).resolve().parent / "crawler-patterns.json").read_text())["patterns"]))
 except Exception:
@@ -126,7 +127,7 @@ def parse_logs(files):
             named = BOT.search(ua) or CRAWLERS.search(ua)
             if named or GENERIC_BOT.search(ua):
                 d["other_bots"] += 1
-                if not named:
+                if not named and not WP_PROBE.match(path.split("?")[0]):
                     d["unknown_ua"][ua[:90]] += 1  # weekly report lists these so they get a name
                 if path.split("?")[0] == "/feed.xml" and (n := FEED_SUBS.search(ua)):  # feed readers report their subscriber count
                     reader = re.split(r"[/ (;]", ua, 1)[0][:40]
@@ -146,7 +147,7 @@ def parse_logs(files):
                 d["browsers"].add(ip); continue
             if status.startswith("2") and not p.startswith("/assets") and p not in ("/favicon.svg", "/robots.txt"):
                 d["views"] += 1; d["visitors"].add(ip); d["pages"][p] += 1; d["view_ips"][ip] += 1
-                if ref not in ("", "-") and not own_ref:
+                if ref not in ("", "-") and not own_ref and "freetoken.fyi" not in ref:  # typo-squat scanner ref denoised (2026-10-20)
                     d["referrers"][re.sub(r"^https?://(www\.)?([^/]+).*", r"\2", ref)] += 1
     out = {}
     for k, d in sorted(days.items()):
@@ -370,7 +371,7 @@ def report(kind, log_files, watch_path):
                 unk.update(dict(days[d]["unknown_bots"]))
                 for r, n in days[d]["feed_subscribers"].items(): subs[r] = max(n, subs.get(r, 0))
             lines.append(f"Visitors (7 d): {tot('human_views')} page views by humans · {tot('unverified_views')} unverified · "
-                         f"daily humans {', '.join(str(days[d]['humans']) for d in last)} · old browser count {tot('browsers')} · {tot('visitors')} IPs")
+                         f"daily humans {', '.join(str(days[d]['humans']) for d in last)} · {tot('visitors')} IPs")
             lines.append("Top pages: " + ", ".join(f"{p} {n}" for p, n in pages.most_common(6)))
             lines.append("Referrers: " + (", ".join(f"{r} {n}" for r, n in refs.most_common(6)) or "none recorded"))
             lines.append("AI crawlers: " + (", ".join(f"{b} {n}" for b, n in llm.most_common()) or "none") +

@@ -812,9 +812,9 @@
     "id": "dsv41flash-letta",
     "model": "deepseek-v4.1-flash",
     "model_id": "deepseek/deepseek-v4.1-flash",
-    "status": "live",
+    "status": "ended",
     "checked": {
-      "date": "2026-10-06",
+      "date": "2026-10-17",
       "method": "agent_run"
     },
     "channel": "Letta",
@@ -842,7 +842,8 @@
     "ends": {
       "announced": null,
       "expected": null,
-      "confidence": "none"
+      "confidence": "none",
+      "note": "free window closed: since 2026-10-17 Letta bills this model to credits, and a free account at $0.00 is refused with \"minimum $1 in credits is required\""
     },
     "data_policy": "may_train",
     "volume": {
@@ -4107,7 +4108,8 @@
     "volume": {
       "tier": "daily",
       "basis": "channel rule: Zen's free allowance is per IP per day; 3 runs in one session passed"
-    }
+    },
+    "note": "official in-place upgrade to the 1017 snapshot on 2026-10-17; the channel label is still the old unversioned name"
   },
   {
     "id": "nemotron-3.5-super-vl-zen",

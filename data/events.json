@@ -2138,5 +2138,30 @@
       "url": "https://developer.ant-ling.com/zh-CN/docs/getting-started/changelog/billing-upgrade/",
       "note": "the FAQ still lists the daily quota with no end date; the upgrade notice sets 2026-10-31 - both sources kept"
     }
+  },
+  {
+    "date": "2026-10-17",
+    "lanes": [
+      "dsv41flash-letta"
+    ],
+    "kind": "ended",
+    "end_date": "2026-10-17",
+    "text": "Letta's free window for DeepSeek V4.1 Flash ended 2026-10-17: model requests now consume credits, and a free account with a $0.00 balance was refused with \"minimum $1 in credits is required\"; the pricing docs say model requests consume credits at a rate depending on model API pricing, and the per-model price page needs a login",
+    "source": {
+      "label": "Letta pricing docs plus our own agent-run refusal (own check)",
+      "url": "https://docs.letta.com/pricing/"
+    }
+  },
+  {
+    "date": "2026-10-17",
+    "lanes": [
+      "deepseek-v4.1-flash-zen"
+    ],
+    "kind": "listed",
+    "text": "OpenRouter added deepseek/deepseek-v4.1-flash-1017 (created 2026-10-17T08:27:04Z): DeepSeek first-party endpoint only, no :free variant; DeepSeek upgraded V4.1 Flash in place to the 1017 snapshot with the API name (deepseek-flash) and pricing unchanged, so channels serving the unversioned deepseek-v4.1-flash id are on 1017 while their labels still say the old name",
+    "source": {
+      "label": "OpenRouter models API and the DeepSeek changelog (own check)",
+      "url": "https://openrouter.ai/deepseek/deepseek-v4.1-flash-1017"
+    }
   }
 ]
