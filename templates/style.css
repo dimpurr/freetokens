@@ -501,11 +501,11 @@ footer { font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--li
 .more-row button { font: 600 0.85rem var(--f-body); color: var(--fg); background: var(--surface); border: 0; box-shadow: var(--ring); border-radius: 8px; padding: 7px 14px; cursor: pointer; }
 .more-row button:hover { box-shadow: var(--ring-hover); }
 /* the meta line under the model name carries Context, Images and Events; it shows only where those columns are folded (641-1099px).
-   There the table has fixed columns: Model 54%, AA 140px, Free on the rest. The AA date moves to the cell's tooltip and the bar shortens. */
+   There the table has fixed columns: Model 44%, AA 140px, Free on the rest. The AA date moves to the cell's tooltip and the bar shortens. */
 .fold-meta { display: none; }
 @media (min-width: 641px) and (max-width: 1099px) {
   table.models { table-layout: fixed; }
-  table.models th:nth-child(1), table.models td:nth-child(1) { width: 54%; }
+  table.models th:nth-child(1), table.models td:nth-child(1) { width: 44%; }
   table.models th:nth-child(2), table.models td:nth-child(2) { width: 140px; }
   table.models th.fold, table.models td.fold { display: none; }
   table.models th, table.models td { padding-inline: 12px; }
@@ -516,6 +516,9 @@ footer { font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--li
   table.models .fold-meta { display: block; margin-top: 3px; font-size: 0.78rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 }
 
+@media (min-width: 641px) and (max-width: 760px) {
+  table.models th:nth-child(1), table.models td:nth-child(1) { width: 50%; }
+}
 /* P6: below 640px the main tables reflow to cards (no sideways scrolling) */
 @media (max-width: 640px) {
   .tbl-scroll:has(table.cardify) { overflow: visible; background: none; box-shadow: none; }
