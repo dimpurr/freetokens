@@ -2350,5 +2350,43 @@
       "label": "Daily free-catalogue check of the OpenRouter models API (own tool)",
       "url": "https://openrouter.ai/api/v1/models"
     }
+  },
+  {
+    "date": "2026-10-20",
+    "lanes": [
+      "nemotron-3-super-120b-a12b-kilo"
+    ],
+    "kind": "unavailable",
+    "text": "Still in Kilo's $0 model catalogue, but 3 anonymous calls failed 11:43-11:48Z with an upstream 404 from the Nvidia provider (\"Function ... Not found for account\")",
+    "source": {
+      "label": "own check of the Kilo Gateway model list and anonymous calls",
+      "url": "https://api.kilo.ai/api/gateway/models"
+    }
+  },
+  {
+    "date": "2026-10-20",
+    "lanes": [
+      "ling-3.0-flash-sante-kilo"
+    ],
+    "kind": "ended",
+    "end_date": "2026-10-20",
+    "text": "inclusionai/ling-3.0-flash-sante:free is gone from Kilo's gateway catalogue and model site; 3 anonymous calls returned 404 \"The requested model ... does not exist\" (11:43-11:47Z)",
+    "source": {
+      "label": "own check of the Kilo Gateway model list and anonymous calls",
+      "url": "https://api.kilo.ai/api/gateway/models"
+    }
+  },
+  {
+    "date": "2026-10-20",
+    "lanes": [
+      "step-3.7-flash-kilo"
+    ],
+    "kind": "ended",
+    "end_date": "2026-10-20",
+    "text": "stepfun/step-3.7-flash:free is gone from Kilo's gateway catalogue (the paid stepfun/step-3.7-flash remains); 3 anonymous calls returned 404 \"The requested model ... does not exist\" (11:44-11:47Z)",
+    "source": {
+      "label": "own check of the Kilo Gateway model list and anonymous calls",
+      "url": "https://api.kilo.ai/api/gateway/models"
+    }
   }
 ]

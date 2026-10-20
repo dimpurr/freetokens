@@ -709,5 +709,17 @@
   "Beam 1.0 is on OpenCode Go's free model list as opencode-go/beam-free: first seen by the daily free-catalogue check at 2026-10-20T08:00Z; we have not called it": "Beam 1.0 以 opencode-go/beam-free 出现在 OpenCode Go 免费模型列表：每日免费目录检查于 2026-10-20T08:00Z 首次发现；我们尚未实际调用",
   "Beam 1.0 is on the Vercel AI Gateway free list as reflection/beam-free, shown as \"Beam 1.0 (Free)\": first seen by the daily free-catalogue check at 2026-10-20T08:00Z; we have not called it": "Beam 1.0 以 reflection/beam-free 出现在 Vercel AI Gateway 免费列表，页面名「Beam 1.0 (Free)」：每日免费目录检查于 2026-10-20T08:00Z 首次发现；我们尚未实际调用",
   "Xing 4.0 29B is on OpenRouter's free catalogue as xingchen-agi/xing4.0-29b-a4b:free ($0 per token on the models API): first seen by the daily free-catalogue check at 2026-10-20T08:00Z; we have not called it": "Xing 4.0 29B 以 xingchen-agi/xing4.0-29b-a4b:free 上架 OpenRouter 免费目录（模型 API 显示每 token $0）：每日免费目录检查于 2026-10-20T08:00Z 首次发现；我们尚未实际调用",
-  "Taken from the provider namespace on the Vercel AI Gateway free ID reflection/beam-free (daily catalogue check, 2026-10-20); nothing else checked": "取自 Vercel AI Gateway 免费 ID reflection/beam-free 的供应方命名空间（2026-10-20 每日目录检查）；其余未核查"
+  "Taken from the provider namespace on the Vercel AI Gateway free ID reflection/beam-free (daily catalogue check, 2026-10-20); nothing else checked": "取自 Vercel AI Gateway 免费 ID reflection/beam-free 的供应方命名空间（2026-10-20 每日目录检查）；其余未核查",
+  "10-20: single anonymous call answered, cost 0": "10-20：免登录单次调用应答，cost 0",
+  "10-20: single call answered PONG, cost 0": "10-20：单次调用返回 PONG，cost 0",
+  "10-20: 2x upstream 504, 3rd call OK cost 0": "10-20：2 次上游 504，第 3 次调用成功，cost 0",
+  "10-20: 1 of 3 answered (cost 0); 2x upstream 429": "10-20：3 次中 1 次应答（cost 0）；2 次上游 429",
+  "10-20: 3x upstream 404 via Nvidia": "10-20：经 Nvidia 上游 3 次 404",
+  "10-20: anonymous call answered in 0.44 s": "10-20：免登录调用 0.44 秒应答",
+  "gone from the Kilo Gateway catalogue and kilo.ai model index; 3 calls 404 \"does not exist\" (2026-10-20)": "已从 Kilo Gateway 目录与 kilo.ai 模型索引消失；3 次调用 404 \"does not exist\"（2026-10-20）",
+  "gone from the Kilo Gateway catalogue (paid stepfun/step-3.7-flash remains); 3 calls 404 \"does not exist\" (2026-10-20)": "已从 Kilo Gateway 目录消失（付费 stepfun/step-3.7-flash 仍在）；3 次调用 404 \"does not exist\"（2026-10-20）",
+  "inclusionai/ling-3.0-flash-sante:free is gone from Kilo's gateway catalogue and model site; 3 anonymous calls returned 404 \"The requested model ... does not exist\" (11:43-11:47Z)": "inclusionai/ling-3.0-flash-sante:free 已从 Kilo 网关目录与模型站消失；3 次免登录调用返回 404 \"The requested model ... does not exist\"（11:43-11:47Z）",
+  "stepfun/step-3.7-flash:free is gone from Kilo's gateway catalogue (the paid stepfun/step-3.7-flash remains); 3 anonymous calls returned 404 \"The requested model ... does not exist\" (11:44-11:47Z)": "stepfun/step-3.7-flash:free 已从 Kilo 网关目录消失（付费 stepfun/step-3.7-flash 仍在）；3 次免登录调用返回 404 \"The requested model ... does not exist\"（11:44-11:47Z）",
+  "Still in Kilo's $0 model catalogue, but 3 anonymous calls failed 11:43-11:48Z with an upstream 404 from the Nvidia provider (\"Function ... Not found for account\")": "仍在 Kilo 的 $0 模型目录中，但 11:43-11:48Z 的 3 次免登录调用均因 Nvidia 上游 404 失败（\"Function ... Not found for account\"）",
+  "own check of the Kilo Gateway model list and anonymous calls": "自行核查 Kilo Gateway 模型列表与免登录调用"
 }

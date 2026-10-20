@@ -248,8 +248,8 @@
     "data_policy": "may_train",
     "status": "live",
     "checked": {
-      "date": "2026-10-07",
-      "method": "api_call"
+      "date": "2026-10-20",
+      "method": "catalogue"
     },
     "volume": {
       "tier": "taste",
@@ -475,9 +475,9 @@
       "basis": "unpublished"
     },
     "limits_observed": {
-      "date": "2026-10-07",
-      "reach": "works",
-      "parallel": 10
+      "date": "2026-10-20",
+      "reach": "refused",
+      "note": "10-20: 3x upstream 404 via Nvidia"
     },
     "started": {
       "date": "2026-03-12"
@@ -488,15 +488,16 @@
       "confidence": "none"
     },
     "data_policy": "may_train",
-    "status": "live",
+    "status": "unavailable",
     "checked": {
-      "date": "2026-10-07",
+      "date": "2026-10-20",
       "method": "api_call"
     },
     "volume": {
       "tier": "bulk",
       "basis": "own check: 10 of 10 parallel calls answered (Oct 7)"
-    }
+    },
+    "note": "Still in Kilo's $0 catalogue; 3 anonymous calls failed with the Nvidia upstream 404 \"Function ... Not found for account\" (11:43-11:48Z); listed but not answering today"
   },
   {
     "id": "nemotron-3-ultra-kilo",
@@ -509,9 +510,10 @@
       "basis": "unpublished"
     },
     "limits_observed": {
-      "date": "2026-10-07",
+      "date": "2026-10-20",
       "reach": "works",
-      "parallel": 10
+      "parallel": 10,
+      "note": "10-20: single anonymous call answered, cost 0"
     },
     "started": {
       "date": "2026-06-04"
@@ -524,7 +526,7 @@
     "data_policy": "may_train",
     "status": "live",
     "checked": {
-      "date": "2026-10-07",
+      "date": "2026-10-20",
       "method": "api_call"
     },
     "volume": {
@@ -595,9 +597,10 @@
       "basis": "unpublished"
     },
     "limits_observed": {
-      "date": "2026-10-07",
+      "date": "2026-10-20",
       "reach": "works",
-      "parallel": 10
+      "parallel": 10,
+      "note": "10-20: single call answered PONG, cost 0"
     },
     "started": {
       "date": "2026-07-21"
@@ -610,7 +613,7 @@
     "data_policy": "unstated",
     "status": "live",
     "checked": {
-      "date": "2026-10-07",
+      "date": "2026-10-20",
       "method": "api_call"
     },
     "volume": {
@@ -919,9 +922,10 @@
       "basis": "unpublished"
     },
     "limits_observed": {
-      "date": "2026-10-07",
+      "date": "2026-10-20",
       "reach": "works",
-      "parallel": 10
+      "parallel": 10,
+      "note": "10-20: single anonymous call answered, cost 0"
     },
     "started": {
       "date": "2026-08-03",
@@ -935,7 +939,7 @@
     "data_policy": "unstated",
     "status": "live",
     "checked": {
-      "date": "2026-10-07",
+      "date": "2026-10-20",
       "method": "api_call"
     },
     "volume": {
@@ -965,18 +969,20 @@
     "ends": {
       "announced": null,
       "expected": null,
-      "confidence": "none"
+      "confidence": "none",
+      "note": "gone from the Kilo Gateway catalogue and kilo.ai model index; 3 calls 404 \"does not exist\" (2026-10-20)"
     },
     "data_policy": "unstated",
-    "status": "live",
+    "status": "ended",
     "checked": {
-      "date": "2026-10-07",
+      "date": "2026-10-20",
       "method": "api_call"
     },
     "volume": {
       "tier": "bulk",
       "basis": "own check: 10 of 10 parallel calls answered (Oct 7)"
-    }
+    },
+    "note": "Removed from Kilo's gateway catalogue (GET /api/gateway/models) and the kilo.ai model index; 3 anonymous calls returned 404 \"The requested model ... does not exist\" (11:43-11:47Z); no sante entry left in either catalogue"
   },
   {
     "id": "lfm-2.5-2.6b-kilo",
@@ -989,9 +995,10 @@
       "basis": "unpublished"
     },
     "limits_observed": {
-      "date": "2026-10-07",
+      "date": "2026-10-20",
       "reach": "works",
-      "parallel": 10
+      "parallel": 10,
+      "note": "10-20: 2x upstream 504, 3rd call OK cost 0"
     },
     "started": {
       "date": "2026-08-12",
@@ -1005,7 +1012,7 @@
     "data_policy": "unstated",
     "status": "live",
     "checked": {
-      "date": "2026-10-07",
+      "date": "2026-10-20",
       "method": "api_call"
     },
     "volume": {
@@ -1024,9 +1031,10 @@
       "basis": "unpublished"
     },
     "limits_observed": {
-      "date": "2026-10-07",
+      "date": "2026-10-20",
       "reach": "works",
-      "parallel": 10
+      "parallel": 10,
+      "note": "10-20: single call answered PONG, cost 0"
     },
     "started": {
       "date": "2026-05-01",
@@ -1040,7 +1048,7 @@
     "data_policy": "may_train",
     "status": "live",
     "checked": {
-      "date": "2026-10-07",
+      "date": "2026-10-20",
       "method": "api_call"
     },
     "volume": {
@@ -1059,9 +1067,10 @@
       "basis": "unpublished"
     },
     "limits_observed": {
-      "date": "2026-10-07",
+      "date": "2026-10-20",
       "reach": "works",
-      "parallel": 10
+      "parallel": 10,
+      "note": "10-20: single anonymous call answered, cost 0"
     },
     "started": {
       "date": "2026-08-11",
@@ -1075,7 +1084,7 @@
     "data_policy": "may_train",
     "status": "live",
     "checked": {
-      "date": "2026-10-07",
+      "date": "2026-10-20",
       "method": "api_call"
     },
     "volume": {
@@ -1094,9 +1103,10 @@
       "basis": "unpublished"
     },
     "limits_observed": {
-      "date": "2026-10-07",
+      "date": "2026-10-20",
       "reach": "works",
-      "parallel": 10
+      "parallel": 10,
+      "note": "10-20: 1 of 3 answered (cost 0); 2x upstream 429"
     },
     "started": {
       "date": "2026-08-03",
@@ -1110,7 +1120,7 @@
     "data_policy": "unstated",
     "status": "live",
     "checked": {
-      "date": "2026-10-07",
+      "date": "2026-10-20",
       "method": "api_call"
     },
     "volume": {
@@ -1140,18 +1150,20 @@
     "ends": {
       "announced": null,
       "expected": null,
-      "confidence": "none"
+      "confidence": "none",
+      "note": "gone from the Kilo Gateway catalogue (paid stepfun/step-3.7-flash remains); 3 calls 404 \"does not exist\" (2026-10-20)"
     },
     "data_policy": "unstated",
-    "status": "live",
+    "status": "ended",
     "checked": {
-      "date": "2026-10-07",
+      "date": "2026-10-20",
       "method": "api_call"
     },
     "volume": {
       "tier": "daily",
       "basis": "own check: 9 of 10 parallel calls answered (Oct 7)"
-    }
+    },
+    "note": "Removed from Kilo's gateway catalogue (GET /api/gateway/models) and the kilo.ai model index; 3 anonymous calls returned 404 \"The requested model ... does not exist\" (11:44-11:47Z); paid stepfun/step-3.7-flash remains at non-zero pricing"
   },
   {
     "id": "inkling-small-kilo",
@@ -1774,8 +1786,8 @@
     "data_policy": "unstated",
     "status": "live",
     "checked": {
-      "date": "2026-10-06",
-      "method": "api_call"
+      "date": "2026-10-20",
+      "method": "catalogue"
     },
     "volume": {
       "tier": "taste",
@@ -1807,8 +1819,8 @@
     "data_policy": "may_train",
     "status": "live",
     "checked": {
-      "date": "2026-10-06",
-      "method": "api_call"
+      "date": "2026-10-20",
+      "method": "catalogue"
     },
     "volume": {
       "tier": "taste",
@@ -1840,8 +1852,8 @@
     "data_policy": "may_train",
     "status": "live",
     "checked": {
-      "date": "2026-10-06",
-      "method": "api_call"
+      "date": "2026-10-20",
+      "method": "catalogue"
     },
     "volume": {
       "tier": "taste",
@@ -1881,8 +1893,8 @@
     "data_policy": "may_train",
     "status": "live",
     "checked": {
-      "date": "2026-10-07",
-      "method": "agent_run"
+      "date": "2026-10-20",
+      "method": "catalogue"
     },
     "volume": {
       "tier": "daily",
@@ -1918,8 +1930,8 @@
     "data_policy": "may_train",
     "status": "live",
     "checked": {
-      "date": "2026-10-06",
-      "method": "api_call"
+      "date": "2026-10-20",
+      "method": "catalogue"
     },
     "volume": {
       "tier": "taste",
@@ -1959,8 +1971,8 @@
     "data_policy": "may_train",
     "status": "live",
     "checked": {
-      "date": "2026-10-07",
-      "method": "agent_run"
+      "date": "2026-10-20",
+      "method": "catalogue"
     },
     "volume": {
       "tier": "daily",
@@ -2029,8 +2041,8 @@
     "data_policy": "may_train",
     "status": "live",
     "checked": {
-      "date": "2026-10-06",
-      "method": "api_call"
+      "date": "2026-10-20",
+      "method": "catalogue"
     },
     "volume": {
       "tier": "taste",
@@ -2062,8 +2074,8 @@
     "data_policy": "may_train",
     "status": "live",
     "checked": {
-      "date": "2026-10-06",
-      "method": "api_call"
+      "date": "2026-10-20",
+      "method": "catalogue"
     },
     "volume": {
       "tier": "taste",
@@ -2169,8 +2181,8 @@
     "data_policy": "may_train",
     "status": "live",
     "checked": {
-      "date": "2026-10-06",
-      "method": "api_call"
+      "date": "2026-10-20",
+      "method": "catalogue"
     },
     "volume": {
       "tier": "taste",
@@ -2204,8 +2216,8 @@
     "data_policy": "zero_retention",
     "status": "live",
     "checked": {
-      "date": "2026-10-06",
-      "method": "agent_run"
+      "date": "2026-10-20",
+      "method": "catalogue"
     },
     "volume": {
       "tier": "bulk",
@@ -2272,8 +2284,8 @@
     "data_policy": "may_train",
     "status": "live",
     "checked": {
-      "date": "2026-10-06",
-      "method": "agent_run"
+      "date": "2026-10-20",
+      "method": "catalogue"
     },
     "volume": {
       "tier": "daily",
@@ -2481,8 +2493,8 @@
     "data_policy": "may_train",
     "status": "live",
     "checked": {
-      "date": "2026-10-06",
-      "method": "api_call"
+      "date": "2026-10-20",
+      "method": "catalogue"
     },
     "volume": {
       "tier": "daily",
@@ -2744,8 +2756,8 @@
     "data_policy": "may_train",
     "status": "live",
     "checked": {
-      "date": "2026-10-06",
-      "method": "api_call"
+      "date": "2026-10-20",
+      "method": "catalogue"
     }
   },
   {
@@ -3155,8 +3167,8 @@
     "data_policy": "not_checked",
     "status": "live",
     "checked": {
-      "date": "2026-10-06",
-      "method": "agent_run"
+      "date": "2026-10-20",
+      "method": "listing"
     },
     "volume": {
       "tier": "bulk",
@@ -3374,9 +3386,9 @@
       "source": "https://endpoints.ai.cloud.ovh.net/"
     },
     "limits_observed": {
-      "date": "2026-10-08",
+      "date": "2026-10-20",
       "reach": "works",
-      "note": "anonymous call answered; a second one hit the 2/min cap"
+      "note": "10-20: anonymous call answered in 0.44 s"
     },
     "started": {
       "date": null,
@@ -3390,7 +3402,7 @@
     "data_policy": "zero_retention",
     "status": "live",
     "checked": {
-      "date": "2026-10-08",
+      "date": "2026-10-20",
       "method": "api_call"
     },
     "volume": {
