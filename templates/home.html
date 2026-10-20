@@ -91,7 +91,7 @@ onView(() => {
   const tile = (label, body) => `<article class="tile"><h3>${label}${viewNote()}</h3>${body}</article>`;
   const top = viewScored().find((m) => lanesOf(m.id).some(freeNow));
   const chs = top ? [...new Set(lanesOf(top.id).filter(freeNow).map((l) => l.channel))] : [];
-  const up = D.lanes.filter((l) => usable(l) && effEnd(l) && daysTo(pd(effEnd(l)).t) >= 0).sort((a, b) => pd(effEnd(a)).t - pd(effEnd(b)).t)[0];
+  const up = D.lanes.filter((l) => usable(l) && effEnd(l)).sort((a, b) => pd(effEnd(a)).t - pd(effEnd(b)).t)[0];
   const newest = D.lanes.filter((l) => usable(l) && l.started.date).sort((a, b) => pd(b.started.date).t - pd(a.started.date).t)[0];
   const rel = newest ? relDays(pd(newest.started.date).t) : null;
   $("answers").innerHTML = [
