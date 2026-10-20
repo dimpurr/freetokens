@@ -85,12 +85,12 @@ if (!navigator.webdriver) { (function () { var sent = false, go = function () { 
   color-scheme: dark; }
 
 * { box-sizing: border-box; }
-[hidden] { display: none !important; }
 html { scroll-padding-top: 72px; }
 body { background: var(--bg); color: var(--fg); font: 15px/1.5 var(--f-body); margin: 0; -webkit-font-smoothing: antialiased; }
 /* minmax(0,1fr) stops wide children (chart, tables) from widening the page on phones */
 .wrap { max-width: 1200px; margin: 0 auto; padding-inline: 20px; padding-block: 22px 64px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 36px; }
 section { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; min-width: 0; }
+.hide-empty[hidden] { display: none !important; }
 h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; }
 h1 { font-size: 2.2rem; font-weight: 700; letter-spacing: -0.025em; line-height: 1.08; }
 h2 { font-size: 1.32rem; font-weight: 700; letter-spacing: -0.01em; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
@@ -128,25 +128,20 @@ td .ent .rk { padding-top: 1px; }
 
 /* top bar: one row at every width. Desktop: brand · section menu · view switch · GitHub. Phone: the menu scrolls sideways between them. */
 .topbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--surface) 88%, transparent); -webkit-backdrop-filter: saturate(180%) blur(14px); backdrop-filter: saturate(180%) blur(14px); box-shadow: 0 1px 0 var(--line); }
-.topbar .in { max-width: 1200px; margin: 0 auto; padding: 0 20px; height: 56px; display: flex; gap: 12px; align-items: center; }
+.topbar .in { max-width: 1200px; margin: 0 auto; padding: 0 20px; height: 56px; display: flex; gap: 14px; align-items: center; }
 .topbar .brand { font: 700 1.08rem var(--f-display); letter-spacing: -0.02em; color: var(--fg); text-decoration: none; white-space: nowrap; display: inline-flex; align-items: center; gap: 9px; }
 .topbar .brand .ico { width: 26px; height: 26px; padding: 5px; border-radius: 7px; color: #fff; background: var(--measured); stroke-width: 2.4; }
 .topbar nav { flex: 1; min-width: 0; display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); padding-right: 24px; }
 .topbar nav::-webkit-scrollbar { display: none; }
-.topbar nav a { font: 500 0.86rem var(--f-body); color: var(--muted); text-decoration: none; padding: 6px 9px; border-radius: var(--r-s); white-space: nowrap; }
+.topbar nav a { font: 500 0.86rem var(--f-body); color: var(--muted); text-decoration: none; padding: 6px 10px; border-radius: var(--r-s); white-space: nowrap; }
 .topbar nav a:hover { color: var(--fg); background: var(--surface-2); }
 .topbar .gh { flex: none; display: inline-flex; align-items: center; gap: 6px; font: 600 0.8rem var(--f-body); color: var(--bg); background: var(--fg); text-decoration: none; border-radius: 8px; padding: 6px 12px; }
 .topbar .gh:hover { opacity: 0.88; }
 .topbar .gh svg { width: 15px; height: 15px; }
-/* ≥1100 the section menu must fit whole (see fit rules below); below it the menu scrolls with a fade on the right */
-@media (min-width: 1100px) { .topbar nav { justify-content: safe center; -webkit-mask-image: none; mask-image: none; padding-right: 0; } }
-@media (max-width: 1279px) {
-  .topbar .in { gap: 10px; }
-  .topbar nav a { padding: 6px 8px; }
-  .viewsw .vs-lab { display: none; }
-  .topbar .gh span { display: none; }
-  .topbar .gh { padding: 6px 9px; }
-}
+@media (min-width: 900px) { .topbar nav { justify-content: safe center; -webkit-mask-image: none; mask-image: none; padding-right: 0; } }
+/* long section menus (channel, maker, offer pages): start at the left edge when they overflow (centred, the first links would be cut off and unreachable); scroll sideways only when they overflow (common.js sets .more); the fade says so at every width */
+.topbar.long nav { justify-content: safe center; }
+.topbar.long nav.more { -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); padding-right: 24px; }
 @media (max-width: 640px) { .topbar .gh span { display: none; } .topbar .gh { padding: 7px; } }
 
 header.intro { display: grid; gap: 10px; }
@@ -258,7 +253,7 @@ a.when:hover { color: var(--accent); border-bottom-color: var(--accent); }
 .tile .big small { font: 600 0.72rem var(--f-body); letter-spacing: 0; color: var(--muted); margin-left: 6px; }
 
 /* tables: two lines per cell, first column pinned when the table scrolls */
-.tbl-scroll { overflow-x: auto; -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 22px), rgba(0,0,0,0)); mask-image: linear-gradient(90deg, #000 calc(100% - 22px), rgba(0,0,0,0)); }
+.tbl-scroll { overflow-x: auto; }
 /* article live box: where the model is free now, rebuilt from data on every build */
 .where-now { margin: 12px 0; padding: 10px 14px; display: grid; gap: 8px; }
 .where-now-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; font-size: 0.9rem; }
@@ -290,16 +285,22 @@ td.lane .sub.chan { white-space: nowrap; display: flex; align-items: center; gap
 td.lane .sub.chan .tag { margin-left: 2px; }
 td.lane .mid { display: flex; align-items: flex-start; gap: 2px; margin-top: 5px; }
 td.lane code.id { font-size: 0.7rem; overflow-wrap: anywhere; }
-.offers td:first-child { min-width: 280px; }
-/* offers: the tag columns take only what their tags need; Models keeps whole words, so nothing scrolls sideways at ≥1280 */
+.offers td:first-child { min-width: 300px; }
+.offers td { overflow-wrap: anywhere; }
+/* offers: the tag columns take only what their tags need */
 .offers th:nth-child(3), .offers th:nth-child(4) { width: 1%; }
-.offers td:nth-child(2) { min-width: 180px; }
-.offers td:nth-child(5) { min-width: 180px; }
-/* the offers table shares .lanes classes; its tag columns must not inherit the lanes min-widths (that overflow was the bug) */
-.offers td:nth-child(3), .offers td:nth-child(4) { min-width: 0; }
-.offers code.id { overflow-wrap: anywhere; }
-.offers th, .offers td { padding-inline: 10px; }
-code.id { font: 0.76rem var(--f-mono); color: var(--fg); background: var(--surface-2); box-shadow: inset 0 0 0 1px var(--line); border-radius: 5px; padding: 1px 6px; }
+.offers td:nth-child(2) { min-width: 260px; }
+/* the full programs table (offers page, class programs; home keeps the rules above): fixed columns, each as wide as the content
+   it must hold (MODELS fits the longest unbroken name); names wrap at spaces, only ids break anywhere. The table grows past its
+   box and scrolls inside .tbl-scroll rather than squeeze a column; 1440 spreads the 5 px left over */
+@media (min-width: 641px) {
+  table.programs { table-layout: fixed; }
+  table.programs td { overflow-wrap: normal; }
+  table.programs th:nth-child(1) { width: 270px; } table.programs th:nth-child(2) { width: 220px; } table.programs th:nth-child(3) { width: 120px; }
+  table.programs th:nth-child(4) { width: 165px; } table.programs th:nth-child(5) { width: 215px; } table.programs th:nth-child(6) { width: 165px; }
+}
+@media (min-width: 641px) { .programs-wrap.more { -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 32px), transparent); mask-image: linear-gradient(90deg, #000 calc(100% - 32px), transparent); } }
+code.id { font: 0.76rem var(--f-mono); color: var(--fg); background: var(--surface-2); box-shadow: inset 0 0 0 1px var(--line); border-radius: 5px; padding: 1px 6px; overflow-wrap: anywhere; }
 .copy { display: inline-flex; align-items: center; gap: 4px; font: 500 0.72rem var(--f-body); color: var(--accent); background: none; border: 0; padding: 2px 4px; cursor: pointer; vertical-align: middle; }
 .pol { display: inline-flex; align-items: center; gap: 5px; font-size: 0.8rem; white-space: nowrap; }
 .pol.zero_retention { color: var(--live); }
@@ -354,7 +355,7 @@ details.legend summary { cursor: pointer; font: 600 0.85rem var(--f-body); color
 
 /* lane chart */
 .chart-scroll { overflow-x: auto; }
-.chart { min-width: 720px; display: grid; grid-template-columns: 200px 1fr; }
+.chart { --lbl-w: 200px; min-width: 720px; display: grid; grid-template-columns: 200px 1fr; }
 .chart .lbl { padding: 9px 14px; border-top: 1px solid var(--line); display: grid; gap: 2px; min-width: 0; position: sticky; left: 0; z-index: 4; background: var(--surface); box-shadow: 1px 0 0 var(--line); }
 .chart .lbl .m { font-weight: 600; font-size: 0.85rem; line-height: 1.25; }
 .chart .lbl .m a { color: var(--fg); text-decoration: none; }
@@ -365,7 +366,6 @@ details.legend summary { cursor: pointer; font: 600 0.85rem var(--f-body); color
 .chart .axis { position: relative; height: 34px; background: var(--surface-2); border-top-right-radius: var(--r); }
 .tick { position: absolute; top: 0; bottom: 0; border-left: 1px solid var(--line); }
 .axis .tick span { position: absolute; top: 9px; left: 6px; font: 0.7rem var(--f-mono); color: var(--muted); white-space: nowrap; }
-.axis .tick span.flip { left: auto; right: 6px; }
 .todayline { position: absolute; top: 0; bottom: 0; width: 0; border-left: 2px solid var(--today); z-index: 2; }
 .axis .todayline span { position: absolute; top: 8px; left: 5px; font: 600 0.7rem var(--f-mono); color: #fff; background: var(--today); border-radius: 4px; padding: 0 5px; white-space: nowrap; }
 .seg { position: absolute; top: 18px; height: 12px; border-radius: 6px; }
@@ -378,8 +378,9 @@ details.legend summary { cursor: pointer; font: 600 0.85rem var(--f-body); color
 .cap { position: absolute; top: 12px; height: 24px; border-left: 3px solid var(--fg); }
 .cap.inferred { border-left-style: dotted; }
 .note { position: absolute; top: 34px; font: 0.68rem var(--f-mono); color: var(--muted); white-space: nowrap; }
-.note.flip { left: auto; text-align: right; }
 .since { position: absolute; top: 2px; left: 4px; font: 0.68rem var(--f-mono); color: var(--muted); }
+/* sticks just right of the label column when the chart scrolls, so its text is never cut under that column */
+.since.stuck { position: sticky; top: auto; left: calc(var(--lbl-w, 200px) + 8px); display: inline-block; margin: 2px 0 0 4px; white-space: nowrap; }
 a.ev { position: absolute; top: 15px; width: 18px; height: 18px; margin-left: -9px; display: grid; place-items: center; z-index: 3; }
 a.ev::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--surface); border: 2px solid var(--fg); }
 a.ev.end_announced::before { border-radius: 2px; transform: rotate(45deg); }
@@ -388,16 +389,16 @@ a.ev:hover::before, a.ev:focus-visible::before { background: var(--accent); bord
 
 /* timeline: grouped by day */
 .tl { display: grid; }
-.tl .day { position: sticky; top: 57px; z-index: 3; background: var(--surface-2); border-top: 1px solid var(--line); padding: 7px 18px; font: 600 0.78rem var(--f-body); display: flex; gap: 8px; align-items: baseline; }
+.tl .day { position: sticky; top: 57px; z-index: 3; background: var(--surface-2); border-top: 1px solid var(--line); padding: 7px 18px; font: 600 0.78rem var(--f-body); display: flex; gap: 10px; align-items: baseline; }
 .tl .day:first-child { border-top: 0; border-radius: var(--r) var(--r) 0 0; }
 .tl .day span { font-weight: 500; color: var(--muted); }
-.tl .day span::before { content: "·"; color: var(--muted); margin-right: 8px; }
-/* the time column is auto: a day-precise event has an empty .t, and the slot collapses instead of standing open */
-.tl .it { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 2px 0; padding: 12px 18px; border-top: 1px solid var(--line); scroll-margin-top: 96px; }
+.tl .it { display: grid; grid-template-columns: 74px minmax(0, 1fr); gap: 2px 14px; padding: 12px 18px; border-top: 1px solid var(--line); scroll-margin-top: 96px; }
 .tl .day + .it { border-top: 0; }
+/* flat timelines (class flat: timeline, channel, maker, offer pages): no time column; a minute time sits in the header row */
+.tl.flat .it { grid-template-columns: minmax(0, 1fr); }
+.tl.flat .h .t { padding-top: 0; white-space: nowrap; }
 .tl .it:target { background: var(--accent-soft); }
 .tl .t { font: 0.78rem var(--f-mono); color: var(--muted); padding-top: 2px; }
-.tl .t:not(:empty) { padding-right: 14px; }
 .tl .b { display: grid; grid-template-columns: minmax(0, 1fr); gap: 4px; min-width: 0; }
 .tl .h { display: flex; gap: 6px 10px; flex-wrap: wrap; align-items: center; font-size: 0.88rem; }
 .tl .h .lane { font-weight: 600; }
@@ -419,14 +420,20 @@ a.ev:hover::before, a.ev:focus-visible::before { background: var(--accent); bord
 .mhead .kicker { font: 600 0.74rem var(--f-body); text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); }
 .mhead .kicker a { color: inherit; }
 .mhead .notes { margin: 0; max-width: 72ch; color: var(--muted); }
-/* AA takes two slots; every header page declares its real slot count (s5/s4/o3): no filler cells, no holes (ADR-016) */
+/* AA takes two slots; 6 slots in one row on wide screens, 3 per row in the middle, 2 per row on phones */
 .stats { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; }
-.stats.s5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
-.stats.s4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.stats:not(:has(.measured-stat)) { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+@media (max-width: 899px) { .stats, .stats:not(:has(.measured-stat)) { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+/* channel and maker pages: a zero count is not shown, so the grid has exactly the cells it holds */
+.stats.fit3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.stats.fit4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.stats.fit5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+@media (max-width: 899px) { .stats.fit4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } .stats.fit5 { grid-template-columns: repeat(3, minmax(0, 1fr)); } .stats.fit5 > :last-child { grid-column: span 2; } }
 .stat.aa-stat { grid-column: span 2; }
-/* offer pages: three facts, one row (the gets text and the needs chips need the width a 5/6-slot grid would not leave) */
+/* offer pages: three facts, one row (the gets text and the needs chips need the width a 5/6-slot grid would not leave); each card is as tall as its own text */
 .stats.o3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-@media (max-width: 899px) { .stats, .stats.s5, .stats.s4, .stats.o3 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+/* between 641 and 899 the three facts stack: side by side, the gets text makes a tall row with dead space under the short cards */
+@media (min-width: 641px) and (max-width: 899px) { .stats.o3 { grid-template-columns: 1fr; } }
 .stat .s .sub { display: inline; }
 .stat .aacell .sbar { width: 140px; max-width: none; margin-top: 0; }
 .stat { padding: 14px 16px; display: grid; gap: 4px; align-content: start; }
@@ -436,7 +443,8 @@ a.ev:hover::before, a.ev:focus-visible::before { background: var(--accent); bord
 .stat .v .aa small { font-size: 0.66rem; letter-spacing: 0.06em; }
 .stat .s { font-size: 0.76rem; color: var(--muted); line-height: 1.4; }
 .stat .s.sub { margin-top: 0; }
-.stat .v .sub { font: 400 0.76rem/1.4 var(--f-body); letter-spacing: 0; color: var(--muted); }.stat .sbar { max-width: none; }
+.stat .v .sub { font: 400 0.76rem/1.4 var(--f-body); letter-spacing: 0; color: var(--muted); }
+.stat .sbar { max-width: none; }
 .stat.measured-stat { background: var(--measured-soft); box-shadow: 0 0 0 1px color-mix(in srgb, var(--measured) 35%, transparent); }
 .stat.measured-stat .k, .stat.measured-stat .v { color: var(--measured); }
 .chcards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 270px), 1fr)); gap: 12px; }
@@ -445,10 +453,12 @@ a.ev:hover::before, a.ev:focus-visible::before { background: var(--accent); bord
 .chcard.overdue { box-shadow: var(--ring), inset 3px 0 0 var(--overdue); }
 .chcard.listed { box-shadow: var(--ring), inset 3px 0 0 var(--accent); }
 .chcard.unavailable, .chcard.ended { box-shadow: var(--ring), inset 3px 0 0 var(--off); }
-/* the status stays on the first line; a long model name wraps inside its own box */
-.chcard .name { font-weight: 600; display: flex; gap: 10px; align-items: baseline; }
-.chcard .name a { color: var(--fg); text-decoration: none; min-width: 0; }
-.chcard .name .st { flex: none; }
+.chcard .name { font-weight: 600; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+/* channel page "what's free here": the status chip stays on the name's first line; a long name wraps beside it */
+.chcards-now .chcard .name { flex-wrap: nowrap; align-items: flex-start; }
+.chcards-now .chcard .name > a { min-width: 0; }
+.chcards-now .chcard .name .st { flex: none; white-space: nowrap; margin-top: 1px; }
+.chcard .name a { color: var(--fg); text-decoration: none; }
 .chcard .name a:hover { color: var(--accent); }
 .chcard .big { font: 600 1.25rem var(--f-display); letter-spacing: -0.01em; }
 .chcard .row { font-size: 0.8rem; color: var(--muted); display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
@@ -480,17 +490,18 @@ footer { font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--li
   .answers { grid-template-columns: 1fr; }
   .stamp b { font-size: 1.1rem; }
   .stamp .fresh { margin-left: 0; flex-basis: 100%; padding-left: 0; }
-  .tl .it { grid-template-columns: auto minmax(0, 1fr); gap: 2px 0; padding: 10px 12px; }
-  .tl .t:not(:empty) { padding-right: 10px; }
-  .filters { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding: 2px 24px 4px 2px; -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); }
+  .tl .it { grid-template-columns: 44px minmax(0, 1fr); gap: 2px 10px; padding: 10px 12px; }
+  .filters { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding: 2px 2px 4px; }
   .filters::-webkit-scrollbar { display: none; }
   .filters > * { flex: none; }
   .detail dl { grid-template-columns: 1fr; }
   .detail dt { padding-bottom: 0; }
   .detail dd { border-top: 0; padding-top: 2px; }
-  .chart { grid-template-columns: 150px 1fr; }
-  .stats, .stats.s5, .stats.s4 { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .chart { --lbl-w: 150px; grid-template-columns: 150px 1fr; }
+  .stats, .stats:not(:has(.measured-stat)) { grid-template-columns: 1fr 1fr; gap: 8px; }
   .stats.o3 { grid-template-columns: 1fr; }
+  .stats.fit3, .stats.fit4, .stats.fit5 { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .stats.fit3 > :last-child, .stats.fit5 > :last-child { grid-column: 1 / -1; }
   .stamp { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 0; }
   .stamp > span { padding: 0 12px; }
   .stamp > span:nth-child(3n + 1) { padding-left: 0; border-left: 0; }
@@ -509,8 +520,6 @@ footer { font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--li
 .rk:empty { width: 0; margin-right: -10px; }
 /* AA cell: number · bar · date on one line */
 .aacell { display: inline-flex; align-items: center; gap: 0; }
-/* flex swallows the literal space after the model name; give the badge its own gutter */
-.aacell .aa { margin-left: 8px; }
 .aacell .sbar { margin-left: 8px; }
 .aad { margin-left: 8px; font-size: 0.72rem; color: var(--muted); }
 .models tr.group td { background: var(--surface-2); font: 600 0.8rem var(--f-body); padding-top: 8px; padding-bottom: 8px; }
@@ -522,7 +531,7 @@ footer { font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--li
 
 /* P6: below 640px the main tables reflow to cards (no sideways scrolling) */
 @media (max-width: 640px) {
-  .tbl-scroll:has(table.cardify) { overflow: visible; background: none; box-shadow: none; -webkit-mask-image: none; mask-image: none; }
+  .tbl-scroll:has(table.cardify) { overflow: visible; background: none; box-shadow: none; }
   table.cardify, table.cardify tbody, table.cardify tr, table.cardify td { display: block; width: auto; min-width: 0 !important; }
   table.cardify thead { display: none; }
   table.cardify tr { background: var(--surface); box-shadow: var(--ring); border-radius: var(--r); padding: 12px 14px; margin-bottom: 10px; }
@@ -537,8 +546,6 @@ footer { font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--li
   table.lanes.cardify tr { display: grid; grid-template-columns: 1fr 1fr; column-gap: 12px; }
   table.lanes.cardify td:first-child, table.lanes.cardify td.cond, table.lanes.cardify td:last-child { grid-column: 1 / -1; }
 }
-/* ≤420 the two-column cards are too narrow for long slash-joined model lists; break tokens rather than scroll the page */
-@media (max-width: 420px) { table.cardify td { overflow-wrap: anywhere; } }
 
 /* channels list: summary line + full-width strip of model chips */
 .ch { padding: 16px 20px; border-top: 1px solid var(--line); display: grid; gap: 10px; }
@@ -675,7 +682,7 @@ ol.rungs > li.muted::before { content: none; }
 .pagehead { display: grid; gap: 6px; }
 .pagehead p { margin: 0; color: var(--muted); max-width: 65ch; }
 @media (max-width: 640px) {
-  .topbar nav { order: 2; flex-basis: 100%; justify-content: flex-start; -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); padding-right: 24px; }
+  .topbar nav { order: 2; flex-basis: 100%; justify-content: center; -webkit-mask-image: none; mask-image: none; padding-right: 0; }
   .topbar nav a { padding: 5px 8px; }
 }
 
@@ -711,9 +718,9 @@ ol.rungs > li.muted::before { content: none; }
 .req.none { color: var(--live); background: var(--live-soft); }
 .otype { padding: 0; background: none; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.64rem; display: block; }
 .alsofree { display: grid; background: var(--surface); border-radius: var(--r); box-shadow: var(--ring); }
-.alsofree > p { margin: 0; padding: 12px 16px; }
 .alsofree .row { display: grid; grid-template-columns: auto minmax(220px, 0.9fr) minmax(0, 2fr); gap: 4px 14px; align-items: center; padding: 12px 16px; border-top: 1px solid var(--line); }
-.alsofree .row:first-child, .alsofree p:first-child + .row { border-top: 0; }
+.alsofree .row:first-child { border-top: 0; }
+.alsofree > p { margin: 0; padding: 12px 16px; }
 .alsofree .o-name { display: inline-flex; flex-wrap: wrap; gap: 4px 8px; align-items: center; font-weight: 600; }
 .alsofree .o-name a { color: var(--fg); text-decoration: none; }
 .alsofree .o-name a:hover { color: var(--accent); }
@@ -881,7 +888,7 @@ li:target { background: var(--accent-soft); border-radius: 4px; }
   </header>
   <section aria-labelledby="h-tl">
     <h2 id="h-tl">All events <small id="tl-count"></small></h2>
-    <div class="tl" id="tl"></div>
+    <div class="tl flat" id="tl"></div>
   </section>
 </div>
 
@@ -926,7 +933,7 @@ function absDate(s) {
 }
 function relDays(t) {
   const n = daysTo(t);
-  if (n === 0) return (ZH ? Tx("today", "today") : "today");
+  if (n === 0) return Tx("today", "today");
   if (n === 1) return Tx("tomorrow", "tomorrow");
   if (n === -1) return Tx("yesterday", "yesterday");
   if (Math.abs(n) > 45) return null;
@@ -964,7 +971,7 @@ const initials = (name) => String(name || "?").replace(/\(.*\)/, "").split(/[\s.
 function logo(key, name, pictureFrom) {
   const e = LOGOS[key] || LOGOS[logoSlug(key)] || LOGOS[logoSlug(name)] || LOGOS[logoSlug(name).split("-")[0]];
   if (e) {
-    const u = `/assets/logos/${e.file}`; /* assets live at the site root, never under /zh/ */
+    const u = `${D.root}assets/logos/${e.file}`;
     return e.mono ? `<span class="lg m" style="--u:url('${u}')" aria-hidden="true"></span>` : `<img class="lg" src="${u}" alt="" width="16" height="16" decoding="async">`;
   }
   const pic = pictureFrom && (NAME_PICS.find(([re]) => re.test(pictureFrom.toLowerCase())) || [])[1];
@@ -1178,7 +1185,7 @@ function obsParts(l) {
   (lo.quirks || []).forEach((q) => p.push({ t: lab("quirk", q), c: "quirk", h: V.quirk[q].help }));
   return p;
 }
-const shortDate = (d) => { const x = new Date(pd(d).t); return `${MON[x.getUTCMonth()]} ${x.getUTCDate()}${ZH ? "日" : ""}`; };
+const shortDate = (d) => { const x = new Date(pd(d).t); return `${MON[x.getUTCMonth()]} ${x.getUTCDate()}`; };
 const obsText = (l) => obsParts(l).map((x) => x.t).concat(l.limits_observed && l.limits_observed.note ? [l.limits_observed.note] : []).join(" · ");
 function measuredHTML(l, badge = false) {
   const lo = l.limits_observed;
@@ -1289,7 +1296,7 @@ const legendHTML = () => [["status", Tx("Status", "Status")], ["entry_kind", Tx(
 ).join("");
 
 /* ---------- lane chart: bars = free period, markers = events (tap to jump) ---------- */
-function renderChart(el, rows, fit = false) {
+function renderChart(el, rows, fit = false, stick = false) {
   const ends = D.lanes.map((l) => effEnd(l) && pd(effEnd(l)).t).filter(Boolean);
   const starts = rows.map((l) => l.started.date && pd(l.started.date).t).filter(Boolean);
   const t0 = fit ? Math.min(todayT - 35 * DAY, Math.max(todayT - 120 * DAY, ...starts.map((t) => t - 3 * DAY))) : todayT - 35 * DAY;
@@ -1298,15 +1305,7 @@ function renderChart(el, rows, fit = false) {
   const pct = (t) => x(t).toFixed(3) + "%";
   let ticks = "";
   const dow = new Date(t0).getUTCDay();
-  /* a tick label inside the pill's ~60px shadow would sit under "today": right-align it at its line instead */
-  const tp = x(todayT), pcp = (60 / el.clientWidth) * 100;
-  for (let t = t0 + ((8 - dow) % 7) * DAY; t <= t1; t += 7 * DAY) {
-    const p = x(t);
-    const flip = p > 78 || (p <= tp + pcp && p >= tp - pcp);
-    ticks += `<div class="tick" style="left:${pct(t)}"><span ${flip ? 'class="flip"' : ""}>${MON[new Date(t).getUTCMonth()]} ${new Date(t).getUTCDate()}${ZH ? "日" : ""}</span></div>`;
-  }
-  /* a note past 64% of the track hangs off the chart's right edge (and drags the scroll area with it): flip it to end at that point instead */
-  const notePos = (t) => { const p = x(t); return p > 64 ? `class="note flip" style="right:calc(${(100 - p).toFixed(3)}% + 8px)"` : `class="note" style="left:calc(${p.toFixed(3)}% + 8px)"`; };
+  for (let t = t0 + ((8 - dow) % 7) * DAY; t <= t1; t += 7 * DAY) ticks += `<div class="tick" style="left:${pct(t)}"><span>${MON[new Date(t).getUTCMonth()]} ${new Date(t).getUTCDate()}</span></div>`;
   let html = `<div class="lbl axis-l"></div><div class="axis">${ticks}<div class="todayline" style="left:${pct(todayT)}"><span>${Tx("today", "today")}</span></div></div>`;
   for (const l of rows) {
     const s = l.started.date ? pd(l.started.date).t : null;
@@ -1320,7 +1319,7 @@ function renderChart(el, rows, fit = false) {
     if (l.status === "unavailable" || l.status === "ended") {
       const e = endedEvent(l), stop = e ? pd(e.date).t : todayT;
       segs += `<div class="seg past unavailable" style="left:${pct(from)};width:calc(${pct(stop)} - ${pct(from)})"></div>`;
-      if (e) segs += `<div ${notePos(stop)}>${Tx("ended", "ended")} ${esc(absDate(e.date).replace(" UTC", ""))}</div>`;
+      if (e) segs += `<div class="note" style="left:calc(${pct(stop)} + 8px)">ended ${esc(absDate(e.date).replace(" UTC", ""))}</div>`;
     } else {
       const pastEnd = l.status === "overdue" && ann ? ann : todayT;
       segs += `<div class="seg past" style="left:${pct(from)};width:calc(${pct(Math.min(pastEnd, todayT))} - ${pct(from)})"></div>`;
@@ -1328,16 +1327,18 @@ function renderChart(el, rows, fit = false) {
       if (end && end > todayT) {
         segs += `<div class="seg fut ${conf}" style="left:${pct(todayT)};width:calc(${pct(end)} - ${pct(todayT)})"></div>`;
         segs += `<div class="cap ${conf}" style="left:${pct(end)}"></div>`;
-        segs += `<div ${notePos(end)}>${esc(absDate(effEnd(l)).replace(/, \d\d:\d\d UTC/, ""))} · ${esc(lab("end_confidence", conf))}</div>`;
+        segs += `<div class="note" style="left:calc(${pct(end)} + 8px)">${esc(absDate(effEnd(l)).replace(/, \d\d:\d\d UTC/, ""))} · ${esc(lab("end_confidence", conf))}</div>`;
       } else if (!end) {
         segs += `<div class="seg fut none" style="left:${pct(todayT)};width:calc(${pct(t1)} - ${pct(todayT)})"></div>`;
-        segs += `<div ${notePos(todayT)}>${Tx("no end announced", "no end announced")}</div>`;
+        segs += `<div class="note" style="left:calc(${pct(todayT)} + 8px)">${Tx("no end announced", "no end announced")}</div>`;
       } else if (l.status === "overdue") {
-        segs += `<div ${notePos(end)}>${Tx("no new date", "no new date")}</div>`;
+        segs += `<div class="note" style="left:calc(${pct(end)} + 8px)">${Tx("no new date", "no new date")}</div>`;
       }
     }
-    if (s && s < t0) segs += `<div class="since">◀ ${Tx("since", "since")} ${esc(absDate(l.started.date))}</div>`;
-    if (!s) segs += `<div class="since" style="left:calc(${pct(from)} + 4px)">${Tx("start not recorded", "start not recorded")}</div>`;
+    /* stick (channel, maker pages): the label stays in view when the chart is scrolled to today */
+    if (s && s < t0) segs += `<div class="${stick ? "since stuck" : "since"}">◀ ${Tx("since", "since")} ${esc(absDate(l.started.date))}</div>`;
+    if (!s) segs += stick ? `<div class="since stuck" style="margin-left:calc(${pct(from)} + 4px)">${Tx("start not recorded", "start not recorded")}</div>`
+                          : `<div class="since" style="left:calc(${pct(from)} + 4px)">${Tx("start not recorded", "start not recorded")}</div>`;
     for (const e of D.events.filter((e) => (e.lanes || []).includes(l.id))) {
       const tt = pd(e.date).t; if (tt < t0) continue;
       const tip = `${absDate(e.date)}: ${lab("event_kind", e.kind)}. ${e.text}`;
@@ -1361,7 +1362,7 @@ const chartKey = [
 ].join("");
 
 /* ---------- timeline grouped by UTC day; times link to the source ---------- */
-function timelineHTML(evs) {
+function timelineHTML(evs, flat = false) {
   const sorted = [...evs].sort((a, b) => pd(b.date).t - pd(a.date).t);
   let out = "", lastDay = null;
   for (const e of sorted) {
@@ -1369,21 +1370,28 @@ function timelineHTML(evs) {
     const dayKey = d.p === "month" ? e.date : x.toISOString().slice(0, 10);
     if (dayKey !== lastDay) {
       lastDay = dayKey;
-      const label = d.p === "month" ? absDate(e.date) : `${WD[x.getUTCDay()]}, ${MON[x.getUTCMonth()]} ${x.getUTCDate()}${ZH ? "日" : ""}${!ZH && x.getUTCFullYear() !== thisYear ? ", " + x.getUTCFullYear() : ""}`;
+      const label = d.p === "month" ? absDate(e.date) : `${WD[x.getUTCDay()]}, ${MON[x.getUTCMonth()]} ${x.getUTCDate()}${x.getUTCFullYear() !== thisYear ? ", " + x.getUTCFullYear() : ""}`;
       const rel = d.p === "month" ? "" : relDays(Date.parse(dayKey + "T00:00Z"));
       out += `<div class="day">${esc(label)}${rel ? `<span>${esc(rel)}</span>` : ""}</div>`;
     }
     const time = d.p === "minute" ? x.toISOString().slice(11, 16) : "";
-    const timeHTML = !time ? "" : (e.source.url ? `<a href="${esc(e.source.url)}" target="_blank" rel="noopener" title="Open the source">${time}</a>` : time);
+    const timeLink = e.source.url ? `<a href="${esc(e.source.url)}" target="_blank" rel="noopener" title="Open the source">${time}</a>` : time;
+    /* flat (channel, maker, offer, timeline pages): the time goes into the header row, no time column */
+    const open = flat ? `<div class="it" id="${evId(e)}"><div class="b">` : `<div class="it" id="${evId(e)}"><div class="t">${timeLink}</div><div class="b">`;
+    const lead = flat && time ? `<span class="t">${timeLink}</span>` : "";
     const src = e.source.url ? `<a href="${esc(e.source.url)}" target="_blank" rel="noopener">${esc(e.source.label)} ${I.ext()}</a>` : esc(e.source.label);
-    out += `<div class="it" id="${evId(e)}"><div class="t">${timeHTML}</div><div class="b">
-      <div class="h"><span class="k ${esc(e.kind)}">${esc(lab("event_kind", e.kind))}</span>${(e.lanes || []).map((i) => `<span class="lane">${mlink(lanes[i].model)} · ${clink(lanes[i].channel)}</span>${statusHTML(lanes[i].status)}`).join(" ")}${(e.offers || []).map((o) => OF[o] ? `<span class="lane">${olink(o)}</span>${statusHTML(OF[o].status)}` : "").join(" ")}</div>
+    out += `${open}
+      <div class="h">${lead}<span class="k ${esc(e.kind)}">${esc(lab("event_kind", e.kind))}</span>${(e.lanes || []).map((i) => `<span class="lane">${mlink(lanes[i].model)} · ${clink(lanes[i].channel)}</span>${statusHTML(lanes[i].status)}`).join(" ")}${(e.offers || []).map((o) => OF[o] ? `<span class="lane">${olink(o)}</span>${statusHTML(OF[o].status)}` : "").join(" ")}</div>
       <div class="x">${esc(e.text)}${e.end_date ? ` <span class="muted">→ ${Tx("end date", "end date")} ${esc(absDate(e.end_date))}</span>` : ""}</div>
       <div class="s">${Tx("Source:", "Source:")} ${src}${e.source.note ? ` · ${esc(e.source.note)}` : ""}</div>
     </div></div>`;
   }
   return out || `<p class="muted" style="padding:12px 16px;margin:0">${Tx("No events recorded.", "No events recorded.")}</p>`;
 }
+
+/* top bar: the section menu is marked .more while it overflows, so the right-edge fade shows only when links are cut */
+const fitTopNav = () => document.querySelectorAll(".topbar.long nav").forEach((n) => n.classList.toggle("more", n.scrollWidth > n.clientWidth + 1));
+addEventListener("resize", fitTopNav); addEventListener("load", fitTopNav); if (document.fonts) document.fonts.ready.then(fitTopNav); fitTopNav();
 
 /* ---------- copy buttons ---------- */
 document.addEventListener("click", (ev) => {
@@ -1516,8 +1524,8 @@ document.addEventListener("click", (ev) => {
 
 document.querySelectorAll("a[data-ext]").forEach((a) => a.setAttribute("href", a.getAttribute("href") + D.ext));
 $("stamp").innerHTML = stamp();
-$("tl-count").textContent = ZH ? `${D.events.length} 个事件` : `${D.events.length} events`;
-$("tl").innerHTML = timelineHTML(D.events);
+$("tl-count").textContent = D.events.length + " events";
+$("tl").innerHTML = timelineHTML(D.events, true);
 </script>
 
 </body>

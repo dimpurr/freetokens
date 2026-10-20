@@ -46,6 +46,7 @@ body { background: var(--bg); color: var(--fg); font: 15px/1.5 var(--f-body); ma
 /* minmax(0,1fr) stops wide children (chart, tables) from widening the page on phones */
 .wrap { max-width: 1200px; margin: 0 auto; padding-inline: 20px; padding-block: 22px 64px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 36px; }
 section { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; min-width: 0; }
+.hide-empty[hidden] { display: none !important; }
 h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; }
 h1 { font-size: 2.2rem; font-weight: 700; letter-spacing: -0.025em; line-height: 1.08; }
 h2 { font-size: 1.32rem; font-weight: 700; letter-spacing: -0.01em; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
@@ -94,6 +95,9 @@ td .ent .rk { padding-top: 1px; }
 .topbar .gh:hover { opacity: 0.88; }
 .topbar .gh svg { width: 15px; height: 15px; }
 @media (min-width: 900px) { .topbar nav { justify-content: safe center; -webkit-mask-image: none; mask-image: none; padding-right: 0; } }
+/* long section menus (channel, maker, offer pages): start at the left edge when they overflow (centred, the first links would be cut off and unreachable); scroll sideways only when they overflow (common.js sets .more); the fade says so at every width */
+.topbar.long nav { justify-content: safe center; }
+.topbar.long nav.more { -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); padding-right: 24px; }
 @media (max-width: 640px) { .topbar .gh span { display: none; } .topbar .gh { padding: 7px; } }
 
 header.intro { display: grid; gap: 10px; }
@@ -242,7 +246,17 @@ td.lane code.id { font-size: 0.7rem; overflow-wrap: anywhere; }
 /* offers: the tag columns take only what their tags need */
 .offers th:nth-child(3), .offers th:nth-child(4) { width: 1%; }
 .offers td:nth-child(2) { min-width: 260px; }
-code.id { font: 0.76rem var(--f-mono); color: var(--fg); background: var(--surface-2); box-shadow: inset 0 0 0 1px var(--line); border-radius: 5px; padding: 1px 6px; }
+/* the full programs table (offers page, class programs; home keeps the rules above): fixed columns, each as wide as the content
+   it must hold (MODELS fits the longest unbroken name); names wrap at spaces, only ids break anywhere. The table grows past its
+   box and scrolls inside .tbl-scroll rather than squeeze a column; 1440 spreads the 5 px left over */
+@media (min-width: 641px) {
+  table.programs { table-layout: fixed; }
+  table.programs td { overflow-wrap: normal; }
+  table.programs th:nth-child(1) { width: 270px; } table.programs th:nth-child(2) { width: 220px; } table.programs th:nth-child(3) { width: 120px; }
+  table.programs th:nth-child(4) { width: 165px; } table.programs th:nth-child(5) { width: 215px; } table.programs th:nth-child(6) { width: 165px; }
+}
+@media (min-width: 641px) { .programs-wrap.more { -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 32px), transparent); mask-image: linear-gradient(90deg, #000 calc(100% - 32px), transparent); } }
+code.id { font: 0.76rem var(--f-mono); color: var(--fg); background: var(--surface-2); box-shadow: inset 0 0 0 1px var(--line); border-radius: 5px; padding: 1px 6px; overflow-wrap: anywhere; }
 .copy { display: inline-flex; align-items: center; gap: 4px; font: 500 0.72rem var(--f-body); color: var(--accent); background: none; border: 0; padding: 2px 4px; cursor: pointer; vertical-align: middle; }
 .pol { display: inline-flex; align-items: center; gap: 5px; font-size: 0.8rem; white-space: nowrap; }
 .pol.zero_retention { color: var(--live); }
@@ -297,7 +311,7 @@ details.legend summary { cursor: pointer; font: 600 0.85rem var(--f-body); color
 
 /* lane chart */
 .chart-scroll { overflow-x: auto; }
-.chart { min-width: 720px; display: grid; grid-template-columns: 200px 1fr; }
+.chart { --lbl-w: 200px; min-width: 720px; display: grid; grid-template-columns: 200px 1fr; }
 .chart .lbl { padding: 9px 14px; border-top: 1px solid var(--line); display: grid; gap: 2px; min-width: 0; position: sticky; left: 0; z-index: 4; background: var(--surface); box-shadow: 1px 0 0 var(--line); }
 .chart .lbl .m { font-weight: 600; font-size: 0.85rem; line-height: 1.25; }
 .chart .lbl .m a { color: var(--fg); text-decoration: none; }
@@ -321,6 +335,8 @@ details.legend summary { cursor: pointer; font: 600 0.85rem var(--f-body); color
 .cap.inferred { border-left-style: dotted; }
 .note { position: absolute; top: 34px; font: 0.68rem var(--f-mono); color: var(--muted); white-space: nowrap; }
 .since { position: absolute; top: 2px; left: 4px; font: 0.68rem var(--f-mono); color: var(--muted); }
+/* sticks just right of the label column when the chart scrolls, so its text is never cut under that column */
+.since.stuck { position: sticky; top: auto; left: calc(var(--lbl-w, 200px) + 8px); display: inline-block; margin: 2px 0 0 4px; white-space: nowrap; }
 a.ev { position: absolute; top: 15px; width: 18px; height: 18px; margin-left: -9px; display: grid; place-items: center; z-index: 3; }
 a.ev::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--surface); border: 2px solid var(--fg); }
 a.ev.end_announced::before { border-radius: 2px; transform: rotate(45deg); }
@@ -334,6 +350,9 @@ a.ev:hover::before, a.ev:focus-visible::before { background: var(--accent); bord
 .tl .day span { font-weight: 500; color: var(--muted); }
 .tl .it { display: grid; grid-template-columns: 74px minmax(0, 1fr); gap: 2px 14px; padding: 12px 18px; border-top: 1px solid var(--line); scroll-margin-top: 96px; }
 .tl .day + .it { border-top: 0; }
+/* flat timelines (class flat: timeline, channel, maker, offer pages): no time column; a minute time sits in the header row */
+.tl.flat .it { grid-template-columns: minmax(0, 1fr); }
+.tl.flat .h .t { padding-top: 0; white-space: nowrap; }
 .tl .it:target { background: var(--accent-soft); }
 .tl .t { font: 0.78rem var(--f-mono); color: var(--muted); padding-top: 2px; }
 .tl .b { display: grid; grid-template-columns: minmax(0, 1fr); gap: 4px; min-width: 0; }
@@ -361,11 +380,16 @@ a.ev:hover::before, a.ev:focus-visible::before { background: var(--accent); bord
 .stats { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; }
 .stats:not(:has(.measured-stat)) { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 @media (max-width: 899px) { .stats, .stats:not(:has(.measured-stat)) { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+/* channel and maker pages: a zero count is not shown, so the grid has exactly the cells it holds */
+.stats.fit3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.stats.fit4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.stats.fit5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+@media (max-width: 899px) { .stats.fit4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } .stats.fit5 { grid-template-columns: repeat(3, minmax(0, 1fr)); } .stats.fit5 > :last-child { grid-column: span 2; } }
 .stat.aa-stat { grid-column: span 2; }
-/* offer pages: three facts, one row (the gets text and the needs chips need the width a 5/6-slot grid would not leave);
-   the 3-line floor keeps the short values (a chip, a status) from sitting in a half-empty card next a wrapped gets text */
+/* offer pages: three facts, one row (the gets text and the needs chips need the width a 5/6-slot grid would not leave); each card is as tall as its own text */
 .stats.o3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.stats.o3 .v { min-height: 3em; }
+/* between 641 and 899 the three facts stack: side by side, the gets text makes a tall row with dead space under the short cards */
+@media (min-width: 641px) and (max-width: 899px) { .stats.o3 { grid-template-columns: 1fr; } }
 .stat .s .sub { display: inline; }
 .stat .aacell .sbar { width: 140px; max-width: none; margin-top: 0; }
 .stat { padding: 14px 16px; display: grid; gap: 4px; align-content: start; }
@@ -386,6 +410,10 @@ a.ev:hover::before, a.ev:focus-visible::before { background: var(--accent); bord
 .chcard.listed { box-shadow: var(--ring), inset 3px 0 0 var(--accent); }
 .chcard.unavailable, .chcard.ended { box-shadow: var(--ring), inset 3px 0 0 var(--off); }
 .chcard .name { font-weight: 600; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+/* channel page "what's free here": the status chip stays on the name's first line; a long name wraps beside it */
+.chcards-now .chcard .name { flex-wrap: nowrap; align-items: flex-start; }
+.chcards-now .chcard .name > a { min-width: 0; }
+.chcards-now .chcard .name .st { flex: none; white-space: nowrap; margin-top: 1px; }
 .chcard .name a { color: var(--fg); text-decoration: none; }
 .chcard .name a:hover { color: var(--accent); }
 .chcard .big { font: 600 1.25rem var(--f-display); letter-spacing: -0.01em; }
@@ -425,9 +453,11 @@ footer { font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--li
   .detail dl { grid-template-columns: 1fr; }
   .detail dt { padding-bottom: 0; }
   .detail dd { border-top: 0; padding-top: 2px; }
-  .chart { grid-template-columns: 150px 1fr; }
+  .chart { --lbl-w: 150px; grid-template-columns: 150px 1fr; }
   .stats, .stats:not(:has(.measured-stat)) { grid-template-columns: 1fr 1fr; gap: 8px; }
   .stats.o3 { grid-template-columns: 1fr; }
+  .stats.fit3, .stats.fit4, .stats.fit5 { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .stats.fit3 > :last-child, .stats.fit5 > :last-child { grid-column: 1 / -1; }
   .stamp { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 0; }
   .stamp > span { padding: 0 12px; }
   .stamp > span:nth-child(3n + 1) { padding-left: 0; border-left: 0; }
@@ -646,6 +676,7 @@ ol.rungs > li.muted::before { content: none; }
 .alsofree { display: grid; background: var(--surface); border-radius: var(--r); box-shadow: var(--ring); }
 .alsofree .row { display: grid; grid-template-columns: auto minmax(220px, 0.9fr) minmax(0, 2fr); gap: 4px 14px; align-items: center; padding: 12px 16px; border-top: 1px solid var(--line); }
 .alsofree .row:first-child { border-top: 0; }
+.alsofree > p { margin: 0; padding: 12px 16px; }
 .alsofree .o-name { display: inline-flex; flex-wrap: wrap; gap: 4px 8px; align-items: center; font-weight: 600; }
 .alsofree .o-name a { color: var(--fg); text-decoration: none; }
 .alsofree .o-name a:hover { color: var(--accent); }

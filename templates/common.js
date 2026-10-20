@@ -400,7 +400,7 @@ const legendHTML = () => [["status", Tx("Status", "Status")], ["entry_kind", Tx(
 ).join("");
 
 /* ---------- lane chart: bars = free period, markers = events (tap to jump) ---------- */
-function renderChart(el, rows, fit = false) {
+function renderChart(el, rows, fit = false, stick = false) {
   const ends = D.lanes.map((l) => effEnd(l) && pd(effEnd(l)).t).filter(Boolean);
   const starts = rows.map((l) => l.started.date && pd(l.started.date).t).filter(Boolean);
   const t0 = fit ? Math.min(todayT - 35 * DAY, Math.max(todayT - 120 * DAY, ...starts.map((t) => t - 3 * DAY))) : todayT - 35 * DAY;
@@ -439,8 +439,10 @@ function renderChart(el, rows, fit = false) {
         segs += `<div class="note" style="left:calc(${pct(end)} + 8px)">${Tx("no new date", "no new date")}</div>`;
       }
     }
-    if (s && s < t0) segs += `<div class="since">◀ ${Tx("since", "since")} ${esc(absDate(l.started.date))}</div>`;
-    if (!s) segs += `<div class="since" style="left:calc(${pct(from)} + 4px)">${Tx("start not recorded", "start not recorded")}</div>`;
+    /* stick (channel, maker pages): the label stays in view when the chart is scrolled to today */
+    if (s && s < t0) segs += `<div class="${stick ? "since stuck" : "since"}">◀ ${Tx("since", "since")} ${esc(absDate(l.started.date))}</div>`;
+    if (!s) segs += stick ? `<div class="since stuck" style="margin-left:calc(${pct(from)} + 4px)">${Tx("start not recorded", "start not recorded")}</div>`
+                          : `<div class="since" style="left:calc(${pct(from)} + 4px)">${Tx("start not recorded", "start not recorded")}</div>`;
     for (const e of D.events.filter((e) => (e.lanes || []).includes(l.id))) {
       const tt = pd(e.date).t; if (tt < t0) continue;
       const tip = `${absDate(e.date)}: ${lab("event_kind", e.kind)}. ${e.text}`;
@@ -464,7 +466,7 @@ const chartKey = [
 ].join("");
 
 /* ---------- timeline grouped by UTC day; times link to the source ---------- */
-function timelineHTML(evs) {
+function timelineHTML(evs, flat = false) {
   const sorted = [...evs].sort((a, b) => pd(b.date).t - pd(a.date).t);
   let out = "", lastDay = null;
   for (const e of sorted) {
@@ -477,16 +479,23 @@ function timelineHTML(evs) {
       out += `<div class="day">${esc(label)}${rel ? `<span>${esc(rel)}</span>` : ""}</div>`;
     }
     const time = d.p === "minute" ? x.toISOString().slice(11, 16) : "";
-    const timeHTML = e.source.url ? `<a href="${esc(e.source.url)}" target="_blank" rel="noopener" title="Open the source">${time}</a>` : time;
+    const timeLink = e.source.url ? `<a href="${esc(e.source.url)}" target="_blank" rel="noopener" title="Open the source">${time}</a>` : time;
+    /* flat (channel, maker, offer, timeline pages): the time goes into the header row, no time column */
+    const open = flat ? `<div class="it" id="${evId(e)}"><div class="b">` : `<div class="it" id="${evId(e)}"><div class="t">${timeLink}</div><div class="b">`;
+    const lead = flat && time ? `<span class="t">${timeLink}</span>` : "";
     const src = e.source.url ? `<a href="${esc(e.source.url)}" target="_blank" rel="noopener">${esc(e.source.label)} ${I.ext()}</a>` : esc(e.source.label);
-    out += `<div class="it" id="${evId(e)}"><div class="t">${timeHTML}</div><div class="b">
-      <div class="h"><span class="k ${esc(e.kind)}">${esc(lab("event_kind", e.kind))}</span>${(e.lanes || []).map((i) => `<span class="lane">${mlink(lanes[i].model)} · ${clink(lanes[i].channel)}</span>${statusHTML(lanes[i].status)}`).join(" ")}${(e.offers || []).map((o) => OF[o] ? `<span class="lane">${olink(o)}</span>${statusHTML(OF[o].status)}` : "").join(" ")}</div>
+    out += `${open}
+      <div class="h">${lead}<span class="k ${esc(e.kind)}">${esc(lab("event_kind", e.kind))}</span>${(e.lanes || []).map((i) => `<span class="lane">${mlink(lanes[i].model)} · ${clink(lanes[i].channel)}</span>${statusHTML(lanes[i].status)}`).join(" ")}${(e.offers || []).map((o) => OF[o] ? `<span class="lane">${olink(o)}</span>${statusHTML(OF[o].status)}` : "").join(" ")}</div>
       <div class="x">${esc(e.text)}${e.end_date ? ` <span class="muted">→ ${Tx("end date", "end date")} ${esc(absDate(e.end_date))}</span>` : ""}</div>
       <div class="s">${Tx("Source:", "Source:")} ${src}${e.source.note ? ` · ${esc(e.source.note)}` : ""}</div>
     </div></div>`;
   }
   return out || `<p class="muted" style="padding:12px 16px;margin:0">${Tx("No events recorded.", "No events recorded.")}</p>`;
 }
+
+/* top bar: the section menu is marked .more while it overflows, so the right-edge fade shows only when links are cut */
+const fitTopNav = () => document.querySelectorAll(".topbar.long nav").forEach((n) => n.classList.toggle("more", n.scrollWidth > n.clientWidth + 1));
+addEventListener("resize", fitTopNav); addEventListener("load", fitTopNav); if (document.fonts) document.fonts.ready.then(fitTopNav); fitTopNav();
 
 /* ---------- copy buttons ---------- */
 document.addEventListener("click", (ev) => {

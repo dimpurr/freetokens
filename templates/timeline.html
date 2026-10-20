@@ -13,7 +13,7 @@
   </header>
   <section aria-labelledby="h-tl">
     <h2 id="h-tl">All events <small id="tl-count"></small></h2>
-    <div class="tl" id="tl"></div>
+    <div class="tl flat" id="tl"></div>
   </section>
 </div>
 
@@ -23,5 +23,5 @@
 document.querySelectorAll("a[data-ext]").forEach((a) => a.setAttribute("href", a.getAttribute("href") + D.ext));
 $("stamp").innerHTML = stamp();
 $("tl-count").textContent = D.events.length + " events";
-$("tl").innerHTML = timelineHTML(D.events);
+$("tl").innerHTML = timelineHTML(D.events, true);
 </script>

@@ -1,6 +1,6 @@
-<div class="topbar"><div class="in">
+<div class="topbar long"><div class="in">
   __BRAND__
-  <nav aria-label="Sections"><a href="__HOME__#h-channels">All channels</a><a href="#h-now">What's free here</a><a href="#h-chart">Free periods</a><a href="#events">What happened</a><a href="#h-details">Details</a></nav>
+  <nav aria-label="Sections"><a href="__HOME__#h-channels">Channels</a><a href="#h-now">Free now</a><a href="#h-chart">Free periods</a><a href="#events">Events</a><a href="#h-details">Details</a></nav>
   __GH__
 </div></div>
 
@@ -12,10 +12,10 @@
 
   <section aria-labelledby="h-now">
     <h2 id="h-now">What's free here now <small id="now-sub"></small></h2>
-    <div class="chcards" id="now"></div>
+    <div class="chcards chcards-now" id="now"></div>
   </section>
 
-  <section aria-labelledby="h-also" id="also-sec" hidden>
+  <section aria-labelledby="h-also" id="also-sec" class="hide-empty" hidden>
     <h2 id="h-also">Programs on this channel <small>credits and allowances that are not tied to one model</small></h2>
     <div class="alsofree" id="also"></div>
   </section>
@@ -28,7 +28,7 @@
 
   <section aria-labelledby="events">
     <h2 id="events">What happened <small>newest first · times link to the source</small></h2>
-    <div class="tl" id="tl"></div>
+    <div class="tl flat" id="tl"></div>
   </section>
 
   <section aria-labelledby="h-details">
@@ -60,10 +60,10 @@ const CL = lanesOn(C);
     <p class="chlinks">${chLinks(C)}</p>
     ${CH[C] && CH[C].free_condition ? `<p class="chcond"><b>${Tx("Free if:", "Free if:")}</b> ${esc(CH[C].free_condition)}</p>` : ""}
     ${CH[C] ? `<p class="costline">${Tx("To start:", "To start:")} ${costHTML(C)} <span class="muted">${esc(CH[C].entry.note)}</span></p><p class="costline">${Tx("Use it:", "Use it:")} ${accessHTML(CH[C].access)}</p>` : ""}
-    <div class="stats">
+    <div class="stats fit${4 + (nOffer ? 1 : 0) + (tested.length ? 1 : 0)}">
       ${stat(Tx("Free now", "Free now"), `${CL.filter(isFree).length}${ZH ? "／" : " of "}${CL.length}`, Tx("models", "models"))}
       ${stat(Tx("Ended", "Ended"), String(CL.filter((l) => l.status === "ended").length), Tx("lanes", "lanes"))}
-      ${stat(Tx("Free programs", "Free programs"), String(nOffer), Tx("on this channel", "on this channel"))}
+      ${nOffer ? stat(Tx("Free programs", "Free programs"), String(nOffer), Tx("on this channel", "on this channel")) : ""}
       ${stat(Tx("Last checked", "Last checked"), esc(absDate(last)))}
       ${stat(Tx("Events", "Events"), String(nEvent))}
       ${tested.length ? stat(`${I.bolt()} ${Tx("Tested by us", "Tested by us")}`, `${tested.length}${ZH ? "／" : " of "}${CL.length}`, Tx("lanes measured", "lanes measured"), "measured-stat") : ""}
@@ -87,9 +87,9 @@ const CL = lanesOn(C);
   }).join("");
 })();
 
-renderChart($("chart"), CL, true);
+renderChart($("chart"), CL, true, true);
 $("chartkey").innerHTML = chartKey;
-$("tl").innerHTML = timelineHTML(eventsOn(C));
+$("tl").innerHTML = timelineHTML(eventsOn(C), true);
 
 /* lane details */
 mountViewSwitch();
