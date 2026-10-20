@@ -2457,6 +2457,7 @@ def main():
         (dist / "assets" / "data.zh.js").write_text(data_zh_js)
         (dist / "assets" / "common.js").write_text(common_js)
         (dist / "assets" / "hi.txt").write_text("")  # target of the count request (BEACON_SNIPPET)
+        shutil.copytree(ROOT / "templates" / "logos", dist / "assets" / "logos")  # maker and channel marks (templates/logos/NOTICE.md)
         for p, (h, b) in list(site.items()) + list(site_zh.items()):
             lang = "zh" if p.startswith("zh/") else "en"
             out = dist / ("zh.html" if p == "zh/index.html" else p)  # /zh, not /zh/ (see nested_index check)

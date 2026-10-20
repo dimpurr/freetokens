@@ -52,14 +52,16 @@ const ML = lanesOf(M.id);
   const c = M.context.match(/^([\d.]+[KM])\s*(.*)$/);
   const tested = ML.filter((l) => l.limits_observed);
   $("mhead").innerHTML = `
-    <span class="kicker">${mklink(M.maker)}${suspectedHTML(M)}</span>
-    <h1>${esc(M.name)}</h1>
+    <div class="id-row">${makerTile(M.maker, true)}<div>
+      <span class="kicker">${mklink(M.maker)}${suspectedHTML(M)}</span>
+      <h1>${esc(M.name)}</h1>
+    </div></div>
     ${M.notes ? `<p class="notes">${esc(M.notes)}</p>` : ""}
     <div class="stats">
-      ${stat(Tx("AA index", "AA index"), `${M.est || a.value != null ? aaHTML(M) : `<span class="muted" style="font:500 0.9rem var(--f-body)">${esc(a.note || Tx("not ranked", "not ranked"))}</span>`}${aaSource(M)}`,
-        rankText(M) ? esc(rankText(M)) : "")}
-      ${stat(Tx("Context", "Context"), c ? esc(c[1]) : `<span class="muted" style="font:500 0.9rem var(--f-body)">${esc(M.context.split(" (")[0])}</span>`, c ? esc(c[2]) : esc((M.context.split(" (")[1] || "").replace(/\)$/, "")))}
-      ${stat(Tx("Images", "Images"), esc(lab("image_input", M.image_input)))}
+      ${stat(Tx("AA index", "AA index"), `<span class="aacell">${M.est || a.value != null ? aaHTML(M) : `<span class="muted" style="font:500 0.9rem var(--f-body)">${esc(a.note || Tx("not ranked", "not ranked"))}</span>`}${scoreBar(M)}</span>`,
+        [aaSource(M), rankText(M) ? esc(rankText(M)) : ""].filter(Boolean).join(" · "), "aa-stat")}
+      ${stat(Tx("Context", "Context"), c ? esc(c[1]) : `<span class="muted" style="font:500 0.9rem var(--f-body)">${esc(M.context.split(" (")[0])}</span>`, c ? esc(c[2] || Tx("tokens", "tokens")) : esc((M.context.split(" (")[1] || "").replace(/\)$/, "")))}
+      ${stat(Tx("Images", "Images"), esc(lab("image_input", M.image_input)), Tx("image input", "image input"))}
       ${stat(Tx("Free now", "Free now"), `${ML.filter(isFree).length}${ZH ? "／" : " of "}${ML.length}`, Tx("channels", "channels"))}
       ${tested.length ? stat(`${I.bolt()} ${Tx("Tested by us", "Tested by us")}`, `${tested.length}${ZH ? "／" : " of "}${ML.length}`, Tx("channels measured", "channels measured"), "measured-stat") : ""}
     </div>`;
@@ -73,7 +75,7 @@ const ML = lanesOf(M.id);
   $("now").innerHTML = rows.map((l) => {
     const e = endInfo(l);
     return `<article class="chcard ${l.status}">
-      <div class="name">${clink(l.channel)} ${statusHTML(l.status)}</div>
+      <div class="name">${logoTile(l.channel, l.channel)}${clink(l.channel)} ${statusHTML(l.status)}</div>
       <div class="big">${esc(e.main)}</div>
       ${e.sub ? `<div class="row">${e.sub}</div>` : ""}
       ${l.limits_observed ? `<div class="row">${measuredHTML(l, true)}</div>` : ""}
@@ -91,7 +93,7 @@ mountViewSwitch();
 $("details").innerHTML = ML.map((l) => {
   const row = (k, v) => `<dt>${k}</dt><dd>${v}</dd>`;
   const e = endInfo(l);
-  return `<div class="detail" data-lane="${l.id}"><h3>${clink(l.channel)} ${statusHTML(l.status)}<span class="usemarks">${useMarks(l)}</span></h3><dl>
+  return `<div class="detail" data-lane="${l.id}"><h3>${logoTile(l.channel, l.channel)}${clink(l.channel)} ${statusHTML(l.status)}<span class="usemarks">${useMarks(l)}</span></h3><dl>
     ${row(`${I.bolt()} ${Tx("Tested by us", "Tested by us")}`, `${measuredHTML(l)}`)}
     ${row(Tx("Model ID", "Model ID"), idHTML(l))}
     ${row(Tx("To start", "To start"), `${costHTML(l.channel)} <span class="muted">${esc(CH[l.channel] ? CH[l.channel].entry.note : "")}</span>`)}
@@ -114,5 +116,5 @@ onView(() => document.querySelectorAll("[data-lane]").forEach((el) => {
 /* free programs that cover this page (ADR-025) */
 { const os = offersFor(M.id).sort(offerSort);
   $("also-sec").hidden = !os.length;
-  $("also").innerHTML = os.map((o) => `<div class="row">${olink(o.id)} ${statusHTML(o.status)} ${getsHTML(o)} <span>${reqHTML(o)}</span></div>`).join(""); }
+  $("also").innerHTML = os.map((o) => `<div class="row">${logoTile(o.channel || o.provider, o.channel || o.provider)}<span class="o-name">${olink(o.id)} ${statusHTML(o.status)}</span><span class="o-get">${getsHTML(o)} ${reqHTML(o)}</span></div>`).join(""); }
 </script>

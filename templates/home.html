@@ -6,8 +6,8 @@
 
 <div class="wrap" id="top">
   <header class="intro">
-    <h1>Free LLMs, by channel, with end dates</h1>
-    <p>Which capable models you can use for free right now, where, and until when. Every fact is dated and sourced; unknowns are written out. <span class="measured"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>Tested by us</span> marks limits we measured on our own account, which you won't find in announcements.</p>
+    <div class="intro-top"><h1>Free LLMs, by channel, with end dates</h1>
+    <p>Which capable models you can use for free right now, where, and until when. Every fact is dated and sourced; unknowns are written out.</p></div>
     <div class="stamp" id="stamp"></div>
   </header>
 
@@ -24,15 +24,10 @@
     <p class="foot">Volume tiers come from published limits and our own concurrency runs; we never run a quota dry to measure it. Scores within 2 points share a rung. <a id="lad-how" href="#fallback-ladder">How the ladder is built</a></p>
   </section>
 
-  <section aria-labelledby="h-soon">
-    <h2 id="h-soon">Ending soon <small>counted from your clock, UTC days</small></h2>
-    <div class="soon" id="soon"></div>
-  </section>
-
   <section aria-labelledby="h-models">
     <h2 id="h-models">Models <small>ranked by AA index, or our estimate (EST) where AA has none · <a id="mk-browse" href="#">browse by maker →</a></small></h2>
     <div class="tbl-scroll"><table class="models collapsed cardify" id="models-t"><thead><tr>
-      <th title="Rank among scored models; a range where an estimate's band overlaps">#</th><th>Model</th><th>AA index</th><th>Free on</th><th>Context</th><th>Images</th><th>Events</th>
+      <th title="Rank among scored models; a range where an estimate's band overlaps">Model</th><th>AA index</th><th>Free on</th><th>Context</th><th>Images</th><th>Events</th>
     </tr></thead><tbody id="models"></tbody></table></div>
     <div class="more-row" id="models-more"></div>
   </section>
@@ -52,7 +47,7 @@
   <section aria-labelledby="h-lanes">
     <h2 id="h-lanes">Free lanes <small id="lanes-count"></small></h2>
     <div class="tbl-scroll"><table class="lanes cardify"><thead><tr>
-      <th>Lane</th><th>Status · end</th><th><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg> Tested by us</th><th>Limit · condition</th><th>Data</th><th>Model ID</th>
+      <th>Lane</th><th>Status · end</th><th><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg> Tested by us</th><th>Limit · condition</th><th>Data</th>
     </tr></thead><tbody id="lanes"></tbody></table></div>
     <div class="more-row" id="lanes-more"></div>
   </section>
@@ -85,32 +80,37 @@ mountViewSwitch();
 $("mk-browse").href = `${D.root}makers${D.ext}`;
 onView(() => { $("stamp").innerHTML = metaStrip(); });
 
-/* at a glance (P2): three answers straight from the data, in the current view */
+/* at a glance (P2): three answers straight from the data, in the current view.
+   The middle one is the whole "ending soon" list (overdue first, then by end date), counted from your clock in UTC days. */
 onView(() => {
   const freeNow = (l) => usable(l) && l.status !== "overdue" && worldwide(l);
-  const tile = (label, body) => `<article class="tile"><h3>${label}${viewNote()}</h3>${body}</article>`;
+  const tile = (label, body, cls = "") => `<article class="tile${cls}"><h3>${label}${viewNote()}</h3>${body}</article>`;
+  const who = (l) => `<div class="who">${makerTile(models[l.model].maker)}<span>${mlink(l.model)} <span class="muted">${Tx("on", "on")}</span> ${clink(l.channel)}</span></div>`;
   const top = viewScored().find((m) => lanesOf(m.id).some(freeNow));
   const chs = top ? [...new Set(lanesOf(top.id).filter(freeNow).map((l) => l.channel))] : [];
-  const up = D.lanes.filter((l) => usable(l) && effEnd(l) && daysTo(pd(effEnd(l)).t) >= 0).sort((a, b) => pd(effEnd(a)).t - pd(effEnd(b)).t)[0];
-  const newest = D.lanes.filter((l) => usable(l) && l.started.date).sort((a, b) => pd(b.started.date).t - pd(a.started.date).t)[0];
-  const rel = newest ? relDays(pd(newest.started.date).t) : null;
+  const soon = D.lanes.filter((l) => effEnd(l) && usable(l)).map((l) => ({ l, t: pd(effEnd(l)).t })).sort((a, b) => a.t - b.t);
+  /* newest lanes grouped by model: one row per model, its channels that opened most recently, the date of the newest */
+  const byStart = D.lanes.filter((l) => usable(l) && l.started.date).sort((a, b) => pd(b.started.date).t - pd(a.started.date).t);
+  const newest = [...new Set(byStart.map((l) => l.model))].slice(0, 3).map((mid) => { const ls = byStart.filter((l) => l.model === mid); return { l: ls[0], chs: ls.filter((l) => l.started.date === ls[0].started.date).map((l) => l.channel) }; });
+  const soonRow = ({ l, t }) => {
+    const n = daysTo(t), overdue = n < 0;
+    const count = overdue ? (ZH ? `<b>${-n}</b><span>天已逾期</span>` : `<b>${-n}</b><span>day${-n === 1 ? "" : "s"} overdue</span>`) : n === 0 ? (ZH ? `<b>今天</b><span>最后一天</span>` : `<b>Today</b><span>last day</span>`) : (ZH ? `<b>${n}</b><span>天后到期</span>` : `<b>${n}</b><span>day${n === 1 ? "" : "s"} left</span>`);
+    return `<div class="soonrow${overdue ? " overdue" : ""}"><div class="count">${count}</div><div class="body">${who(l)}
+      <div class="row">${confHTML(l.ends.confidence)} ${esc(absDate(effEnd(l)))}${l.limits_observed ? ` ${measuredHTML(l, true)}` : ""}${overdue ? ` <span class="stilllive" title="${esc(Tx("Still live at the last check. It can stop without notice.", "Still live at the last check. It can stop without notice."))}">${Tx("still live", "still live")}</span>` : ""}</div>
+</div></div>`;
+  };
   $("answers").innerHTML = [
     top
       ? tile(Tx("Highest-scored, free now", "Highest-scored, free now"),
-          `<div class="who">${mlink(top.id)} <span class="mono">${esc(rankLabel(rankOf(top)))}</span></div>` +
-          `<div class="row">${aaHTML(top)}</div>` +
-          `<div class="chips">${chs.slice(0, 3).map(clink).join("")}${chs.length > 3 ? `<span class="muted">+${chs.length - 3}</span>` : ""}</div>`)
+          `<div class="who">${makerTile(top.maker)}<span>${mlink(top.id)} <span class="mono muted">${esc(rankLabel(rankOf(top)))}</span></span></div>` +
+          `<div class="row score">${aaHTML(top)}${scoreBar(top)}<span class="sub">${esc(rankText(top))} · Artificial Analysis, ${esc(absDate(top.aa_index.date))}</span></div>` +
+          `<div class="chips foot">${chs.slice(0, 2).map((c) => `<a class="chip" href="${channelHref(c)}">${chanLogo(c)}${esc(c)}</a>`).join("")}${chs.length > 2 ? `<a class="chip more" href="${modelHref(top.id)}">+${chs.length - 2}</a>` : ""}</div>`)
       : tile(Tx("Highest-scored, free now", "Highest-scored, free now"), `<div class="row"><span class="muted">${Tx("none", "none")}</span></div>`),
-    up
-      ? tile(Tx("Ending soonest", "Ending soonest"),
-          `<div class="who">${mlink(up.model)} <span class="muted">${Tx("on", "on")}</span> ${clink(up.channel)}</div>` +
-          `<div class="row"><b>${esc(endInfo(up).main)}</b> <span class="muted">${esc(absDate(effEnd(up)))}</span></div>`)
-      : tile(Tx("Ending soonest", "Ending soonest"), `<div class="row"><span class="muted">${Tx("No upcoming end dates", "No upcoming end dates")}</span></div>`),
-    newest
-      ? tile(Tx("Newest free lane", "Newest free lane"),
-          `<div class="who">${mlink(newest.model)} <span class="muted">${Tx("on", "on")}</span> ${clink(newest.channel)}</div>` +
-          `<div class="row">${Tx("free since", "free since")} ${esc(absDate(newest.started.date))}${rel ? ` <span class="muted">(${esc(rel)})</span>` : ""}</div>`)
-      : tile(Tx("Newest free lane", "Newest free lane"), `<div class="row"><span class="muted">${Tx("none", "none")}</span></div>`),
+    tile(`<span id="h-soon">${Tx("Ending soon", "Ending soon")}</span> <span class="hint">${Tx("counted from your clock, UTC days", "counted from your clock, UTC days")}</span>`,
+      soon.length ? `<div class="soonlist">${soon.map(soonRow).join("")}</div>` : `<div class="row"><span class="muted">${VIEW === "all" ? Tx("Nothing with an end date.", "Nothing with an end date.") : Tx("Nothing with an end date in this view.", "Nothing with an end date in this view.")}</span></div>`, " wide"),
+    tile(Tx("Newest free lanes", "Newest free lanes"),
+      newest.length ? `<div class="newlist">${newest.map(({ l, chs }) => { const rel = relDays(pd(l.started.date).t); return `<div class="newrow"><div class="who">${makerTile(models[l.model].maker)}<span><span class="nm">${mlink(l.model)}</span><span class="sub">${esc(absDate(l.started.date))}${rel ? ` (${esc(rel)})` : ""} · ${clink(chs[0])}${chs.length > 1 ? ` +${chs.length - 1}` : ""}</span></span></div></div>`; }).join("")}</div>`
+        : `<div class="row"><span class="muted">${Tx("none", "none")}</span></div>`),
   ].join("");
 });
 
@@ -201,23 +201,6 @@ onView(() => {
   onView(draw);
 })();
 
-/* ending soon: overdue first, then by end date */
-onView(() => {
-  const rows = D.lanes.filter((l) => effEnd(l) && usable(l)).map((l) => ({ l, t: pd(effEnd(l)).t })).sort((a, b) => a.t - b.t);
-  $("soon").innerHTML = rows.map(({ l, t }) => {
-    const n = daysTo(t);
-    const overdue = n < 0;
-    const count = overdue ? (ZH ? `<b>${-n}</b><span>天已逾期</span>` : `<b>${-n}</b><span>day${-n === 1 ? "" : "s"} overdue</span>`) : n === 0 ? (ZH ? `<b>今天</b><span>最后一天</span>` : `<b>Today</b><span>last day</span>`) : (ZH ? `<b>${n}</b><span>天后到期</span>` : `<b>${n}</b><span>day${n === 1 ? "" : "s"} left</span>`);
-    return `<article class="card ${overdue ? "overdue" : ""}">
-      <div class="count">${count}</div>
-      <div class="who">${mlink(l.model)} <span class="muted">${Tx("on", "on")}</span> ${clink(l.channel)}</div>
-      <div class="row">${confHTML(l.ends.confidence)} ${esc(absDate(effEnd(l)))}</div>
-      ${l.limits_observed ? `<div class="row">${measuredHTML(l, true)}</div>` : ""}
-      ${overdue ? `<div class="row">${Tx("Still live at the last check. It can stop without notice.", "Still live at the last check. It can stop without notice.")}</div>` : ""}
-    </article>`;
-  }).join("") || `<p class="muted">Nothing with an end date${VIEW === "all" ? "" : " in this view"}.</p>`;
-});
-
 /* models (P1 + ADR-020): ranked inside the view; chips not usable in the view fold into "+n other" */
 (function () {
   const TOP = 10;
@@ -244,9 +227,9 @@ onView(() => {
     const total = sc.length + unscored.length + unusable.length;
     $("models").innerHTML = top.map((m, i) => row(m, i)).join("") +
       restScored.map((m, i) => row(m, TOP + i)).join("") +
-      (unscored.length ? `<tr class="group more"><td colspan="7">${Tx("Not scored", "Not scored")} <span class="muted">· ${unscored.length} ${Tx("models with no AA index and too little benchmark evidence for an estimate", "models with no AA index and too little benchmark evidence for an estimate")}</span></td></tr>` : "") +
+      (unscored.length ? `<tr class="group more"><td colspan="6">${Tx("Not scored", "Not scored")} <span class="muted">· ${unscored.length} ${Tx("models with no AA index and too little benchmark evidence for an estimate", "models with no AA index and too little benchmark evidence for an estimate")}</span></td></tr>` : "") +
       unscored.map((m) => row(m, TOP)).join("") +
-      (unusable.length ? `<tr class="group more"><td colspan="7">${Tx("Not usable this way", "Not usable this way")} <span class="muted">· ${unusable.length} ${Tx("models free only through lanes that do not fit", "models free only through lanes that do not fit")} "${VIEWS[VIEW].label}"</span></td></tr>` : "") +
+      (unusable.length ? `<tr class="group more"><td colspan="6">${Tx("Not usable this way", "Not usable this way")} <span class="muted">· ${unusable.length} ${Tx("models free only through lanes that do not fit", "models free only through lanes that do not fit")} "${VIEWS[VIEW].label}"</span></td></tr>` : "") +
       unusable.map((m) => row(m, TOP, true)).join("");
     last = [total, top.length, total - top.length];
     draw(...last);
@@ -266,7 +249,7 @@ const renderChannels = () => {
   const shown = chAll ? rows : rows.slice(0, CH_CAP);
   $("channels").innerHTML = shown.map(({ c, ls, free, ok, next }) => `<article class="ch${VIEW !== "all" && !ok ? " off" : ""}">
     <div class="ch-h">
-      <span class="name">${clink(c)}</span>${chLinks(c, true)}<span class="tag">${esc(lab("channel_type", ls[0].type))}</span>${costHTML(c)}${accessHTML(CH[c] && CH[c].access)}
+      <span class="name">${logoTile(c, c)}${clink(c)}</span>${chLinks(c, true)}<span class="tag">${esc(lab("channel_type", ls[0].type))}</span>${costHTML(c)}${accessHTML(CH[c] && CH[c].access)}
       <span class="ch-free"><span class="bar" role="img" aria-label="${ZH ? `${free}／${ls.length} 条线路免费` : `${free} of ${ls.length} lanes free`}"><i style="width:${(100 * free / ls.length).toFixed(1)}%"></i></span><b>${free}</b><span class="muted">${ZH ? `／${ls.length} 条免费` : `of ${ls.length} free`}</span></span>
       ${VIEW !== "all" && !ok ? `<span class="viewnote">not usable by ${VIEW}: ${esc(whyNot(ls.find(isFree) || ls[0], VIEW))}</span>` : ""}
       ${next ? `<span class="ch-next"><span class="muted">next end</span> <b>${esc(endInfo(next).main)}</b> <span class="muted">·</span> ${mlink(next.model)} ${confHTML(next.ends.confidence)}</span>` : ""}
@@ -287,7 +270,7 @@ onView(() => {
   const all = (D.offers || []).filter((o) => offerUsable(o)).sort(offerSort);
   $("offers-sec").hidden = !(D.offers || []).length;
   $("home-offers").innerHTML = all.slice(0, 5).map((o) => `<tr>
-    <td><span class="otype">${esc(lab("offer_type", o.type))}</span><span class="name">${olink(o.id)}</span><span class="sub">${o.channel ? clink(o.channel) : esc(o.provider)}${o.region ? " · " + regionTag(o) : ""}</span></td>
+    <td><span class="ent">${logoTile(o.channel || o.provider, o.channel || o.provider)}<span><span class="otype">${esc(lab("offer_type", o.type))}</span><span class="name">${olink(o.id)}</span><span class="sub">${o.channel ? clink(o.channel) : esc(o.provider)}${o.region ? " · " + regionTag(o) : ""}</span></span></span></td>
     <td data-label="You get">${getsHTML(o)}</td><td data-label="Needs">${reqHTML(o)}</td><td data-label="Use it">${accessHTML(offerAccess(o))}</td></tr>`).join("");
   $("offers-more").innerHTML = `<a class="seeall" href="${D.root}offers${D.ext}${VIEW === "all" ? "" : "?use=" + VIEW}">${ZH ? `全部 ${all.length} 个计划${VIEW === "all" ? "" : " " + byV(VIEW)}，含筛选 →` : `All ${all.length} programs${VIEW === "all" ? "" : " usable by " + VIEW}, with filters →`}</a>`;
 });

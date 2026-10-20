@@ -57,6 +57,28 @@ const I = {
   minus: (l) => svg('<path d="M5 12h14"/>', l),
 };
 
+/* ---------- logos: maker and channel marks (templates/logos, @lobehub/icons-static-svg, MIT; see NOTICE.md) ---------- */
+/* key = maker id or channel name → file. One-colour marks are drawn as a mask so they follow the text colour in both themes. */
+const LOGO = {
+  google: "google-color", zai: "zai", nvidia: "nvidia-color", qwen: "qwen-color", deepseek: "deepseek-color",
+  minimax: "minimax-color", poolside: "poolside", tencent: "hunyuan-color", meta: "meta-color", upstage: "upstage-color",
+  openai: "openai", moonshot: "kimi", meituan: "longcat-color", cohere: "cohere-color", liquid: "liquid", stepfun: "stepfun-color",
+  mistral: "mistral-color", inclusionai: "antgroup-color",
+  "OpenCode Zen": "opencode", "OpenCode Go": "opencode", "Kilo Code": "kilocode", "OpenRouter": "openrouter", "Command Code": "commandcode",
+  "Cline": "cline", "Z.ai": "zai", "Zhipu BigModel": "zhipu-color", "Vercel AI Gateway": "vercel", "SiliconFlow": "siliconcloud-color",
+  "Google AI Studio": "aistudio", "Qoder": "qoder-color", "AIHubMix": "aihubmix", "NVIDIA build": "nvidia-color", "Groq": "groq",
+  "Cloudflare Workers AI": "cloudflare-color", "ModelScope": "modelscope-color", "Ant Ling": "antgroup-color", "Huawei Cloud": "huawei-color",
+};
+/* no mark on file: up to two initials on the same tile, so every row keeps the same shape */
+const initials = (name) => String(name || "?").replace(/\(.*\)/, "").split(/[\s.\-]+/).filter(Boolean).slice(0, 2).map((w) => w[0]).join("").toUpperCase();
+function logo(key, name) {
+  const f = LOGO[key] || LOGO[String(key).replace(/\s*\(.*\)$/, "")];
+  if (!f) return `<span class="lg txt" aria-hidden="true">${key === "undisclosed" ? "?" : esc(initials(name || key))}</span>`;
+  const u = `${D.root}assets/logos/${f}.svg`;
+  return f.endsWith("-color") ? `<img class="lg" src="${u}" alt="" width="16" height="16" decoding="async">` : `<span class="lg m" style="--u:url('${u}')" aria-hidden="true"></span>`;
+}
+const logoTile = (key, name, xl = false) => `<span class="lgt${xl ? " xl" : ""}">${logo(key, name)}</span>`;
+
 /* ---------- vocab + entities ---------- */
 const lab = (v, k) => V[v][k].label;
 const short = (v, k) => V[v][k].short || V[v][k].label;
@@ -75,6 +97,8 @@ const clink = (name) => `<a href="${channelHref(name)}">${esc(name)}</a>`;
 const MK = Object.fromEntries((D.makers || []).map((x) => [x.id, x]));
 const makerHref = (id) => `${D.root}makers/${encodeURIComponent(id)}${D.ext}`;
 const mklink = (id) => MK[id] ? `<a class="mklink" href="${makerHref(id)}">${esc(MK[id].name)}</a>` : esc(id);
+const makerTile = (id, xl = false) => logoTile(id, MK[id] ? MK[id].name : id, xl);
+const chanLogo = (name) => logo(name, name);
 /* free programs (data/offers.json, ADR-005 / 025): allowances and grants, never ranked with $0 model lanes */
 const OF = Object.fromEntries((D.offers || []).map((o) => [o.id, o]));
 const offerHref = (id) => `${D.root}offers/${encodeURIComponent(id)}${D.ext}`;
@@ -285,7 +309,7 @@ const idHTML = (l) => l.model_id === "not recorded"
 const statedNums = (ls) => [ls.per_day && `${ls.per_day}/day`, ls.per_minute && `${ls.per_minute}/min`, ls.hours_day && `${ls.hours_day} h/day`, ls.tokens_day && `${ls.tokens_day / 1e6}M tok/day`].filter(Boolean).join(" · ");
 const limitHTML = (l) => {
   const ls = l.limits_stated, nums = statedNums(ls);
-  const head = nums ? `<b class="mono">${ls.basis === "community" ? "≈" : ""}${esc(nums)}</b>` : `<span class="muted">${esc(lab("limit_basis", ls.basis))}</span>`;
+  const head = nums ? `<b class="mono">${ls.basis === "community" ? "≈" : ""}${esc(nums)}</b>` : `<span class="muted nowrap">${esc(lab("limit_basis", ls.basis))}</span>`;
   const tip = V.limit_basis[ls.basis].help;
   const main = ls.source ? `<a href="${esc(ls.source)}" target="_blank" rel="noopener" title="${esc(tip)}">${head}</a>` : `<span title="${esc(tip)}">${head}</span>`;
   return main + (ls.note ? `<details class="obs-i"><summary aria-label="${esc(Tx("About this limit", "About this limit"))}">ⓘ</summary><span>${esc(ls.note)}</span></details>` : "");
@@ -344,6 +368,15 @@ const aaSource = (m) => m.aa_index.value != null
   ? `<span class="sub">Artificial Analysis · ${esc(absDate(m.aa_index.date))}</span>`
   : isEst(m) ? `<span class="sub">${m.est.benchmarks} ${ZH ? "个基准" : `benchmark${m.est.benchmarks === 1 ? "" : "s"}`} · ${Tx("estimate", "estimate")}</span>`
   : "";
+
+/* score bar under the AA number, on a fixed 0–60 scale so bars compare across pages; an EST draws its band */
+const SCORE_MAX = 60;
+function scoreBar(m) {
+  const pc = (v) => Math.max(0, Math.min(100, (100 * v) / SCORE_MAX)).toFixed(1);
+  if (m.aa_index.value != null) return `<span class="sbar" aria-hidden="true"><i style="width:${pc(m.aa_index.value)}%"></i></span>`;
+  if (isEst(m)) return `<span class="sbar" aria-hidden="true"><i class="est" style="left:${pc(m.est.low)}%;width:${(pc(m.est.high) - pc(m.est.low)).toFixed(1)}%"></i></span>`;
+  return "";
+}
 
 /* compact key shown above tables */
 const keyHTML = () => [
@@ -439,7 +472,7 @@ function timelineHTML(evs) {
     const timeHTML = e.source.url ? `<a href="${esc(e.source.url)}" target="_blank" rel="noopener" title="Open the source">${time}</a>` : time;
     const src = e.source.url ? `<a href="${esc(e.source.url)}" target="_blank" rel="noopener">${esc(e.source.label)} ${I.ext()}</a>` : esc(e.source.label);
     out += `<div class="it" id="${evId(e)}"><div class="t">${timeHTML}</div><div class="b">
-      <div class="h"><span class="k">${esc(lab("event_kind", e.kind))}</span>${(e.lanes || []).map((i) => `<span class="lane">${mlink(lanes[i].model)} · ${clink(lanes[i].channel)}</span>${statusHTML(lanes[i].status)}`).join(" ")}${(e.offers || []).map((o) => OF[o] ? `<span class="lane">${olink(o)}</span>${statusHTML(OF[o].status)}` : "").join(" ")}</div>
+      <div class="h"><span class="k ${esc(e.kind)}">${esc(lab("event_kind", e.kind))}</span>${(e.lanes || []).map((i) => `<span class="lane">${mlink(lanes[i].model)} · ${clink(lanes[i].channel)}</span>${statusHTML(lanes[i].status)}`).join(" ")}${(e.offers || []).map((o) => OF[o] ? `<span class="lane">${olink(o)}</span>${statusHTML(OF[o].status)}` : "").join(" ")}</div>
       <div class="x">${esc(e.text)}${e.end_date ? ` <span class="muted">→ ${Tx("end date", "end date")} ${esc(absDate(e.end_date))}</span>` : ""}</div>
       <div class="s">${Tx("Source:", "Source:")} ${src}${e.source.note ? ` · ${esc(e.source.note)}` : ""}</div>
     </div></div>`;
@@ -456,9 +489,10 @@ document.addEventListener("click", (ev) => {
   try { navigator.clipboard.writeText(b.dataset.copy).then(done, fallback); } catch (e) { fallback(); }
 });
 
-const stamp = () => `<span>${Tx("data as of", "data as of")} <b>${esc(absDate(D.built))}</b></span><span>${Tx("today", "today")} <b>${esc(absDate(new Date(now).toISOString().slice(0, 10)))}</b> UTC</span>`;
-/* P3: catalogue size + freshness in one line (home) */
-const metaStrip = () => (VIEW === "all" ? "" : `<span class="viewcount"><b>${D.lanes.filter(usable).length}</b> ${byV(VIEW)}</span>`) + `<span><b>${D.models.length}</b> ${Tx("models", "models")}</span><span><b>${D.lanes.length}</b> ${Tx("lanes", "lanes")} · <b>${D.lanes.filter(isFree).length}</b> ${Tx("free now", "free now")}</span><span><b>${channels.length}</b> ${Tx("channels", "channels")}</span><span><b>${D.events.length}</b> ${Tx("events", "events")}</span>` + stamp();
+const stamp = () => `<span class="fresh">${Tx("data as of", "data as of")} <b>${esc(absDate(D.built))}</b> <span class="muted">· ${Tx("today", "today")} ${esc(absDate(new Date(now).toISOString().slice(0, 10)))} UTC ·</span> <a href="${D.root}methodology${D.ext}">${Tx("methodology", "methodology")}</a></span>`;
+/* P3: catalogue size + freshness in one row of figures (home) */
+const fig = (n, label, cls = "") => `<span${cls ? ` class="${cls}"` : ""}><b>${n}</b>${label}</span>`;
+const metaStrip = () => (VIEW === "all" ? "" : fig(D.lanes.filter(usable).length, byV(VIEW), "viewcount")) + fig(D.lanes.filter(isFree).length, Tx("free now", "free now")) + fig(D.lanes.length, Tx("lanes", "lanes")) + `<span class="tested" title="${esc(Tx("Tested by us", "Tested by us") + " " + Tx("marks limits we measured on our own account, which you won't find in announcements.", "marks limits we measured on our own account, which you won't find in announcements."))}"><b>${D.lanes.filter((l) => l.limits_observed).length}</b><span>${I.bolt()} ${Tx("tested by us", "tested by us")}</span></span>` + fig(D.models.length, Tx("models", "models")) + fig(channels.length, Tx("channels", "channels")) + fig(D.events.length, Tx("events", "events")) + stamp();
 
 /* ---------- shared sections (home highlights and the full /lanes page) ---------- */
 /* lanes: the view is the base filter; buttons refine it ("no payment needed" hides in Humans, where it is always true) */
@@ -496,14 +530,13 @@ function mountLanes(limit) {
     $("lanes").innerHTML = rows.map((l) => {
       const e = endInfo(l);
       return `<tr>
-        <td><span class="name">${mlink(l.model)}</span><span class="sub">${clink(l.channel)} · ${esc(lab("channel_type", l.type))}</span></td>
+        <td class="lane"><span class="ent">${makerTile(models[l.model].maker)}<span><span class="name">${mlink(l.model)}</span><span class="sub chan">${chanLogo(l.channel)} ${clink(l.channel)} <span class="tag" title="${esc(Tx("Channel type", "Channel type"))}">${esc(lab("channel_type", l.type))}</span></span><span class="mid">${idHTML(l)}</span></span></span></td>
         <td class="nowrap" data-label="${Tx("Status · end", "Status · end")}"><span title="${esc(lab("status", l.status))}">${statusHTML(l.status, e.main)}</span><span class="sub">${e.sub}</span></td>
         <td data-label="${Tx("Tested by us", "Tested by us")}">${measuredHTML(l)}${checkedSub(l)}</td>
         <td class="cond" data-label="${Tx("Limit · condition", "Limit · condition")}">${costHTML(l.channel)} ${regionTag(l)} ${limitHTML(l)}${l.free_condition ? `<span class="sub">${esc(l.free_condition)}</span>` : ""}</td>
         <td data-label="${Tx("Data", "Data")}">${policyHTML(l.data_policy)}</td>
-        <td class="nowrap" data-label="${Tx("Model ID", "Model ID")}">${idHTML(l)}</td>
       </tr>`;
-    }).join("") || `<tr><td colspan="6" class="muted">${Tx("No lanes match these filters.", "No lanes match these filters.")}</td></tr>`;
+    }).join("") || `<tr><td colspan="5" class="muted">${Tx("No lanes match these filters.", "No lanes match these filters.")}</td></tr>`;
   }
   if ($("filters")) $("filters").addEventListener("click", (ev) => {
     const b = ev.target.closest("button"); if (!b) return;
@@ -528,7 +561,9 @@ function mountChart(minScore) {
 });
 }
 
-/* one row of the models table (home, maker pages) */
+/* one row of the models table (home, maker pages). The rank sits at the head of the model cell (no column of its own);
+   ended lanes beyond the two most recent fold behind "+n ended", like lanes outside the view fold behind "+n other". */
+const ENDED_SHOWN = 2;
 function modelRow(m, i, off, TOP = 10) {
     const n = eventsOf(m.id).length;
     const c = m.context.match(/^([\d.]+[KM])\s*(.*)$/);
@@ -536,13 +571,20 @@ function modelRow(m, i, off, TOP = 10) {
     const img = { yes: `<span class="st live">${I.image()} yes</span>`, partial: `<span class="pol may_train">${I.image()} unreliable</span>`, no: `<span class="muted">no</span>`, not_checked: `<span class="muted">not checked</span>` }[m.image_input];
     const r = off ? null : rankOf(m);
     const ls = lanesOf(m.id), ok = VIEW === "all" ? ls : ls.filter(usable), rest = VIEW === "all" ? [] : ls.filter((l) => !usable(l));
-    const restChips = rest.map((l) => channelChip(l).replace('class="chip"', `class="chip off" title="${esc(l.channel + ": " + (whyNot(l, VIEW) || Tx("not free now", "not free now")))}"`)).join("");
+    const endT = (l) => { const e = endedEvent(l); return e ? pd(e.date).t : 0; };
+    const ended = ok.filter((l) => l.status === "ended").sort((a, b) => endT(b) - endT(a)), active = ok.filter((l) => l.status !== "ended");
+    const foldEnded = ended.length > ENDED_SHOWN ? ended.slice(ENDED_SHOWN) : [];
+    const shown = [...active, ...ended.slice(0, ended.length - foldEnded.length)];
+    const hide = (l, why) => channelChip(l).replace('class="chip"', `class="chip off" title="${esc(l.channel + ": " + why)}"`);
+    const folded = foldEnded.map((l) => hide(l, stateWords(l))).join("") + rest.map((l) => hide(l, whyNot(l, VIEW) || Tx("not free now", "not free now"))).join("");
+    const nFold = foldEnded.length + rest.length;
+    const foldLabel = rest.length ? `+${nFold} ${Tx("other", "other")}` : `+${nFold} ${Tx("ended", "ended")}`;
     const regionOnly = r && ok.some(isFree) && !ok.some((l) => isFree(l) && worldwide(l));
+    const aaDate = m.aa_index.value != null && m.aa_index.date ? `<span class="aad">${esc(shortDate(m.aa_index.date))}</span>` : "";
     return `<tr class="${i >= TOP ? "more" : ""}${off ? " offrow" : ""}">
-      <td class="rank nowrap" data-label="">${r ? `<span class="${r.est ? "est" : ""}" title="${esc(rankText(m))}">${esc(rankLabel(r))}</span>` : ""}${regionOnly ? `<br>${regionTag(ok.find(isFree))}` : ""}</td>
-      <td><span class="name">${mlink(m.id)}</span><span class="sub">${mklink(m.maker)}</span></td>
-      <td class="nowrap" data-label="${Tx("AA index", "AA index")}">${aaHTML(m)}${aaSource(m)}</td>
-      <td data-label="${Tx("Free on", "Free on")}"><div class="chips">${ok.map(channelChip).join("")}${offersFor(m.id).filter((o) => offerUsable(o)).map((o) => `<a class="chip offerchip" href="${offerHref(o.id)}" title="${esc(o.name + ": " + o.gets.text + " " + lab("per", o.gets.per) + (ZH ? "（与其他模型共用的额度）" : " (an allowance shared with other models)"))}">via ${esc(o.channel || o.provider)}</a>`).join("")}${restChips}${rest.length ? `<button type="button" class="morechips" aria-expanded="false" data-label="+${rest.length} other">+${rest.length} ${Tx("other", "other")}</button>` : ""}</div></td>
+      <td><span class="ent"><span class="rk${r && r.est ? " est" : ""}"${r ? ` title="${esc(rankText(m))}"` : ""}>${r ? esc(rankLabel(r)) : ""}</span>${makerTile(m.maker)}<span><span class="name">${mlink(m.id)}</span><span class="sub">${mklink(m.maker)}${regionOnly ? " " + regionTag(ok.find(isFree)) : ""}</span></span></span></td>
+      <td class="nowrap" data-label="${Tx("AA index", "AA index")}"><span class="aacell">${aaHTML(m)}${scoreBar(m)}${aaDate}</span>${m.aa_index.value != null ? "" : aaSource(m)}</td>
+      <td data-label="${Tx("Free on", "Free on")}"><div class="chips">${shown.map(channelChip).join("")}${offersFor(m.id).filter((o) => offerUsable(o)).map((o) => `<a class="chip offerchip" href="${offerHref(o.id)}" title="${esc(o.name + ": " + o.gets.text + " " + lab("per", o.gets.per) + (ZH ? "（与其他模型共用的额度）" : " (an allowance shared with other models)"))}">via ${esc(o.channel || o.provider)}</a>`).join("")}${folded}${nFold ? `<button type="button" class="morechips" aria-expanded="false" data-label="${esc(foldLabel)}">${esc(foldLabel)}</button>` : ""}</div></td>
       <td class="m-hide" data-label="${Tx("Context", "Context")}">${ctx}</td>
       <td class="nowrap m-hide" data-label="${Tx("Images", "Images")}">${img}</td>
       <td class="nowrap m-hide" data-label="${Tx("Events", "Events")}">${n ? `<a href="${modelHref(m.id)}#events">${n} ${ZH ? "个事件" : `event${n === 1 ? "" : "s"}`}</a>` : `<span class="muted">${Tx("none", "none")}</span>`}</td>
