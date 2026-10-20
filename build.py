@@ -630,12 +630,21 @@ REPO = "https://github.com/dimpurr/freetokens"
 BRAND = ('<a class="brand" href="__HOME__"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
          'stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>'
          '<span class="word">freetokens</span></a>')
-GH = (f'<a class="gh" href="{REPO}" target="_blank" rel="noopener" title="Data and code on GitHub: corrections and new lanes welcome">'
+GH = (f'<a class="gh" href="{REPO}" target="_blank" rel="noopener" aria-label="Contribute" title="Data and code on GitHub: corrections and new lanes welcome">'
       '<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 '
       '0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 '
       '2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 '
       '2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 '
       '1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg><span>Contribute</span></a>')
+def gnav(home, root):
+    """The top-bar nav: the same links on every page. Blog is appended by the build when articles are published
+    (topbar_targets). More (overflow menu) and the view filter follow it; chrome.js and common.js fill them in."""
+    return ('<nav aria-label="Site">'
+            f'<a href="{home}#h-models">Models</a><a href="{home}#h-channels">Channels</a>'
+            f'<a href="{root}offers" data-ext>Offers</a><a href="{root}lanes" data-ext>Lanes</a><a href="{root}timeline" data-ext>Timeline</a>'
+            '</nav><div class="gmore" hidden><button type="button" class="gmore-btn" aria-haspopup="true" aria-expanded="false">More<span class="caret" aria-hidden="true">▾</span></button>'
+            '<div class="gmore-menu" hidden></div></div>')
+CHROME_JS = (ROOT / "templates" / "chrome.js").read_text()
 FONTS = """<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
@@ -948,7 +957,7 @@ def render_body(template, payload, root, home, shared=False, lang="en"):
     """shared=True (deployed site): the dataset and common.js come from /assets/*.js, cached across pages."""
     t = ROOT / "templates"
     common = (t / "common.js").read_text()
-    body = (t / template).read_text().replace("__BRAND__", BRAND).replace("__GH__", GH).replace("__HOME__", home).replace("__ROOT__", root)
+    body = (t / template).read_text().replace("__NAV__", gnav(home, root)).replace("__BRAND__", BRAND).replace("__GH__", GH).replace("__HOME__", home).replace("__ROOT__", root)
     if lang == "zh":
         body = apply_zh_template(body)
         payload = dict(payload, lang="zh", i18n=T)
@@ -970,7 +979,7 @@ def render_body(template, payload, root, home, shared=False, lang="en"):
 def full_doc(head, body, lang="en"):
     css = (ROOT / "templates" / "style.css").read_text()
     l = "zh-CN" if lang == "zh" else "en"
-    return f'<!doctype html>\n<html lang="{l}">\n<head>\n{head}<style>\n{css}</style>\n</head>\n<body>\n{body}\n</body>\n</html>\n'
+    return f'<!doctype html>\n<html lang="{l}">\n<head>\n{head}<style>\n{css}</style>\n</head>\n<body>\n{body}\n<script>\n{CHROME_JS}</script>\n</body>\n</html>\n'
 
 
 ASSET_V = "0"
@@ -1173,10 +1182,9 @@ def build_pages(lanes, events, models, today, mode, lang="en"):
         pages["__base__"] = base
         mtitle, mdesc = seo_methodology()
         method_body = zh_methodology() if zh else (ROOT / "METHOD.md").read_text()
-        topbar = ('<div class="topbar"><div class="in">' + BRAND.replace("__HOME__", RT.rstrip("/") or "/") + '<nav aria-label="Site">'
-                  + "".join(f'<a href="{RT}{a}">{tr(t)}</a>' for a, t in
-                             (("#h-models", "Models"), ("#h-channels", "Channels"), ("offers", "Offers"), ("lanes", "Lanes"), ("timeline", "Timeline")))
-                  + '</nav>' + GH + '</div></div>')
+        topbar = ('<div class="topbar"><div class="in">' + BRAND.replace("__HOME__", RT.rstrip("/") or "/") + gnav(RT.rstrip("/") or "/", RT) + GH + '</div></div>')
+        if zh:
+            topbar = apply_zh_template(topbar)
         back = f'<nav class="back"><a href="{RT}">{tr("← Overview")}</a></nav>'
         # the same figures row as the home stamp (metaStrip), built here because this page carries no JS
         mfig = lambda n, label: f"<span><b>{n}</b>{label}</span>"
@@ -1938,7 +1946,7 @@ def build_blog(lanes, events, models, today, mode, lang="en"):
                           f' <a class="src-back" href="#cite-{i + 1}" aria-label="{tr("Back to text")}">↩</a></li>' for i, c in enumerate(cites))
         byline = byline_html(meta, body_md, RT)
         t = (ROOT / "templates" / "article.html").read_text()
-        t = t.replace("__BRAND__", BRAND).replace("__GH__", GH).replace("__HOME__", RT).replace("__ROOT__", RT)
+        t = t.replace("__NAV__", gnav(RT, RT)).replace("__BRAND__", BRAND).replace("__GH__", GH).replace("__HOME__", RT).replace("__ROOT__", RT)
         if zh:
             t = apply_zh_template(t)
         body = (t.replace("__SECTION__", esc_section(meta.get("section", ""))).replace("__STATUS__", esc_status(meta.get("status", "")))
@@ -2159,7 +2167,7 @@ def post_card(slug_, m, body_md, U, show_section=True):
 def full_blog_shell(title, inner, root, lang, intro="", raw_intro=False):
     """Blog index, tag and about pages: own template (no article slots left empty)."""
     t = (ROOT / "templates" / "blog.html").read_text()
-    t = t.replace("__BRAND__", BRAND).replace("__GH__", GH).replace("__HOME__", root + "/").replace("__ROOT__", root + "/")
+    t = t.replace("__NAV__", gnav(root + "/", root + "/")).replace("__BRAND__", BRAND).replace("__GH__", GH).replace("__HOME__", root + "/").replace("__ROOT__", root + "/")
     if lang == "zh":
         t = apply_zh_template(t)
     intro_html = (f'<p class="standfirst">{intro if raw_intro else html.escape(intro)}</p>' if intro else "")
@@ -2453,7 +2461,7 @@ def main():
             for path, (h, b) in list(store.items()):
                 m = re.fullmatch(r"(zh/)?models/([a-z0-9.-]+)\.html", path)
                 c = re.fullmatch(r"(zh/)?channels/([a-z0-9-]+)\.html", path)
-                card = ""
+                card, sub_link = "", ""
                 if m:
                     arts = related.get(("model", m.group(2)), [])[:3]
                 elif c:
@@ -2463,8 +2471,9 @@ def main():
                 if arts:
                     items = "".join(f'<li><a href="{u}">{html.escape(t)}</a></li>' for t, u, _ in arts)
                     h2 = "相关文章" if path.startswith("zh/") else "Related articles"
-                    card = f'<section class="related"><h2>{h2}</h2><ul>{items}</ul></section>'
-                store[path] = (h, b.replace("<!--RELATED-->", card))
+                    card = f'<section class="related" id="related"><h2>{h2}</h2><ul>{items}</ul></section>'
+                    sub_link = f'<a href="#related">{h2}</a>'
+                store[path] = (h, b.replace("<!--RELATED-->", card).replace("<!--SUBREL-->", sub_link))
         # topbar Blog entry (shared builds only; preview keeps dev links; skipped when zero published)
         topbar_targets = ((site, "en"), (site_zh, "zh")) if has_blog else ()
         for store, lang in topbar_targets:

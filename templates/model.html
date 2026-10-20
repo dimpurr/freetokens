@@ -1,18 +1,18 @@
 <div class="topbar"><div class="in">
   __BRAND__
-  <nav aria-label="Sections"><a href="__HOME__#h-models">All models</a><a href="#h-now">Where it's free</a><a href="#h-chart">Free periods</a><a href="#events">What happened</a><a href="#h-details">Details</a></nav>
+  __NAV__
   __GH__
 </div></div>
 
 <div class="wrap">
-  <nav class="back"><a href="__HOME__#h-models">← All models</a></nav>
+  <nav class="back subnav" aria-label="Sections"><a href="__HOME__#h-models">← All models</a><a href="#h-now">Where it's free</a><a href="#h-chart">Free periods</a><a href="#events">What happened</a><a href="#h-details">Details</a><!--SUBREL--></nav>
 
   <header class="mhead" id="mhead"></header>
   <!--RELATED-->
 
   <section aria-labelledby="h-now">
     <h2 id="h-now">Where it's free now <small id="now-sub"></small></h2>
-    <div class="chcards" id="now"></div>
+    <div class="chcards chcards-now" id="now"></div>
   </section>
 
   <section aria-labelledby="h-also" id="also-sec" hidden>
@@ -28,7 +28,7 @@
 
   <section aria-labelledby="events">
     <h2 id="events">What happened <small>newest first · times link to the source</small></h2>
-    <div class="tl" id="tl"></div>
+    <div class="tl flat" id="tl"></div>
   </section>
 
   <section aria-labelledby="h-details">
@@ -84,9 +84,9 @@ const ML = lanesOf(M.id);
   }).join("");
 })();
 
-renderChart($("chart"), ML, true);
+renderChart($("chart"), ML, true, true);
 $("chartkey").innerHTML = chartKey;
-$("tl").innerHTML = timelineHTML(eventsOf(M.id));
+$("tl").innerHTML = timelineHTML(eventsOf(M.id), true);
 
 /* channel details */
 mountViewSwitch();

@@ -1,6 +1,6 @@
 <div class="topbar"><div class="in">
   __BRAND__
-  <nav aria-label="Site"><a href="#h-models">Models</a><a href="#h-channels">Channels</a><a href="__ROOT__offers">Offers</a><a href="__ROOT__lanes">Lanes</a><a href="__ROOT__timeline">Timeline</a></nav>
+  __NAV__
   __GH__
 </div></div>
 
@@ -27,7 +27,7 @@
   <section aria-labelledby="h-models">
     <h2 id="h-models">Models <small>ranked by AA index, or our estimate (EST) where AA has none · <a id="mk-browse" href="#">browse by maker →</a></small></h2>
     <div class="tbl-scroll"><table class="models collapsed cardify" id="models-t"><thead><tr>
-      <th title="Rank among scored models; a range where an estimate's band overlaps">Model</th><th>AA index</th><th>Free on</th><th>Context</th><th>Images</th><th>Events</th>
+      <th title="Rank among scored models; a range where an estimate's band overlaps">Model</th><th>AA index</th><th>Free on</th><th class="fold">Context</th><th class="fold">Images</th><th class="fold">Events</th>
     </tr></thead><tbody id="models"></tbody></table></div>
     <div class="more-row" id="models-more"></div>
   </section>
@@ -278,7 +278,6 @@ mountChart(30);
 
 $("tl").innerHTML = timelineHTML([...D.events].sort((a, b) => pd(b.date).t - pd(a.date).t).slice(0, 6));
 document.querySelectorAll("a.seeall").forEach((a) => { const h = a.getAttribute("href"); if (!/^(https?:|#)/.test(h) && !h.includes(D.ext || "\u0000")) a.setAttribute("href", h.replace(/^([^#?]*)/, "$1" + D.ext)); });
-document.querySelectorAll('.topbar nav a[href$="lanes"], .topbar nav a[href$="timeline"], .topbar nav a[href$="offers"]').forEach((a) => a.setAttribute("href", a.getAttribute("href") + D.ext));
 /* old one-page anchors now live on their own pages */
 { const go = { "#h-lanes": "lanes", "#h-chart-all": "lanes#h-chart", "#h-legend": "lanes#h-legend", "#h-tl": "timeline" }[location.hash];
   if (go) location.replace(D.root + go.replace(/^([^#]*)/, "$1" + D.ext)); }

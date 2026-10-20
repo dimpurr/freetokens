@@ -3,6 +3,7 @@ const V = D.vocab;
 const ZH = D.lang === "zh";
 /* UI strings (i18n/zh.json): zh pages carry D.i18n, English pages fall back to the source literal (byte-identical) */
 const T = D.i18n || {};
+document.querySelectorAll("a[data-ext]").forEach((a) => a.setAttribute("href", a.getAttribute("href") + D.ext));
 const Tx = (k, fb) => (T[k] !== undefined ? T[k] : fb);
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -242,14 +243,21 @@ function setView(v) {
   const u = new URL(location.href); v === "all" ? u.searchParams.delete("use") : u.searchParams.set("use", v); history.replaceState(null, "", u);
   viewHooks.forEach((fn) => fn());
   drawViewSwitch();
+  if (window.fitTopbar) window.fitTopbar();
   const live = document.getElementById("view-live");
   if (live) live.textContent = ZH ? `当前显示${D.lanes.filter(usable).length}条线路${v === "all" ? "" : byV(v)}` : `Showing ${D.lanes.filter(usable).length} lanes${v === "all" ? "" : " usable by " + v}`;
 }
 function drawViewSwitch() {
   const el = document.getElementById("viewsw"); if (!el) return;
-  el.innerHTML = `<span class="vs-lab">${Tx("View", "View")}</span><span role="radiogroup" aria-label="${Tx("Show lanes usable by", "Show lanes usable by")}">` + Object.entries(VIEWS).map(([k, o]) =>
-    `<button type="button" role="radio" data-view="${k}" aria-checked="${k === VIEW}" tabindex="${k === VIEW ? 0 : -1}" title="${esc(o.long)}">${o.label}<small>${D.lanes.filter((l) => usableFor(l, k)).length}</small></button>`).join("") +
-    `</span><a class="vs-help" href="${D.root}methodology${D.ext}#use-case-views" title="What these views mean">${I.help("What these views mean")}</a>`;
+  const count = Object.fromEntries(Object.keys(VIEWS).map((k) => [k, D.lanes.filter((l) => usableFor(l, k)).length]));
+  const seg = `<span class="vs-seg"><span class="vs-lab">${Tx("View", "View")}</span><span role="radiogroup" aria-label="${Tx("Show lanes usable by", "Show lanes usable by")}">` + Object.entries(VIEWS).map(([k, o]) =>
+    `<button type="button" role="radio" data-view="${k}" aria-checked="${k === VIEW}" tabindex="${k === VIEW ? 0 : -1}" title="${esc(o.long)}">${o.label}<small>${count[k]}</small></button>`).join("") + `</span></span>`;
+  /* under 1180px: one button shows the current view and its count; the menu lists the three with counts */
+  const cur = VIEWS[VIEW];
+  const compact = `<span class="vs-compact"><button type="button" class="vs-btn" aria-haspopup="menu" aria-expanded="false" aria-controls="vs-menu" title="${esc(cur.long)}"><span class="vs-lab">${Tx("View", "View")}</span>${cur.label}<small>${count[VIEW]}</small><span class="caret" aria-hidden="true">▾</span></button>` +
+    `<span class="vs-menu" id="vs-menu" role="menu" aria-label="${esc(Tx("Show lanes usable by", "Show lanes usable by"))}" hidden>` + Object.entries(VIEWS).map(([k, o]) =>
+      `<button type="button" role="menuitemradio" data-view="${k}" aria-checked="${k === VIEW}" title="${esc(o.long)}">${o.label}<small>${count[k]}</small></button>`).join("") + `</span></span>`;
+  el.innerHTML = seg + compact + `<a class="vs-help" href="${D.root}methodology${D.ext}#use-case-views" title="What these views mean">${I.help("What these views mean")}</a>`;
 }
 function mountViewSwitch() {
   /* prerendered pages already contain the switch: reuse it, but always attach the handlers */
@@ -257,11 +265,27 @@ function mountViewSwitch() {
   let el = document.getElementById("viewsw");
   if (!el) { el = document.createElement("div"); el.id = "viewsw"; el.className = "viewsw"; bar.insertBefore(el, bar.querySelector(".gh")); }
   if (!document.getElementById("view-live")) { const live = document.createElement("div"); live.id = "view-live"; live.className = "sr-only"; live.setAttribute("aria-live", "polite"); document.body.appendChild(live); }
-  el.addEventListener("click", (ev) => { const b = ev.target.closest("[data-view]"); if (b) setView(b.dataset.view); });
+  const trigger = () => el.querySelector(".vs-btn"), menu = () => el.querySelector(".vs-menu");
+  const menuOpen = (open) => { const b = trigger(), m = menu(); if (!b || !m) return; b.setAttribute("aria-expanded", String(open)); m.hidden = !open; };
+  el.addEventListener("click", (ev) => {
+    const item = ev.target.closest("[data-view]");
+    if (item) { const fromMenu = !!item.closest(".vs-menu"); setView(item.dataset.view); if (fromMenu) { menuOpen(false); trigger() && trigger().focus(); } return; }
+    if (ev.target.closest(".vs-btn")) { const open = trigger().getAttribute("aria-expanded") !== "true"; menuOpen(open); if (open) (menu().querySelector('[aria-checked="true"]') || menu().querySelector("button")).focus(); }
+  });
+  document.addEventListener("click", (ev) => { if (!el.contains(ev.target)) menuOpen(false); });
   el.addEventListener("keydown", (ev) => {
-    if (!["ArrowLeft", "ArrowRight"].includes(ev.key)) return;
+    const m = menu();
+    if (m && !m.hidden) {
+      const items = [...m.querySelectorAll("[role=menuitemradio]")], i = items.indexOf(document.activeElement);
+      if (ev.key === "Escape") { menuOpen(false); trigger().focus(); ev.preventDefault(); }
+      else if (ev.key === "ArrowDown" || ev.key === "ArrowUp") { items[(i + (ev.key === "ArrowDown" ? 1 : items.length - 1) + items.length) % items.length].focus(); ev.preventDefault(); }
+      else if (ev.key === "Tab") menuOpen(false);
+      return;
+    }
+    if (ev.target === trigger() && (ev.key === "ArrowDown" || ev.key === "ArrowUp")) { menuOpen(true); (menu().querySelector('[aria-checked="true"]') || menu().querySelector("button")).focus(); ev.preventDefault(); return; }
+    if (!["ArrowLeft", "ArrowRight"].includes(ev.key) || !ev.target.closest(".vs-seg")) return;
     const ks = Object.keys(VIEWS), i = ks.indexOf(VIEW), n = ks[(i + (ev.key === "ArrowRight" ? 1 : ks.length - 1)) % ks.length];
-    setView(n); el.querySelector(`[data-view="${n}"]`).focus(); ev.preventDefault();
+    setView(n); el.querySelector(`.vs-seg [data-view="${n}"]`).focus(); ev.preventDefault();
   });
   drawViewSwitch();
 }
@@ -493,9 +517,6 @@ function timelineHTML(evs, flat = false) {
   return out || `<p class="muted" style="padding:12px 16px;margin:0">${Tx("No events recorded.", "No events recorded.")}</p>`;
 }
 
-/* top bar: the section menu is marked .more while it overflows, so the right-edge fade shows only when links are cut */
-const fitTopNav = () => document.querySelectorAll(".topbar.long nav").forEach((n) => n.classList.toggle("more", n.scrollWidth > n.clientWidth + 1));
-addEventListener("resize", fitTopNav); addEventListener("load", fitTopNav); if (document.fonts) document.fonts.ready.then(fitTopNav); fitTopNav();
 
 /* ---------- copy buttons ---------- */
 document.addEventListener("click", (ev) => {
@@ -598,13 +619,15 @@ function modelRow(m, i, off, TOP = 10) {
     const foldLabel = rest.length ? `+${nFold} ${Tx("other", "other")}` : `+${nFold} ${Tx("ended", "ended")}`;
     const regionOnly = r && ok.some(isFree) && !ok.some((l) => isFree(l) && worldwide(l));
     const aaDate = m.aa_index.value != null && m.aa_index.date ? `<span class="aad">${esc(shortDate(m.aa_index.date))}</span>` : "";
+    const sep = ` <span class="muted">·</span> `, ctxShort = c ? `<b class="mono">${esc(c[1])}</b>` : `<span>${esc(m.context.split(" (")[0])}</span>`;
+    const foldMeta = [ctxShort, img, n ? `<a href="${modelHref(m.id)}#events">${n} ${ZH ? "个事件" : `event${n === 1 ? "" : "s"}`}</a>` : `<span class="muted">${Tx("none", "none")}</span>`].join(sep);
     return `<tr class="${i >= TOP ? "more" : ""}${off ? " offrow" : ""}">
-      <td><span class="ent"><span class="rk${r && r.est ? " est" : ""}"${r ? ` title="${esc(rankText(m))}"` : ""}>${r ? esc(rankLabel(r)) : ""}</span>${modelTile(m)}<span><span class="name">${mlink(m.id)}</span><span class="sub">${mklink(m.maker)}${regionOnly ? " " + regionTag(ok.find(isFree)) : ""}</span></span></span></td>
+      <td><span class="ent"><span class="rk${r && r.est ? " est" : ""}"${r ? ` title="${esc(rankText(m))}"` : ""}>${r ? esc(rankLabel(r)) : ""}</span>${modelTile(m)}<span><span class="name">${mlink(m.id)}</span><span class="sub">${mklink(m.maker)}${regionOnly ? " " + regionTag(ok.find(isFree)) : ""}</span><span class="sub fold-meta">${foldMeta}</span></span></span></td>
       <td class="nowrap" data-label="${Tx("AA index", "AA index")}"><span class="aacell">${aaHTML(m)}${scoreBar(m)}${aaDate}</span>${m.aa_index.value != null ? "" : aaSource(m)}</td>
       <td data-label="${Tx("Free on", "Free on")}"><div class="chips">${shown.map(channelChip).join("")}${offersFor(m.id).filter((o) => offerUsable(o)).map((o) => `<a class="chip offerchip" href="${offerHref(o.id)}" title="${esc(o.name + ": " + o.gets.text + " " + lab("per", o.gets.per) + (ZH ? "（与其他模型共用的额度）" : " (an allowance shared with other models)"))}">via ${esc(o.channel || o.provider)}</a>`).join("")}${folded}${nFold ? `<button type="button" class="morechips" aria-expanded="false" data-label="${esc(foldLabel)}">${esc(foldLabel)}</button>` : ""}</div></td>
-      <td class="m-hide" data-label="${Tx("Context", "Context")}">${ctx}</td>
-      <td class="nowrap m-hide" data-label="${Tx("Images", "Images")}">${img}</td>
-      <td class="nowrap m-hide" data-label="${Tx("Events", "Events")}">${n ? `<a href="${modelHref(m.id)}#events">${n} ${ZH ? "个事件" : `event${n === 1 ? "" : "s"}`}</a>` : `<span class="muted">${Tx("none", "none")}</span>`}</td>
+      <td class="m-hide fold" data-label="${Tx("Context", "Context")}">${ctx}</td>
+      <td class="nowrap m-hide fold" data-label="${Tx("Images", "Images")}">${img}</td>
+      <td class="nowrap m-hide fold" data-label="${Tx("Events", "Events")}">${n ? `<a href="${modelHref(m.id)}#events">${n} ${ZH ? "个事件" : `event${n === 1 ? "" : "s"}`}</a>` : `<span class="muted">${Tx("none", "none")}</span>`}</td>
     </tr>`;
   }
 

@@ -1,25 +1,25 @@
-<div class="topbar long"><div class="in">
+<div class="topbar"><div class="in">
   __BRAND__
-  <nav aria-label="Sections"><a href="__ROOT__makers" data-ext>Makers</a><a href="#h-models">Models</a><a href="#h-where">Where free</a><a href="#h-chart">Free periods</a><a href="#events">Events</a></nav>
+  __NAV__
   __GH__
 </div></div>
 
 <div class="wrap">
-  <nav class="back"><a href="__ROOT__makers" data-ext>← All makers</a></nav>
+  <nav class="back subnav" aria-label="Sections"><a href="__ROOT__makers" data-ext>← All makers</a><a href="#h-models">Models</a><a href="#h-where">Where free</a><a href="#h-chart">Free periods</a><a href="#events">What happened</a></nav>
 
   <header class="mhead" id="kh"></header>
 
   <section aria-labelledby="h-models">
     <h2 id="h-models">Models <small id="models-sub"></small></h2>
     <div class="tbl-scroll"><table class="models cardify" id="models-t"><thead><tr>
-      <th title="Rank among scored models; a range where an estimate's band overlaps">Model</th><th>AA index</th><th>Free on</th><th>Context</th><th>Images</th><th>Events</th>
+      <th title="Rank among scored models; a range where an estimate's band overlaps">Model</th><th>AA index</th><th>Free on</th><th class="fold">Context</th><th class="fold">Images</th><th class="fold">Events</th>
     </tr></thead><tbody id="models"></tbody></table></div>
   </section>
 
   <section aria-labelledby="h-suspect" id="suspect-sec" class="hide-empty" hidden>
     <h2 id="h-suspect">Possibly theirs <small>stealth models attributed by the community · unconfirmed</small></h2>
     <div class="tbl-scroll"><table class="models cardify"><thead><tr>
-      <th title="Rank among scored models; a range where an estimate's band overlaps">Model</th><th>AA index</th><th>Free on</th><th>Context</th><th>Images</th><th>Events</th>
+      <th title="Rank among scored models; a range where an estimate's band overlaps">Model</th><th>AA index</th><th>Free on</th><th class="fold">Context</th><th class="fold">Images</th><th class="fold">Events</th>
     </tr></thead><tbody id="suspect"></tbody></table></div>
   </section>
 
@@ -46,7 +46,6 @@
 /*__COMMON__*/
 
 mountViewSwitch();
-document.querySelectorAll("a[data-ext]").forEach((a) => a.setAttribute("href", a.getAttribute("href") + D.ext));
 const K = MK[D.maker];
 const KM = D.models.filter((m) => m.maker === K.id);
 const KS = D.models.filter((m) => m.suspected_maker && m.suspected_maker.maker === K.id);

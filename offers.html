@@ -85,7 +85,7 @@ if (!navigator.webdriver) { (function () { var sent = false, go = function () { 
   color-scheme: dark; }
 
 * { box-sizing: border-box; }
-html { scroll-padding-top: 72px; }
+html { scroll-padding-top: calc(var(--topbar-h, 56px) + var(--subnav-h, 0px) + 16px); }
 body { background: var(--bg); color: var(--fg); font: 15px/1.5 var(--f-body); margin: 0; -webkit-font-smoothing: antialiased; }
 /* minmax(0,1fr) stops wide children (chart, tables) from widening the page on phones */
 .wrap { max-width: 1200px; margin: 0 auto; padding-inline: 20px; padding-block: 22px 64px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 36px; }
@@ -126,23 +126,31 @@ td .ent .lgt { margin-top: -4px; }
 td .ent .rk { padding-top: 1px; }
 .ent > span:last-child { min-width: 0; }
 
-/* top bar: one row at every width. Desktop: brand · section menu · view switch · GitHub. Phone: the menu scrolls sideways between them. */
+/* top bar: the same on every page. Brand · global nav · More (only while links do not fit) · view filter · Contribute.
+   641-1179px: the view filter folds into one button and Contribute shows its icon. Phone (640px and under): brand, More and
+   Contribute on row one, the nav on row two, the view filter on row three. chrome.js measures the nav; no link is cut off. */
 .topbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--surface) 88%, transparent); -webkit-backdrop-filter: saturate(180%) blur(14px); backdrop-filter: saturate(180%) blur(14px); box-shadow: 0 1px 0 var(--line); }
 .topbar .in { max-width: 1200px; margin: 0 auto; padding: 0 20px; height: 56px; display: flex; gap: 14px; align-items: center; }
 .topbar .brand { font: 700 1.08rem var(--f-display); letter-spacing: -0.02em; color: var(--fg); text-decoration: none; white-space: nowrap; display: inline-flex; align-items: center; gap: 9px; }
 .topbar .brand .ico { width: 26px; height: 26px; padding: 5px; border-radius: 7px; color: #fff; background: var(--measured); stroke-width: 2.4; }
-.topbar nav { flex: 1; min-width: 0; display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); padding-right: 24px; }
-.topbar nav::-webkit-scrollbar { display: none; }
-.topbar nav a { font: 500 0.86rem var(--f-body); color: var(--muted); text-decoration: none; padding: 6px 10px; border-radius: var(--r-s); white-space: nowrap; }
-.topbar nav a:hover { color: var(--fg); background: var(--surface-2); }
+.topbar .in > nav { flex: 1; min-width: 0; display: flex; align-items: center; gap: 2px; justify-content: safe center; overflow: hidden; }
+.topbar .in > nav a { flex: none; font: 500 0.86rem var(--f-body); color: var(--muted); text-decoration: none; padding: 6px 10px; border-radius: var(--r-s); white-space: nowrap; }
+.topbar .in > nav a:hover { color: var(--fg); background: var(--surface-2); }
+.topbar [hidden] { display: none !important; }
 .topbar .gh { flex: none; display: inline-flex; align-items: center; gap: 6px; font: 600 0.8rem var(--f-body); color: var(--bg); background: var(--fg); text-decoration: none; border-radius: 8px; padding: 6px 12px; }
 .topbar .gh:hover { opacity: 0.88; }
 .topbar .gh svg { width: 15px; height: 15px; }
-@media (min-width: 900px) { .topbar nav { justify-content: safe center; -webkit-mask-image: none; mask-image: none; padding-right: 0; } }
-/* long section menus (channel, maker, offer pages): start at the left edge when they overflow (centred, the first links would be cut off and unreachable); scroll sideways only when they overflow (common.js sets .more); the fade says so at every width */
-.topbar.long nav { justify-content: safe center; }
-.topbar.long nav.more { -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); padding-right: 24px; }
-@media (max-width: 640px) { .topbar .gh span { display: none; } .topbar .gh { padding: 7px; } }
+/* More: the links that do not fit the bar (chrome.js) */
+.gmore { position: relative; flex: none; }
+.gmore-btn { font: 500 0.86rem var(--f-body); color: var(--muted); background: none; border: 0; border-radius: var(--r-s); padding: 6px 10px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; }
+.gmore-btn:hover, .gmore-btn[aria-expanded="true"] { color: var(--fg); background: var(--surface-2); }
+.gmore-btn .caret { font-size: 0.72em; }
+.gmore-menu { position: absolute; top: calc(100% + 6px); right: 0; z-index: 30; min-width: 170px; display: grid; gap: 2px; padding: 6px; background: var(--surface); border-radius: var(--r); box-shadow: var(--ring-hover), 0 12px 32px rgba(15, 23, 41, 0.14); }
+.gmore-menu a { font: 500 0.9rem var(--f-body); color: var(--fg); text-decoration: none; padding: 7px 10px; border-radius: var(--r-s); white-space: nowrap; }
+.gmore-menu a:hover, .gmore-menu a:focus-visible { background: var(--surface-2); }
+@media (max-width: 1179px) { .topbar .gh { padding: 7px 9px; } .topbar .gh span { display: none; } }
+@media (max-width: 640px) { .topbar .gh { padding: 7px; } }
+
 
 header.intro { display: grid; gap: 10px; }
 header.intro p { margin: 0; max-width: 72ch; color: var(--muted); font-size: 1.02rem; line-height: 1.55; }
@@ -389,10 +397,10 @@ a.ev:hover::before, a.ev:focus-visible::before { background: var(--accent); bord
 
 /* timeline: grouped by day */
 .tl { display: grid; }
-.tl .day { position: sticky; top: 57px; z-index: 3; background: var(--surface-2); border-top: 1px solid var(--line); padding: 7px 18px; font: 600 0.78rem var(--f-body); display: flex; gap: 10px; align-items: baseline; }
+.tl .day { position: sticky; top: calc(var(--topbar-h, 56px) + var(--subnav-h, 0px) + 1px); z-index: 3; background: var(--surface-2); border-top: 1px solid var(--line); padding: 7px 18px; font: 600 0.78rem var(--f-body); display: flex; gap: 10px; align-items: baseline; }
 .tl .day:first-child { border-top: 0; border-radius: var(--r) var(--r) 0 0; }
 .tl .day span { font-weight: 500; color: var(--muted); }
-.tl .it { display: grid; grid-template-columns: 74px minmax(0, 1fr); gap: 2px 14px; padding: 12px 18px; border-top: 1px solid var(--line); scroll-margin-top: 96px; }
+.tl .it { display: grid; grid-template-columns: 74px minmax(0, 1fr); gap: 2px 14px; padding: 12px 18px; border-top: 1px solid var(--line); scroll-margin-top: calc(var(--topbar-h, 56px) + var(--subnav-h, 0px) + 16px); }
 .tl .day + .it { border-top: 0; }
 /* flat timelines (class flat: timeline, channel, maker, offer pages): no time column; a minute time sits in the header row */
 .tl.flat .it { grid-template-columns: minmax(0, 1fr); }
@@ -414,6 +422,15 @@ a.ev:hover::before, a.ev:focus-visible::before { background: var(--accent); bord
 .back { font-size: 0.85rem; }
 .back a { color: var(--muted); text-decoration: none; }
 .back a:hover { color: var(--accent); }
+/* detail pages: one row under the top bar (back link, then the page's sections). It sticks under the bar and scrolls
+   sideways with a right-edge fade when it is wider than the screen. Same height as the old back-link row. */
+.subnav { position: sticky; top: var(--topbar-h, 56px); z-index: 19; margin-inline: -20px; padding-inline: 20px; background: var(--bg); display: flex; align-items: center; white-space: nowrap; overflow-x: auto; scrollbar-width: none; }
+.subnav::-webkit-scrollbar { display: none; }
+.subnav a { flex: none; color: var(--muted); text-decoration: none; }
+.subnav a:hover { color: var(--accent); }
+.subnav a + a::before { content: "·"; color: var(--faint); margin: 0 0.55em; }
+.subnav.more { -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent); mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent); }
+@media (max-width: 640px) { .subnav { margin-inline: -16px; padding-inline: 16px; } }
 .mhead { display: grid; gap: 18px; }
 .mhead .id-row { display: flex; align-items: center; gap: 16px; }
 .mhead .id-row > div { display: grid; gap: 4px; min-width: 0; }
@@ -428,7 +445,7 @@ a.ev:hover::before, a.ev:focus-visible::before { background: var(--accent); bord
 .stats.fit3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .stats.fit4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .stats.fit5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
-@media (max-width: 899px) { .stats.fit4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } .stats.fit5 { grid-template-columns: repeat(3, minmax(0, 1fr)); } .stats.fit5 > :last-child { grid-column: span 2; } }
+@media (max-width: 899px) { .stats.fit4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } .stats.fit5 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .stat.aa-stat { grid-column: span 2; }
 /* offer pages: three facts, one row (the gets text and the needs chips need the width a 5/6-slot grid would not leave); each card is as tall as its own text */
 .stats.o3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -501,7 +518,6 @@ footer { font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--li
   .stats, .stats:not(:has(.measured-stat)) { grid-template-columns: 1fr 1fr; gap: 8px; }
   .stats.o3 { grid-template-columns: 1fr; }
   .stats.fit3, .stats.fit4, .stats.fit5 { grid-template-columns: 1fr 1fr; gap: 8px; }
-  .stats.fit3 > :last-child, .stats.fit5 > :last-child { grid-column: 1 / -1; }
   .stamp { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 0; }
   .stamp > span { padding: 0 12px; }
   .stamp > span:nth-child(3n + 1) { padding-left: 0; border-left: 0; }
@@ -528,6 +544,18 @@ footer { font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--li
 .more-row:empty { display: none; }
 .more-row button { font: 600 0.85rem var(--f-body); color: var(--fg); background: var(--surface); border: 0; box-shadow: var(--ring); border-radius: 8px; padding: 7px 14px; cursor: pointer; }
 .more-row button:hover { box-shadow: var(--ring-hover); }
+/* the meta line under the model name carries Context, Images and Events; it shows only where those columns are folded (641-1099px) */
+.fold-meta { display: none; }
+@media (min-width: 641px) and (max-width: 1099px) {
+  table.models th.fold, table.models td.fold { display: none; }
+  table.models .fold-meta { display: block; margin-top: 3px; font-size: 0.78rem; color: var(--muted); }
+  table.models th, table.models td { padding-inline: 12px; }
+  table.models td:nth-child(1) { min-width: 240px; }
+  @media (min-width: 900px) { table.models td:nth-child(1) { min-width: 290px; } }
+  table.models td:nth-child(2) { white-space: normal; }
+  table.models td:nth-child(2) .aacell { flex-wrap: wrap; row-gap: 4px; }
+  table.models td:nth-child(3) { min-width: 150px; }
+}
 
 /* P6: below 640px the main tables reflow to cards (no sideways scrolling) */
 @media (max-width: 640px) {
@@ -605,6 +633,20 @@ td.cond .cost { margin-right: 4px; }
 .viewsw button[aria-checked="true"] { background: var(--surface); color: var(--fg); box-shadow: 0 1px 2px rgba(15, 23, 41, 0.12), 0 0 0 1px var(--line); }
 .viewsw button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
 .viewsw .vs-help { color: var(--muted); display: inline-flex; }
+.viewsw .vs-seg { display: inline-flex; align-items: center; gap: 8px; }
+/* under 1180px: one button with the current view and its count; the menu lists the three with counts (common.js) */
+.viewsw .vs-compact { position: relative; display: none; }
+.viewsw .vs-btn { font: 600 0.78rem var(--f-body); color: var(--fg); background: var(--surface); border: 0; box-shadow: var(--ring); border-radius: 8px; padding: 5px 10px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.viewsw .vs-btn:hover { box-shadow: var(--ring-hover); }
+.viewsw .vs-btn .vs-lab { font: 600 0.64rem var(--f-body); letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); }
+.viewsw .vs-btn small, .viewsw .vs-menu small { font: 500 0.68rem var(--f-mono); color: var(--muted); }
+.viewsw .vs-btn .caret { font-size: 0.7em; color: var(--muted); }
+.viewsw .vs-menu { position: absolute; top: calc(100% + 6px); right: 0; z-index: 30; min-width: 220px; display: grid; gap: 2px; padding: 6px; background: var(--surface); border-radius: var(--r); box-shadow: var(--ring-hover), 0 12px 32px rgba(15, 23, 41, 0.14); }
+.viewsw .vs-menu[hidden] { display: none; }
+.viewsw .vs-menu button { font: 500 0.88rem var(--f-body); color: var(--fg); background: none; border: 0; box-shadow: none; border-radius: var(--r-s); padding: 7px 10px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; text-align: left; white-space: nowrap; }
+.viewsw .vs-menu button:hover, .viewsw .vs-menu button:focus-visible { background: var(--surface-2); }
+.viewsw .vs-menu button[aria-checked="true"] { color: var(--accent); font-weight: 600; }
+@media (max-width: 1179px) { .viewsw .vs-seg { display: none; } .viewsw .vs-compact { display: inline-flex; } }
 .viewnote { font: 600 0.62rem var(--f-body); letter-spacing: 0.04em; text-transform: uppercase; color: var(--accent); margin-left: 6px; }
 .viewcount b { color: var(--accent); }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
@@ -621,8 +663,9 @@ tr.offrow td { opacity: 0.6; }
 .usemark.yes { color: var(--live); background: var(--live-soft); }
 .usemark.no { color: var(--muted); background: var(--off-soft); text-decoration: line-through; }
 .detail.off { opacity: 0.5; }
-@media (max-width: 860px) {
+@media (max-width: 640px) {
   .topbar .in { flex-wrap: wrap; height: auto; padding-top: 8px; padding-bottom: 8px; }
+  .topbar .in > nav { order: 2; flex-basis: 100%; justify-content: center; }
   .viewsw { order: 3; flex-basis: 100%; justify-content: center; }
 }
 
@@ -681,10 +724,7 @@ ol.rungs > li.muted::before { content: none; }
 .chip.more { color: var(--accent); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 35%, transparent); background: transparent; text-decoration: none; }
 .pagehead { display: grid; gap: 6px; }
 .pagehead p { margin: 0; color: var(--muted); max-width: 65ch; }
-@media (max-width: 640px) {
-  .topbar nav { order: 2; flex-basis: 100%; justify-content: center; -webkit-mask-image: none; mask-image: none; padding-right: 0; }
-  .topbar nav a { padding: 5px 8px; }
-}
+@media (max-width: 640px) { .topbar .in > nav a { padding: 5px 8px; } }
 
 /* structured "Tested by us" chips */
 .obs { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 4px; }
@@ -875,8 +915,8 @@ li:target { background: var(--accent-soft); border-radius: 4px; }
 <body>
 <div class="topbar"><div class="in">
   <a class="brand" href="index.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg><span class="word">freetokens</span></a>
-  <nav aria-label="Site"><a href="index.html#h-models">Models</a><a href="index.html#h-channels">Channels</a><a href="offers" data-ext>Offers</a><a href="lanes" data-ext>Lanes</a><a href="timeline" data-ext>Timeline</a></nav>
-  <a class="gh" href="https://github.com/dimpurr/freetokens" target="_blank" rel="noopener" title="Data and code on GitHub: corrections and new lanes welcome"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg><span>Contribute</span></a>
+  <nav aria-label="Site"><a href="index.html#h-models">Models</a><a href="index.html#h-channels">Channels</a><a href="offers" data-ext>Offers</a><a href="lanes" data-ext>Lanes</a><a href="timeline" data-ext>Timeline</a></nav><div class="gmore" hidden><button type="button" class="gmore-btn" aria-haspopup="true" aria-expanded="false">More<span class="caret" aria-hidden="true">▾</span></button><div class="gmore-menu" hidden></div></div>
+  <a class="gh" href="https://github.com/dimpurr/freetokens" target="_blank" rel="noopener" aria-label="Contribute" title="Data and code on GitHub: corrections and new lanes welcome"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg><span>Contribute</span></a>
 </div></div>
 
 <div class="wrap">
@@ -901,6 +941,7 @@ const V = D.vocab;
 const ZH = D.lang === "zh";
 /* UI strings (i18n/zh.json): zh pages carry D.i18n, English pages fall back to the source literal (byte-identical) */
 const T = D.i18n || {};
+document.querySelectorAll("a[data-ext]").forEach((a) => a.setAttribute("href", a.getAttribute("href") + D.ext));
 const Tx = (k, fb) => (T[k] !== undefined ? T[k] : fb);
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -1140,14 +1181,21 @@ function setView(v) {
   const u = new URL(location.href); v === "all" ? u.searchParams.delete("use") : u.searchParams.set("use", v); history.replaceState(null, "", u);
   viewHooks.forEach((fn) => fn());
   drawViewSwitch();
+  if (window.fitTopbar) window.fitTopbar();
   const live = document.getElementById("view-live");
   if (live) live.textContent = ZH ? `当前显示${D.lanes.filter(usable).length}条线路${v === "all" ? "" : byV(v)}` : `Showing ${D.lanes.filter(usable).length} lanes${v === "all" ? "" : " usable by " + v}`;
 }
 function drawViewSwitch() {
   const el = document.getElementById("viewsw"); if (!el) return;
-  el.innerHTML = `<span class="vs-lab">${Tx("View", "View")}</span><span role="radiogroup" aria-label="${Tx("Show lanes usable by", "Show lanes usable by")}">` + Object.entries(VIEWS).map(([k, o]) =>
-    `<button type="button" role="radio" data-view="${k}" aria-checked="${k === VIEW}" tabindex="${k === VIEW ? 0 : -1}" title="${esc(o.long)}">${o.label}<small>${D.lanes.filter((l) => usableFor(l, k)).length}</small></button>`).join("") +
-    `</span><a class="vs-help" href="${D.root}methodology${D.ext}#use-case-views" title="What these views mean">${I.help("What these views mean")}</a>`;
+  const count = Object.fromEntries(Object.keys(VIEWS).map((k) => [k, D.lanes.filter((l) => usableFor(l, k)).length]));
+  const seg = `<span class="vs-seg"><span class="vs-lab">${Tx("View", "View")}</span><span role="radiogroup" aria-label="${Tx("Show lanes usable by", "Show lanes usable by")}">` + Object.entries(VIEWS).map(([k, o]) =>
+    `<button type="button" role="radio" data-view="${k}" aria-checked="${k === VIEW}" tabindex="${k === VIEW ? 0 : -1}" title="${esc(o.long)}">${o.label}<small>${count[k]}</small></button>`).join("") + `</span></span>`;
+  /* under 1180px: one button shows the current view and its count; the menu lists the three with counts */
+  const cur = VIEWS[VIEW];
+  const compact = `<span class="vs-compact"><button type="button" class="vs-btn" aria-haspopup="menu" aria-expanded="false" aria-controls="vs-menu" title="${esc(cur.long)}"><span class="vs-lab">${Tx("View", "View")}</span>${cur.label}<small>${count[VIEW]}</small><span class="caret" aria-hidden="true">▾</span></button>` +
+    `<span class="vs-menu" id="vs-menu" role="menu" aria-label="${esc(Tx("Show lanes usable by", "Show lanes usable by"))}" hidden>` + Object.entries(VIEWS).map(([k, o]) =>
+      `<button type="button" role="menuitemradio" data-view="${k}" aria-checked="${k === VIEW}" title="${esc(o.long)}">${o.label}<small>${count[k]}</small></button>`).join("") + `</span></span>`;
+  el.innerHTML = seg + compact + `<a class="vs-help" href="${D.root}methodology${D.ext}#use-case-views" title="What these views mean">${I.help("What these views mean")}</a>`;
 }
 function mountViewSwitch() {
   /* prerendered pages already contain the switch: reuse it, but always attach the handlers */
@@ -1155,11 +1203,27 @@ function mountViewSwitch() {
   let el = document.getElementById("viewsw");
   if (!el) { el = document.createElement("div"); el.id = "viewsw"; el.className = "viewsw"; bar.insertBefore(el, bar.querySelector(".gh")); }
   if (!document.getElementById("view-live")) { const live = document.createElement("div"); live.id = "view-live"; live.className = "sr-only"; live.setAttribute("aria-live", "polite"); document.body.appendChild(live); }
-  el.addEventListener("click", (ev) => { const b = ev.target.closest("[data-view]"); if (b) setView(b.dataset.view); });
+  const trigger = () => el.querySelector(".vs-btn"), menu = () => el.querySelector(".vs-menu");
+  const menuOpen = (open) => { const b = trigger(), m = menu(); if (!b || !m) return; b.setAttribute("aria-expanded", String(open)); m.hidden = !open; };
+  el.addEventListener("click", (ev) => {
+    const item = ev.target.closest("[data-view]");
+    if (item) { const fromMenu = !!item.closest(".vs-menu"); setView(item.dataset.view); if (fromMenu) { menuOpen(false); trigger() && trigger().focus(); } return; }
+    if (ev.target.closest(".vs-btn")) { const open = trigger().getAttribute("aria-expanded") !== "true"; menuOpen(open); if (open) (menu().querySelector('[aria-checked="true"]') || menu().querySelector("button")).focus(); }
+  });
+  document.addEventListener("click", (ev) => { if (!el.contains(ev.target)) menuOpen(false); });
   el.addEventListener("keydown", (ev) => {
-    if (!["ArrowLeft", "ArrowRight"].includes(ev.key)) return;
+    const m = menu();
+    if (m && !m.hidden) {
+      const items = [...m.querySelectorAll("[role=menuitemradio]")], i = items.indexOf(document.activeElement);
+      if (ev.key === "Escape") { menuOpen(false); trigger().focus(); ev.preventDefault(); }
+      else if (ev.key === "ArrowDown" || ev.key === "ArrowUp") { items[(i + (ev.key === "ArrowDown" ? 1 : items.length - 1) + items.length) % items.length].focus(); ev.preventDefault(); }
+      else if (ev.key === "Tab") menuOpen(false);
+      return;
+    }
+    if (ev.target === trigger() && (ev.key === "ArrowDown" || ev.key === "ArrowUp")) { menuOpen(true); (menu().querySelector('[aria-checked="true"]') || menu().querySelector("button")).focus(); ev.preventDefault(); return; }
+    if (!["ArrowLeft", "ArrowRight"].includes(ev.key) || !ev.target.closest(".vs-seg")) return;
     const ks = Object.keys(VIEWS), i = ks.indexOf(VIEW), n = ks[(i + (ev.key === "ArrowRight" ? 1 : ks.length - 1)) % ks.length];
-    setView(n); el.querySelector(`[data-view="${n}"]`).focus(); ev.preventDefault();
+    setView(n); el.querySelector(`.vs-seg [data-view="${n}"]`).focus(); ev.preventDefault();
   });
   drawViewSwitch();
 }
@@ -1391,9 +1455,6 @@ function timelineHTML(evs, flat = false) {
   return out || `<p class="muted" style="padding:12px 16px;margin:0">${Tx("No events recorded.", "No events recorded.")}</p>`;
 }
 
-/* top bar: the section menu is marked .more while it overflows, so the right-edge fade shows only when links are cut */
-const fitTopNav = () => document.querySelectorAll(".topbar.long nav").forEach((n) => n.classList.toggle("more", n.scrollWidth > n.clientWidth + 1));
-addEventListener("resize", fitTopNav); addEventListener("load", fitTopNav); if (document.fonts) document.fonts.ready.then(fitTopNav); fitTopNav();
 
 /* ---------- copy buttons ---------- */
 document.addEventListener("click", (ev) => {
@@ -1496,13 +1557,15 @@ function modelRow(m, i, off, TOP = 10) {
     const foldLabel = rest.length ? `+${nFold} ${Tx("other", "other")}` : `+${nFold} ${Tx("ended", "ended")}`;
     const regionOnly = r && ok.some(isFree) && !ok.some((l) => isFree(l) && worldwide(l));
     const aaDate = m.aa_index.value != null && m.aa_index.date ? `<span class="aad">${esc(shortDate(m.aa_index.date))}</span>` : "";
+    const sep = ` <span class="muted">·</span> `, ctxShort = c ? `<b class="mono">${esc(c[1])}</b>` : `<span>${esc(m.context.split(" (")[0])}</span>`;
+    const foldMeta = [ctxShort, img, n ? `<a href="${modelHref(m.id)}#events">${n} ${ZH ? "个事件" : `event${n === 1 ? "" : "s"}`}</a>` : `<span class="muted">${Tx("none", "none")}</span>`].join(sep);
     return `<tr class="${i >= TOP ? "more" : ""}${off ? " offrow" : ""}">
-      <td><span class="ent"><span class="rk${r && r.est ? " est" : ""}"${r ? ` title="${esc(rankText(m))}"` : ""}>${r ? esc(rankLabel(r)) : ""}</span>${modelTile(m)}<span><span class="name">${mlink(m.id)}</span><span class="sub">${mklink(m.maker)}${regionOnly ? " " + regionTag(ok.find(isFree)) : ""}</span></span></span></td>
+      <td><span class="ent"><span class="rk${r && r.est ? " est" : ""}"${r ? ` title="${esc(rankText(m))}"` : ""}>${r ? esc(rankLabel(r)) : ""}</span>${modelTile(m)}<span><span class="name">${mlink(m.id)}</span><span class="sub">${mklink(m.maker)}${regionOnly ? " " + regionTag(ok.find(isFree)) : ""}</span><span class="sub fold-meta">${foldMeta}</span></span></span></td>
       <td class="nowrap" data-label="${Tx("AA index", "AA index")}"><span class="aacell">${aaHTML(m)}${scoreBar(m)}${aaDate}</span>${m.aa_index.value != null ? "" : aaSource(m)}</td>
       <td data-label="${Tx("Free on", "Free on")}"><div class="chips">${shown.map(channelChip).join("")}${offersFor(m.id).filter((o) => offerUsable(o)).map((o) => `<a class="chip offerchip" href="${offerHref(o.id)}" title="${esc(o.name + ": " + o.gets.text + " " + lab("per", o.gets.per) + (ZH ? "（与其他模型共用的额度）" : " (an allowance shared with other models)"))}">via ${esc(o.channel || o.provider)}</a>`).join("")}${folded}${nFold ? `<button type="button" class="morechips" aria-expanded="false" data-label="${esc(foldLabel)}">${esc(foldLabel)}</button>` : ""}</div></td>
-      <td class="m-hide" data-label="${Tx("Context", "Context")}">${ctx}</td>
-      <td class="nowrap m-hide" data-label="${Tx("Images", "Images")}">${img}</td>
-      <td class="nowrap m-hide" data-label="${Tx("Events", "Events")}">${n ? `<a href="${modelHref(m.id)}#events">${n} ${ZH ? "个事件" : `event${n === 1 ? "" : "s"}`}</a>` : `<span class="muted">${Tx("none", "none")}</span>`}</td>
+      <td class="m-hide fold" data-label="${Tx("Context", "Context")}">${ctx}</td>
+      <td class="nowrap m-hide fold" data-label="${Tx("Images", "Images")}">${img}</td>
+      <td class="nowrap m-hide fold" data-label="${Tx("Events", "Events")}">${n ? `<a href="${modelHref(m.id)}#events">${n} ${ZH ? "个事件" : `event${n === 1 ? "" : "s"}`}</a>` : `<span class="muted">${Tx("none", "none")}</span>`}</td>
     </tr>`;
   }
 
@@ -1526,7 +1589,6 @@ document.addEventListener("click", (ev) => {
 
 mountViewSwitch();
 onView(() => { $("stamp").innerHTML = metaStrip(); });
-document.querySelectorAll("a[data-ext]").forEach((a) => a.setAttribute("href", a.getAttribute("href") + D.ext));
 (function () {
   const F = { type: null, nocard: false, nophone: false, nostudent: false, api: false, world: false };
   const tests = {
@@ -1568,5 +1630,89 @@ document.querySelectorAll("a[data-ext]").forEach((a) => a.setAttribute("href", a
 })();
 </script>
 
+<script>
+/* page chrome, inline on every page (build.py full_doc), after the page script: the top bar's More menu, the section row
+   under the top bar (detail pages), and stats grids whose last row is short. Pages with common.js call window.fitTopbar
+   after a view change. Nothing here reads the data. */
+(() => {
+  const root = document.documentElement.style;
+  const bar = document.querySelector(".topbar .in");
+  const nav = bar && bar.querySelector(":scope > nav");
+  const more = bar && bar.querySelector(":scope > .gmore");
+  const btn = more && more.querySelector(".gmore-btn");
+  const menu = more && more.querySelector(".gmore-menu");
+  const gap = (el) => parseFloat(getComputedStyle(el).columnGap) || 0;
+  const setOpen = (open) => { btn.setAttribute("aria-expanded", String(open)); menu.hidden = !open; };
+
+  /* links that do not fit the bar move into More; a link is never shown cut off */
+  function fitNav() {
+    if (!nav) return;
+    const links = [...nav.children];
+    more.hidden = true;
+    links.forEach((a) => (a.hidden = false));
+    const g = gap(nav), w = (a) => a.getBoundingClientRect().width;
+    const total = links.reduce((s, a) => s + w(a), 0) + g * (links.length - 1);
+    let hidden = [];
+    if (total > nav.clientWidth + 0.5) {
+      more.hidden = false;
+      const avail = nav.clientWidth;
+      let used = 0, k = 0;
+      for (; k < links.length; k++) { const x = w(links[k]) + (k ? g : 0); if (used + x > avail) break; used += x; }
+      links.forEach((a, i) => (a.hidden = i >= k));
+      hidden = links.slice(k);
+    }
+    menu.replaceChildren(...hidden.map((a) => { const c = a.cloneNode(true); c.hidden = false; return c; }));
+    if (!hidden.length) setOpen(false);
+  }
+
+  /* the bar's height and the section row's height set the sticky offsets and the anchor offset (style.css) */
+  function syncBars() {
+    const t = document.querySelector(".topbar"), s = document.querySelector(".subnav");
+    if (t) root.setProperty("--topbar-h", t.offsetHeight + "px");
+    root.setProperty("--subnav-h", (s ? s.offsetHeight : 0) + "px");
+    if (s) s.classList.toggle("more", s.scrollWidth > s.clientWidth + 1);
+  }
+
+  /* stats grids: when the last row is short, its last cell takes the free columns, so there is no empty slot */
+  function fitStats() {
+    document.querySelectorAll(".stats").forEach((g) => {
+      const kids = [...g.children].filter((c) => getComputedStyle(c).display !== "none");
+      kids.forEach((c) => (c.style.gridColumn = ""));
+      const cols = getComputedStyle(g).gridTemplateColumns.split(" ").filter(Boolean).length;
+      if (!kids.length || !cols) return;
+      const gg = gap(g), cw = (g.clientWidth - gg * (cols - 1)) / cols;
+      const top = (c) => Math.round(c.getBoundingClientRect().top);
+      const lastTop = Math.max(...kids.map(top));
+      const row = kids.filter((c) => top(c) === lastTop);
+      const span = (c) => Math.max(1, Math.round((c.getBoundingClientRect().width + gg) / (cw + gg)));
+      const used = row.reduce((s, c) => s + span(c), 0);
+      if (used < cols) row[row.length - 1].style.gridColumn = `span ${span(row[row.length - 1]) + cols - used}`;
+    });
+  }
+
+  function fitTopbar() { fitNav(); syncBars(); fitStats(); }
+  window.fitTopbar = fitTopbar;
+
+  if (btn) {
+    btn.addEventListener("click", () => {
+      const open = btn.getAttribute("aria-expanded") !== "true";
+      setOpen(open);
+      if (open) { const first = menu.querySelector("a"); if (first) first.focus(); }
+    });
+    menu.addEventListener("keydown", (ev) => {
+      const items = [...menu.querySelectorAll("a")], i = items.indexOf(document.activeElement);
+      if (ev.key === "ArrowDown" || ev.key === "ArrowUp") { items[(i + (ev.key === "ArrowDown" ? 1 : items.length - 1) + items.length) % items.length].focus(); ev.preventDefault(); }
+      else if (ev.key === "Escape") { setOpen(false); btn.focus(); }
+      else if (ev.key === "Tab") setOpen(false);
+    });
+    document.addEventListener("keydown", (ev) => { if (ev.key === "Escape" && btn.getAttribute("aria-expanded") === "true") { setOpen(false); btn.focus(); } });
+    document.addEventListener("click", (ev) => { if (!more.contains(ev.target)) setOpen(false); });
+  }
+  addEventListener("resize", fitTopbar);
+  addEventListener("load", fitTopbar);
+  if (document.fonts) document.fonts.ready.then(fitTopbar);
+  fitTopbar();
+})();
+</script>
 </body>
 </html>

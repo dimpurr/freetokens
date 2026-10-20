@@ -1,11 +1,11 @@
-<div class="topbar long"><div class="in">
+<div class="topbar"><div class="in">
   __BRAND__
-  <nav aria-label="Sections"><a href="__ROOT__offers" data-ext>All programs</a><a href="#h-what">What you get</a><a href="#h-models">Models</a><a href="#events">Events</a></nav>
+  __NAV__
   __GH__
 </div></div>
 
 <div class="wrap">
-  <nav class="back"><a href="__ROOT__offers" data-ext>← All programs</a></nav>
+  <nav class="back subnav" aria-label="Sections"><a href="__ROOT__offers" data-ext>← All programs</a><a href="#h-what">What you get</a><a href="#h-models">Models</a><a href="#events">What happened</a></nav>
   <header class="mhead" id="oh"></header>
   <section aria-labelledby="h-what">
     <h2 id="h-what">What you get and what it takes</h2>
@@ -26,7 +26,6 @@
 /*__COMMON__*/
 
 mountViewSwitch();
-document.querySelectorAll("a[data-ext]").forEach((a) => a.setAttribute("href", a.getAttribute("href") + D.ext));
 const O = OF[D.offer];
 $("oh").innerHTML = `<div class="id-row">${logoTile(O.channel || O.provider, O.channel || O.provider, true)}<div>
   <span class="kicker">${esc(lab("offer_type", O.type))} · ${O.channel ? clink(O.channel) : esc(O.provider)}</span>

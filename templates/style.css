@@ -41,7 +41,7 @@
   color-scheme: dark; }
 
 * { box-sizing: border-box; }
-html { scroll-padding-top: 72px; }
+html { scroll-padding-top: calc(var(--topbar-h, 56px) + var(--subnav-h, 0px) + 16px); }
 body { background: var(--bg); color: var(--fg); font: 15px/1.5 var(--f-body); margin: 0; -webkit-font-smoothing: antialiased; }
 /* minmax(0,1fr) stops wide children (chart, tables) from widening the page on phones */
 .wrap { max-width: 1200px; margin: 0 auto; padding-inline: 20px; padding-block: 22px 64px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 36px; }
@@ -82,23 +82,31 @@ td .ent .lgt { margin-top: -4px; }
 td .ent .rk { padding-top: 1px; }
 .ent > span:last-child { min-width: 0; }
 
-/* top bar: one row at every width. Desktop: brand · section menu · view switch · GitHub. Phone: the menu scrolls sideways between them. */
+/* top bar: the same on every page. Brand · global nav · More (only while links do not fit) · view filter · Contribute.
+   641-1179px: the view filter folds into one button and Contribute shows its icon. Phone (640px and under): brand, More and
+   Contribute on row one, the nav on row two, the view filter on row three. chrome.js measures the nav; no link is cut off. */
 .topbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--surface) 88%, transparent); -webkit-backdrop-filter: saturate(180%) blur(14px); backdrop-filter: saturate(180%) blur(14px); box-shadow: 0 1px 0 var(--line); }
 .topbar .in { max-width: 1200px; margin: 0 auto; padding: 0 20px; height: 56px; display: flex; gap: 14px; align-items: center; }
 .topbar .brand { font: 700 1.08rem var(--f-display); letter-spacing: -0.02em; color: var(--fg); text-decoration: none; white-space: nowrap; display: inline-flex; align-items: center; gap: 9px; }
 .topbar .brand .ico { width: 26px; height: 26px; padding: 5px; border-radius: 7px; color: #fff; background: var(--measured); stroke-width: 2.4; }
-.topbar nav { flex: 1; min-width: 0; display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); padding-right: 24px; }
-.topbar nav::-webkit-scrollbar { display: none; }
-.topbar nav a { font: 500 0.86rem var(--f-body); color: var(--muted); text-decoration: none; padding: 6px 10px; border-radius: var(--r-s); white-space: nowrap; }
-.topbar nav a:hover { color: var(--fg); background: var(--surface-2); }
+.topbar .in > nav { flex: 1; min-width: 0; display: flex; align-items: center; gap: 2px; justify-content: safe center; overflow: hidden; }
+.topbar .in > nav a { flex: none; font: 500 0.86rem var(--f-body); color: var(--muted); text-decoration: none; padding: 6px 10px; border-radius: var(--r-s); white-space: nowrap; }
+.topbar .in > nav a:hover { color: var(--fg); background: var(--surface-2); }
+.topbar [hidden] { display: none !important; }
 .topbar .gh { flex: none; display: inline-flex; align-items: center; gap: 6px; font: 600 0.8rem var(--f-body); color: var(--bg); background: var(--fg); text-decoration: none; border-radius: 8px; padding: 6px 12px; }
 .topbar .gh:hover { opacity: 0.88; }
 .topbar .gh svg { width: 15px; height: 15px; }
-@media (min-width: 900px) { .topbar nav { justify-content: safe center; -webkit-mask-image: none; mask-image: none; padding-right: 0; } }
-/* long section menus (channel, maker, offer pages): start at the left edge when they overflow (centred, the first links would be cut off and unreachable); scroll sideways only when they overflow (common.js sets .more); the fade says so at every width */
-.topbar.long nav { justify-content: safe center; }
-.topbar.long nav.more { -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); padding-right: 24px; }
-@media (max-width: 640px) { .topbar .gh span { display: none; } .topbar .gh { padding: 7px; } }
+/* More: the links that do not fit the bar (chrome.js) */
+.gmore { position: relative; flex: none; }
+.gmore-btn { font: 500 0.86rem var(--f-body); color: var(--muted); background: none; border: 0; border-radius: var(--r-s); padding: 6px 10px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; }
+.gmore-btn:hover, .gmore-btn[aria-expanded="true"] { color: var(--fg); background: var(--surface-2); }
+.gmore-btn .caret { font-size: 0.72em; }
+.gmore-menu { position: absolute; top: calc(100% + 6px); right: 0; z-index: 30; min-width: 170px; display: grid; gap: 2px; padding: 6px; background: var(--surface); border-radius: var(--r); box-shadow: var(--ring-hover), 0 12px 32px rgba(15, 23, 41, 0.14); }
+.gmore-menu a { font: 500 0.9rem var(--f-body); color: var(--fg); text-decoration: none; padding: 7px 10px; border-radius: var(--r-s); white-space: nowrap; }
+.gmore-menu a:hover, .gmore-menu a:focus-visible { background: var(--surface-2); }
+@media (max-width: 1179px) { .topbar .gh { padding: 7px 9px; } .topbar .gh span { display: none; } }
+@media (max-width: 640px) { .topbar .gh { padding: 7px; } }
+
 
 header.intro { display: grid; gap: 10px; }
 header.intro p { margin: 0; max-width: 72ch; color: var(--muted); font-size: 1.02rem; line-height: 1.55; }
@@ -345,10 +353,10 @@ a.ev:hover::before, a.ev:focus-visible::before { background: var(--accent); bord
 
 /* timeline: grouped by day */
 .tl { display: grid; }
-.tl .day { position: sticky; top: 57px; z-index: 3; background: var(--surface-2); border-top: 1px solid var(--line); padding: 7px 18px; font: 600 0.78rem var(--f-body); display: flex; gap: 10px; align-items: baseline; }
+.tl .day { position: sticky; top: calc(var(--topbar-h, 56px) + var(--subnav-h, 0px) + 1px); z-index: 3; background: var(--surface-2); border-top: 1px solid var(--line); padding: 7px 18px; font: 600 0.78rem var(--f-body); display: flex; gap: 10px; align-items: baseline; }
 .tl .day:first-child { border-top: 0; border-radius: var(--r) var(--r) 0 0; }
 .tl .day span { font-weight: 500; color: var(--muted); }
-.tl .it { display: grid; grid-template-columns: 74px minmax(0, 1fr); gap: 2px 14px; padding: 12px 18px; border-top: 1px solid var(--line); scroll-margin-top: 96px; }
+.tl .it { display: grid; grid-template-columns: 74px minmax(0, 1fr); gap: 2px 14px; padding: 12px 18px; border-top: 1px solid var(--line); scroll-margin-top: calc(var(--topbar-h, 56px) + var(--subnav-h, 0px) + 16px); }
 .tl .day + .it { border-top: 0; }
 /* flat timelines (class flat: timeline, channel, maker, offer pages): no time column; a minute time sits in the header row */
 .tl.flat .it { grid-template-columns: minmax(0, 1fr); }
@@ -370,6 +378,15 @@ a.ev:hover::before, a.ev:focus-visible::before { background: var(--accent); bord
 .back { font-size: 0.85rem; }
 .back a { color: var(--muted); text-decoration: none; }
 .back a:hover { color: var(--accent); }
+/* detail pages: one row under the top bar (back link, then the page's sections). It sticks under the bar and scrolls
+   sideways with a right-edge fade when it is wider than the screen. Same height as the old back-link row. */
+.subnav { position: sticky; top: var(--topbar-h, 56px); z-index: 19; margin-inline: -20px; padding-inline: 20px; background: var(--bg); display: flex; align-items: center; white-space: nowrap; overflow-x: auto; scrollbar-width: none; }
+.subnav::-webkit-scrollbar { display: none; }
+.subnav a { flex: none; color: var(--muted); text-decoration: none; }
+.subnav a:hover { color: var(--accent); }
+.subnav a + a::before { content: "·"; color: var(--faint); margin: 0 0.55em; }
+.subnav.more { -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent); mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent); }
+@media (max-width: 640px) { .subnav { margin-inline: -16px; padding-inline: 16px; } }
 .mhead { display: grid; gap: 18px; }
 .mhead .id-row { display: flex; align-items: center; gap: 16px; }
 .mhead .id-row > div { display: grid; gap: 4px; min-width: 0; }
@@ -384,7 +401,7 @@ a.ev:hover::before, a.ev:focus-visible::before { background: var(--accent); bord
 .stats.fit3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .stats.fit4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .stats.fit5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
-@media (max-width: 899px) { .stats.fit4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } .stats.fit5 { grid-template-columns: repeat(3, minmax(0, 1fr)); } .stats.fit5 > :last-child { grid-column: span 2; } }
+@media (max-width: 899px) { .stats.fit4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } .stats.fit5 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .stat.aa-stat { grid-column: span 2; }
 /* offer pages: three facts, one row (the gets text and the needs chips need the width a 5/6-slot grid would not leave); each card is as tall as its own text */
 .stats.o3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -457,7 +474,6 @@ footer { font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--li
   .stats, .stats:not(:has(.measured-stat)) { grid-template-columns: 1fr 1fr; gap: 8px; }
   .stats.o3 { grid-template-columns: 1fr; }
   .stats.fit3, .stats.fit4, .stats.fit5 { grid-template-columns: 1fr 1fr; gap: 8px; }
-  .stats.fit3 > :last-child, .stats.fit5 > :last-child { grid-column: 1 / -1; }
   .stamp { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 0; }
   .stamp > span { padding: 0 12px; }
   .stamp > span:nth-child(3n + 1) { padding-left: 0; border-left: 0; }
@@ -484,6 +500,18 @@ footer { font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--li
 .more-row:empty { display: none; }
 .more-row button { font: 600 0.85rem var(--f-body); color: var(--fg); background: var(--surface); border: 0; box-shadow: var(--ring); border-radius: 8px; padding: 7px 14px; cursor: pointer; }
 .more-row button:hover { box-shadow: var(--ring-hover); }
+/* the meta line under the model name carries Context, Images and Events; it shows only where those columns are folded (641-1099px) */
+.fold-meta { display: none; }
+@media (min-width: 641px) and (max-width: 1099px) {
+  table.models th.fold, table.models td.fold { display: none; }
+  table.models .fold-meta { display: block; margin-top: 3px; font-size: 0.78rem; color: var(--muted); }
+  table.models th, table.models td { padding-inline: 12px; }
+  table.models td:nth-child(1) { min-width: 240px; }
+  @media (min-width: 900px) { table.models td:nth-child(1) { min-width: 290px; } }
+  table.models td:nth-child(2) { white-space: normal; }
+  table.models td:nth-child(2) .aacell { flex-wrap: wrap; row-gap: 4px; }
+  table.models td:nth-child(3) { min-width: 150px; }
+}
 
 /* P6: below 640px the main tables reflow to cards (no sideways scrolling) */
 @media (max-width: 640px) {
@@ -561,6 +589,20 @@ td.cond .cost { margin-right: 4px; }
 .viewsw button[aria-checked="true"] { background: var(--surface); color: var(--fg); box-shadow: 0 1px 2px rgba(15, 23, 41, 0.12), 0 0 0 1px var(--line); }
 .viewsw button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
 .viewsw .vs-help { color: var(--muted); display: inline-flex; }
+.viewsw .vs-seg { display: inline-flex; align-items: center; gap: 8px; }
+/* under 1180px: one button with the current view and its count; the menu lists the three with counts (common.js) */
+.viewsw .vs-compact { position: relative; display: none; }
+.viewsw .vs-btn { font: 600 0.78rem var(--f-body); color: var(--fg); background: var(--surface); border: 0; box-shadow: var(--ring); border-radius: 8px; padding: 5px 10px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.viewsw .vs-btn:hover { box-shadow: var(--ring-hover); }
+.viewsw .vs-btn .vs-lab { font: 600 0.64rem var(--f-body); letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); }
+.viewsw .vs-btn small, .viewsw .vs-menu small { font: 500 0.68rem var(--f-mono); color: var(--muted); }
+.viewsw .vs-btn .caret { font-size: 0.7em; color: var(--muted); }
+.viewsw .vs-menu { position: absolute; top: calc(100% + 6px); right: 0; z-index: 30; min-width: 220px; display: grid; gap: 2px; padding: 6px; background: var(--surface); border-radius: var(--r); box-shadow: var(--ring-hover), 0 12px 32px rgba(15, 23, 41, 0.14); }
+.viewsw .vs-menu[hidden] { display: none; }
+.viewsw .vs-menu button { font: 500 0.88rem var(--f-body); color: var(--fg); background: none; border: 0; box-shadow: none; border-radius: var(--r-s); padding: 7px 10px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; text-align: left; white-space: nowrap; }
+.viewsw .vs-menu button:hover, .viewsw .vs-menu button:focus-visible { background: var(--surface-2); }
+.viewsw .vs-menu button[aria-checked="true"] { color: var(--accent); font-weight: 600; }
+@media (max-width: 1179px) { .viewsw .vs-seg { display: none; } .viewsw .vs-compact { display: inline-flex; } }
 .viewnote { font: 600 0.62rem var(--f-body); letter-spacing: 0.04em; text-transform: uppercase; color: var(--accent); margin-left: 6px; }
 .viewcount b { color: var(--accent); }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
@@ -577,8 +619,9 @@ tr.offrow td { opacity: 0.6; }
 .usemark.yes { color: var(--live); background: var(--live-soft); }
 .usemark.no { color: var(--muted); background: var(--off-soft); text-decoration: line-through; }
 .detail.off { opacity: 0.5; }
-@media (max-width: 860px) {
+@media (max-width: 640px) {
   .topbar .in { flex-wrap: wrap; height: auto; padding-top: 8px; padding-bottom: 8px; }
+  .topbar .in > nav { order: 2; flex-basis: 100%; justify-content: center; }
   .viewsw { order: 3; flex-basis: 100%; justify-content: center; }
 }
 
@@ -637,10 +680,7 @@ ol.rungs > li.muted::before { content: none; }
 .chip.more { color: var(--accent); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 35%, transparent); background: transparent; text-decoration: none; }
 .pagehead { display: grid; gap: 6px; }
 .pagehead p { margin: 0; color: var(--muted); max-width: 65ch; }
-@media (max-width: 640px) {
-  .topbar nav { order: 2; flex-basis: 100%; justify-content: center; -webkit-mask-image: none; mask-image: none; padding-right: 0; }
-  .topbar nav a { padding: 5px 8px; }
-}
+@media (max-width: 640px) { .topbar .in > nav a { padding: 5px 8px; } }
 
 /* structured "Tested by us" chips */
 .obs { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 4px; }
