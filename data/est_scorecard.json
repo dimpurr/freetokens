@@ -6,34 +6,52 @@
  "backtest": {
   "overall": {
    "n": 136,
-   "mean_abs_diff": 4.53,
+   "mean_abs_diff": 4.26,
    "bias": -0.01,
-   "hit_rate": 0.31
+   "hit_rate": 0.35
   },
   "by_n_benchmarks": {
    "1": {
-    "n": 50,
-    "mean_abs_diff": 4.97,
-    "bias": -0.22,
-    "hit_rate": 0.32
+    "n": 20,
+    "mean_abs_diff": 6.29,
+    "bias": -2.09,
+    "hit_rate": 0.25
    },
    "2": {
-    "n": 45,
-    "mean_abs_diff": 4.54,
-    "bias": 0.7,
-    "hit_rate": 0.29
+    "n": 31,
+    "mean_abs_diff": 4.58,
+    "bias": 1.73,
+    "hit_rate": 0.26
    },
    "3": {
-    "n": 38,
-    "mean_abs_diff": 4.0,
-    "bias": -0.51,
-    "hit_rate": 0.29
+    "n": 31,
+    "mean_abs_diff": 4.08,
+    "bias": 0.15,
+    "hit_rate": 0.39
    },
    "4": {
-    "n": 3,
-    "mean_abs_diff": 3.47,
-    "bias": -0.87,
-    "hit_rate": 0.67
+    "n": 28,
+    "mean_abs_diff": 3.85,
+    "bias": 0.31,
+    "hit_rate": 0.32
+   },
+   "5": {
+    "n": 21,
+    "mean_abs_diff": 3.4,
+    "bias": -1.18,
+    "hit_rate": 0.43
+   },
+   "6": {
+    "n": 4,
+    "mean_abs_diff": 1.21,
+    "bias": -0.38,
+    "hit_rate": 0.75
+   },
+   "7": {
+    "n": 1,
+    "mean_abs_diff": 0.35,
+    "bias": 0.35,
+    "hit_rate": 1.0
    }
   }
  },

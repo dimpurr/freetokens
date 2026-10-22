@@ -7,7 +7,8 @@
   "scores": {
    "aicodingdaily": {
     "score": 68.1,
-    "url": "https://aicodingdaily.com/leaderboard"
+    "url": "https://aicodingdaily.com/leaderboard",
+    "src": "leaderboard"
    }
   }
  },
@@ -19,15 +20,18 @@
   "scores": {
    "aicodingdaily": {
     "score": 67.41,
-    "url": "https://aicodingdaily.com/leaderboard"
+    "url": "https://aicodingdaily.com/leaderboard",
+    "src": "leaderboard"
    },
    "swe_bench_pro": {
     "score": 89.9,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 87.64,
-    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1",
+    "src": "third_party"
    }
   }
  },
@@ -39,11 +43,13 @@
   "scores": {
    "aicodingdaily": {
     "score": 66.35,
-    "url": "https://aicodingdaily.com/leaderboard"
+    "url": "https://aicodingdaily.com/leaderboard",
+    "src": "leaderboard"
    },
    "terminal_bench_2_1": {
     "score": 87.83,
-    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1"
+    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1",
+    "src": "third_party"
    }
   }
  },
@@ -55,15 +61,18 @@
   "scores": {
    "aicodingdaily": {
     "score": 64.31,
-    "url": "https://aicodingdaily.com/leaderboard"
+    "url": "https://aicodingdaily.com/leaderboard",
+    "src": "leaderboard"
    },
    "swe_bench_pro": {
     "score": 81.3,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 83.15,
-    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1",
+    "src": "third_party"
    }
   }
  },
@@ -75,15 +84,32 @@
   "scores": {
    "aicodingdaily": {
     "score": 61.03,
-    "url": "https://aicodingdaily.com/leaderboard"
+    "url": "https://aicodingdaily.com/leaderboard",
+    "src": "leaderboard"
    },
    "swe_bench_pro": {
     "score": 81.2,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 88.2,
-    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1"
+    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1",
+    "src": "third_party"
+   },
+   "gpqa_diamond": {
+    "score": 93.43,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry Claude Fable 5.1"
+   },
+   "hle": {
+    "score": 65.0,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for Claude Fable 5.1: Fable 5.1 with production safeguards enabled. Multidisciplinar…"
    }
   }
  },
@@ -95,11 +121,13 @@
   "scores": {
    "aicodingdaily": {
     "score": 60.09,
-    "url": "https://aicodingdaily.com/leaderboard"
+    "url": "https://aicodingdaily.com/leaderboard",
+    "src": "leaderboard"
    },
    "terminal_bench_2_1": {
     "score": 73.41,
-    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1",
+    "src": "third_party"
    }
   }
  },
@@ -111,11 +139,13 @@
   "scores": {
    "aicodingdaily": {
     "score": 59.07,
-    "url": "https://aicodingdaily.com/leaderboard"
+    "url": "https://aicodingdaily.com/leaderboard",
+    "src": "leaderboard"
    },
    "terminal_bench_2_1": {
     "score": 73.03,
-    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1",
+    "src": "third_party"
    }
   }
  },
@@ -127,15 +157,32 @@
   "scores": {
    "aicodingdaily": {
     "score": 56.89,
-    "url": "https://aicodingdaily.com/leaderboard"
+    "url": "https://aicodingdaily.com/leaderboard",
+    "src": "leaderboard"
    },
    "swe_bench_verified": {
     "score": 85.1,
-    "url": "https://wan27.org/blog/kimi-k3-benchmarks"
+    "url": "https://wan27.org/blog/kimi-k3-benchmarks",
+    "src": "unknown"
    },
    "terminal_bench_2_1": {
     "score": 88.3,
-    "url": "https://z.ai/blog/glm-5.3"
+    "url": "https://z.ai/blog/glm-5.3",
+    "src": "third_party"
+   },
+   "gpqa_diamond": {
+    "score": 92.93,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry Kimi K3"
+   },
+   "hle": {
+    "score": 56.0,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for Kimi K3: HLE-Full with tools; max reasoning effort"
    }
   }
  },
@@ -147,15 +194,32 @@
   "scores": {
    "aicodingdaily": {
     "score": 54.82,
-    "url": "https://aicodingdaily.com/leaderboard"
+    "url": "https://aicodingdaily.com/leaderboard",
+    "src": "leaderboard"
    },
    "swe_bench_verified": {
     "score": 95.4,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 86.05,
-    "url": "https://z.ai/blog/glm-5.3"
+    "url": "https://z.ai/blog/glm-5.3",
+    "src": "vendor"
+   },
+   "gpqa_diamond": {
+    "score": 88.13,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry GLM 5.3"
+   },
+   "hle": {
+    "score": 62.5,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for GLM-5.3: With tools; 300K-token context; GPT-5.6 Luna judge"
    }
   }
  },
@@ -167,11 +231,20 @@
   "scores": {
    "aicodingdaily": {
     "score": 54.35,
-    "url": "https://aicodingdaily.com/leaderboard"
+    "url": "https://aicodingdaily.com/leaderboard",
+    "src": "leaderboard"
    },
    "terminal_bench_2_1": {
     "score": 82.56,
-    "url": "https://benchlm.ai/benchmarks/terminalbench21"
+    "url": "https://benchlm.ai/benchmarks/terminalbench21",
+    "src": "third_party"
+   },
+   "hle": {
+    "score": 36.8,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for DeepSeek-V4.1-Flash: Pass@1; full multimodal evaluation, no tools. Maximum reaso…"
    }
   }
  },
@@ -183,11 +256,13 @@
   "scores": {
    "aicodingdaily": {
     "score": 53.81,
-    "url": "https://aicodingdaily.com/leaderboard"
+    "url": "https://aicodingdaily.com/leaderboard",
+    "src": "leaderboard"
    },
    "terminal_bench_2_1": {
     "score": 78.84,
-    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1",
+    "src": "third_party"
    }
   }
  },
@@ -199,19 +274,23 @@
   "scores": {
    "aicodingdaily": {
     "score": 53.39,
-    "url": "https://aicodingdaily.com/leaderboard"
+    "url": "https://aicodingdaily.com/leaderboard",
+    "src": "leaderboard"
    },
    "swe_bench_pro": {
     "score": 67.7,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro",
+    "src": "third_party"
    },
    "swe_bench_verified": {
     "score": 79.9,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 86.6,
-    "url": "https://z.ai/blog/glm-5.3"
+    "url": "https://z.ai/blog/glm-5.3",
+    "src": "third_party"
    }
   }
  },
@@ -223,11 +302,13 @@
   "scores": {
    "aicodingdaily": {
     "score": 53.01,
-    "url": "https://aicodingdaily.com/leaderboard"
+    "url": "https://aicodingdaily.com/leaderboard",
+    "src": "leaderboard"
    },
    "terminal_bench_2_1": {
     "score": 81.65,
-    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1"
+    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1",
+    "src": "third_party"
    }
   }
  },
@@ -239,19 +320,30 @@
   "scores": {
    "aicodingdaily": {
     "score": 47.76,
-    "url": "https://aicodingdaily.com/leaderboard"
+    "url": "https://aicodingdaily.com/leaderboard",
+    "src": "leaderboard"
    },
    "swe_bench_pro": {
     "score": 61.7,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro",
+    "src": "third_party"
    },
    "swe_bench_verified": {
     "score": 86.0,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 73,
-    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1"
+    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1",
+    "src": "third_party"
+   },
+   "gpqa_diamond": {
+    "score": 88.89,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry Qwen 3.8 27B"
    }
   }
  },
@@ -263,15 +355,25 @@
   "scores": {
    "aicodingdaily": {
     "score": 47.09,
-    "url": "https://aicodingdaily.com/leaderboard"
+    "url": "https://aicodingdaily.com/leaderboard",
+    "src": "leaderboard"
    },
    "swe_bench_verified": {
     "score": 80.0,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 87.64,
-    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1"
+    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1",
+    "src": "third_party"
+   },
+   "gpqa_diamond": {
+    "score": 94.44,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry Gemini 3.8 Flash"
    }
   }
  },
@@ -283,19 +385,30 @@
   "scores": {
    "aicodingdaily": {
     "score": 40.35,
-    "url": "https://aicodingdaily.com/leaderboard"
+    "url": "https://aicodingdaily.com/leaderboard",
+    "src": "leaderboard"
    },
    "swe_bench_pro": {
     "score": 59,
-    "url": "https://www.minimax.io/blog/minimax-m3"
+    "url": "https://www.minimax.io/blog/minimax-m3",
+    "src": "vendor"
    },
    "swe_bench_verified": {
     "score": 77.75,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 65.17,
-    "url": "https://www.minimax.io/blog/minimax-m3"
+    "url": "https://www.minimax.io/blog/minimax-m3",
+    "src": "vendor"
+   },
+   "gpqa_diamond": {
+    "score": 92.68,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry MiniMax-M3"
    }
   }
  },
@@ -307,11 +420,13 @@
   "scores": {
    "aicodingdaily": {
     "score": 53.29,
-    "url": "https://aicodingdaily.com/leaderboard"
+    "url": "https://aicodingdaily.com/leaderboard",
+    "src": "leaderboard"
    },
    "terminal_bench_2_1": {
     "score": 82.0,
-    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1",
+    "src": "third_party"
    }
   }
  },
@@ -323,15 +438,18 @@
   "scores": {
    "swe_bench_pro": {
     "score": 80,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro",
+    "src": "third_party"
    },
    "swe_bench_verified": {
     "score": 95.0,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 84.45,
-    "url": "https://z.ai/blog/glm-5.3"
+    "url": "https://z.ai/blog/glm-5.3",
+    "src": "third_party"
    }
   }
  },
@@ -343,11 +461,20 @@
   "scores": {
    "swe_bench_pro": {
     "score": 51.5,
-    "url": "https://scale.com/leaderboard/swe_bench_pro_public"
+    "url": "https://scale.com/leaderboard/swe_bench_pro_public",
+    "src": "leaderboard"
    },
    "swe_bench_verified": {
     "score": 80.05,
-    "url": "https://www.swebench.com/"
+    "url": "https://www.swebench.com/",
+    "src": "leaderboard"
+   },
+   "bfcl": {
+    "score": 77.47,
+    "url": "https://gorilla.cs.berkeley.edu/leaderboard.html",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "Claude-Opus-4-5-20251101 (FC)"
    }
   }
  },
@@ -359,11 +486,20 @@
   "scores": {
    "swe_bench_pro": {
     "score": 52.65,
-    "url": "https://scale.com/leaderboard/swe_bench_pro_public"
+    "url": "https://scale.com/leaderboard/swe_bench_pro_public",
+    "src": "leaderboard"
    },
    "swe_bench_verified": {
     "score": 78.2,
-    "url": "https://www.swebench.com/"
+    "url": "https://www.swebench.com/",
+    "src": "leaderboard"
+   },
+   "gpqa_diamond": {
+    "score": 89.65,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry Claude Opus 4.6 (Thinking)"
    }
   }
  },
@@ -375,15 +511,32 @@
   "scores": {
    "swe_bench_pro": {
     "score": 69.2,
-    "url": "https://z.ai/blog/glm-5.2"
+    "url": "https://z.ai/blog/glm-5.2",
+    "src": "third_party"
    },
    "swe_bench_verified": {
     "score": 88.6,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 84.8,
-    "url": "https://z.ai/blog/glm-5.2"
+    "url": "https://z.ai/blog/glm-5.2",
+    "src": "third_party"
+   },
+   "gpqa_diamond": {
+    "score": 92.42,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry Claude Opus 4.8"
+   },
+   "hle": {
+    "score": 57.9,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for Claude Opus 4.8: Multidisciplinary reasoning at max effort. With tools (web sear…"
    }
   }
  },
@@ -395,15 +548,32 @@
   "scores": {
    "swe_bench_pro": {
     "score": 79.2,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro",
+    "src": "third_party"
    },
    "swe_bench_verified": {
     "score": 96.5,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 84.64,
-    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1",
+    "src": "third_party"
+   },
+   "gpqa_diamond": {
+    "score": 93.43,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry Claude Opus 5"
+   },
+   "hle": {
+    "score": 64.7,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for Claude Opus 5: Multidisciplinary reasoning with tools."
    }
   }
  },
@@ -415,15 +585,32 @@
   "scores": {
    "swe_bench_pro": {
     "score": 63.2,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro",
+    "src": "third_party"
    },
    "swe_bench_verified": {
     "score": 82.4,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 77.47,
-    "url": "https://benchlm.ai/benchmarks/terminalbench21"
+    "url": "https://benchlm.ai/benchmarks/terminalbench21",
+    "src": "third_party"
+   },
+   "gpqa_diamond": {
+    "score": 88.89,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry Claude Sonnet 5"
+   },
+   "hle": {
+    "score": 57.4,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for Claude Sonnet 5: Multidisciplinary reasoning (2,500 questions). With tools (web…"
    }
   }
  },
@@ -435,15 +622,25 @@
   "scores": {
    "swe_bench_pro": {
     "score": 52.3,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro",
+    "src": "third_party"
    },
    "swe_bench_verified": {
     "score": 78.6,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 58.62,
-    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1",
+    "src": "third_party"
+   },
+   "gpqa_diamond": {
+    "score": 89.9,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry DeepSeek V4 Flash 0731"
    }
   }
  },
@@ -455,15 +652,18 @@
   "scores": {
    "swe_bench_pro": {
     "score": 54.9,
-    "url": "https://z.ai/blog/glm-5.2"
+    "url": "https://z.ai/blog/glm-5.2",
+    "src": "third_party"
    },
    "swe_bench_verified": {
     "score": 80.0,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 64,
-    "url": "https://z.ai/blog/glm-5.3"
+    "url": "https://z.ai/blog/glm-5.3",
+    "src": "third_party"
    }
   }
  },
@@ -475,11 +675,20 @@
   "scores": {
    "swe_bench_pro": {
     "score": 55.1,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro",
+    "src": "third_party"
    },
    "swe_bench_verified": {
     "score": 72.8,
-    "url": "https://www.swebench.com/"
+    "url": "https://www.swebench.com/",
+    "src": "leaderboard"
+   },
+   "gpqa_diamond": {
+    "score": 83.33,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry GLM 5"
    }
   }
  },
@@ -491,15 +700,32 @@
   "scores": {
    "swe_bench_pro": {
     "score": 58.4,
-    "url": "https://z.ai/blog/glm-5.2"
+    "url": "https://z.ai/blog/glm-5.2",
+    "src": "vendor"
    },
    "swe_bench_verified": {
     "score": 76.4,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 60.22,
-    "url": "https://z.ai/blog/glm-5.2"
+    "url": "https://z.ai/blog/glm-5.2",
+    "src": "vendor"
+   },
+   "gpqa_diamond": {
+    "score": 84.52,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry GLM 5.1"
+   },
+   "hle": {
+    "score": 52.3,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for GLM-5.1: With tools"
    }
   }
  },
@@ -511,15 +737,32 @@
   "scores": {
    "swe_bench_pro": {
     "score": 62.1,
-    "url": "https://z.ai/blog/glm-5.2"
+    "url": "https://z.ai/blog/glm-5.2",
+    "src": "vendor"
    },
    "swe_bench_verified": {
     "score": 82.8,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 81.0,
-    "url": "https://z.ai/blog/glm-5.2"
+    "url": "https://z.ai/blog/glm-5.2",
+    "src": "vendor"
+   },
+   "gpqa_diamond": {
+    "score": 85.61,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry GLM 5.2"
+   },
+   "hle": {
+    "score": 54.7,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for GLM-5.2: With tools"
    }
   }
  },
@@ -531,11 +774,34 @@
   "scores": {
    "swe_bench_pro": {
     "score": 42.77,
-    "url": "https://scale.com/leaderboard/swe_bench_pro_public"
+    "url": "https://scale.com/leaderboard/swe_bench_pro_public",
+    "src": "leaderboard"
    },
    "swe_bench_verified": {
     "score": 75.8,
-    "url": "https://www.swebench.com/"
+    "url": "https://www.swebench.com/",
+    "src": "leaderboard"
+   },
+   "bfcl": {
+    "score": 55.87,
+    "url": "https://gorilla.cs.berkeley.edu/leaderboard.html",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "GPT-5.2-2025-12-11 (FC)"
+   },
+   "gpqa_diamond": {
+    "score": 91.67,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry GPT 5.2"
+   },
+   "hle": {
+    "score": 34.5,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for GPT-5.2: GPT-5.2 Thinking - Humanity's Last Exam (no tools)."
    }
   }
  },
@@ -547,11 +813,13 @@
   "scores": {
    "swe_bench_pro": {
     "score": 56.8,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro",
+    "src": "third_party"
    },
    "swe_bench_verified": {
     "score": 81.5,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
    }
   }
  },
@@ -563,11 +831,20 @@
   "scores": {
    "swe_bench_pro": {
     "score": 58.4,
-    "url": "https://scale.com/leaderboard/swe_bench_pro_public"
+    "url": "https://scale.com/leaderboard/swe_bench_pro_public",
+    "src": "leaderboard"
    },
    "swe_bench_verified": {
     "score": 78.2,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
+   },
+   "gpqa_diamond": {
+    "score": 91.67,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry GPT 5.4 (xhigh)"
    }
   }
  },
@@ -579,15 +856,32 @@
   "scores": {
    "swe_bench_pro": {
     "score": 58.6,
-    "url": "https://z.ai/blog/glm-5.2"
+    "url": "https://z.ai/blog/glm-5.2",
+    "src": "third_party"
    },
    "swe_bench_verified": {
     "score": 82.6,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 83.4,
-    "url": "https://z.ai/blog/glm-5.2"
+    "url": "https://z.ai/blog/glm-5.2",
+    "src": "third_party"
+   },
+   "gpqa_diamond": {
+    "score": 93.18,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry GPT 5.5"
+   },
+   "hle": {
+    "score": 52.2,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for GPT-5.5: Humanity's Last Exam (with tools). Reasoning effort xhigh."
    }
   }
  },
@@ -599,15 +893,25 @@
   "scores": {
    "swe_bench_pro": {
     "score": 62.7,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro",
+    "src": "third_party"
    },
    "swe_bench_verified": {
     "score": 93.0,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 81.87,
-    "url": "https://benchlm.ai/benchmarks/terminalbench21"
+    "url": "https://benchlm.ai/benchmarks/terminalbench21",
+    "src": "third_party"
+   },
+   "gpqa_diamond": {
+    "score": 91.67,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry GPT-5.6 Luna"
    }
   }
  },
@@ -619,15 +923,25 @@
   "scores": {
    "swe_bench_pro": {
     "score": 64.6,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro",
+    "src": "third_party"
    },
    "swe_bench_verified": {
     "score": 96.2,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 88.8,
-    "url": "https://z.ai/blog/glm-5.3"
+    "url": "https://z.ai/blog/glm-5.3",
+    "src": "third_party"
+   },
+   "gpqa_diamond": {
+    "score": 95.2,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry GPT-5.6 Sol"
    }
   }
  },
@@ -639,15 +953,25 @@
   "scores": {
    "swe_bench_pro": {
     "score": 63.4,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro",
+    "src": "third_party"
    },
    "swe_bench_verified": {
     "score": 95.4,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 87.4,
-    "url": "https://z.ai/blog/glm-5.3-flash"
+    "url": "https://z.ai/blog/glm-5.3-flash",
+    "src": "third_party"
+   },
+   "gpqa_diamond": {
+    "score": 90.91,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry GPT-5.6 Terra"
    }
   }
  },
@@ -659,15 +983,25 @@
   "scores": {
    "swe_bench_pro": {
     "score": 54.2,
-    "url": "https://z.ai/blog/glm-5.2"
+    "url": "https://z.ai/blog/glm-5.2",
+    "src": "third_party"
    },
    "swe_bench_verified": {
     "score": 78.8,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 72.4,
-    "url": "https://z.ai/blog/glm-5.2"
+    "url": "https://z.ai/blog/glm-5.2",
+    "src": "third_party"
+   },
+   "gpqa_diamond": {
+    "score": 95.45,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry Gemini 3.1 Pro Preview (02/26)"
    }
   }
  },
@@ -679,15 +1013,32 @@
   "scores": {
    "swe_bench_pro": {
     "score": 55.1,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro",
+    "src": "third_party"
    },
    "swe_bench_verified": {
     "score": 78.8,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 75.18,
-    "url": "https://benchlm.ai/benchmarks/terminalbench21"
+    "url": "https://benchlm.ai/benchmarks/terminalbench21",
+    "src": "third_party"
+   },
+   "gpqa_diamond": {
+    "score": 92.68,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry Gemini 3.5 Flash"
+   },
+   "hle": {
+    "score": 40.2,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for Gemini 3.5 Flash: tool setting not stated by llm-stats"
    }
   }
  },
@@ -699,15 +1050,25 @@
   "scores": {
    "swe_bench_pro": {
     "score": 54.2,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro",
+    "src": "third_party"
    },
    "swe_bench_verified": {
     "score": 75.0,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 52.09,
-    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1",
+    "src": "third_party"
+   },
+   "gpqa_diamond": {
+    "score": 83.84,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry Gemini 3.5 Flash Lite"
    }
   }
  },
@@ -719,15 +1080,18 @@
   "scores": {
    "swe_bench_pro": {
     "score": 33.29,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro",
+    "src": "third_party"
    },
    "swe_bench_verified": {
     "score": 57,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 29.24,
-    "url": "https://benchlm.ai/benchmarks/terminalbench21"
+    "url": "https://benchlm.ai/benchmarks/terminalbench21",
+    "src": "third_party"
    }
   }
  },
@@ -739,15 +1103,18 @@
   "scores": {
    "swe_bench_pro": {
     "score": 19.11,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro",
+    "src": "third_party"
    },
    "swe_bench_verified": {
     "score": 47.67,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 20.56,
-    "url": "https://benchlm.ai/benchmarks/terminalbench21"
+    "url": "https://benchlm.ai/benchmarks/terminalbench21",
+    "src": "third_party"
    }
   }
  },
@@ -759,15 +1126,25 @@
   "scores": {
    "swe_bench_pro": {
     "score": 51.8,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro",
+    "src": "third_party"
    },
    "swe_bench_verified": {
     "score": 74.45,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 44.2,
-    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1",
+    "src": "third_party"
+   },
+   "gpqa_diamond": {
+    "score": 88.64,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry Grok 4.20 (Reasoning)"
    }
   }
  },
@@ -779,15 +1156,25 @@
   "scores": {
    "swe_bench_pro": {
     "score": 64.7,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro",
+    "src": "third_party"
    },
    "swe_bench_verified": {
     "score": 86.6,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 75.55,
-    "url": "https://benchlm.ai/benchmarks/terminalbench21"
+    "url": "https://benchlm.ai/benchmarks/terminalbench21",
+    "src": "third_party"
+   },
+   "gpqa_diamond": {
+    "score": 92.93,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry Grok 4.5"
    }
   }
  },
@@ -799,15 +1186,18 @@
   "scores": {
    "swe_bench_pro": {
     "score": 54.3,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro",
+    "src": "third_party"
    },
    "swe_bench_verified": {
     "score": 77.6,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 55.06,
-    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1"
+    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1",
+    "src": "third_party"
    }
   }
  },
@@ -819,15 +1209,32 @@
   "scores": {
    "swe_bench_pro": {
     "score": 55.9,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro",
+    "src": "third_party"
    },
    "swe_bench_verified": {
     "score": 81.2,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 59.88,
-    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1",
+    "src": "third_party"
+   },
+   "gpqa_diamond": {
+    "score": 83.59,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry Inkling Small"
+   },
+   "hle": {
+    "score": 31.6,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for Inkling-Small: tool setting not stated by llm-stats"
    }
   }
  },
@@ -839,15 +1246,32 @@
   "scores": {
    "swe_bench_pro": {
     "score": 50.7,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro",
+    "src": "third_party"
    },
    "swe_bench_verified": {
     "score": 73.8,
-    "url": "https://www.swebench.com/"
+    "url": "https://www.swebench.com/",
+    "src": "leaderboard"
    },
    "terminal_bench_2_1": {
     "score": 41.95,
-    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1",
+    "src": "third_party"
+   },
+   "gpqa_diamond": {
+    "score": 84.09,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry Kimi K2.5"
+   },
+   "hle": {
+    "score": 50.2,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for Kimi K2.5: tool setting not stated by llm-stats"
    }
   }
  },
@@ -859,15 +1283,32 @@
   "scores": {
    "swe_bench_pro": {
     "score": 58.6,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro",
+    "src": "third_party"
    },
    "swe_bench_verified": {
     "score": 78.2,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 53.56,
-    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1",
+    "src": "third_party"
+   },
+   "gpqa_diamond": {
+    "score": 89.14,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry Kimi K2.6"
+   },
+   "hle": {
+    "score": 36.4,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for Kimi K2.6: tool setting not stated by llm-stats"
    }
   }
  },
@@ -879,15 +1320,25 @@
   "scores": {
    "swe_bench_pro": {
     "score": 56.6,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro",
+    "src": "third_party"
    },
    "swe_bench_verified": {
     "score": 65.2,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 53.59,
-    "url": "https://benchlm.ai/benchmarks/terminalbench21"
+    "url": "https://benchlm.ai/benchmarks/terminalbench21",
+    "src": "third_party"
+   },
+   "gpqa_diamond": {
+    "score": 84.85,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry Ling 3.0 Flash"
    }
   }
  },
@@ -899,15 +1350,32 @@
   "scores": {
    "swe_bench_pro": {
     "score": 57.2,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro",
+    "src": "third_party"
    },
    "swe_bench_verified": {
     "score": 74.0,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 57.3,
-    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1",
+    "src": "third_party"
+   },
+   "gpqa_diamond": {
+    "score": 82.58,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry MiMo V2.5 Pro"
+   },
+   "hle": {
+    "score": 34.0,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for MiMo-V2.5-Pro: No tools"
    }
   }
  },
@@ -919,15 +1387,25 @@
   "scores": {
    "swe_bench_pro": {
     "score": 56.2,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro",
+    "src": "third_party"
    },
    "swe_bench_verified": {
     "score": 73.8,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 48.69,
-    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1",
+    "src": "third_party"
+   },
+   "gpqa_diamond": {
+    "score": 86.62,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry MiniMax-M2.7"
    }
   }
  },
@@ -939,15 +1417,18 @@
   "scores": {
    "swe_bench_pro": {
     "score": 51.2,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro",
+    "src": "third_party"
    },
    "swe_bench_verified": {
     "score": 76,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 51.69,
-    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1"
+    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1",
+    "src": "third_party"
    }
   }
  },
@@ -959,15 +1440,32 @@
   "scores": {
    "swe_bench_pro": {
     "score": 61.5,
-    "url": "https://scale.com/leaderboard/swe_bench_pro_public"
+    "url": "https://scale.com/leaderboard/swe_bench_pro_public",
+    "src": "leaderboard"
    },
    "swe_bench_verified": {
     "score": 82.0,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 74.65,
-    "url": "https://benchlm.ai/benchmarks/terminalbench21"
+    "url": "https://benchlm.ai/benchmarks/terminalbench21",
+    "src": "third_party"
+   },
+   "gpqa_diamond": {
+    "score": 91.16,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry Muse Spark 1.1"
+   },
+   "hle": {
+    "score": 62.1,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for Muse Spark 1.1: With tools."
    }
   }
  },
@@ -979,15 +1477,25 @@
   "scores": {
    "swe_bench_pro": {
     "score": 56.6,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro",
+    "src": "third_party"
    },
    "swe_bench_verified": {
     "score": 76.1,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 53.18,
-    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1",
+    "src": "third_party"
+   },
+   "gpqa_diamond": {
+    "score": 87.37,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry Qwen 3.6 Plus"
    }
   }
  },
@@ -999,11 +1507,20 @@
   "scores": {
    "swe_bench_pro": {
     "score": 53.5,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro",
+    "src": "third_party"
    },
    "swe_bench_verified": {
     "score": 77.2,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified",
+    "src": "third_party"
+   },
+   "hle": {
+    "score": 24.0,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for Qwen3.6-27B: tool setting not stated by llm-stats"
    }
   }
  },
@@ -1015,11 +1532,20 @@
   "scores": {
    "swe_bench_pro": {
     "score": 49.5,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro",
+    "src": "third_party"
    },
    "swe_bench_verified": {
     "score": 73.4,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified",
+    "src": "third_party"
+   },
+   "hle": {
+    "score": 21.4,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for Qwen3.6-35B-A3B: tool setting not stated by llm-stats"
    }
   }
  },
@@ -1031,15 +1557,25 @@
   "scores": {
    "swe_bench_pro": {
     "score": 60.6,
-    "url": "https://z.ai/blog/glm-5.2"
+    "url": "https://z.ai/blog/glm-5.2",
+    "src": "third_party"
    },
    "swe_bench_verified": {
     "score": 74.6,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 68.03,
-    "url": "https://z.ai/blog/glm-5.2"
+    "url": "https://z.ai/blog/glm-5.2",
+    "src": "third_party"
+   },
+   "hle": {
+    "score": 41.4,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for Qwen3.7 Max: tool setting not stated by llm-stats"
    }
   }
  },
@@ -1051,15 +1587,18 @@
   "scores": {
    "swe_bench_pro": {
     "score": 57.6,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro",
+    "src": "third_party"
    },
    "swe_bench_verified": {
     "score": 77.7,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 52.81,
-    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1",
+    "src": "third_party"
    }
   }
  },
@@ -1071,7 +1610,15 @@
   "scores": {
    "swe_bench_pro": {
     "score": 62.5,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro",
+    "src": "third_party"
+   },
+   "hle": {
+    "score": 35.9,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for Qwen3.8-Flash-Next: Judged by GPT-4o"
    }
   }
  },
@@ -1083,11 +1630,13 @@
   "scores": {
    "swe_bench_pro": {
     "score": 56.3,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-pro"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-pro",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 59.5,
-    "url": "https://benchlm.ai/benchmarks/terminalbench21"
+    "url": "https://benchlm.ai/benchmarks/terminalbench21",
+    "src": "third_party"
    }
   }
  },
@@ -1099,11 +1648,27 @@
   "scores": {
    "swe_bench_pro": {
     "score": 43.6,
-    "url": "https://scale.com/leaderboard/swe_bench_pro_public"
+    "url": "https://scale.com/leaderboard/swe_bench_pro_public",
+    "src": "leaderboard"
    },
    "swe_bench_verified": {
     "score": 74.8,
-    "url": "https://www.swebench.com/"
+    "url": "https://www.swebench.com/",
+    "src": "leaderboard"
+   },
+   "bfcl": {
+    "score": 73.24,
+    "url": "https://gorilla.cs.berkeley.edu/leaderboard.html",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "Claude-Sonnet-4-5-20250929 (FC)"
+   },
+   "tau_bench": {
+    "score": 84.73,
+    "url": "https://taubench.com/submissions/claude-sonnet-4-5_anthropic_2025-10-02/submission.json",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "tau-bench pass^1, mean of the 3 original domains (airline 70.0/retail 86.2/telecom 98.0), version 0.1.3, submission 2…"
    }
   }
  },
@@ -1115,11 +1680,20 @@
   "scores": {
    "swe_bench_pro": {
     "score": 39.45,
-    "url": "https://scale.com/leaderboard/swe_bench_pro_public"
+    "url": "https://scale.com/leaderboard/swe_bench_pro_public",
+    "src": "leaderboard"
    },
    "swe_bench_verified": {
     "score": 66.6,
-    "url": "https://www.swebench.com/"
+    "url": "https://www.swebench.com/",
+    "src": "leaderboard"
+   },
+   "bfcl": {
+    "score": 68.7,
+    "url": "https://gorilla.cs.berkeley.edu/leaderboard.html",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "Claude-Haiku-4-5-20251001 (FC)"
    }
   }
  },
@@ -1131,11 +1705,27 @@
   "scores": {
    "swe_bench_pro": {
     "score": 15.56,
-    "url": "https://scale.com/leaderboard/swe_bench_pro_public"
+    "url": "https://scale.com/leaderboard/swe_bench_pro_public",
+    "src": "leaderboard"
    },
    "swe_bench_verified": {
     "score": 68.8,
-    "url": "https://www.swebench.com/"
+    "url": "https://www.swebench.com/",
+    "src": "leaderboard"
+   },
+   "gpqa_diamond": {
+    "score": 80.3,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry DeepSeek V3.2 (Thinking)"
+   },
+   "hle": {
+    "score": 25.1,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for DeepSeek-V3.2 (Thinking): tool setting not stated by llm-stats"
    }
   }
  },
@@ -1147,15 +1737,25 @@
   "scores": {
    "swe_bench_pro": {
     "score": 34.63,
-    "url": "https://scale.com/leaderboard/swe_bench_pro_public"
+    "url": "https://scale.com/leaderboard/swe_bench_pro_public",
+    "src": "leaderboard"
    },
    "swe_bench_verified": {
     "score": 75.4,
-    "url": "https://www.swebench.com/"
+    "url": "https://www.swebench.com/",
+    "src": "leaderboard"
    },
    "terminal_bench_2_1": {
     "score": 53.93,
-    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1",
+    "src": "third_party"
+   },
+   "gpqa_diamond": {
+    "score": 87.88,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry Gemini 3 Flash (12/25)"
    }
   }
  },
@@ -1167,11 +1767,20 @@
   "scores": {
    "swe_bench_pro": {
     "score": 43.3,
-    "url": "https://scale.com/leaderboard/swe_bench_pro_public"
+    "url": "https://scale.com/leaderboard/swe_bench_pro_public",
+    "src": "leaderboard"
    },
    "swe_bench_verified": {
     "score": 76.4,
-    "url": "https://www.swebench.com/"
+    "url": "https://www.swebench.com/",
+    "src": "leaderboard"
+   },
+   "bfcl": {
+    "score": 68.14,
+    "url": "https://gorilla.cs.berkeley.edu/leaderboard.html",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "Gemini-3-Pro-Preview (FC)"
    }
   }
  },
@@ -1183,7 +1792,22 @@
   "scores": {
    "swe_bench_pro": {
     "score": 11.38,
-    "url": "https://scale.com/leaderboard/swe_bench_pro_public"
+    "url": "https://scale.com/leaderboard/swe_bench_pro_public",
+    "src": "leaderboard"
+   },
+   "aider_polyglot": {
+    "score": 4.9,
+    "url": "https://aider.chat/docs/leaderboards/",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "gemma-3-27b-it, whole edit format"
+   },
+   "bfcl": {
+    "score": 29.47,
+    "url": "https://gorilla.cs.berkeley.edu/leaderboard.html",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "Gemma-3-27b-it (Prompt)"
    }
   }
  },
@@ -1195,11 +1819,34 @@
   "scores": {
    "swe_bench_pro": {
     "score": 9.67,
-    "url": "https://scale.com/leaderboard/swe_bench_pro_public"
+    "url": "https://scale.com/leaderboard/swe_bench_pro_public",
+    "src": "leaderboard"
    },
    "swe_bench_verified": {
     "score": 61.8,
-    "url": "https://www.swebench.com/"
+    "url": "https://www.swebench.com/",
+    "src": "leaderboard"
+   },
+   "bfcl": {
+    "score": 72.38,
+    "url": "https://gorilla.cs.berkeley.edu/leaderboard.html",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "GLM-4.6 (FC thinking)"
+   },
+   "gpqa_diamond": {
+    "score": 74.5,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry GLM 4.6"
+   },
+   "hle": {
+    "score": 17.2,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for GLM-4.6: tool setting not stated by llm-stats"
    }
   }
  },
@@ -1211,11 +1858,41 @@
   "scores": {
    "swe_bench_pro": {
     "score": 41.78,
-    "url": "https://scale.com/leaderboard/swe_bench_pro_public"
+    "url": "https://scale.com/leaderboard/swe_bench_pro_public",
+    "src": "leaderboard"
    },
    "swe_bench_verified": {
     "score": 69.0,
-    "url": "https://www.swebench.com/"
+    "url": "https://www.swebench.com/",
+    "src": "leaderboard"
+   },
+   "aider_polyglot": {
+    "score": 86.7,
+    "url": "https://aider.chat/docs/leaderboards/",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "gpt-5 (medium), diff edit format"
+   },
+   "gpqa_diamond": {
+    "score": 85.61,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry GPT 5"
+   },
+   "hle": {
+    "score": 24.8,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for GPT-5: GPT-5 standard with thinking mode (no tools) - Full set of expert-level q…"
+   },
+   "tau_bench": {
+    "score": 79.97,
+    "url": "https://taubench.com/submissions/gpt-5_sierra_2025-08-09/submission.json",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "tau-bench pass^1, mean of the 3 original domains (airline 62.5/retail 81.6/telecom 95.8), version 0.1.3, submission 2…"
    }
   }
  },
@@ -1227,11 +1904,13 @@
   "scores": {
    "swe_bench_pro": {
     "score": 41.04,
-    "url": "https://scale.com/leaderboard/swe_bench_pro_public"
+    "url": "https://scale.com/leaderboard/swe_bench_pro_public",
+    "src": "leaderboard"
    },
    "swe_bench_verified": {
     "score": 72.6,
-    "url": "https://www.swebench.com/"
+    "url": "https://www.swebench.com/",
+    "src": "leaderboard"
    }
   }
  },
@@ -1243,11 +1922,34 @@
   "scores": {
    "swe_bench_pro": {
     "score": 16.2,
-    "url": "https://scale.com/leaderboard/swe_bench_pro_public"
+    "url": "https://scale.com/leaderboard/swe_bench_pro_public",
+    "src": "leaderboard"
    },
    "swe_bench_verified": {
     "score": 29.8,
-    "url": "https://www.swebench.com/"
+    "url": "https://www.swebench.com/",
+    "src": "leaderboard"
+   },
+   "aider_polyglot": {
+    "score": 41.8,
+    "url": "https://aider.chat/docs/leaderboards/",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "gpt-oss-120b (high), diff edit format"
+   },
+   "gpqa_diamond": {
+    "score": 78.54,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry GPT OSS 120B"
+   },
+   "hle": {
+    "score": 14.9,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for GPT OSS 120B: Accuracy (without tools)"
    }
   }
  },
@@ -1259,11 +1961,20 @@
   "scores": {
    "swe_bench_pro": {
     "score": 27.67,
-    "url": "https://scale.com/leaderboard/swe_bench_pro_public"
+    "url": "https://scale.com/leaderboard/swe_bench_pro_public",
+    "src": "leaderboard"
    },
    "swe_bench_verified": {
     "score": 61.8,
-    "url": "https://www.swebench.com/"
+    "url": "https://www.swebench.com/",
+    "src": "leaderboard"
+   },
+   "gpqa_diamond": {
+    "score": 78.54,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry Kimi K2 Thinking"
    }
   }
  },
@@ -1275,11 +1986,20 @@
   "scores": {
    "swe_bench_pro": {
     "score": 5.24,
-    "url": "https://scale.com/leaderboard/swe_bench_pro_public"
+    "url": "https://scale.com/leaderboard/swe_bench_pro_public",
+    "src": "leaderboard"
    },
    "swe_bench_verified": {
     "score": 21.04,
-    "url": "https://www.swebench.com/"
+    "url": "https://www.swebench.com/",
+    "src": "leaderboard"
+   },
+   "aider_polyglot": {
+    "score": 15.6,
+    "url": "https://aider.chat/docs/leaderboards/",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "Llama 4 Maverick, whole edit format"
    }
   }
  },
@@ -1291,11 +2011,27 @@
   "scores": {
    "swe_bench_pro": {
     "score": 36.81,
-    "url": "https://scale.com/leaderboard/swe_bench_pro_public"
+    "url": "https://scale.com/leaderboard/swe_bench_pro_public",
+    "src": "leaderboard"
    },
    "swe_bench_verified": {
     "score": 74.8,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
+   },
+   "gpqa_diamond": {
+    "score": 78.54,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry MiniMax-M2.1"
+   },
+   "hle": {
+    "score": 22.0,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for MiniMax M2.1: without tools"
    }
   }
  },
@@ -1307,7 +2043,22 @@
   "scores": {
    "swe_bench_pro": {
     "score": 21.41,
-    "url": "https://scale.com/leaderboard/swe_bench_pro_public"
+    "url": "https://scale.com/leaderboard/swe_bench_pro_public",
+    "src": "leaderboard"
+   },
+   "livecodebench": {
+    "score": 80.38,
+    "url": "https://livecodebench.github.io/leaderboard.html",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "Qwen3-235B-A22B"
+   },
+   "aider_polyglot": {
+    "score": 59.6,
+    "url": "https://aider.chat/docs/leaderboards/",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "Qwen3 235B A22B diff, no think, Alibaba API, diff edit format"
    }
   }
  },
@@ -1319,11 +2070,13 @@
   "scores": {
    "swe_bench_pro": {
     "score": 38.7,
-    "url": "https://scale.com/leaderboard/swe_bench_pro_public"
+    "url": "https://scale.com/leaderboard/swe_bench_pro_public",
+    "src": "leaderboard"
    },
    "swe_bench_verified": {
     "score": 62.5,
-    "url": "https://www.swebench.com/"
+    "url": "https://www.swebench.com/",
+    "src": "leaderboard"
    }
   }
  },
@@ -1335,11 +2088,13 @@
   "scores": {
    "swe_bench_verified": {
     "score": 77.7,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 70.8,
-    "url": "https://benchlm.ai/benchmarks/terminalbench21"
+    "url": "https://benchlm.ai/benchmarks/terminalbench21",
+    "src": "third_party"
    }
   }
  },
@@ -1351,7 +2106,8 @@
   "scores": {
    "swe_bench_verified": {
     "score": 15.8,
-    "url": "https://www.swebench.com/"
+    "url": "https://www.swebench.com/",
+    "src": "leaderboard"
    }
   }
  },
@@ -1363,7 +2119,22 @@
   "scores": {
    "swe_bench_verified": {
     "score": 66.4,
-    "url": "https://www.swebench.com/"
+    "url": "https://www.swebench.com/",
+    "src": "leaderboard"
+   },
+   "aider_polyglot": {
+    "score": 60.4,
+    "url": "https://aider.chat/docs/leaderboards/",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "claude-3-7-sonnet-20250219 (no thinking), diff edit format"
+   },
+   "tau_bench": {
+    "score": 61.77,
+    "url": "https://taubench.com/submissions/claude-3-7-sonnet_anthropic_2024-06-20/submission.json",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "tau-bench pass^1, mean of the 3 original domains (airline 64.2/retail 72.1/telecom 49.0), version 0.1.3, submission 2…"
    }
   }
  },
@@ -1375,7 +2146,22 @@
   "scores": {
    "swe_bench_verified": {
     "score": 73.2,
-    "url": "https://www.swebench.com/"
+    "url": "https://www.swebench.com/",
+    "src": "leaderboard"
+   },
+   "livecodebench": {
+    "score": 62.37,
+    "url": "https://livecodebench.github.io/leaderboard.html",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "Claude-Opus-4"
+   },
+   "aider_polyglot": {
+    "score": 70.7,
+    "url": "https://aider.chat/docs/leaderboards/",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "claude-opus-4-20250514 (no think), diff edit format"
    }
   }
  },
@@ -1387,7 +2173,8 @@
   "scores": {
    "swe_bench_verified": {
     "score": 74.5,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified",
+    "src": "third_party"
    }
   }
  },
@@ -1399,11 +2186,20 @@
   "scores": {
    "swe_bench_verified": {
     "score": 66.6,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 43.82,
-    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1",
+    "src": "third_party"
+   },
+   "gpqa_diamond": {
+    "score": 72.22,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry Claude Haiku 4.5 (Thinking)"
    }
   }
  },
@@ -1415,7 +2211,15 @@
   "scores": {
    "swe_bench_verified": {
     "score": 76.4,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
+   },
+   "gpqa_diamond": {
+    "score": 85.86,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry Claude Opus 4.5 (Thinking)"
    }
   }
  },
@@ -1427,11 +2231,27 @@
   "scores": {
    "swe_bench_verified": {
     "score": 82.0,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 68.54,
-    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1",
+    "src": "third_party"
+   },
+   "gpqa_diamond": {
+    "score": 90.15,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry Claude Opus 4.7"
+   },
+   "hle": {
+    "score": 54.7,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for Claude Opus 4.7: Multidisciplinary reasoning. With tools: 54.7%. Without tools…"
    }
   }
  },
@@ -1443,7 +2263,15 @@
   "scores": {
    "swe_bench_verified": {
     "score": 70.0,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
+   },
+   "gpqa_diamond": {
+    "score": 81.63,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry Claude Sonnet 4.5 (Thinking)"
    }
   }
  },
@@ -1455,11 +2283,27 @@
   "scores": {
    "swe_bench_verified": {
     "score": 78.5,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 57.3,
-    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1",
+    "src": "third_party"
+   },
+   "gpqa_diamond": {
+    "score": 85.61,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry Claude Sonnet 4.6"
+   },
+   "hle": {
+    "score": 49.0,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for Claude Sonnet 4.6: Multidisciplinary reasoning (Humanity's Last Exam). With tool…"
    }
   }
  },
@@ -1471,7 +2315,29 @@
   "scores": {
    "swe_bench_verified": {
     "score": 7.8,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
+   },
+   "aider_polyglot": {
+    "score": 12.0,
+    "url": "https://aider.chat/docs/leaderboards/",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "command-a-03-2025-quality, whole edit format"
+   },
+   "bfcl": {
+    "score": 46.49,
+    "url": "https://gorilla.cs.berkeley.edu/leaderboard.html",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "Command A (FC)"
+   },
+   "gpqa_diamond": {
+    "score": 48.48,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry Command A"
    }
   }
  },
@@ -1483,7 +2349,22 @@
   "scores": {
    "swe_bench_verified": {
     "score": 42,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified",
+    "src": "third_party"
+   },
+   "livecodebench": {
+    "score": 49.55,
+    "url": "https://livecodebench.github.io/leaderboard.html",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "DeepSeek-V3"
+   },
+   "gpqa_diamond": {
+    "score": 54.55,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry DeepSeek V3"
    }
   }
  },
@@ -1495,7 +2376,15 @@
   "scores": {
    "swe_bench_verified": {
     "score": 42.0,
-    "url": "https://www.swebench.com/"
+    "url": "https://www.swebench.com/",
+    "src": "leaderboard"
+   },
+   "aider_polyglot": {
+    "score": 55.1,
+    "url": "https://aider.chat/docs/leaderboards/",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "DeepSeek V3 (0324), diff edit format"
    }
   }
  },
@@ -1507,7 +2396,8 @@
   "scores": {
    "swe_bench_verified": {
     "score": 60.0,
-    "url": "https://www.swebench.com/"
+    "url": "https://www.swebench.com/",
+    "src": "leaderboard"
    }
   }
  },
@@ -1519,7 +2409,22 @@
   "scores": {
    "swe_bench_verified": {
     "score": 71.6,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
+   },
+   "gpqa_diamond": {
+    "score": 80.05,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry GLM 4.7"
+   },
+   "hle": {
+    "score": 42.8,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for GLM-4.7: With tools"
    }
   }
  },
@@ -1531,11 +2436,27 @@
   "scores": {
    "swe_bench_verified": {
     "score": 92.0,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 84.28,
-    "url": "https://z.ai/blog/glm-5.3-flash"
+    "url": "https://z.ai/blog/glm-5.3-flash",
+    "src": "vendor"
+   },
+   "gpqa_diamond": {
+    "score": 86.36,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry GLM 5.3 Flash"
+   },
+   "hle": {
+    "score": 55.3,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for GLM-5.3-Flash: With tools; temp=1.0 top_p=0.95; 300K context; GPT-5.6-luna (medi…"
    }
   }
  },
@@ -1547,7 +2468,43 @@
   "scores": {
    "swe_bench_verified": {
     "score": 47.09,
-    "url": "https://www.swebench.com/"
+    "url": "https://www.swebench.com/",
+    "src": "leaderboard"
+   },
+   "aider_polyglot": {
+    "score": 52.4,
+    "url": "https://aider.chat/docs/leaderboards/",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "gpt-4.1, diff edit format"
+   },
+   "bfcl": {
+    "score": 53.96,
+    "url": "https://gorilla.cs.berkeley.edu/leaderboard.html",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "GPT-4.1-2025-04-14 (FC)"
+   },
+   "gpqa_diamond": {
+    "score": 65.4,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry GPT 4.1"
+   },
+   "hle": {
+    "score": 5.4,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for GPT-4.1: GPT-4.1 with no tools - Expert-level questions across subjects."
+   },
+   "tau_bench": {
+    "score": 54.67,
+    "url": "https://taubench.com/submissions/gpt-4-1_openai_2024-06-20/submission.json",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "tau-bench pass^1, mean of the 3 original domains (airline 56.0/retail 74.0/telecom 34.0), version 0.1.3, submission 2…"
    }
   }
  },
@@ -1559,7 +2516,43 @@
   "scores": {
    "swe_bench_verified": {
     "score": 23.77,
-    "url": "https://www.swebench.com/"
+    "url": "https://www.swebench.com/",
+    "src": "leaderboard"
+   },
+   "aider_polyglot": {
+    "score": 32.4,
+    "url": "https://aider.chat/docs/leaderboards/",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "gpt-4.1-mini, diff edit format"
+   },
+   "bfcl": {
+    "score": 50.45,
+    "url": "https://gorilla.cs.berkeley.edu/leaderboard.html",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "GPT-4.1-mini-2025-04-14 (FC)"
+   },
+   "gpqa_diamond": {
+    "score": 67.93,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry GPT 4.1 Mini"
+   },
+   "hle": {
+    "score": 3.7,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for GPT-4.1 mini: GPT-4.1 mini with no tools - Expert-level questions across subject…"
+   },
+   "tau_bench": {
+    "score": 53.0,
+    "url": "https://taubench.com/submissions/gpt-4-1-mini_openai_2024-06-20/submission.json",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "tau-bench pass^1, mean of the 3 original domains (airline 48.7/retail 61.4/telecom 48.9), version 0.1.3, submission 2…"
    }
   }
  },
@@ -1571,7 +2564,29 @@
   "scores": {
    "swe_bench_verified": {
     "score": 30.21,
-    "url": "https://www.swebench.com/"
+    "url": "https://www.swebench.com/",
+    "src": "leaderboard"
+   },
+   "livecodebench": {
+    "score": 38.3,
+    "url": "https://livecodebench.github.io/leaderboard.html",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "GPT-4O-2024-08-06"
+   },
+   "aider_polyglot": {
+    "score": 18.2,
+    "url": "https://aider.chat/docs/leaderboards/",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "gpt-4o-2024-11-20, diff edit format"
+   },
+   "hle": {
+    "score": 5.3,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for GPT-4o: GPT-4o without thinking mode (no tools) - Full set of expert-level quest…"
    }
   }
  },
@@ -1583,7 +2598,29 @@
   "scores": {
    "swe_bench_verified": {
     "score": 60.3,
-    "url": "https://www.swebench.com/"
+    "url": "https://www.swebench.com/",
+    "src": "leaderboard"
+   },
+   "bfcl": {
+    "score": 55.46,
+    "url": "https://gorilla.cs.berkeley.edu/leaderboard.html",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "GPT-5-mini-2025-08-07 (FC)"
+   },
+   "gpqa_diamond": {
+    "score": 80.3,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry GPT 5 Mini"
+   },
+   "hle": {
+    "score": 16.7,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for GPT-5 mini: GPT-5 mini with thinking mode (no tools) - Full set of expert-level…"
    }
   }
  },
@@ -1595,7 +2632,29 @@
   "scores": {
    "swe_bench_verified": {
     "score": 34.8,
-    "url": "https://www.swebench.com/"
+    "url": "https://www.swebench.com/",
+    "src": "leaderboard"
+   },
+   "bfcl": {
+    "score": 51.45,
+    "url": "https://gorilla.cs.berkeley.edu/leaderboard.html",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "GPT-5-nano-2025-08-07 (FC)"
+   },
+   "gpqa_diamond": {
+    "score": 63.38,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry GPT 5 Nano"
+   },
+   "hle": {
+    "score": 8.7,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for GPT-5 nano: GPT-5 nano with thinking mode (no tools) - Full set of expert-level…"
    }
   }
  },
@@ -1607,7 +2666,15 @@
   "scores": {
    "swe_bench_verified": {
     "score": 67.9,
-    "url": "https://www.swebench.com/"
+    "url": "https://www.swebench.com/",
+    "src": "leaderboard"
+   },
+   "gpqa_diamond": {
+    "score": 86.62,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry GPT 5.1"
    }
   }
  },
@@ -1619,7 +2686,8 @@
   "scores": {
    "swe_bench_verified": {
     "score": 66.0,
-    "url": "https://www.swebench.com/"
+    "url": "https://www.swebench.com/",
+    "src": "leaderboard"
    }
   }
  },
@@ -1631,11 +2699,27 @@
   "scores": {
    "swe_bench_verified": {
     "score": 73.0,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 54.68,
-    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1",
+    "src": "third_party"
+   },
+   "gpqa_diamond": {
+    "score": 83.08,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry GPT 5.4 Mini"
+   },
+   "hle": {
+    "score": 28.2,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for GPT-5.4 mini: Humanity's Last Exam without tools. Reasoning effort xhigh."
    }
   }
  },
@@ -1647,11 +2731,27 @@
   "scores": {
    "swe_bench_verified": {
     "score": 69.8,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 41.57,
-    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1",
+    "src": "third_party"
+   },
+   "gpqa_diamond": {
+    "score": 77.53,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry GPT 5.4 Nano"
+   },
+   "hle": {
+    "score": 24.3,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for GPT-5.4 nano: Humanity's Last Exam without tools. Reasoning effort xhigh."
    }
   }
  },
@@ -1663,7 +2763,15 @@
   "scores": {
    "swe_bench_verified": {
     "score": 44.2,
-    "url": "https://www.swebench.com/"
+    "url": "https://www.swebench.com/",
+    "src": "leaderboard"
+   },
+   "aider_polyglot": {
+    "score": 22.2,
+    "url": "https://aider.chat/docs/leaderboards/",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "gemini-2.0-flash-exp, whole edit format"
    }
   }
  },
@@ -1675,7 +2783,29 @@
   "scores": {
    "swe_bench_verified": {
     "score": 28.73,
-    "url": "https://www.swebench.com/"
+    "url": "https://www.swebench.com/",
+    "src": "leaderboard"
+   },
+   "livecodebench": {
+    "score": 76.21,
+    "url": "https://livecodebench.github.io/leaderboard.html",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "Gemini-2.5-Flash-05-20"
+   },
+   "bfcl": {
+    "score": 56.24,
+    "url": "https://gorilla.cs.berkeley.edu/leaderboard.html",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "Gemini-2.5-Flash (FC)"
+   },
+   "hle": {
+    "score": 11.0,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for Gemini 2.5 Flash: tool setting not stated by llm-stats"
    }
   }
  },
@@ -1687,7 +2817,22 @@
   "scores": {
    "swe_bench_verified": {
     "score": 54.4,
-    "url": "https://www.swebench.com/"
+    "url": "https://www.swebench.com/",
+    "src": "leaderboard"
+   },
+   "livecodebench": {
+    "score": 84.27,
+    "url": "https://livecodebench.github.io/leaderboard.html",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "Gemini-2.5-Pro-06-05"
+   },
+   "hle": {
+    "score": 17.8,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for Gemini 2.5 Pro: tool setting not stated by llm-stats"
    }
   }
  },
@@ -1699,11 +2844,20 @@
   "scores": {
    "swe_bench_verified": {
     "score": 79.6,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 73.78,
-    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1",
+    "src": "third_party"
+   },
+   "gpqa_diamond": {
+    "score": 93.43,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry Gemini 3.6 Flash"
    }
   }
  },
@@ -1715,11 +2869,20 @@
   "scores": {
    "swe_bench_verified": {
     "score": 80.8,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 85.8,
-    "url": "https://z.ai/blog/glm-5.3-flash"
+    "url": "https://z.ai/blog/glm-5.3-flash",
+    "src": "third_party"
+   },
+   "gpqa_diamond": {
+    "score": 93.94,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry Gemini 3.7 Flash"
    }
   }
  },
@@ -1731,7 +2894,36 @@
   "scores": {
    "swe_bench_verified": {
     "score": 57.8,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
+   },
+   "aider_polyglot": {
+    "score": 79.6,
+    "url": "https://aider.chat/docs/leaderboards/",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "grok-4 (high), diff edit format"
+   },
+   "bfcl": {
+    "score": 61.38,
+    "url": "https://gorilla.cs.berkeley.edu/leaderboard.html",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "Grok-4-0709 (FC)"
+   },
+   "gpqa_diamond": {
+    "score": 88.13,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry Grok 4"
+   },
+   "hle": {
+    "score": 40.0,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for Grok-4: tool setting not stated by llm-stats"
    }
   }
  },
@@ -1743,11 +2935,20 @@
   "scores": {
    "swe_bench_verified": {
     "score": 71.4,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 41.95,
-    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1",
+    "src": "third_party"
+   },
+   "gpqa_diamond": {
+    "score": 91.41,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry Grok 4.3"
    }
   }
  },
@@ -1759,11 +2960,20 @@
   "scores": {
    "swe_bench_verified": {
     "score": 95.6,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 78.28,
-    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1",
+    "src": "third_party"
+   },
+   "gpqa_diamond": {
+    "score": 94.7,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry Grok 4.6"
    }
   }
  },
@@ -1775,7 +2985,8 @@
   "scores": {
    "swe_bench_verified": {
     "score": 74.4,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified",
+    "src": "third_party"
    }
   }
  },
@@ -1787,11 +2998,13 @@
   "scores": {
    "swe_bench_verified": {
     "score": 78.2,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 67.04,
-    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1",
+    "src": "third_party"
    }
   }
  },
@@ -1803,7 +3016,15 @@
   "scores": {
    "swe_bench_verified": {
     "score": 9.06,
-    "url": "https://www.swebench.com/"
+    "url": "https://www.swebench.com/",
+    "src": "leaderboard"
+   },
+   "bfcl": {
+    "score": 28.13,
+    "url": "https://gorilla.cs.berkeley.edu/leaderboard.html",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "Llama-4-Scout-17B-16E-Instruct (FC)"
    }
   }
  },
@@ -1815,11 +3036,20 @@
   "scores": {
    "swe_bench_verified": {
     "score": 71.0,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 60.67,
-    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1",
+    "src": "third_party"
+   },
+   "gpqa_diamond": {
+    "score": 81.57,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry MiMo V2.5"
    }
   }
  },
@@ -1831,7 +3061,15 @@
   "scores": {
    "swe_bench_verified": {
     "score": 61.0,
-    "url": "https://www.swebench.com/"
+    "url": "https://www.swebench.com/",
+    "src": "leaderboard"
+   },
+   "hle": {
+    "score": 12.5,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for MiniMax M2: without tools"
    }
   }
  },
@@ -1843,7 +3081,15 @@
   "scores": {
    "swe_bench_verified": {
     "score": 75.0,
-    "url": "https://www.swebench.com/"
+    "url": "https://www.swebench.com/",
+    "src": "leaderboard"
+   },
+   "gpqa_diamond": {
+    "score": 82.07,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry MiniMax-M2.5"
    }
   }
  },
@@ -1855,7 +3101,15 @@
   "scores": {
    "swe_bench_verified": {
     "score": 41.4,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
+   },
+   "gpqa_diamond": {
+    "score": 68.43,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry Mistral Large 3"
    }
   }
  },
@@ -1867,11 +3121,20 @@
   "scores": {
    "swe_bench_verified": {
     "score": 66.4,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 44.76,
-    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1"
+    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1",
+    "src": "third_party"
+   },
+   "gpqa_diamond": {
+    "score": 34.85,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry Mistral Medium 3.5"
    }
   }
  },
@@ -1883,11 +3146,13 @@
   "scores": {
    "swe_bench_verified": {
     "score": 86.6,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 76.28,
-    "url": "https://benchlm.ai/benchmarks/terminalbench21"
+    "url": "https://benchlm.ai/benchmarks/terminalbench21",
+    "src": "third_party"
    }
   }
  },
@@ -1899,11 +3164,13 @@
   "scores": {
    "swe_bench_verified": {
     "score": 70.45,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 52.44,
-    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1"
+    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1",
+    "src": "third_party"
    }
   }
  },
@@ -1915,11 +3182,13 @@
   "scores": {
    "swe_bench_verified": {
     "score": 52.8,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
    },
    "terminal_bench_2_1": {
     "score": 10.86,
-    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1",
+    "src": "third_party"
    }
   }
  },
@@ -1931,7 +3200,29 @@
   "scores": {
    "swe_bench_verified": {
     "score": 45.85,
-    "url": "https://www.swebench.com/"
+    "url": "https://www.swebench.com/",
+    "src": "leaderboard"
+   },
+   "livecodebench": {
+    "score": 75.36,
+    "url": "https://livecodebench.github.io/leaderboard.html",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "O3-Mini-2025-01-31 (Med)"
+   },
+   "aider_polyglot": {
+    "score": 53.8,
+    "url": "https://aider.chat/docs/leaderboards/",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "o3-mini (medium), diff edit format"
+   },
+   "gpqa_diamond": {
+    "score": 75.5,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry o3 Mini"
    }
   }
  },
@@ -1943,7 +3234,8 @@
   "scores": {
    "swe_bench_verified": {
     "score": 72.8,
-    "url": "https://www.vals.ai/benchmarks/swebench"
+    "url": "https://www.vals.ai/benchmarks/swebench",
+    "src": "third_party"
    }
   }
  },
@@ -1955,7 +3247,15 @@
   "scores": {
    "swe_bench_verified": {
     "score": 72,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified",
+    "src": "third_party"
+   },
+   "hle": {
+    "score": 47.5,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for Qwen3.5-122B-A10B: With tools"
    }
   }
  },
@@ -1967,7 +3267,15 @@
   "scores": {
    "swe_bench_verified": {
     "score": 72.4,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified",
+    "src": "third_party"
+   },
+   "hle": {
+    "score": 48.5,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for Qwen3.5-27B: With tools"
    }
   }
  },
@@ -1979,7 +3287,15 @@
   "scores": {
    "swe_bench_verified": {
     "score": 69.2,
-    "url": "https://benchlm.ai/benchmarks/swe-bench-verified"
+    "url": "https://benchlm.ai/benchmarks/swe-bench-verified",
+    "src": "third_party"
+   },
+   "hle": {
+    "score": 47.4,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for Qwen3.5-35B-A3B: With tools"
    }
   }
  },
@@ -1991,7 +3307,8 @@
   "scores": {
    "swe_bench_verified": {
     "score": 64.6,
-    "url": "https://www.swebench.com/"
+    "url": "https://www.swebench.com/",
+    "src": "leaderboard"
    }
   }
  },
@@ -2003,7 +3320,43 @@
   "scores": {
    "swe_bench_verified": {
     "score": 58.4,
-    "url": "https://www.swebench.com/"
+    "url": "https://www.swebench.com/",
+    "src": "leaderboard"
+   },
+   "livecodebench": {
+    "score": 84.74,
+    "url": "https://livecodebench.github.io/leaderboard.html",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "O3 (High)"
+   },
+   "aider_polyglot": {
+    "score": 76.9,
+    "url": "https://aider.chat/docs/leaderboards/",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "o3, diff edit format"
+   },
+   "bfcl": {
+    "score": 48.56,
+    "url": "https://gorilla.cs.berkeley.edu/leaderboard.html",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "o3-2025-04-16 (FC)"
+   },
+   "gpqa_diamond": {
+    "score": 84.09,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry o3"
+   },
+   "hle": {
+    "score": 14.7,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for o3: OpenAI o3 with thinking mode enabled (no tools) - Full set of expert-level q…"
    }
   }
  },
@@ -2015,7 +3368,50 @@
   "scores": {
    "swe_bench_verified": {
     "score": 64.6,
-    "url": "https://www.swebench.com/"
+    "url": "https://www.swebench.com/",
+    "src": "leaderboard"
+   },
+   "livecodebench": {
+    "score": 84.45,
+    "url": "https://livecodebench.github.io/leaderboard.html",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "O4-Mini (Medium)"
+   },
+   "aider_polyglot": {
+    "score": 72.0,
+    "url": "https://aider.chat/docs/leaderboards/",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "o4-mini (high), diff edit format"
+   },
+   "bfcl": {
+    "score": 53.24,
+    "url": "https://gorilla.cs.berkeley.edu/leaderboard.html",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "o4-mini-2025-04-16 (FC)"
+   },
+   "gpqa_diamond": {
+    "score": 74.5,
+    "url": "https://www.vals.ai/benchmarks/gpqa",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry o4 Mini"
+   },
+   "hle": {
+    "score": 14.7,
+    "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+    "src": "third_party",
+    "seen": "2026-10-22",
+    "variant": "HLE score as listed by llm-stats for o4-mini: accuracy (no tools)"
+   },
+   "tau_bench": {
+    "score": 56.87,
+    "url": "https://taubench.com/submissions/o4-mini_openai_2024-06-20/submission.json",
+    "src": "leaderboard",
+    "seen": "2026-10-22",
+    "variant": "tau-bench pass^1, mean of the 3 original domains (airline 52.1/retail 68.3/telecom 50.2), version 0.1.3, submission 2…"
    }
   }
  },
@@ -2027,7 +3423,8 @@
   "scores": {
    "terminal_bench_2_1": {
     "score": 89.89,
-    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1"
+    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1",
+    "src": "third_party"
    }
   }
  },
@@ -2039,7 +3436,8 @@
   "scores": {
    "terminal_bench_2_1": {
     "score": 91.01,
-    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1"
+    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1",
+    "src": "third_party"
    }
   }
  },
@@ -2051,7 +3449,8 @@
   "scores": {
    "terminal_bench_2_1": {
     "score": 17.6,
-    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1",
+    "src": "third_party"
    }
   }
  },
@@ -2063,7 +3462,8 @@
   "scores": {
    "terminal_bench_2_1": {
     "score": 89.51,
-    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1"
+    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1",
+    "src": "third_party"
    }
   }
  },
@@ -2075,7 +3475,8 @@
   "scores": {
    "terminal_bench_2_1": {
     "score": 89.89,
-    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1"
+    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1",
+    "src": "third_party"
    }
   }
  },
@@ -2087,7 +3488,8 @@
   "scores": {
    "terminal_bench_2_1": {
     "score": 89.51,
-    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1"
+    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1",
+    "src": "third_party"
    }
   }
  },
@@ -2099,7 +3501,8 @@
   "scores": {
    "terminal_bench_2_1": {
     "score": 83.15,
-    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1",
+    "src": "third_party"
    }
   }
  },
@@ -2111,7 +3514,8 @@
   "scores": {
    "terminal_bench_2_1": {
     "score": 57.68,
-    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1",
+    "src": "third_party"
    }
   }
  },
@@ -2123,7 +3527,8 @@
   "scores": {
    "terminal_bench_2_1": {
     "score": 71.91,
-    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1"
+    "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1",
+    "src": "third_party"
    }
   }
  },
@@ -2135,7 +3540,8 @@
   "scores": {
    "terminal_bench_2_1": {
     "score": 50.19,
-    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1",
+    "src": "third_party"
    }
   }
  },
@@ -2147,7 +3553,8 @@
   "scores": {
    "terminal_bench_2_1": {
     "score": 34.46,
-    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1"
+    "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1",
+    "src": "third_party"
    }
   }
  }

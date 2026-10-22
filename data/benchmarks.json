@@ -23,6 +23,42 @@
       "metric": "% tasks solved",
       "url": "https://www.tbench.ai/",
       "source_type": "leaderboard"
+    },
+    "livecodebench": {
+      "name": "LiveCodeBench",
+      "metric": "Mean pass@1 over the 1055 questions the leaderboard ran each model on, from the LiveCodeBench team's own per-question results file",
+      "url": "https://livecodebench.github.io/leaderboard.html",
+      "source_type": "leaderboard"
+    },
+    "aider_polyglot": {
+      "name": "Aider Polyglot",
+      "metric": "Percent correct over the 225 polyglot coding exercises, run by aider with the edit format that scores best for that model",
+      "url": "https://aider.chat/docs/leaderboards/",
+      "source_type": "leaderboard"
+    },
+    "bfcl": {
+      "name": "Berkeley Function Calling Leaderboard v4",
+      "metric": "Overall Accuracy: the unweighted average of all BFCL sub-categories (Agentic, Multi-Turn, Live, Non-Live, Hallucination), native function-calling mode where the model has one",
+      "url": "https://gorilla.cs.berkeley.edu/leaderboard.html",
+      "source_type": "leaderboard"
+    },
+    "gpqa_diamond": {
+      "name": "GPQA Diamond",
+      "metric": "Accuracy on the 198-question GPQA-Diamond set, re-run by Vals AI on its own archived leaderboard, one harness for every model in the table",
+      "url": "https://www.vals.ai/benchmarks/gpqa",
+      "source_type": "third_party"
+    },
+    "hle": {
+      "name": "Humanity's Last Exam",
+      "metric": "Score on HLE as listed by the llm-stats benchmark table; each row keeps the vendor's or llm-stats' own wording, which says whether tools were allowed",
+      "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
+      "source_type": "third_party"
+    },
+    "tau_bench": {
+      "name": "tau-bench (airline + retail + telecom)",
+      "metric": "pass^1 averaged over the three original tau-bench domains, from the official submission files on taubench.com (tau-bench 0.1.3, the same three tasks per model)",
+      "url": "https://taubench.com/",
+      "source_type": "leaderboard"
     }
   },
   "claims": [
