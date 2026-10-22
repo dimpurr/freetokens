@@ -45,6 +45,7 @@ IGNORE = {
     ("OpenRouter", "google/lyria-3-pro-preview"): "music model",
     ("OpenRouter", "google/lyria-3-clip-preview"): "music model",
     ("Vercel AI Gateway", "inclusionai/ling-3.1-flash"): "same $0 model as the tracked -free id",
+    ("Vercel AI Gateway", "reflection/beam"): "no Vercel free lane (standard id billed; -free id untested, needs one call to qualify per ADR-022) — re-report suppressed, ask Dim",
 }
 
 
@@ -130,6 +131,29 @@ PAGES = {
 }
 
 
+def aa_recheck(out, slugs):
+    """Weekly (Dim 2026-10-22): tracked models with no AA index get one more lookup (catches late
+    AA listings like Beam 1.0, which our slug guess missed and we never rechecked). Runs once per
+    calendar week; state lives next to latest.json."""
+    import datetime as dt
+    state_f = out / "aa_recheck.json"
+    state = json.loads(state_f.read_text()) if state_f.exists() else {}
+    week = list(dt.date.today().isocalendar()[:2])
+    if state.get("week") == week:
+        return state.get("lines", [])
+    models = json.loads((ROOT / "data/models.json").read_text())
+    lines = []
+    for m in models:
+        if (m.get("aa_index") or {}).get("value"):
+            continue
+        v, url = aa_index(m["id"], slugs)
+        if v:
+            lines.append(f"🆕 AA now lists {m['id']}: index {v} ({url}) — fill models.json")
+    state = {"week": week, "lines": lines}
+    state_f.write_text(json.dumps(state, ensure_ascii=False, indent=1))
+    return lines
+
+
 def page_changes(out):
     import hashlib, html as H
     state_f = out / "pages.json"
@@ -180,7 +204,7 @@ def main():
     new.sort(key=lambda x: -(x["aa"] or -1))
     now = dt.datetime.now(dt.timezone.utc).isoformat(timespec="minutes")
     (out / "latest.json").write_text(json.dumps({"checked": now, "back": back, "new": new, "gone": gone, "errors": errors}, ensure_ascii=False, indent=1))
-    lines = page_changes(out) + [f"🔁 back in a free catalogue: {x['model_id']} · {x['channel']} → {x['note']}" for x in back]
+    lines = aa_recheck(out, slugs) + page_changes(out) + [f"🔁 back in a free catalogue: {x['model_id']} · {x['channel']} → {x['note']}" for x in back]
     if new:
         lines.append(f"🆕 {len(new)} free model(s) not on freetokens yet:")
         for x in new:
