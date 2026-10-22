@@ -89,20 +89,21 @@
     },
     "ends": {
       "announced": null,
-      "expected": "2026-10-10T13:38Z",
-      "confidence": "inferred",
-      "note": "\"two weeks\" from the announcement"
+      "expected": null,
+      "confidence": "none",
+      "note": "no end announced; observed gone from the OpenCode Go free catalogue on 2026-10-22, so the earlier two-week inference (2026-10-10) is dropped — it outlived that date"
     },
     "data_policy": "zero_retention",
-    "status": "live",
+    "status": "ended",
     "checked": {
-      "date": "2026-10-13",
+      "date": "2026-10-22",
       "method": "catalogue"
     },
     "volume": {
       "tier": "bulk",
       "basis": "own check: 15 parallel agent runs"
-    }
+    },
+    "note": "Dropped from OpenCode Go: opencode-go/longcat-2.5-preview-free is not in the free model list at the 2026-10-22T08:00Z daily catalogue check (re-confirmed by our own read of the same list on 2026-10-22); last present 2026-10-13 (catalogue), last confirmed answering 2026-10-04 (15 parallel agent runs); no end date announced"
   },
   {
     "id": "bunny-go",
@@ -2211,18 +2212,20 @@
     "ends": {
       "announced": null,
       "expected": null,
-      "confidence": "none"
+      "confidence": "none",
+      "note": "no end announced; observed gone from the OpenCode Zen free catalogue on 2026-10-22"
     },
     "data_policy": "zero_retention",
-    "status": "live",
+    "status": "ended",
     "checked": {
-      "date": "2026-10-20",
+      "date": "2026-10-22",
       "method": "catalogue"
     },
     "volume": {
       "tier": "bulk",
       "basis": "own check: 10 parallel calls"
-    }
+    },
+    "note": "Dropped from OpenCode Zen: opencode/longcat-2.5-preview-free is not in the free model list at the 2026-10-22T08:00Z daily catalogue check (re-confirmed by our own read of the same list on 2026-10-22); last present 2026-10-20 (catalogue), last confirmed answering 2026-10-06 (10 parallel agent runs); no end date announced"
   },
   {
     "id": "ling-3.1-flash-zen",
@@ -4533,5 +4536,71 @@
       "basis": "50 requests a day without credits (stated)"
     },
     "note": "OpenRouter's free ID is the A4B spelling of Xing 4.0 29B (huggingface.co/XingChen-AGI/Xing4.0-29B-A4B, the same repo our benchmark claims cite), so it lands on the existing xing4.0-29b model rather than a duplicate page"
+  },
+  {
+    "id": "flint-or",
+    "model": "flint",
+    "channel": "OpenRouter",
+    "type": "router",
+    "model_id": "recursive/flint-v1.0:free",
+    "free_condition": null,
+    "limits_stated": {
+      "basis": "official",
+      "per_day": 50,
+      "note": "1000/day once 10+ credits have been bought",
+      "source": "https://openrouter.ai/pricing"
+    },
+    "limits_observed": null,
+    "started": {
+      "date": "2026-10-22",
+      "note": "first seen in the daily free-catalogue check; may predate it"
+    },
+    "ends": {
+      "announced": null,
+      "expected": null,
+      "confidence": "none"
+    },
+    "data_policy": "not_checked",
+    "status": "listed",
+    "checked": {
+      "date": "2026-10-22",
+      "method": "catalogue"
+    },
+    "volume": {
+      "tier": "taste",
+      "basis": "50 requests a day without credits (stated)"
+    },
+    "note": "OpenRouter's recursive/flint-v1.0:free and OpenCode Zen's opencode/flint-40b-free are the same model, so both lanes land on the flint page rather than a duplicate: Recursive's Flint, whose model card (huggingface.co/RecursiveSI/flint) gives 39.8B total with about 2.5B active per token and states that 40B-A2.5B is the rounded size designation; both catalogue entries report 262,144 context and text-to-text"
+  },
+  {
+    "id": "flint-zen",
+    "model": "flint",
+    "channel": "OpenCode Zen",
+    "type": "agent_tool",
+    "model_id": "opencode/flint-40b-free",
+    "free_condition": null,
+    "limits_stated": {
+      "basis": "unpublished"
+    },
+    "limits_observed": null,
+    "started": {
+      "date": "2026-10-22",
+      "note": "first seen in the daily free-catalogue check; may predate it"
+    },
+    "ends": {
+      "announced": null,
+      "expected": null,
+      "confidence": "none"
+    },
+    "data_policy": "not_checked",
+    "status": "listed",
+    "checked": {
+      "date": "2026-10-22",
+      "method": "catalogue"
+    },
+    "volume": {
+      "tier": "daily",
+      "basis": "channel rule: Zen's free allowance is per IP per day; this model not load-tested"
+    }
   }
 ]

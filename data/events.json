@@ -2388,5 +2388,55 @@
       "label": "own check of the Kilo Gateway model list and anonymous calls",
       "url": "https://api.kilo.ai/api/gateway/models"
     }
+  },
+  {
+    "date": "2026-10-22",
+    "lanes": [
+      "flint-or"
+    ],
+    "kind": "available",
+    "text": "Flint is on OpenRouter's free catalogue as recursive/flint-v1.0:free ($0 per token on the models API, 262,144 context, text input only): first seen by the daily free-catalogue check at 2026-10-22T08:00Z and still there when we re-read the same API the same day; we have not called it",
+    "source": {
+      "label": "Daily free-catalogue check of the OpenRouter models API (own tool)",
+      "url": "https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2026-10-22",
+    "lanes": [
+      "flint-zen"
+    ],
+    "kind": "available",
+    "text": "Flint is on OpenCode Zen's free model list as opencode/flint-40b-free: first seen by the daily free-catalogue check at 2026-10-22T08:00Z and still there when we re-read the same list the same day; we have not called it",
+    "source": {
+      "label": "Daily free-catalogue check of the OpenCode Zen model list (own tool)",
+      "url": "https://opencode.ai/zen/v1/models"
+    }
+  },
+  {
+    "date": "2026-10-22",
+    "lanes": [
+      "longcat-2.5-preview-zen"
+    ],
+    "kind": "ended",
+    "end_date": "2026-10-22",
+    "text": "opencode/longcat-2.5-preview-free is no longer in the OpenCode Zen free model list at the 2026-10-22T08:00Z daily check, and still absent when we re-read the same list the same day; it was added 2026-09-26, answered 10 parallel runs on 2026-10-06 and was still listed on 2026-10-20; no end date announced",
+    "source": {
+      "label": "Daily free-catalogue check of the OpenCode Zen model list (own tool)",
+      "url": "https://opencode.ai/zen/v1/models"
+    }
+  },
+  {
+    "date": "2026-10-22",
+    "lanes": [
+      "longcat-go"
+    ],
+    "kind": "ended",
+    "end_date": "2026-10-22",
+    "text": "opencode-go/longcat-2.5-preview-free is no longer in the OpenCode Go free model list at the 2026-10-22T08:00Z daily check, and still absent when we re-read the same list the same day; it was added 2026-09-26, answered 15 parallel runs on 2026-10-04 and was still listed on 2026-10-13; no end date announced",
+    "source": {
+      "label": "Daily free-catalogue check of the OpenCode Go model list (own tool)",
+      "url": "https://opencode.ai/zen/go/v1/models"
+    }
   }
 ]

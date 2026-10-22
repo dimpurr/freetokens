@@ -230,5 +230,14 @@
    "site": "https://reflection.ai",
    "models": "https://huggingface.co/reflection"
   }
+ },
+ {
+  "id": "recursive",
+  "name": "Recursive",
+  "note": "Name and links read from the Flint model card on 2026-10-22 (huggingface.co/RecursiveSI/flint: Developer Recursive, weights under the HF org RecursiveSI, recursive.com, github.com/recursive-oss/rec); the id is the namespace OpenRouter uses on recursive/flint-v1.0:free",
+  "links": {
+   "site": "https://recursive.com",
+   "models": "https://huggingface.co/RecursiveSI"
+  }
  }
 ]
