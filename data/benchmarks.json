@@ -534,6 +534,52 @@
       "url": "https://stealthmodels.com/glyph-cluster/",
       "seen": "2026-10-10",
       "excluded": "partial question set; comparisons use different lengths"
+    },
+    {
+      "model": "flint",
+      "benchmark": "terminal_bench_2_1",
+      "score": 54.9,
+      "variant": "vendor model card (BF16), Recursive self-reported †, Terminus 2, temp 1.0, avg pass@1 over >=5 attempts; peers from the same card table",
+      "source_type": "official",
+      "url": "https://huggingface.co/RecursiveSI/flint",
+      "seen": "2026-10-22",
+      "peers": [
+        {
+          "name": "Qwen3.6 35B A3B",
+          "aa": 18.23,
+          "aa_url": "https://artificialanalysis.ai/models/qwen3-6-35b-a3b",
+          "score": 44.9
+        },
+        {
+          "name": "Gemma 4 26B A4B",
+          "aa": 16.67,
+          "aa_url": "https://artificialanalysis.ai/models/gemma-4-26b-a4b",
+          "score": 43.4
+        }
+      ]
+    },
+    {
+      "model": "flint",
+      "benchmark": "swe_bench_verified",
+      "score": 74.2,
+      "variant": "vendor model card (BF16), Recursive self-reported †, mini-swe-agent, temp 1.0, avg pass@1 over >=5 attempts; peers from the same card table",
+      "source_type": "official",
+      "url": "https://huggingface.co/RecursiveSI/flint",
+      "seen": "2026-10-22",
+      "peers": [
+        {
+          "name": "Qwen3.6 35B A3B",
+          "aa": 18.23,
+          "aa_url": "https://artificialanalysis.ai/models/qwen3-6-35b-a3b",
+          "score": 73.4
+        },
+        {
+          "name": "Gemma 4 26B A4B",
+          "aa": 16.67,
+          "aa_url": "https://artificialanalysis.ai/models/gemma-4-26b-a4b",
+          "score": 66.6
+        }
+      ]
     }
   ]
 }

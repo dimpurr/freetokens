@@ -1,0 +1,48 @@
+{
+ "generated": "2026-10-22",
+ "method_version": 1,
+ "estimator": "v1",
+ "band_width": 5,
+ "backtest": {
+  "overall": {
+   "n": 136,
+   "mean_abs_diff": 4.53,
+   "bias": -0.01,
+   "hit_rate": 0.31
+  },
+  "by_n_benchmarks": {
+   "1": {
+    "n": 50,
+    "mean_abs_diff": 4.97,
+    "bias": -0.22,
+    "hit_rate": 0.32
+   },
+   "2": {
+    "n": 45,
+    "mean_abs_diff": 4.54,
+    "bias": 0.7,
+    "hit_rate": 0.29
+   },
+   "3": {
+    "n": 38,
+    "mean_abs_diff": 4.0,
+    "bias": -0.51,
+    "hit_rate": 0.29
+   },
+   "4": {
+    "n": 3,
+    "mean_abs_diff": 3.47,
+    "bias": -0.87,
+    "hit_rate": 0.67
+   }
+  }
+ },
+ "forward": {
+  "settled": 0,
+  "hits": 0,
+  "hit_rate": null,
+  "mean_abs_diff": null,
+  "band_width": 5,
+  "note": "Settled only when Artificial Analysis publishes a real index; this never feeds tuning (ADR-031)."
+ }
+}

@@ -1,5 +1,5 @@
 ---
-source_sha1: 3b9523220587
+source_sha1: 4f116eb70e9a
 ---
 
 # freetokens 是如何运作的
@@ -49,6 +49,16 @@ EST 区间如何算出：
 点击任意 EST 徽章上的 ⓘ，可查看所用的每个基准、其来源，以及被排除的分数为何被排除。
 
 全部数据与方法的参数都在本仓库：[`data/benchmarks.json`](data/benchmarks.json)、[`data/anchors.json`](data/anchors.json)，以及 [`schema/schema.json`](schema/schema.json) 中的 `est_rules`。
+
+<!-- BEGIN:est-scorecard -->
+**成绩单**（由 `build.py` 依据回测与前瞻生成，请勿手改）。
+
+对上文的估算方法做留一回测，覆盖 136 个参考模型（方法版本 1，5 分区间）：平均绝对差 **4.53** 分，5 分区间命中率 **31%**。
+
+按证据深度：1 个基准 4.97 · 2 个基准 4.54 · 3 个基准 4.00 · 4 个基准 3.47——基准越多、估计越准。
+
+前瞻考试：到目前为止，已有 **0** 条估计被公布的官方 AA 指数替换并按区间结算。上面的 31% 是回测，不是未来；真正评判方法的是前瞻数字，它会随 Artificial Analysis 公布分数而自动填入。
+<!-- END:est-scorecard -->
 
 ## 渠道的入场成本
 

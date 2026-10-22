@@ -245,13 +245,21 @@
      "label": "停止响应"
     }
    },
-   "ended": {
-    "label": "ended",
-    "zh": {
-     "label": "已结束"
+    "ended": {
+     "label": "ended",
+     "zh": {
+      "label": "已结束"
+     }
+    },
+    "aa_published": {
+     "label": "official AA index published",
+     "help": "Artificial Analysis published an official Intelligence Index for a model that had an EST; the estimate is replaced and checked against its band",
+     "zh": {
+      "label": "官方 AA 指数公布",
+      "help": "Artificial Analysis 为一个原本只有 EST 的模型公布了官方智能指数；估计被替换，并核对是否落在原区间内"
+     }
     }
-   }
-  },
+   },
   "entry_kind": {
    "none": {
     "label": "$0, no account",
@@ -849,7 +857,8 @@
   }
  },
  "est_rules": {
-  "$comment": "ADR-004 method v1 / ADR-006 ranking. Change values here, not in code.",
+  "$comment": "ADR-004 method v1 / ADR-006 ranking. Change values here, not in code. version increments when est_backtest.py --tune adopts better parameters (ADR-031); build records it on each est_history row.",
+  "version": 1,
   "min_anchors": 4,
   "min_r": 0.6,
   "min_benchmarks": 1,

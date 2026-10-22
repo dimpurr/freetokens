@@ -1,0 +1,101 @@
+[
+ {
+  "model": "longcat-2.5-preview",
+  "date": "2026-10-22",
+  "method_version": 1,
+  "status": "ok",
+  "center": 36.2,
+  "low": 34,
+  "high": 39,
+  "n_bench": 1,
+  "settled": false
+ },
+ {
+  "model": "space-bunny",
+  "date": "2026-10-22",
+  "method_version": 1,
+  "status": "ok",
+  "center": 45.6,
+  "low": 43,
+  "high": 48,
+  "n_bench": 1,
+  "settled": false
+ },
+ {
+  "model": "dots-3-note-preview",
+  "date": "2026-10-22",
+  "method_version": 1,
+  "status": "ok",
+  "center": 30.6,
+  "low": 28,
+  "high": 33,
+  "n_bench": 3,
+  "settled": false
+ },
+ {
+  "model": "nex-n2.5-pro",
+  "date": "2026-10-22",
+  "method_version": 1,
+  "status": "ok",
+  "center": 42.0,
+  "low": 40,
+  "high": 45,
+  "n_bench": 2,
+  "settled": false
+ },
+ {
+  "model": "laguna-s-2.1",
+  "date": "2026-10-22",
+  "method_version": 1,
+  "status": "ok",
+  "center": 29.6,
+  "low": 27,
+  "high": 32,
+  "n_bench": 2,
+  "settled": false
+ },
+ {
+  "model": "laguna-xs-2.1",
+  "date": "2026-10-22",
+  "method_version": 1,
+  "status": "ok",
+  "center": 16.2,
+  "low": 14,
+  "high": 19,
+  "n_bench": 2,
+  "settled": false
+ },
+ {
+  "model": "xing4.0-29b",
+  "date": "2026-10-22",
+  "method_version": 1,
+  "status": "ok",
+  "center": 19.7,
+  "low": 17,
+  "high": 22,
+  "n_bench": 2,
+  "settled": false
+ },
+ {
+  "model": "glyph-cluster",
+  "date": "2026-10-22",
+  "method_version": 1,
+  "status": "insufficient",
+  "center": null,
+  "low": null,
+  "high": null,
+  "n_bench": 0,
+  "settled": false
+ },
+ {
+  "model": "flint",
+  "date": "2026-10-22",
+  "method_version": 1,
+  "status": "ok",
+  "center": 21.5,
+  "low": 19,
+  "high": 24,
+  "n_bench": 2,
+  "settled": false
+ }
+]
