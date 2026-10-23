@@ -2581,5 +2581,18 @@
    "label": "OVHcloud AI Endpoints public catalogue",
    "url": "https://www.ovhcloud.com/en-gb/public-cloud/ai-endpoints/catalog/"
   }
+ },
+ {
+  "date": "2026-10-23",
+  "lanes": [
+   "dsv4flash-letta"
+  ],
+  "kind": "ended",
+  "end_date": "2026-10-23",
+  "text": "DeepSeek V4 Flash on Letta is no longer free: at the 2026-10-23 recheck the model catalogue lists it under the credit-billed tier, and a live free-plan probe was refused with \"minimum $1 in credits is required\" (the same error as its sister lane on 2026-10-17); a letta/echo control on the same account passed, so the refusal is model-specific",
+  "source": {
+   "label": "Letta pricing",
+   "url": "https://docs.letta.com/pricing/"
+  }
  }
 ]
