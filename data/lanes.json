@@ -4312,80 +4312,86 @@
    "date": "2026-10-20",
    "note": "first seen in the daily free-catalogue check; may predate it"
   },
-  "ends": {
-   "announced": null,
-   "expected": null,
-   "confidence": "none"
+   "ends": {
+    "announced": null,
+    "expected": null,
+    "confidence": "none",
+    "note": "no end announced; observed gone from the OpenRouter free catalogue on 2026-10-23"
+   },
+   "data_policy": "not_checked",
+   "status": "ended",
+   "checked": {
+    "date": "2026-10-23",
+    "method": "catalogue"
+   },
+   "volume": {
+    "tier": "taste",
+    "basis": "50 requests a day without credits (stated)"
+   },
+   "note": "Dropped from OpenRouter: minimax/minimax-m3.1-flash:free is not in the free catalogue at the 2026-10-23T08:00Z daily catalogue check (re-confirmed by our own read of the same API on 2026-10-23); the paid minimax/minimax-m3.1-flash remains at $0.15/$0.60 per Mtoken; last present 2026-10-20 (catalogue); no end date announced"
   },
-  "data_policy": "not_checked",
-  "status": "listed",
-  "checked": {
-   "date": "2026-10-20",
-   "method": "catalogue"
-  },
-  "volume": {
-   "tier": "taste",
-   "basis": "50 requests a day without credits (stated)"
-  }
- },
  {
-  "id": "minimax-m3.1-flash-zen",
-  "model": "minimax-m3.1-flash",
-  "channel": "OpenCode Zen",
-  "type": "agent_tool",
-  "model_id": "opencode/minimax-m3.1-flash-free",
-  "free_condition": null,
-  "limits_stated": {
-   "basis": "unpublished"
+   "id": "minimax-m3.1-flash-zen",
+   "model": "minimax-m3.1-flash",
+   "channel": "OpenCode Zen",
+   "type": "agent_tool",
+   "model_id": "opencode/minimax-m3.1-flash-free",
+   "free_condition": null,
+   "limits_stated": {
+    "basis": "unpublished"
+   },
+   "limits_observed": null,
+   "started": {
+    "date": "2026-10-20",
+    "note": "first seen in the daily free-catalogue check; may predate it"
+   },
+   "ends": {
+    "announced": null,
+    "expected": null,
+    "confidence": "none",
+    "note": "no end announced; observed gone from the OpenCode Zen free catalogue on 2026-10-23"
+   },
+   "data_policy": "not_checked",
+   "status": "ended",
+   "checked": {
+    "date": "2026-10-23",
+    "method": "catalogue"
+   },
+   "volume": {
+    "tier": "daily",
+    "basis": "channel rule: Zen's free allowance is per IP per day; this model not load-tested"
+   },
+   "note": "Dropped from OpenCode Zen: opencode/minimax-m3.1-flash-free is not in the free model list at the 2026-10-23T08:00Z daily catalogue check (re-confirmed by our own read of the same list on 2026-10-23); last present 2026-10-20 (catalogue); no end date announced"
   },
-  "limits_observed": null,
-  "started": {
-   "date": "2026-10-20",
-   "note": "first seen in the daily free-catalogue check; may predate it"
-  },
-  "ends": {
-   "announced": null,
-   "expected": null,
-   "confidence": "none"
-  },
-  "data_policy": "not_checked",
-  "status": "listed",
-  "checked": {
-   "date": "2026-10-20",
-   "method": "catalogue"
-  },
-  "volume": {
-   "tier": "daily",
-   "basis": "channel rule: Zen's free allowance is per IP per day; this model not load-tested"
-  }
- },
  {
-  "id": "minimax-m3.1-flash-go",
-  "model": "minimax-m3.1-flash",
-  "channel": "OpenCode Go",
-  "type": "agent_tool",
-  "model_id": "opencode-go/minimax-m3.1-flash-free",
-  "free_condition": null,
-  "limits_stated": {
-   "basis": "unpublished"
+   "id": "minimax-m3.1-flash-go",
+   "model": "minimax-m3.1-flash",
+   "channel": "OpenCode Go",
+   "type": "agent_tool",
+   "model_id": "opencode-go/minimax-m3.1-flash-free",
+   "free_condition": null,
+   "limits_stated": {
+    "basis": "unpublished"
+   },
+   "limits_observed": null,
+   "started": {
+    "date": "2026-10-20",
+    "note": "first seen in the daily free-catalogue check; may predate it"
+   },
+   "ends": {
+    "announced": null,
+    "expected": null,
+    "confidence": "none",
+    "note": "no end announced; observed gone from the OpenCode Go free catalogue on 2026-10-23"
+   },
+   "data_policy": "not_checked",
+   "status": "ended",
+   "checked": {
+    "date": "2026-10-23",
+    "method": "catalogue"
+   },
+   "note": "Free ID dropped from Go: opencode-go/minimax-m3.1-flash-free is not in the free model list at the 2026-10-23T08:00Z daily catalogue check (re-confirmed by our own read of the same list on 2026-10-23); the list keeps the bare minimax-m3.1-flash paid entry; last present 2026-10-20 (catalogue); no end date announced"
   },
-  "limits_observed": null,
-  "started": {
-   "date": "2026-10-20",
-   "note": "first seen in the daily free-catalogue check; may predate it"
-  },
-  "ends": {
-   "announced": null,
-   "expected": null,
-   "confidence": "none"
-  },
-  "data_policy": "not_checked",
-  "status": "listed",
-  "checked": {
-   "date": "2026-10-20",
-   "method": "catalogue"
-  }
- },
  {
   "id": "minimax-m3.1-flash-vercel",
   "model": "minimax-m3.1-flash",
@@ -4403,19 +4409,20 @@
    "date": "2026-10-20",
    "note": "first seen in the daily free-catalogue check; may predate it"
   },
-  "ends": {
-   "announced": null,
-   "expected": null,
-   "confidence": "none"
+   "ends": {
+    "announced": null,
+    "expected": null,
+    "confidence": "none",
+    "note": "no end announced; observed gone from the AI Gateway free list on 2026-10-23"
+   },
+   "data_policy": "not_checked",
+   "status": "ended",
+   "checked": {
+    "date": "2026-10-23",
+    "method": "catalogue"
+   },
+   "note": "Dropped from Vercel AI Gateway: minimax/minimax-m3.1-flash is not in the free list at the 2026-10-23T08:00Z daily catalogue check — the models API still lists the ID but now prices it at $0.15/$0.60 per Mtoken instead of $0 (re-confirmed by our own read of the same API on 2026-10-23); last present 2026-10-20 (catalogue). Was: Admitted from the free-catalogue check on 2026-10-20 (the AI Gateway models API reported $0 input and output for this ID; it carries no -free suffix and was the only MiniMax M3.1 Flash ID on the free list; a Vercel ID at $0 per token is not automatically free to call — precedent: stealth/glyph-cluster needs a paid plan plus credits)"
   },
-  "data_policy": "not_checked",
-  "status": "listed",
-  "checked": {
-   "date": "2026-10-20",
-   "method": "catalogue"
-  },
-  "note": "Admitted from the free-catalogue check: the AI Gateway models API reports $0 input and output for this ID. It carries no -free suffix, and it is the only MiniMax M3.1 Flash ID on the free list, so it is kept; a Vercel ID at $0 per token is not automatically free to call (precedent: stealth/glyph-cluster needs a paid plan plus credits)"
- },
  {
   "id": "beam-zen",
   "model": "beam",

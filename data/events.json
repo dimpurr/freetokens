@@ -2451,5 +2451,57 @@
    "url": "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.5-flash"
   },
   "end_date": "2026-01-30"
+ },
+ {
+  "date": "2026-10-23",
+  "lanes": [
+   "minimax-m3.1-flash-or"
+  ],
+  "kind": "ended",
+  "end_date": "2026-10-23",
+  "text": "minimax/minimax-m3.1-flash:free is no longer in OpenRouter's free catalogue at the 2026-10-23T08:00Z daily check, and still absent when we re-read the same API the same day; the paid minimax/minimax-m3.1-flash remains at $0.15/$0.60 per Mtoken; it was added 2026-10-20 and was still listed on 2026-10-20; we never called it; no end date announced",
+  "source": {
+   "label": "Daily free-catalogue check of the OpenRouter models API (own tool)",
+   "url": "https://openrouter.ai/api/v1/models"
+  }
+ },
+ {
+  "date": "2026-10-23",
+  "lanes": [
+   "minimax-m3.1-flash-zen"
+  ],
+  "kind": "ended",
+  "end_date": "2026-10-23",
+  "text": "opencode/minimax-m3.1-flash-free is no longer in the OpenCode Zen free model list at the 2026-10-23T08:00Z daily check, and still absent when we re-read the same list the same day; it was added 2026-10-20 and was still listed on 2026-10-20; we never called it; no end date announced",
+  "source": {
+   "label": "Daily free-catalogue check of the OpenCode Zen model list (own tool)",
+   "url": "https://opencode.ai/zen/v1/models"
+  }
+ },
+ {
+  "date": "2026-10-23",
+  "lanes": [
+   "minimax-m3.1-flash-go"
+  ],
+  "kind": "ended",
+  "end_date": "2026-10-23",
+  "text": "opencode-go/minimax-m3.1-flash-free is no longer in the OpenCode Go free model list at the 2026-10-23T08:00Z daily check, and still absent when we re-read the same list the same day; the list keeps the bare minimax-m3.1-flash paid entry; it was added 2026-10-20 and was still listed on 2026-10-20; we never called it; no end date announced",
+  "source": {
+   "label": "Daily free-catalogue check of the OpenCode Go model list (own tool)",
+   "url": "https://opencode.ai/zen/go/v1/models"
+  }
+ },
+ {
+  "date": "2026-10-23",
+  "lanes": [
+   "minimax-m3.1-flash-vercel"
+  ],
+  "kind": "ended",
+  "end_date": "2026-10-23",
+  "text": "minimax/minimax-m3.1-flash is no longer free on the Vercel AI Gateway at the 2026-10-23T08:00Z daily check: the models API still lists the ID but prices it at $0.15/$0.60 per Mtoken instead of $0 (still absent when we re-read the same API the same day); it was listed at $0 on 2026-10-20; we never called it; no end date announced",
+  "source": {
+   "label": "Daily free-catalogue check of the Vercel AI Gateway models API (own tool)",
+   "url": "https://ai-gateway.vercel.sh/v1/models"
+  }
  }
 ]
