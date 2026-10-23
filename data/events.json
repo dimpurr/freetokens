@@ -2503,5 +2503,83 @@
    "label": "Daily free-catalogue check of the Vercel AI Gateway models API (own tool)",
    "url": "https://ai-gateway.vercel.sh/v1/models"
   }
+ },
+ {
+  "date": "2026-10-23",
+  "lanes": [
+   "inkling-small-kilo"
+  ],
+  "kind": "ended",
+  "end_date": "2026-10-23",
+  "text": "thinkingmachines/inkling-small:free is no longer in Kilo's model catalogue at the 2026-10-23 catalogue recheck (the 401-model list keeps 13 other :free ids); the same API holds thinkingmachines/inkling-small as paid-only, isFree false at $0.45/$1.00 per Mtoken, and mastra.ai's Kilo provider mirror lists the same id at those prices with no :free variant; first seen in the catalogue 2026-08-21, last listed 2026-10-06; it never answered one of our calls; no end date announced",
+  "source": {
+   "label": "own check of the Kilo Gateway model list",
+   "url": "https://api.kilo.ai/api/gateway/models"
+  }
+ },
+ {
+  "date": "2026-10-23",
+  "lanes": [
+   "gemini-3.7-flash-gai"
+  ],
+  "kind": "ended",
+  "end_date": "2026-10-08",
+  "text": "Google deprecated gemini-3.7-flash on 2026-10-08: it is no longer available to select in Google AI Studio and its requests auto-route to gemini-3.8-flash; at the 2026-10-23 catalogue recheck the id is absent from the free-tier endpoint table and from the pricing page, so the free tier is gone; second source is the 2026-10-08 entry in the AI Studio changelog; first seen 2026-08-14, last listed 2026-10-06",
+  "source": {
+   "label": "Google AI Studio docs",
+   "url": "https://ai.google.dev/gemini-api/docs/deprecations"
+  }
+ },
+ {
+  "date": "2026-10-23",
+  "lanes": [
+   "gemini-3.5-flash-gai"
+  ],
+  "kind": "ended",
+  "end_date": "2026-10-08",
+  "text": "Google deprecated gemini-3.5-flash on 2026-10-08 in favour of gemini-3.6-flash: it is no longer available to select in Google AI Studio; at the 2026-10-23 catalogue recheck the id is absent from the free-tier endpoint table and from the pricing page, so the free tier is gone; second source is the 2026-10-08 entry in the AI Studio changelog; first seen in our records 2026-10-06, last listed the same day",
+  "source": {
+   "label": "Google AI Studio docs",
+   "url": "https://ai.google.dev/gemini-api/docs/deprecations"
+  }
+ },
+ {
+  "date": "2026-10-23",
+  "lanes": [
+   "mistral-7b-instruct-ovh"
+  ],
+  "kind": "ended",
+  "end_date": "2026-10-23",
+  "text": "Mistral-7B-Instruct-v0.3 is no longer in OVHcloud's keyless model catalogue at the 2026-10-23 recheck (the 22-model anonymous-lane list does not name it), and OVH's public AI Endpoints catalogue page carries no entry for it either; it was last listed 2026-10-08; no end date announced",
+  "source": {
+   "label": "OVHcloud AI Endpoints model catalogue (own check)",
+   "url": "https://catalog.endpoints.ai.ovh.net/rest/v1/models_v2"
+  }
+ },
+ {
+  "date": "2026-10-23",
+  "lanes": [
+   "mistral-small-3.2-ovh"
+  ],
+  "kind": "end_announced",
+  "end_date": "2026-11-04",
+  "text": "OVH has put Mistral-Small-3.2-24B-Instruct-2506 on its end-of-life schedule: at the 2026-10-23 recheck the REST catalogue has available false with model_eol_date 04/11/2026, and the public catalogue page badges it Being retired with end of life on 4 Nov 2026 (OVH's own wording is that a retired model keeps answering until its EOL); the anonymous 2-requests-a-minute lane is still published for it, so the lane stays listed with an official end date; recheck at 2026-11-04",
+  "source": {
+   "label": "OVHcloud AI Endpoints public catalogue",
+   "url": "https://www.ovhcloud.com/en-gb/public-cloud/ai-endpoints/catalog/"
+  }
+ },
+ {
+  "date": "2026-10-23",
+  "lanes": [
+   "mistral-nemo-ovh"
+  ],
+  "kind": "end_announced",
+  "end_date": "2026-11-04",
+  "text": "OVH has put Mistral-Nemo-Instruct-2407 on its end-of-life schedule: at the 2026-10-23 recheck the REST catalogue has available false with model_eol_date 04/11/2026, and the public catalogue page badges it Being retired with end of life on 4 Nov 2026 (OVH's own wording is that a retired model keeps answering until its EOL); the anonymous 2-requests-a-minute lane is still published for it, so the lane stays listed with an official end date; recheck at 2026-11-04",
+  "source": {
+   "label": "OVHcloud AI Endpoints public catalogue",
+   "url": "https://www.ovhcloud.com/en-gb/public-cloud/ai-endpoints/catalog/"
+  }
  }
 ]
