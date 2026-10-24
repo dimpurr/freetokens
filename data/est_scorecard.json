@@ -100,5 +100,540 @@
   "mean_abs_diff": null,
   "band_width": 5,
   "note": "Settled only when Artificial Analysis publishes a real index; this never feeds tuning (ADR-031)."
+ },
+ "challengers": {
+  "note": "ADR-031 item 4. Leave-one-out, same data as the champion above, and the same protocol: an Artificial Analysis run of the held-out model's own test is never that model's claim (it is a component of the index being hidden). Nothing here is deployed: the production estimator is build.estimate(), and `estimator` above stays v1 until Dim reads this.",
+  "generated": "2026-10-24",
+  "band_width": 5,
+  "method_version": 1,
+  "overall": {
+   "a": {
+    "n": 136,
+    "mean_abs_diff": 4.23,
+    "bias": 0.22,
+    "hit_rate": 0.36
+   },
+   "b": {
+    "n": 136,
+    "mean_abs_diff": 4.61,
+    "bias": 0.14,
+    "hit_rate": 0.34
+   },
+   "c": {
+    "n": 136,
+    "mean_abs_diff": 5.61,
+    "bias": -1.57,
+    "hit_rate": 0.4
+   }
+  },
+  "champion_overall": {
+   "n": 136,
+   "mean_abs_diff": 4.26,
+   "bias": -0.01,
+   "hit_rate": 0.35
+  },
+  "by_n_benchmarks": {
+   "a": {
+    "1": {
+     "n": 20,
+     "mean_abs_diff": 6.55,
+     "bias": -2.05,
+     "hit_rate": 0.3
+    },
+    "2": {
+     "n": 31,
+     "mean_abs_diff": 4.67,
+     "bias": 2.18,
+     "hit_rate": 0.32
+    },
+    "3": {
+     "n": 31,
+     "mean_abs_diff": 3.85,
+     "bias": 0.55,
+     "hit_rate": 0.35
+    },
+    "4": {
+     "n": 28,
+     "mean_abs_diff": 3.62,
+     "bias": 0.44,
+     "hit_rate": 0.36
+    },
+    "5": {
+     "n": 21,
+     "mean_abs_diff": 3.35,
+     "bias": -1.16,
+     "hit_rate": 0.33
+    },
+    "6": {
+     "n": 4,
+     "mean_abs_diff": 2.06,
+     "bias": -0.38,
+     "hit_rate": 1.0
+    },
+    "7": {
+     "n": 1,
+     "mean_abs_diff": 0.15,
+     "bias": 0.15,
+     "hit_rate": 1.0
+    }
+   },
+   "b": {
+    "1": {
+     "n": 20,
+     "mean_abs_diff": 7.01,
+     "bias": -3.21,
+     "hit_rate": 0.25
+    },
+    "2": {
+     "n": 30,
+     "mean_abs_diff": 5.06,
+     "bias": 1.97,
+     "hit_rate": 0.3
+    },
+    "3": {
+     "n": 31,
+     "mean_abs_diff": 4.57,
+     "bias": 0.24,
+     "hit_rate": 0.29
+    },
+    "4": {
+     "n": 29,
+     "mean_abs_diff": 4.15,
+     "bias": 0.46,
+     "hit_rate": 0.28
+    },
+    "5": {
+     "n": 21,
+     "mean_abs_diff": 3.33,
+     "bias": 0.11,
+     "hit_rate": 0.48
+    },
+    "6": {
+     "n": 4,
+     "mean_abs_diff": 0.32,
+     "bias": -0.13,
+     "hit_rate": 1.0
+    },
+    "7": {
+     "n": 1,
+     "mean_abs_diff": 1.15,
+     "bias": 1.15,
+     "hit_rate": 1.0
+    }
+   },
+   "c": {
+    "1": {
+     "n": 19,
+     "mean_abs_diff": 9.46,
+     "bias": -5.26,
+     "hit_rate": 0.32
+    },
+    "2": {
+     "n": 28,
+     "mean_abs_diff": 7.7,
+     "bias": -0.03,
+     "hit_rate": 0.21
+    },
+    "3": {
+     "n": 34,
+     "mean_abs_diff": 5.0,
+     "bias": -0.07,
+     "hit_rate": 0.29
+    },
+    "4": {
+     "n": 29,
+     "mean_abs_diff": 3.92,
+     "bias": -1.66,
+     "hit_rate": 0.55
+    },
+    "5": {
+     "n": 21,
+     "mean_abs_diff": 3.03,
+     "bias": -2.08,
+     "hit_rate": 0.67
+    },
+    "6": {
+     "n": 4,
+     "mean_abs_diff": 3.58,
+     "bias": -3.51,
+     "hit_rate": 0.5
+    },
+    "7": {
+     "n": 1,
+     "mean_abs_diff": 5.25,
+     "bias": -5.25,
+     "hit_rate": 0.0
+    }
+   }
+  },
+  "by_source_type": {
+   "a": {
+    "leaderboard": {
+     "n": 19,
+     "mean_abs_diff": 5.18,
+     "bias": 0.17,
+     "hit_rate": 0.37
+    },
+    "leaderboard+third_party": {
+     "n": 41,
+     "mean_abs_diff": 3.19,
+     "bias": -0.19,
+     "hit_rate": 0.51
+    },
+    "leaderboard+third_party+unknown": {
+     "n": 1,
+     "mean_abs_diff": 3.6,
+     "bias": -3.6,
+     "hit_rate": 0.0
+    },
+    "leaderboard+third_party+vendor": {
+     "n": 2,
+     "mean_abs_diff": 3.25,
+     "bias": -1.35,
+     "hit_rate": 0.5
+    },
+    "third_party": {
+     "n": 70,
+     "mean_abs_diff": 4.64,
+     "bias": 0.56,
+     "hit_rate": 0.27
+    },
+    "third_party+vendor": {
+     "n": 3,
+     "mean_abs_diff": 3.65,
+     "bias": 0.64,
+     "hit_rate": 0.33
+    }
+   },
+   "b": {
+    "leaderboard": {
+     "n": 19,
+     "mean_abs_diff": 5.12,
+     "bias": 0.89,
+     "hit_rate": 0.32
+    },
+    "leaderboard+third_party": {
+     "n": 42,
+     "mean_abs_diff": 3.59,
+     "bias": -0.51,
+     "hit_rate": 0.43
+    },
+    "leaderboard+third_party+unknown": {
+     "n": 1,
+     "mean_abs_diff": 3.6,
+     "bias": -3.6,
+     "hit_rate": 0.0
+    },
+    "leaderboard+third_party+vendor": {
+     "n": 2,
+     "mean_abs_diff": 3.45,
+     "bias": -0.65,
+     "hit_rate": 0.5
+    },
+    "third_party": {
+     "n": 69,
+     "mean_abs_diff": 5.15,
+     "bias": 0.33,
+     "hit_rate": 0.29
+    },
+    "third_party+vendor": {
+     "n": 3,
+     "mean_abs_diff": 4.18,
+     "bias": 1.64,
+     "hit_rate": 0.33
+    }
+   },
+   "c": {
+    "leaderboard": {
+     "n": 19,
+     "mean_abs_diff": 7.04,
+     "bias": 0.87,
+     "hit_rate": 0.32
+    },
+    "leaderboard+third_party": {
+     "n": 42,
+     "mean_abs_diff": 5.65,
+     "bias": -3.96,
+     "hit_rate": 0.38
+    },
+    "leaderboard+third_party+unknown": {
+     "n": 1,
+     "mean_abs_diff": 3.2,
+     "bias": -3.2,
+     "hit_rate": 0.0
+    },
+    "leaderboard+third_party+vendor": {
+     "n": 2,
+     "mean_abs_diff": 2.1,
+     "bias": -2.1,
+     "hit_rate": 0.5
+    },
+    "third_party": {
+     "n": 69,
+     "mean_abs_diff": 5.45,
+     "bias": -0.82,
+     "hit_rate": 0.42
+    },
+    "third_party+vendor": {
+     "n": 3,
+     "mean_abs_diff": 2.75,
+     "bias": -0.13,
+     "hit_rate": 0.67
+    }
+   }
+  },
+  "aa_columns": {
+   "aa_gpqa": {
+    "n": 123,
+    "r": 0.811,
+    "slope": 0.881,
+    "intercept": -46.96
+   },
+   "aa_hle": {
+    "n": 134,
+    "r": 0.943,
+    "slope": 0.769,
+    "intercept": 5.14
+   },
+   "aa_livecodebench": {
+    "n": 44,
+    "r": 0.826,
+    "slope": 0.236,
+    "intercept": 1.17
+   },
+   "aa_terminalbench_v2_1": {
+    "n": 84,
+    "r": 0.919,
+    "slope": 0.466,
+    "intercept": 0.69
+   }
+  },
+  "alignment": {
+   "pairs": {
+    "gpqa_diamond": "aa_gpqa",
+    "hle": "aa_hle",
+    "livecodebench": "aa_livecodebench",
+    "terminal_bench_2_1": "aa_terminalbench_v2_1"
+   },
+   "claims_aligned": {
+    "terminal_bench_2_1->aa_terminalbench_v2_1": 77,
+    "gpqa_diamond->aa_gpqa": 68,
+    "hle->aa_hle": 46,
+    "livecodebench->aa_livecodebench": 9
+   },
+   "estimates": 136,
+   "with_alignment": 115
+  },
+  "circular_protocol_only_for_size": {
+   "note": "AA's own run of the held-out model allowed as its claim: reading the answer back. No adoption decision uses these numbers.",
+   "overall": {
+    "v1": {
+     "n": 136,
+     "mean_abs_diff": 3.31,
+     "bias": -0.21,
+     "hit_rate": 0.46
+    },
+    "a": {
+     "n": 136,
+     "mean_abs_diff": 3.01,
+     "bias": -0.07,
+     "hit_rate": 0.52
+    },
+    "b": {
+     "n": 136,
+     "mean_abs_diff": 3.42,
+     "bias": -0.14,
+     "hit_rate": 0.45
+    }
+   }
+  },
+  "live_models": {
+   "dots-3-note-preview": {
+    "v1": {
+     "center": 30.6,
+     "low": 28,
+     "high": 33
+    },
+    "a": {
+     "center": 34.6,
+     "low": 32,
+     "high": 37
+    },
+    "b": {
+     "center": 32.9,
+     "low": 30,
+     "high": 35
+    },
+    "c": {
+     "center": 33.6,
+     "low": 31,
+     "high": 36
+    }
+   },
+   "flint": {
+    "v1": {
+     "center": 21.5,
+     "low": 19,
+     "high": 24
+    },
+    "a": {
+     "center": 27.1,
+     "low": 25,
+     "high": 30
+    },
+    "b": {
+     "center": 26.6,
+     "low": 24,
+     "high": 29
+    },
+    "c": {
+     "center": 25.6,
+     "low": 23,
+     "high": 28
+    }
+   },
+   "glyph-cluster": {
+    "v1": null,
+    "a": null,
+    "b": null,
+    "c": null
+   },
+   "laguna-s-2.1": {
+    "v1": {
+     "center": 29.6,
+     "low": 27,
+     "high": 32
+    },
+    "a": {
+     "center": 34.8,
+     "low": 32,
+     "high": 37
+    },
+    "b": {
+     "center": 33.2,
+     "low": 31,
+     "high": 36
+    },
+    "c": {
+     "center": 31.6,
+     "low": 29,
+     "high": 34
+    }
+   },
+   "laguna-xs-2.1": {
+    "v1": {
+     "center": 16.2,
+     "low": 14,
+     "high": 19
+    },
+    "a": {
+     "center": 26.0,
+     "low": 23,
+     "high": 28
+    },
+    "b": {
+     "center": 25.7,
+     "low": 23,
+     "high": 28
+    },
+    "c": {
+     "center": 25.6,
+     "low": 23,
+     "high": 28
+    }
+   },
+   "longcat-2.5-preview": {
+    "v1": {
+     "center": 36.2,
+     "low": 34,
+     "high": 39
+    },
+    "a": {
+     "center": 35.3,
+     "low": 33,
+     "high": 38
+    },
+    "b": {
+     "center": 36.2,
+     "low": 34,
+     "high": 39
+    },
+    "c": {
+     "center": 25.1,
+     "low": 23,
+     "high": 28
+    }
+   },
+   "nex-n2.5-pro": {
+    "v1": {
+     "center": 42.0,
+     "low": 40,
+     "high": 45
+    },
+    "a": {
+     "center": 39.2,
+     "low": 37,
+     "high": 42
+    },
+    "b": {
+     "center": 36.7,
+     "low": 34,
+     "high": 39
+    },
+    "c": {
+     "center": 35.5,
+     "low": 33,
+     "high": 38
+    }
+   },
+   "space-bunny": {
+    "v1": {
+     "center": 45.6,
+     "low": 43,
+     "high": 48
+    },
+    "a": {
+     "center": 45.9,
+     "low": 43,
+     "high": 48
+    },
+    "b": {
+     "center": 45.6,
+     "low": 43,
+     "high": 48
+    },
+    "c": {
+     "center": 27.5,
+     "low": 25,
+     "high": 30
+    }
+   },
+   "xing4.0-29b": {
+    "v1": {
+     "center": 19.7,
+     "low": 17,
+     "high": 22
+    },
+    "a": {
+     "center": 28.1,
+     "low": 26,
+     "high": 31
+    },
+    "b": {
+     "center": 27.4,
+     "low": 25,
+     "high": 30
+    },
+    "c": {
+     "center": 26.8,
+     "low": 24,
+     "high": 29
+    }
+   }
+  },
+  "beats_champion_on_both": [
+   "a"
+  ],
+  "champion_change": "等正手：EST 冠军 - a beat v1 on both overall mean abs diff and hit rate; the first switch needs Dim's read, and any live EST moving past 25/30/35 or by more than 3 points stops it regardless (ADR-031 item 6)."
  }
 }

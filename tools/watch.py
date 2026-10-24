@@ -1,17 +1,24 @@
 #!/usr/bin/env python3
-"""Daily watch: compare public free-model catalogues with data/lanes.json (stdlib only, no keys, no LLM).
+"""Daily watch: compare public free-model catalogues with data/lanes.json (stdlib only, no LLM).
 
     python3 tools/watch.py [--out DIR] [--heartbeat]
 
 Prints a short report only when something changed (new $0 models, or tracked lanes missing from a catalogue);
 prints nothing otherwise, unless --heartbeat. Writes DIR/latest.json (default ~/scratch/DimResearchS/freetokens-watch).
-A new model whose Artificial Analysis page shows an index >= 30 is flagged as a free-pool candidate.
+A new model whose Artificial Analysis index >= 30 is flagged as a free-pool candidate.
+AA comes from Artificial Analysis' own data API (ADR-031 / 16b-3): one authenticated call lists every model
+they index plus its sub-scores. The key is AA_API_KEY from the environment or chco .env, read at run time and
+never printed; without it the tool falls back to reading AA model pages one by one, as it did before.
 """
-import json, re, sys, urllib.request, datetime as dt
+import json, os, re, sys, urllib.request, datetime as dt
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 UA = {"User-Agent": "freetokens-watch/1 (+https://freetokens.fyi)"}
+AA_API = "https://artificialanalysis.ai/api/v2/data/llms/models"  # one call: every model AA indexes, with sub-scores
+# chco .env directories, same search order as _pool_policy() below; the key value is never printed.
+CHCO_HOME = ["~/WorkflowUser/Code/Project/dimresearchcode", "~/WorkflowUser/Code/Personal/dimresearchcode",
+             "~/Workflow/code/project/dimresearchcode"]
 # Pool floors are Dim's private policy, kept in chco tools/free-pool/arms.toml [policy] (main_bar, pool_bar).
 # Read them from there when present (env FT_POOL_POLICY overrides the path); fall back to the last known values.
 def _pool_policy():
@@ -49,9 +56,51 @@ IGNORE = {
 }
 
 
-def get(url, timeout=60):
-    with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=timeout) as r:
+def get(url, timeout=60, headers=None):
+    h = dict(UA)
+    h.update(headers or {})
+    with urllib.request.urlopen(urllib.request.Request(url, headers=h), timeout=timeout) as r:
         return r.read().decode("utf-8", "ignore")
+
+
+def aa_key():
+    """AA_API_KEY from the environment, else parsed out of chco .env at run time. Never printed, never stored."""
+    v = os.environ.get("AA_API_KEY")
+    if v:
+        return v.strip()
+    for d in CHCO_HOME:
+        f = Path(d).expanduser() / ".env"
+        if not f.exists():
+            continue
+        for line in f.read_text().splitlines():
+            line = line.strip()
+            if line.startswith("AA_API_KEY=") and line.split("=", 1)[1].strip():
+                return line.split("=", 1)[1].strip().strip('"').strip("'")
+    return None
+
+
+def aa_table(cache={}):
+    """{slug: {name, aa, creator}} from the AA data API, or None when there is no key or the call fails
+    (then every AA lookup falls back to scraping the model page). One call covers the whole run."""
+    if "t" in cache:
+        return cache["t"]
+    cache["t"] = None  # one attempt per process, whatever happens
+    k = aa_key()
+    if not k:
+        return None
+    try:
+        rows = json.loads(get(AA_API, 120, {"x-api-key": k}))["data"]
+    except Exception:
+        return None
+    t = {}
+    for r in rows:
+        if not r.get("slug"):
+            continue
+        t[r["slug"]] = {"name": r.get("name") or r["slug"],
+                        "aa": (r.get("evaluations") or {}).get("artificial_analysis_intelligence_index"),
+                        "creator": (r.get("model_creator") or {}).get("name")}
+    cache["t"] = t
+    return t
 
 
 def zero(*vals):
@@ -87,12 +136,19 @@ CATALOGUES = {
 
 
 def aa_index(name_or_id, slugs, cache={}):
-    """Best-effort AA lookup by slug guess; None when AA has no page."""
+    """Best-effort AA lookup by slug guess; None when AA has no page. The slug space and the index come from
+    the AA data API when it is reachable; otherwise from the AA sitemap plus one page per slug (the old route)."""
     base = re.sub(r"[^a-z0-9]+", "-", name_or_id.split("/")[-1].lower().replace(":free", "").replace("-free", "")).strip("-")
-    cands = [s for s in slugs if s == base] or sorted(s for s in slugs if s.startswith(base))[:1]
+    table = aa_table()
+    pool = set(table) if table else set(slugs)
+    cands = [s for s in pool if s == base] or sorted(s for s in pool if s.startswith(base))[:1]
     if not cands:
         return None, None
     s = cands[0]
+    url = f"https://artificialanalysis.ai/models/{s}"  # the attribution link we keep citing on the site
+    if table:
+        v = table[s]["aa"]
+        return (round(float(v)) if v is not None else None), url
     if s not in cache:
         try:
             h = get(f"https://artificialanalysis.ai/models/{s}").replace('\\"', '"')
@@ -101,7 +157,7 @@ def aa_index(name_or_id, slugs, cache={}):
             cache[s] = round(float(ii.group(1))) if ii else None
         except Exception:
             cache[s] = None
-    return cache[s], f"https://artificialanalysis.ai/models/{s}"
+    return cache[s], url
 
 
 def screen():
@@ -131,25 +187,42 @@ PAGES = {
 }
 
 
+def norm_name(s):
+    return re.sub(r"[^a-z0-9]+", " ", re.sub(r"\(.*?\)", "", (s or "").lower())).strip()
+
+
 def aa_recheck(out, slugs):
-    """Weekly (Dim 2026-10-22): tracked models with no AA index get one more lookup (catches late
-    AA listings like Beam 1.0, which our slug guess missed and we never rechecked). Runs once per
-    calendar week; state lives next to latest.json."""
-    import datetime as dt
+    """Weekly (Dim 2026-10-22; on the AA data API since 16b-3): tracked models with no AA index get one more
+    lookup. One API call returns every model AA indexes with its intelligence index and name, so a late listing
+    is caught either by slug or by AA's own model name (the Beam 1.0 lesson: a slug our guess never produced).
+    Runs once per calendar week; state lives next to latest.json. Nothing is written into data/: the line tells
+    Dim to fill models.json himself."""
     state_f = out / "aa_recheck.json"
     state = json.loads(state_f.read_text()) if state_f.exists() else {}
     week = list(dt.date.today().isocalendar()[:2])
     if state.get("week") == week:
         return state.get("lines", [])
     models = json.loads((ROOT / "data/models.json").read_text())
+    table = aa_table()
+    by_name = {}
+    for s, r in (table or {}).items():
+        by_name.setdefault(norm_name(r["name"]), (s, r))
     lines = []
     for m in models:
         if (m.get("aa_index") or {}).get("value"):
             continue
         v, url = aa_index(m["id"], slugs)
+        how = ""
+        if not v and by_name:
+            hit = by_name.get(norm_name(m.get("name")))
+            if hit:
+                s, r = hit
+                v = round(float(r["aa"])) if r["aa"] is not None else None
+                url = f"https://artificialanalysis.ai/models/{s}"
+                how = " · matched on AA's model name"
         if v:
-            lines.append(f"🆕 AA now lists {m['id']}: index {v} ({url}) — fill models.json")
-    state = {"week": week, "lines": lines}
+            lines.append(f"🆕 AA now lists {m['id']}: index {v} ({url}) — fill models.json{how}")
+    state = {"week": week, "via": "aa-data-api" if table else "aa-pages", "checked": len(models), "lines": lines}
     state_f.write_text(json.dumps(state, ensure_ascii=False, indent=1))
     return lines
 
@@ -181,10 +254,12 @@ def main():
     lanes = json.loads((ROOT / "data/lanes.json").read_text())
     tracked = {(l["channel"], l["model_id"]) for l in lanes}
     live = {(l["channel"], l["model_id"]): l for l in lanes if l["status"] in ("live", "listed", "overdue")}
-    try:
-        slugs = set(re.findall(r"artificialanalysis\.ai/models/([a-z0-9.\-]+)</loc>", get("https://artificialanalysis.ai/sitemap.xml", 90)))
-    except Exception:
-        slugs = set()
+    slugs = set()
+    if aa_table() is None:  # no AA API this run (no key, or the call failed): fall back to the AA sitemap
+        try:
+            slugs = set(re.findall(r"artificialanalysis\.ai/models/([a-z0-9.\-]+)</loc>", get("https://artificialanalysis.ai/sitemap.xml", 90)))
+        except Exception:
+            slugs = set()
     new, gone, errors = [], [], []
     for ch, fetch in CATALOGUES.items():
         try:

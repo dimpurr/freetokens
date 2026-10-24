@@ -59,6 +59,108 @@
       "metric": "pass^1 averaged over the three original tau-bench domains, from the official submission files on taubench.com (tau-bench 0.1.3, the same three tasks per model)",
       "url": "https://taubench.com/",
       "source_type": "leaderboard"
+    },
+    "aa_gpqa": {
+      "name": "GPQA Diamond (Artificial Analysis run)",
+      "metric": "Accuracy on GPQA Diamond as run by Artificial Analysis; their data API reports a 0-1 fraction, stored here x100. One of AA's earlier Intelligence Index components, not one of the ten evaluations in v4.3.2. Source: Artificial Analysis data API https://artificialanalysis.ai/api/v2/data/llms/models (fetched 2026-10-24); their own standardised harness, one setting per model.",
+      "url": "https://artificialanalysis.ai/leaderboards/models",
+      "source_type": "leaderboard"
+    },
+    "aa_hle": {
+      "name": "Humanity's Last Exam (Artificial Analysis run)",
+      "metric": "Open-answer score on HLE's 2,158 questions, 1 sample, no tools, Equality Checker LLM pass@1, run by Artificial Analysis; in Intelligence Index v4.3.2 at 10%. API reports a 0-1 fraction, stored here x100. Source: Artificial Analysis data API https://artificialanalysis.ai/api/v2/data/llms/models (fetched 2026-10-24); their own standardised harness, one setting per model.",
+      "url": "https://artificialanalysis.ai/leaderboards/models",
+      "source_type": "leaderboard"
+    },
+    "aa_lcr": {
+      "name": "AA-LCR v1.1 long-context reasoning (Artificial Analysis run)",
+      "metric": "Open-answer score on AA-LCR v1.1 (100 long-context reasoning items, 3 samples, Equality Checker LLM pass@1), built and run by Artificial Analysis; in Intelligence Index v4.3.2 at 5%. API reports a 0-1 fraction, stored here x100. Source: Artificial Analysis data API https://artificialanalysis.ai/api/v2/data/llms/models (fetched 2026-10-24); their own standardised harness, one setting per model.",
+      "url": "https://artificialanalysis.ai/leaderboards/models",
+      "source_type": "leaderboard"
+    },
+    "aa_ifbench": {
+      "name": "IFBench instruction following (Artificial Analysis run)",
+      "metric": "Score on IFBench (294 items, 5 samples, rule-driven extraction pass@1, no tools), run by Artificial Analysis; one of their additional evaluations outside the Intelligence Index. API reports a 0-1 fraction, stored here x100. Source: Artificial Analysis data API https://artificialanalysis.ai/api/v2/data/llms/models (fetched 2026-10-24); their own standardised harness, one setting per model.",
+      "url": "https://artificialanalysis.ai/leaderboards/models",
+      "source_type": "leaderboard"
+    },
+    "aa_tau2": {
+      "name": "tau2-bench agentic tool use (Artificial Analysis run)",
+      "metric": "pass^1-style agentic tool-use score from Artificial Analysis' tau2-bench run (their additional evaluations). The task set and domain differ from our tau_bench anchor column (tau-bench 0.1.3, three domains), so the two are kept as separate benchmarks. API reports a 0-1 fraction, stored here x100. Source: Artificial Analysis data API https://artificialanalysis.ai/api/v2/data/llms/models (fetched 2026-10-24); their own standardised harness, one setting per model.",
+      "url": "https://artificialanalysis.ai/leaderboards/models",
+      "source_type": "leaderboard"
+    },
+    "aa_tau_banking": {
+      "name": "tau-Banking agentic agent (Artificial Analysis run)",
+      "metric": "Score on the Banking agent evaluation (97 tasks, 5 samples, dual-control agent-user simulation with knowledge retrieval, backend database state pass@1) as listed in Artificial Analysis' additional evaluations. API reports a 0-1 fraction, stored here x100. Source: Artificial Analysis data API https://artificialanalysis.ai/api/v2/data/llms/models (fetched 2026-10-24); their own standardised harness, one setting per model.",
+      "url": "https://artificialanalysis.ai/leaderboards/models",
+      "source_type": "leaderboard"
+    },
+    "aa_mmlu_pro": {
+      "name": "MMLU-Pro knowledge (Artificial Analysis run)",
+      "metric": "Multiple-choice accuracy on MMLU-Pro as run by Artificial Analysis; an earlier Intelligence Index component, reported separately today. API reports a 0-1 fraction, stored here x100. Source: Artificial Analysis data API https://artificialanalysis.ai/api/v2/data/llms/models (fetched 2026-10-24); their own standardised harness, one setting per model.",
+      "url": "https://artificialanalysis.ai/leaderboards/models",
+      "source_type": "leaderboard"
+    },
+    "aa_livecodebench": {
+      "name": "LiveCodeBench (Artificial Analysis run)",
+      "metric": "Competitive-programming pass@1 on LiveCodeBench as run by Artificial Analysis, on their own question window; a different window from our livecodebench anchor column, so the two stay separate benchmarks. API reports a 0-1 fraction, stored here x100. Source: Artificial Analysis data API https://artificialanalysis.ai/api/v2/data/llms/models (fetched 2026-10-24); their own standardised harness, one setting per model.",
+      "url": "https://artificialanalysis.ai/leaderboards/models",
+      "source_type": "leaderboard"
+    },
+    "aa_scicode": {
+      "name": "SciCode scientific computing (Artificial Analysis run)",
+      "metric": "Score on SciCode's 288 test sub-problems (3 samples, code executed against unit tests, sub-problem scoring), run by Artificial Analysis; in Intelligence Index v4.3.2 at 10%. API reports a 0-1 fraction, stored here x100. Source: Artificial Analysis data API https://artificialanalysis.ai/api/v2/data/llms/models (fetched 2026-10-24); their own standardised harness, one setting per model.",
+      "url": "https://artificialanalysis.ai/leaderboards/models",
+      "source_type": "leaderboard"
+    },
+    "aa_math_500": {
+      "name": "MATH-500 (Artificial Analysis run)",
+      "metric": "Accuracy on the MATH-500 set as run by Artificial Analysis; their Math Index input, reported outside the Intelligence Index. API reports a 0-1 fraction, stored here x100. Source: Artificial Analysis data API https://artificialanalysis.ai/api/v2/data/llms/models (fetched 2026-10-24); their own standardised harness, one setting per model.",
+      "url": "https://artificialanalysis.ai/leaderboards/models",
+      "source_type": "leaderboard"
+    },
+    "aa_aime": {
+      "name": "AIME (Artificial Analysis run)",
+      "metric": "Accuracy on AIME as run by Artificial Analysis, reported outside the Intelligence Index. API reports a 0-1 fraction, stored here x100. Source: Artificial Analysis data API https://artificialanalysis.ai/api/v2/data/llms/models (fetched 2026-10-24); their own standardised harness, one setting per model.",
+      "url": "https://artificialanalysis.ai/leaderboards/models",
+      "source_type": "leaderboard"
+    },
+    "aa_aime_25": {
+      "name": "AIME 2025 (Artificial Analysis run)",
+      "metric": "Accuracy on AIME 2025 as run by Artificial Analysis; their Math Index input, reported outside the Intelligence Index. API reports a 0-1 fraction, stored here x100. Source: Artificial Analysis data API https://artificialanalysis.ai/api/v2/data/llms/models (fetched 2026-10-24); their own standardised harness, one setting per model.",
+      "url": "https://artificialanalysis.ai/leaderboards/models",
+      "source_type": "leaderboard"
+    },
+    "aa_terminalbench_hard": {
+      "name": "Terminal-Bench Hard (Artificial Analysis run)",
+      "metric": "Tasks solved on the Terminal-Bench hard subset as run by Artificial Analysis; an earlier Intelligence Index component, superseded in v4.3.2 by Terminal-Bench 4.0. API reports a 0-1 fraction, stored here x100. Source: Artificial Analysis data API https://artificialanalysis.ai/api/v2/data/llms/models (fetched 2026-10-24); their own standardised harness, one setting per model.",
+      "url": "https://artificialanalysis.ai/leaderboards/models",
+      "source_type": "leaderboard"
+    },
+    "aa_terminalbench_v2_1": {
+      "name": "Terminal-Bench 2.1 (Artificial Analysis run)",
+      "metric": "Tasks solved on Terminal-Bench 2.1 as run by Artificial Analysis, one harness for every model on their leaderboard; the same Terminal-Bench version our terminal_bench_2_1 column collects from other tables. API reports a 0-1 fraction, stored here x100. Source: Artificial Analysis data API https://artificialanalysis.ai/api/v2/data/llms/models (fetched 2026-10-24); their own standardised harness, one setting per model.",
+      "url": "https://artificialanalysis.ai/leaderboards/models",
+      "source_type": "leaderboard"
+    },
+    "aa_terminalbench_v4_0": {
+      "name": "Terminal-Bench 4.0 (Artificial Analysis run)",
+      "metric": "Tasks solved on Terminal-Bench 4.0 (66 tasks, 3 samples, test-suite pass@1), run by Artificial Analysis; in Intelligence Index v4.3.2 at 10%. API reports a 0-1 fraction, stored here x100. Source: Artificial Analysis data API https://artificialanalysis.ai/api/v2/data/llms/models (fetched 2026-10-24); their own standardised harness, one setting per model.",
+      "url": "https://artificialanalysis.ai/leaderboards/models",
+      "source_type": "leaderboard"
+    },
+    "aa_coding_index": {
+      "name": "Artificial Analysis Coding Index",
+      "metric": "Artificial Analysis' Coding Index: their own weighted composite of coding evaluations, already on a 0-100 scale. A composite, so it overlaps the individual coding columns rather than being an independent test. Source: Artificial Analysis data API https://artificialanalysis.ai/api/v2/data/llms/models (fetched 2026-10-24); their own standardised harness, one setting per model.",
+      "url": "https://artificialanalysis.ai/leaderboards/models",
+      "source_type": "leaderboard"
+    },
+    "aa_math_index": {
+      "name": "Artificial Analysis Math Index",
+      "metric": "Artificial Analysis' Math Index: their own weighted composite of math evaluations (MATH-500, AIME and peers), already on a 0-100 scale. A composite, so it overlaps the individual math columns rather than being an independent test. Source: Artificial Analysis data API https://artificialanalysis.ai/api/v2/data/llms/models (fetched 2026-10-24); their own standardised harness, one setting per model.",
+      "url": "https://artificialanalysis.ai/leaderboards/models",
+      "source_type": "leaderboard"
     }
   },
   "claims": [

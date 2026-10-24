@@ -17,19 +17,26 @@ Estimators are pluggable: ESTIMATORS maps a name to fn(target_model, bench, pool
   a   challenger - per-benchmark fit, claims weighted by inverse residual variance of the
       benchmark line, plus a three-layer vendor offset (global + per-vendor shrunk + a
       subject-skew term) estimated from paired vendor-vs-third-party scores
-  b   challenger - AA sub-score structure; placeholder, needs AA_API_KEY (16b-3)
+  b   challenger - Artificial Analysis' sub-score structure: a claim on a test AA also runs is put on
+      the AA scale with the line fitted on AA's own run of that test, then claims are averaged equally
+      (16b-3 supplied the AA columns over the AA data API, AA_API_KEY)
   c   challenger - low-rank matrix completion (soft-impute, effective rank kept in 2-4),
       control only; hand-rolled stdlib SVD (no numpy on this box, and the tool stays stdlib-only)
 
 Comparing them side by side: --estimator all. The first champion change needs Dim to read
 the scorecard: this mode only reports, it never switches the champion or touches
-data/est_scorecard.json.
+data/est_scorecard.json. --scorecard-challengers is the one exception-by-name: it appends the
+challengers' numbers under a "challengers" key of that file and leaves the champion's own block alone.
+
+AA's own columns (data/anchors.json benchmarks prefixed aa_, added in 16b-3) are reference data only.
+They never enter a held-out model's own claims - see run_backtest.
 
 Usage:
     python3 tools/est_backtest.py                    # champion run: report + data/est_scorecard.json
     python3 tools/est_backtest.py --no-write         # print only
     python3 tools/est_backtest.py --estimator a      # one estimator (v1 default; a/b/c)
     python3 tools/est_backtest.py --estimator all    # challengers side by side, report only
+    python3 tools/est_backtest.py --scorecard-challengers  # all + merge challenger rows into the scorecard
 
 Reads data/ (anchors.json, benchmarks.json, est_history.json if present) and schema/schema.json
 est_rules. Writes .private/reports/est-backtest/<date>.md (single estimator, or <date>-challengers.md
@@ -40,7 +47,6 @@ import argparse
 import datetime as dt
 import json
 import math
-import os
 import statistics as st
 import sys
 from pathlib import Path
@@ -391,12 +397,69 @@ def est_c(target, bench, pool, rules):
             "benchmarks": len(used), "used": used}
 
 
+B_STATE = {"estimates": 0, "with_alignment": 0, "pairs": {}, "lines": {}}
+
+# Same test on both sides, so one scale can carry both. Deliberately narrow (BRIEF 16c-B: the vendor's
+# benchmark must *be* an AA sub-score): our tau_bench column is tau-bench 0.1.3 averaged over three
+# domains while AA's run is tau2-bench, and the two LiveCodeBench columns cover different question
+# windows, so neither pair is aligned here. bfcl, aider_polyglot, swe_bench_verified, swe_bench_pro and
+# aicodingdaily have no AA run at all.
+AA_ALIGNED = {"gpqa_diamond": "aa_gpqa", "hle": "aa_hle",
+              "livecodebench": "aa_livecodebench", "terminal_bench_2_1": "aa_terminalbench_v2_1"}
+
+# 16b-3 benchmark ids holding Artificial Analysis' own run of a test. Prefix convention, nothing else
+# in data/ starts with it; they are reference data only, never a claim (no vendor reports through AA).
+AA_PREFIX = "aa_"
+
+
 def est_b(target, bench, pool, rules):
-    """Challenger B (ADR-031): estimate from the AA sub-score structure - the vendor
-    benchmarks are exactly AA's sub-scores, so align each to AA scale and average.
-    Blocked on AA per-model sub-scores, i.e. AA_API_KEY (16b-3), which has not arrived."""
-    sys.exit("challenger b is a placeholder: it needs AA sub-scores, i.e. the AA_API_KEY "
-             "(16b-3) in chco .env. Nothing to fit yet - see BRIEF 16c.")
+    """Challenger B (ADR-031 / BRIEF 16c-B): estimate on Artificial Analysis' own sub-score structure.
+    Where the claim's benchmark is the *same test* AA also runs (AA_ALIGNED), the score is put on the AA
+    scale with the line fitted on AA's own run of that test - one harness, 44-134 reference models - instead
+    of the line fitted on our mixed-source column for that test. Every other claim keeps its own column line.
+    The implied values are then averaged with equal weights: no inverse-variance weights and no vendor offset
+    (those are challenger A's layers, and B is measured without them so the two effects stay separable).
+    AA's sub-score for the model being estimated is never used - it is a component of the answer; see
+    run_backtest's aa_claims gate."""
+    registry = bench.get("benchmarks", {})
+    claims = [c for c in bench.get("claims", []) if c["model"] == target["id"] and not c.get("excluded")
+              and c["benchmark"] in registry]
+    if not claims:
+        return None
+    fits = _a_fits(pool, registry, rules)  # gated exactly like the champion: min_anchors, min_r
+    used, aligned = [], []
+    for c in claims:
+        bid = c["benchmark"]
+        aa_bid = AA_ALIGNED.get(bid)
+        route = "aa"
+        f = fits.get(aa_bid) if aa_bid else None
+        if f is None:
+            f, route = fits.get(bid), "own"
+        if not f:
+            continue
+        used.append({"benchmark": bid, "url": c["url"], "implied": f["a"] + f["b"] * c["score"]})
+        if route == "aa":
+            aligned.append(f"{bid}->{aa_bid}")
+    benches = {u["benchmark"] for u in used}
+    sources = {u["url"].split("/")[2] for u in used}
+    if len(benches) < rules["min_benchmarks"] or len(sources) < rules["min_sources"]:
+        return None
+    center = st.mean(u["implied"] for u in used)  # equal weights: align, then average
+    B_STATE["estimates"] += 1
+    B_STATE["with_alignment"] += 1 if aligned else 0
+    for a in aligned:
+        B_STATE["pairs"][a] = B_STATE["pairs"].get(a, 0) + 1
+    width = rules["band_width"]
+    low = round(center - width / 2)
+    return {"status": "ok", "center": round(center, 1), "low": low, "high": low + width,
+            "benchmarks": len(benches), "used": sorted(benches), "aligned": sorted(aligned)}
+
+
+def b_lines(anchors, registry, rules):
+    """The AA-side lines B aligns on, fitted on the whole pool - for the report."""
+    fits = _a_fits(anchors, registry, rules)
+    return {bid: {"n": f["n"], "r": round(f["r"], 3), "slope": round(f["b"], 3), "intercept": round(f["a"], 2)}
+            for bid, f in fits.items() if bid in set(AA_ALIGNED.values())}
 
 
 ESTIMATORS = {"v1": est_v1, "a": est_a, "b": est_b, "c": est_c}
@@ -405,8 +468,17 @@ CHALLENGERS = ["a", "b", "c"]
 
 # ---------- leave-one-out run ----------
 
-def run_backtest(anchors, registry, estimator, rules):
-    """Hide each reference model's AA, rebuild it from the others, score the difference."""
+def run_backtest(anchors, registry, estimator, rules, aa_claims=False):
+    """Hide each reference model's AA, rebuild it from the others, score the difference.
+
+    aa_claims=False is the protocol every number in this tool uses (and the default): Artificial
+    Analysis' own runs stay out of the *held-out model's own claims*, because an AA sub-score is a
+    component of the very index we just hid - fitting on it is reading the answer back, and the
+    "backtest" stops measuring anything. The pool keeps every model's AA columns: that is the reference
+    data a live estimate is really fitted on, and it says nothing about the held-out model, so
+    challenger B's alignment (vendor score of a test -> line fitted on AA's run of the same test) is
+    measured honestly. aa_claims=True runs the circular protocol; it exists only to size the leak.
+    """
     rows = []
     for a in anchors:
         name = a["name"]
@@ -423,7 +495,7 @@ def run_backtest(anchors, registry, estimator, rules):
                 "variant": "backtest (own published score, same harness)",
             }
             for bid, sc in a.get("scores", {}).items()
-            if bid in registry
+            if bid in registry and (aa_claims or not bid.startswith(AA_PREFIX))
         ]
         if not claims:
             continue
@@ -576,15 +648,18 @@ def run_est_table(anchors, bench_doc, registry, rules, est_names):
     return table
 
 
-def comparison_md(date, rules, summs, est_table, n_anchors):
-    names = [n for n in ["v1", "a", "c"] if n in summs]
+def comparison_md(date, rules, summs, est_table, n_anchors, circ=None):
+    names = [n for n in ["v1", "a", "b", "c"] if n in summs]
     lines = [
         f"# EST estimator comparison · {date}",
         "",
         f"- Leave-one-out backtest, {n_anchors} reference models, band width {rules['band_width']}, "
         f"`est_rules.version = {rules.get('version')}`. Same data for everyone; nothing is deployed.",
         "- `v1` champion = `build.estimate()` · `a` inverse-variance + three-layer vendor offset · "
-        "`c` low-rank soft-impute (control) · `b` skipped: needs AA sub-scores (AA_API_KEY, 16b-3).",
+        "`b` AA sub-score alignment (16b-3) · `c` low-rank soft-impute (control).",
+        "- Protocol: an AA run of the held-out model's own test is **not** used as that model's claim "
+        "(it is a component of the index we hid). AA columns stay in the fitting pool, which is what a "
+        "live estimate is fitted on. The bottom section sizes what that gate is worth.",
         "",
         "## Backtest, side by side",
         "",
@@ -651,6 +726,21 @@ def comparison_md(date, rules, summs, est_table, n_anchors):
                   f"(per-vendor: {A_STATE.get('vendor_deltas') or 'none'}). With 0 pairs the layer is exact but idle.",
                   f"- Skew-correction fit: alpha {A_STATE.get('skew_alpha')}, beta {A_STATE.get('skew_beta')} "
                   f"on {A_STATE.get('n_skew')} pool models (coding−general z gap, activation-parameter proxy)."]
+    if B_STATE["lines"] or B_STATE["estimates"]:
+        lines += ["", "## Challenger B diagnostics", "",
+                  f"- Estimates produced: **{B_STATE['estimates']}**, of which **{B_STATE['with_alignment']}** "
+                  f"put at least one claim on the scale of an AA run of the same test.",
+                  "- Alignment pairs (our claim column → AA's own run used for its line), and how many claims "
+                  "took that route: " + (", ".join(f"`{k}` ×{v}" for k, v in sorted(B_STATE["pairs"].items())) or "none"),
+                  "",
+                  "| AA column used as the line | reference models | r | slope | intercept |",
+                  "|---|---|---|---|---|"]
+        for bid, f in sorted(B_STATE["lines"].items()):
+            lines.append(f"| `{bid}` | {f['n']} | {f['r']:.3f} | {f['slope']} | {f['intercept']} |")
+        lines += ["", "A claim keeps its own column line when there is no AA run of the same test "
+                  "(swe_bench_verified, swe_bench_pro, aider_polyglot, bfcl, aicodingdaily) or when the tests "
+                  "only look alike: our tau_bench column is tau-bench 0.1.3 over three domains while AA runs "
+                  "tau2-bench, and the two LiveCodeBench columns cover different question windows."]
     if _C_HYP:
         cv = _C_HYP.get("cv", {})
         sel = _C_HYP["sel"]
@@ -660,9 +750,72 @@ def comparison_md(date, rules, summs, est_table, n_anchors):
         for k, (err, rk, ok) in sorted(cv.items()):
             mark = " ← selected" if k == f"{sel[0]}:{sel[1]}" else ""
             lines.append(f"| {k} | {fmt(err, 4)} | {rk} | {'✓' if ok else '✗'}{mark} |")
+    if circ:
+        lines += ["", "## Why the protocol gate matters (circular protocol, for size only)", "",
+                  "Same run with AA's own runs of the held-out model allowed as its claims - i.e. estimating the "
+                  "AA index from components of the AA index. Nobody should adopt a number from this table; it is "
+                  "here so the 16b-3 data addition is never mistaken for a method gain.", "",
+                  "| estimator | n | mean abs diff | bias | hit rate | honest mean abs diff |",
+                  "|---|---|---|---|---|---|"]
+        for name in names:
+            c, h = circ.get(name), summs[name]["overall"]
+            if not c:
+                continue
+            lines.append(f"| {est_label(name)} | {c['n']} | {fmt(c['mean_abs_diff'])} | {fmt(c['bias'])} | "
+                         f"{fmt(c['hit_rate'])} | {fmt(h['mean_abs_diff'])} |")
     lines += ["", "ADR-031 item 4: champions change only on backtest evidence *and*, for the first time, Dim's "
               "read of this scorecard. This file is that read; the production estimator in build.py is untouched.", ""]
     return "\n".join(lines)
+
+
+def merge_challengers(date, rules, summs, circ, est_table, no_write):
+    """Append the challengers' numbers to data/est_scorecard.json without touching the champion's own
+    block (build.render_est_scorecard only reads `backtest`/`method_version`/`band_width`, so the public
+    scorecard paragraph on the site does not move). The champion stays `estimator: v1` until Dim says
+    otherwise; this block is the read he makes that decision from."""
+    f = ROOT / "data" / "est_scorecard.json"
+    if not f.exists():
+        sys.exit("data/est_scorecard.json missing: run the champion path first")
+    sc = json.loads(f.read_text())
+    champ = summs["v1"]["overall"]
+    winners = [n for n in summs if n != "v1" and summs[n]["overall"]["mean_abs_diff"] < champ["mean_abs_diff"]
+               and summs[n]["overall"]["hit_rate"] > champ["hit_rate"]]
+    sc["challengers"] = {
+        "note": "ADR-031 item 4. Leave-one-out, same data as the champion above, and the same protocol: "
+                "an Artificial Analysis run of the held-out model's own test is never that model's claim "
+                "(it is a component of the index being hidden). Nothing here is deployed: the production "
+                "estimator is build.estimate(), and `estimator` above stays v1 until Dim reads this.",
+        "generated": date,
+        "band_width": rules["band_width"],
+        "method_version": rules.get("version"),
+        "overall": {n: summs[n]["overall"] for n in summs if n != "v1"},
+        "champion_overall": champ,
+        "by_n_benchmarks": {n: summs[n]["by_n_benchmarks"] for n in summs if n != "v1"},
+        "by_source_type": {n: summs[n]["by_source_type"] for n in summs if n != "v1"},
+        "aa_columns": B_STATE["lines"],
+        "alignment": {"pairs": {"gpqa_diamond": "aa_gpqa", "hle": "aa_hle",
+                                "livecodebench": "aa_livecodebench",
+                                "terminal_bench_2_1": "aa_terminalbench_v2_1"},
+                      "claims_aligned": B_STATE["pairs"],
+                      "estimates": B_STATE["estimates"],
+                      "with_alignment": B_STATE["with_alignment"]},
+        "circular_protocol_only_for_size": {
+            "note": "AA's own run of the held-out model allowed as its claim: reading the answer back. "
+                    "No adoption decision uses these numbers.",
+            "overall": {n: circ[n] for n in circ}},
+        "live_models": {mid: {n: ({"center": e["center"], "low": e["low"], "high": e["high"]} if e else None)
+                              for n, e in row.items()} for mid, row in sorted(est_table.items())},
+        "beats_champion_on_both": winners,
+        "champion_change": ("等正手：EST 冠军 - " + ", ".join(winners) + " beat v1 on both overall mean abs "
+                            "diff and hit rate; the first switch needs Dim's read, and any live EST moving "
+                            "past 25/30/35 or by more than 3 points stops it regardless (ADR-031 item 6)."
+                            if winners else "no challenger beats v1 on both metrics; v1 stays"),
+    }
+    if no_write:
+        print(json.dumps(sc["challengers"], indent=1, ensure_ascii=False))
+        return
+    f.write_text(json.dumps(sc, indent=1, ensure_ascii=False) + "\n")
+    print("  → data/est_scorecard.json (challengers block merged; champion block unchanged)")
 
 
 def main():
@@ -670,6 +823,9 @@ def main():
     ap.add_argument("--date", default=dt.date.today().isoformat())
     ap.add_argument("--estimator", default="v1", choices=sorted(ESTIMATORS) + ["all"])
     ap.add_argument("--no-write", action="store_true", help="print the report, do not touch files")
+    ap.add_argument("--scorecard-challengers", action="store_true",
+                    help="run every estimator and merge their numbers into data/est_scorecard.json "
+                         "under `challengers`; the champion's own block is left exactly as it is")
     a = ap.parse_args()
 
     build.LANG = "en"
@@ -679,11 +835,18 @@ def main():
     registry = bench_doc.get("benchmarks", {})
     history = load("est_history", [])
 
-    if a.estimator == "all":
-        names = [n for n in ["v1", "a", "c"] if n in ESTIMATORS]
-        summs = {n: summarize(run_backtest(anchors, registry, ESTIMATORS[n], rules)) for n in names}
+    if a.estimator == "all" or a.scorecard_challengers:
+        names = [n for n in ["v1", "a", "b", "c"] if n in ESTIMATORS]
+        # circular pass first (it reuses the same caches), then the live-model table, then the protocol
+        # we actually report - so the diagnostics in the report describe the honest run, and B's counters
+        # count one protocol, not two.
+        circ = {n: summarize(run_backtest(anchors, registry, ESTIMATORS[n], rules, aa_claims=True))["overall"]
+                for n in names if n != "c"}
         est_table = run_est_table(anchors, bench_doc, registry, rules, names)
-        text = comparison_md(a.date, rules, summs, est_table, len(anchors))
+        B_STATE.update({"estimates": 0, "with_alignment": 0, "pairs": {},
+                        "lines": b_lines(anchors, registry, rules)})
+        summs = {n: summarize(run_backtest(anchors, registry, ESTIMATORS[n], rules)) for n in names}
+        text = comparison_md(a.date, rules, summs, est_table, len(anchors), circ)
         if not a.no_write:
             rep_dir = ROOT / ".private" / "reports" / "est-backtest"
             rep_dir.mkdir(parents=True, exist_ok=True)
@@ -692,11 +855,40 @@ def main():
         for n in names:
             ov = summs[n]["overall"]
             print(f"  {n:3s} n={ov['n']} · mean abs diff {fmt(ov['mean_abs_diff'])} · bias {fmt(ov['bias'])} · hit {fmt(ov['hit_rate'])}")
-        print(f"  b skipped: awaiting AA_API_KEY (16b-3); present in env: {int('AA_API_KEY' in os.environ)}")
+        if a.scorecard_challengers:
+            merge_challengers(a.date, rules, summs, circ, est_table, a.no_write)
         return
 
     if a.estimator not in ESTIMATORS:
         sys.exit(f"unknown estimator {a.estimator!r}; have {sorted(ESTIMATORS)}")
+
+    rows = run_backtest(anchors, registry, ESTIMATORS[a.estimator], rules)
+    summ = summarize(rows)
+    fwd = forward_exam(history, rules["band_width"])
+    scorecard = {
+        "generated": a.date,
+        "method_version": rules.get("version"),
+        "estimator": a.estimator,
+        "band_width": rules["band_width"],
+        "backtest": summ,
+        "forward": fwd,
+    }
+
+    text = report_md(a.date, a.estimator, rules, summ, fwd, len(anchors))
+    if a.no_write:
+        print(text)
+        print(json.dumps(scorecard, indent=1, ensure_ascii=False))
+        return
+
+    rep_dir = ROOT / ".private" / "reports" / "est-backtest"
+    rep_dir.mkdir(parents=True, exist_ok=True)
+    (rep_dir / f"{a.date}.md").write_text(text)
+    (ROOT / "data" / "est_scorecard.json").write_text(json.dumps(scorecard, indent=1, ensure_ascii=False) + "\n")
+    ov = summ["overall"]
+    print(f"✓ backtest {a.estimator}: n={ov['n']} · mean abs diff {fmt(ov['mean_abs_diff'])} · "
+          f"bias {fmt(ov['bias'])} · hit {fmt(ov['hit_rate'])} · forward settled {fwd['settled']}")
+    print(f"  → .private/reports/est-backtest/{a.date}.md")
+    print("  → data/est_scorecard.json")
 
     rows = run_backtest(anchors, registry, ESTIMATORS[a.estimator], rules)
     summ = summarize(rows)
