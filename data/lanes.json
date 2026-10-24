@@ -4101,8 +4101,8 @@
   "data_policy": "zero_retention",
   "status": "live",
   "checked": {
-   "date": "2026-10-16",
-   "method": "agent_run"
+   "date": "2026-10-24",
+   "method": "catalogue"
   },
   "volume": {
    "tier": "daily",
@@ -4138,8 +4138,8 @@
   "data_policy": "zero_retention",
   "status": "live",
   "checked": {
-   "date": "2026-10-16",
-   "method": "agent_run"
+   "date": "2026-10-24",
+   "method": "catalogue"
   },
   "volume": {
    "tier": "daily",
@@ -4170,7 +4170,7 @@
   "data_policy": "may_train",
   "status": "listed",
   "checked": {
-   "date": "2026-10-16",
+   "date": "2026-10-24",
    "method": "catalogue"
   },
   "volume": {
@@ -4237,7 +4237,7 @@
   "data_policy": "not_checked",
   "status": "listed",
   "checked": {
-   "date": "2026-10-16",
+   "date": "2026-10-24",
    "method": "catalogue"
   },
   "volume": {
@@ -4270,7 +4270,7 @@
   "data_policy": "may_train",
   "status": "listed",
   "checked": {
-   "date": "2026-10-16",
+   "date": "2026-10-24",
    "method": "catalogue"
   }
  },
