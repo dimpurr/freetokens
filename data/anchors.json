@@ -184,6 +184,35 @@
     "seen": "2026-10-22",
     "variant": "HLE score as listed by llm-stats for Kimi K3: HLE-Full with tools; max reasoning effort"
    }
+  },
+  "vendor_scores": {
+   "gpqa_diamond": {
+    "score": 93.5,
+    "url": "https://huggingface.co/moonshotai/Kimi-K3",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-06-13",
+    "variant": "GPQA Diamond row, Kimi K3 (max) column = 93.5 (Claude Fable 5 92.6, GPT-5.6 Sol 94.1, Claude Opus 4.8 91.0, GPT-5.5 93.5, GLM-5.2 91.2)"
+   },
+   "hle": {
+    "score": 43.5,
+    "url": "https://huggingface.co/moonshotai/Kimi-K3",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-06-13",
+    "variant": "HLE-Full row = \"43.5 / 56.0\"; footnote: \"For HLE-Full ... each cell reports the scores without and with tool augmentation ... in that order\" (43.5 no tools, 56.0 with tools)"
+   },
+   "terminal_bench_2_1": {
+    "score": 88.3,
+    "url": "https://huggingface.co/moonshotai/Kimi-K3",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-06-13",
+    "variant": "Terminal-Bench 2.1 row, Kimi K3 column = 88.3; footnote: \"Kimi K3 is evaluated with the Kimi Code harness\""
+   }
   }
  },
  {
@@ -221,6 +250,17 @@
     "seen": "2026-10-22",
     "variant": "HLE score as listed by llm-stats for GLM-5.3: With tools; 300K-token context; GPT-5.6 Luna judge"
    }
+  },
+  "vendor_scores": {
+   "hle": {
+    "score": 62.5,
+    "url": "https://huggingface.co/zai-org/GLM-5.3",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-08-25",
+    "variant": "| HLE w/ Tools | 62.5 | 54.7 | 59.8 | 60.0 | 56.2 | 57.9 | 63.9 | 64.5 |  (GLM-5.3 column; vendor reports HLE only with tools: \"HLE w/ tools ... context management strategy\")"
+   }
   }
  },
  {
@@ -246,6 +286,35 @@
     "seen": "2026-10-22",
     "variant": "HLE score as listed by llm-stats for DeepSeek-V4.1-Flash: Pass@1; full multimodal evaluation, no tools. Maximum reaso…"
    }
+  },
+  "vendor_scores": {
+   "hle": {
+    "score": 36.8,
+    "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-09",
+    "variant": "| HLE (Pass@1) | **56.3** | 44.5 | 43.5 | 42.0† | 42.7† | 37.8† | 36.8 (39.1†) | [DS-V4.1-Flash column: 36.8 overall, 39.1 text-only subset per footnote '† Text-only subset of HLE'; max reasoning effo"
+   },
+   "terminal_bench_2_1": {
+    "score": 90.6,
+    "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-09",
+    "variant": "| Terminal-Bench 2.1 (Pass@1) | 89.1 | 88.8 | 88.3 | 88.2 | 87.9 | 82.7 | **90.6** | [DS-V4.1-Flash column; scaffold table also shows Terminal-Bench 2.1 DSH Minimal = 90.6; 'Terminal-Bench 2.1 is eval"
+   },
+   "gpqa_diamond": {
+    "score": 90.9,
+    "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-09",
+    "variant": "| GPQA Diamond (Pass@1) | 93.4 | **94.1** | 92.9 | 88.1 | 92.4 | 89.9 | 90.9 | [DS-V4.1-Flash column, Max reasoning effort]"
+   }
   }
  },
  {
@@ -263,6 +332,17 @@
     "score": 78.84,
     "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1",
     "src": "third_party"
+   }
+  },
+  "vendor_scores": {
+   "terminal_bench_2_1": {
+    "score": 89.9,
+    "url": "https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Pro-RL",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-09-21",
+    "variant": "| Terminal Bench 2.1 | 89.9 | 87.6 | 65.2 | 89.1 | 88.8 | 84.3 |  (header: | Benchmark | MiMo-V2.6 Pro | MiMo-V2.6 Flash | MiMo-V2.5 Pro | ...; 1st column = MiMo-V2.6 Pro; 'Terminal Bench 4.0' row sep"
    }
   }
  },
@@ -310,6 +390,17 @@
     "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1",
     "src": "third_party"
    }
+  },
+  "vendor_scores": {
+   "terminal_bench_2_1": {
+    "score": 88.8,
+    "url": "https://dev.meta.ai/models/muse-spark",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-09-02",
+    "variant": "Muse Spark 1.3 benchmarks table ... Terminal-Bench 2.1 | Agentic terminal coding — first column (Muse Spark 1.3 max) last value = 88.8 (row/column order verified: row is table's last row, value is col"
+   }
   }
  },
  {
@@ -344,6 +435,35 @@
     "src": "third_party",
     "seen": "2026-10-22",
     "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry Qwen 3.8 27B"
+   }
+  },
+  "vendor_scores": {
+   "terminal_bench_2_1": {
+    "score": 73.0,
+    "url": "https://huggingface.co/Qwen/Qwen3.8-27B/raw/main/README.md",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-08",
+    "variant": "Terminal Bench 2.1 (Terminus): Qwen3.8-27B = 73.0 (model card table)"
+   },
+   "swe_bench_pro": {
+    "score": 61.7,
+    "url": "https://huggingface.co/Qwen/Qwen3.8-27B/raw/main/README.md",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-08",
+    "variant": "SWE-bench Pro: Qwen3.8-27B = 61.7 (model card table; Claude Code harness, temp=1.0, 256K ctx, refined task set)"
+   },
+   "gpqa_diamond": {
+    "score": 89.2,
+    "url": "https://huggingface.co/Qwen/Qwen3.8-27B/raw/main/README.md",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-08",
+    "variant": "GPQA Diamond: Qwen3.8-27B = 89.2 (model card table)"
    }
   }
  },
@@ -410,6 +530,35 @@
     "seen": "2026-10-22",
     "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry MiniMax-M3"
    }
+  },
+  "vendor_scores": {
+   "swe_bench_verified": {
+    "score": 80.5,
+    "url": "https://huggingface.co/MiniMaxAI/MiniMax-M3/blob/main/.eval_results/minimax-m3.yaml",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-07",
+    "variant": "- dataset:\\n    id: SWE-bench/SWE-bench_Verified\\n    task_id: swe_bench_%_resolved\\n  value: 80.5\\n  source:\\n    url: https://huggingface.co/MiniMaxAI/MiniMax-M3\\n  notes: \"Evaluated on internal inf"
+   },
+   "swe_bench_pro": {
+    "score": 59.0,
+    "url": "https://www.minimax.io/blog/minimax-m3",
+    "seen": "2026-10-24",
+    "conf": "med",
+    "via": "blog",
+    "vendor_date": "2026-06-01",
+    "variant": "\"SWE-Bench Pro: 59.0%\" [blog section 'Frontier Coding and Agentic Capabilities'; methodology: 'SWE-Bench Pro: Tested on internal infrastructure using Claude Code as the scaffolding. Testing logic is a"
+   },
+   "terminal_bench_2_1": {
+    "score": 66.0,
+    "url": "https://www.minimax.io/blog/minimax-m3",
+    "seen": "2026-10-24",
+    "conf": "med",
+    "via": "blog",
+    "vendor_date": "2026-06-01",
+    "variant": "\"Terminal-Bench 2.1: 66.0%\" [methodology: 'Evaluated on internal infrastructure with a sandbox configured as 8C16G, a timeout of 2 hours, and max output tokens set to 128K, using Terminus 2 as the sca"
+   }
   }
  },
  {
@@ -427,6 +576,17 @@
     "score": 82.0,
     "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1",
     "src": "third_party"
+   }
+  },
+  "vendor_scores": {
+   "terminal_bench_2_1": {
+    "score": 87.6,
+    "url": "https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Flash-RL",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-09-21",
+    "variant": "| Terminal Bench 2.1 | 89.9 | 87.6 | 65.2 | 89.1 | 88.8 | 84.3 |  (header: | Benchmark | MiMo-V2.6 Pro | MiMo-V2.6 Flash | MiMo-V2.5 Pro | ...; 2nd column = MiMo-V2.6 Flash)"
    }
   }
  },
@@ -642,6 +802,26 @@
     "seen": "2026-10-22",
     "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry DeepSeek V4 Flash 0731"
    }
+  },
+  "vendor_scores": {
+   "terminal_bench_2_1": {
+    "score": 82.7,
+    "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-07-31",
+    "variant": "| Benchmark | DeepSeek-V4-Flash-0731 | DeepSeek-V4-Flash (Preview) | DeepSeek-V4-Pro (Preview) | GLM-5.2 | Opus-4.8 | ; | Terminal Bench 2.1 | 82.7 | 61.8 | 72.1 | 81.0 | 85.0 |"
+   },
+   "gpqa_diamond": {
+    "score": 89.9,
+    "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+    "seen": "2026-10-24",
+    "conf": "med",
+    "via": "crosscard",
+    "vendor_date": "2026-09",
+    "variant": "| GPQA Diamond (Pass@1) | 93.4 | **94.1** | 92.9 | 88.1 | 92.4 | 89.9 | 90.9 | [header: Opus-5.0 | GPT-5.6 Sol | K3 | GLM-5.3 | DS-V4-Pro | DS-V4-Flash | DS-V4.1-Flash; DS-V4-Flash column matches the "
+   }
   }
  },
  {
@@ -664,6 +844,53 @@
     "score": 64,
     "url": "https://z.ai/blog/glm-5.3",
     "src": "third_party"
+   }
+  },
+  "vendor_scores": {
+   "swe_bench_verified": {
+    "score": 80.6,
+    "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-06",
+    "variant": "| SWE Verified (Resolved) | 73.7 | 78.6 | 79.0 | 73.6 | 79.4 | **80.6** | [header: V4-Flash Non-Think | V4-Flash High | V4-Flash Max | V4-Pro Non-Think | V4-Pro High | V4-Pro Max; Max mode = headline;"
+   },
+   "swe_bench_pro": {
+    "score": 55.4,
+    "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-06",
+    "variant": "| SWE Pro (Resolved) | 49.1 | 52.3 | 52.6 | 52.1 | 54.4 | **55.4** | [V4-Pro Max column]"
+   },
+   "terminal_bench_2_1": {
+    "score": 87.9,
+    "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+    "seen": "2026-10-24",
+    "conf": "med",
+    "via": "crosscard",
+    "vendor_date": "2026-09",
+    "variant": "| Terminal-Bench 2.1 (Pass@1) | 89.1 | 88.8 | 88.3 | 88.2 | 87.9 | 82.7 | **90.6** | [header: Opus-5.0 | GPT-5.6 Sol | K3 | GLM-5.3 | DS-V4-Pro | DS-V4-Flash | DS-V4.1-Flash; V4-Pro's own card lists o"
+   },
+   "gpqa_diamond": {
+    "score": 90.1,
+    "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-06",
+    "variant": "| GPQA Diamond (Pass@1) | 71.2 | 87.4 | 88.1 | 72.9 | 89.1 | **90.1** | [V4-Pro Max column of 'Comparison across Modes'] [newer V4.1-Flash card re-evaluates 'DS-V4-Pro' at 92.4 — different harness; ow"
+   },
+   "hle": {
+    "score": 37.7,
+    "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-06",
+    "variant": "| HLE (Pass@1) | 8.1 | 29.4 | 34.8 | 7.7 | 34.5 | **37.7** | [V4-Pro Max, no-tools row]; same card separately lists \"HLE w/ tools (Pass@1)\" HLE w/ tools = 48.2 for DS-V4-Pro Max"
    }
   }
  },
@@ -689,6 +916,35 @@
     "src": "third_party",
     "seen": "2026-10-22",
     "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry GLM 5"
+   }
+  },
+  "vendor_scores": {
+   "gpqa_diamond": {
+    "score": 86.0,
+    "url": "https://huggingface.co/zai-org/GLM-5",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-02-11",
+    "variant": "| GPQA-Diamond | 86.0 | 85.7 | 82.4 | 87.6 | 87.0 | 91.9 | 92.4 |  (GLM-5 column)"
+   },
+   "swe_bench_verified": {
+    "score": 77.8,
+    "url": "https://huggingface.co/zai-org/GLM-5",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-02-11",
+    "variant": "| SWE-bench Verified | 77.8 | 73.8 | 73.1 | 76.8 | 80.9 | 76.2 | 80.0 |  (GLM-5 column)"
+   },
+   "swe_bench_pro": {
+    "score": 55.1,
+    "url": "https://huggingface.co/zai-org/GLM-5.1",
+    "seen": "2026-10-24",
+    "conf": "med",
+    "via": "crosscard",
+    "vendor_date": "2026-04-03",
+    "variant": "| SWE-Bench Pro | **58.4** | 55.1 | 56.6 | 56.2 | - | 53.8 | 57.3 | 54.2 | 57.7 |  (columns: GLM-5.1 | GLM-5 | ...; GLM-5 = 55.1)"
    }
   }
  },
@@ -727,6 +983,26 @@
     "seen": "2026-10-22",
     "variant": "HLE score as listed by llm-stats for GLM-5.1: With tools"
    }
+  },
+  "vendor_scores": {
+   "gpqa_diamond": {
+    "score": 86.2,
+    "url": "https://huggingface.co/zai-org/GLM-5.1",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-04-03",
+    "variant": "| GPQA-Diamond | 86.2 | 86.0 | 90.4 | 87.0 | 82.4 | 87.6 | 91.3 | 94.3 | 92.0 |  (GLM-5.1 column)"
+   },
+   "hle": {
+    "score": 31.0,
+    "url": "https://huggingface.co/zai-org/GLM-5.1",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-04-03",
+    "variant": "| HLE | 31.0 | 30.5 | ... and next row \"| HLE (w/ Tools) | 52.3 | 50.4 | ...\" (31.0 without tools; 52.3 with tools)"
+   }
   }
  },
  {
@@ -763,6 +1039,26 @@
     "src": "third_party",
     "seen": "2026-10-22",
     "variant": "HLE score as listed by llm-stats for GLM-5.2: With tools"
+   }
+  },
+  "vendor_scores": {
+   "gpqa_diamond": {
+    "score": 91.2,
+    "url": "https://huggingface.co/zai-org/GLM-5.2",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-06-16",
+    "variant": "|GPQA-Diamond|91.2|86.2|90|93|90.1|93.6|93.6|94.3|  (GLM-5.2 column)"
+   },
+   "hle": {
+    "score": 40.5,
+    "url": "https://huggingface.co/zai-org/GLM-5.2",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-06-16",
+    "variant": "|HLE|40.5|31|41.4|37|37.7|49.8*|41.4*|45| and next row \"|HLE (w/ Tools)|54.7|52.3|...\" (40.5 text-only; 54.7 with tools; footnote: \"By default, we report the text-only subset\")"
    }
   }
  },
@@ -1093,6 +1389,62 @@
     "url": "https://benchlm.ai/benchmarks/terminalbench21",
     "src": "third_party"
    }
+  },
+  "vendor_scores": {
+   "swe_bench_pro": {
+    "score": 33.29,
+    "url": "https://huggingface.co/ibm-granite/granite-4.2-30b",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-08-25",
+    "variant": "Evaluation table header 'Task | 3B Dense | 8B Dense | 30B Dense'; row 'SWE Bench Pro': NA | 19.11 | 33.29 (30B Dense column)"
+   },
+   "swe_bench_verified": {
+    "score": 57,
+    "url": "https://huggingface.co/ibm-granite/granite-4.2-30b",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-08-25",
+    "variant": "Header 'Task | 3B Dense | 8B Dense | 30B Dense'; row 'SWE Bench Verified': NA | 47.67 | 57 (30B Dense column, verbatim '57')"
+   },
+   "terminal_bench_2_1": {
+    "score": 29.24,
+    "url": "https://huggingface.co/ibm-granite/granite-4.2-30b",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-08-25",
+    "variant": "Header 'Task | 3B Dense | 8B Dense | 30B Dense'; row 'Terminal-Bench 2.1': NA | 20.56 | 29.24 (30B Dense column)"
+   },
+   "bfcl": {
+    "score": 61.39,
+    "url": "https://huggingface.co/ibm-granite/granite-4.2-30b",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-08-25",
+    "variant": "Header 'Task | 3B Dense | 8B Dense | 30B Dense'; row 'BFCL (v4)': 52.41 | 52.39 | 61.39 (30B Dense column)"
+   },
+   "livecodebench": {
+    "score": 75.77,
+    "url": "https://huggingface.co/ibm-granite/granite-4.2-30b",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-08-25",
+    "variant": "Header 'Task | 3B Dense | 8B Dense | 30B Dense'; row 'LiveCodeBench v6': 69.71 | 73.24 | 75.77 (30B Dense column; v6)"
+   },
+   "tau_bench": {
+    "score": 62.0,
+    "url": "https://huggingface.co/ibm-granite/granite-4.2-30b",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-08-25",
+    "variant": "Header 'Task | 3B Dense | 8B Dense | 30B Dense'; row 'τ³-bench (AVG)': 45.78 | 58.06 | 62.00 (30B Dense column; vendor reports average only)"
+   }
   }
  },
  {
@@ -1115,6 +1467,62 @@
     "score": 20.56,
     "url": "https://benchlm.ai/benchmarks/terminalbench21",
     "src": "third_party"
+   }
+  },
+  "vendor_scores": {
+   "swe_bench_pro": {
+    "score": 19.11,
+    "url": "https://huggingface.co/ibm-granite/granite-4.2-8b",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-08-25",
+    "variant": "Evaluation table header 'Task | 3B Dense | 8B Dense | 30B Dense'; row 'SWE Bench Pro': NA | 19.11 | 33.29 (8B Dense column)"
+   },
+   "swe_bench_verified": {
+    "score": 47.67,
+    "url": "https://huggingface.co/ibm-granite/granite-4.2-8b",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-08-25",
+    "variant": "Header 'Task | 3B Dense | 8B Dense | 30B Dense'; row 'SWE Bench Verified': NA | 47.67 | 57 (8B Dense column)"
+   },
+   "terminal_bench_2_1": {
+    "score": 20.56,
+    "url": "https://huggingface.co/ibm-granite/granite-4.2-8b",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-08-25",
+    "variant": "Header 'Task | 3B Dense | 8B Dense | 30B Dense'; row 'Terminal-Bench 2.1': NA | 20.56 | 29.24 (8B Dense column)"
+   },
+   "bfcl": {
+    "score": 52.39,
+    "url": "https://huggingface.co/ibm-granite/granite-4.2-8b",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-08-25",
+    "variant": "Header 'Task | 3B Dense | 8B Dense | 30B Dense'; row 'BFCL (v4)': 52.41 | 52.39 | 61.39 (8B Dense column)"
+   },
+   "livecodebench": {
+    "score": 73.24,
+    "url": "https://huggingface.co/ibm-granite/granite-4.2-8b",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-08-25",
+    "variant": "Header 'Task | 3B Dense | 8B Dense | 30B Dense'; row 'LiveCodeBench v6': 69.71 | 73.24 | 75.77 (8B Dense column; v6)"
+   },
+   "tau_bench": {
+    "score": 58.06,
+    "url": "https://huggingface.co/ibm-granite/granite-4.2-8b",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-08-25",
+    "variant": "Header 'Task | 3B Dense | 8B Dense | 30B Dense'; row 'τ³-bench (AVG)': 45.78 | 58.06 | 62.00 (8B Dense column; vendor reports average only)"
    }
   }
  },
@@ -1273,6 +1681,44 @@
     "seen": "2026-10-22",
     "variant": "HLE score as listed by llm-stats for Kimi K2.5: tool setting not stated by llm-stats"
    }
+  },
+  "vendor_scores": {
+   "gpqa_diamond": {
+    "score": 87.6,
+    "url": "https://huggingface.co/moonshotai/Kimi-K2.5",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-01-01",
+    "variant": "GPQA-Diamond row, Kimi K2.5 (Thinking) column = 87.6 (GPT-5.2 92.4, Claude 4.5 Opus 87.0, ...); footnote: \"GPQA-Diamond over 8 runs (avg@8)\""
+   },
+   "hle": {
+    "score": 30.1,
+    "url": "https://huggingface.co/moonshotai/Kimi-K2.5",
+    "seen": "2026-10-24",
+    "conf": "low",
+    "via": "model_card",
+    "vendor_date": "2026-01-01",
+    "variant": "HLE-Full row K2.5 column = 30.1 (no tools); row \"HLE-Full (w/ tools)\" = 50.2; footnote: \"Kimi K2.5 scores 31.5 (text) and 21.3 (image) without tools, and 51.8 (text) and 39.8 (image) with tools\""
+   },
+   "swe_bench_verified": {
+    "score": 76.8,
+    "url": "https://huggingface.co/moonshotai/Kimi-K2.5",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-01-01",
+    "variant": "SWE-Bench Verified row, Kimi K2.5 column = 76.8 (GPT-5.2 80.0, Claude 4.5 Opus 80.9, Gemini 3 Pro 76.2, DeepSeek V3.2 73.1)"
+   },
+   "swe_bench_pro": {
+    "score": 50.7,
+    "url": "https://huggingface.co/moonshotai/Kimi-K2.5",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-01-01",
+    "variant": "SWE-Bench Pro row, Kimi K2.5 column = 50.7 (GPT-5.2 55.6, Claude 4.5 Opus 55.4*)"
+   }
   }
  },
  {
@@ -1310,6 +1756,44 @@
     "seen": "2026-10-22",
     "variant": "HLE score as listed by llm-stats for Kimi K2.6: tool setting not stated by llm-stats"
    }
+  },
+  "vendor_scores": {
+   "gpqa_diamond": {
+    "score": 90.5,
+    "url": "https://huggingface.co/moonshotai/Kimi-K2.6",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-04-14",
+    "variant": "GPQA-Diamond row, Kimi K2.6 column = 90.5 (GPT-5.4 92.8, Claude Opus 4.6 91.3, Gemini 3.1 Pro 94.3, Kimi K2.5 87.6)"
+   },
+   "hle": {
+    "score": 34.7,
+    "url": "https://huggingface.co/moonshotai/Kimi-K2.6",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-04-14",
+    "variant": "HLE-Full row K2.6 column = 34.7 (no tools); row \"HLE-Full (w/ tools)\" = 54.0; footnote: \"For the text-only subset, Kimi K2.6 achieves 36.4% accuracy without tools and 55.5% with tools\""
+   },
+   "swe_bench_verified": {
+    "score": 80.2,
+    "url": "https://huggingface.co/moonshotai/Kimi-K2.6",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-04-14",
+    "variant": "SWE-Bench Verified row, Kimi K2.6 column = 80.2 (Claude Opus 4.6 80.8, Gemini 3.1 Pro 80.6, Kimi K2.5 76.8)"
+   },
+   "swe_bench_pro": {
+    "score": 58.6,
+    "url": "https://huggingface.co/moonshotai/Kimi-K2.6",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-04-14",
+    "variant": "SWE-Bench Pro row, Kimi K2.6 column = 58.6 (GPT-5.4 57.7, Claude Opus 4.6 53.4, Gemini 3.1 Pro 54.2, Kimi K2.5 50.7)"
+   }
   }
  },
  {
@@ -1339,6 +1823,53 @@
     "src": "third_party",
     "seen": "2026-10-22",
     "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry Ling 3.0 Flash"
+   }
+  },
+  "vendor_scores": {
+   "swe_bench_pro": {
+    "score": 56.6,
+    "url": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+    "seen": "2026-10-24",
+    "conf": "low",
+    "via": "model_card",
+    "vendor_date": "2026-08-02",
+    "variant": "Card Evaluation table (rendered as card image; OCR, first data column = Ling-3.0-flash per header): 'SWE-Bench Pro 56.6 | 53.9 Ring-2.6-1T | 56.2 MiniMax-M2.7 | 56.3 Step-3.7-Flash | ...'; card footno"
+   },
+   "terminal_bench_2_1": {
+    "score": 57.0,
+    "url": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+    "seen": "2026-10-24",
+    "conf": "low",
+    "via": "model_card",
+    "vendor_date": "2026-08-02",
+    "variant": "Card Evaluation table (card image; OCR): 'Terminal-Bench 2.1' first column = 57.0 (card bar-chart image shows the same label '57.0' on the Ling-3.0-flash bar); card footnote: 'Terminal-Bench 2.1: Eval"
+   },
+   "bfcl": {
+    "score": 73.0,
+    "url": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+    "seen": "2026-10-24",
+    "conf": "low",
+    "via": "model_card",
+    "vendor_date": "2026-08-02",
+    "variant": "Card Evaluation table (card image; OCR): row 'BFCL-v4' first column = 73.0"
+   },
+   "hle": {
+    "score": 22.7,
+    "url": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+    "seen": "2026-10-24",
+    "conf": "low",
+    "via": "model_card",
+    "vendor_date": "2026-08-02",
+    "variant": "Card Evaluation table (card image; OCR): row 'HLE' first column = 22.7 (no tools/search wording attached to this row on the card)"
+   },
+   "livecodebench": {
+    "score": 82.8,
+    "url": "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+    "seen": "2026-10-24",
+    "conf": "low",
+    "via": "model_card",
+    "vendor_date": "2026-08-02",
+    "variant": "Card Evaluation table (card image; OCR): row 'LiveCodeBench (2408-2505)' first column = 82.8"
    }
   }
  },
@@ -1377,6 +1908,44 @@
     "seen": "2026-10-22",
     "variant": "HLE score as listed by llm-stats for MiMo-V2.5-Pro: No tools"
    }
+  },
+  "vendor_scores": {
+   "swe_bench_pro": {
+    "score": 57.2,
+    "url": "https://huggingface.co/XiaomiMiMo/MiMo-V2.5-Pro",
+    "seen": "2026-10-24",
+    "conf": "low",
+    "via": "model_card",
+    "vendor_date": "2026-04-27",
+    "variant": "Card image assets/benchmark.jpg (OCR): 'SWE-bench Pro | 57.2 | 55.0 | ...'; first column = MiMo-V2.5-Pro (header 'MiMo-V2.5-Pro', second column MiMo-V2-Pro)"
+   },
+   "swe_bench_verified": {
+    "score": 78.9,
+    "url": "https://huggingface.co/XiaomiMiMo/MiMo-V2.5-Pro",
+    "seen": "2026-10-24",
+    "conf": "low",
+    "via": "model_card",
+    "vendor_date": "2026-04-27",
+    "variant": "Card image assets/benchmark.jpg (OCR): 'SWE-bench Verified | 78.9 | 78.0 | 80.6 | 80.2 ...'; first column = MiMo-V2.5-Pro"
+   },
+   "hle": {
+    "score": 34.0,
+    "url": "https://huggingface.co/XiaomiMiMo/MiMo-V2.5-Pro",
+    "seen": "2026-10-24",
+    "conf": "low",
+    "via": "model_card",
+    "vendor_date": "2026-04-27",
+    "variant": "Card image assets/benchmark.jpg (OCR): row \"Humanity's Last Exam\", first column cell labeled 'w.o. tools' = 34.0; the row also shows a 'with tools' sub-value 48.0"
+   },
+   "terminal_bench_2_1": {
+    "score": 65.2,
+    "url": "https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Pro-RL",
+    "seen": "2026-10-24",
+    "conf": "med",
+    "via": "crosscard",
+    "vendor_date": "2026-09-21",
+    "variant": "| Terminal Bench 2.1 | 89.9 | 87.6 | 65.2 | 89.1 | 88.8 | 84.3 |  (header: | Benchmark | MiMo-V2.6 Pro | MiMo-V2.6 Flash | MiMo-V2.5 Pro | ...; 3rd column = MiMo-V2.5 Pro)"
+   }
   }
  },
  {
@@ -1407,6 +1976,17 @@
     "seen": "2026-10-22",
     "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry MiniMax-M2.7"
    }
+  },
+  "vendor_scores": {
+   "swe_bench_pro": {
+    "score": 56.22,
+    "url": "https://huggingface.co/MiniMaxAI/MiniMax-M2.7",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-04",
+    "variant": "\"On SWE-Pro, M2.7 achieved **56.22%**, matching GPT-5.3-Codex\" (same figure repeated on official blog https://www.minimax.io/news/minimax-m27-en: \"M2.7 scored 56.22%\"; card also gives Terminal Bench 2"
+   }
   }
  },
  {
@@ -1429,6 +2009,53 @@
     "score": 51.69,
     "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1",
     "src": "third_party"
+   }
+  },
+  "vendor_scores": {
+   "swe_bench_pro": {
+    "score": 51.2,
+    "url": "https://huggingface.co/meta-models/Muse-Glimmer-30B/raw/main/README.md",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-08-09",
+    "variant": "| Category | Benchmark | Muse Glimmer-30BHigh Reasoning | Gemma4-31B Thinking Mode | Qwen3.6-27B Thinking Mode | ... | *Agentic Coding* | SWE-Bench Pro | **51.2** | 36.9 | 50.2 |"
+   },
+   "swe_bench_verified": {
+    "score": 76.0,
+    "url": "https://huggingface.co/meta-models/Muse-Glimmer-30B/raw/main/README.md",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-08-09",
+    "variant": "| | SWE-Bench Verified | 76.0 | 66.6 | **77.2** | (columns: Muse Glimmer-30B High Reasoning | Gemma4-31B Thinking Mode | Qwen3.6-27B Thinking Mode)"
+   },
+   "terminal_bench_2_1": {
+    "score": 51.7,
+    "url": "https://huggingface.co/meta-models/Muse-Glimmer-30B/raw/main/README.md",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-08-09",
+    "variant": "| | TerminalBench 2.1 (with terminus2) | 51.7 | 43.4 | **60.7** | (Muse Glimmer-30B High Reasoning column = 51.7)"
+   },
+   "gpqa_diamond": {
+    "score": 83.5,
+    "url": "https://huggingface.co/meta-models/Muse-Glimmer-30B/raw/main/README.md",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-08-09",
+    "variant": "| | GPQA Diamond (AA) | 83.5 | **85.7** | 84.2 | ; methodology report (research.meta.ai/static/muse-glimmer-methodology): 'GPQA Diamond: We use the full 198-question dataset'"
+   },
+   "hle": {
+    "score": 22.0,
+    "url": "https://huggingface.co/meta-models/Muse-Glimmer-30B/raw/main/README.md",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-08-09",
+    "variant": "| | HLE Text (AA) | 22.0 | **23.6** | 23.1 | ; methodology report: 'Humanity's Last Exam (HLE) ... No tool use is permitted. We use the text-only subset of 2,158 questions.'"
    }
   }
  },
@@ -1467,6 +2094,35 @@
     "seen": "2026-10-22",
     "variant": "HLE score as listed by llm-stats for Muse Spark 1.1: With tools."
    }
+  },
+  "vendor_scores": {
+   "hle": {
+    "score": 62.1,
+    "url": "https://dev.meta.ai/models/muse-spark-1-1",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-07-09",
+    "variant": "Benchmark | Muse Spark 1.1 | Meta | Muse Spark | Meta | Gemini 3.1 Pro | Google | Opus 4.8 | Anthropic | GPT 5.5 | OpenAI ... Humanity's Last Exam | Multidisciplinary reasoning (w/ tools) | 62.1 | 50."
+   },
+   "swe_bench_pro": {
+    "score": 61.5,
+    "url": "https://dev.meta.ai/models/muse-spark-1-1",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-07-09",
+    "variant": "SWE-Bench Pro | Diverse software engineering | 61.5 | 55.0 | 54.2 | 69.2 | 58.6 (Muse Spark 1.1 first column)"
+   },
+   "terminal_bench_2_1": {
+    "score": 80.0,
+    "url": "https://dev.meta.ai/models/muse-spark-1-1",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-07-09",
+    "variant": "Terminal-Bench 2.1 | Agentic terminal coding | 80.0 | 67.3 | 70.3 | 82.7 | 83.4 (Muse Spark 1.1 first column)"
+   }
   }
  },
  {
@@ -1497,6 +2153,26 @@
     "seen": "2026-10-22",
     "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry Qwen 3.6 Plus"
    }
+  },
+  "vendor_scores": {
+   "swe_bench_verified": {
+    "score": 78.8,
+    "url": "https://www.alibabacloud.com/blog/qwen3-6-plus-towards-real-world-agents_603005",
+    "seen": "2026-10-24",
+    "conf": "low",
+    "via": "blog",
+    "vendor_date": "2026-04-02",
+    "variant": "Eval table image (https://yqintl.alicdn.com/0360fb4a4c35c9bc6a83d8e29578e70202d7afc2.png) row 'SWE-bench Verified': Qwen3.6-Plus column = 78.8 (OCR read, column-mapped)"
+   },
+   "swe_bench_pro": {
+    "score": 56.6,
+    "url": "https://www.alibabacloud.com/blog/qwen3-6-plus-towards-real-world-agents_603005",
+    "seen": "2026-10-24",
+    "conf": "low",
+    "via": "blog",
+    "vendor_date": "2026-04-02",
+    "variant": "Eval table image (https://yqintl.alicdn.com/0360fb4a4c35c9bc6a83d8e29578e70202d7afc2.png) row 'SWE-bench Pro': Qwen3.6-Plus column = 56.6 (OCR read)"
+   }
   }
  },
  {
@@ -1522,6 +2198,35 @@
     "seen": "2026-10-22",
     "variant": "HLE score as listed by llm-stats for Qwen3.6-27B: tool setting not stated by llm-stats"
    }
+  },
+  "vendor_scores": {
+   "swe_bench_verified": {
+    "score": 77.2,
+    "url": "https://huggingface.co/Qwen/Qwen3.6-27B/raw/main/README.md",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-04",
+    "variant": "SWE-bench Verified: Qwen3.6-27B = 77.2 (model card table)"
+   },
+   "swe_bench_pro": {
+    "score": 53.5,
+    "url": "https://huggingface.co/Qwen/Qwen3.6-27B/raw/main/README.md",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-04",
+    "variant": "SWE-bench Pro: Qwen3.6-27B = 53.5 (model card table)"
+   },
+   "hle": {
+    "score": 24.0,
+    "url": "https://huggingface.co/Qwen/Qwen3.6-27B/raw/main/README.md",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-04",
+    "variant": "HLE: Qwen3.6-27B = 24.0 (model card table)"
+   }
   }
  },
  {
@@ -1546,6 +2251,35 @@
     "src": "third_party",
     "seen": "2026-10-22",
     "variant": "HLE score as listed by llm-stats for Qwen3.6-35B-A3B: tool setting not stated by llm-stats"
+   }
+  },
+  "vendor_scores": {
+   "swe_bench_verified": {
+    "score": 73.4,
+    "url": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B/raw/main/README.md",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-04",
+    "variant": "SWE-bench Verified: Qwen3.6-35BA3B = 73.4 (model card table)"
+   },
+   "swe_bench_pro": {
+    "score": 49.5,
+    "url": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B/raw/main/README.md",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-04",
+    "variant": "SWE-bench Pro: Qwen3.6-35BA3B = 49.5 (model card table)"
+   },
+   "hle": {
+    "score": 21.4,
+    "url": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B/raw/main/README.md",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-04",
+    "variant": "HLE: Qwen3.6-35BA3B = 21.4 (model card table)"
    }
   }
  },
@@ -1577,6 +2311,35 @@
     "seen": "2026-10-22",
     "variant": "HLE score as listed by llm-stats for Qwen3.7 Max: tool setting not stated by llm-stats"
    }
+  },
+  "vendor_scores": {
+   "swe_bench_pro": {
+    "score": 60.6,
+    "url": "https://www.alibabacloud.com/blog/qwen3-7-the-agent-frontier_603154",
+    "seen": "2026-10-24",
+    "conf": "med",
+    "via": "blog",
+    "vendor_date": "2026-05-21",
+    "variant": "On coding agents, Qwen3.7-Max performs strongly on SWE-Pro (60.6)"
+   },
+   "swe_bench_verified": {
+    "score": 80.4,
+    "url": "https://www.alibabacloud.com/blog/qwen3-7-the-agent-frontier_603154",
+    "seen": "2026-10-24",
+    "conf": "med",
+    "via": "blog",
+    "vendor_date": "2026-05-21",
+    "variant": "On SWE-Verified (80.4), it is on par with Opus-4.6 Max (80.8) and DS-V4-Pro Max (80.6)"
+   },
+   "hle": {
+    "score": 41.4,
+    "url": "https://www.alibabacloud.com/blog/qwen3-7-the-agent-frontier_603154",
+    "seen": "2026-10-24",
+    "conf": "med",
+    "via": "blog",
+    "vendor_date": "2026-05-21",
+    "variant": "leading results on GPQA Diamond (92.4 vs. Opus-4.6’s 91.3), HLE (41.4 vs. Opus-4.6’s 40)"
+   }
   }
  },
  {
@@ -1600,6 +2363,26 @@
     "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1",
     "src": "third_party"
    }
+  },
+  "vendor_scores": {
+   "swe_bench_pro": {
+    "score": 57.6,
+    "url": "https://huggingface.co/Qwen/Qwen3.8-27B/raw/main/README.md",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-08",
+    "variant": "SWE-bench Pro: Qwen3.7-Plus = 57.6 (comparison table in official Qwen3.8-27B card)"
+   },
+   "terminal_bench_2_1": {
+    "score": 64.0,
+    "url": "https://huggingface.co/Qwen/Qwen3.8-27B/raw/main/README.md",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-08",
+    "variant": "Terminal Bench 2.1 (Terminus): Qwen3.7-Plus = 64.0 (comparison table in official Qwen3.8-27B card)"
+   }
   }
  },
  {
@@ -1620,6 +2403,26 @@
     "seen": "2026-10-22",
     "variant": "HLE score as listed by llm-stats for Qwen3.8-Flash-Next: Judged by GPT-4o"
    }
+  },
+  "vendor_scores": {
+   "swe_bench_pro": {
+    "score": 62.5,
+    "url": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next/raw/main/README.md",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-08",
+    "variant": "SWE-bench Pro: Qwen3.8-Flash-Next = 62.5 (model card table)"
+   },
+   "hle": {
+    "score": 35.9,
+    "url": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next/raw/main/README.md",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-08",
+    "variant": "HLE: Qwen3.8-Flash-Next = 35.9 (model card table)"
+   }
   }
  },
  {
@@ -1637,6 +2440,35 @@
     "score": 59.5,
     "url": "https://benchlm.ai/benchmarks/terminalbench21",
     "src": "third_party"
+   }
+  },
+  "vendor_scores": {
+   "swe_bench_pro": {
+    "score": 56.3,
+    "url": "https://huggingface.co/stepfun-ai/Step-3.7-Flash",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-05-23",
+    "variant": "\"Step 3.7 Flash is built for live engineering tasks and secured a definitive second-place finish on SWE-Bench PRO with a score of 56.3.\""
+   },
+   "terminal_bench_2_1": {
+    "score": 59.5,
+    "url": "https://huggingface.co/stepfun-ai/Step-3.7-Flash",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-05-23",
+    "variant": "\"While evaluations like Terminal-Bench 2.1 (59.5) and GDPVal-AA (45.8) show clear areas for future optimization ...\""
+   },
+   "hle": {
+    "score": 48.1,
+    "url": "https://huggingface.co/stepfun-ai/Step-3.7-Flash",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-05-23",
+    "variant": "\"Backed by scores of 49.5 on Toolathlon and 48.1 on HLE w. Tool ...\" — vendor wording: HLE with tools"
    }
   }
  },
@@ -1727,6 +2559,44 @@
     "seen": "2026-10-22",
     "variant": "HLE score as listed by llm-stats for DeepSeek-V3.2 (Thinking): tool setting not stated by llm-stats"
    }
+  },
+  "vendor_scores": {
+   "gpqa_diamond": {
+    "score": 82.4,
+    "url": "https://huggingface.co/deepseek-ai/DeepSeek-V3.2/resolve/main/assets/paper.pdf",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "tech_report",
+    "vendor_date": "2025-12",
+    "variant": "Tech report Table 2: \"GPQA Diamond (Pass@1) 83.4 85.7 91.9 84.5 77.7 82.4\" [columns: Claude-4.5-Sonnet / GPT-5 High / Gemini-3.0 Pro / Kimi-K2 Thinking / MiniMax M2 / DeepSeek-V3.2 Thinking = last col"
+   },
+   "hle": {
+    "score": 25.1,
+    "url": "https://huggingface.co/deepseek-ai/DeepSeek-V3.2/resolve/main/assets/paper.pdf",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "tech_report",
+    "vendor_date": "2025-12",
+    "variant": "Tech report Table 2: \"HLE (Pass@1) 13.7 26.3 37.7 23.9 12.5 25.1\" [DeepSeek-V3.2 Thinking = last col]; report states \"For HLE, we report the text-only subset\" (no tools). Separate Search-Agent row: \"H"
+   },
+   "swe_bench_verified": {
+    "score": 73.1,
+    "url": "https://huggingface.co/deepseek-ai/DeepSeek-V3.2/resolve/main/assets/paper.pdf",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "tech_report",
+    "vendor_date": "2025-12",
+    "variant": "Tech report Table 2: \"SWE Verified (Resolved) 77.2 74.9 76.2 71.3 69.4 73.1\" [DeepSeek-V3.2 Thinking = last col]; text: \"For SWE-bench Verified, the primary score was obtained using our internal frame"
+   },
+   "livecodebench": {
+    "score": 83.3,
+    "url": "https://huggingface.co/deepseek-ai/DeepSeek-V3.2/resolve/main/assets/paper.pdf",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "tech_report",
+    "vendor_date": "2025-12",
+    "variant": "Tech report Table 2: \"LiveCodeBench (Pass@1-COT) 64.0 84.5 90.7 82.6 83.0 83.3\" [DeepSeek-V3.2 Thinking = last col]; eval section: \"LiveCodeBench (2024.08-2025.04)\""
+   }
   }
  },
  {
@@ -1809,6 +2679,26 @@
     "seen": "2026-10-22",
     "variant": "Gemma-3-27b-it (Prompt)"
    }
+  },
+  "vendor_scores": {
+   "gpqa_diamond": {
+    "score": 42.4,
+    "url": "https://arxiv.org/abs/2503.19786",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "tech_report",
+    "vendor_date": "2025-03-26",
+    "variant": "Table 6 (IT models) row 'GPQA Diamond 51.0 59.1 60.1 64.7 24.7 28.8 34.3 19.2 30.8 40.9 42.4' — last column = Gemma 3 27B (header: Gemma 3 1B 4B 12B 27B); explicitly labeled Diamond"
+   },
+   "livecodebench": {
+    "score": 29.7,
+    "url": "https://arxiv.org/abs/2503.19786",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "tech_report",
+    "vendor_date": "2025-03-26",
+    "variant": "Table 6 (IT models) row 'LiveCodeBench 30.7 34.2 34.5 36.0 1.2 10.8 20.4 1.9 12.6 24.6 29.7' — last column = Gemma 3 27B; vendor does not state an LCB version on this row"
+   }
   }
  },
  {
@@ -1847,6 +2737,35 @@
     "src": "third_party",
     "seen": "2026-10-22",
     "variant": "HLE score as listed by llm-stats for GLM-4.6: tool setting not stated by llm-stats"
+   }
+  },
+  "vendor_scores": {
+   "gpqa_diamond": {
+    "score": 81.0,
+    "url": "https://huggingface.co/zai-org/GLM-4.7",
+    "seen": "2026-10-24",
+    "conf": "med",
+    "via": "crosscard",
+    "vendor_date": "2025-12-22",
+    "variant": "| GPQA-Diamond | 85.7 | 81.0 | 84.5 | 82.4 | 91.9 | 83.4 | 85.7 | 88.1 |  (columns: Benchmark | GLM-4.7 | GLM-4.6 | Kimi K2 Thinking | ...)"
+   },
+   "hle": {
+    "score": 17.2,
+    "url": "https://huggingface.co/zai-org/GLM-4.7",
+    "seen": "2026-10-24",
+    "conf": "med",
+    "via": "crosscard",
+    "vendor_date": "2025-12-22",
+    "variant": "| HLE | 24.8 | 17.2 | 23.9 | 25.1 | 37.5 | 13.7 | 26.3 | 25.7 | and next row \"| HLE (w/ Tools) | 42.8 | 30.4 | 44.9 | ...\" (GLM-4.6 = 2nd column; 17.2 without tools, 30.4 with tools)"
+   },
+   "swe_bench_verified": {
+    "score": 68.0,
+    "url": "https://huggingface.co/zai-org/GLM-4.7",
+    "seen": "2026-10-24",
+    "conf": "med",
+    "via": "crosscard",
+    "vendor_date": "2025-12-22",
+    "variant": "| SWE-bench Verified | 73.8 | 68.0 | 71.3 | 73.1 | 76.2 | 77.2 | 74.9 | 76.3 |  (GLM-4.6 = 2nd column)"
    }
   }
  },
@@ -1951,6 +2870,44 @@
     "seen": "2026-10-22",
     "variant": "HLE score as listed by llm-stats for GPT OSS 120B: Accuracy (without tools)"
    }
+  },
+  "vendor_scores": {
+   "gpqa_diamond": {
+    "score": 80.1,
+    "url": "https://arxiv.org/abs/2508.10925",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "tech_report",
+    "vendor_date": "2025-08",
+    "variant": "Table 3 header 'gpt-oss-120b low medium high | gpt-oss-20b low medium high'; row 'GPQA Diamond (no tools) 67.1 73.1 80.1 56.8 66.0 71.5' — value = 120b high (reasoning level high); 'GPQA Diamond (with"
+   },
+   "hle": {
+    "score": 14.9,
+    "url": "https://arxiv.org/abs/2508.10925",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "tech_report",
+    "vendor_date": "2025-08",
+    "variant": "Table 3 'gpt-oss-120b low/medium/high': row 'HLE (no tools) 5.2 8.6 14.9 4.2 7.0 10.9' — value = 120b high, no tools; 'HLE (with tools)' high = 19.0"
+   },
+   "swe_bench_verified": {
+    "score": 62.4,
+    "url": "https://arxiv.org/abs/2508.10925",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "tech_report",
+    "vendor_date": "2025-08",
+    "variant": "Table 3 'gpt-oss-120b low/medium/high': row 'SWE-Bench Verified 47.9 52.6 62.4 37.4 53.2 60.7' — value = 120b high; §5.2.3.1 'All SWE-bench evaluation runs use a fixed subset of n=477 verified tasks ."
+   },
+   "aider_polyglot": {
+    "score": 44.4,
+    "url": "https://arxiv.org/abs/2508.10925",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "tech_report",
+    "vendor_date": "2025-08",
+    "variant": "Table 3 'gpt-oss-120b low/medium/high': row 'Aider Polyglot 24.0 34.2 44.4 16.6 26.6 34.2' — value = 120b high"
+   }
   }
  },
  {
@@ -1976,6 +2933,26 @@
     "seen": "2026-10-22",
     "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry Kimi K2 Thinking"
    }
+  },
+  "vendor_scores": {
+   "gpqa_diamond": {
+    "score": 84.5,
+    "url": "https://moonshotai.github.io/Kimi-K2/thinking.html",
+    "seen": "2026-10-24",
+    "conf": "med",
+    "via": "blog",
+    "vendor_date": "2025-11-04",
+    "variant": "official blog data table: benchmark `GPQA-Diamond`, type Reasoning Tasks, metric `no tools`, scores [{model:`K2 Thinking`,value:`84.5`}...] (the HF card shows the same row labeled only \"GPQA\")"
+   },
+   "swe_bench_verified": {
+    "score": 71.3,
+    "url": "https://huggingface.co/moonshotai/Kimi-K2-Thinking",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2025-11-04",
+    "variant": "| **SWE-bench Verified** | w/ tools | 71.3 | 74.9 | 77.2 | 69.2 | 67.8 |  (K2 Thinking column)"
+   }
   }
  },
  {
@@ -2000,6 +2977,26 @@
     "src": "leaderboard",
     "seen": "2026-10-22",
     "variant": "Llama 4 Maverick, whole edit format"
+   }
+  },
+  "vendor_scores": {
+   "gpqa_diamond": {
+    "score": 69.8,
+    "url": "http://web.archive.org/web/20261006133341/https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2025-04-05",
+    "variant": "Instruction tuned models — | GPQA Diamond | 0 | accuracy | 50.5 | 49.0 | 57.2 | 69.8 | (columns: Llama 3.3 70B | Llama 3.1 405B | Llama 4 Scout | Llama 4 Maverick)"
+   },
+   "livecodebench": {
+    "score": 43.4,
+    "url": "http://web.archive.org/web/20261006133341/https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2025-04-05",
+    "variant": "| Coding | LiveCodeBench (10/01/2024-02/01/2025) | 0 | pass@1 | 33.3 | 27.7 | 32.8 | 43.4 | (Maverick column = 43.4)"
    }
   }
  },
@@ -2033,6 +3030,35 @@
     "seen": "2026-10-22",
     "variant": "HLE score as listed by llm-stats for MiniMax M2.1: without tools"
    }
+  },
+  "vendor_scores": {
+   "swe_bench_verified": {
+    "score": 74.0,
+    "url": "https://huggingface.co/MiniMaxAI/MiniMax-M2.1",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-02",
+    "variant": "| Benchmark | MiniMax-M2.1 | MiniMax-M2 | Claude Sonnet 4.5 | Claude Opus 4.5 | Gemini 3 Pro | GPT-5.2 (thinking) | DeepSeek V3.2 | ; | SWE-bench Verified | 74.0 | 69.4 | 77.2 | 80.9 | 78.0 | 80.0 | 7"
+   },
+   "gpqa_diamond": {
+    "score": 83.0,
+    "url": "https://huggingface.co/MiniMaxAI/MiniMax-M2.1",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-02",
+    "variant": "| GPQA-D | 83.0 | 78.0 | 83.0 | 87.0 | 91.0 | 90.0 | 84.0 | [MiniMax-M2.1 column; vendor note: 'AIME25 ~ 𝜏²-Bench Telecom: Derived from internal testing based on the evaluation datasets and methodolog"
+   },
+   "hle": {
+    "score": 22.2,
+    "url": "https://huggingface.co/MiniMaxAI/MiniMax-M2.1",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-02",
+    "variant": "| HLE w/o tools | 22.2 | 12.5 | 17.3 | 28.4 | 37.2 | 31.4 | 22.2 | [MiniMax-M2.1 column, without tools]"
+   }
   }
  },
  {
@@ -2060,6 +3086,17 @@
     "seen": "2026-10-22",
     "variant": "Qwen3 235B A22B diff, no think, Alibaba API, diff edit format"
    }
+  },
+  "vendor_scores": {
+   "livecodebench": {
+    "score": 70.7,
+    "url": "https://arxiv.org/abs/2505.09388",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "tech_report",
+    "vendor_date": "2025-05-14",
+    "variant": "Table 11 (Thinking): LiveCodeBench v5 Qwen3-235B-A22B = 70.7; abstract: '70.7 on LiveCodeBench v5'"
+   }
   }
  },
  {
@@ -2077,6 +3114,17 @@
     "score": 62.5,
     "url": "https://www.swebench.com/",
     "src": "leaderboard"
+   }
+  },
+  "vendor_scores": {
+   "swe_bench_verified": {
+    "score": 69.6,
+    "url": "https://www.alibabacloud.com/blog/alibaba-unveils-cutting-edge-ai-coding-model-qwen3-coder_602399",
+    "seen": "2026-10-24",
+    "conf": "low",
+    "via": "blog",
+    "vendor_date": "2025-07-24",
+    "variant": "Benchmarks chart (https://img.alicdn.com/imgextra/i2/O1CN01S9RxBZ1tf4xExqMQA_!!6000000005928-2-tps-936-538.png) row 'SWE-bench Verified w/ OpenHands, 500 turns': Qwen3-Coder 480A35-Instruct = 69.6 (OC"
    }
   }
  },
@@ -2366,6 +3414,44 @@
     "seen": "2026-10-22",
     "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry DeepSeek V3"
    }
+  },
+  "vendor_scores": {
+   "gpqa_diamond": {
+    "score": 59.1,
+    "url": "https://huggingface.co/deepseek-ai/DeepSeek-V3",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2024-12",
+    "variant": "\"GPQA-Diamond (Pass@1)\" row: 35.3 / 41.3 / 49.0 / 51.1 / 65.0 / 49.9 / 59.1 [last column = DeepSeek V3, per header \"...Claude-3.5-Sonnet-1022 | GPT-4o 0513 | DeepSeek V3\"]"
+   },
+   "swe_bench_verified": {
+    "score": 42.0,
+    "url": "https://huggingface.co/deepseek-ai/DeepSeek-V3",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2024-12",
+    "variant": "\"SWE Verified (Resolved)\" row: - / 22.6 / 23.8 / 24.5 / 50.8 / 38.8 / 42.0 [last column = DeepSeek V3]"
+   },
+   "livecodebench": {
+    "score": 37.6,
+    "url": "https://huggingface.co/deepseek-ai/DeepSeek-V3",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2024-12",
+    "variant": "\"LiveCodeBench (Pass@1)\" row: 20.3 / 28.4 / 28.7 / 30.1 / 32.8 / 34.2 / 37.6 [last column = DeepSeek V3]. Card also has \"LiveCodeBench (Pass@1-COT)\" = 40.5; no LCB version window stated on card"
+   },
+   "aider_polyglot": {
+    "score": 49.6,
+    "url": "https://huggingface.co/deepseek-ai/DeepSeek-V3",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2024-12",
+    "variant": "\"Aider-Polyglot (Acc.)\" row: - / 18.2 / 7.6 / 5.8 / 45.3 / 16.0 / 49.6 [last column = DeepSeek V3]"
+   }
   }
  },
  {
@@ -2385,6 +3471,17 @@
     "src": "leaderboard",
     "seen": "2026-10-22",
     "variant": "DeepSeek V3 (0324), diff edit format"
+   }
+  },
+  "vendor_scores": {
+   "livecodebench": {
+    "score": 49.2,
+    "url": "https://huggingface.co/deepseek-ai/DeepSeek-V3-0324",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2025-03",
+    "variant": "\"Significant improvements in benchmark performance: ... LiveCodeBench: 39.2 → 49.2 (+10.0)\" [49.2 = V3-0324; no version window stated]. NOTE: card's \"GPQA: 59.1 → 68.4\" is NOT labeled Diamond → not ta"
    }
   }
  },
@@ -2426,6 +3523,35 @@
     "seen": "2026-10-22",
     "variant": "HLE score as listed by llm-stats for GLM-4.7: With tools"
    }
+  },
+  "vendor_scores": {
+   "gpqa_diamond": {
+    "score": 85.7,
+    "url": "https://huggingface.co/zai-org/GLM-4.7",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2025-12-22",
+    "variant": "| GPQA-Diamond | 85.7 | 81.0 | ... (GLM-4.7 column)"
+   },
+   "hle": {
+    "score": 24.8,
+    "url": "https://huggingface.co/zai-org/GLM-4.7",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2025-12-22",
+    "variant": "| HLE | 24.8 | 17.2 | ... ; vendor also headlines the with-tools number: \"achieving (42.8%, +12.4%) on the HLE (Humanity's Last Exam) benchmark compared to GLM-4.6\" — table row \"| HLE (w/ Tools) | 42."
+   },
+   "swe_bench_verified": {
+    "score": 73.8,
+    "url": "https://huggingface.co/zai-org/GLM-4.7",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2025-12-22",
+    "variant": "\"including (73.8%, +5.8%) on SWE-bench\" and table row \"| SWE-bench Verified | 73.8 | 68.0 | ...\""
+   }
   }
  },
  {
@@ -2457,6 +3583,17 @@
     "src": "third_party",
     "seen": "2026-10-22",
     "variant": "HLE score as listed by llm-stats for GLM-5.3-Flash: With tools; temp=1.0 top_p=0.95; 300K context; GPT-5.6-luna (medi…"
+   }
+  },
+  "vendor_scores": {
+   "hle": {
+    "score": 55.3,
+    "url": "https://z.ai/blog/glm-5.3-flash",
+    "seen": "2026-10-24",
+    "conf": "med",
+    "via": "blog",
+    "vendor_date": "2026-08-25",
+    "variant": "blog benchmark table: models:[`GLM-5.3-Flash`,`GLM-5.2`,`DeepSeek-V4-Vision-Exp`,`Opus 4.8`,`GPT-5.6 Terra`,`Gemini 3.7 Flash`], row {name:`HLE w/ Tools`,scores:[55.3,54.7,55.1,57.9,null,null]} (only "
    }
   }
  },
@@ -2988,6 +4125,17 @@
     "url": "https://benchlm.ai/benchmarks/swe-bench-verified",
     "src": "third_party"
    }
+  },
+  "vendor_scores": {
+   "livecodebench": {
+    "score": 34.86,
+    "url": "https://huggingface.co/tencent/Hy3-preview/raw/main/README.md",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-04-23",
+    "variant": "### Pre-trained Model Performance — | **Code** | LiveCodeBench-v6 | 1-shot | 30.86 | 29.31 | 27.43 | **34.86** | (columns: Kimi-K2 BASE | DeepSeek-V3 BASE | GLM-4.5 BASE | Hy3 preview-Base)"
+   }
   }
  },
  {
@@ -3025,6 +4173,26 @@
     "src": "leaderboard",
     "seen": "2026-10-22",
     "variant": "Llama-4-Scout-17B-16E-Instruct (FC)"
+   }
+  },
+  "vendor_scores": {
+   "gpqa_diamond": {
+    "score": 57.2,
+    "url": "http://web.archive.org/web/20250413084925/https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2025-04-05",
+    "variant": "Instruction tuned models — Category|Benchmark|# Shots|Metric|Llama 3.3 70B|Llama 3.1 405B|Llama 4 Scout|Llama 4 Maverick ... | GPQA Diamond | 0 | accuracy | 50.5 | 49.0 | 57.2 | 69.8 |"
+   },
+   "livecodebench": {
+    "score": 32.8,
+    "url": "http://web.archive.org/web/20250413084925/https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2025-04-05",
+    "variant": "| Coding | LiveCodeBench (10/01/2024-02/01/2025) | 0 | pass@1 | 33.3 | 27.7 | 32.8 | 43.4 | (columns: Llama 3.3 70B | Llama 3.1 405B | Llama 4 Scout | Llama 4 Maverick)"
    }
   }
  },
@@ -3071,6 +4239,26 @@
     "seen": "2026-10-22",
     "variant": "HLE score as listed by llm-stats for MiniMax M2: without tools"
    }
+  },
+  "vendor_scores": {
+   "swe_bench_verified": {
+    "score": 69.4,
+    "url": "https://huggingface.co/MiniMaxAI/MiniMax-M2",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2025-12",
+    "variant": "| **SWE-bench Verified** | 69.4 | 72.7 * | 77.2 * | 63.8 * | 74.9 * | 68 * | 69.2 * | 67.8 * | [MiniMax-M2 own column; vendor note: R2E-Gym scaffold on OpenHands, 128k context, 100 max steps, no test-"
+   },
+   "hle": {
+    "score": 12.5,
+    "url": "https://huggingface.co/MiniMaxAI/MiniMax-M2",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2025-12",
+    "variant": "| HLE (w/o tools) | 12.5 | 9.6 | 17.3 | 21.1 | 26.5 | 13.3 | 6.3 | 13.8 | [MiniMax-M2 column; vendor note: 'All scores of MiniMax-M2 aligned with Artificial Analysis Intelligence Benchmarking Methodol"
+   }
   }
  },
  {
@@ -3090,6 +4278,26 @@
     "src": "third_party",
     "seen": "2026-10-22",
     "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry MiniMax-M2.5"
+   }
+  },
+  "vendor_scores": {
+   "swe_bench_verified": {
+    "score": 80.2,
+    "url": "https://huggingface.co/MiniMaxAI/MiniMax-M2.5",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-03",
+    "variant": "\"M2.5 is **SOTA in coding, agentic tool use and search, office work, and a range of other economically valuable tasks**, boasting scores of **80.2% in SWE-Bench Verified, 51.3% in Multi-SWE-Bench, and"
+   },
+   "gpqa_diamond": {
+    "score": 85.2,
+    "url": "https://huggingface.co/MiniMaxAI/MiniMax-M2.5",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-03",
+    "variant": "| Benchmark | MiniMax-M2.5 | MiniMax-M2.1 | Claude Sonnet 4.5 | Claude Opus 4.5 | Claude Opus 4.6 | Gemini 3 Pro | GPT-5.2 (thinking) | ; | GPQA-D | 85.2 | 83.0 | 83.0 | 87.0 | 90.0 | 91.0 | 90.0 | [A"
    }
   }
  },
@@ -3136,6 +4344,26 @@
     "seen": "2026-10-22",
     "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry Mistral Medium 3.5"
    }
+  },
+  "vendor_scores": {
+   "swe_bench_verified": {
+    "score": 77.6,
+    "url": "https://mistral.ai/news/vibe-remote-agents-mistral-medium-3-5",
+    "seen": "2026-10-24",
+    "conf": "med",
+    "via": "blog",
+    "vendor_date": "2026-05-22",
+    "variant": "Mistral Medium 3.5 scores 77.6% on SWE-Bench Verified, ahead of Devstral 2 and models like Qwen3.5 397B A17B. (Also on HF card mistralai/Mistral-Medium-3.5-128B: 'It scores **91.4%** on τ³-Telecom and"
+   },
+   "tau_bench": {
+    "score": 91.4,
+    "url": "https://mistral.ai/news/vibe-remote-agents-mistral-medium-3-5",
+    "seen": "2026-10-24",
+    "conf": "med",
+    "via": "blog",
+    "vendor_date": "2026-05-22",
+    "variant": "It also has strong agentic capabilities and scores 91.4 on τ³-Telecom."
+   }
   }
  },
  {
@@ -3153,6 +4381,17 @@
     "score": 76.28,
     "url": "https://benchlm.ai/benchmarks/terminalbench21",
     "src": "third_party"
+   }
+  },
+  "vendor_scores": {
+   "terminal_bench_2_1": {
+    "score": 82.9,
+    "url": "https://dev.meta.ai/models/muse-spark",
+    "seen": "2026-10-24",
+    "conf": "med",
+    "via": "crosscard",
+    "vendor_date": "2026-08-05",
+    "variant": "Muse Spark 1.3 benchmarks table: columns [Muse Spark 1.3 (max), Muse Spark 1.2 (xhigh), GPT 5.6 Sol (max), Opus 5 (max)]; last row 'Terminal-Bench 2.1 | Agentic terminal coding' = last value of each c"
    }
   }
  },
@@ -3172,6 +4411,44 @@
     "url": "https://artificialanalysis.ai/evaluations/terminalbench-2-1",
     "src": "third_party"
    }
+  },
+  "vendor_scores": {
+   "swe_bench_verified": {
+    "score": 70.7,
+    "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "06/04/2026 (card 'Release Date' line)",
+    "variant": "| Benchmark | N-3-Ultra 550B-A55B | MiniMax-2.7 230B-A10B | GLM-5.1 ... | ... / | SWE-Bench Verified | 70.7 | 75.3 | 76.2 | 75.7 | 73.6 | 74.5 | 73.5 | (first data column = N-3-Ultra)"
+   },
+   "terminal_bench_2_1": {
+    "score": 56.4,
+    "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "06/04/2026 (card 'Release Date' line)",
+    "variant": "| Terminal Bench 2.1 | 56.4 | 55.5 | 59.3 | 67.2 | 49.9 | 49.2 | 54.2 | (first data column = N-3-Ultra 550B-A55B)"
+   },
+   "hle": {
+    "score": 26.7,
+    "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "06/04/2026 (card 'Release Date' line)",
+    "variant": "| HLE (no tools) | 26.7 | 23.1 | 27.2 | 34.8 | 28.5 | 37.7 | 32.2 | ; card also reports '| HLE (with tools) | 37.4 | ...' (first data column = N-3-Ultra)"
+   },
+   "tau_bench": {
+    "score": 81.5,
+    "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "06/04/2026 (card 'Release Date' line)",
+    "variant": "| TauBench V3 | ... / |   Airline | 81.5 | 75.3 | 85.0 | 85.8 | 76.5 | 80.8 | 80.8 | (first data column = N-3-Ultra; vendor's 'Average' row = 70.9 includes a 4th domain Banking = 22.6)"
+   }
   }
  },
  {
@@ -3189,6 +4466,44 @@
     "score": 10.86,
     "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1",
     "src": "third_party"
+   }
+  },
+  "vendor_scores": {
+   "swe_bench_verified": {
+    "score": 51.56,
+    "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-08-11",
+    "variant": "| Task | Nemotron-3.5-Lightning-30B-A3B-BF16 | Qwen 3.6 35B A3B | ... / | SWE-bench Verified | 51.56 | **70.12** | 57.40 | 34.08 | 63.08 | 52.44 | (first data column = Nemotron-3.5-Lightning)"
+   },
+   "terminal_bench_2_1": {
+    "score": 24.58,
+    "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-08-11",
+    "variant": "| Terminal-Bench 2.1 | 24.58 | **44.38** | 37.22 | 8.29 | 39.61 | 15.17 | (first data column = Nemotron-3.5-Lightning-30B-A3B-BF16)"
+   },
+   "gpqa_diamond": {
+    "score": 75.44,
+    "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-08-11",
+    "variant": "| GPQA Diamond (no tools) | 75.44 | **83.40** | 79.61 | 74.05 | 78.60 | 71.46 | (first data column = Nemotron-3.5-Lightning; explicitly 'Diamond', no tools)"
+   },
+   "hle": {
+    "score": 11.72,
+    "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-08-11",
+    "variant": "| HLE (text-only, no tools) | 11.72 | 19.56 | 17.42 | 10.89 | **20.30** | 13.76 | (first data column = Nemotron-3.5-Lightning)"
    }
   }
  },
@@ -3257,6 +4572,26 @@
     "seen": "2026-10-22",
     "variant": "HLE score as listed by llm-stats for Qwen3.5-122B-A10B: With tools"
    }
+  },
+  "vendor_scores": {
+   "swe_bench_verified": {
+    "score": 72.0,
+    "url": "https://huggingface.co/Qwen/Qwen3.5-122B-A10B/raw/main/README.md",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-02",
+    "variant": "SWE-bench Verified: Qwen3.5-122B-A10B = 72.0 (model card table)"
+   },
+   "hle": {
+    "score": 47.5,
+    "url": "https://huggingface.co/Qwen/Qwen3.5-122B-A10B/raw/main/README.md",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-02",
+    "variant": "HLE w/ tool: Qwen3.5-122B-A10B = 47.5 (model card table)"
+   }
   }
  },
  {
@@ -3277,6 +4612,26 @@
     "seen": "2026-10-22",
     "variant": "HLE score as listed by llm-stats for Qwen3.5-27B: With tools"
    }
+  },
+  "vendor_scores": {
+   "swe_bench_verified": {
+    "score": 72.4,
+    "url": "https://huggingface.co/Qwen/Qwen3.5-27B/raw/main/README.md",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-02",
+    "variant": "SWE-bench Verified: Qwen3.5-27B = 72.4 (model card table)"
+   },
+   "hle": {
+    "score": 48.5,
+    "url": "https://huggingface.co/Qwen/Qwen3.5-27B/raw/main/README.md",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-02",
+    "variant": "HLE w/ tool: Qwen3.5-27B = 48.5 (model card table)"
+   }
   }
  },
  {
@@ -3296,6 +4651,26 @@
     "src": "third_party",
     "seen": "2026-10-22",
     "variant": "HLE score as listed by llm-stats for Qwen3.5-35B-A3B: With tools"
+   }
+  },
+  "vendor_scores": {
+   "swe_bench_verified": {
+    "score": 69.2,
+    "url": "https://huggingface.co/Qwen/Qwen3.5-35B-A3B/raw/main/README.md",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-02",
+    "variant": "SWE-bench Verified: Qwen3.5-35B-A3B = 69.2 (model card table)"
+   },
+   "hle": {
+    "score": 47.4,
+    "url": "https://huggingface.co/Qwen/Qwen3.5-35B-A3B/raw/main/README.md",
+    "seen": "2026-10-24",
+    "conf": "high",
+    "via": "model_card",
+    "vendor_date": "2026-02",
+    "variant": "HLE w/ tool: Qwen3.5-35B-A3B = 47.4 (model card table)"
    }
   }
  },
@@ -3451,6 +4826,17 @@
     "score": 17.6,
     "url": "https://www.vals.ai/benchmarks/terminal-bench-2-1",
     "src": "third_party"
+   }
+  },
+  "vendor_scores": {
+   "tau_bench": {
+    "score": 85.0,
+    "url": "https://cohere.com/blog/command-a-plus",
+    "seen": "2026-10-24",
+    "conf": "med",
+    "via": "blog",
+    "vendor_date": "2026-05-20",
+    "variant": "Compared with Command A Reasoning, 𝜏²-Bench Telecom scores improved from 37% to 85%, with agentic coding performance on Terminal-Bench Hard reaching 25% from 3%."
    }
   }
  },
