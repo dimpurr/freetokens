@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-22",
+ "generated": "2026-10-23",
  "method_version": 1,
  "estimator": "v1",
  "band_width": 5,
@@ -52,6 +52,44 @@
     "mean_abs_diff": 0.35,
     "bias": 0.35,
     "hit_rate": 1.0
+   }
+  },
+  "by_source_type": {
+   "leaderboard": {
+    "n": 19,
+    "mean_abs_diff": 4.96,
+    "bias": 0.73,
+    "hit_rate": 0.42
+   },
+   "leaderboard+third_party": {
+    "n": 41,
+    "mean_abs_diff": 3.29,
+    "bias": -0.62,
+    "hit_rate": 0.44
+   },
+   "leaderboard+third_party+unknown": {
+    "n": 1,
+    "mean_abs_diff": 4.9,
+    "bias": -4.9,
+    "hit_rate": 0.0
+   },
+   "leaderboard+third_party+vendor": {
+    "n": 2,
+    "mean_abs_diff": 4.2,
+    "bias": -1.4,
+    "hit_rate": 0.5
+   },
+   "third_party": {
+    "n": 70,
+    "mean_abs_diff": 4.65,
+    "bias": 0.26,
+    "hit_rate": 0.27
+   },
+   "third_party+vendor": {
+    "n": 3,
+    "mean_abs_diff": 3.65,
+    "bias": 0.11,
+    "hit_rate": 0.33
    }
   }
  },
