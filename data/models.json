@@ -1243,5 +1243,18 @@
       "note": "not ranked (no Artificial Analysis page for Flint in the sitemap read on 2026-10-22)"
     },
     "notes": "Released 2026-10-21 as Recursive's open-weight (Apache 2.0) MoE for coding agents: 39.8B total, about 2.5B active per token, 262,144-token documented context, text in and text out, knowledge cutoff June 2026 (model card huggingface.co/RecursiveSI/flint). The two free IDs are this one model: OpenRouter's recursive/flint-v1.0:free reports 262,144 context and text→text on the models API (2026-10-22), and OpenCode Zen lists it as opencode/flint-40b-free, where 40B is the card's rounded designation for 40B-A2.5B."
+  },
+  {
+    "id": "iceman-contributor",
+    "name": "Iceman Contributor",
+    "maker": "undisclosed",
+    "context": "262K",
+    "image_input": "no",
+    "aa_index": {
+      "value": null,
+      "date": "2026-10-25",
+      "note": "not ranked"
+    },
+    "notes": "Stealth model: OpenCode's own data page gives the provider as \"Unknown\" (2026-10-25), and it has no row in the Go pricing or privacy tables. Context 262,144, output 131,072 and $0 pricing are models.dev registry values read 2026-10-25; OpenCode never cites models.dev and that registry's OpenCode Go snapshot has drifted from the live list in both directions, so treat them as unverified."
   }
 ]

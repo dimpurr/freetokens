@@ -2594,5 +2594,17 @@
    "label": "Letta pricing",
    "url": "https://docs.letta.com/pricing/"
   }
+ },
+ {
+  "date": "2026-10-25",
+  "lanes": [
+   "iceman-contributor-go"
+  ],
+  "kind": "listed",
+  "text": "iceman-contributor-free is in the OpenCode Go model list: $0 on input, output and cache reads and \"free for a limited time\" per the model registry, but it sits behind the $10/mo Go subscription and does not draw down the plan's quota, carries no maker (OpenCode's own data page lists the provider as \"Unknown\"), has no row in the Go pricing or privacy tables so its training terms are unstated, and has no Artificial Analysis score",
+  "source": {
+   "label": "own fetch of the OpenCode Go model list (2026-10-25T09:40:44Z, re-checked 09:47:51Z)",
+   "url": "https://opencode.ai/zen/go/v1/models"
+  }
  }
 ]
