@@ -468,7 +468,8 @@ CHALLENGERS = ["a", "b", "c"]
 
 # ---------- leave-one-out run ----------
 
-def run_backtest(anchors, registry, estimator, rules, aa_claims=False):
+
+def run_backtest(anchors, registry, estimator, rules, aa_claims=False, vendor_only=False):
     """Hide each reference model's AA, rebuild it from the others, score the difference.
 
     aa_claims=False is the protocol every number in this tool uses (and the default): Artificial
@@ -478,24 +479,49 @@ def run_backtest(anchors, registry, estimator, rules, aa_claims=False):
     data a live estimate is really fitted on, and it says nothing about the held-out model, so
     challenger B's alignment (vendor score of a test -> line fitted on AA's run of the same test) is
     measured honestly. aa_claims=True runs the circular protocol; it exists only to size the leak.
+
+    vendor_only=False (default) estimates each reference model from its published reference scores.
+    vendor_only=True rebuilds each model's claims from the vendor self-report cells (16e's
+    `vendor_scores`) instead - the site's real regime - and carries the same-table `vendor_peers`
+    (B2) on each claim so ADR-023's peer-relative branch can fire in the backtest, which the
+    reference-score path never exercised (OUT-16d §4: peer_max_gap/peer_scale were dead parameters).
+
+    A claim's source_type is set from the score's own `src` (claim caliber), not from the
+    benchmark registry, so `est_rules.weights` means the same thing here as it does in the live
+    estimate() (OUT-16d §4: the old registry caliber tuned weights.third_party on rows the
+    estimator never labels third_party).
     """
+    # claim-caliber source_type: a claim's weight comes from where THIS claim came from (the
+    # score's own `src`), not the benchmark's registry label. src=vendor -> the same "official" a
+    # live card claim carries; third_party re-run -> "third_party"; public board -> "leaderboard".
+    src2st = {"vendor": "official", "third_party": "third_party", "leaderboard": "leaderboard"}
     rows = []
     for a in anchors:
         name = a["name"]
-        src_by_bid = {bid: _score_entries(sc)[0].get("src", "unknown")
-                      for bid, sc in a.get("scores", {}).items() if len(_score_entries(sc)) == 1}
+        if vendor_only:
+            cells = {bid: dict(e, src="vendor") for bid, e in a.get("vendor_scores", {}).items()
+                     if bid in registry}
+            src_by_bid = {bid: "vendor" for bid in cells}
+            peers_by_bid = a.get("vendor_peers", {})
+        else:
+            cells = {bid: sc for bid, sc in a.get("scores", {}).items()
+                     if bid in registry and (aa_claims or not bid.startswith(AA_PREFIX))}
+            src_by_bid = {bid: _score_entries(sc)[0].get("src", "unknown")
+                          for bid, sc in cells.items() if len(_score_entries(sc)) == 1}
+            peers_by_bid = {bid: _score_entries(sc)[0].get("peers") or []
+                            for bid, sc in cells.items() if len(_score_entries(sc)) == 1}
         claims = [
             {
                 "model": name,
                 "benchmark": bid,
                 "score": sc["score"],
-                "source_type": registry.get(bid, {}).get("source_type", "leaderboard"),
+                "source_type": src2st.get(sc.get("src", "unknown"), "leaderboard"),
                 "src": sc.get("src", "unknown"),
                 "url": sc.get("url") or a.get("aa_url") or "https://artificialanalysis.ai/",
                 "variant": "backtest (own published score, same harness)",
+                "peers": peers_by_bid.get(bid) or [],
             }
-            for bid, sc in a.get("scores", {}).items()
-            if bid in registry and (aa_claims or not bid.startswith(AA_PREFIX))
+            for bid, sc in cells.items()
         ]
         if not claims:
             continue

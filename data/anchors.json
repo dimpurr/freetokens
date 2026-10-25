@@ -521,6 +521,34 @@
     "vendor_date": "2026-06-13",
     "variant": "Terminal-Bench 2.1 row, Kimi K3 column = 88.3; footnote: \"Kimi K3 is evaluated with the Kimi Code harness\""
    }
+  },
+  "vendor_peers": {
+   "gpqa_diamond": [
+    {
+     "name": "Fable 5 (w/ fallback)",
+     "aa": 49.6,
+     "aa_url": "https://artificialanalysis.ai/models/claude-fable-5",
+     "score": 92.6
+    },
+    {
+     "name": "GPT-5.6 Sol",
+     "aa": 47.0,
+     "aa_url": "https://artificialanalysis.ai/models/gpt-5-6-sol",
+     "score": 94.1
+    },
+    {
+     "name": "Opus 4.8",
+     "aa": 41.8,
+     "aa_url": "https://artificialanalysis.ai/models/claude-opus-4-8",
+     "score": 91.0
+    },
+    {
+     "name": "GLM-5.2",
+     "aa": 33.7,
+     "aa_url": "https://artificialanalysis.ai/models/glm-5-2",
+     "score": 91.2
+    }
+   ]
   }
  },
  {
@@ -2005,6 +2033,34 @@
     "vendor_date": "2026-09",
     "variant": "| GPQA Diamond (Pass@1) | 93.4 | **94.1** | 92.9 | 88.1 | 92.4 | 89.9 | 90.9 | [header: Opus-5.0 | GPT-5.6 Sol | K3 | GLM-5.3 | DS-V4-Pro | DS-V4-Flash | DS-V4.1-Flash; DS-V4-Flash column matches the "
    }
+  },
+  "vendor_peers": {
+   "gpqa_diamond": [
+    {
+     "name": "GPT-5.6 Sol",
+     "aa": 47.0,
+     "aa_url": "https://artificialanalysis.ai/models/gpt-5-6-sol",
+     "score": 94.1
+    },
+    {
+     "name": "Kimi K3",
+     "aa": 43.6,
+     "aa_url": "https://artificialanalysis.ai/models/kimi-k3",
+     "score": 92.9
+    },
+    {
+     "name": "GLM-5.3",
+     "aa": 44.8,
+     "aa_url": "https://artificialanalysis.ai/models/glm-5-3",
+     "score": 88.1
+    },
+    {
+     "name": "DeepSeek-V4-Pro",
+     "aa": 36.0,
+     "aa_url": "https://artificialanalysis.ai/models/deepseek-v4-pro",
+     "score": 92.4
+    }
+   ]
   }
  },
  {
@@ -2131,6 +2187,34 @@
     "vendor_date": "2026-06",
     "variant": "| HLE (Pass@1) | 8.1 | 29.4 | 34.8 | 7.7 | 34.5 | **37.7** | [V4-Pro Max, no-tools row]; same card separately lists \"HLE w/ tools (Pass@1)\" HLE w/ tools = 48.2 for DS-V4-Pro Max"
    }
+  },
+  "vendor_peers": {
+   "terminal_bench_2_1": [
+    {
+     "name": "GPT-5.6 Sol",
+     "aa": 47.0,
+     "aa_url": "https://artificialanalysis.ai/models/gpt-5-6-sol",
+     "score": 88.8
+    },
+    {
+     "name": "Kimi K3",
+     "aa": 43.6,
+     "aa_url": "https://artificialanalysis.ai/models/kimi-k3",
+     "score": 88.3
+    },
+    {
+     "name": "GLM-5.3",
+     "aa": 44.8,
+     "aa_url": "https://artificialanalysis.ai/models/glm-5-3",
+     "score": 88.2
+    },
+    {
+     "name": "DeepSeek V4 Flash 0731",
+     "aa": 34.3,
+     "aa_url": "https://artificialanalysis.ai/models/deepseek-v4-flash",
+     "score": 82.7
+    }
+   ]
   }
  },
  {
@@ -4211,6 +4295,62 @@
     "vendor_date": "2026-01-01",
     "variant": "SWE-Bench Pro row, Kimi K2.5 column = 50.7 (GPT-5.2 55.6, Claude 4.5 Opus 55.4*)"
    }
+  },
+  "vendor_peers": {
+   "gpqa_diamond": [
+    {
+     "name": "GPT-5.2",
+     "aa": 30.4,
+     "aa_url": "https://artificialanalysis.ai/models/gpt-5-2",
+     "score": 92.4
+    },
+    {
+     "name": "Claude Opus 4.5",
+     "aa": 23.7,
+     "aa_url": "https://artificialanalysis.ai/models/claude-opus-4-5",
+     "score": 87.0
+    }
+   ],
+   "swe_bench_verified": [
+    {
+     "name": "GPT-5.2",
+     "aa": 30.4,
+     "aa_url": "https://artificialanalysis.ai/models/gpt-5-2",
+     "score": 80.0
+    },
+    {
+     "name": "Claude Opus 4.5",
+     "aa": 23.7,
+     "aa_url": "https://artificialanalysis.ai/models/claude-opus-4-5",
+     "score": 80.9
+    },
+    {
+     "name": "Gemini 3 Pro Preview",
+     "aa": 28.0,
+     "aa_url": "https://artificialanalysis.ai/models/gemini-3-pro",
+     "score": 76.2
+    },
+    {
+     "name": "DeepSeek V3.2 (Thinking)",
+     "aa": 16.0,
+     "aa_url": "https://artificialanalysis.ai/models/deepseek-v3-2",
+     "score": 73.1
+    }
+   ],
+   "swe_bench_pro": [
+    {
+     "name": "GPT-5.2",
+     "aa": 30.4,
+     "aa_url": "https://artificialanalysis.ai/models/gpt-5-2",
+     "score": 55.6
+    },
+    {
+     "name": "Claude Opus 4.5",
+     "aa": 23.7,
+     "aa_url": "https://artificialanalysis.ai/models/claude-opus-4-5",
+     "score": 55.4
+    }
+   ]
   }
  },
  {
@@ -4363,6 +4503,80 @@
     "vendor_date": "2026-04-14",
     "variant": "SWE-Bench Pro row, Kimi K2.6 column = 58.6 (GPT-5.4 57.7, Claude Opus 4.6 53.4, Gemini 3.1 Pro 54.2, Kimi K2.5 50.7)"
    }
+  },
+  "vendor_peers": {
+   "gpqa_diamond": [
+    {
+     "name": "GPT 5.4 (xhigh)",
+     "aa": 39.0,
+     "aa_url": "https://artificialanalysis.ai/models/gpt-5-4",
+     "score": 92.8
+    },
+    {
+     "name": "Claude Opus 4.6 (Thinking)",
+     "aa": 26.4,
+     "aa_url": "https://artificialanalysis.ai/models/claude-opus-4-6",
+     "score": 91.3
+    },
+    {
+     "name": "Gemini 3.1 Pro Preview (02/26)",
+     "aa": 29.7,
+     "aa_url": "https://artificialanalysis.ai/models/gemini-3-1-pro-preview",
+     "score": 94.3
+    },
+    {
+     "name": "Kimi K2.5",
+     "aa": 23.5,
+     "aa_url": "https://artificialanalysis.ai/models/kimi-k2-5",
+     "score": 87.6
+    }
+   ],
+   "swe_bench_verified": [
+    {
+     "name": "Claude Opus 4.6 (Thinking)",
+     "aa": 26.4,
+     "aa_url": "https://artificialanalysis.ai/models/claude-opus-4-6",
+     "score": 80.8
+    },
+    {
+     "name": "Gemini 3.1 Pro Preview (02/26)",
+     "aa": 29.7,
+     "aa_url": "https://artificialanalysis.ai/models/gemini-3-1-pro-preview",
+     "score": 80.6
+    },
+    {
+     "name": "Kimi K2.5",
+     "aa": 23.5,
+     "aa_url": "https://artificialanalysis.ai/models/kimi-k2-5",
+     "score": 76.8
+    }
+   ],
+   "swe_bench_pro": [
+    {
+     "name": "GPT 5.4 (xhigh)",
+     "aa": 39.0,
+     "aa_url": "https://artificialanalysis.ai/models/gpt-5-4",
+     "score": 57.7
+    },
+    {
+     "name": "Claude Opus 4.6 (Thinking)",
+     "aa": 26.4,
+     "aa_url": "https://artificialanalysis.ai/models/claude-opus-4-6",
+     "score": 53.4
+    },
+    {
+     "name": "Gemini 3.1 Pro Preview (02/26)",
+     "aa": 29.7,
+     "aa_url": "https://artificialanalysis.ai/models/gemini-3-1-pro-preview",
+     "score": 54.2
+    },
+    {
+     "name": "Kimi K2.5",
+     "aa": 23.5,
+     "aa_url": "https://artificialanalysis.ai/models/kimi-k2-5",
+     "score": 50.7
+    }
+   ]
   }
  },
  {
@@ -5525,6 +5739,16 @@
     "vendor_date": "2026-05-21",
     "variant": "leading results on GPQA Diamond (92.4 vs. Opus-4.6’s 91.3), HLE (41.4 vs. Opus-4.6’s 40)"
    }
+  },
+  "vendor_peers": {
+   "swe_bench_verified": [
+    {
+     "name": "Claude Opus 4.6 (Thinking)",
+     "aa": 26.4,
+     "aa_url": "https://artificialanalysis.ai/models/claude-opus-4-6",
+     "score": 80.8
+    }
+   ]
   }
  },
  {
