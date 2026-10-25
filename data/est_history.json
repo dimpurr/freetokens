@@ -97,5 +97,27 @@
   "high": 24,
   "n_bench": 2,
   "settled": false
+ },
+ {
+  "model": "longcat-2.5-preview",
+  "date": "2026-10-25",
+  "method_version": 1,
+  "status": "ok",
+  "center": 36.3,
+  "low": 34,
+  "high": 39,
+  "n_bench": 1,
+  "settled": false
+ },
+ {
+  "model": "xing4.0-29b",
+  "date": "2026-10-25",
+  "method_version": 1,
+  "status": "ok",
+  "center": 19.6,
+  "low": 17,
+  "high": 22,
+  "n_bench": 2,
+  "settled": false
  }
 ]
