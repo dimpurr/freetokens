@@ -10,7 +10,7 @@ AA comes from Artificial Analysis' own data API (ADR-031 / 16b-3): one authentic
 they index plus its sub-scores. The key is AA_API_KEY from the environment or chco .env, read at run time and
 never printed; without it the tool falls back to reading AA model pages one by one, as it did before.
 """
-import json, os, re, sys, urllib.request, datetime as dt
+import json, os, re, sys, time, urllib.request, datetime as dt
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -261,11 +261,31 @@ def main():
         except Exception:
             slugs = set()
     new, gone, errors = [], [], []
+    fail_f = out / "source_failures.json"  # P18: single-day failure is logged, alert only after 2 consecutive days
+    fails = json.loads(fail_f.read_text()) if fail_f.exists() else {}
+    today = dt.date.today().isoformat()
+    yesterday = (dt.date.today() - dt.timedelta(days=1)).isoformat()
     for ch, fetch in CATALOGUES.items():
         try:
-            free = fetch()
+            try:
+                free = fetch()
+            except Exception:
+                time.sleep(30)
+                free = fetch()  # one retry ~30s later (P18)
+            fails.pop(ch, None)
         except Exception as e:
-            errors.append(f"{ch}: {str(e)[:80]}")
+            prev = fails.get(ch, {})
+            if prev.get("date") == today:
+                streak = prev.get("streak", 1)
+            elif prev.get("date") == yesterday:
+                streak = prev.get("streak", 0) + 1
+            else:
+                streak = 1
+            fails[ch] = {"date": today, "streak": streak, "error": str(e)[:80]}
+            if streak >= 2:
+                errors.append(f"{ch}: {str(e)[:80]}")
+            else:
+                print(f"ℹ️ {ch} catalogue unreadable, retry 1× failed; logged, no alert (1st day)")
             continue
         for mid, name in free.items():
             if (ch, mid) not in tracked and (ch, mid) not in IGNORE:
@@ -278,6 +298,7 @@ def main():
             if any(x["channel"] == c and x["model_id"] == m for x in new)]
     new.sort(key=lambda x: -(x["aa"] or -1))
     now = dt.datetime.now(dt.timezone.utc).isoformat(timespec="minutes")
+    fail_f.write_text(json.dumps(fails, ensure_ascii=False, indent=1))
     (out / "latest.json").write_text(json.dumps({"checked": now, "back": back, "new": new, "gone": gone, "errors": errors}, ensure_ascii=False, indent=1))
     lines = aa_recheck(out, slugs) + page_changes(out) + [f"🔁 back in a free catalogue: {x['model_id']} · {x['channel']} → {x['note']}" for x in back]
     if new:
