@@ -1272,10 +1272,11 @@ def build_pages(lanes, events, models, today, mode, lang="en"):
         mfig = lambda n, label: f"<span><b>{n}</b>{label}</span>"
         m_tested = sum(1 for l in lanes if l.get("limits_observed"))
         m_bolt = '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>'
+        m_tested_title = html.escape(tr("Tested by us") + " " + tr("marks limits we measured on our own account, which you won't find in announcements."))
         m_stamp = ('<div class="stamp">'
                    + mfig(sum(1 for l in lanes if l["status"] in FREE), tr("free now"))
                    + mfig(len(lanes), tr("lanes"))
-                   + (f'<span class="tested" title="{html.escape(tr("Tested by us") + " " + tr("marks limits we measured on our own account, which you won\'t find in announcements."))}"><b>{m_tested}</b><span>{m_bolt} {tr("tested by us")}</span></span>' if m_tested else "")
+                   + (f'<span class="tested" title="{m_tested_title}"><b>{m_tested}</b><span>{m_bolt} {tr("tested by us")}</span></span>' if m_tested else "")
                    + mfig(len(models), tr("models"))
                    + mfig(len({l["channel"] for l in lanes}), tr("channels"))
                    + mfig(len(events), tr("events"))
