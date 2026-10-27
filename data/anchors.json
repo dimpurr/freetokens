@@ -655,11 +655,11 @@
    }
   }
  },
- {
-  "name": "Deepseek-V4.1-Flash",
-  "aa_index": 39.5,
-  "aa_url": "https://artificialanalysis.ai/models/deepseek-v4-1-flash",
-  "seen": "2026-10-25",
+  {
+   "name": "Deepseek-V4.1-Flash",
+   "aa_index": 45.1,
+   "aa_url": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017",
+   "seen": "2026-10-27",
   "scores": {
    "aicodingdaily": {
     "score": 54.35,
@@ -679,33 +679,33 @@
     "variant": "HLE score as listed by llm-stats for DeepSeek-V4.1-Flash: Pass@1; full multimodal evaluation, no tools. Maximum reaso…"
    },
    "aa_hle": {
-    "score": 39.2,
-    "url": "https://artificialanalysis.ai/models/deepseek-v4-1-flash",
-    "src": "leaderboard",
-    "seen": "2026-10-24",
-    "variant": "Artificial Analysis run, data-API field hle, 0-1 fraction scaled x100"
-   },
-   "aa_lcr": {
-    "score": 84.0,
-    "url": "https://artificialanalysis.ai/models/deepseek-v4-1-flash",
-    "src": "leaderboard",
-    "seen": "2026-10-24",
-    "variant": "Artificial Analysis run, data-API field lcr, 0-1 fraction scaled x100"
-   },
-   "aa_scicode": {
-    "score": 51.9,
-    "url": "https://artificialanalysis.ai/models/deepseek-v4-1-flash",
-    "src": "leaderboard",
-    "seen": "2026-10-24",
-    "variant": "Artificial Analysis run, data-API field scicode, 0-1 fraction scaled x100"
-   },
-   "aa_terminalbench_v4_0": {
-    "score": 26.77,
-    "url": "https://artificialanalysis.ai/models/deepseek-v4-1-flash",
-    "src": "leaderboard",
-    "seen": "2026-10-24",
-    "variant": "Artificial Analysis run, data-API field terminalbench_v4_0, 0-1 fraction scaled x100"
-   }
+     "score": 43.3,
+     "url": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017",
+     "src": "leaderboard",
+     "seen": "2026-10-27",
+     "variant": "Artificial Analysis run, 1017 snapshot (release 2026-10-17), data-API field hle, 0-1 fraction scaled x100"
+    },
+    "aa_lcr": {
+     "score": 82.67,
+     "url": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017",
+     "src": "leaderboard",
+     "seen": "2026-10-27",
+     "variant": "Artificial Analysis run, 1017 snapshot (release 2026-10-17), data-API field lcr, 0-1 fraction scaled x100"
+    },
+    "aa_scicode": {
+     "score": 55.9,
+     "url": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017",
+     "src": "leaderboard",
+     "seen": "2026-10-27",
+     "variant": "Artificial Analysis run, 1017 snapshot (release 2026-10-17), data-API field scicode, 0-1 fraction scaled x100"
+    },
+    "aa_terminalbench_v4_0": {
+     "score": 33.84,
+     "url": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017",
+     "src": "leaderboard",
+     "seen": "2026-10-27",
+     "variant": "Artificial Analysis run, 1017 snapshot (release 2026-10-17), data-API field terminalbench_v4_0, 0-1 fraction scaled x100"
+    }
   },
   "vendor_scores": {
    "hle": {

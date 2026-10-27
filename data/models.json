@@ -321,14 +321,14 @@
     "maker": "deepseek",
     "context": "1M",
     "image_input": "yes",
-    "aa_index": {
-      "value": 40,
-      "date": "2026-10-25",
-      "url": "https://artificialanalysis.ai/models/deepseek-v4-1-flash",
-      "prev_value": 39,
-      "prev_date": "2026-10-06"
-    },
-    "notes": null
+  "aa_index": {
+   "value": 45,
+   "date": "2026-10-27",
+   "url": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017",
+   "prev_value": 40,
+   "prev_date": "2026-10-25"
+  },
+  "notes": "1017 snapshot (released 2026-10-17, in-place upgrade): AA Intelligence Index 45 per AA data API 2026-10-27; old slug read 40"
   },
   {
     "id": "apodex-1.1-mini",
