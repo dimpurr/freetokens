@@ -24,7 +24,7 @@ No cookies, no session replay, no autocapture. PostHog runs with memory-only per
 | `tools/observe.py logs FILE...` | per-day views, visitors, browsers, top pages, referrers, AI crawlers, search bots, feed and llms.txt hits | JSON |
 | `tools/observe.py health [--watch PATH]` | key pages answer 200, deployed build date, live lanes due for a re-check, catalogue watch freshness | JSON |
 | `tools/observe.py links` | channel links and limit sources that are broken (403/429 count as bot-blocked, not broken) | JSON |
-| `tools/observe.py report --daily / --weekly` | Telegram text; daily prints nothing when all is well | text |
+| `tools/observe.py report --daily / --weekly` | Telegram text; daily prints nothing when all is well; weekly ends with a **Week vs last week** row whose "last week" is the previous run's own snapshot, kept outside the repo in `freetokens-observe/weekly/<date>.json` (`FT_OBSERVE_SNAPSHOT_DIR` overrides, otherwise the log folder) | text |
 | `tools/watch.py` | free-catalogue diff (new, gone, back) and promo page changes | see its docstring |
 | `tools/query.py` | stable JSON for other tools: scores, lanes (incl. `stale`), events, agent pool | see its docstring |
 | `observe.py` `posthog()` | page views, outbound clicks by host, feature events (7 days) | needs `POSTHOG_PERSONAL_API_KEY` (read) |
@@ -59,6 +59,7 @@ The runner scripts that hold host names and own IPs are private: `.private/obser
 - **Pages AI assistants read for someone**: hits from ChatGPT-User, Perplexity-User, Claude-User on our own paths. The assistant sends only the URL, never the person's question; the page tells you the topic. Scanners fake these user agents, so hits on paths we don't serve are dropped.
 - **Visitors who came from an AI answer**: landings with `utm_source=chatgpt.com` (or perplexity, claude.ai, copilot, gemini): a person clicked a citation. We see the landing page, not the question.
 - **AI crawlers**: OAI-SearchBot and ChatGPT-User (ChatGPT fetching a page for a user, i.e. a real person asked about it), ClaudeBot, PerplexityBot, GPTBot, Bytespider and others. ChatGPT-User and Perplexity-User are the closest thing to "an AI assistant cited us".
+- **Week vs last week** (row added 2026-10-27): these four numbers for this run's 7-day window, against the previous run's snapshot — ① landings with `utm_source` chatgpt.com / perplexity / claude.ai / copilot / gemini (server log, exact total, not the capped top-10 list); ② `ChatGPT-User` + `Perplexity-User` + `Claude-User` hits on our own paths only (the line above also counts MistralAI-User and OpenCode-User, this row does not); ③ PostHog `outbound_click`; ④ Search Console clicks/impressions — each window is the rolling 7 days ending on the run day (Search Console two days earlier), not a calendar week, so two snapshots cover adjacent windows; a source with no data prints `n/a` and is stored as `null`.
 
 ## §4 Data freshness rules
 

@@ -45,6 +45,7 @@ LLM_BOTS = ["GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-User
             "PerplexityBot", "Perplexity-User", "Google-Extended", "Applebot-Extended", "Bytespider", "CCBot", "cohere-ai",
             "meta-externalagent", "Amazonbot", "DuckAssistBot", "MistralAI-User", "OpenCode-User"]
 SEARCH_BOTS = ["Googlebot", "bingbot", "YandexBot", "Baiduspider", "DuckDuckBot", "Applebot", "Sogou", "360Spider"]
+AI_READERS = ("ChatGPT-User", "Perplexity-User", "Claude-User")  # the three the weekly week-on-week row counts (2026-10-27)
 
 
 class _NoRedirect(urllib.request.HTTPRedirectHandler):
@@ -111,7 +112,7 @@ def parse_logs(files):
     ignore = {x.strip() for x in os.environ.get("FT_OBSERVE_IGNORE_IPS", "").split(",") if x.strip()}
     days = defaultdict(lambda: {"views": 0, "visitors": set(), "browsers": set(), "humans": set(), "beacons": 0, "view_ips": Counter(), "unknown_ua": Counter(), "feed_subs": {}, "pages": Counter(), "referrers": Counter(),
                                 "llm_bots": Counter(), "search_bots": Counter(), "other_bots": 0, "feed": 0, "llms_txt": 0,
-                                 "ai_user_pages": Counter(), "ai_landings": Counter(), "famviews": Counter()})
+                                 "ai_user_pages": Counter(), "ai_user_bots": Counter(), "ai_landings": Counter(), "famviews": Counter()})
     USER_FETCH = ("ChatGPT-User", "Perplexity-User", "Claude-User", "MistralAI-User", "OpenCode-User")  # an assistant reading a page for a person, live
     for f in files:
         own_log = "freetokens" in Path(f).name  # site-specific log: every line is ours; shared log: our paths only
@@ -129,7 +130,7 @@ def parse_logs(files):
             if llm:
                 d["llm_bots"][llm] += 1
                 if llm in USER_FETCH and SITE_PATH.match(path):  # only our own paths: scanners fake this user agent
-                    d["ai_user_pages"][path.split("?")[0]] += 1
+                    d["ai_user_pages"][path.split("?")[0]] += 1; d["ai_user_bots"][llm] += 1
                 continue
             if srch:
                 d["search_bots"][srch] += 1; continue
@@ -168,7 +169,8 @@ def parse_logs(files):
                   "top_pages": d["pages"].most_common(8), "referrers": d["referrers"].most_common(8),
                   "llm_bots": dict(d["llm_bots"]), "search_bots": dict(d["search_bots"]), "other_bots": d["other_bots"],
                   "feed": d["feed"], "llms_txt": d["llms_txt"],
-                  "ai_user_pages": d["ai_user_pages"].most_common(10), "ai_landings": d["ai_landings"].most_common(10)}
+                  "ai_user_pages": d["ai_user_pages"].most_common(10), "ai_landings": d["ai_landings"].most_common(10),
+                  "ai_user_bots": dict(d["ai_user_bots"]), "ai_landing_hits": sum(d["ai_landings"].values())}  # exact totals for the week-on-week row (the two lists above are capped at 10)
     return out
 
 
@@ -360,6 +362,13 @@ def posthog(days=7, project=299433):
 
 # ---------- report ----------
 
+def week_dir(log_files):
+    """Where each week's four numbers are stored so next week can compare itself with this one: outside the repo,
+    next to the logs the report was run on (freetokens-observe/weekly/<date>.json); FT_OBSERVE_SNAPSHOT_DIR overrides."""
+    d = os.environ.get("FT_OBSERVE_SNAPSHOT_DIR") or (Path(log_files[0]).expanduser().resolve().parent if log_files else Path("~/scratch/DimResearchS/freetokens-observe"))
+    return Path(d).expanduser() / "weekly"
+
+
 def report(kind, log_files, watch_path):
     h = health(watch_path)
     lines = []
@@ -394,10 +403,10 @@ def report(kind, log_files, watch_path):
             lines.append("Pages AI assistants read for someone: " + (", ".join(f"{p} {n}" for p, n in aiu.most_common(8)) or "none"))
             lines.append("Visitors who came from an AI answer: " + (", ".join(f"{p} {n}" for p, n in ail.most_common(6)) or "none"))
         ph = posthog()
+        ev = {} if ph.get("error") else dict((e, n) for e, n in ph["events"])
         if ph.get("error"):
             lines.append("In-page events: unavailable (" + ph["error"] + ")")
         else:
-            ev = dict((e, n) for e, n in ph["events"])
             lines.append(f"In-page (PostHog, 7 d): {ev.get('$pageview', 0)} page views · {ev.get('outbound_click', 0)} outbound clicks"
                          + (" → " + ", ".join(f"{h} {n}" for h, n in ph["outbound"]) if ph["outbound"] else "")
                          + " · features: " + (", ".join(f"{e} {n}" for e, n in ph["events"] if not e.startswith("$") and e != "outbound_click") or "none"))
@@ -418,6 +427,27 @@ def report(kind, log_files, watch_path):
             lines.append(f"Google Search {g['start'][5:]}–{g['end'][5:]}: {g['clicks']} clicks · {g['impressions']} impressions · avg position {g['position'] or '—'}"
                          + (" · queries: " + ", ".join(f"{k} {c}/{i}" for k, c, i in g["queries"][:6]) if g["queries"] else " · queries hidden (too few)")
                          + (" · pages: " + ", ".join(f"{k} {i}" for k, c, i in g["pages"][:5]) if g["pages"] else ""))
+        cur = {"week": dt.date.today().isoformat(),
+               "ai_answer_clicks": tot("ai_landing_hits") if log_files else None,
+               "ai_assistant_reads": sum(days[d]["ai_user_bots"].get(bot, 0) for d in last for bot in AI_READERS) if log_files else None,
+               "outbound_clicks": ev.get("outbound_click") if ev else None,
+               "google_clicks": g.get("clicks"), "google_impressions": g.get("impressions")}
+        wd = week_dir(log_files)  # last week is the previous run's own snapshot: logs rotate after 14 days, PostHog and Search Console answer only for a rolling 7 days
+        olds = sorted(p for p in wd.glob("*.json") if len(p.stem) == 10 and p.stem != cur["week"]) if wd.is_dir() else []
+        prev = json.loads(olds[-1].read_text()) if olds and (dt.date.fromisoformat(olds[-1].stem) - dt.date.today()).days >= -20 else {}
+        wd.mkdir(parents=True, exist_ok=True); sf = wd / (cur["week"] + ".json")
+        keep = json.loads(sf.read_text()) if sf.exists() else {}  # a rerun that lost its logs or keys must not blank what an earlier run measured
+        sf.write_text(json.dumps({**keep, **{k: v for k, v in cur.items() if v is not None}}))
+        def wow(name, now, was):
+            if now is None: return name + " n/a"
+            if not was: return f"{name} {now:,}"
+            return f"{name} {now:,} (last {was:,}, {100 * (now - was) / was:+.0f}%)"
+        go = lambda v, p: "Google n/a" if v.get("google_clicks") is None else f"Google {v['google_clicks']}/{v['google_impressions']:,} clicks/impressions" + \
+            ("" if p.get("google_clicks") is None else f" (last {p['google_clicks']}/{p['google_impressions']:,})")
+        lines.append("Week vs last week: " + " · ".join(
+            [wow("came from an AI answer", cur["ai_answer_clicks"], prev.get("ai_answer_clicks")),
+             wow("AI assistant reads", cur["ai_assistant_reads"], prev.get("ai_assistant_reads")),
+             wow("outbound clicks", cur["outbound_clicks"], prev.get("outbound_clicks")), go(cur, prev)]))
         b = bing()
         if b.get("error"):
             lines.append("Bing: unavailable (" + b["error"] + ")")
