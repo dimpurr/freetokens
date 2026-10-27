@@ -31,7 +31,12 @@
    "date": "2026-10-16",
    "method": "listing"
   },
-  "note": "free variant delisted; now paid $0.30/$0.90/$0.06 per M, Go+; no end date announced"
+  "note": "free variant delisted; now paid $0.30/$0.90/$0.06 per M, Go+; no end date announced",
+  "volume": {
+   "tier": "bulk",
+   "basis": "own check: 15 parallel agent runs (Oct 4)",
+   "source": "own check, 2026-10-04"
+  }
  },
  {
   "id": "mimo-zen",
@@ -135,6 +140,11 @@
   "checked": {
    "date": "2026-10-06",
    "method": "catalogue"
+  },
+  "volume": {
+   "tier": "bulk",
+   "basis": "own check: 10 parallel agent runs; at 15 parallel some runs hung (Oct 4)",
+   "source": "own check, 2026-10-04"
   }
  },
  {
@@ -167,6 +177,11 @@
   "checked": {
    "date": "2026-10-05",
    "method": "api_call"
+  },
+  "volume": {
+   "tier": "bulk",
+   "basis": "own check: 15 parallel agent runs (Oct 4)",
+   "source": "own check, 2026-10-04"
   }
  },
  {
@@ -194,6 +209,11 @@
   "checked": {
    "date": "2026-10-05",
    "method": "listing"
+  },
+  "volume": {
+   "tier": "taste",
+   "basis": "OpenRouter :free routes: 50 requests a day without credits (stated)",
+   "source": "https://openrouter.ai/docs/api-reference/limits"
   }
  },
  {
@@ -884,7 +904,12 @@
    "confidence": "none",
    "note": "free window closed: at the 2026-10-23 recheck Letta bills this model to credits (catalogue tier per-inference), and a free account at $0.00 is refused with \"minimum $1 in credits is required\""
   },
-  "data_policy": "may_train"
+  "data_policy": "may_train",
+  "volume": {
+   "tier": "daily",
+   "basis": "Free plan is limited to 3 stateful agents (stated); this model not load-tested",
+   "source": "https://docs.letta.com/pricing/"
+  }
  },
  {
   "id": "apodex-1.1-mini-kilo",
@@ -2440,6 +2465,11 @@
   "checked": {
    "date": "2026-10-07",
    "method": "catalogue"
+  },
+  "volume": {
+   "tier": "daily",
+   "basis": "channel rule: Zen's free allowance is per IP per day; this model not load-tested",
+   "source": "https://opencode.ai/docs/zen/"
   }
  },
  {
@@ -2470,6 +2500,11 @@
   "checked": {
    "date": "2026-10-23",
    "method": "catalogue"
+  },
+  "volume": {
+   "tier": "daily",
+   "basis": "channel rule: Zen's free allowance is per IP per day; this model not load-tested",
+   "source": "https://opencode.ai/docs/zen/"
   }
  },
  {
@@ -2582,7 +2617,12 @@
    "date": "2026-10-20",
    "method": "catalogue"
   },
-  "note": "Dropped from OpenCode Zen: opencode/muse-spark-1.2-contributor-free is not in the free model list at the 2026-10-20T08:00Z daily catalogue check; last present 2026-10-06 (checked 2026-10-06, api_call, reach missing)"
+  "note": "Dropped from OpenCode Zen: opencode/muse-spark-1.2-contributor-free is not in the free model list at the 2026-10-20T08:00Z daily catalogue check; last present 2026-10-06 (checked 2026-10-06, api_call, reach missing)",
+  "volume": {
+   "tier": "daily",
+   "basis": "channel rule: Zen's free allowance is per IP per day; this model not load-tested",
+   "source": "https://opencode.ai/docs/zen/"
+  }
  },
  {
   "id": "glm-4.7-flash-zai",
@@ -2613,7 +2653,7 @@
    "method": "catalogue"
   }
  },
- {
+  {
   "id": "glm-4.5-flash-zai",
   "model": "glm-4.5-flash",
   "channel": "Z.ai",
@@ -2634,15 +2674,14 @@
    "announced": "2026-01-30",
    "expected": null,
    "confidence": "official",
-   "note": "BigModel docs banner (still live 2026-10-22) says GLM-4.5-Flash retires 2026-01-30 with requests auto-routed to GLM-4.7-Flash, but body still says free; Z.ai model doc page 404 while pricing page still lists Free; inference responsiveness untested (needs key)"
+   "note": "Zhipu's news/148 (2026-01-19) states GLM-4.5-Flash retires 2026-01-30 and its requests auto-route to GLM-4.7-Flash; BigModel's free price table now lists GLM-4.7-Flash, not 4.5-Flash. The Z.ai pricing page still showed a Free line at the 2026-10-27 re-check."
   },
   "data_policy": "zero_retention",
-  "status": "unavailable",
+  "status": "ended",
   "checked": {
-   "date": "2026-10-22",
+   "date": "2026-10-27",
    "method": "catalogue"
-  },
-  "note": "Sunset announced by vendor but serving status unclear (see ends.note); treat as unavailable until verified"
+  }
  },
  {
   "id": "glm-4.7-flash-bigmodel",
@@ -2972,21 +3011,22 @@
    "method": "catalogue"
   }
  },
- {
+  {
   "id": "gemini-3.8-flash-gai",
   "model": "gemini-3.8-flash",
   "channel": "Google AI Studio",
   "type": "first_party",
   "model_id": "gemini-3.8-flash",
-  "free_condition": null,
+  "free_condition": "Free while the key's Google Cloud project has no billing account linked; linking billing moves it to a paid usage tier. Limits are per project, not per key.",
   "limits_stated": {
-   "basis": "community",
-   "per_minute": 5,
-   "per_day": 20,
-   "note": "per Flash model, Sep 2026",
-   "source": "https://discuss.ai.google.dev/t/gemini-3-8-flash-free-tier-20-rpd-is-too-limited-for-practical-evaluation/180609"
+   "basis": "unpublished",
+   "note": "none published, view in AI Studio; RPD resets midnight PT",
+   "source": "https://ai.google.dev/gemini-api/docs/rate-limits"
   },
-  "limits_observed": null,
+  "limits_observed": {
+   "date": "2026-10-06",
+   "note": "~20 RPD community readout (Flash series)"
+  },
   "started": {
    "date": "2026-09-03",
    "note": "first X mention we found; the free route may predate it"
@@ -2999,12 +3039,13 @@
   "data_policy": "may_train",
   "status": "listed",
   "checked": {
-   "date": "2026-10-23",
+   "date": "2026-10-27",
    "method": "catalogue"
   },
   "volume": {
    "tier": "taste",
-   "basis": "about 20 requests a day (community readout)"
+   "basis": "about 20 requests a day (community readout)",
+   "source": "https://discuss.ai.google.dev/t/gemini-3-8-flash-free-tier-20-rpd-is-too-limited-for-practical-evaluation/180609"
   }
  },
  {
@@ -3044,21 +3085,22 @@
   },
   "note": "Dropped from Google AI Studio: gemini-3.7-flash was deprecated on 2026-10-08, is no longer available to select in AI Studio and its requests auto-route to gemini-3.8-flash; at the 2026-10-23 recheck the id is absent from both the free-tier endpoint table and the pricing page (the 2026-10-08 changelog entry is the second source); last listed 2026-10-06 (catalogue)"
  },
- {
+  {
   "id": "gemini-3.6-flash-gai",
   "model": "gemini-3.6-flash",
   "channel": "Google AI Studio",
   "type": "first_party",
   "model_id": "gemini-3.6-flash",
-  "free_condition": null,
+  "free_condition": "Free while the key's Google Cloud project has no billing account linked; linking billing moves it to a paid usage tier. Limits are per project, not per key.",
   "limits_stated": {
-   "basis": "community",
-   "per_minute": 5,
-   "per_day": 20,
-   "note": "per Flash model, Sep 2026",
-   "source": "https://discuss.ai.google.dev/t/gemini-3-8-flash-free-tier-20-rpd-is-too-limited-for-practical-evaluation/180609"
+   "basis": "unpublished",
+   "note": "none published, view in AI Studio; RPD resets midnight PT",
+   "source": "https://ai.google.dev/gemini-api/docs/rate-limits"
   },
-  "limits_observed": null,
+  "limits_observed": {
+   "date": "2026-10-06",
+   "note": "~20 RPD community readout (Flash series)"
+  },
   "started": {
    "date": null,
    "note": "not recorded; first seen 2026-10-06"
@@ -3071,12 +3113,13 @@
   "data_policy": "may_train",
   "status": "listed",
   "checked": {
-   "date": "2026-10-23",
+   "date": "2026-10-27",
    "method": "catalogue"
   },
   "volume": {
    "tier": "taste",
-   "basis": "about 20 requests a day (community readout)"
+   "basis": "about 20 requests a day (community readout)",
+   "source": "https://discuss.ai.google.dev/t/gemini-3-8-flash-free-tier-20-rpd-is-too-limited-for-practical-evaluation/180609"
   }
  },
  {
@@ -3283,6 +3326,11 @@
   "checked": {
    "date": "2026-10-23",
    "method": "catalogue"
+  },
+  "volume": {
+   "tier": "taste",
+   "basis": "AIHubMix free models: 100 requests a day, 5 a minute per account (stated)",
+   "source": "https://aihubmix.com/model/dots-3-note-preview-free"
   }
  },
  {
@@ -3348,6 +3396,11 @@
   "checked": {
    "date": "2026-10-08",
    "method": "catalogue"
+  },
+  "volume": {
+   "tier": "taste",
+   "basis": "50 requests a day without credits (stated)",
+   "source": "https://openrouter.ai/qwen/qwen3.8-27b:free"
   }
  },
  {
@@ -3976,7 +4029,12 @@
    "date": "2026-10-16",
    "method": "agent_run"
   },
-  "note": "Free ID dropped from Go: the plan's own model list keeps paid Step 5 Preview ($1.00/$2.70) with no free variant; models.dev flags opencode-go/step-5-preview-free deprecated; an authenticated call answers 400 \"Model is unavailable\" while a control free model answered 200"
+  "note": "Free ID dropped from Go: the plan's own model list keeps paid Step 5 Preview ($1.00/$2.70) with no free variant; models.dev flags opencode-go/step-5-preview-free deprecated; an authenticated call answers 400 \"Model is unavailable\" while a control free model answered 200",
+  "volume": {
+   "tier": "bulk",
+   "basis": "own check: 10 parallel short calls answered (Oct 11); OpenCode Go rate table lists it as Unlimited",
+   "source": "own check, 2026-10-11"
+  }
  },
  {
   "id": "qwen3.8-27b-hetzner",
@@ -4008,7 +4066,12 @@
    "date": "2026-10-23",
    "method": "catalogue"
   },
-  "note": "E2 2026-10-13: official doc model table lists Qwen3.8-27B (262,144 ctx); models.dev $0.00/$0.00; GET /api/v1/models 401 (online, needs key). Needs Hetzner account for a live call (HUMAN-TODO)."
+  "note": "E2 2026-10-13: official doc model table lists Qwen3.8-27B (262,144 ctx); models.dev $0.00/$0.00; GET /api/v1/models 401 (online, needs key). Needs Hetzner account for a live call (HUMAN-TODO).",
+  "volume": {
+   "tier": "daily",
+   "basis": "10 requests a minute per key, 4M in + 100k out tokens (stated)",
+   "source": "https://docs.hetzner.com/general/company-and-policy/experiments/inference/"
+  }
  },
  {
   "id": "cat-jam-free-zen",
@@ -4041,7 +4104,12 @@
    "date": "2026-10-20",
    "method": "catalogue"
   },
-  "note": "Dropped from OpenCode Zen: opencode/cat-jam-free is not in the free model list at the 2026-10-20T08:00Z daily catalogue check; last present 2026-10-13 (agent run, 5 parallel)"
+  "note": "Dropped from OpenCode Zen: opencode/cat-jam-free is not in the free model list at the 2026-10-20T08:00Z daily catalogue check; last present 2026-10-13 (agent run, 5 parallel)",
+  "volume": {
+   "tier": "daily",
+   "basis": "channel rule: Zen's free allowance is per IP per day; 5 parallel agent runs answered (Oct 13)",
+   "source": "own check, 2026-10-13"
+  }
  },
  {
   "id": "cat-jam-free-go",
@@ -4491,6 +4559,11 @@
   "checked": {
    "date": "2026-10-27",
    "method": "catalogue"
+  },
+  "volume": {
+   "tier": "bulk",
+   "basis": "OpenCode Go rate table lists it as Unlimited (limited time)",
+   "source": "https://opencode.ai/docs/go/"
   }
  },
  {
@@ -4653,7 +4726,12 @@
    "date": "2026-10-25",
    "method": "catalogue"
   },
-   "note": "Stealth 'iceman', maker unknown; contributor suffix = may train on prompts (inferred, not stated); $0 but Go-plan-gated; no AA score"
+   "note": "Stealth 'iceman', maker unknown; contributor suffix = may train on prompts (inferred, not stated); $0 but Go-plan-gated; no AA score",
+  "volume": {
+   "tier": "bulk",
+   "basis": "OpenCode Go rate table lists it as Unlimited (limited time)",
+   "source": "https://opencode.ai/docs/go/"
+  }
  },
  {
   "id": "nemotron-3.5-super-vl-kilo",

@@ -439,7 +439,7 @@
    "method": "listing"
   }
  },
- {
+  {
   "id": "aliyun-university-300-voucher",
   "name": "Alibaba Cloud 300 CNY voucher",
   "name_zh": "阿里云 云工开物 300 元抵扣金",
@@ -475,13 +475,13 @@
   },
   "status": "live",
   "started": "2025-11-11",
-  "ends": "2026-11-10",
+  "ends": "2027-03-31",
   "source": {
    "label": "阿里云百炼 云工开物 高校计划",
    "url": "https://help.aliyun.com/zh/model-studio/introduction-to-yungongkaiwu"
   },
-  "quote": "面向中国高校学生（包括中国香港、中国澳门和中国台湾地区），完成实名认证后即可领取300元无门槛抵扣金。",
-  "note": "CN students incl HK/MO/TW; student real-name verification on Aliyun; valid 1 year; window 2025-11-11 to 2026-11-10.",
+  "quote": "高校学生通用权益面向所有中国高校学生开放，具体包括中国大陆及港澳台地区专科、本科、硕士、博士、在职研究生等高等教育学籍在内的在校学生人群。",
+  "note": "Mainland + HK/MO/TW universities only (学信网+Alipay); overseas not eligible. End 2027-03-31 23:59:59 (was 2026-11-10); intl sign-up closed.",
   "checked": {
    "date": "2026-10-27",
    "method": "listing"

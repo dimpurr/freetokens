@@ -344,19 +344,19 @@
   },
   "free_condition": "Vercel AI Gateway key; models marked Free"
  },
- {
+  {
   "name": "SiliconFlow",
   "entry": {
    "kind": "account",
    "usd": null,
    "period": null,
-   "note": "SiliconFlow account; the China site (siliconflow.cn) requires real-name verification for free models"
+   "note": "SiliconFlow account; real-name verification is mandatory to use the platform at all (since 2026-05-15 unverified accounts are blocked)"
   },
   "source": {
    "url": "https://siliconflow.cn/pricing",
    "label": "SiliconFlow pricing"
   },
-  "checked": "2026-10-06",
+  "checked": "2026-10-27",
   "access": {
    "form": "api",
    "protocols": [
@@ -373,7 +373,7 @@
    "site": "https://siliconflow.cn",
    "models": "https://siliconflow.cn/pricing"
   },
-  "free_condition": "SiliconFlow account and API key; price 0 within fixed rate limits"
+  "free_condition": "SiliconFlow account + real-name verification (mandatory since 2026-05-15: unverified accounts cannot use the platform); free models at price 0 within fixed rate limits"
  },
  {
   "name": "Google AI Studio",
