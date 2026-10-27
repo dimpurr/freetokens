@@ -61,7 +61,7 @@
   "data_policy": "may_train",
   "status": "overdue",
   "checked": {
-   "date": "2026-10-16",
+   "date": "2026-10-27",
    "method": "agent_run"
   },
   "volume": {
@@ -4652,6 +4652,170 @@
    "date": "2026-10-25",
    "method": "catalogue"
   },
-  "note": "Stealth 'iceman', maker unknown; contributor suffix = may train on prompts (inferred, not stated); $0 but Go-plan-gated; no AA score"
+   "note": "Stealth 'iceman', maker unknown; contributor suffix = may train on prompts (inferred, not stated); $0 but Go-plan-gated; no AA score"
+ },
+ {
+  "id": "nemotron-3.5-super-vl-kilo",
+  "model": "nemotron-3.5-super-vl",
+  "channel": "Kilo Code",
+  "type": "agent_tool",
+  "model_id": "nvidia/nemotron-3.5-super-vl:free",
+  "free_condition": null,
+  "limits_stated": {
+   "basis": "unpublished"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "first seen in the daily free-catalogue check; may predate it"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "unstated",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-27",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "flint-kilo",
+  "model": "flint",
+  "channel": "Kilo Code",
+  "type": "agent_tool",
+  "model_id": "recursive/flint-v1.0:free",
+  "free_condition": null,
+  "limits_stated": {
+   "basis": "unpublished"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "first seen in the daily free-catalogue check; may predate it"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "unstated",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-27",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "beam-kilo",
+  "model": "beam",
+  "channel": "Kilo Code",
+  "type": "agent_tool",
+  "model_id": "reflection/beam-free",
+  "free_condition": null,
+  "limits_stated": {
+   "basis": "unpublished"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "first seen in the daily free-catalogue check; may predate it"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "unstated",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-27",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "glyph-cluster-kilo",
+  "model": "glyph-cluster",
+  "channel": "Kilo Code",
+  "type": "agent_tool",
+  "model_id": "stealth/glyph-cluster",
+  "free_condition": null,
+  "limits_stated": {
+   "basis": "unpublished"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "first seen in the daily free-catalogue check; may predate it"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "unstated",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-27",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "xing4.0-29b-kilo",
+  "model": "xing4.0-29b",
+  "channel": "Kilo Code",
+  "type": "agent_tool",
+  "model_id": "xingchen-agi/xing4.0-29b-a4b:free",
+  "free_condition": null,
+  "limits_stated": {
+   "basis": "unpublished"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "first seen in the daily free-catalogue check; may predate it"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "unstated",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-27",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "glm-5.3-flash-siliconflow",
+  "model": "glm-5.3-flash",
+  "channel": "SiliconFlow",
+  "type": "router",
+  "model_id": "zai-org/GLM-5.3-Flash",
+  "free_condition": null,
+  "limits_stated": {
+   "basis": "official",
+   "note": "fixed rate limits; spending doesn't raise them",
+   "source": "https://siliconflow.cn/pricing"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "not recorded; first seen 2026-10-27"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "zero_retention",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-27",
+   "method": "listing"
+  }
  }
 ]
