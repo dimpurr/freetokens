@@ -718,6 +718,15 @@
           "score": 66.6
         }
       ]
+    },
+    {
+      "model": "iceman-contributor",
+      "benchmark": "aa_gpqa",
+      "score": 84.02,
+      "variant": "tested by us, GPQA Diamond 198 Q (zero-shot, options shuffled 2 seeds), offset-corrected vs 3 free-pool models; raw 74.68 extrapolated, n 72 answered x1 pass, truncated questions re-run at 32K, extrapolated (see bench record); raw records bench/2026-10-25-iceman-gpqa",
+      "source_type": "third_party",
+      "url": "https://freetokens.fyi/methodology#tested-by-us",
+      "seen": "2026-10-25"
     }
   ]
 }
