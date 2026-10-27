@@ -9,6 +9,14 @@ A new model whose Artificial Analysis index >= 30 is flagged as a free-pool cand
 AA comes from Artificial Analysis' own data API (ADR-031 / 16b-3): one authenticated call lists every model
 they index plus its sub-scores. The key is AA_API_KEY from the environment or chco .env, read at run time and
 never printed; without it the tool falls back to reading AA model pages one by one, as it did before.
+Channels: OpenRouter, OpenCode Zen/Go, Vercel AI Gateway, Kilo Code and SiliconFlow report $0 models (full);
+OVHcloud AI Endpoints, Groq, Google AI Studio and AIHubMix are gone-only (no per-model $0 price in their
+machine-readable list, so they only flag tracked lanes that vanished).
+A new channel's first read is a baseline run: it reports no "new" (that would flood on onboarding) and instead
+prints the untracked free inventory. Groq and Google AI Studio need an API key (GROQ_API_KEY /
+GOOGLE_GEMINI_API_KEY from the environment or chco .env); when the key is absent the channel is skipped cleanly.
+Freshly indexed AA models are diffed against DIR/aa_index.json (slug snapshot): new listings are reported, with a
+⭐ when the slug exactly matches a model free on a full channel. The first run only seeds the snapshot.
 """
 import json, os, re, sys, time, urllib.request, datetime as dt
 from pathlib import Path
@@ -49,11 +57,16 @@ WATCH_GONE = {
 # known non-chat models and aliases of lanes we already track: (channel, model_id) -> why it is ignored
 IGNORE = {
     ("OpenRouter", "nvidia/nemotron-3.5-content-safety:free"): "safety classifier, not a chat model",
+    ("Kilo Code", "nvidia/nemotron-3.5-content-safety:free"): "safety classifier, not a chat model",
     ("OpenRouter", "google/lyria-3-pro-preview"): "music model",
     ("OpenRouter", "google/lyria-3-clip-preview"): "music model",
     ("Vercel AI Gateway", "inclusionai/ling-3.1-flash"): "same $0 model as the tracked -free id",
     ("Vercel AI Gateway", "reflection/beam"): "no Vercel free lane (standard id billed; -free id untested, needs one call to qualify per ADR-022) — re-report suppressed, ask Dim",
 }
+
+
+# catalogue entries that are not chat models even when they cost $0 (SiliconFlow's own subType values)
+NOT_CHAT = {"embedding", "reranker", "speech-to-text", "text-to-image", "text-to-speech", "text-to-video", "image-to-video"}
 
 
 def get(url, timeout=60, headers=None):
@@ -63,9 +76,9 @@ def get(url, timeout=60, headers=None):
         return r.read().decode("utf-8", "ignore")
 
 
-def aa_key():
-    """AA_API_KEY from the environment, else parsed out of chco .env at run time. Never printed, never stored."""
-    v = os.environ.get("AA_API_KEY")
+def env_key(var):
+    """API key for `var` from the environment, else parsed out of a chco .env at run time. Never printed, never stored."""
+    v = os.environ.get(var)
     if v:
         return v.strip()
     for d in CHCO_HOME:
@@ -74,9 +87,21 @@ def aa_key():
             continue
         for line in f.read_text().splitlines():
             line = line.strip()
-            if line.startswith("AA_API_KEY=") and line.split("=", 1)[1].strip():
+            if line.startswith(var + "=") and line.split("=", 1)[1].strip():
                 return line.split("=", 1)[1].strip().strip('"').strip("'")
     return None
+
+
+class Skip(Exception):
+    """Raised by a keyed fetcher when its required env var has no key: skip the channel, do not alert."""
+
+    def __init__(self, var):
+        self.var = var
+
+
+def aa_key():
+    """AA_API_KEY from the environment, else parsed out of chco .env at run time. Never printed, never stored."""
+    return env_key("AA_API_KEY")
 
 
 def aa_table(cache={}):
@@ -107,6 +132,14 @@ def zero(*vals):
     return all(str(v) in ("0", "0.0", "0.00") for v in vals)
 
 
+def nzero(*vals):
+    """Numeric zero: Kilo writes prices as "0.000000000000", which the string zero() does not match."""
+    try:
+        return all(float(v) == 0 for v in vals)
+    except (TypeError, ValueError):
+        return False
+
+
 # each catalogue: channel name as in lanes.json -> (ids that are free now, how our model_id is written)
 def openrouter():
     d = json.loads(get("https://openrouter.ai/api/v1/models"))["data"]
@@ -127,18 +160,100 @@ def vercel():
             if m.get("type") == "language" and zero(m.get("pricing", {}).get("input"), m.get("pricing", {}).get("output"))}
 
 
+def kilo():
+    # free = the gateway's own isFree flag plus prompt/completion price 0 (checked 2026-10-27); router pseudo-models dropped
+    d = json.loads(get("https://api.kilo.ai/api/gateway/models"))["data"]
+    return {m["id"]: m.get("name", m["id"]) for m in d
+            if m.get("isFree") and nzero(m.get("pricing", {}).get("prompt"), m.get("pricing", {}).get("completion"))
+            and "text" in (m.get("architecture", {}).get("output_modalities") or ["text"])
+            and not m["id"].startswith(("kilo-auto/", "openrouter/"))}  # router pseudo-models are routing meta, not models
+
+
+def siliconflow():
+    # free = model-level price "0" (¥/M tokens) on the China model plaza; v1/models is 401 without a key and no chco key exists
+    txt = get("https://siliconflow.cn/models").replace('\\"', '"')
+    if '{"modelId":"' not in txt:
+        raise RuntimeError("model plaza page no longer embeds the model list (page shape changed)")
+    free = {}
+    for c in txt.split('{"modelId":"')[1:]:
+        mid, price = re.search(r'"modelName":"([^"]+)"', c), re.search(r'"price":"?(-?[0-9.]+)"?', c)
+        sub = re.search(r'"subType":"([^"]*)"', c)
+        if sub and sub.group(1) in NOT_CHAT:
+            continue  # embedding / reranker / ASR / image endpoints: not a lane candidate even when $0
+        if mid and price and nzero(price.group(1)):
+            name = re.search(r'"DisplayName":"([^"]+)"', c)  # field order is not stable, so pull each independently
+            free[mid.group(1)] = name.group(1) if name else mid.group(1)
+    return free
+
+
+def ovh():
+    # free cannot be read: the catalogue page carries no prices (checked 2026-10-27) and each model's keyless
+    # /v1/models returns id only, while our lanes ride the anonymous rate-limited lane (2 req/min) — availability list, gone check
+    html = get("https://www.ovhcloud.com/en-gb/public-cloud/ai-endpoints/catalog/")
+    ids = re.findall(r'aria-label="([^"]+)"\s+href="/en-gb/public-cloud/ai-endpoints/catalog/', html)
+    if not ids:
+        raise RuntimeError("OVH catalogue page no longer lists models (page shape changed)")
+    return {i: i for i in ids}
+
+
+def groq():
+    # keyed /v1/models: no per-model price (free tier is rate-limited), so availability only; every id kept, incl. audio
+    k = env_key("GROQ_API_KEY")
+    if not k:
+        raise Skip("GROQ_API_KEY")
+    d = json.loads(get("https://api.groq.com/openai/v1/models", headers={"Authorization": "Bearer " + k}))["data"]
+    return {m["id"]: m.get("name", m["id"]) for m in d}
+
+
+def google():
+    # keyed v1beta/models: a free tier is rate-limited per model, not a $0 price, so availability only
+    k = env_key("GOOGLE_GEMINI_API_KEY")
+    if not k:
+        raise Skip("GOOGLE_GEMINI_API_KEY")
+    out, token = {}, None
+    for _ in range(10):  # paged: a truncated list would read as every unlisted lane having left (false gone)
+        q = f"https://generativelanguage.googleapis.com/v1beta/models?pageSize=200" + (f"&pageToken={token}" if token else "")
+        d = json.loads(get(q, headers={"x-goog-api-key": k}))
+        out.update({m["name"].split("models/", 1)[-1]: m.get("displayName") or m["name"] for m in d.get("models", [])})
+        token = d.get("nextPageToken")
+        if not token:
+            break
+    return out
+
+
+def aihubmix():
+    # plain OpenAI list, no pricing at all: their free-routed models carry a "-free" id suffix
+    d = json.loads(get("https://api.aihubmix.com/v1/models"))["data"]
+    return {m["id"]: m["id"] for m in d if m["id"].endswith("-free")}
+
+
+# each catalogue: name as in lanes.json -> (fetcher, "full" = can report new $0 models | "gone" = availability list for the gone check only)
 CATALOGUES = {
-    "OpenRouter": openrouter,
-    "OpenCode Zen": lambda: opencode("https://opencode.ai/zen/v1/models", "opencode"),
-    "OpenCode Go": lambda: opencode("https://opencode.ai/zen/go/v1/models", "opencode-go"),
-    "Vercel AI Gateway": vercel,
+    "OpenRouter": (openrouter, "full"),
+    "OpenCode Zen": (lambda: opencode("https://opencode.ai/zen/v1/models", "opencode"), "full"),
+    "OpenCode Go": (lambda: opencode("https://opencode.ai/zen/go/v1/models", "opencode-go"), "full"),
+    "Vercel AI Gateway": (vercel, "full"),
+    "Kilo Code": (kilo, "full"),
+    "SiliconFlow": (siliconflow, "full"),
+    "OVHcloud AI Endpoints": (ovh, "gone"),
+    "Groq": (groq, "gone"),
+    "Google AI Studio": (google, "gone"),
+    "AIHubMix": (aihubmix, "gone"),
 }
+# a new full channel's first read is a baseline run (reporting its whole onboarding set would flood); the four
+# original ones and the gone-only ones need no baseline: they report new every day, or never report new at all
+BASELINED = {"Kilo Code", "SiliconFlow"}
+
+
+def _slug(name_or_id):
+    """AA slug our model_id most likely maps to (last path segment, stripped of the free-suffix and punctuation)."""
+    return re.sub(r"[^a-z0-9]+", "-", name_or_id.split("/")[-1].lower().replace(":free", "").replace("-free", "")).strip("-")
 
 
 def aa_index(name_or_id, slugs, cache={}):
     """Best-effort AA lookup by slug guess; None when AA has no page. The slug space and the index come from
     the AA data API when it is reachable; otherwise from the AA sitemap plus one page per slug (the old route)."""
-    base = re.sub(r"[^a-z0-9]+", "-", name_or_id.split("/")[-1].lower().replace(":free", "").replace("-free", "")).strip("-")
+    base = _slug(name_or_id)
     table = aa_table()
     pool = set(table) if table else set(slugs)
     cands = [s for s in pool if s == base] or sorted(s for s in pool if s.startswith(base))[:1]
@@ -227,6 +342,55 @@ def aa_recheck(out, slugs):
     return lines
 
 
+def aa_diff(out, watched, cap=15):
+    """New Artificial Analysis listings since the last run: added = current slugs - snapshot slugs, reusing the
+    same single aa_table() call. First ever run only seeds the snapshot; the snapshot is written after a
+    successful call only, so a failed run never clobbers it. (lines, entries, baseline_count)."""
+    table = aa_table()
+    if not table:
+        return [], [], None  # no key / call failed: skip silently, keep the old snapshot
+    f = out / "aa_index.json"
+    try:
+        prev = set(json.loads(f.read_text())) if f.exists() else set()
+    except Exception:
+        prev = set()  # a corrupt snapshot costs one day of diff, not the whole run: it is reseeded below
+    cur = set(table)
+    if prev and len(cur) < 0.9 * len(prev):
+        return [], [], None  # a short AA payload: keep the snapshot, or next run would call the whole library "new"
+    f.write_text(json.dumps(sorted(cur), ensure_ascii=False))  # successful call: refresh the snapshot
+    if not prev:
+        return [], [], len(cur)  # baseline run: nothing to report yet, just note the count
+    keys = []  # exact slug only: a prefix match would star a different model (Qwen3-8B vs Qwen3-8B-Instruct)
+    for w in watched:
+        b = _slug(w[0])
+        if b:
+            keys.append((b, w))
+    entries = []
+    for s in sorted(cur - prev):
+        r = table[s]
+        v = round(float(r["aa"])) if r["aa"] is not None else None
+        hit = next((w for b, w in keys if s == b), None)
+        entries.append({"slug": s, "name": r["name"], "aa": v, "url": f"https://artificialanalysis.ai/models/{s}",
+                        "free": bool(hit), "channel": hit[2] if hit else None, "model_id": hit[0] if hit else None})
+    if not entries:
+        return [], [], None
+    entries.sort(key=lambda e: (not e["free"], -(e["aa"] or -1)))  # a new listing we can offer for free leads
+    lines = [f"📰 AA 新收录 {len(entries)} 个"]
+    stars = [e for e in entries if e["free"]]
+    plain = [e for e in entries if not e["free"]]
+    for e in stars + plain[:cap]:
+        tier = ""
+        if e["free"]:
+            a = e["aa"] or 0
+            tier = (f" · ≥{MAIN_BAR} main-tier" if a >= MAIN_BAR else f" · ≥{BORDER_BAR} borderline" if a >= BORDER_BAR
+                    else f" · ≥{PASS_BAR} pass-tier" if a >= PASS_BAR else f" · below {PASS_BAR}")
+        lines.append(f"  {'⭐' if e['free'] else ''}{e['name']} · AA {e['aa'] if e['aa'] is not None else '—'} ({e['url']})"
+                     + (f" · free on {e['channel']}: {e['model_id']}" if e["free"] else "") + tier)
+    if len(plain) > cap:
+        lines.append(f"  … +{len(plain) - cap} more (see latest.json)")
+    return lines, entries, None
+
+
 def page_changes(out):
     import hashlib, html as H
     state_f = out / "pages.json"
@@ -260,19 +424,30 @@ def main():
             slugs = set(re.findall(r"artificialanalysis\.ai/models/([a-z0-9.\-]+)</loc>", get("https://artificialanalysis.ai/sitemap.xml", 90)))
         except Exception:
             slugs = set()
-    new, gone, errors = [], [], []
+    new, gone, errors, skipped = [], [], [], []
+    baseline_lines = []  # (channel, total free, [untracked entries]) printed only on a channel's first baseline run
+    watched = []         # (model_id, name, channel) for every catalogue read this run, for the AA new-listing match
     fail_f = out / "source_failures.json"  # P18: single-day failure is logged, alert only after 2 consecutive days
     fails = json.loads(fail_f.read_text()) if fail_f.exists() else {}
+    cat_f = out / "catalogue_state.json"  # per-channel baseline id lists, so onboarding a new channel does not flood
+    cat = json.loads(cat_f.read_text()) if cat_f.exists() else {}
     today = dt.date.today().isoformat()
     yesterday = (dt.date.today() - dt.timedelta(days=1)).isoformat()
-    for ch, fetch in CATALOGUES.items():
+    for ch, (fetch, mode) in CATALOGUES.items():
         try:
             try:
                 free = fetch()
+            except Skip:
+                raise  # no key: skip cleanly, never retry-and-alert
             except Exception:
                 time.sleep(30)
                 free = fetch()  # one retry ~30s later (P18)
             fails.pop(ch, None)
+        except Skip as e:
+            skipped.append(ch)  # goes to latest.json; voiced only on the weekly heartbeat, because empty stdout is how the daily job stays silent
+            if "--heartbeat" in sys.argv:
+                print(f"ℹ️ {ch} skipped: no {e.var} key")
+            continue
         except Exception as e:
             prev = fails.get(ch, {})
             if prev.get("date") == today:
@@ -287,10 +462,23 @@ def main():
             else:
                 print(f"ℹ️ {ch} catalogue unreadable, retry 1× failed; logged, no alert (1st day)")
             continue
-        for mid, name in free.items():
-            if (ch, mid) not in tracked and (ch, mid) not in IGNORE:
-                aa, url = aa_index(mid, slugs)
-                new.append({"channel": ch, "model_id": mid, "name": name, "aa": aa, "aa_url": url, "pool_candidate": bool(aa and aa >= POOL_BAR)})
+        if mode == "full":  # a "gone" channel's dict is an availability list, not a free list: never new, never AA ⭐
+            watched += [(mid, name, ch) for mid, name in free.items() if (ch, mid) not in IGNORE]
+            first = ch in BASELINED and ch not in cat
+            base = set(cat.get(ch, []))  # read before seeding, or the first run would find nothing to inventory
+            if first:
+                cat[ch] = sorted(free)  # seeded once: the onboarding set is handed to Dim as a baseline, not re-reported daily
+            cands = [(mid, name) for mid, name in free.items()
+                     if (ch, mid) not in tracked and (ch, mid) not in IGNORE and mid not in base]
+            if first:
+                ent = sorted(({"channel": ch, "model_id": mid, "name": name, "aa": aa_index(mid, slugs)[0]} for mid, name in cands),
+                             key=lambda x: -(x["aa"] or -1))
+                if ent:
+                    baseline_lines.append((ch, len(free), ent))
+            else:
+                for mid, name in cands:
+                    aa, url = aa_index(mid, slugs)
+                    new.append({"channel": ch, "model_id": mid, "name": name, "aa": aa, "aa_url": url, "pool_candidate": bool(aa and aa >= POOL_BAR)})
         for (c, mid), l in live.items():
             if c == ch and mid not in free:
                 gone.append({"channel": ch, "model_id": mid, "lane": l["id"], "status": l["status"], "note": WATCH_GONE.get((ch, mid))})
@@ -298,8 +486,14 @@ def main():
             if any(x["channel"] == c and x["model_id"] == m for x in new)]
     new.sort(key=lambda x: -(x["aa"] or -1))
     now = dt.datetime.now(dt.timezone.utc).isoformat(timespec="minutes")
+    aa_lines, aa_entries, aa_base = aa_diff(out, watched)  # reuses the one aa_table() call; no-ops without a key
     fail_f.write_text(json.dumps(fails, ensure_ascii=False, indent=1))
-    (out / "latest.json").write_text(json.dumps({"checked": now, "back": back, "new": new, "gone": gone, "errors": errors}, ensure_ascii=False, indent=1))
+    cat_f.write_text(json.dumps(cat, ensure_ascii=False, indent=1))
+    latest = {"checked": now, "back": back, "new": new, "gone": gone, "errors": errors,
+              "skipped": skipped, "baseline": [e for _, _, ents in baseline_lines for e in ents], "aa_new": aa_entries}
+    if aa_base is not None:
+        latest["aa_new_baseline"] = aa_base  # first AA run: snapshot seeded, nothing to diff yet
+    (out / "latest.json").write_text(json.dumps(latest, ensure_ascii=False, indent=1))
     lines = aa_recheck(out, slugs) + page_changes(out) + [f"🔁 back in a free catalogue: {x['model_id']} · {x['channel']} → {x['note']}" for x in back]
     if new:
         lines.append(f"🆕 {len(new)} free model(s) not on freetokens yet:")
@@ -307,6 +501,13 @@ def main():
             tag = "⭐ pool candidate " if x["pool_candidate"] else ""
             if x["pool_candidate"]: tag = "⭐ main-tier candidate " if x["aa"] >= MAIN_BAR else "◐ borderline candidate " if x["aa"] >= BORDER_BAR else "○ pass-tier candidate (retrieval / docs only) "
             lines.append(f"  {tag}{x['name']} · {x['channel']} · {x['model_id']} · AA {x['aa'] if x['aa'] is not None else '—'}")
+    for ch, n, ent in baseline_lines:
+        lines.append(f"🧱 baseline · {ch}: {n} free model(s), {len(ent)} not on freetokens yet:")
+        for e in ent[:25]:
+            lines.append(f"  {e['name']} · {e['model_id']} · AA {e['aa'] if e['aa'] is not None else '—'}")
+        if len(ent) > 25:
+            lines.append(f"  … +{len(ent) - 25} more (see latest.json)")
+    lines += aa_lines
     if gone:
         lines.append(f"🕳️ {len(gone)} tracked lane(s) no longer in the catalogue (maybe ended):")
         lines += [f"  {x['model_id']} · {x['channel']} (lane {x['lane']}, {x['status']})" + (f" → {x['note']}" if x["note"] else "") for x in gone]
