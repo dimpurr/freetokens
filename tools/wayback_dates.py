@@ -470,9 +470,9 @@ def main(argv=None):
            "read_as": states.get(first, {}).get("shape"), "requested": {"from": a.frm or None, "to": a.to or None},
            "archive": {"captures": n, "first_capture": iso(snaps[0]["timestamp"]), "last_capture": iso(snaps[-1]["timestamp"]),
                        "probes": len(states), "downloads": fetched[0], "cache": str(CACHE)},
-           "earliest_free": point(first), "latest_free": point(last), "first_gone": point(after),
-           "interval_start": [point(before)["date"] if point(before) else None, point(first)["date"]],
-           "interval_end": [point(last)["date"], point(after)["date"] if point(after) else None],
+           "first_seen": point(first), "last_seen": point(last), "first_absent_after": point(after),
+           "not_there_at": point(before),
+           "interval_start": [point(before), point(first)], "interval_end": [point(last), point(after)],
            "start_clipped": left is None, "end_clipped": right is None,
            "unreadable_captures": [iso(t) for t in unreadable], "live": live, "notes": notes}
     out = CACHE / "results" / f"{slug(url, a.model_id)}.json"
