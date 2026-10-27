@@ -249,7 +249,7 @@
   "data_policy": "may_train",
   "status": "live",
   "checked": {
-   "date": "2026-10-20",
+   "date": "2026-10-27",
    "method": "catalogue"
   },
   "volume": {
@@ -527,8 +527,8 @@
   "data_policy": "may_train",
   "status": "live",
   "checked": {
-   "date": "2026-10-20",
-   "method": "api_call"
+   "date": "2026-10-27",
+   "method": "catalogue"
   },
   "volume": {
    "tier": "bulk",
@@ -614,8 +614,8 @@
   "data_policy": "unstated",
   "status": "live",
   "checked": {
-   "date": "2026-10-20",
-   "method": "api_call"
+   "date": "2026-10-27",
+   "method": "catalogue"
   },
   "volume": {
    "tier": "bulk",
@@ -941,8 +941,8 @@
   "data_policy": "unstated",
   "status": "live",
   "checked": {
-   "date": "2026-10-20",
-   "method": "api_call"
+   "date": "2026-10-27",
+   "method": "catalogue"
   },
   "volume": {
    "tier": "bulk",
@@ -1014,8 +1014,8 @@
   "data_policy": "unstated",
   "status": "live",
   "checked": {
-   "date": "2026-10-20",
-   "method": "api_call"
+   "date": "2026-10-27",
+   "method": "catalogue"
   },
   "volume": {
    "tier": "bulk",
@@ -1050,8 +1050,8 @@
   "data_policy": "may_train",
   "status": "live",
   "checked": {
-   "date": "2026-10-20",
-   "method": "api_call"
+   "date": "2026-10-27",
+   "method": "catalogue"
   },
   "volume": {
    "tier": "bulk",
@@ -1086,8 +1086,8 @@
   "data_policy": "may_train",
   "status": "live",
   "checked": {
-   "date": "2026-10-20",
-   "method": "api_call"
+   "date": "2026-10-27",
+   "method": "catalogue"
   },
   "volume": {
    "tier": "bulk",
@@ -1122,8 +1122,8 @@
   "data_policy": "unstated",
   "status": "live",
   "checked": {
-   "date": "2026-10-20",
-   "method": "api_call"
+   "date": "2026-10-27",
+   "method": "catalogue"
   },
   "volume": {
    "tier": "bulk",
@@ -1790,7 +1790,7 @@
   "data_policy": "unstated",
   "status": "live",
   "checked": {
-   "date": "2026-10-20",
+   "date": "2026-10-27",
    "method": "catalogue"
   },
   "volume": {
@@ -1823,7 +1823,7 @@
   "data_policy": "may_train",
   "status": "live",
   "checked": {
-   "date": "2026-10-20",
+   "date": "2026-10-27",
    "method": "catalogue"
   },
   "volume": {
@@ -1856,7 +1856,7 @@
   "data_policy": "may_train",
   "status": "live",
   "checked": {
-   "date": "2026-10-20",
+   "date": "2026-10-27",
    "method": "catalogue"
   },
   "volume": {
@@ -1897,7 +1897,7 @@
   "data_policy": "may_train",
   "status": "live",
   "checked": {
-   "date": "2026-10-20",
+   "date": "2026-10-27",
    "method": "catalogue"
   },
   "volume": {
@@ -1934,8 +1934,8 @@
   "data_policy": "may_train",
   "status": "live",
   "checked": {
-   "date": "2026-10-20",
-   "method": "catalogue"
+   "date": "2026-10-27",
+   "method": "api_call"
   },
   "volume": {
    "tier": "taste",
@@ -1975,7 +1975,7 @@
   "data_policy": "may_train",
   "status": "live",
   "checked": {
-   "date": "2026-10-20",
+   "date": "2026-10-27",
    "method": "catalogue"
   },
   "volume": {
@@ -2045,7 +2045,7 @@
   "data_policy": "may_train",
   "status": "live",
   "checked": {
-   "date": "2026-10-20",
+   "date": "2026-10-27",
    "method": "catalogue"
   },
   "volume": {
@@ -2078,7 +2078,7 @@
   "data_policy": "may_train",
   "status": "live",
   "checked": {
-   "date": "2026-10-20",
+   "date": "2026-10-27",
    "method": "catalogue"
   },
   "volume": {
@@ -2291,7 +2291,7 @@
   "data_policy": "may_train",
   "status": "live",
   "checked": {
-   "date": "2026-10-20",
+   "date": "2026-10-27",
    "method": "catalogue"
   },
   "volume": {
@@ -2500,7 +2500,7 @@
   "data_policy": "may_train",
   "status": "live",
   "checked": {
-   "date": "2026-10-20",
+   "date": "2026-10-27",
    "method": "catalogue"
   },
   "volume": {
@@ -2765,7 +2765,7 @@
   "data_policy": "may_train",
   "status": "live",
   "checked": {
-   "date": "2026-10-20",
+   "date": "2026-10-27",
    "method": "catalogue"
   }
  },
@@ -3415,8 +3415,8 @@
   "data_policy": "zero_retention",
   "status": "live",
   "checked": {
-   "date": "2026-10-20",
-   "method": "api_call"
+   "date": "2026-10-27",
+   "method": "catalogue"
   },
   "volume": {
    "tier": "taste",
@@ -4458,7 +4458,7 @@
   "data_policy": "not_checked",
   "status": "listed",
   "checked": {
-   "date": "2026-10-20",
+   "date": "2026-10-27",
    "method": "catalogue"
   },
   "volume": {
@@ -4489,7 +4489,7 @@
   "data_policy": "not_checked",
   "status": "listed",
   "checked": {
-   "date": "2026-10-20",
+   "date": "2026-10-27",
    "method": "catalogue"
   }
  },
@@ -4518,7 +4518,7 @@
   "data_policy": "not_checked",
   "status": "listed",
   "checked": {
-   "date": "2026-10-20",
+   "date": "2026-10-27",
    "method": "catalogue"
   },
   "note": "The same check also shows reflection/beam, without the -free suffix, at $0; not admitted as a second free lane on this channel: Vercel's own pattern is that the standard ID bills and the -free ID is the free one (see the Ling 3.1 Flash Vercel lane), and whether reflection/beam is free to call cannot be settled without a new check (ADR-022 keeps unverified negatives and duplicates off the page)"
@@ -4549,7 +4549,7 @@
   "data_policy": "not_checked",
   "status": "listed",
   "checked": {
-   "date": "2026-10-20",
+   "date": "2026-10-27",
    "method": "catalogue"
   },
   "volume": {
