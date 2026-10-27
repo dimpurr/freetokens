@@ -2606,5 +2606,41 @@
    "label": "own fetch of the OpenCode Go model list (2026-10-25T09:40:44Z, re-checked 09:47:51Z)",
    "url": "https://opencode.ai/zen/go/v1/models"
   }
+ },
+ {
+  "date": "2026-10-27",
+  "offers": [
+   "freebuff"
+  ],
+  "kind": "limit_changed",
+  "text": "Freebuff's free plan no longer quotes a money allowance: at the 2026-10-27 recheck the pricing page lists Free $0/month with \"30 hours refilled daily\" and says \"Usage is measured in hours\", with a per-model multiplier and daily hours resetting at midnight in the local timezone; the 2026-10-08 record read \"$1.50 refilled daily\" measured in Freebucks, and no hours-to-money rate is published",
+  "source": {
+   "label": "Freebuff Pricing",
+   "url": "https://freebuff.com/pricing"
+  }
+ },
+ {
+  "date": "2026-10-27",
+  "offers": [
+   "trae-cn-free-credits"
+  ],
+  "kind": "limit_changed",
+  "text": "TRAE CN's free-user sign-up grant is 2,000 credits at the 2026-10-27 recheck (新用户注册福利 一次性赠送 2000 积分, valid 31 natural days) where our 2026-10-08 record read 4,000; on the same page the daily check-in is still 100 credits a day and the monthly login gift still 500, and the 4,000 figure now appears only as the paid 会员 Pro monthly allowance",
+  "source": {
+   "label": "TRAE 积分与计费",
+   "url": "https://docs.trae.cn/ide_plans-and-billing"
+  }
+ },
+ {
+  "date": "2026-10-27",
+  "offers": [
+   "google-antigravity"
+  ],
+  "kind": "limit_changed",
+  "text": "Google's Antigravity plans page now describes the free baseline as \"Use of Gemini models, including Gemini 3.8 Flash and other offered Gemini Enterprise models as the core agent model\" plus unlimited Tab completions and all product features; Gemini 3.1 Pro, named in our 2026-10-08 record, is no longer named there - the page refers model availability to its Models list, so our record stops naming it rather than claiming it was removed",
+  "source": {
+   "label": "Plans | Google Antigravity Docs",
+   "url": "https://antigravity.google/docs/plans/"
+  }
  }
 ]

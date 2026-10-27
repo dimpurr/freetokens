@@ -39,7 +39,7 @@
   "quote": "GitHub Copilot Student is available to verified students. The plan includes unlimited code completions and an allowance of GitHub AI Credits, plus limited chat and agent usage",
   "note": "AI-credit allowance amount not published; GitHub reevaluates eligibility monthly (docs.github.com).",
   "checked": {
-   "date": "2026-10-08",
+   "date": "2026-10-27",
    "method": "listing"
   }
  },
@@ -83,7 +83,7 @@
   "quote": "For verified university students, Zed Pro is free for one year.",
   "note": "18+; worldwide; GitHub account >30 days + university email (JetBrains domain db). Downgrades to Free after 12 months.",
   "checked": {
-   "date": "2026-10-08",
+   "date": "2026-10-27",
    "method": "listing"
   }
  },
@@ -127,7 +127,7 @@
   "quote": "Eligible university students get 1,000 credits per month free for one year. Credits do not roll over month to month. No credit card required.",
   "note": "18+; participating universities only; university email; enrollment proof on request; no rollover; add-ons unavailable.",
   "checked": {
-   "date": "2026-10-08",
+   "date": "2026-10-27",
    "method": "listing"
   }
  },
@@ -173,7 +173,7 @@
   "quote": "Eligible students can get a 12-month Google AI Plus (400 GB) student trial plan at no cost.",
   "note": "18+; SheerID via school email; excl. US, CA, HK, MO, Albania, Bolivia, Tunisia; redeem by 2026-12-31; card required.",
   "checked": {
-   "date": "2026-10-08",
+   "date": "2026-10-27",
    "method": "listing"
   }
  },
@@ -217,7 +217,7 @@
   "quote": "The 2026 Back to School offer provides eligible students with four free monthly billing periods of ChatGPT Plus, including access to ChatGPT Work and other Plus features.",
   "note": "Claim by 2026-10-31; US degree-granting institutions; SheerID; payment method required (not charged); once per student.",
   "checked": {
-   "date": "2026-10-08",
+   "date": "2026-10-27",
    "method": "listing"
   }
  },
@@ -260,7 +260,7 @@
   "quote": "OpenAI is offering verified university students in the United States and Canada $100 in credits to use in Codex.",
   "note": "US/CA students at degree-granting universities; SheerID via university email; one per student; credits expire 12mo.",
   "checked": {
-   "date": "2026-10-08",
+   "date": "2026-10-27",
    "method": "listing"
   }
  },
@@ -346,7 +346,7 @@
   "quote": "AI Free | Free | 3 AI Credits per 30-days",
   "note": "Not student-gated (AI Pro not in student licenses). Excluded in Mainland China; not in Android Studio/Community.",
   "checked": {
-   "date": "2026-10-08",
+   "date": "2026-10-27",
    "method": "listing"
   }
  },
@@ -389,7 +389,7 @@
   "quote": "Once verified, educators can access Claude for Teachers entirely free. Sign up by June 30, 2027, for a full year of access.",
   "note": "Educators only (not students), 18+, US K-12. No individual student discount; school/district offering separate.",
   "checked": {
-   "date": "2026-10-08",
+   "date": "2026-10-27",
    "method": "listing"
   }
  },
@@ -403,7 +403,7 @@
    "amount": null,
    "unit": "other",
    "per": "week",
-   "text": "Free baseline: Gemini 3.1 Pro + 3.8 Flash, unlimited Tab completions, weekly quota"
+   "text": "Free baseline: Gemini models incl. 3.8 Flash, unlimited Tab completions, weekly quota"
   },
   "requires": [
    "account"
@@ -417,14 +417,13 @@
   "models": {
    "kind": "list",
    "ids": [
-    "Gemini 3.1 Pro",
     "Gemini 3.8 Flash"
    ],
    "tracked": [
     "gemini-3.8-flash"
    ],
-   "count": 2,
-   "note": "Core agent models on the free baseline; 'A meaningful quota, refreshed weekly'"
+   "count": null,
+   "note": "The plans page names Gemini 3.8 Flash as the core agent model and refers model availability to its Models page (2026-10-27)"
   },
   "status": "live",
   "started": null,
@@ -433,10 +432,10 @@
    "label": "Plans | Google Antigravity Docs",
    "url": "https://antigravity.google/docs/plans/"
   },
-  "quote": "All plans receive the following baseline features: Use of Gemini models, including Gemini 3.1 Pro, Gemini 3.8 Flash ... Unlimited Tab completions",
+  "quote": "All plans receive the following baseline features: Use of Gemini models, including Gemini 3.8 Flash and other offered Gemini Enterprise models as the core agent model Unlimited Tab completions Access to all product features, such as scheduled tasks and the CLI",
   "note": "Refreshes weekly, higher limits + 3rd-party models need Google AI Pro/Ultra. No BYOK; 3rd-party clients break ToS.",
   "checked": {
-   "date": "2026-10-08",
+   "date": "2026-10-27",
    "method": "listing"
   }
  },
@@ -484,7 +483,7 @@
   "quote": "面向中国高校学生（包括中国香港、中国澳门和中国台湾地区），完成实名认证后即可领取300元无门槛抵扣金。",
   "note": "CN students incl HK/MO/TW; student real-name verification on Aliyun; valid 1 year; window 2025-11-11 to 2026-11-10.",
   "checked": {
-   "date": "2026-10-08",
+   "date": "2026-10-27",
    "method": "listing"
   }
  },
@@ -499,7 +498,7 @@
    "amount": 100,
    "unit": "credits",
    "per": "day",
-   "text": "Daily check-in 100 credits; +500/mo login; one-time 4000 on signup; 500 per invite"
+   "text": "Daily check-in 100 credits; +500/mo login; one-time 2000 on signup; 500 per invite"
   },
   "requires": [
    "account",
@@ -529,10 +528,10 @@
    "label": "TRAE 积分与计费",
    "url": "https://docs.trae.cn/ide_plans-and-billing"
   },
-  "quote": "免费用户 ... 每日签到 每天 100 积分 ... 每月登录赠送 500 积分",
-  "note": "Daily check-in reads 100/day today (2026-10-08); earlier data said 150. Credits valid 31 days; free users can't buy.",
+  "quote": "免费用户 ... 每日签到 每天 100 积分 ... 每月登录赠送 500 积分 ... 新用户注册福利 一次性赠送 2000 积分",
+  "note": "Sign-up grant read 4000 on 2026-10-08; the same page says 2000 (valid 31 days) on 2026-10-27. Credits valid 31 days; free users can't buy.",
   "checked": {
-   "date": "2026-10-08",
+   "date": "2026-10-27",
    "method": "listing"
   }
  },
@@ -575,7 +574,7 @@
   "quote": "New users receive 250 credits immediately upon their first sign-in. The credits are valid for 14 days.",
   "note": "New-user benefit; separate from the Free plan's monthly 100 credits and the 7-day Pro trial.",
   "checked": {
-   "date": "2026-10-08",
+   "date": "2026-10-27",
    "method": "listing"
   }
  },
@@ -618,7 +617,7 @@
   "quote": "Free ... Base Credits / Month 100 ... Promotional Bonus (Limited-Time Offer) 30 credits / day",
   "note": "Bonus needs >=1 chat request that day; base+bonus valid for the month, no rollover; promo is limited-time.",
   "checked": {
-   "date": "2026-10-08",
+   "date": "2026-10-27",
    "method": "listing"
   }
  },
@@ -662,7 +661,7 @@
   "quote": "Users who have never purchased Pro or claimed a free trial can receive one 7-day Pro free trial after linking a credit card and enabling auto-renewal.",
   "note": "One per user; requires linked card + auto-renewal; converts to $10/mo Pro unless cancelled; 500 credits valid 7 days.",
   "checked": {
-   "date": "2026-10-08",
+   "date": "2026-10-27",
    "method": "listing"
   }
  },
@@ -706,7 +705,7 @@
   "quote": "WorkBuddy 提供体验版及多个付费订阅版本，其中体验版可免费使用 ... 基础积分 / 月 500",
   "note": "Free 体验版 tier; 500 base credits/month; stops once a paid plan is active; shared with CodeBuddy (one account).",
   "checked": {
-   "date": "2026-10-08",
+   "date": "2026-10-27",
    "method": "listing"
   }
  },
@@ -753,7 +752,7 @@
   "quote": "方舟为新用户提供免费推理试用额度……您只需要注册火山引擎，即可获得一定额度的免费调用模型推理服务的次数。",
   "note": "Amount not published (check console); pay-per-token online inference only; exhaustion needs real-name + activation.",
   "checked": {
-   "date": "2026-10-08",
+   "date": "2026-10-27",
    "method": "listing"
   }
  },
@@ -803,7 +802,7 @@
   "quote": "适用对象：国内手机号注册的新用户。赠送金额：注册即赠送 15 元代金券。领取条件：完成实名认证后发放。",
   "note": "Valid 3 months from issue; cannot experience Kimi K3; after used, billing draws topped-up balance.",
   "checked": {
-   "date": "2026-10-08",
+   "date": "2026-10-27",
    "method": "listing"
   }
  },
@@ -852,7 +851,7 @@
   "quote": "Free ¥0 1,000 次/月 免费额度 基础 Web 搜索",
   "note": "Search-API free tier (not LLM tokens); CN site, payment via Alipay.",
   "checked": {
-   "date": "2026-10-08",
+   "date": "2026-10-27",
    "method": "listing"
   }
  },
@@ -896,7 +895,7 @@
   "quote": "在桌面端下载并登录豆包工作，即可免费领取 30 天订阅权益。已付费用户的会员时长自动顺延。",
   "note": "Desktop app (豆包工作). Quota also usable in 飞书 AI features if same phone number.",
   "checked": {
-   "date": "2026-10-08",
+   "date": "2026-10-27",
    "method": "listing"
   }
  },
@@ -945,7 +944,7 @@
   "quote": "活动时间：2026.08.24 00:00 — 2026.10.31 23:59，第一批限量 200 万份，先到先得。",
   "note": "Mainland China students (2nd-gen ID; HK/MO/TW & foreign not supported); 2M slots first-come; credits valid 3 months.",
   "checked": {
-   "date": "2026-10-08",
+   "date": "2026-10-27",
    "method": "listing"
   }
  },
@@ -1030,7 +1029,7 @@
   "quote": "Free tier ... Monthly credit $5/month included ... Your free credits start when you make your first AI Gateway request.",
   "note": "Team account + payment method required (403 customer_verification_required). Buying credits ends free credit.",
   "checked": {
-   "date": "2026-10-08",
+   "date": "2026-10-27",
    "method": "listing"
   }
  },
@@ -1041,10 +1040,10 @@
   "channel": "Freebuff",
   "type": "daily_allowance",
   "gets": {
-   "amount": 1.5,
-   "unit": "USD",
+   "amount": 30,
+   "unit": "hours",
    "per": "day",
-   "text": "Free plan '$1.50 refilled daily', measured in Freebucks, resets at midnight"
+   "text": "30 hours refilled daily, no card; usage measured in hours with a per-model multiplier"
   },
   "requires": [
    "account"
@@ -1054,8 +1053,10 @@
   "models": {
    "kind": "list",
    "ids": [
-    "GLM 5.3 Flash",
-    "DeepSeek V4.1 Flash"
+    "MiMo v2.6 Flash Slow",
+    "MiMo v2.6 Flash Fast",
+    "DeepSeek V4.1 Flash",
+    "Claude Haiku 5.5"
    ],
    "tracked": [
     "deepseek-v4.1-flash",
@@ -1068,8 +1069,8 @@
     "solar-pro-4",
     "space-bunny"
    ],
-   "count": 2,
-   "note": "Free plan per-day lists these 2; more models priced in paid-tier table"
+   "count": 4,
+   "note": "Free plan's per-day list on the pricing page (2026-10-27); the hours-per-day table adds more models on paid tiers"
   },
   "status": "live",
   "started": null,
@@ -1078,10 +1079,10 @@
    "label": "Freebuff Pricing",
    "url": "https://freebuff.com/pricing"
   },
-  "quote": "Free $0/month. No card required. $1.50 refilled daily. Unlimited messages per session. Usage is measured in Freebucks.",
-  "note": "Homepage: 'funded by ads'. Page shows '$1.50/day', not literal '150 Freebucks'; FB-to-$ rate not stated. 2026-10-08.",
+  "quote": "Free $0 / month No card required 30 hours refilled daily Unlimited messages per session ... Usage is measured in hours. ... Your daily hours reset at midnight in your local timezone.",
+  "note": "Plan changed since 2026-10-08: was \"$1.50 refilled daily\" in Freebucks, now hours. No hours-to-money rate; beta costs may change.",
   "checked": {
-   "date": "2026-10-08",
+   "date": "2026-10-27",
    "method": "listing"
   }
  },
@@ -1124,7 +1125,7 @@
   "quote": "Free inference with leading models. Rate limits: Up to 40 rpm, 10,000 requests per day.",
   "note": "Page shows rate limits, not credits ('credit'=0 hits); needs Dev Program+verify. Old 1000-credit model per forums.",
   "checked": {
-   "date": "2026-10-08",
+   "date": "2026-10-27",
    "method": "listing"
   }
  },
@@ -1164,7 +1165,7 @@
   "quote": "Our free allocation allows anyone to use a total of 10,000 Neurons per day at no charge. All limits reset daily at 00:00 UTC.",
   "note": "Included in Workers Free plan. Docs last updated 2026-10-01; re-checked 2026-10-08.",
   "checked": {
-   "date": "2026-10-08",
+   "date": "2026-10-27",
    "method": "listing"
   }
  },
@@ -1205,7 +1206,7 @@
   "quote": "魔搭推出免费模型推理API，注册就送每日2000次调用",
   "note": "Docs limits page is SPA, unextractable 2026-10-08; 2000/day+200/model+100/min corroborated; may adjust anytime.",
   "checked": {
-   "date": "2026-10-08",
+   "date": "2026-10-27",
    "method": "listing"
   }
  },
@@ -1251,7 +1252,7 @@
   "quote": "New accounts receive $5 in free credits after adding a verified payment method. These credits expire 30 days after they're granted and can be used across all public models.",
   "note": "No permanently free tier; credits time+credit bounded. Checked 2026-10-08.",
   "checked": {
-   "date": "2026-10-08",
+   "date": "2026-10-27",
    "method": "listing"
   }
  },
@@ -1297,7 +1298,7 @@
   "quote": "Upon first sign-up, you receive $1 in trial credit, valid for 30 days. Billing setup is mandatory... requires a bank card.",
   "note": "Bank card required at onboarding. Builder Program adds $25; Startups up to $5k are separate programs. 2026-10-08.",
   "checked": {
-   "date": "2026-10-08",
+   "date": "2026-10-27",
    "method": "listing"
   }
  },
@@ -1342,7 +1343,7 @@
   "quote": "Through the AMD AI Developer Program, developers can now access $50 of Fireworks credits... $50 in Fireworks credits, 90-day validity from issuance.",
   "note": "Needs AMD AI Dev Program join+approval (~2 days). No always-free tier; base is prepaid credits / 10 RPM.",
   "checked": {
-   "date": "2026-10-08",
+   "date": "2026-10-27",
    "method": "listing"
   }
  },
@@ -1387,7 +1388,7 @@
   "quote": "New users can complete a quick account setup survey to receive $100 in promotional credits for eligible Novita Sandbox usage. No credit card is required.",
   "note": "Register page: valid 90 days. Secondary sources cite ~$0.50 LLM voucher; Novita states no LLM credit amount. 2026-10-08.",
   "checked": {
-   "date": "2026-10-08",
+   "date": "2026-10-27",
    "method": "listing"
   }
  },
@@ -1433,7 +1434,7 @@
   "quote": "New user free quota: When you activate your account, all existing models receive a free quota. The 90-day period starts from your account activation date.",
   "note": "Unlock needs completing payment info (card). Offsets only real-time inference. 2026-10-08.",
   "checked": {
-   "date": "2026-10-08",
+   "date": "2026-10-27",
    "method": "listing"
   }
  },
@@ -1479,7 +1480,7 @@
   "quote": "When you first activate Alibaba Cloud Model Studio (Singapore region), the platform automatically grants you a free quota for various models... valid for 90 days.",
   "note": "Per-model ~1M tokens, 90 days. Needs account info (mobile). OAuth separate 2,000 calls/day. Doc 2026-09-22. 2026-10-08.",
   "checked": {
-   "date": "2026-10-08",
+   "date": "2026-10-27",
    "method": "listing"
   }
  },
@@ -1525,7 +1526,7 @@
   "quote": "当您首次开通阿里云百炼时，平台会自动为您发放各模型的新人专属免费额度。免费额度的有效期为 90 天，从开通阿里云百炼、模型发布或模型申请通过之日起计算。",
   "note": "通常100万Token/模型；无需实名认证即可领取，用完按量付费需实名+充值；OAuth另计每天2000次。Checked 2026-10-08.",
   "checked": {
-   "date": "2026-10-08",
+   "date": "2026-10-27",
    "method": "listing"
   }
  },
@@ -1566,7 +1567,7 @@
   "quote": "新用户注册即得 14 元免费额度 (相当于 2 千万 Qwen1.5-14B Tokens)",
   "note": "¥14 base needs only account. ¥16 通用代金券 needs 推荐官 invite + 实名认证 (developer-talk/od7wj9rr23p95uhihmhrombp). 2026-10-08.",
   "checked": {
-   "date": "2026-10-08",
+   "date": "2026-10-27",
    "method": "listing"
   }
  },
@@ -1613,7 +1614,7 @@
   "quote": "首次注册千问AI平台后，大部分模型会自动获得独立的免费额度。其中文本类模型的免费额度累计超过7000万 Token。",
   "note": "每模型通常100万Token，90天；未认证需完成(实名)认证后发放，用尽即停默认开启。Checked 2026-10-08.",
   "checked": {
-   "date": "2026-10-08",
+   "date": "2026-10-27",
    "method": "listing"
   }
  },
@@ -1659,7 +1660,7 @@
   "quote": "Verified students can get Mistral Pro for $5.99 / month (normally $14.99).",
   "note": "Education: accredited institution, max 12mo, new to Vibe; Pro lists $15/mo API credits. $10 Free-credit unverified.",
   "checked": {
-   "date": "2026-10-08",
+   "date": "2026-10-27",
    "method": "listing"
   }
  },
@@ -1709,7 +1710,7 @@
   "quote": "Free Users — Monthly Credits: None. PRO Users — $2.00... Team or Enterprise — $2.00 per seat.",
   "note": "PRO is $9/month (huggingface.co/pricing). Credits credited monthly, applied before pay-as-you-go. Checked 2026-10-08.",
   "checked": {
-   "date": "2026-10-08",
+   "date": "2026-10-27",
    "method": "listing"
   }
  },
@@ -1751,7 +1752,7 @@
   "quote": "The free tier includes a limited number of total agents and LLM requests with rotating free models.",
   "note": "Free Auto quota number not published; 3 agents; quotas reset monthly, need OAuth via app/CLI/web. 2026-10-08.",
   "checked": {
-   "date": "2026-10-08",
+   "date": "2026-10-27",
    "method": "listing"
   }
  },
@@ -1789,7 +1790,7 @@
   "quote": "Individual users of Qoder International can claim 100 Credits every day in the Qoder desktop app. Both free users and paid individual subscribers are eligible.",
   "note": "Manual daily claim (10:00 SGT window); each reward valid 30 days, carry over; Teams ineligible; end TBA. 2026-10-08.",
   "checked": {
-   "date": "2026-10-08",
+   "date": "2026-10-27",
    "method": "listing"
   }
  },
