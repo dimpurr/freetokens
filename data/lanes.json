@@ -2180,12 +2180,13 @@
   "ends": {
    "announced": null,
    "expected": null,
-   "confidence": "none"
+   "confidence": "none",
+   "note": "no end announced; observed gone from the OpenRouter free catalogue on 2026-10-27"
   },
   "data_policy": "may_train",
-  "status": "live",
+  "status": "ended",
   "checked": {
-   "date": "2026-10-20",
+   "date": "2026-10-27",
    "method": "catalogue"
   },
   "volume": {

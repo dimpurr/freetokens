@@ -2638,9 +2638,22 @@
   ],
   "kind": "limit_changed",
   "text": "Google's Antigravity plans page now describes the free baseline as \"Use of Gemini models, including Gemini 3.8 Flash and other offered Gemini Enterprise models as the core agent model\" plus unlimited Tab completions and all product features; Gemini 3.1 Pro, named in our 2026-10-08 record, is no longer named there - the page refers model availability to its Models list, so our record stops naming it rather than claiming it was removed",
-  "source": {
-   "label": "Plans | Google Antigravity Docs",
-   "url": "https://antigravity.google/docs/plans/"
+   "source": {
+    "label": "Plans | Google Antigravity Docs",
+    "url": "https://antigravity.google/docs/plans/"
+   }
+  },
+  {
+   "date": "2026-10-27",
+   "lanes": [
+    "nemotron-3-super-120b-a12b-or"
+   ],
+   "kind": "ended",
+   "end_date": "2026-10-27",
+   "text": "nvidia/nemotron-3-super-120b-a12b:free is no longer in OpenRouter's free catalogue at the 2026-10-27T13:33Z daily check, and still absent when we re-read the same API the same day; only the paid nvidia/nemotron-3-super-120b-a12b remains, at $0.30/$2.40 per Mtoken; no end date announced",
+   "source": {
+    "label": "OpenRouter models API",
+    "url": "https://openrouter.ai/api/v1/models"
+   }
   }
- }
-]
+ ]
