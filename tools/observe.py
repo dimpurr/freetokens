@@ -187,6 +187,42 @@ def lanes_stale(today=None):
     return sorted(out, key=lambda x: -x["days"])
 
 
+def zh_assets():
+    """Shared assets (logos etc.) must load on zh pages too (2026-10-28: /zh/assets/* 404 took down every zh logo).
+    Fetch the zh home plus the first zh model/channel pages linked from it, collect <img src> and url(...) targets,
+    and report any same-origin address that does not answer 200."""
+    from urllib.parse import urljoin
+    problems = []
+    try:
+        home = get(SITE + "/zh")[1].decode("utf-8", "ignore")
+    except Exception as e:
+        return [f"cannot read /zh: {str(e)[:60]}"]
+    models = re.findall(r'href="(/zh/models/[^"]+)"', home)
+    channels = re.findall(r'href="(/zh/channels/[^"]+)"', home)
+    pages = ["/zh"] + models[:1] + channels[:1]
+    urls = set()
+    for p in pages:
+        try:
+            html = get(SITE + p)[1].decode("utf-8", "ignore")
+        except Exception as e:
+            problems.append(f"{p} unreadable: {str(e)[:60]}")
+            continue
+        for src in re.findall(r'<img[^>]+src="([^"]+)"', html) + re.findall(r"url\(['\"]?([^)'\"]+)\)", html):
+            if src.startswith("data:"):
+                continue
+            urls.add(urljoin(SITE + p, src))
+    for u in sorted(urls):
+        if not u.startswith(SITE):
+            continue
+        try:
+            code = get(u, head=True)[0]
+        except Exception as e:
+            code = str(e)[:60]
+        if code != 200:
+            problems.append(f"{u[len(SITE):]} answers {code} (referenced from zh pages)")
+    return problems
+
+
 def health(watch_path=None):
     h = {"checked": dt.datetime.now(dt.timezone.utc).isoformat(timespec="minutes"), "pages": {}, "problems": []}
     for p in ("/", "/lanes", "/timeline", "/makers", "/feed.xml", "/sitemap.xml", "/llms.txt", "/zh", "/zh/feed.xml"):
@@ -240,6 +276,7 @@ def health(watch_path=None):
         h["problems"] += c["problems"]
     except Exception as e:
         h["problems"].append(f"cannot check URLs: {str(e)[:60]}")
+    h["problems"] += zh_assets()  # 2026-10-28: zh logos 404 via /zh/assets prefix; shared assets must load on zh pages
     h["stale_lanes"] = lanes_stale()
     today = dt.date.today()
     h["stale_offers"] = [o["id"] for o in json.loads((ROOT / "data/offers.json").read_text())

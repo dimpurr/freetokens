@@ -76,7 +76,7 @@ const initials = (name) => String(name || "?").replace(/\(.*\)/, "").split(/[\s.
 function logo(key, name, pictureFrom) {
   const e = LOGOS[key] || LOGOS[logoSlug(key)] || LOGOS[logoSlug(name)] || LOGOS[logoSlug(name).split("-")[0]];
   if (e) {
-    const u = `${D.root}assets/logos/${e.file}`;
+    const u = `${D.assets}logos/${e.file}`;
     return e.mono ? `<span class="lg m" style="--u:url('${u}')" aria-hidden="true"></span>` : `<img class="lg" src="${u}" alt="" width="16" height="16" decoding="async">`;
   }
   const pic = pictureFrom && (NAME_PICS.find(([re]) => re.test(pictureFrom.toLowerCase())) || [])[1];

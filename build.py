@@ -1060,6 +1060,9 @@ def render_body(template, payload, root, home, shared=False, lang="en"):
         payload = dict(payload, lang="zh", i18n=T)
     else:
         payload = dict(payload, lang="en")
+    # Shared static assets (logos etc.) live language-neutrally under /assets/ on the
+    # deployed site; local previews keep the old relative path (root + assets/).
+    payload = dict(payload, assets=("/assets/" if shared else root + "assets/"))
     nlanes = len(payload.get("lanes", []))
     body = re.sub(r"All \d+ lanes on the chart →",
                   f"全部 {nlanes} 条线路见图表 →" if lang == "zh" else f"All {nlanes} lanes on the chart →", body)
