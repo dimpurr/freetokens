@@ -789,9 +789,29 @@
      "label": "共享池",
      "help": "多个模型共享一个额度池；计量单位为共享池，非单模型（ADR-033）"
     }
-    }
    }
   },
+  "unit": {
+   "points": {
+    "label": "points",
+    "zh": {
+     "label": "点数"
+    }
+   },
+   "neurons": {
+    "label": "neurons",
+    "zh": {
+     "label": "Neurons"
+    }
+   },
+   "magicube": {
+    "label": "magicube",
+    "zh": {
+     "label": "魔粒"
+    }
+   }
+  }
+ },
   "tables": {
    "lanes": {
     "required": [
@@ -819,7 +839,7 @@
      "meter": "meter"
     },
     "field_docs": {
-     "pool": "ADR-033: present only when meter='pooled'. Object describing the shared quota pool: {offer=<offer_id>, cap={amount,unit,per}, note=<risk/limit notes>}.",
+     "pool": "ADR-033: present only when meter='pooled'. Object describing the shared quota pool: {offer=<offer_id>, cap={amount>0, unit in vocab 'unit', per in vocab 'per'}, note=<risk/limit notes>}.",
      "public_record": "ADR-034: pointer to a publicly verifiable historical record (URL) for lanes evidenced only by public records (checked.method = public_record)."
     },
     "unknown_words": [

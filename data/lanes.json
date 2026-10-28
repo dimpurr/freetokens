@@ -5114,11 +5114,11 @@
    "expected": null,
    "confidence": "none"
   },
-  "data_policy": "not_checked",
+   "data_policy": "not_checked",
   "status": "live",
   "checked": {
    "date": "2026-10-28",
-   "method": "public_record"
+   "method": "api_call"
   }
  },
  {

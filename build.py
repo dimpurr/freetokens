@@ -238,6 +238,17 @@ def validate(lanes, events, models):
                 cap = pool.get("cap")
                 if not (isinstance(cap, dict) and "amount" in cap and "unit" in cap and "per" in cap):
                     errs.append(f"{w}: pool.cap must have amount, unit and per")
+                else:
+                    if cap.get("per") not in VOCAB["per"]:
+                        errs.append(f"{w}: pool.cap.per {cap.get('per')!r} is not in vocab 'per' ({', '.join(VOCAB['per'])})")
+                    amt = cap.get("amount")
+                    if isinstance(amt, bool) or not isinstance(amt, (int, float)) or amt <= 0:
+                        errs.append(f"{w}: pool.cap.amount must be a positive number, got {amt!r}")
+                    unit = cap.get("unit")
+                    if not (isinstance(unit, str) and unit.strip()):
+                        errs.append(f"{w}: pool.cap.unit must be a non-empty string")
+                    elif unit not in VOCAB["unit"]:
+                        errs.append(f"{w}: pool.cap.unit {unit!r} is not in vocab 'unit' ({', '.join(VOCAB['unit'])})")
         elif meter == "per_model":
             if "pool" in l:
                 errs.append(f"{w}: meter 'per_model' must not carry a pool")
@@ -1105,6 +1116,8 @@ def translate_dataset(base):
         ls["note"] = zh_text(ls.get("note") or "")
         l["ends"]["note"] = zh_text((l.get("ends") or {}).get("note") or "")
         l["started"]["note"] = zh_text((l.get("started") or {}).get("note") or "")
+        if (l.get("pool") or {}).get("note"):
+            l["pool"]["note"] = zh_text(l["pool"]["note"])
     for e in z.get("events", []):
         e["text"] = zh_text(e.get("text") or "")
         e["source"]["label"] = zh_text((e.get("source") or {}).get("label") or "")
@@ -1642,6 +1655,7 @@ def collect_free_keys(lanes, events, models):
         add((l.get("limits_stated") or {}).get("note"))
         add((l.get("ends") or {}).get("note"))
         add((l.get("started") or {}).get("note"))
+        add((l.get("pool") or {}).get("note"))
     for e in events:
         add(e.get("text"))
         add((e.get("source") or {}).get("label"))
