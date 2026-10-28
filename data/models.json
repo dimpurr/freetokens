@@ -1261,7 +1261,7 @@
     "id": "hunyuan-mt-7b",
     "name": "Hunyuan-MT-7B",
     "maker": "tencent",
-    "context": null,
+    "context": "not checked",
     "image_input": "no",
     "aa_index": {
       "value": null,

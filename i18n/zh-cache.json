@@ -847,5 +847,9 @@
  "Token Plan public beta since 2026-10-03": "Token Plan 公测从 2026-10-03 起",
  "Workers Free daily Neurons since channel launch": "Workers Free 每日 Neurons 自频道上线起",
  "kimi-k3 tested 2026-10-27 (Free beta)": "kimi-k3 实测于 2026-10-27（Free 公测）",
- "shared credit pool across models; kimi-k3 + deepseek-v4-flash in lanes": "跨模型共享 credit 池；kimi-k3 + deepseek-v4-flash 入 lane"
+ "shared credit pool across models; kimi-k3 + deepseek-v4-flash in lanes": "跨模型共享 credit 池；kimi-k3 + deepseek-v4-flash 入 lane",
+ "SiliconFlow rendered pricing table lists zai-org/GLM-5.3-Flash at ¥0.80/¥2.80 per M tokens (cache ¥0.23), contradicting the model plaza price field \"0\"; treated as paid, not free": "SiliconFlow 渲染价格表将 zai-org/GLM-5.3-Flash 列为 ¥0.80/¥2.80 每 M tokens（缓存 ¥0.23），与模型广场 price 字段 \"0\" 矛盾；视为付费，非免费",
+ "Added hunyuan-mt-7b-siliconflow: translation-specialised chat model, rendered pricing table marks it 免费 (strong evidence); translation models count as text LLM lanes": "新增 hunyuan-mt-7b-siliconflow：翻译专用对话模型，渲染价格表明写免费（强证据）；翻译模型计入文本 LLM lane",
+ "Translation-specialised chat model (SiliconFlow plaza subType chat); rendered pricing table marks 免费 (2026-10-28).": "翻译专用对话模型（SiliconFlow 广场 subType chat）；渲染价格表明写免费（2026-10-28）。",
+ "rendered pricing table marks 免费; model plaza subType chat": "渲染价格表明写免费；模型广场 subType chat"
 }
