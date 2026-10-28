@@ -540,7 +540,7 @@
   "name": "CodeBuddy 250 credits for new users",
   "name_zh": "CodeBuddy 新用户 250 Credits",
   "provider": "Buddy AI (CodeBuddy 国际版)",
-  "channel": null,
+  "channel": "CodeBuddy (international)",
   "type": "signup_trial",
   "gets": {
    "amount": 250,
@@ -583,7 +583,7 @@
   "name": "CodeBuddy Free plan 100 credits/month",
   "name_zh": "CodeBuddy Free 计划 100 Credits/月",
   "provider": "Buddy AI (CodeBuddy 国际版)",
-  "channel": null,
+  "channel": "CodeBuddy (international)",
   "type": "free_plan",
   "gets": {
    "amount": 100,
@@ -626,7 +626,7 @@
   "name": "CodeBuddy Pro 7-day free trial (500 credits)",
   "name_zh": "CodeBuddy Pro 7 天免费试用 (500 Credits)",
   "provider": "Buddy AI (CodeBuddy 国际版)",
-  "channel": null,
+  "channel": "CodeBuddy (international)",
   "type": "signup_trial",
   "gets": {
    "amount": 500,
@@ -670,7 +670,7 @@
   "name": "WorkBuddy experience plan 500 credits/month",
   "name_zh": "WorkBuddy 体验版 500 积分/月",
   "provider": "Tencent (WorkBuddy / CodeBuddy)",
-  "channel": null,
+  "channel": "CodeBuddy",
   "type": "free_plan",
   "gets": {
    "amount": 500,
@@ -904,7 +904,7 @@
   "name": "WorkBuddy campus freshman 1,000 credits",
   "name_zh": "WorkBuddy 开学季新生福利 1000 积分",
   "provider": "Tencent (腾讯 WorkBuddy)",
-  "channel": null,
+  "channel": "CodeBuddy",
   "type": "student",
   "gets": {
    "amount": 1000,

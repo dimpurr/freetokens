@@ -733,6 +733,34 @@
    "site": "https://www.codebuddy.cn",
    "models": "https://www.workbuddy.cn/docs/workbuddy/From-Beginner-to-Expert-Guide/Function-Description/Model"
   },
-  "free_condition": "Inside the official CodeBuddy / WorkBuddy clients, CN site: Hy3 runs at a 0.00x credit multiplier (limited-time free), Hy4 preview is free only 23:00-08:00 Beijing; other models deduct credits at the multiplier the client shows"
- }
+   "free_condition": "Inside the official CodeBuddy / WorkBuddy clients, CN site: Hy3 runs at a 0.00x credit multiplier (limited-time free), Hy4 preview is free only 23:00-08:00 Beijing; other models deduct credits at the multiplier the client shows"
+  },
+  {
+   "name": "CodeBuddy (international)",
+   "entry": {
+    "kind": "account",
+    "usd": null,
+    "period": null,
+    "note": "Tencent CodeBuddy international site (codebuddy.ai); Free 100 credits/month + new-user 250 (14 days) + daily active 30 (client-initiated chat, next-day, stacks with monthly). Whether CN and international accounts interoperate: 未找到"
+   },
+   "source": {
+    "url": "https://www.codebuddy.ai/docs/ide/Account/pricing",
+    "label": "CodeBuddy Pricing (intl, seen 2026-10-28)"
+   },
+   "checked": "2026-10-28",
+   "access": {
+    "form": "own_cli",
+    "protocols": [],
+    "rules": [],
+    "source": {
+     "url": "https://www.codebuddy.ai/docs/ide/Account/pricing",
+     "label": "CodeBuddy Pricing (intl, seen 2026-10-28)"
+    }
+   },
+   "links": {
+    "site": "https://www.codebuddy.ai",
+    "models": "https://www.codebuddy.ai/docs/ide/Account/pricing"
+   },
+   "free_condition": "Free 100 credits/month + new-user 250 (14 days) + daily active 30 (client-initiated chat only, credited next day, stacks with monthly; not issued while Pro/trial active)"
+  }
 ]

@@ -50,17 +50,22 @@
   "src": "lobehub",
   "mono": false
  },
- "cline": {
-  "file": "cline.svg",
-  "src": "lobehub",
-  "mono": true
- },
- "cloudflare-workers-ai": {
-  "file": "workersai-color.svg",
-  "src": "lobehub",
-  "mono": false
- },
- "cohere": {
+  "cline": {
+   "file": "cline.svg",
+   "src": "lobehub",
+   "mono": true
+  },
+  "cloudflare-workers-ai": {
+   "file": "workersai-color.svg",
+   "src": "lobehub",
+   "mono": false
+  },
+  "codebuddy": {
+   "file": "codebuddy.svg",
+   "src": "lobehub",
+   "mono": true
+  },
+  "cohere": {
   "file": "cohere-color.svg",
   "src": "lobehub",
   "mono": false
