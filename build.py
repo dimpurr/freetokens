@@ -151,6 +151,7 @@ def validate(lanes, events, models):
             errs.append(f"models[{m['id']}]: an AA index value needs aa_index.url (its artificialanalysis.ai page)")
     model_ids = {m["id"] for m in models}
     lane_ids = {l["id"] for l in lanes}
+    offer_ids = {o["id"] for o in load_optional("offers", [])}
     for coll, name in ((lanes, "lanes"), (models, "models")):
         ids = [r["id"] for r in coll]
         for dup in {x for x in ids if ids.count(x) > 1}:
@@ -226,6 +227,20 @@ def validate(lanes, events, models):
             errs.append(f"{w}: volume needs tier (taste / daily / bulk) and basis (where the number comes from)")
         if "region" in l and not (isinstance(l["region"], str) and re.fullmatch(r"[A-Z]{2}(, ?[A-Z]{2})*", l["region"])):
             errs.append(f"{w}: region must be ISO country codes like 'US' or 'US, CA' (or leave it out for worldwide)")
+        meter = l.get("meter")
+        if meter == "pooled":
+            pool = l.get("pool")
+            if not isinstance(pool, dict):
+                errs.append(f"{w}: meter 'pooled' requires a pool object")
+            else:
+                if pool.get("offer") not in offer_ids:
+                    errs.append(f"{w}: pool.offer {pool.get('offer')!r} is not a known offer")
+                cap = pool.get("cap")
+                if not (isinstance(cap, dict) and "amount" in cap and "unit" in cap and "per" in cap):
+                    errs.append(f"{w}: pool.cap must have amount, unit and per")
+        elif meter == "per_model":
+            if "pool" in l:
+                errs.append(f"{w}: meter 'per_model' must not carry a pool")
         ls = l["limits_stated"]
         if set(ls) - {"basis", "per_day", "per_minute", "hours_day", "tokens_day", "note", "source"}:
             errs.append(f"{w}: limits_stated has unknown fields {sorted(set(ls) - {'basis', 'per_day', 'per_minute', 'hours_day', 'tokens_day', 'note', 'source'})}")
