@@ -2754,5 +2754,17 @@
     "label": "腾讯云代码助手（CodeBuddy 国际站）计费概述 · 限时每日活跃奖励说明",
     "url": "https://www.tencentcloud.com/zh/document/product/1256/77269"
    }
+  },
+  {
+   "date": "2026-10-28",
+   "lanes": [
+    "iceman-contributor-go"
+   ],
+   "kind": "unavailable",
+   "text": "opencode-go/iceman-contributor-free answered HTTP 400 Model is unavailable on 9 probes across 4 rounds (2026-10-27 15:3x - 2026-10-28 15:3x, seats go2/go3); the Go catalogue still lists it, so unavailable per ADR-022 section 4, not ended",
+   "source": {
+    "label": "Go catalogue (still listed)",
+    "url": "https://opencode.ai/zen/go/v1/models"
+   }
   }
 ]

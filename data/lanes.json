@@ -4864,12 +4864,12 @@
    "note": "\"free for a limited time\", no date given"
   },
   "data_policy": "unstated",
-  "status": "listed",
+  "status": "unavailable",
   "checked": {
-   "date": "2026-10-25",
-   "method": "catalogue"
+   "date": "2026-10-28",
+   "method": "api_call"
   },
-   "note": "Stealth 'iceman', maker unknown; contributor suffix = may train on prompts (inferred, not stated); $0 but Go-plan-gated; no AA score",
+  "note": "Stealth 'iceman', maker unknown; contributor suffix = may train on prompts (inferred, not stated); $0 but Go-plan-gated; no AA score. Endpoint unavailable ~24h (HTTP 400 Model is unavailable, 2026-10-27~28, go2 x9; Go catalogue still lists it): unavailable per ADR-022 §4, not ended",
   "volume": {
    "tier": "bulk",
    "basis": "OpenCode Go rate table lists it as Unlimited (limited time)",
