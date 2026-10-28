@@ -1269,5 +1269,18 @@
       "note": "not checked"
     },
     "notes": "Translation-specialised chat model (SiliconFlow plaza subType chat); rendered pricing table marks 免费 (2026-10-28)."
+  },
+  {
+    "id": "hy4-preview",
+    "name": "Hy4 preview",
+    "maker": "tencent",
+    "context": "not checked",
+    "image_input": "no",
+    "aa_index": {
+      "value": null,
+      "date": "2026-10-28",
+      "note": "not checked"
+    },
+    "notes": "Tencent Hunyuan Hy4 preview. Official notice (carried by IT之家 2026-10-02): a text LLM with no multimodal ability yet, so a Hy4 preview call that needs image or video generation is switched to another model and billed normally. CodeBuddy CLI showed the 0.29x credit multiplier at 13:20 on 2026-10-28."
   }
 ]

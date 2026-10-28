@@ -88,7 +88,3 @@ Only Python 3's standard library is needed. In your PR, you can leave out the re
 ## License of contributions
 
 By contributing data you agree to license it under [CC BY 4.0](data/LICENSE.md), the same as the rest of `data/`. Code contributions to `build.py` and `schema/` are under [MIT](LICENSE).
-
-## See also
-
-Competitors and adjacent sites are tracked privately in `.private/docs/COMPETITORS.md` (local only, not published).

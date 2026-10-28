@@ -34,6 +34,8 @@ freetokens 追踪的是**免费线路**：一个模型 × 一个渠道 × 一个
 | 模型 | 渠道 | 截止 | 可信度 |
 |---|---|---|---|
 | MiMo V2.6 Flash | OpenCode Zen | 已过公布的截止（2026年9月28日），随时可能停止 | 官方 |
+| Hy3 | CodeBuddy | 2026年10月31日 · 3 天后 | 官方 |
+| Hy4 preview | CodeBuddy | 2026年10月31日 · 3 天后 | 官方 |
 | Mistral Small 3.2 24B | OVHcloud AI Endpoints | 2026年11月4日 · 7 天后 | 官方 |
 | Mistral Nemo Instruct 2407 | OVHcloud AI Endpoints | 2026年11月4日 · 7 天后 | 官方 |
 <!-- END:soon -->
@@ -203,6 +205,8 @@ freetokens 追踪的是**免费线路**：一个模型 × 一个渠道 × 一个
 | MiniMax M3 | ModelScope | 聚合商 | `MiniMax/MiniMax-M3` | 注册用户每日免费 API-Inference 调用（每日总量共享；各模型上限不同） | [已公布 (每天 250 魔粒共享)](https://modelscope.ai/posts/434362) | 未实测 | API-Inference 免费调用（2000 次/天或 250 魔粒） | — (无) | 未核查 | 🔵 标称免费（未实测） | 2026-10-28 · 公开记录 |
 | Step 3.7 Flash | ModelScope | 聚合商 | `stepfun-ai/Step-3.7-Flash` | 注册用户每日免费 API-Inference 调用（每日总量共享；各模型上限不同） | [已公布 (每天 250 魔粒共享)](https://modelscope.ai/posts/434362) | 未实测 | API-Inference 免费调用（2000 次/天或 250 魔粒） | — (无) | 未核查 | 🔵 标称免费（未实测） | 2026-10-28 · 公开记录 |
 | GLM 5.3 | ModelScope | 聚合商 | `ZhipuAI/glm-5.2` | 注册用户每日免费 API-Inference 调用（每日总量共享；各模型上限不同） | [已公布 (每天 250 魔粒共享)](https://modelscope.ai/posts/434362) | 未实测 | API-Inference 免费调用（2000 次/天或 250 魔粒） | — (无) | 未核查 | 🔵 标称免费（未实测） | 2026-10-28 · 公开记录 |
+| Hy3 | CodeBuddy | agent 工具 | `hy3` | 官方 CodeBuddy / WorkBuddy 客户端内（国内站）：Hy3 倍率 0.00x（限时免费），Hy4 preview 仅北京时间 23:00–08:00 免费；其余模型按客户端显示倍率扣分。; 官方客户端内限时免费（limited-time free），全天。 | [已公布 (官方公告经媒体转述：每日免费额度分配、繁忙时排队。)](https://www.ithome.com/1/009/222.htm) | 可用 · 0 点数消耗 · CLI 倍率 x0.00；5 次 PONG 约 12 万 token，扣 0 积分。 (2026-10-28) | 未记录；Hy3 限时免费先后延至 2026-08-05、08-31、09-30、10-31。 | 公布 2026年10月31日 (官方); 官方 2026-09-30 公告（IT之家 2026-10-02 转述）将 Hy3 免费延至 2026-10-31。 | 未核查 | 🟢 有效 | 2026-10-28 · API 调用 |
+| Hy4 preview | CodeBuddy | agent 工具 | `hy4-preview` | 官方 CodeBuddy / WorkBuddy 客户端内（国内站）：Hy3 倍率 0.00x（限时免费），Hy4 preview 仅北京时间 23:00–08:00 免费；其余模型按客户端显示倍率扣分。; 免费额度仅北京时间 23:00–08:00（闲时夜间窗口），限时。 | [已公布 (官方公告经媒体转述：仅夜间时段、每日分配、繁忙排队。)](https://www.ithome.com/1/009/222.htm) | 可用 · CLI 13:20 应答；倍率 x0.29（白天＝付费）。 (2026-10-28) | Hy4 preview 2026-08-28 发布，免费两周至 09-10，之后为仅夜间免费；首个夜间未记录。 | 公布 2026年10月31日 (官方); 官方 2026-09-30 公告（IT之家 2026-10-02 转述）：夜间免费至 2026-10-31。 | 未核查 | 🔵 标称免费（未实测） | 2026-10-28 · 查目录 |
 <!-- END:lanes -->
 
 也见到、但尚未纳入追踪（未核实）：Cline 上的 Ling 3.1 Flash（据称免费到 10-13）以及 OpenCode 上的 Ling 3.1 Flash（据称自 10-02 起免费）；Nous Portal 上的 Space Bunny（Sep 25 宣布免费，Oct 5 在 portal 上已看不到），以及 Tencent WorkBuddy 中的 Space Bunny（是折扣，并非免费，到 Oct 7）。
@@ -217,6 +221,9 @@ freetokens 追踪的是**免费线路**：一个模型 × 一个渠道 × 一个
 |---|---|---|---|---|
 | 2026年10月28日 | GLM 5.3 Flash · SiliconFlow | 已结束 | SiliconFlow 渲染价格表将 zai-org/GLM-5.3-Flash 列为 ¥0.80/¥2.80 每 M tokens（缓存 ¥0.23），与模型广场 price 字段 "0" 矛盾；视为付费，非免费 | [SiliconFlow 定价页](https://siliconflow.cn/pricing) |
 | 2026年10月28日 | Hunyuan-MT-7B · SiliconFlow | 收录 | 新增 hunyuan-mt-7b-siliconflow：翻译专用对话模型，渲染价格表明写免费（强证据）；翻译模型计入文本 LLM lane | [SiliconFlow 定价页](https://siliconflow.cn/pricing) |
+| 2026年10月28日 | Hy3 · CodeBuddy | 收录 | 新增 hy3-codebuddy：官方 CodeBuddy / WorkBuddy 客户端内（国内站，共用积分池）Hy3 全天限时免费。当日自查：CLI 模型表倍率 x0.00，5 次单发（约 12 万 token）扣 0 积分。官方小程序模型表自 2026-07-22 版起标注 Hy3 限时免费。 | [WorkBuddy 小程序「选择模型」官方表＋本站 CodeBuddy CLI 核对（2026-10-28 读/跑）。](https://www.workbuddy.cn/docs/workbuddymini/features/Select-Model) |
+| 2026年10月28日 | Hy4 preview · CodeBuddy | 收录 | 新增 hy4-preview-codebuddy（标称）：仅夜间 23:00–08:00（北京时间）有免费额度，该窗口本站未实测。当日白天读数：CLI 模型表 Hy4 preview 倍率 x0.29 且模型应答。官方说明 Hy4 preview 为纯文本模型，转交他模型的图/视频子任务正常计费。 | [IT之家 2026-10-02（官方 2026-09-30 公告）＋本站 CodeBuddy CLI 读数（2026-10-28）。](https://www.ithome.com/1/009/222.htm) |
+| 2026年10月28日 |  | 收录 | Buddy AI 国际站官方计费页（2026-08-07 更新，2026-10-28 读）明确 Free 领取规则：每日活跃奖励 Free 30 / Pro 50 积分，每个活动日最多一次，次日到账，可与月度叠加；仅 WorkBuddy 或 CodeBuddy 客户端发起的对话/任务计入（网页端不计）；脚本、模拟或批量注册 excluded；Pro 或 7 天试用期内不发 Free 100/月；活动结束另行公告。 | [腾讯云代码助手（CodeBuddy 国际站）计费概述·限时每日活跃奖励说明。](https://www.tencentcloud.com/zh/document/product/1256/77269) |
 | 2026年10月27日 |  | 限额变化 | Freebuff 免费计划不再写金额额度：2026-10-27 复查时定价页写 Free $0/month 与“30 hours refilled daily”，并说明“Usage is measured in hours”，各模型有倍率、每日小时数按本地时区午夜重置；我们 2026-10-08 的记录是“$1.50 refilled daily”、以 Freebucks 计量，小时兑金额的比率并未公布 | [Freebuff 定价](https://freebuff.com/pricing) |
 | 2026年10月27日 |  | 限额变化 | TRAE CN 免费用户注册赠金在 2026-10-27 复查时为 2,000 积分（新用户注册福利 一次性赠送 2000 积分，有效期 31 个自然日），我们 2026-10-08 的记录是 4,000；同一页面每日签到仍是每天 100 积分、每月登录赠送仍是 500，4,000 现在只出现在付费的会员 Pro 每月额度里 | [TRAE 积分与计费](https://docs.trae.cn/ide_plans-and-billing) |
 | 2026年10月27日 |  | 限额变化 | Google Antigravity 计划页现在把免费基线写成“Use of Gemini models, including Gemini 3.8 Flash and other offered Gemini Enterprise models as the core agent model”，加上不限次数 Tab 补全与全部产品功能；我们 2026-10-08 记录里点名的 Gemini 3.1 Pro 已不在该页出现——页面把模型可用性指向它的 Models 列表，因此我们的记录不再点名该模型，也不宣称它已被下架 | [Plans \| Google Antigravity Docs](https://antigravity.google/docs/plans/) |
@@ -329,6 +336,7 @@ freetokens 追踪的是**免费线路**：一个模型 × 一个渠道 × 一个
 | 2026年10月2日 | Ling 3.1 Flash · OpenRouter | 收录 | 在 OpenRouter 上标称免费：inclusionai/ling-3.1-flash，$0（OpenRouter 的目录记录日期） | [OpenRouter 模型页面](https://openrouter.ai/inclusionai/ling-3.1-flash) |
 | 2026年10月2日 | Apodex 1.1 Mini · Cline | 收录 | 已加入 Cline 的模型列表：Apodex 1.1 Mini | [Cline 仓库 commit](https://github.com/cline/cline/commit/a7ad50bae34c43823facf2c2ee726b45dc7c0145) |
 | 2026年10月2日 | Ling 3.1 Flash · OpenCode Zen | 收录 | 已加入 Zen 模型文档：Ling 3.1 Flash | [OpenCode 仓库提交](https://github.com/anomalyco/opencode/commit/c42ae0d56b) |
+| 2026年10月2日 | Hy3 · CodeBuddy, Hy4 preview · CodeBuddy | 公布截止 | 腾讯 2026-09-30 晚公告（IT之家 2026-10-02 转述）：Hy3 免费与 Hy4 preview 夜间免费（23:00 至次日 08:00）均延至 2026-10-31。因参与火爆，每日免费额度按用户分配，繁忙时排队（页面显示重置时间）。从未开过 Hy4 preview 的用户须在 2026-10-10 23:59 前首次开启，才能从当日获得 14 天每日免费额度。 → ends 2026年10月31日 | [IT之家，转述官方 WorkBuddy 公告（2026-10-28 读）。](https://www.ithome.com/1/009/222.htm) |
 | 2026年10月1日 02:57 UTC | Space Bunny (stealth) · Command Code | 公布截止 | "在所有计划上持续免费至 Oct 5" → ends 2026年10月5日 | [Command Code](https://x.com/CommandCodeAI/status/2105492145033330916) |
 | 2026年10月1日 | Apodex 1.1 Mini · OpenRouter | 收录 | 在 OpenRouter 上列为 apodex/apodex-1.1-mini:free，价格 $0（OpenRouter 目录记录日期） | [OpenRouter 模型页面](https://openrouter.ai/apodex/apodex-1.1-mini) |
 | 2026年10月1日 | Apodex 1.1 Mini · Kilo Code | 收录 | 首次见于 Kilo 模型目录（models.dev 同步）：Apodex 1.1 Mini | [models.dev 提交](https://github.com/sst/models.dev/commit/675a573d01a86e5168fbd2559c9e5a5c1d901248) |
@@ -456,6 +464,7 @@ freetokens 追踪的是**免费线路**：一个模型 × 一个渠道 × 一个
 | [Iceman Contributor](https://freetokens.fyi/models/iceman-contributor) | 🔵 OpenCode Go (未公布截止) | 1 | EST 24–29 （估算） (2026-10-25) | 262K | 不支持 | Undisclosed (stealth) | 隐身模型：OpenCode 自己的数据页把提供方写作 "Unknown"（2026-10-25），Go 的定价表与隐私表里也没有它的行。上下文 262,144、输出 131,072 与 $0 价格都是 2026-10-25 读取的 models.dev 注册表数值；OpenCode 从不引用 models.dev，而该注册表的 OpenCode Go 快照与在架列表已双向漂移，故这些数字未经核实。 |
 | [Inkling Small](https://freetokens.fyi/models/inkling-small) | 🔴 Kilo Code (已结束 2026年10月23) · 🔴 Cline (已结束 2026年10月11) · 🟢 OpenRouter (未公布截止) | 6 | 26 (2026-10-25) | 1M | 支持 | Thinking Machines | — |
 | [Nemotron 3.5 Super VL](https://freetokens.fyi/models/nemotron-3.5-super-vl) | 🔵 OpenCode Zen (未公布截止) · 🔵 OpenRouter (未公布截止) · 🔵 Kilo Code (未公布截止) | 2 | 26 (2026-10-25) | 1M | 支持 | NVIDIA | — |
+| [Hy3](https://freetokens.fyi/models/hy3) | 🔴 Kilo Code (已结束 2026年10月7日) · 🟢 CodeBuddy (截止 2026年10月31) | 4 | 25 (2026-10-25) | 262K | 不支持 | Tencent Hunyuan | — |
 | [Inkling](https://freetokens.fyi/models/inkling) | 🔴 Cline (已结束 2026年10月11) · 🟢 OpenRouter (未公布截止) | 4 | 25 (2026-10-25) | 1M | 支持 | Thinking Machines | — |
 | [Nemotron 3 Ultra (550B-A55B)](https://freetokens.fyi/models/nemotron-3-ultra) | 🟢 OpenRouter (未公布截止) · 🟢 Kilo Code (未公布截止) · 🔴 Cline (已结束 2026年10月11) · 🔴 OpenCode Zen (已结束 2026年10月13) | 9 | 23 (2026-10-25) | 1M | 不支持 | NVIDIA | — |
 | [Gemini 3.5 Flash-Lite](https://freetokens.fyi/models/gemini-3.5-flash-lite) | 🔵 Google AI Studio (未公布截止) | 1 | 22 (2026-10-25) | 1M | 支持 | Google | 据 OpenRouter 与 Vercel AI Gateway 目录：支持图片+视频输入（2026-10-20）。 |
@@ -491,6 +500,7 @@ freetokens 追踪的是**免费线路**：一个模型 × 一个渠道 × 一个
 | [Qwen2.5 VL 72B Instruct](https://freetokens.fyi/models/qwen2.5-vl-72b) | 🔵 OVHcloud AI Endpoints (未公布截止) | 0 | Artificial Analysis 上没有 (2026-10-08) | 128K（OVHcloud 上 32K） | 支持 | Qwen | 据 HF Qwen2.5-VL-72B-Instruct 配置与 OpenRouter：原生 128,000；OVHcloud 端点提供 32,768（2026-10-20）。 |
 | [Mistral Nemo Instruct 2407](https://freetokens.fyi/models/mistral-nemo) | 🔵 OVHcloud AI Endpoints (截止 2026年11月4日) | 1 | Artificial Analysis 上没有 (2026-10-08) | 128K（OVHcloud 上 64K） | 不支持 | Mistral AI | 据 OpenRouter 与 Vercel 为 131,072；OVHcloud 端点列出 65,536（2026-10-20）。 |
 | [Hunyuan-MT-7B](https://freetokens.fyi/models/hunyuan-mt-7b) | 🔵 SiliconFlow (未公布截止) | 1 | 未检查 (2026-10-28) | 未检查 | 不支持 | Tencent Hunyuan | 翻译专用对话模型（SiliconFlow 广场 subType chat）；渲染价格表明写免费（2026-10-28）。 |
+| [Hy4 preview](https://freetokens.fyi/models/hy4-preview) | 🔵 CodeBuddy (截止 2026年10月31) | 2 | 未检查 (2026-10-28) | 未检查 | 不支持 | Tencent Hunyuan | 腾讯混元 Hy4 preview。官方公告（IT之家 2026-10-02 转述）：纯文本 LLM，暂无多模态能力，需图/视频生成的调用会切换他模型并正常计费。CodeBuddy CLI 2026-10-28 13:20 显示倍率 0.29x。 |
 | [GPT-6.1 Sol](https://freetokens.fyi/models/gpt-6.1-sol) | — | 0 | 52 (2026-10-25) | 1025K | 支持 | OpenAI | — |
 | [Muse Spark 1.3 (Contributor)](https://freetokens.fyi/models/muse-spark-1.3-contributor) | 🔴 OpenCode Zen (已结束 2026年10月20) | 5 | 48 (2026-10-25) | 1M | 支持 | Meta | — |
 | [MiMo V2.6 Pro](https://freetokens.fyi/models/mimo-v2.6-pro) | — | 0 | 46 (2026-10-25) | 1M | 支持 | Xiaomi MiMo | — |
@@ -506,7 +516,6 @@ freetokens 追踪的是**免费线路**：一个模型 × 一个渠道 × 一个
 | [Gemini 3.5 Flash](https://freetokens.fyi/models/gemini-3.5-flash) | 🔴 Google AI Studio (已结束 2026年10月23) | 2 | 33 (2026-10-25) | 1M | 支持 | Google | 据 OpenRouter 与 Vercel AI Gateway 目录：支持图片+视频输入（2026-10-20）。 |
 | [Nex-N2-Pro](https://freetokens.fyi/models/nex-n2-pro) | 🔴 Kilo Code (已结束 2026年10月7日) | 2 | ≈ 28 (2026-10-25) | 262K | 支持 | Nex AGI | — |
 | [Solar Pro 4](https://freetokens.fyi/models/solar-pro-4) | — | 0 | 27 (2026-10-25) | 512K | 不支持 | Upstage | — |
-| [Hy3](https://freetokens.fyi/models/hy3) | 🔴 Kilo Code (已结束 2026年10月7日) | 2 | 25 (2026-10-25) | 262K | 不支持 | Tencent Hunyuan | — |
 | [Ling 3.0 Flash VL](https://freetokens.fyi/models/ling-3.0-flash-vl) | 🔴 Kilo Code (已结束 2026年10月7日) | 2 | 25 (2026-10-25) | 262K | 支持 | inclusionAI | — |
 | [Solar Mini 4](https://freetokens.fyi/models/solar-mini-4) | — | 0 | 24 (2026-10-25) | 512K | 不支持 | Upstage | — |
 | [MiniMax M2.7](https://freetokens.fyi/models/minimax-m2.7) | 🔴 Kilo Code (已结束 2026年10月7日) | 2 | 23 (2026-10-25) | 197K | 不支持 | MiniMax | — |
@@ -546,6 +555,7 @@ freetokens 追踪的是**免费线路**：一个模型 × 一个渠道 × 一个
 | [Google AI Studio](https://freetokens.fyi/channels/google-ai-studio) | 官方 | [$0，需账号](https://ai.google.dev/gemini-api/docs/pricing) | [API · 2 种格式](https://ai.google.dev/gemini-api/docs/openai-compatibility) | 3 / 5 | 未公布 | 🔵 Gemini 3.8 Flash · 🔴 Gemini 3.7 Flash · 🔵 Gemini 3.6 Flash · 🔴 Gemini 3.5 Flash · 🔵 Gemini 3.5 Flash-Lite |
 | [Groq](https://freetokens.fyi/channels/groq) | 聚合商 | [$0，需账号](https://console.groq.com/docs/rate-limits) | [API · OpenAI 对话](https://console.groq.com/docs/models) | 3 / 3 | 未公布 | 🔵 Qwen3.8 27B · 🔵 gpt-oss-120b · 🔵 gpt-oss-20b |
 | [AIHubMix](https://freetokens.fyi/channels/aihubmix) | 聚合商 | [$0，需账号](https://aihubmix.com/model/coding-kimi-k3-free) | [API · OpenAI 对话](https://aihubmix.com/model/coding-kimi-k3-free) | 2 / 2 | 未公布 | 🔵 Coding Kimi K3 · 🔵 Dots3-Note Preview |
+| [CodeBuddy](https://freetokens.fyi/channels/codebuddy) | agent 工具 | [$0，需账号](https://www.workbuddy.cn/docs/workbuddy/Pricing) | [仅 CLI · 仅限人工](https://rule.tencent.com/rule/202603180001) | 2 / 2 | Hy3 · 2026年10月31 (官方) | 🟢 Hy3 · 🔵 Hy4 preview |
 | [OpenCode Go](https://freetokens.fyi/channels/opencode-go) | agent 工具 | [$10/month 需先订阅](https://opencode.ai/v2/docs/console/go/) | [API · 3 种格式](https://opencode.ai/v2/docs/console/go/) | 2 / 7 | 未公布 | 🔴 LongCat 2.5 Preview · 🔴 Space Bunny (stealth) · 🔴 Step 5 Preview · 🔴 Cat Jam · 🔴 MiniMax M3.1 Flash · 🔵 Beam 1.0 · 🔵 Iceman Contributor |
 | [SenseNova](https://freetokens.fyi/channels/sensenova) | 聚合商 | [$0，需账号](https://platform.sensenova.cn/token-plan) | [API · OpenAI 对话](https://platform.sensenova.cn/docs) | 2 / 2 | 未公布 | 🟢 Kimi K3 · 🔵 DeepSeek V4 Flash |
 | [Zhipu BigModel](https://freetokens.fyi/channels/zhipu-bigmodel) | 官方 | [$0，需账号](https://docs.bigmodel.cn/cn/guide/start/pricing) | [API · 3 种格式](https://docs.bigmodel.cn/cn/guide/start/pricing) | 2 / 2 | 未公布 | 🔵 GLM-4.7-Flash · 🔵 GLM-4-Flash-250414 |

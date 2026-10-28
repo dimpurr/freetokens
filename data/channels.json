@@ -704,5 +704,35 @@
    "models": "https://platform.sensenova.cn/docs"
   },
   "free_condition": "SenseNova Token Plan: ¥0 public beta, shared credit pool (60k/5h, 600k/week), no card; real-name only for paid"
+ },
+ {
+  "name": "CodeBuddy",
+  "entry": {
+   "kind": "account",
+   "usd": null,
+   "period": null,
+   "note": "Tencent Buddy AI personal account, CN site (workbuddy.cn / codebuddy.cn, WeChat or phone sign-in); 体验版 500 credits/month, no card. The pricing page lists CLI access as a paid-tier feature (体验版 shows -), yet the CLI answered on a 体验版 account on 2026-10-28 (限免 period)"
+  },
+  "source": {
+   "url": "https://www.workbuddy.cn/docs/workbuddy/Pricing",
+   "label": "WorkBuddy 定价 (seen 2026-10-28): CodeBuddy and WorkBuddy share one account and credit pool; CLI access row"
+  },
+  "checked": "2026-10-28",
+  "access": {
+   "form": "own_cli",
+   "protocols": [],
+   "rules": [
+    "no_automation"
+   ],
+   "source": {
+    "url": "https://rule.tencent.com/rule/202603180001",
+    "label": "CN 服务协议 (seen 2026-10-28): §2.1 puts third-party automation / agents driving the client under the terms; §9.2(7) bans 自动化注册、批量操作"
+   }
+  },
+  "links": {
+   "site": "https://www.codebuddy.cn",
+   "models": "https://www.workbuddy.cn/docs/workbuddy/From-Beginner-to-Expert-Guide/Function-Description/Model"
+  },
+  "free_condition": "Inside the official CodeBuddy / WorkBuddy clients, CN site: Hy3 runs at a 0.00x credit multiplier (limited-time free), Hy4 preview is free only 23:00-08:00 Beijing; other models deduct credits at the multiplier the client shows"
  }
 ]

@@ -572,9 +572,9 @@
    "url": "https://www.codebuddy.ai/docs/ide/Account/Subscription"
   },
   "quote": "New users receive 250 credits immediately upon their first sign-in. The credits are valid for 14 days.",
-  "note": "New-user benefit; separate from the Free plan's monthly 100 credits and the 7-day Pro trial.",
+  "note": "New-user benefit; separate from Free 100/month and the 7-day Pro trial. CN: invited new users get 2,000 (referral-gated, ends 2026-10-31).",
   "checked": {
-   "date": "2026-10-27",
+   "date": "2026-10-28",
    "method": "listing"
   }
  },
@@ -614,10 +614,10 @@
    "label": "CodeBuddy Pricing (intl)",
    "url": "https://www.codebuddy.ai/docs/ide/Account/pricing"
   },
-  "quote": "Free ... Base Credits / Month 100 ... Promotional Bonus (Limited-Time Offer) 30 credits / day",
-  "note": "Bonus needs >=1 chat request that day; base+bonus valid for the month, no rollover; promo is limited-time.",
+  "quote": "Free ... Base Credits / Month 100 ... Promotional Bonus (Limited-Time Offer) 30 credits / day ... After subscribing to Pro or starting the 7-day Pro trial, the Free plan's 100 credits are no longer issued separately.",
+  "note": "Daily 30 needs 1 client-initiated chat (web doesn't count); lands next day, stacks with monthly; Free 100 stops once Pro/trial is on.",
   "checked": {
-   "date": "2026-10-27",
+   "date": "2026-10-28",
    "method": "listing"
   }
  },
@@ -676,7 +676,7 @@
    "amount": 500,
    "unit": "credits",
    "per": "month",
-   "text": "体验版 free tier: 500 base credits/month (limited-time monthly total 500)"
+   "text": "体验版 free tier: 500 credits/month; current month only, no rollover"
   },
   "requires": [
    "account",
@@ -693,7 +693,7 @@
    "ids": [],
    "tracked": [],
    "count": null,
-   "note": "Model availability varies by tier"
+   "note": "Auto model dispatch (体验版 限免期全模型可选); the multiplier each model shows in the client is what applies"
   },
   "status": "live",
   "started": null,
@@ -702,10 +702,10 @@
    "label": "WorkBuddy 定价",
    "url": "https://www.workbuddy.cn/docs/workbuddy/Pricing"
   },
-  "quote": "WorkBuddy 提供体验版及多个付费订阅版本，其中体验版可免费使用 ... 基础积分 / 月 500",
-  "note": "Free 体验版 tier; 500 base credits/month; stops once a paid plan is active; shared with CodeBuddy (one account).",
+  "quote": "WorkBuddy 提供体验版及多个付费订阅版本，其中体验版可免费使用 ... 基础积分 / 月 500 ... 开通付费会员后，体验版 500 积分不再另行发放。",
+  "note": "500/mo no rollover; stops once a paid plan is active; shared pool with CodeBuddy. 成长中心另有约数（社区）：关注公众号 100 一次、签到季 ~100/天、成长任务 100-500、1 个月过期。",
   "checked": {
-   "date": "2026-10-27",
+   "date": "2026-10-28",
    "method": "listing"
   }
  },

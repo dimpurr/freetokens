@@ -5471,5 +5471,80 @@
    "date": "2026-10-28",
    "method": "public_record"
   }
+ },
+ {
+  "id": "hy3-codebuddy",
+  "model": "hy3",
+  "channel": "CodeBuddy",
+  "type": "agent_tool",
+  "model_id": "hy3",
+  "free_condition": "限时免费 (limited-time free) inside the official clients, all day",
+  "region": "CN",
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "official",
+   "note": "官方公告经媒体转述：每日免费额度分配、繁忙时排队",
+   "source": "https://www.ithome.com/1/009/222.htm"
+  },
+  "limits_observed": {
+   "date": "2026-10-28",
+   "reach": "works",
+   "cost": "zero",
+   "note": "CLI x0.00 multiplier; 5 PONG runs ~120k tokens, 0 credits"
+  },
+  "started": {
+   "date": null,
+   "note": "not recorded; Hy3 限时免费 was extended to 2026-08-05, 08-31, 09-30 and then 10-31"
+  },
+  "ends": {
+   "announced": "2026-10-31",
+   "expected": null,
+   "confidence": "official",
+   "note": "official 2026-09-30 announcement (carried by IT之家 2026-10-02) extends Hy3 free to 2026-10-31"
+  },
+  "data_policy": "not_checked",
+  "status": "live",
+  "checked": {
+   "date": "2026-10-28",
+   "method": "api_call"
+  },
+  "note": "国内 WorkBuddy / CodeBuddy（同一账号同一积分池）：Hy3 全天限免。2026-10-28 客户端实测：CLI 模型表倍率 x0.00，5 次 PONG 约 12 万 token 扣 0 积分。倍率以客户端当下显示为准；官方对每日免费额度做了分配，资源繁忙时排队并在页面提示重置时间。"
+ },
+ {
+  "id": "hy4-preview-codebuddy",
+  "model": "hy4-preview",
+  "channel": "CodeBuddy",
+  "type": "agent_tool",
+  "model_id": "hy4-preview",
+  "free_condition": "free quota only 23:00-08:00 Beijing (idle night window), limited-time",
+  "region": "CN",
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "official",
+   "note": "官方公告经媒体转述：仅夜间时段、每日分配、繁忙排队",
+   "source": "https://www.ithome.com/1/009/222.htm"
+  },
+  "limits_observed": {
+   "date": "2026-10-28",
+   "reach": "works",
+   "note": "CLI 13:20 answered; x0.29 multiplier (daytime = paid)"
+  },
+  "started": {
+   "date": null,
+   "note": "Hy4 preview launched 2026-08-28 with a two-week free window to 09-10, then the night-only free offer; first night not recorded"
+  },
+  "ends": {
+   "announced": "2026-10-31",
+   "expected": null,
+   "confidence": "official",
+   "note": "official 2026-09-30 announcement (carried by IT之家 2026-10-02): night free to 2026-10-31"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-28",
+   "method": "catalogue"
+  },
+  "note": "时段门槛：只有闲时夜间 23:00–次日 08:00（北京时间）有免费额度，其余时间按倍率扣分（2026-10-28 客户端 x0.29）。领取门槛分两种：已体验过 Hy4 preview 的账号走夜间免费额度到 10-31；未体验过的须在 2026-10-10 23:59 前首次开启 Hy4 preview 对话，之后 14 天每天领免费额度。夜间时段未亲测（listed），且 9-30 公告是 WorkBuddy 口径，CodeBuddy 端夜间是否同免未找到直接出处。"
  }
 ]

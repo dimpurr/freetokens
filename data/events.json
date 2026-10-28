@@ -2704,5 +2704,55 @@
     "label": "SiliconFlow pricing page",
     "url": "https://siliconflow.cn/pricing"
    }
+  },
+  {
+   "date": "2026-10-02",
+   "lanes": [
+    "hy3-codebuddy",
+    "hy4-preview-codebuddy"
+   ],
+   "kind": "end_announced",
+   "end_date": "2026-10-31",
+   "text": "Tencent notice of 2026-09-30 evening (carried by IT之家 2026-10-02): Hy3 free and Hy4 preview night free (23:00 to 08:00 next day) are both extended to 2026-10-31. Because participation was very high, the daily free quota is distributed per user and requests enter a queue when that day's capacity is busy (the page shows the reset time). Users who had never opened Hy4 preview had to start their first Hy4 preview chat before 2026-10-10 23:59 to get 14 days of daily free quota from that day",
+   "source": {
+    "label": "IT之家, reporting the official WorkBuddy announcement (read 2026-10-28)",
+    "url": "https://www.ithome.com/1/009/222.htm"
+   }
+  },
+  {
+   "date": "2026-10-28",
+   "lanes": [
+    "hy3-codebuddy"
+   ],
+   "kind": "listed",
+   "text": "Added hy3-codebuddy: Hy3 is 限时免费 all day inside the official CodeBuddy / WorkBuddy clients (CN site, one shared credit pool). Own check the same day: the CLI model table served the multiplier x0.00 and 5 one-shot runs (~120k tokens) took 0 credits. The official mini-program model table has labelled Hy3 限时免费 since its 2026-07-22 revision",
+   "source": {
+    "label": "WorkBuddy 小程序「选择模型」official table + own CodeBuddy CLI check (read/run 2026-10-28)",
+    "url": "https://www.workbuddy.cn/docs/workbuddymini/features/Select-Model"
+   }
+  },
+  {
+   "date": "2026-10-28",
+   "lanes": [
+    "hy4-preview-codebuddy"
+   ],
+   "kind": "listed",
+   "text": "Added hy4-preview-codebuddy as listed: only the night window 23:00-08:00 (Beijing) carries a free quota, so the window itself is untested here. Daytime read the same day: the CLI model table served Hy4 preview at x0.29 and the model answered. The official notice adds that Hy4 preview is a text-only model, so an image or video sub-task it hands over to another model is billed normally",
+   "source": {
+    "label": "IT之家 2026-10-02 (official 2026-09-30 notice) + own CodeBuddy CLI read (2026-10-28)",
+    "url": "https://www.ithome.com/1/009/222.htm"
+   }
+  },
+  {
+   "date": "2026-10-28",
+   "offers": [
+    "codebuddy-free-monthly"
+   ],
+   "kind": "listed",
+   "text": "Buddy AI 国际站 official billing page (last updated 2026-08-07, read 2026-10-28) fixes how the Free grant is claimed: daily active bonus Free 30 / Pro 50 credits, at most once per activity day, credited the next day, and it stacks with the monthly credits; a day counts only if a chat or task is started in the WorkBuddy or CodeBuddy client (web chats do not count); scripted, emulated or bulk-registered activity is excluded; Free's 100/month is not issued while Pro or the 7-day Pro trial is active; the activity's end date is announced separately",
+   "source": {
+    "label": "腾讯云代码助手（CodeBuddy 国际站）计费概述 · 限时每日活跃奖励说明",
+    "url": "https://www.tencentcloud.com/zh/document/product/1256/77269"
+   }
   }
 ]
