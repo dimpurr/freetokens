@@ -764,33 +764,56 @@
      "label": "每年"
     }
    }
-  }
- },
- "tables": {
-  "lanes": {
-   "required": [
-    "id",
-    "model",
-    "channel",
-    "type",
-    "model_id",
-    "free_condition",
-    "limits_stated",
-    "limits_observed",
-    "started",
-    "ends",
-    "data_policy",
-    "status",
-    "checked"
-   ],
-   "vocab_fields": {
-    "type": "channel_type",
-    "data_policy": "data_policy",
-    "status": "status",
-    "ends.confidence": "end_confidence",
-    "checked.method": "check_method"
+  },
+  "meter": {
+   "per_model": {
+    "label": "per-model",
+    "help": "The model has its own rate limit or allowance; not shared across models (ADR-033)",
+    "zh": {
+     "label": "单模型限额",
+     "help": "每个模型有自己的限流或额度，不与其他模型共享（ADR-033）"
+    }
    },
-   "unknown_words": [
+   "pooled": {
+    "label": "pooled",
+    "help": "Models share one credit/neuron allowance; meter is the shared pool, not per model (ADR-033)",
+    "zh": {
+     "label": "共享池",
+     "help": "多个模型共享一个额度池；计量单位为共享池，非单模型（ADR-033）"
+    }
+    }
+   }
+  },
+  "tables": {
+   "lanes": {
+    "required": [
+     "id",
+     "model",
+     "channel",
+     "type",
+     "model_id",
+     "free_condition",
+     "meter",
+     "limits_stated",
+     "limits_observed",
+     "started",
+     "ends",
+     "data_policy",
+     "status",
+     "checked"
+    ],
+    "vocab_fields": {
+     "type": "channel_type",
+     "data_policy": "data_policy",
+     "status": "status",
+     "ends.confidence": "end_confidence",
+     "checked.method": "check_method",
+     "meter": "meter"
+    },
+    "field_docs": {
+     "pool": "ADR-033: present only when meter='pooled'. Object describing the shared quota pool: {offer=<offer_id>, cap={amount,unit,per}, note=<risk/limit notes>}."
+    },
+    "unknown_words": [
     "unstated",
     "not checked",
     "not recorded"

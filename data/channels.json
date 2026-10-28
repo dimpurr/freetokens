@@ -344,7 +344,7 @@
   },
   "free_condition": "Vercel AI Gateway key; models marked Free"
  },
-  {
+ {
   "name": "SiliconFlow",
   "entry": {
    "kind": "account",
@@ -674,5 +674,35 @@
    "models": "https://docs.hetzner.com/general/company-and-policy/experiments/inference/"
   },
   "free_condition": "Hetzner account + API key; free while experimental, advance email notice before change"
+ },
+ {
+  "name": "SenseNova",
+  "entry": {
+   "kind": "account",
+   "usd": null,
+   "period": null,
+   "note": "SenseNova account + mobile SMS (Free public beta needs no card or real-name)"
+  },
+  "source": {
+   "url": "https://platform.sensenova.cn/token-plan",
+   "label": "SenseNova Token Plan"
+  },
+  "checked": "2026-10-28",
+  "access": {
+   "form": "api",
+   "protocols": [
+    "openai_chat"
+   ],
+   "rules": [],
+   "source": {
+    "url": "https://platform.sensenova.cn/docs",
+    "label": "SenseNova API docs"
+   }
+  },
+  "links": {
+   "site": "https://platform.sensenova.cn",
+   "models": "https://platform.sensenova.cn/docs"
+  },
+  "free_condition": "SenseNova Token Plan: ¥0 public beta, shared credit pool (60k/5h, 600k/week), no card; real-name only for paid"
  }
 ]

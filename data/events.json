@@ -2676,9 +2676,33 @@
    "tencent-hunyuan-first-1m"
   ],
   "text": "Tencent removed hunyuan-lite (Hunyuan-lite) from the Hunyuan free-quota table and price list (cloud.tencent.com/document/product/1729/97731, re-checked 2026-10-27; the free-quota table is client-rendered, the removal is from the sweep read). Freetokens tracks Hunyuan free as the first-time 1M-token resource package, which is unaffected; there is no hunyuan-lite lane to mark ended.",
-  "source": {
-   "label": "混元生文计费概述",
-   "url": "https://cloud.tencent.com/document/product/1729/97731"
+   "source": {
+    "label": "混元生文计费概述",
+    "url": "https://cloud.tencent.com/document/product/1729/97731"
+   }
+  },
+  {
+   "date": "2026-10-28",
+   "lanes": [
+    "glm-5.3-flash-siliconflow"
+   ],
+   "kind": "ended",
+   "text": "SiliconFlow rendered pricing table lists zai-org/GLM-5.3-Flash at ¥0.80/¥2.80 per M tokens (cache ¥0.23), contradicting the model plaza price field \"0\"; treated as paid, not free",
+   "source": {
+    "label": "SiliconFlow pricing page",
+    "url": "https://siliconflow.cn/pricing"
+   }
+  },
+  {
+   "date": "2026-10-28",
+   "lanes": [
+    "hunyuan-mt-7b-siliconflow"
+   ],
+   "kind": "listed",
+   "text": "Added hunyuan-mt-7b-siliconflow: translation-specialised chat model, rendered pricing table marks it 免费 (strong evidence); translation models count as text LLM lanes",
+   "source": {
+    "label": "SiliconFlow pricing page",
+    "url": "https://siliconflow.cn/pricing"
+   }
   }
- }
 ]

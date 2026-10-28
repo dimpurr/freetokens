@@ -67,6 +67,10 @@ IGNORE = {
 
 # catalogue entries that are not chat models even when they cost $0 (SiliconFlow's own subType values)
 NOT_CHAT = {"embedding", "reranker", "speech-to-text", "text-to-image", "text-to-speech", "text-to-video", "image-to-video"}
+# SiliconFlow cross-check state (populated by siliconflow()): model ids whose pricing-table entry contradicts the directory,
+# and model ids that are directory-only (not found in the rendered pricing table).
+SF_CONFLICTS = []
+SF_WEAK = set()
 
 
 def get(url, timeout=60, headers=None):
@@ -171,20 +175,55 @@ def kilo():
 
 def siliconflow():
     # free = model-level price "0" (¥/M tokens) on the China model plaza; v1/models is 401 without a key and no chco key exists
-    txt = get("https://siliconflow.cn/models").replace('\\"', '"')
+    global SF_CONFLICTS, SF_WEAK
+    SF_CONFLICTS = []
+    SF_WEAK = set()
+    txt = get("https://siliconflow.cn/models").replace('\\\"', '"')
     if '{"modelId":"' not in txt:
         raise RuntimeError("model plaza page no longer embeds the model list (page shape changed)")
+    # Cross-check against the rendered pricing table: that table is authoritative for SiliconFlow
+    # (the model plaza's price field is only a lead). A model present there with a non-free price is NOT free;
+    # a model absent from it keeps the directory judgement but is marked as weak evidence.
+    price_table = {}  # model_id (org/model) -> True if free, False if paid, None if unknown
+    pricing_html = ""
+    try:
+        pricing_html = get("https://siliconflow.cn/pricing")
+        for m in re.finditer(r'md:hidden">([^<]+)</div>', pricing_html):
+            mid = m.group(1).strip()
+            seg = pricing_html[m.start():m.start() + 1500]
+            if '免费' in seg:
+                price_table[mid] = True
+            elif '¥' in seg:
+                price_table[mid] = False
+            else:
+                price_table[mid] = None
+    except Exception as e:
+        print(f"ℹ️ SiliconFlow pricing table unreadable ({str(e)[:60]}); falling back to directory-only (weak evidence)")
+        price_table = {}
     free = {}
     for c in txt.split('{"modelId":"')[1:]:
         mid, price = re.search(r'"modelName":"([^"]+)"', c), re.search(r'"price":"?(-?[0-9.]+)"?', c)
         sub = re.search(r'"subType":"([^"]*)"', c)
         if sub and sub.group(1) in NOT_CHAT:
             continue  # embedding / reranker / ASR / image endpoints: not a lane candidate even when $0
-        if mid and price and nzero(price.group(1)):
-            name = re.search(r'"DisplayName":"([^"]+)"', c)  # field order is not stable, so pull each independently
-            free[mid.group(1)] = name.group(1) if name else mid.group(1)
+        if not (mid and price and nzero(price.group(1))):
+            continue
+        mid_val = mid.group(1)
+        name = re.search(r'"DisplayName":"([^"]+)"', c)  # field order is not stable, so pull each independently
+        display = name.group(1) if name else mid_val
+        if mid_val in price_table:
+            if price_table[mid_val] is False:
+                seg = pricing_html[pricing_html.find(mid_val):pricing_html.find(mid_val) + 1500] if mid_val in pricing_html else ''
+                prices = re.findall(r'¥\s*([0-9.]+)', seg)
+                price_str = '/'.join(prices[:3]) if prices else 'paid (non-free)'
+                SF_CONFLICTS.append((mid_val, price_str))
+                print(f"⚠️ conflict · SiliconFlow · {mid_val}: directory price 0, pricing table {price_str}")
+                continue  # not free
+            free[mid_val] = display  # free or unknown-but-present: keep
+        else:
+            SF_WEAK.add(mid_val)
+            free[mid_val] = display  # maintain directory judgement, weak evidence
     return free
-
 
 def ovh():
     # free cannot be read: the catalogue page carries no prices (checked 2026-10-27) and each model's keyless
@@ -500,11 +539,13 @@ def main():
         for x in new:
             tag = "⭐ pool candidate " if x["pool_candidate"] else ""
             if x["pool_candidate"]: tag = "⭐ main-tier candidate " if x["aa"] >= MAIN_BAR else "◐ borderline candidate " if x["aa"] >= BORDER_BAR else "○ pass-tier candidate (retrieval / docs only) "
-            lines.append(f"  {tag}{x['name']} · {x['channel']} · {x['model_id']} · AA {x['aa'] if x['aa'] is not None else '—'}")
+            weak = " · weak evidence (not in pricing table)" if (x["channel"] == "SiliconFlow" and x["model_id"] in SF_WEAK) else ""
+            lines.append(f"  {tag}{x['name']} · {x['channel']} · {x['model_id']} · AA {x['aa'] if x['aa'] is not None else '—'}{weak}")
     for ch, n, ent in baseline_lines:
         lines.append(f"🧱 baseline · {ch}: {n} free model(s), {len(ent)} not on freetokens yet:")
         for e in ent[:25]:
-            lines.append(f"  {e['name']} · {e['model_id']} · AA {e['aa'] if e['aa'] is not None else '—'}")
+            weak = " · weak evidence (not in pricing table)" if (ch == "SiliconFlow" and e['model_id'] in SF_WEAK) else ""
+        lines.append(f"  {e['name']} · {e['model_id']} · AA {e['aa'] if e['aa'] is not None else '—'}{weak}")
         if len(ent) > 25:
             lines.append(f"  … +{len(ent) - 25} more (see latest.json)")
     lines += aa_lines

@@ -1256,5 +1256,18 @@
       "note": "not ranked"
     },
     "notes": "Stealth model: OpenCode's own data page gives the provider as \"Unknown\" (2026-10-25), and it has no row in the Go pricing or privacy tables. Context 262,144, output 131,072 and $0 pricing are models.dev registry values read 2026-10-25; OpenCode never cites models.dev and that registry's OpenCode Go snapshot has drifted from the live list in both directions, so treat them as unverified."
+  },
+  {
+    "id": "hunyuan-mt-7b",
+    "name": "Hunyuan-MT-7B",
+    "maker": "tencent",
+    "context": null,
+    "image_input": "no",
+    "aa_index": {
+      "value": null,
+      "date": "2026-10-28",
+      "note": "not checked"
+    },
+    "notes": "Translation-specialised chat model (SiliconFlow plaza subType chat); rendered pricing table marks 免费 (2026-10-28)."
   }
 ]

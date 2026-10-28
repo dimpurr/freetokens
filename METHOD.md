@@ -4,6 +4,8 @@
 
 A **lane** is one model × one channel × one free condition. Each lane records when the free offer started, when it is announced or expected to end, how we last checked it, and the events behind those dates. Every fact links to its source.
 
+For SiliconFlow, the rendered pricing table is authoritative; the model plaza's `price` field is only a lead.
+
 **Statuses:**
 - **live:** it answered our last call.
 - **past end:** still live after its announced end date.

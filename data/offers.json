@@ -439,7 +439,7 @@
    "method": "listing"
   }
  },
-  {
+ {
   "id": "aliyun-university-300-voucher",
   "name": "Alibaba Cloud 300 CNY voucher",
   "name_zh": "阿里云 云工开物 300 元抵扣金",
@@ -1027,7 +1027,7 @@
    "url": "https://vercel.com/docs/ai-gateway/pricing"
   },
   "quote": "Free tier ... Monthly credit $5/month included ... Your free credits start when you make your first AI Gateway request.",
-  "note": "Team account + payment method required (403 customer_verification_required). Buying credits ends free credit.",
+  "note": "Not a pool lane ($5 needs card + pay-as-you-go). 2 free opts pending card check: beam-free (AA30), laguna-s-2.1-free (EST29.6).",
   "checked": {
    "date": "2026-10-27",
    "method": "listing"
@@ -1162,7 +1162,7 @@
    "url": "https://developers.cloudflare.com/workers-ai/platform/pricing/"
   },
   "quote": "Our free allocation allows anyone to use a total of 10,000 Neurons per day at no charge. All limits reset daily at 00:00 UTC.",
-  "note": "Included in Workers Free plan. Docs last updated 2026-10-01; re-checked 2026-10-08.",
+  "note": "Included in Workers Free plan. Now tracked as pooled lane for qwen3.8-27b (AA34); docs re-checked 2026-10-28.",
   "checked": {
    "date": "2026-10-27",
    "method": "listing"
@@ -1175,10 +1175,10 @@
   "channel": "ModelScope",
   "type": "daily_allowance",
   "gets": {
-   "amount": 2000,
-   "unit": "requests",
+   "amount": 250,
+   "unit": "magicube",
    "per": "day",
-   "text": "2,000 API-Inference calls/day total (all models); per-model cap ~200/day; 100/min base"
+   "text": "250 Magicube points/day shared (sign-in 200 + Aliyun bind 50); was 2,000 calls/day"
   },
   "requires": [
    "account",
@@ -1203,7 +1203,7 @@
    "url": "https://developer.aliyun.com/article/1644361"
   },
   "quote": "魔搭推出免费模型推理API，注册就送每日2000次调用",
-  "note": "Docs limits page is SPA, unextractable 2026-10-08; 2000/day+200/model+100/min corroborated; may adjust anytime.",
+  "note": "Now a pooled lane. Quota shrank to 250 Magicube/day (sign-in 200 + Aliyun 50); real-name (CN), non-commercial.",
   "checked": {
    "date": "2026-10-27",
    "method": "listing"
@@ -2024,6 +2024,47 @@
   "note": "月额度金额未公布；Qwen3.8-27B单价$0.5/M in、$3/M out。",
   "checked": {
    "date": "2026-10-13",
+   "method": "listing"
+  }
+ },
+ {
+  "id": "sensanova-token-plan",
+  "name": "SenseNova Token Plan Free Credit Pool",
+  "provider": "SenseNova",
+  "channel": "SenseNova",
+  "type": "daily_allowance",
+  "gets": {
+   "amount": 600000,
+   "unit": "points",
+   "per": "week",
+   "text": "600,000 shared credit points/week (rolling 60,000/5h); Free public beta, ¥0"
+  },
+  "requires": [
+   "account"
+  ],
+  "paid_plan": null,
+  "region": null,
+  "models": {
+   "kind": "catalogue",
+   "ids": [],
+   "tracked": [
+    "kimi-k3",
+    "deepseek-v4-flash"
+   ],
+   "count": null,
+   "note": "shared credit pool across models; kimi-k3 + deepseek-v4-flash in lanes"
+  },
+  "status": "live",
+  "started": null,
+  "ends": null,
+  "source": {
+   "label": "SenseNova Token Plan",
+   "url": "https://platform.sensenova.cn/token-plan"
+  },
+  "quote": "Free during public beta; paid tiers coming soon. Credit pool: 60,000 points/5h, 600,000 points/week.",
+  "note": "Free beta ¥0; mobile+SMS sign-up, no real-name/card for Free, hard stop at exhaustion. Pool: 60k/5h + 600k/week (adjusted 2026-10-27).",
+  "checked": {
+   "date": "2026-10-28",
    "method": "listing"
   }
  }
