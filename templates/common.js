@@ -294,7 +294,16 @@ const viewNote = () => VIEW === "all" ? "" : (ZH ? `<span class="viewnote">（${
 const useMarks = (l) => ["humans", "agents"].map((v) => { const w = whyNot(l, v); return `<span class="usemark ${w ? "no" : "yes"}" title="${esc(w ? viewName(v) + "：" + w : byV(v))}">${w ? "✕" : "✓"} ${viewName(v)}</span>`; }).join("");
 /* a chip prints only the exception (an end, past end, ended, not answering); the icon carries the state, the tooltip says it in full */
 const chipNote = (l) => { const m = endInfo(l).main; return (m === "no end announced" || m === Tx("no end announced", "no end announced")) ? "" : m; };
-const chipTo = (href, text, l) => `<a class="chip" href="${href}" title="${esc(text + ": " + stateWords(l))}" aria-label="${esc(text + ", " + stateWords(l))}">${statusHTML(l.status, text)}${regionTag(l)}${chipNote(l) ? `<small>${esc(chipNote(l))}</small>` : ""}</a>`;
+const meterBadge = (l) => {
+  const m = l.meter;
+  if (!m) return "";
+  const v = V.meter ? V.meter[m] : null;
+  if (!v) return "";
+  return ZH
+    ? `<span class="pool-badge ${m}" title="${esc(v.help)}">${esc(v.short || v.label)}</span>`
+    : `<span class="pool-badge ${m}" title="${esc(v.help)}">${esc(v.short || v.label)}</span>`;
+};
+const chipTo = (href, text, l) => `<a class="chip" href="${href}" title="${esc(text + ": " + stateWords(l))}" aria-label="${esc(text + ", " + stateWords(l))}">${statusHTML(l.status, text)}${regionTag(l)}${l.meter === "pooled" ? '<span class="meter pooled" title="' + esc(Tx("shared allowance across models", "shared allowance across models")) + '">' + esc(Tx("pooled", "pooled")) + '</span>' : ""}${chipNote(l) ? `<small>${esc(chipNote(l))}</small>` : ""}</a>`;
 const channelChip = (l) => chipTo(channelHref(l.channel), l.channel, l).replace("</a>", needsPay(l.channel) ? `<span class="paymark" title="${esc(costText(l.channel))}">$</span></a>` : "</a>");
 const modelChip = (l) => chipTo(modelHref(l.model), models[l.model].name, l);
 
@@ -305,10 +314,10 @@ function obsParts(l) {
   const lo = l.limits_observed; if (!lo) return [];
   const p = [];
   if (lo.reach) p.push({ t: lab("reach", lo.reach) + (lo.reach === "works" ? ` · ${shortDate(lo.date)}` : lo.checks > 1 ? ` ×${lo.checks}` : ""), c: "r-" + lo.reach, h: V.reach[lo.reach].help });
-  if (lo.parallel) p.push({ t: `${lo.parallel} ${Tx("parallel", "parallel")}`, c: "cap", h: Tx("parallel runs worked in our test", `${lo.parallel} parallel runs worked in our test`) });
+  if (lo.parallel) p.push({ t: `${lo.parallel} ${Tx("parallel", "parallel")}`, c: "obs-cap", h: Tx("parallel runs worked in our test", `${lo.parallel} parallel runs worked in our test`) });
   const scope = lo.scope || (CH[l.channel] && CH[l.channel].limit_scope && CH[l.channel].limit_scope.value);
-  if (scope) p.push({ t: lab("limit_scope", scope), c: "cap", h: V.limit_scope[scope].help });
-  if (lo.load) p.push({ t: lab("under_load", lo.load), c: "cap", h: V.under_load[lo.load].help });
+  if (scope) p.push({ t: lab("limit_scope", scope), c: "obs-cap", h: V.limit_scope[scope].help });
+  if (lo.load) p.push({ t: lab("under_load", lo.load), c: "obs-cap", h: V.under_load[lo.load].help });
   if (lo.cost) p.push({ t: lab("cost_seen", lo.cost), c: "cost0", h: V.cost_seen[lo.cost].help });
   (lo.quirks || []).forEach((q) => p.push({ t: lab("quirk", q), c: "quirk", h: V.quirk[q].help }));
   return p;
@@ -571,7 +580,7 @@ function mountLanes(limit) {
         <td class="lane"><span class="ent">${modelTile(models[l.model])}<span><span class="name">${mlink(l.model)}</span><span class="sub chan">${chanLogo(l.channel)} ${clink(l.channel)} <span class="tag" title="${esc(Tx("Channel type", "Channel type"))}">${esc(lab("channel_type", l.type))}</span></span><span class="mid">${idHTML(l)}</span></span></span></td>
         <td class="nowrap" data-label="${Tx("Status · end", "Status · end")}"><span title="${esc(lab("status", l.status))}">${statusHTML(l.status, e.main)}</span><span class="sub">${e.sub}</span></td>
         <td data-label="${Tx("Tested by us", "Tested by us")}">${measuredHTML(l)}${checkedSub(l)}</td>
-        <td class="cond" data-label="${Tx("Limit · condition", "Limit · condition")}">${costHTML(l.channel)} ${regionTag(l)} ${limitHTML(l)}${l.free_condition ? `<span class="sub">${esc(l.free_condition)}</span>` : ""}</td>
+        <td class="cond" data-label="${Tx("Limit · condition", "Limit · condition")}">${costHTML(l.channel)} ${regionTag(l)} ${meterBadge(l)} ${limitHTML(l)}${l.free_condition ? `<span class="sub">${esc(l.free_condition)}</span>` : ""}</td>
         <td data-label="${Tx("Data", "Data")}">${policyHTML(l.data_policy)}</td>
       </tr>`;
     }).join("") || `<tr><td colspan="5" class="muted">${Tx("No lanes match these filters.", "No lanes match these filters.")}</td></tr>`;

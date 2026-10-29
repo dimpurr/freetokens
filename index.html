@@ -56,6 +56,8 @@ if (!navigator.webdriver) { (function () { var sent = false, go = function () { 
   --live: #16834a; --live-soft: #ddf1e5; --overdue: #a8640b; --overdue-soft: #f8ecd6;
   --off: #707988; --off-soft: #eceef2; --ended: #b4323a; --ended-soft: #f9e2e3; --today: #c2410c;
   --score: #2451c9; --score-track: #e7eaf0;
+  /* trend detail heatmap: h0 no free model that day, h1 free but under the threshold, h2..h5 the AA ramp (strongest free model) */
+  --h0: #f1f3f5; --h1: #dfe3e8; --h2: #9dbcef; --h3: #5b8fe0; --h4: #1f5fcf; --h5: #0b2f6b;
   --ring: 0 0 0 1px var(--line), 0 1px 2px rgba(15, 23, 41, 0.04);
   --ring-hover: 0 0 0 1px var(--line-strong), 0 2px 6px rgba(15, 23, 41, 0.06);
   --r: 10px; --r-s: 6px;
@@ -71,6 +73,8 @@ if (!navigator.webdriver) { (function () { var sent = false, go = function () { 
   --live: #4ccb85; --live-soft: #133223; --overdue: #e9a94b; --overdue-soft: #3a2a12;
   --off: #8a93a1; --off-soft: #232932; --ended: #f07a7f; --ended-soft: #3d1d20; --today: #fb8a50;
   --score: #86a5ff; --score-track: #232a35;
+  /* heatmap ramp runs dim to bright on the dark ground (same order as the light theme) */
+  --h0: #171d26; --h1: #262f3c; --h2: #2e5c96; --h3: #4a80c8; --h4: #74a6ef; --h5: #b6d0ff;
   --ring: 0 0 0 1px var(--line), 0 1px 2px rgba(0, 0, 0, 0.3);
   --ring-hover: 0 0 0 1px var(--line-strong), 0 2px 8px rgba(0, 0, 0, 0.35);
   color-scheme: dark; } }
@@ -82,6 +86,8 @@ if (!navigator.webdriver) { (function () { var sent = false, go = function () { 
   --live: #4ccb85; --live-soft: #133223; --overdue: #e9a94b; --overdue-soft: #3a2a12;
   --off: #8a93a1; --off-soft: #232932; --ended: #f07a7f; --ended-soft: #3d1d20; --today: #fb8a50;
   --score: #86a5ff; --score-track: #232a35;
+  /* heatmap ramp runs dim to bright on the dark ground (same order as the light theme) */
+  --h0: #171d26; --h1: #262f3c; --h2: #2e5c96; --h3: #4a80c8; --h4: #74a6ef; --h5: #b6d0ff;
   --ring: 0 0 0 1px var(--line), 0 1px 2px rgba(0, 0, 0, 0.3);
   --ring-hover: 0 0 0 1px var(--line-strong), 0 2px 8px rgba(0, 0, 0, 0.35);
   color-scheme: dark; }
@@ -918,6 +924,14 @@ li:target { background: var(--accent-soft); border-radius: 4px; }
   .post { padding: 16px; }
   .post-t { font-size: 1.15rem; }
 }
+
+.ob.obs-cap { background: var(--measured-soft); color: var(--measured); }
+
+/* P30: pool-type badge (per_model vs pooled) */
+.pool-badge { display: inline-flex; align-items: center; gap: 3px; font: 600 0.7rem var(--f-mono); border-radius: 4px; padding: 1px 6px; white-space: nowrap; border: 1px solid var(--line); }
+.pool-badge.pooled { background: var(--accent-soft); color: var(--accent); border-color: var(--accent); }
+.pool-badge.per_model { background: var(--surface-2); color: var(--muted); }
+.meter.pooled { color: var(--accent); font-weight: 600; letter-spacing: 0.04em; }
 </style>
 </head>
 <body>
@@ -980,6 +994,11 @@ li:target { background: var(--accent-soft); border-radius: 4px; }
     <div class="key keyrow" id="chartkey"></div>
     <div class="chart-scroll"><div class="chart" id="chart" role="img" aria-label="Chart of each free lane's free period against today's date"></div></div>
     <div class="more-row"><a class="seeall" href="lanes#h-chart">All 161 lanes on the chart →</a></div>
+  </section>
+
+  <section aria-labelledby="h-trend" id="trend-sec">
+    <h2 id="h-trend">Daily free tokens <small><a id="trend-how" href="#daily-free-tokens">How it's counted</a></small></h2>
+    <div id="trend"></div>
   </section>
 
   <section aria-labelledby="h-tl">
@@ -1294,7 +1313,16 @@ const viewNote = () => VIEW === "all" ? "" : (ZH ? `<span class="viewnote">（${
 const useMarks = (l) => ["humans", "agents"].map((v) => { const w = whyNot(l, v); return `<span class="usemark ${w ? "no" : "yes"}" title="${esc(w ? viewName(v) + "：" + w : byV(v))}">${w ? "✕" : "✓"} ${viewName(v)}</span>`; }).join("");
 /* a chip prints only the exception (an end, past end, ended, not answering); the icon carries the state, the tooltip says it in full */
 const chipNote = (l) => { const m = endInfo(l).main; return (m === "no end announced" || m === Tx("no end announced", "no end announced")) ? "" : m; };
-const chipTo = (href, text, l) => `<a class="chip" href="${href}" title="${esc(text + ": " + stateWords(l))}" aria-label="${esc(text + ", " + stateWords(l))}">${statusHTML(l.status, text)}${regionTag(l)}${chipNote(l) ? `<small>${esc(chipNote(l))}</small>` : ""}</a>`;
+const meterBadge = (l) => {
+  const m = l.meter;
+  if (!m) return "";
+  const v = V.meter ? V.meter[m] : null;
+  if (!v) return "";
+  return ZH
+    ? `<span class="pool-badge ${m}" title="${esc(v.help)}">${esc(v.short || v.label)}</span>`
+    : `<span class="pool-badge ${m}" title="${esc(v.help)}">${esc(v.short || v.label)}</span>`;
+};
+const chipTo = (href, text, l) => `<a class="chip" href="${href}" title="${esc(text + ": " + stateWords(l))}" aria-label="${esc(text + ", " + stateWords(l))}">${statusHTML(l.status, text)}${regionTag(l)}${l.meter === "pooled" ? '<span class="meter pooled" title="' + esc(Tx("shared allowance across models", "shared allowance across models")) + '">' + esc(Tx("pooled", "pooled")) + '</span>' : ""}${chipNote(l) ? `<small>${esc(chipNote(l))}</small>` : ""}</a>`;
 const channelChip = (l) => chipTo(channelHref(l.channel), l.channel, l).replace("</a>", needsPay(l.channel) ? `<span class="paymark" title="${esc(costText(l.channel))}">$</span></a>` : "</a>");
 const modelChip = (l) => chipTo(modelHref(l.model), models[l.model].name, l);
 
@@ -1305,10 +1333,10 @@ function obsParts(l) {
   const lo = l.limits_observed; if (!lo) return [];
   const p = [];
   if (lo.reach) p.push({ t: lab("reach", lo.reach) + (lo.reach === "works" ? ` · ${shortDate(lo.date)}` : lo.checks > 1 ? ` ×${lo.checks}` : ""), c: "r-" + lo.reach, h: V.reach[lo.reach].help });
-  if (lo.parallel) p.push({ t: `${lo.parallel} ${Tx("parallel", "parallel")}`, c: "cap", h: Tx("parallel runs worked in our test", `${lo.parallel} parallel runs worked in our test`) });
+  if (lo.parallel) p.push({ t: `${lo.parallel} ${Tx("parallel", "parallel")}`, c: "obs-cap", h: Tx("parallel runs worked in our test", `${lo.parallel} parallel runs worked in our test`) });
   const scope = lo.scope || (CH[l.channel] && CH[l.channel].limit_scope && CH[l.channel].limit_scope.value);
-  if (scope) p.push({ t: lab("limit_scope", scope), c: "cap", h: V.limit_scope[scope].help });
-  if (lo.load) p.push({ t: lab("under_load", lo.load), c: "cap", h: V.under_load[lo.load].help });
+  if (scope) p.push({ t: lab("limit_scope", scope), c: "obs-cap", h: V.limit_scope[scope].help });
+  if (lo.load) p.push({ t: lab("under_load", lo.load), c: "obs-cap", h: V.under_load[lo.load].help });
   if (lo.cost) p.push({ t: lab("cost_seen", lo.cost), c: "cost0", h: V.cost_seen[lo.cost].help });
   (lo.quirks || []).forEach((q) => p.push({ t: lab("quirk", q), c: "quirk", h: V.quirk[q].help }));
   return p;
@@ -1571,7 +1599,7 @@ function mountLanes(limit) {
         <td class="lane"><span class="ent">${modelTile(models[l.model])}<span><span class="name">${mlink(l.model)}</span><span class="sub chan">${chanLogo(l.channel)} ${clink(l.channel)} <span class="tag" title="${esc(Tx("Channel type", "Channel type"))}">${esc(lab("channel_type", l.type))}</span></span><span class="mid">${idHTML(l)}</span></span></span></td>
         <td class="nowrap" data-label="${Tx("Status · end", "Status · end")}"><span title="${esc(lab("status", l.status))}">${statusHTML(l.status, e.main)}</span><span class="sub">${e.sub}</span></td>
         <td data-label="${Tx("Tested by us", "Tested by us")}">${measuredHTML(l)}${checkedSub(l)}</td>
-        <td class="cond" data-label="${Tx("Limit · condition", "Limit · condition")}">${costHTML(l.channel)} ${regionTag(l)} ${limitHTML(l)}${l.free_condition ? `<span class="sub">${esc(l.free_condition)}</span>` : ""}</td>
+        <td class="cond" data-label="${Tx("Limit · condition", "Limit · condition")}">${costHTML(l.channel)} ${regionTag(l)} ${meterBadge(l)} ${limitHTML(l)}${l.free_condition ? `<span class="sub">${esc(l.free_condition)}</span>` : ""}</td>
         <td data-label="${Tx("Data", "Data")}">${policyHTML(l.data_policy)}</td>
       </tr>`;
     }).join("") || `<tr><td colspan="5" class="muted">${Tx("No lanes match these filters.", "No lanes match these filters.")}</td></tr>`;
@@ -1655,6 +1683,7 @@ document.addEventListener("click", (ev) => {
 
 mountViewSwitch();
 $("mk-browse").href = `${D.root}makers${D.ext}`;
+if ($("trend-how")) $("trend-how").href = `${D.root}methodology${D.ext}#daily-free-tokens`;
 onView(() => { $("stamp").innerHTML = metaStrip(); });
 
 /* at a glance (P2): three answers straight from the data, in the current view.
@@ -1852,6 +1881,527 @@ onView(() => {
   $("offers-more").innerHTML = `<a class="seeall" href="${D.root}offers${D.ext}${VIEW === "all" ? "" : "?use=" + VIEW}">${ZH ? `全部 ${all.length} 个计划${VIEW === "all" ? "" : " " + byV(VIEW)}，含筛选 →` : `All ${all.length} programs${VIEW === "all" ? "" : " usable by " + VIEW}, with filters →`}</a>`;
 });
 mountChart(30);
+
+/* P29-2: daily free-token trend */
+(function () {
+  const TREND_START = Date.parse("2026-10-04T00:00Z");
+  const TIER_VAL = { taste: 0.3, daily: 3, bulk: 30 };
+  const PALETTE = ["#e07b2e", "#2f6fde", "#1f9a70", "#7d55e6", "#c93f7f", "#b8901a", "#56702a", "#2f8fb8", "#6f7d8c", "#99602f"];
+  const state = { thr: 40, preset: "common", metric: "tokens" };
+  const endedDateByLane = new Map();
+  for (const e of D.events) {
+    if (!e.lanes) continue;
+    if (e.kind === "ended" || e.kind === "unavailable") {
+      for (const id of e.lanes) {
+        const t = pd(e.date).t;
+        if (!endedDateByLane.has(id) || t < endedDateByLane.get(id)) endedDateByLane.set(id, t);
+      }
+    }
+  }
+  function laneActive(l, dayT) {
+    const st = l.started && l.started.date ? pd(l.started.date).t : null;
+    if (st == null || dayT < st) return false;
+    let endT = null;
+    if (endedDateByLane.has(l.id)) endT = endedDateByLane.get(l.id);
+    else if (l.status === "ended" || l.status === "unavailable") return false;
+    else {
+      const ee = effEnd(l);
+      if (ee) { const eet = pd(ee).t; if (eet >= st) endT = eet + DAY; }
+    }
+    if (endT != null && dayT >= endT) return false;
+    return true;
+  }
+  function laneScore(l) { return aaValue(models[l.model]); }
+  function meetsThreshold(l, thr) {
+    if (!thr) return true;
+    const s = laneScore(l);
+    return s != null && s >= thr;
+  }
+  function channelNoAuto(c) { const ch = CH[c]; const a = ch && ch.access; return !!a && (a.rules || []).includes("no_automation"); }
+  function isCommonChannel(c) {
+    if (needsPay(c)) return false;
+    if (channelNoAuto(c)) return false;
+    const ch = CH[c]; const form = ch && ch.access && ch.access.form;
+    return form === "api" || form === "own_cli";
+  }
+  function channelsForPreset(preset) {
+    const allCh = [...new Set(D.lanes.map((l) => l.channel))];
+    if (preset === "common") return allCh.filter(isCommonChannel);
+    if (preset === "paid") return allCh.filter((c) => isCommonChannel(c) || needsPay(c));
+    return allCh;
+  }
+  function laneTokenValue(l) {
+    const ls = l.limits_stated || {};
+    if (ls.tokens_day) return ls.tokens_day / 1e6;
+    if (ls.per_day) return ls.per_day * 8000 / 1e6;
+    const t = l.volume && l.volume.tier;
+    if (t && TIER_VAL[t] != null) return TIER_VAL[t];
+    return null;
+  }
+  function laneHasOfficial(l) {
+    const ls = l.limits_stated || {};
+    return !!(ls.tokens_day || ls.per_day);
+  }
+  const modelStartT = Math.floor((todayT - 90 * DAY) / DAY) * DAY;
+  function computeTopAA(dayT, presetSet) {
+    let a = 0;
+    for (const l of D.lanes) {
+      if (!presetSet.has(l.channel)) continue;
+      if (!laneActive(l, dayT)) continue;
+      const s = laneScore(l);
+      if (s != null && s > a) a = s;
+    }
+    return a;
+  }
+  function compute(metric, preset, thr) {
+    const presetCh = channelsForPreset(preset);
+    const presetSet = new Set(presetCh);
+    const startT = metric === "models" ? modelStartT : TREND_START;
+    const days = [];
+    for (let t = startT; t <= todayT; t += DAY) days.push(t);
+    const channelTotals = {};
+    for (const ch of presetCh) channelTotals[ch] = 0;
+    const perDay = days.map((dayT) => {
+      const active = D.lanes.filter((l) => presetSet.has(l.channel) && laneActive(l, dayT) && (metric === "models" ? meetsThreshold(l, thr) : (meetsThreshold(l, thr) && laneTokenValue(l) != null)));
+      const byCh = {};
+      const perSum = {};
+      const pooledMax = {};
+      const estByCh = {};
+      for (const ch of presetCh) { byCh[ch] = 0; perSum[ch] = 0; pooledMax[ch] = 0; estByCh[ch] = false; }
+      for (const l of active) {
+        if (metric === "models") continue;
+        const val = laneTokenValue(l);
+        if (val == null) continue;
+        const ch = l.channel;
+        if (l.meter === "pooled") pooledMax[ch] = Math.max(pooledMax[ch], val);
+        else perSum[ch] += val;
+        estByCh[ch] = estByCh[ch] || !laneHasOfficial(l);
+      }
+      for (const ch of presetCh) byCh[ch] = perSum[ch] + pooledMax[ch];
+      for (const ch of presetCh) channelTotals[ch] += byCh[ch];
+      const modelCount = new Set(active.map((l) => l.model)).size;
+      const topAA = computeTopAA(dayT, presetSet);
+      const total = Object.values(byCh).reduce((a, b) => a + b, 0);
+      return { dayT, byCh, total, modelCount, topAA };
+    });
+    // rank channels for tokens
+    let topChannels = [];
+    let restChannels = [];
+    if (metric === "tokens") {
+      const sorted = presetCh.slice().sort((a, b) => channelTotals[b] - channelTotals[a]);
+      topChannels = sorted.slice(0, 6);
+      restChannels = sorted.slice(6);
+    }
+    const channelEst = {};
+    for (const ch of presetCh) channelEst[ch] = D.lanes.some((l) => l.channel === ch && !((l.limits_stated || {}).tokens_day || (l.limits_stated || {}).per_day));
+    return { days, perDay, channelTotals, topChannels, restChannels, presetCh, channelEst };
+  }
+  function eventLabel(dayT) {
+    const evs = D.events.filter((e) => pd(e.date).t === dayT);
+    if (!evs.length) return "";
+    const presetSet = new Set(channelsForPreset(state.preset));
+    const e = evs.find((ev) => (ev.lanes || []).some((id) => lanes[id] && presetSet.has(lanes[id].channel))) || evs[0];
+    const presetLanes = (e.lanes || []).filter((id) => lanes[id] && presetSet.has(lanes[id].channel));
+    if (!presetLanes.length) return "";
+    const n = presetLanes.length;
+    const firstLane = lanes[presetLanes[0]];
+    if (e.kind === "ended" || e.kind === "unavailable") {
+      const ch = firstLane ? firstLane.channel : "";
+      return ZH ? `${ch} −${n} 条线路` : `${ch} −${n} lanes`;
+    }
+    if (e.kind === "available" || e.kind === "listed" || e.kind === "announced") {
+      const name = firstLane ? models[firstLane.model].name : "";
+      return ZH ? `${name} +` : `${name} +`;
+    }
+    return ZH ? "限额变化" : "limit change";
+  }
+  function draw() {
+    const root = document.getElementById("trend");
+    if (!root) return;
+    const { thr, preset, metric } = state;
+    const data = compute(metric, preset, thr);
+    const days = data.days;
+    const N = days.length;
+    const multiYear = new Date(days[0]).getUTCFullYear() !== new Date(days[days.length - 1]).getUTCFullYear();
+    const lab = (t) => { const d = new Date(t); const base = (d.getUTCMonth() + 1) + "-" + String(d.getUTCDate()).padStart(2, "0"); return multiYear ? d.getUTCFullYear() + "-" + base : base; };
+    const x = (i) => X0 + (N > 1 ? i * (X1 - X0) / (N - 1) : 0);
+    // stats
+    let statsHTML = "";
+    if (metric === "tokens") {
+      const totals = data.perDay.map((d) => d.total);
+      const nowV = totals[N - 1];
+      const ago = N >= 31 ? totals[N - 31] : totals[0];
+      const deltaP = ago ? Math.round((nowV - ago) / ago * 100) : 0;
+      let pk = 0; for (let i = 1; i < N; i++) if (totals[i] > totals[pk]) pk = i;
+      const last30 = totals.slice(Math.max(0, N - 30));
+      const hi30 = Math.max(...last30), lo30 = Math.min(...last30);
+      const hiIdx = totals.indexOf(hi30), loIdx = totals.indexOf(lo30);
+      const chCount = data.topChannels.concat(data.restChannels).filter((c) => data.perDay[N - 1].byCh[c] > 0).length;
+      const card = (k, v, sub, c) => `<div style="flex:1 0 auto;min-width:108px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:2px;"><span style="font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.04em;">${k}</span><span style="font-family:'IBM Plex Mono',monospace;font-size:22px;font-weight:600;line-height:1;color:${c};">${v}</span><span style="font-size:11px;color:var(--muted);">${sub}</span></div>`;
+      statsHTML = `
+        <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:6px;">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:48px;font-weight:600;line-height:1;">${nowV.toFixed(1)}</span>
+          <span style="font-size:18px;color:var(--muted);">${ZH ? "M token/天" : "M tok/day"}</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:16px;font-weight:600;color:${deltaP < 0 ? "#b4321f" : "#1f7a4f"};">${(deltaP > 0 ? "+" : "") + deltaP}% vs 30d</span>
+        </div>
+        <div style="display:flex;gap:8px;overflow-x:auto;margin-bottom:10px;-webkit-mask-image:linear-gradient(to right,#000 88%,transparent);mask-image:linear-gradient(to right,#000 88%,transparent);">
+          ${card(ZH ? "现在" : "Now", nowV.toFixed(1) + "M", lab(days[N-1]), "var(--fg)")}
+          ${card(ZH ? "30 天最高" : "30d high", hi30.toFixed(1) + "M", lab(days[hiIdx]), "#1f7a4f")}
+          ${card(ZH ? "30 天最低" : "30d low", lo30.toFixed(1) + "M", lab(days[loIdx]), "#b4321f")}
+          ${card(ZH ? "最高免费 AA" : "Top free AA", data.perDay[N - 1].topAA || "—", (ZH ? "今天" : "today"), "#b4321f")}
+        </div>`;
+    } else {
+      const counts = data.perDay.map((d) => d.modelCount);
+      const nowV = counts[N - 1];
+      let pk = 0, mn = 0; for (let i = 1; i < N; i++) { if (counts[i] > counts[pk]) pk = i; if (counts[i] < counts[mn]) mn = i; }
+      const card = (k, v, sub, c) => `<div style="flex:1 0 auto;min-width:108px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:2px;"><span style="font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.04em;">${k}</span><span style="font-family:'IBM Plex Mono',monospace;font-size:22px;font-weight:600;line-height:1;color:${c};">${v}</span><span style="font-size:11px;color:var(--muted);">${sub}</span></div>`;
+      statsHTML = `
+        <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:6px;">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:48px;font-weight:600;line-height:1;">${nowV}</span>
+          <span style="font-size:18px;color:var(--muted);">${ZH ? "模型" : "models"}</span>
+        </div>
+        <div style="display:flex;gap:8px;overflow-x:auto;margin-bottom:10px;-webkit-mask-image:linear-gradient(to right,#000 88%,transparent);mask-image:linear-gradient(to right,#000 88%,transparent);">
+          ${card(ZH ? "现在" : "Now", nowV, lab(days[N-1]), "var(--fg)")}
+          ${card(ZH ? "历史最多" : "Peak", counts[pk], lab(days[pk]), "#1f7a4f")}
+          ${card(ZH ? "历史最少" : "Low", counts[mn], lab(days[mn]), "#b4321f")}
+        </div>`;
+    }
+    // controls
+    const seg = (sel, last) => `padding:8px 14px;min-height:40px;border:0;border-right:${last ? "0" : "1px solid var(--line-strong)"};font-size:13px;font-weight:600;background:${sel ? "var(--fg)" : "var(--surface)"};color:${sel ? "var(--bg)" : "var(--muted)"};cursor:pointer;`;
+    const thrOpts = [0, 20, 30, 40, 50].map((t, i, a) => `<button type="button" style="${seg(t === thr, i === a.length - 1)}" onclick="window.__trendSet('thr',${t})">${t ? "AA " + t + "+" : (ZH ? "全部" : "All")}</button>`).join("");
+    const presetOpts = [["common", ZH ? "常用组合" : "Common"], ["all", ZH ? "全部注册" : "All"], ["paid", ZH ? "+ 最低充值" : "+ min pay"]].map(([k, l], i, a) => `<button type="button" style="padding:8px 14px;min-height:40px;border-radius:999px;font-size:13px;font-weight:500;border:1px solid ${k === preset ? "var(--fg)" : "var(--line-strong)"};background:${k === preset ? "var(--fg)" : "var(--surface)"};color:${k === preset ? "var(--bg)" : "var(--muted)"};cursor:pointer;margin-right:6px;" onclick="window.__trendSet('preset','${k}')">${l}</button>`).join("");
+    const metricOpts = [["tokens", ZH ? "token 量" : "Tokens"], ["models", ZH ? "模型数" : "Models"]].map(([k, l]) => `<button type="button" style="padding:8px 14px;min-height:40px;border-radius:999px;font-size:13px;font-weight:500;border:1px solid ${k === metric ? "var(--fg)" : "var(--line-strong)"};background:${k === metric ? "var(--fg)" : "var(--surface)"};color:${k === metric ? "var(--bg)" : "var(--muted)"};cursor:pointer;margin-right:6px;" onclick="window.__trendSet('metric','${k}')">${l}</button>`).join("");
+    const controlsHTML = `
+      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:10px;">
+        <div style="display:flex;border:1px solid var(--line-strong);border-radius:8px;overflow:hidden;background:var(--surface);" role="group" aria-label="threshold">${thrOpts}</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;" role="group" aria-label="preset">${presetOpts}</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;" role="group" aria-label="metric">${metricOpts}</div>
+      </div>`;
+    // chart
+    // One SVG unit = one CSS px: the plot is laid out at the width it actually gets, so axis type never scales under F.
+    const boxW = root.clientWidth ? root.clientWidth - 36 : window.innerWidth - 60;
+    const W = Math.max(264, Math.min(Math.round(boxW), 1150));
+    const CM = W < 560;
+    const X0 = CM ? 34 : 56, X1 = W - (CM ? 26 : 70), Y0 = CM ? 226 : 392, Y1 = CM ? 22 : 28;
+    const H = CM ? 250 : 440, F = CM ? 10 : 12;
+    // annotation lane along the top (two rows on either screen): the plot is drawn under it, so labels have somewhere to go
+    const LH = F + 3;
+    const DY1 = Y1 + (CM ? 3 : 2) * LH + 8;
+    let svg = "";
+    /* y ticks thin to the height the chart really gets: no more than 6 gaps on a phone / 11 on a desktop, and never a
+       gap under F*1.9 px, the step climbing the 5/10/20/25/50 ladder until it fits. A 10M ladder in a 170px phone
+       plot printed 10px type on top of itself (REVIEW-R5 item 2: 200M/190M/180M smeared into one another). */
+    const axisScale = (maxV) => {
+      const maxGaps = Math.max(3, Math.min(CM ? 6 : 11, Math.floor((Y0 - DY1) / (F * 1.9))));
+      const base = maxV > 30 ? 10 : 5;
+      const top = Math.ceil(maxV * 1.1 / base) * base;
+      let step = base;
+      for (const s of [5, 10, 20, 25, 50, 100, 200, 500, 1000, 2000, 5000]) if (top / s <= maxGaps) { step = s; break; }
+      return { step, top };
+    };
+    /* Everything a label must not touch, in SVG units (1 unit = 1 CSS px): another label, a rule (gridline or the
+       axis), the data polyline, a dot, and every leader or dashed guide already drawn. Candidate baselines step
+       3px from the annotation lane down to the plot floor, nearest the point's own height first, both anchor sides
+       tried; a label with nothing clear anywhere folds into a "+n" badge whose leaders face the same test. */
+    const PAD = 1.5, GAP = 3, RSTEP = 3;
+    const segHit = (s, r, g) => {                     // Liang-Barsky: segment s against rect r shrunk by g
+      const x1 = r.x1 + g, x2 = r.x2 - g, y1 = r.y1 + g, y2 = r.y2 - g;
+      if (x2 <= x1 || y2 <= y1) return false;
+      const dx = s.x2 - s.x1, dy = s.y2 - s.y1;
+      let t0 = 0, t1 = 1;
+      const p = [-dx, dx, -dy, dy], q = [s.x1 - x1, x2 - s.x1, s.y1 - y1, y2 - s.y1];
+      for (let i = 0; i < 4; i++) {
+        if (p[i] === 0) { if (q[i] < 0) return false; continue; }
+        const t = q[i] / p[i];
+        if (p[i] < 0) { if (t > t1) return false; if (t > t0) t0 = t; }
+        else { if (t < t0) return false; if (t < t1) t1 = t; }
+      }
+      return true;
+    };
+    const dxu = N > 1 ? (X1 - X0) / (N - 1) : 1;
+    const dayOf = (px) => Math.max(0, Math.min(N - 1, Math.round((px - X0) / dxu)));
+    // real glyph widths where a canvas exists: the layout box of an SVG <text> is exactly measureText width.
+    // The prerenderer has no 2d context, so the per-char estimate stays as the fallback (it only ever runs there).
+    const meas = document.createElement("canvas").getContext("2d");
+    const measFam = (typeof getComputedStyle === "function" && getComputedStyle(root).fontFamily) || "sans-serif";
+    const wCache = new Map();
+    const estW = (t) => {
+      if (!wCache.has(t)) wCache.set(t, meas
+        ? (meas.font = F + "px " + measFam, meas.measureText(t).width + 2)
+        : [...t].reduce((w, c) => w + (c.charCodeAt(0) > 0x2e80 ? F : F * 0.62), 0) + 2);
+      return wCache.get(t);
+    };
+    const halo = `paint-order="stroke" stroke="var(--surface)" stroke-width="3" stroke-linejoin="round"`;
+    function placeEvents(pts, occFn, pocketFn, geo) {
+      pts.forEach((p, i) => { p.id = "e" + i; });
+      const rules = (((geo || {}).rules) || []).map((v) => ({ x1: X0 - 2, x2: X1 + 2, y1: v - 0.7, y2: v + 0.7 }));
+      const dataSegs = [];
+      (((geo || {}).data) || []).forEach((poly) => {
+        for (let i = 0; i + 1 < poly.length; i++) dataSegs.push({ x1: poly[i][0], y1: poly[i][1], x2: poly[i + 1][0], y2: poly[i + 1][1] });
+      });
+      const boxes = pts.map((p) => ({ x1: p.x - 6, x2: p.x + 6, y1: p.y - 6, y2: p.y + 6, id: p.id }));
+      const wires = pts.map((p) => ({ x1: p.x, y1: p.y, x2: p.x, y2: Y0, id: p.id }));   // dashed guide from each dot down
+      const leads = [];
+      const boxOf = (p, y, w, anchor) => ({ x1: anchor === "end" ? p.x - 7 - w : p.x + 7, x2: anchor === "end" ? p.x - 7 : p.x + 7 + w, y1: y - F - PAD, y2: y + F * 0.3 + PAD, id: p.id });
+      const wireOf = (b, p) => {
+        const bot = b.y2 - PAD;
+        if (p.y - 4 - bot < F * 0.9 && p.x > b.x1 - 3 && p.x < b.x2 + 3) return null;   // the label already sits on its dot
+        return { x1: Math.max(b.x1 + 3, Math.min(b.x2 - 3, p.x)), y1: bot, x2: p.x, y2: p.y - 4, id: p.id, own: [p.id] };
+      };
+      const clear = (b, own) => !boxes.some((o) => o.id !== own && b.x1 < o.x2 + GAP && b.x2 > o.x1 - GAP && b.y1 < o.y2 + GAP && b.y2 > o.y1 - GAP) &&
+        !rules.some((r) => segHit(r, b, 0)) && !dataSegs.some((s) => segHit(s, b, 0)) &&
+        !leads.some((s) => s.id !== own && segHit(s, b, 0.4));
+      // the dashed day guides sit behind the halo, so they are only a cost to minimise, never a reason to fold a label
+      const guideHits = (b) => wires.reduce((n, s) => n + (s.id !== b.id && segHit(s, b, 0.4) ? 1 : 0), 0);
+      // own(s, id): the wire's own label/badge and the dots it is drawn to are never obstacles
+      const own = (s, id) => (s.own || [s.id]).includes(id);
+      const wireClear = (s) => !boxes.some((o) => !own(s, o.id) && segHit(s, o, 0.6)) &&
+        !leads.some((o) => !own(s, o.id) && segHit(s, { x1: Math.min(o.x1, o.x2) - 0.45, y1: Math.min(o.y1, o.y2) - 0.45, x2: Math.max(o.x1, o.x2) + 0.45, y2: Math.max(o.y1, o.y2) + 0.45 }, 0.9));
+      const wireGuides = (s) => wires.reduce((n, o) => n + (!own(s, o.id) && segHit(s, { x1: o.x1 - 0.45, y1: Math.min(o.y1, o.y2), x2: o.x1 + 0.45, y2: Math.max(o.y1, o.y2) }, 0.9) ? 1 : 0), 0);
+      const placed = [], folded = [];
+      for (const p of pts.slice().sort((a, b) => a.y - b.y)) {
+        const w = estW(p.text);
+        let done = null;
+        for (const anchor of p.x > (X0 + X1) / 2 ? ["end", "start"] : ["start", "end"]) {
+          const bx1 = anchor === "end" ? p.x - 7 - w : p.x + 7, bx2 = bx1 + w;
+          if (bx1 < X0 - 2 || bx2 > X1 + 2) continue;
+          let occ = Infinity, pkLo = -Infinity, pkHi = Infinity;
+          for (let k = dayOf(bx1); k <= dayOf(bx2); k++) {
+            const cv = occFn(k); if (cv < occ) occ = cv;
+            if (pocketFn) { const [l, h] = pocketFn(k); if (l > pkLo) pkLo = l; if (h < pkHi) pkHi = h; }
+          }
+          occ = Math.min(occ, p.y - 9);
+          const zones = [[Y1 + LH * 0.7, Math.min(occ - 5, Y0 - LH * 0.7)]];
+          if (pocketFn && pkLo + F + 5 < pkHi - 5) zones.push([pkLo + F + 5, Math.min(pkHi - 5, Y0 - LH * 0.7)]);
+          let best = null;
+          for (const [lo, hi] of zones) {
+            for (let y = lo; y <= hi; y += RSTEP) {
+              const cy = Math.max(lo, Math.min(hi, y));
+              const b = boxOf(p, cy, w, anchor), wire = wireOf(b, p);
+              if (!clear(b, p.id) || (wire && !wireClear(wire))) continue;
+              const n = guideHits(b) + (wire ? wireGuides(wire) : 0);
+              const d = Math.abs(cy - (p.y - 8));
+              if (!best || n < best.n || (n === best.n && d < best.d)) best = { cy, n, d, b, wire };
+            }
+          }
+          if (best) { done = { p, y: best.cy, anchor, box: best.b, wire: best.wire }; break; }
+        }
+        if (done) { boxes.push(done.box); if (done.wire) leads.push(done.wire); placed.push(done); }
+        else folded.push(p);
+      }
+      let out = pts.map((p) => `<line data-ev="${p.id}" x1="${p.x}" x2="${p.x}" y1="${p.y}" y2="${Y0}" stroke="var(--fg)" stroke-width="1" stroke-dasharray="3 3" stroke-opacity="0.45"></line><circle cx="${p.x}" cy="${p.y}" r="3" fill="var(--fg)"><title>${esc(p.text)}</title></circle>`).join("");
+      out += placed.map((q) => (q.wire ? `<line data-ev="${q.p.id}" x1="${q.wire.x1.toFixed(1)}" y1="${q.wire.y1.toFixed(1)}" x2="${q.wire.x2.toFixed(1)}" y2="${q.wire.y2.toFixed(1)}" stroke="var(--muted)" stroke-width="0.9" stroke-opacity="0.75"></line>` : "") + `<text data-ev="${q.p.id}" x="${(q.anchor === "end" ? q.box.x2 : q.box.x1).toFixed(1)}" y="${q.y.toFixed(1)}" font-size="${F}" fill="var(--fg)" text-anchor="${q.anchor}" ${halo}>${esc(q.p.text)}</text>`).join("");
+      const groups = [];
+      folded.forEach((p) => { const g = groups[groups.length - 1]; (g && Math.abs(g.x - p.x) < 30 ? g : (groups.push({ x: p.x, pts: [] }), groups[groups.length - 1])).pts.push(p); });
+      groups.forEach((g, gi) => {
+        const id = "b" + gi, text = "+" + g.pts.length, w = estW(text) + 4;
+        const rep = g.pts.reduce((a, b) => (b.y < a.y ? b : a));
+        const boxAt = (cx, by) => ({ x1: cx - w / 2, x2: cx + w / 2, y1: by - F - 1.5, y2: by + F * 0.35 + 1.5, id });
+        // a badge leader runs to its own dot, so that dot (and the badge itself) is not an obstacle on the way
+        const wiresAt = (cx, by) => g.pts.map((p) => ({ x1: cx, y1: by - F * 0.7, x2: p.x, y2: p.y - 4, id, own: [id, p.id] }));
+        // the badge slides: it has to sit where its own leaders can fan out to their dots without crossing another label.
+        // Tier 1 wants a spot clear of labels, rules and data; if the plot has none, tier 2 accepts a rule or the line
+        // under the badge (it carries a plate and a halo) but still never lets a leader run through somebody's text.
+        const noLabels = (b) => !boxes.some((o) => o.id !== id && b.x1 < o.x2 + GAP && b.x2 > o.x1 - GAP && b.y1 < o.y2 + GAP && b.y2 > o.y1 - GAP);
+        let best = null;
+        for (let tier = 1; tier <= 2 && !best; tier++) {
+          for (let cx = X0 + w / 2 + 2; cx <= X1 - w / 2 - 2; cx += RSTEP) {
+            for (const [lo, hi] of [[Y1 + LH * 0.7, DY1 - 6], [Math.max(DY1, rep.y - 70), Math.min(Y0 - LH * 0.7, rep.y + 70)]]) {
+              for (let y = lo; y <= hi; y += RSTEP) {
+                const by = Math.max(lo, Math.min(hi, y));
+                if (!(tier > 1 ? noLabels(boxAt(cx, by)) : clear(boxAt(cx, by), id))) continue;
+                const wl = wiresAt(cx, by);
+                if (wl.some((s) => !wireClear(s))) continue;
+                const n = wl.reduce((m, s) => m + wireGuides(s), 0);
+                const d = Math.abs(by - rep.y) + Math.abs(cx - rep.x) * 0.25;
+                if (!best || n < best.n || (n === best.n && d < best.d)) best = { cx, by, n, d };
+              }
+            }
+          }
+        }
+        const cx = best ? best.cx : Math.min(X1 - w / 2 - 2, Math.max(X0 + w / 2 + 2, rep.x));
+        const by = best ? best.by : Y1 + LH;
+        boxes.push(boxAt(cx, by));
+        const wl = wiresAt(cx, by);
+        wl.forEach((s) => leads.push(s));
+        out += wl.map((s) => `<line data-ev="${id}" x1="${s.x1.toFixed(1)}" y1="${s.y1.toFixed(1)}" x2="${s.x2.toFixed(1)}" y2="${s.y2.toFixed(1)}" stroke="var(--muted)" stroke-width="0.9" stroke-opacity="0.75"></line>`).join("");
+        out += `<g><title>${esc(g.pts.map((p) => p.text).join(" · "))}</title><rect x="${(cx - w / 2).toFixed(1)}" y="${(by - F).toFixed(1)}" width="${(w + 1).toFixed(1)}" height="${F + 4}" rx="3" fill="var(--surface)" stroke="var(--line-strong)" stroke-width="0.8"></rect><text data-ev="${id}" x="${cx.toFixed(1)}" y="${by.toFixed(1)}" font-size="${F}" fill="var(--fg)" text-anchor="middle" ${halo}>${text}</text></g>`;
+      });
+      return out;
+    }
+    if (metric === "tokens") {
+      const totals = data.perDay.map((d) => d.total);
+      const maxV = Math.max(10, ...totals);
+      const { step, top } = axisScale(maxV);
+      const y = (v) => Y0 - (v / top) * (Y0 - DY1);
+      const ya = (a) => Y0 - (a / 60) * (Y0 - DY1);
+      // areas
+      const cum = Array(N).fill(0);
+      const bandTops = [];
+      const areas = data.topChannels.map((ch, ci) => {
+        const col = PALETTE[ci % PALETTE.length];
+        const lo = cum.slice();
+        for (let i = 0; i < N; i++) cum[i] += data.perDay[i].byCh[ch];
+        let p = "M" + x(0) + "," + y(cum[0]);
+        for (let i = 1; i < N; i++) p += "L" + x(i) + "," + y(cum[i]);
+        for (let i = N - 1; i >= 0; i--) p += "L" + x(i) + "," + y(lo[i]);
+        bandTops.push(cum.map((v, i) => [x(i), y(v)]));
+        const hatch = data.channelEst && data.channelEst[ch] ? `<path d="${p}Z" fill="url(#hatch)" stroke="none"></path>` : "";
+        return `<path d="${p}Z" fill="${col}" fill-opacity="0.88" stroke="var(--surface)" stroke-width="1"></path>` + hatch;
+      });
+      // other
+      if (data.restChannels.length) {
+        const lo = cum.slice();
+        for (let i = 0; i < N; i++) cum[i] += data.restChannels.reduce((s, c) => s + data.perDay[i].byCh[c], 0);
+        let p = "M" + x(0) + "," + y(cum[0]);
+        for (let i = 1; i < N; i++) p += "L" + x(i) + "," + y(cum[i]);
+        for (let i = N - 1; i >= 0; i--) p += "L" + x(i) + "," + y(lo[i]);
+        bandTops.push(cum.map((v, i) => [x(i), y(v)]));
+        const restHatch = data.restChannels.some((c) => data.channelEst && data.channelEst[c]) ? `<path d="${p}Z" fill="url(#hatch)" stroke="none"></path>` : "";
+        areas.push(`<path d="${p}Z" fill="#aab2bb" fill-opacity="0.85" stroke="var(--surface)" stroke-width="1"></path>` + restHatch);
+      }
+      // aa line
+      let aaLine = ""; for (let i = 0; i < N; i++) aaLine += (i ? "L" : "M") + x(i) + "," + ya(data.perDay[i].topAA);
+      // gridY (the rules are also the obstacles a label has to miss)
+      const gridY = [], ruleY = [];
+      for (let v = 0; v <= top; v += step) { const gy = y(v), gv = v + step > top; gridY.push(`<line${gv ? "" : ` x1="${X0}" x2="${X1}" y1="${gy}" y2="${gy}" stroke="var(--line)" stroke-width="1"`}></line><text x="${X0-8}" y="${gy + 4}" text-anchor="end" font-size="${F}" fill="var(--muted)" font-family="IBM Plex Mono,monospace">${v}M</text>`); if (!gv) ruleY.push(gy); }
+      const gridAA = [20, 40, 60].map((a) => `<text x="${X1+8}" y="${ya(a) + 4}" font-size="${F}" fill="#b4321f" font-family="IBM Plex Mono,monospace">${a}</text>`).join("");
+      // events markers: top 4 days by abs total change
+      const deltas = data.perDay.map((d, i) => ({ i, delta: i ? Math.abs(d.total - data.perDay[i - 1].total) : 0 }));
+      deltas.sort((a, b) => b.delta - a.delta);
+      const evIdx = [...new Set(deltas.slice(0, 4).map((d) => d.i))].filter((i) => i > 0).sort((a, b) => a - b);
+      const evPts = evIdx.map((i) => ({ i, x: x(i), y: y(data.perDay[i].total) - 6, text: eventLabel(days[i]) })).filter((p) => p.text);
+      const eventsSVG = placeEvents(evPts, (k) => Math.min(y(data.perDay[k].total), ya(data.perDay[k].topAA)), (k) => [y(data.perDay[k].total), ya(data.perDay[k].topAA)],
+        { rules: ruleY, data: [totals.map((v, i) => [x(i), y(v)]), data.perDay.map((d, i) => [x(i), ya(d.topAA)])].concat(bandTops) });
+      const gridX = [0, Math.floor((N - 1) / 5), Math.floor(2 * (N - 1) / 5), Math.floor(3 * (N - 1) / 5), Math.floor(4 * (N - 1) / 5), N - 1].map((i) => `<text x="${x(i)}" y="${Y0+22}" text-anchor="middle" font-size="${F}" fill="var(--muted)" font-family="IBM Plex Mono,monospace">${lab(days[i])}</text>`).join("");
+      svg = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Daily free tokens by channel" style="width:100%;height:auto;">
+        <defs><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" stroke="var(--surface)" stroke-width="2.2" stroke-opacity="0.75"></line></pattern></defs>
+        ${gridY.join("")}
+        ${gridAA}
+        <text x="${X1+8}" y="${Y1 + 8}" font-size="${F}" fill="#b4321f" font-weight="600">AA</text>
+        ${areas.join("")}
+        ${eventsSVG}
+        <path d="${aaLine}" fill="none" stroke="#b4321f" stroke-width="2.5" stroke-linejoin="round"></path>
+        ${gridX}
+        <line x1="${X0}" x2="${X1}" y1="${Y0}" y2="${Y0}" stroke="var(--line-strong)" stroke-width="1"></line>
+      </svg>`;
+    } else {
+      const counts = data.perDay.map((d) => d.modelCount);
+      const maxV = Math.max(10, ...counts);
+      const { step, top } = axisScale(maxV);
+      const y = (v) => Y0 - (v / top) * (Y0 - DY1);
+      const ya = (a) => Y0 - (a / 60) * (Y0 - DY1);
+      let line = "M" + x(0) + "," + y(counts[0]);
+      for (let i = 1; i < N; i++) line += "H" + x(i) + "V" + y(counts[i]);
+      const gridY = [], ruleY = [], stepPts = [[x(0), y(counts[0])]];
+      for (let v = 0; v <= top; v += step) { const gy = y(v), gv = v + step > top; gridY.push(`<line${gv ? "" : ` x1="${X0}" x2="${X1}" y1="${gy}" y2="${gy}" stroke="var(--line)" stroke-width="1"`}></line><text x="${X0-8}" y="${gy + 4}" text-anchor="end" font-size="${F}" fill="var(--muted)" font-family="IBM Plex Mono,monospace">${v}</text>`); if (!gv) ruleY.push(gy); }
+      for (let i = 1; i < N; i++) { stepPts.push([x(i), y(counts[i - 1])], [x(i), y(counts[i])]); }   // the H/V steps, as drawn
+      const deltas = data.perDay.map((d, i) => ({ i, delta: i ? Math.abs(d.modelCount - data.perDay[i - 1].modelCount) : 0 }));
+      deltas.sort((a, b) => b.delta - a.delta);
+      const evIdx = [...new Set(deltas.slice(0, 4).map((d) => d.i))].filter((i) => i > 0).sort((a, b) => a - b);
+      const evPts = evIdx.map((i) => ({ i, x: x(i), y: y(counts[i]) - 6, text: eventLabel(days[i]) })).filter((p) => p.text);
+      const eventsSVG = placeEvents(evPts, (k) => y(counts[k]), (k) => [y(counts[k]), Y0], { rules: ruleY, data: [stepPts] });
+      const gridX = [0, Math.floor((N - 1) / 5), Math.floor(2 * (N - 1) / 5), Math.floor(3 * (N - 1) / 5), Math.floor(4 * (N - 1) / 5), N - 1].map((i) => `<text x="${x(i)}" y="${Y0+22}" text-anchor="middle" font-size="${F}" fill="var(--muted)" font-family="IBM Plex Mono,monospace">${lab(days[i])}</text>`).join("");
+      const aaLine = ""; // topAA optional
+      svg = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Daily free models by threshold" style="width:100%;height:auto;">
+        ${gridY.join("")}
+        <path d="${line}" fill="none" stroke="#1f5fcf" stroke-width="2.5" stroke-linejoin="round"></path>
+        ${eventsSVG}
+        ${gridX}
+        <line x1="${X0}" x2="${X1}" y1="${Y0}" y2="${Y0}" stroke="var(--line-strong)" stroke-width="1"></line>
+      </svg>`;
+    }
+    // legend
+    let legendHTML = "";
+    if (metric === "tokens") {
+      const estMark = (ch) => (D.lanes.some((l) => l.channel === ch && models[l.model] && models[l.model].aa_index && models[l.model].aa_index.value == null && models[l.model].est && models[l.model].est.status === "ok")) ? " EST" : "";
+      const items = data.topChannels.map((ch, ci) => `<span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;"><span style="width:12px;height:12px;border-radius:3px;background:${PALETTE[ci % PALETTE.length]};"></span>${esc(ch + (needsPay(ch) ? " $" : "") + estMark(ch))}</span>`).concat(data.restChannels.length ? [`<span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;"><span style="width:12px;height:12px;border-radius:3px;background:#aab2bb;"></span>${ZH ? "其他 " + data.restChannels.length : "Other " + data.restChannels.length}</span>`] : []);
+      const missingTierCount = D.lanes.filter((l) => new Set(channelsForPreset(state.preset)).has(l.channel) && !(l.volume && l.volume.tier)).length;
+    legendHTML = `<div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;">${items.join("")}<span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;"><span style="width:16px;height:3px;background:#b4321f;"></span>${ZH ? "最高免费 AA（右轴）" : "Top free AA (right axis)"}</span></div>` + (missingTierCount ? `<div style="font-size:12px;color:var(--muted);margin-top:6px;">${missingTierCount} ${ZH ? "条线路无量级" : "lanes without a volume tier"}</div>` : "");
+    }
+    // details heatmap: colour = AA band of the channel's strongest free model that day (theme vars, so dark stays dark)
+    const detailsOpen = state.detailsOpen;
+    const heatChannels = data.presetCh;
+    const heatDays = days;
+    const heatFill = (a) => !a ? "var(--h0)" : a < thr ? "var(--h1)" : a >= 45 ? "var(--h5)" : a >= 40 ? "var(--h4)" : a >= 35 ? "var(--h3)" : "var(--h2)";
+    const heatRows = heatChannels.map((ch) => ({ ch, bestPerDay: heatDays.map((dayT) => {
+      let bestAA = 0;
+      for (const l of D.lanes) {
+        if (l.channel !== ch) continue;
+        if (!laneActive(l, dayT)) continue;
+        const s = laneScore(l);
+        if (s != null && s > bestAA) bestAA = s;
+      }
+      return bestAA;
+    }) }));
+    const cellW = 12, cellH = 14, HEAD = 18, NF = 11;
+    // the channel names are their own fixed column: the grid scrolls sideways under the phone, the names stay put
+    const nameW = CM ? 112 : 158;
+    const charW = (c) => (c.charCodeAt(0) > 0x2e80 ? NF : NF * 0.56);
+    const fitName = (s, px) => {
+      let w = 0; for (const c of s) w += charW(c);
+      if (w <= px) return s;
+      let out = "", used = 0;
+      for (const c of s) { const cw = charW(c); if (used + cw > px - NF * 1.2) break; out += c; used += cw; }
+      return out.trimEnd() + "…";
+    };
+    const heatSVGWidth = heatDays.length * cellW + 60;
+    const heatH = HEAD + heatChannels.length * (cellH + 2) + 26;
+    const heatNamesSVG = heatRows.map((r, ri) =>
+      `<text x="${nameW - 8}" y="${HEAD + ri * (cellH + 2) + cellH - 2}" text-anchor="end" font-size="${NF}" fill="var(--fg)"><title>${esc(r.ch)}</title>${esc(fitName(r.ch, nameW - 16))}</text>`).join("");
+    const heatRowsSVG = heatRows.map((r, ri) => {
+      const y = HEAD + ri * (cellH + 2);
+      const rects = r.bestPerDay.map((a, ci) => `<rect x="${ci * cellW}" y="${y}" width="${cellW - 2}" height="${cellH}" rx="2" fill="${heatFill(a)}"></rect>`).join("");
+      // today's AA number
+      let todayBest = 0;
+      for (const l of D.lanes) {
+        if (l.channel !== r.ch) continue;
+        if (!laneActive(l, todayT)) continue;
+        const s = laneScore(l); if (s != null && s > todayBest) todayBest = s;
+      }
+      const tokenToday = data.perDay[N-1].byCh[r.ch] || 0;
+      return `${rects}<text x="${heatDays.length * cellW + 6}" y="${y + cellH - 2}" font-size="11" font-family="IBM Plex Mono,monospace" fill="${todayBest >= thr ? "var(--fg)" : "var(--muted)"}">${todayBest || "—"}</text><text x="${heatDays.length * cellW + 34}" y="${y + cellH - 2}" font-size="11" font-family="IBM Plex Mono,monospace" fill="var(--muted)">${tokenToday ? tokenToday.toFixed(1) : ""}</text>`;
+    }).join("");
+    const heatXLabels = heatDays.map((t, i) => (i % 5 === 0) ? `<text x="${i * cellW + cellW / 2}" y="${HEAD + heatChannels.length * (cellH + 2) + 14}" text-anchor="middle" font-size="10" fill="var(--muted)" font-family="IBM Plex Mono,monospace">${lab(t).slice(3)}</text>` : "").join("");
+    const heatColLabels = `<text x="${heatDays.length * cellW + 6}" y="11" font-size="10" fill="var(--muted)" font-family="IBM Plex Mono,monospace">AA</text><text x="${heatDays.length * cellW + 34}" y="11" font-size="10" fill="var(--muted)" font-family="IBM Plex Mono,monospace">M</text>`;
+    const heatHTML = `
+      <details id="trend-details" ${detailsOpen ? "open" : ""} style="margin-top:12px;" ontoggle="window.__trendDetailsToggle && window.__trendDetailsToggle()">
+        <summary style="cursor:pointer;font-weight:600;">${ZH ? "展开明细（渠道 × 日期）" : "Show details (channel × day)"}</summary>
+        <div style="display:flex;align-items:flex-start;margin-top:8px;">
+          <div id="trend-heat-names" style="flex:none;background:var(--bg);box-shadow:1px 0 0 var(--line);">
+            <svg width="${nameW}" height="${heatH}" viewBox="0 0 ${nameW} ${heatH}" aria-hidden="true" style="display:block;max-width:none;">${heatNamesSVG}</svg>
+          </div>
+          <div id="trend-heat" style="flex:1 1 auto;min-width:0;overflow-x:auto;">
+            <svg width="${heatSVGWidth}" height="${heatH}" viewBox="0 0 ${heatSVGWidth} ${heatH}" role="img" aria-label="Channel by day heatmap" style="max-width:none;display:block;">
+              ${heatColLabels}
+              ${heatRowsSVG}
+              ${heatXLabels}
+            </svg>
+          </div>
+        </div>
+        <div style="font-size:12px;color:var(--muted);margin-top:6px;">${ZH ? "右侧：今天的 AA · M tok/天" : "Right: today's AA · M tok/day"}</div>
+      </details>`;
+    root.innerHTML = controlsHTML + statsHTML + `<div style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 16px 8px;margin-bottom:8px;">${svg}</div>` + legendHTML + heatHTML;
+  }
+  function estChannel(ch) { return false; }
+  window.__trendSet = (key, val) => {
+    if (key === "thr") { state.thr = val; track("trend_threshold", { threshold: val }); }
+    else if (key === "preset") { state.preset = val; track("trend_preset", { preset: val }); }
+    else if (key === "metric") { state.metric = val; }
+    draw();
+  };
+  window.__trendDetailsToggle = () => {
+    const d = document.getElementById("trend-details");
+    const open = d && d.open;
+    if (open) track("trend_details_open", {});
+    state.detailsOpen = !!open;
+  };
+  // the plot is laid out in CSS px, so a width change needs a redraw (viewport rotate, phone↔desktop)
+  let rzTimer = 0;
+  window.addEventListener("resize", () => { clearTimeout(rzTimer); rzTimer = setTimeout(draw, 150); });
+  // initial
+  draw();
+})();
 
 $("tl").innerHTML = timelineHTML([...D.events].sort((a, b) => pd(b.date).t - pd(a.date).t).slice(0, 6));
 document.querySelectorAll("a.seeall").forEach((a) => { const h = a.getAttribute("href"); if (!/^(https?:|#)/.test(h) && !h.includes(D.ext || "\u0000")) a.setAttribute("href", h.replace(/^([^#?]*)/, "$1" + D.ext)); });

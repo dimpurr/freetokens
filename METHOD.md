@@ -99,6 +99,22 @@ In the Agents view, the home page shows which free route to use first and what t
 - **The ladder.** Start from the most generous tier and take its highest score. Moving to a less generous tier, a route earns a rung only if it scores more than 2 points above every rung below it, because a smaller allowance is only worth it for a clearly smarter model. Routes within 2 points of a rung's leader in the same tier are listed as stand-ins (EST bands are wider than 2 points).
 - **What counts.** Only routes usable by agents (an API key or a CLI whose terms allow automation) with a score. By default only routes that worked in our tests; *Include unconfirmed* also counts routes that are listed free but have not worked for us yet.
 
+## Daily free tokens
+
+The home page (below "Free periods") plots estimated free tokens per day, by channel, from 2026-10-04 to today.
+
+- **Unit.** Estimated tokens/day in millions (M). Each lane's amount comes from its volume tier (taste = 0.3M, daily = 3M, bulk = 30M) unless the provider publishes a TPD/RPD, in which case that official number is converted (1 request = 8k tokens) and the lane is marked as measured. Lanes without a volume tier are excluded; their count is shown beneath the chart.
+- **Pools.** Lanes that share a quota (channel `limit_scope` or a shared free condition such as Zen per IP, Cloudflare 10k Neurons/day, ModelScope daily shared) are counted once per day, taking the largest tier among the pool's qualifying models. Other lanes count individually.
+- **Thresholds.** Buttons split by AA index: All / 20+ / 30+ / 40+ / 50+, default 40+. A lane counts only when its model's score (AA, or EST centre where AA is missing) meets the threshold.
+- **Presets.** Common (no payment, no mainland real-name, API or official CLI) / All / + min pay (adds paid-plan channels). `own_cli` channels whose rules include `no_automation` appear only under All.
+- **Stacking.** Channels are stacked; the six with the largest totals over the range get their own colour, the rest merge into "Other N" grey. Hatched fills are tier estimates; solid fills are official numbers.
+- **Top free AA.** The red line is the highest free AA in the selected preset (threshold-independent, preset-dependent).
+- **Events.** Up to four days with the largest absolute change in total are marked, labelled like "Zen −3 lanes" or "Model +".
+- **Stats card.** Now / 30-day high / 30-day low / top free AA.
+- **Details.** A collapsible channel × day heat map; cell colour is the strongest free model's AA band for that channel on that day.
+- **Models view.** A separate toggle plots the count of distinct free models reaching the threshold, as a single step line, from the earliest data date; the card shows now / peak / low.
+- **No description on the page.** Each word on the page is data or a data label; this note is the explanation (ADR-016).
+
 ## Makers
 
 Every model points at one maker in `data/makers.json` (name, parent company, country, official links). Different spellings of one company are merged there (for example THUDM under Z.ai). Stealth models belong to "Undisclosed"; when the community has linked one to a maker, the model carries a `suspected_maker` with its source and is shown as "possibly X · unconfirmed" on the model page and in a separate "Possibly theirs" list on that maker's page. It never counts as the maker's own model.
