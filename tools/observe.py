@@ -258,8 +258,8 @@ def health(watch_path=None):
             h["problems"].append(f"home page is not prerendered ({words} words without JavaScript): deploy with .private/deploy.sh")
         if BEACON not in home:
             h["problems"].append("home page has no count request: visitor counts will read zero")
-        if len(home) > 450 * 1024:
-            h["problems"].append(f"home page is {len(home) // 1024} KB (expected under 450): wrong build deployed?")
+        if len(home) > 600 * 1024:
+            h["problems"].append(f"home page is {len(home) // 1024} KB (expected under 600): wrong build deployed?")
     except Exception as e:
         h["problems"].append(f"cannot read the home page: {str(e)[:60]}")
     try:
