@@ -838,10 +838,9 @@
      "checked.method": "check_method",
      "meter": "meter"
     },
-    "field_docs": {
-     "pool": "ADR-033: present only when meter='pooled'. Object describing the shared quota pool: {offer=<offer_id>, cap={amount>0, unit in vocab 'unit', per in vocab 'per'}, note=<risk/limit notes>}.",
-     "public_record": "ADR-034: pointer to a publicly verifiable historical record (URL) for lanes evidenced only by public records (checked.method = public_record)."
-    },
+     "field_docs": {
+      "pool": "ADR-033: present only when meter='pooled'. Object describing the shared quota pool: {offer=<offer_id>, cap={amount>0, unit in vocab 'unit', per in vocab 'per'}, note=<risk/limit notes>}."
+     },
     "unknown_words": [
     "unstated",
     "not checked",

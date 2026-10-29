@@ -223,6 +223,10 @@ def validate(lanes, events, models):
                 errs.append(f"{w}: limits_observed.note is over 60 characters; say it with fields")
             if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(lo.get("date", ""))):
                 errs.append(f"{w}: limits_observed.date must be YYYY-MM-DD")
+        if l.get("checked", {}).get("method") == "public_record":
+            src = str((l.get("limits_stated") or {}).get("source") or "")
+            if not (src.startswith("http://") or src.startswith("https://")):
+                errs.append(f"{w}: checked.method 'public_record' requires limits_stated.source to be an http(s) URL")
         if "volume" in l and not (get(l, "volume.tier") in VOCAB["volume_tier"] and str(get(l, "volume.basis") or "").strip()):
             errs.append(f"{w}: volume needs tier (taste / daily / bulk) and basis (where the number comes from)")
         if "region" in l and not (isinstance(l["region"], str) and re.fullmatch(r"[A-Z]{2}(, ?[A-Z]{2})*", l["region"])):
