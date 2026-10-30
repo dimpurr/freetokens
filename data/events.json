@@ -2766,5 +2766,18 @@
     "label": "Go catalogue (still listed)",
     "url": "https://opencode.ai/zen/go/v1/models"
    }
+  },
+  {
+   "date": "2026-10-30",
+   "lanes": [
+    "jev-1.13-zen"
+   ],
+   "kind": "ended",
+   "end_date": "2026-10-30",
+   "text": "opencode/jev-1.13-free is no longer in the Zen catalogue (78 models, zero Jeeves entries on re-read 2026-10-30, down from 82 on 2026-10-29) and absent from the models.dev opencode provider list (130 models, zero Jeeves); no end date announced, true removal window 2026-10-23~30",
+   "source": {
+    "label": "Zen models API",
+    "url": "https://opencode.ai/zen/v1/models"
+   }
   }
 ]

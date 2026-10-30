@@ -893,5 +893,7 @@
  "Stealth 'iceman', maker unknown; contributor suffix = may train on prompts (inferred, not stated); $0 but Go-plan-gated; no AA score. Endpoint unavailable ~24h (HTTP 400 Model is unavailable, 2026-10-27~28, go2 x9; Go catalogue still lists it): unavailable per ADR-022 §4, not ended": "隐身 'iceman'，厂商未知；contributor 后缀＝可能拿提示词训练（推断，未声明）；$0 但需 Go 订阅；无 AA 分。端点不可用约 24h（HTTP 400 Model is unavailable，2026-10-27~28，go2 9 次；Go 目录仍在列）：按 ADR-022 §4 记 unavailable，不是 ended。",
  "Rolling 60,000/5h + 600,000/week shared credit pool; Free public beta": "滚动 60,000/5h + 600,000/周 共享 credit 池；公测免费",
  "10,000 Neurons/day shared across all models; 8 large models need paid billing": "所有模型每天共享 10,000 Neurons；8 个大型模型需付费计费",
- "250 Magicube/day shared (sign-in 200 + Aliyun bind 50); shrank from 2000 calls/day; real-name required (CN)": "每天 250 魔粒共享（签到 200 + 阿里云绑定 50）；曾为 2000 次/天；需实名（CN）"
+ "250 Magicube/day shared (sign-in 200 + Aliyun bind 50); shrank from 2000 calls/day; real-name required (CN)": "每天 250 魔粒共享（签到 200 + 阿里云绑定 50）；曾为 2000 次/天；需实名（CN）",
+ "Zen models API": "Zen 模型 API",
+ "opencode/jev-1.13-free is no longer in the Zen catalogue (78 models, zero Jeeves entries on re-read 2026-10-30, down from 82 on 2026-10-29) and absent from the models.dev opencode provider list (130 models, zero Jeeves); no end date announced, true removal window 2026-10-23~30": "opencode/jev-1.13-free 在 2026-10-30 复查时已不在 Zen 目录（78 个模型、零 Jeeves 条目，2026-10-29 时为 82 个），models.dev 的 opencode 提供方列表（130 个模型）同样无 Jeeves；未公告截止时间，真实下架窗口为 2026-10-23~30"
 }
