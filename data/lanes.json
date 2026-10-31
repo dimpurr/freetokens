@@ -2887,9 +2887,9 @@
    "confidence": "none"
   },
   "data_policy": "may_train",
-  "status": "live",
+  "status": "ended",
   "checked": {
-   "date": "2026-10-27",
+   "date": "2026-10-31",
    "method": "catalogue"
   }
  },

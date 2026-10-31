@@ -2779,5 +2779,18 @@
     "label": "Zen models API",
     "url": "https://opencode.ai/zen/v1/models"
    }
+  },
+  {
+   "date": "2026-10-31",
+   "lanes": [
+    "laguna-s-2.1-vercel"
+   ],
+   "kind": "ended",
+   "end_date": "2026-10-31",
+   "text": "poolside/laguna-s-2.1-free is no longer in the Vercel AI Gateway catalogue at the 2026-10-31T09:00Z daily check, and still absent when we re-read the same API the same day; only the paid poolside/laguna-s-2.1 remains; no end date announced, true removal window 2026-10-27~31",
+   "source": {
+    "label": "Vercel AI Gateway models API",
+    "url": "https://ai-gateway.vercel.sh/v1/models"
+   }
   }
 ]
