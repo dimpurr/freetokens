@@ -2792,5 +2792,19 @@
     "label": "Vercel AI Gateway models API",
     "url": "https://ai-gateway.vercel.sh/v1/models"
    }
+  },
+  {
+   "date": "2026-10-31",
+   "lanes": [
+    "ling-3.1-flash-1019-vercel",
+    "ling-3.1-flash-1019-kilo"
+   ],
+   "kind": "listed",
+   "end_date": "2026-11-03",
+   "text": "Ling 3.1 Flash 1019 listed on two free arms: Vercel AI Gateway carries inclusionai/ling-3.1-flash-1019 at $0/$0 (changelog: free until November 3, 2026) and Kilo Code carries inclusionai/ling-3.1-flash-1019-free at $0/$0 (Novita AI, free until November 3, 2026; may train on prompts). New HF weights repo (created 2026-10-27) coexists with the old id, so a separate model entry.",
+   "source": {
+    "label": "Vercel changelog",
+    "url": "https://vercel.com/changelog/ling-3-1-flash-1019-now-available-on-ai-gateway-for-free"
+   }
   }
 ]

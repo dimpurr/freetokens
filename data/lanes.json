@@ -5546,5 +5546,69 @@
    "method": "catalogue"
   },
   "note": "时段门槛：只有闲时夜间 23:00–次日 08:00（北京时间）有免费额度，其余时间按倍率扣分（2026-10-28 客户端 x0.29）。领取门槛分两种：已体验过 Hy4 preview 的账号走夜间免费额度到 10-31；未体验过的须在 2026-10-10 23:59 前首次开启 Hy4 preview 对话，之后 14 天每天领免费额度。夜间时段未亲测（listed），且 9-30 公告是 WorkBuddy 口径，CodeBuddy 端夜间是否同免未找到直接出处。"
+ },
+ {
+  "id": "ling-3.1-flash-1019-vercel",
+  "model": "ling-3.1-flash-1019",
+  "channel": "Vercel AI Gateway",
+  "type": "router",
+  "model_id": "inclusionai/ling-3.1-flash-1019",
+  "free_condition": null,
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "official",
+   "note": "Free until 2026-11-03 (Vercel changelog)",
+   "source": "https://vercel.com/changelog/ling-3-1-flash-1019-now-available-on-ai-gateway-for-free"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-10-31",
+   "note": "first seen in the daily free-catalogue check (Vercel released timestamp 2026-10-30)"
+  },
+  "ends": {
+   "announced": "2026-11-03",
+   "expected": null,
+   "confidence": "official",
+   "note": "Vercel changelog: free until November 3, 2026; post-promo pricing not published"
+  },
+  "data_policy": "unstated",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-31",
+   "method": "catalogue"
+  },
+  "note": "Promo free ride without a :free suffix: the whole model is $0/$0 in the public models API (1M context, 262K max output). Old inclusionai/ling-3.1-flash stays listed at $0.30/$0.90, so the two ids coexist."
+ },
+ {
+  "id": "ling-3.1-flash-1019-kilo",
+  "model": "ling-3.1-flash-1019",
+  "channel": "Kilo Code",
+  "type": "agent_tool",
+  "model_id": "inclusionai/ling-3.1-flash-1019-free",
+  "free_condition": null,
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "official",
+   "note": "Free until 2026-11-03 (Novita AI)",
+   "source": "https://api.kilo.ai/api/gateway/models"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-10-31",
+   "note": "first seen in the daily free-catalogue check"
+  },
+  "ends": {
+   "announced": "2026-11-03",
+   "expected": null,
+   "confidence": "official",
+   "note": "provided free of charge by Novita AI until November 3, 2026 (gateway model description)"
+  },
+  "data_policy": "may_train",
+  "status": "listed",
+  "checked": {
+   "date": "2026-10-31",
+   "method": "catalogue"
+  },
+  "note": "Kilo gateway marks mayTrainOnYourPrompts true: the free arm may train on prompts. Only in the gateway models list, not the marketing catalogue."
  }
 ]

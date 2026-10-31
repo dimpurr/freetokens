@@ -1282,5 +1282,18 @@
       "note": "not checked"
     },
     "notes": "Tencent Hunyuan Hy4 preview. Official notice (carried by IT之家 2026-10-02): a text LLM with no multimodal ability yet, so a Hy4 preview call that needs image or video generation is switched to another model and billed normally. CodeBuddy CLI showed the 0.29x credit multiplier at 13:20 on 2026-10-28."
-  }
+  },
+ {
+  "id": "ling-3.1-flash-1019",
+  "name": "Ling 3.1 Flash 1019",
+  "maker": "inclusionai",
+  "context": "1M",
+  "image_input": "not_checked",
+  "aa_index": {
+   "value": 44,
+   "date": "2026-10-31",
+   "url": "https://artificialanalysis.ai/models/ling-3-1-flash-1019"
+  },
+  "notes": "Upgraded weights of Ling-3.1-flash (560B total / 25B active per token, 1M context, MIT); HF repo inclusionAI/Ling-3.1-flash-1019 created 2026-10-27, old repo still published, so a separate model entry, not a version field."
+ }
 ]
