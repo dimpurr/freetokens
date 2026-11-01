@@ -5,14 +5,6 @@
     "maker": "inclusionai",
     "context": "262K",
     "image_input": "no",
-    "aa_index": {
-      "value": 29.0,
-      "date": "2026-10-25",
-      "url": "https://artificialanalysis.ai/models/ling-3-1-flash",
-      "basis": "mapped",
-      "prev_value": 41,
-      "prev_date": "2026-10-25"
-    },
     "notes": null
   },
   {
@@ -21,14 +13,6 @@
     "maker": "xiaomi",
     "context": "1050K (200K on the Zen free tier)",
     "image_input": "no",
-    "aa_index": {
-      "value": 26.7,
-      "date": "2026-11-01",
-      "url": "https://artificialanalysis.ai/models/mimo-v2-6-flash",
-      "basis": "direct",
-      "prev_value": 38,
-      "prev_date": "2026-10-25"
-    },
     "notes": "1,050,000 per OpenRouter (Vercel says 1,048,576); the OpenCode Zen free tier caps it at 200K, per the models.dev Zen entry (2026-10-20)."
   },
   {
@@ -37,11 +21,6 @@
     "maker": "meituan",
     "context": "1M",
     "image_input": "partial",
-    "aa_index": {
-      "value": null,
-      "date": "2026-10-04",
-      "note": "not ranked (LongCat 2.0: 19)"
-    },
     "notes": "≈1.6T total / 48B active MoE; released 2026-09-25. One colour test on an image was answered wrongly."
   },
   {
@@ -50,11 +29,6 @@
     "maker": "undisclosed",
     "context": "1M",
     "image_input": "yes",
-    "aa_index": {
-      "value": null,
-      "date": "2026-10-04",
-      "note": "not ranked"
-    },
     "notes": "Rumoured: MiniMax family (several independent tokenizer tests), possibly M3.1 / M3.1-Flash. Some sources dispute the exact version; no official confirmation.",
     "suspected_maker": {
       "maker": "minimax",
@@ -69,15 +43,7 @@
     "maker": "deepseek",
     "context": "200K on the Zen free tier",
     "image_input": "no",
-    "aa_index": {
-      "value": 19.9,
-      "date": "2026-10-25",
-      "url": "https://artificialanalysis.ai/models/deepseek-v4-flash",
-      "basis": "mapped",
-      "prev_value": 34,
-      "prev_date": "2026-10-25"
-    },
-    "notes": "AA's page is the 0731 update (34); the April 0420 release scores 24 (artificialanalysis.ai/models/deepseek-v4-flash-0420). Both numbers are on the earlier AA scale. Channels label it plain \"deepseek-v4-flash\"."
+    "notes": "Channels label it plain \"deepseek-v4-flash\"; the 0731 update and the April 0420 release are different snapshots."
   },
   {
     "id": "nemotron-3-ultra",
@@ -85,14 +51,6 @@
     "maker": "nvidia",
     "context": "1M",
     "image_input": "no",
-    "aa_index": {
-      "value": 11.8,
-      "date": "2026-11-01",
-      "url": "https://artificialanalysis.ai/models/nvidia-nemotron-3-ultra-550b-a55b",
-      "basis": "direct",
-      "prev_value": 23,
-      "prev_date": "2026-10-25"
-    },
     "notes": null
   },
   {
@@ -101,11 +59,6 @@
     "maker": "dots-studio",
     "context": "512K",
     "image_input": "yes",
-    "aa_index": {
-      "value": null,
-      "date": "2026-10-05",
-      "note": "not checked"
-    },
     "notes": null
   },
   {
@@ -114,14 +67,6 @@
     "maker": "google",
     "context": "262K",
     "image_input": "yes",
-    "aa_index": {
-      "value": 8.1,
-      "date": "2026-10-25",
-      "url": "https://artificialanalysis.ai/models/gemma-4-26b-a4b",
-      "basis": "mapped",
-      "prev_value": 17,
-      "prev_date": "2026-10-25"
-    },
     "notes": null
   },
   {
@@ -130,14 +75,6 @@
     "maker": "inclusionai",
     "context": "262K",
     "image_input": "no",
-    "aa_index": {
-      "value": 9.1,
-      "date": "2026-10-25",
-      "url": "https://artificialanalysis.ai/models/ling-3-0-flash",
-      "basis": "mapped",
-      "prev_value": 20,
-      "prev_date": "2026-10-25"
-    },
     "notes": null
   },
   {
@@ -146,14 +83,6 @@
     "maker": "minimax",
     "context": "197K",
     "image_input": "no",
-    "aa_index": {
-      "value": 10.6,
-      "date": "2026-10-25",
-      "url": "https://artificialanalysis.ai/models/minimax-m2-7",
-      "basis": "mapped",
-      "prev_value": 23,
-      "prev_date": "2026-10-25"
-    },
     "notes": null
   },
   {
@@ -162,14 +91,6 @@
     "maker": "minimax",
     "context": "1M",
     "image_input": "yes",
-    "aa_index": {
-      "value": 18.7,
-      "date": "2026-11-01",
-      "url": "https://artificialanalysis.ai/models/minimax-m3",
-      "basis": "direct",
-      "prev_value": 29,
-      "prev_date": "2026-10-25"
-    },
     "notes": null
   },
   {
@@ -178,14 +99,6 @@
     "maker": "nvidia",
     "context": "262K",
     "image_input": "no",
-    "aa_index": {
-      "value": 7.4,
-      "date": "2026-10-25",
-      "url": "https://artificialanalysis.ai/models/nvidia-nemotron-3-super-120b-a12b",
-      "basis": "mapped",
-      "prev_value": 13,
-      "prev_date": "2026-10-25"
-    },
     "notes": null
   },
   {
@@ -194,14 +107,6 @@
     "maker": "nex-agi",
     "context": "262K",
     "image_input": "yes",
-    "aa_index": {
-      "value": 14.1,
-      "date": "2026-10-25",
-      "url": "https://artificialanalysis.ai/models/nex-n2-pro",
-      "basis": "mapped",
-      "prev_value": 28,
-      "prev_date": "2026-10-25"
-    },
     "notes": null
   },
   {
@@ -210,11 +115,6 @@
     "maker": "nex-agi",
     "context": "262K",
     "image_input": "yes",
-    "aa_index": {
-      "value": null,
-      "date": "2026-10-05",
-      "note": "not checked"
-    },
     "notes": null
   },
   {
@@ -223,11 +123,6 @@
     "maker": "poolside",
     "context": "262K",
     "image_input": "no",
-    "aa_index": {
-      "value": null,
-      "date": "2026-10-05",
-      "note": "not checked"
-    },
     "notes": null
   },
   {
@@ -236,14 +131,6 @@
     "maker": "tencent",
     "context": "262K",
     "image_input": "no",
-    "aa_index": {
-      "value": 11.9,
-      "date": "2026-10-25",
-      "url": "https://artificialanalysis.ai/models/hy3",
-      "basis": "mapped",
-      "prev_value": 25,
-      "prev_date": "2026-10-25"
-    },
     "notes": null
   },
   {
@@ -252,14 +139,6 @@
     "maker": "tencent",
     "context": "262K",
     "image_input": "no",
-    "aa_index": {
-      "value": 10.6,
-      "date": "2026-10-25",
-      "url": "https://artificialanalysis.ai/models/hy3-preview",
-      "basis": "mapped",
-      "prev_value": 23,
-      "prev_date": "2026-10-25"
-    },
     "notes": null
   },
   {
@@ -268,14 +147,6 @@
     "maker": "inclusionai",
     "context": "262K",
     "image_input": "yes",
-    "aa_index": {
-      "value": 11.9,
-      "date": "2026-10-25",
-      "url": "https://artificialanalysis.ai/models/ling-3-0-flash-vl",
-      "basis": "mapped",
-      "prev_value": 25,
-      "prev_date": "2026-10-25"
-    },
     "notes": null
   },
   {
@@ -284,14 +155,6 @@
     "maker": "inclusionai",
     "context": "262K",
     "image_input": "no",
-    "aa_index": {
-      "value": 8.1,
-      "date": "2026-10-25",
-      "url": "https://artificialanalysis.ai/models/ling-2-6-1t",
-      "basis": "mapped",
-      "prev_value": 17,
-      "prev_date": "2026-10-25"
-    },
     "notes": null
   },
   {
@@ -300,14 +163,6 @@
     "maker": "inclusionai",
     "context": "262K",
     "image_input": "no",
-    "aa_index": {
-      "value": 5.7,
-      "date": "2026-10-25",
-      "url": "https://artificialanalysis.ai/models/ling-2-6-flash",
-      "basis": "mapped",
-      "prev_value": 10,
-      "prev_date": "2026-10-25"
-    },
     "notes": null
   },
   {
@@ -316,14 +171,6 @@
     "maker": "inclusionai",
     "context": "262K",
     "image_input": "no",
-    "aa_index": {
-      "value": 8.1,
-      "date": "2026-10-25",
-      "url": "https://artificialanalysis.ai/models/ring-2-6-1t",
-      "basis": "mapped",
-      "prev_value": 17,
-      "prev_date": "2026-10-25"
-    },
     "notes": null
   },
   {
@@ -332,15 +179,7 @@
     "maker": "deepseek",
     "context": "1M",
     "image_input": "yes",
-    "aa_index": {
-      "value": 32.5,
-      "date": "2026-11-01",
-      "url": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017",
-      "basis": "direct",
-      "prev_value": 45,
-      "prev_date": "2026-10-27"
-    },
-    "notes": "1017 snapshot (released 2026-10-17, in-place upgrade): AA Intelligence Index 45 on the earlier AA scale per AA data API 2026-10-27; old slug read 40"
+    "notes": "1017 snapshot (released 2026-10-17, in-place upgrade); an older slug listed the earlier snapshot."
   },
   {
     "id": "apodex-1.1-mini",
@@ -348,11 +187,6 @@
     "maker": "apodex",
     "context": "256K",
     "image_input": "no",
-    "aa_index": {
-      "value": null,
-      "date": "2026-10-06",
-      "note": "not checked"
-    },
     "notes": null
   },
   {
@@ -361,14 +195,6 @@
     "maker": "cohere",
     "context": "256K",
     "image_input": "no",
-    "aa_index": {
-      "value": 5.7,
-      "date": "2026-10-25",
-      "url": "https://artificialanalysis.ai/models/north-mini-code",
-      "basis": "mapped",
-      "prev_value": 10,
-      "prev_date": "2026-10-25"
-    },
     "notes": null
   },
   {
@@ -377,11 +203,6 @@
     "maker": "inclusionai",
     "context": "256K",
     "image_input": "no",
-    "aa_index": {
-      "value": null,
-      "date": "2026-10-06",
-      "note": "not checked"
-    },
     "notes": null
   },
   {
@@ -390,14 +211,6 @@
     "maker": "liquid",
     "context": "128K",
     "image_input": "no",
-    "aa_index": {
-      "value": 4.6,
-      "date": "2026-10-25",
-      "url": "https://artificialanalysis.ai/models/lfm2-5-2-6b",
-      "basis": "mapped",
-      "prev_value": 8,
-      "prev_date": "2026-10-25"
-    },
     "notes": null
   },
   {
@@ -406,14 +219,6 @@
     "maker": "nvidia",
     "context": "256K",
     "image_input": "yes",
-    "aa_index": {
-      "value": 5.7,
-      "date": "2026-10-25",
-      "url": "https://artificialanalysis.ai/models/nemotron-3-nano-omni-30b-a3b",
-      "basis": "mapped",
-      "prev_value": 10,
-      "prev_date": "2026-10-25"
-    },
     "notes": null
   },
   {
@@ -422,14 +227,6 @@
     "maker": "nvidia",
     "context": "1M",
     "image_input": "no",
-    "aa_index": {
-      "value": 5.5,
-      "date": "2026-11-01",
-      "url": "https://artificialanalysis.ai/models/nemotron-3-5-lightning",
-      "basis": "direct",
-      "prev_value": 13,
-      "prev_date": "2026-10-25"
-    },
     "notes": null
   },
   {
@@ -438,11 +235,6 @@
     "maker": "poolside",
     "context": "256K",
     "image_input": "no",
-    "aa_index": {
-      "value": null,
-      "date": "2026-10-06",
-      "note": "not checked"
-    },
     "notes": null
   },
   {
@@ -451,14 +243,6 @@
     "maker": "stepfun",
     "context": "256K",
     "image_input": "yes",
-    "aa_index": {
-      "value": 9.1,
-      "date": "2026-10-25",
-      "url": "https://artificialanalysis.ai/models/step-3-7-flash",
-      "basis": "mapped",
-      "prev_value": 20,
-      "prev_date": "2026-10-25"
-    },
     "notes": null
   },
   {
@@ -467,14 +251,6 @@
     "maker": "thinking-machines",
     "context": "1M",
     "image_input": "yes",
-    "aa_index": {
-      "value": 12.9,
-      "date": "2026-11-01",
-      "url": "https://artificialanalysis.ai/models/inkling-small",
-      "basis": "direct",
-      "prev_value": 26,
-      "prev_date": "2026-10-25"
-    },
     "notes": null
   },
   {
@@ -483,14 +259,6 @@
     "maker": "google",
     "context": "256K",
     "image_input": "yes",
-    "aa_index": {
-      "value": 7.6,
-      "date": "2026-10-25",
-      "url": "https://artificialanalysis.ai/models/gemma-4-31b",
-      "basis": "mapped",
-      "prev_value": 15,
-      "prev_date": "2026-10-25"
-    },
     "notes": null
   },
   {
@@ -499,14 +267,6 @@
     "maker": "thinking-machines",
     "context": "1M",
     "image_input": "yes",
-    "aa_index": {
-      "value": 12.5,
-      "date": "2026-11-01",
-      "url": "https://artificialanalysis.ai/models/inkling",
-      "basis": "direct",
-      "prev_value": 25,
-      "prev_date": "2026-10-25"
-    },
     "notes": null
   },
   {
@@ -515,11 +275,6 @@
     "maker": "undisclosed",
     "context": "195K",
     "image_input": "no",
-    "aa_index": {
-      "value": null,
-      "date": "2026-10-06",
-      "note": "not checked"
-    },
     "notes": null
   },
   {
@@ -528,11 +283,6 @@
     "maker": "undisclosed",
     "context": "1M",
     "image_input": "yes",
-    "aa_index": {
-      "value": null,
-      "date": "2026-10-06",
-      "note": "not checked"
-    },
     "notes": null
   },
   {
@@ -541,14 +291,6 @@
     "maker": "xiaomi",
     "context": "1M",
     "image_input": "yes",
-    "aa_index": {
-      "value": 10.1,
-      "date": "2026-10-25",
-      "url": "https://artificialanalysis.ai/models/mimo-v2-5-0424",
-      "basis": "mapped",
-      "prev_value": 22,
-      "prev_date": "2026-10-25"
-    },
     "notes": null
   },
   {
@@ -557,14 +299,6 @@
     "maker": "inclusionai",
     "context": "256K",
     "image_input": "no",
-    "aa_index": {
-      "value": 10.6,
-      "date": "2026-10-25",
-      "url": "https://artificialanalysis.ai/models/ling-3-0-flash-fin",
-      "basis": "mapped",
-      "prev_value": 23,
-      "prev_date": "2026-10-25"
-    },
     "notes": null
   },
   {
@@ -573,11 +307,6 @@
     "maker": "undisclosed",
     "context": "62K",
     "image_input": "no",
-    "aa_index": {
-      "value": null,
-      "date": "2026-10-06",
-      "note": "not checked"
-    },
     "notes": null
   },
   {
@@ -586,14 +315,6 @@
     "maker": "meta",
     "context": "1M",
     "image_input": "yes",
-    "aa_index": {
-      "value": 36.4,
-      "date": "2026-11-01",
-      "url": "https://artificialanalysis.ai/models/muse-spark-1-3",
-      "basis": "direct",
-      "prev_value": 48,
-      "prev_date": "2026-10-25"
-    },
     "notes": null
   },
   {
@@ -602,14 +323,6 @@
     "maker": "meta",
     "context": "1M",
     "image_input": "yes",
-    "aa_index": {
-      "value": 27.6,
-      "date": "2026-10-25",
-      "url": "https://artificialanalysis.ai/models/muse-spark-1-2",
-      "basis": "mapped",
-      "prev_value": 40,
-      "prev_date": "2026-10-25"
-    },
     "notes": null
   },
   {
@@ -618,14 +331,6 @@
     "maker": "upstage",
     "context": "512K",
     "image_input": "no",
-    "aa_index": {
-      "value": 13.3,
-      "date": "2026-10-25",
-      "url": "https://artificialanalysis.ai/models/solar-pro4",
-      "basis": "mapped",
-      "prev_value": 27,
-      "prev_date": "2026-10-25"
-    },
     "notes": null
   },
   {
@@ -634,14 +339,6 @@
     "maker": "upstage",
     "context": "512K",
     "image_input": "no",
-    "aa_index": {
-      "value": 11.2,
-      "date": "2026-10-25",
-      "url": "https://artificialanalysis.ai/models/solar-mini4",
-      "basis": "mapped",
-      "prev_value": 24,
-      "prev_date": "2026-10-25"
-    },
     "notes": null
   },
   {
@@ -650,14 +347,6 @@
     "maker": "zai",
     "context": "1M",
     "image_input": "yes",
-    "aa_index": {
-      "value": 27.8,
-      "date": "2026-11-01",
-      "url": "https://artificialanalysis.ai/models/glm-5-3-flash",
-      "basis": "direct",
-      "prev_value": 42,
-      "prev_date": "2026-10-25"
-    },
     "notes": null
   },
   {
@@ -666,14 +355,6 @@
     "maker": "openai",
     "context": "1025K",
     "image_input": "yes",
-    "aa_index": {
-      "value": 27.8,
-      "date": "2026-11-01",
-      "url": "https://artificialanalysis.ai/models/gpt-6-luna",
-      "basis": "direct",
-      "prev_value": 38,
-      "prev_date": "2026-10-25"
-    },
     "notes": null
   },
   {
@@ -682,14 +363,6 @@
     "maker": "xiaomi",
     "context": "1M",
     "image_input": "yes",
-    "aa_index": {
-      "value": 29.9,
-      "date": "2026-11-01",
-      "url": "https://artificialanalysis.ai/models/mimo-v2-6-pro",
-      "basis": "direct",
-      "prev_value": 46,
-      "prev_date": "2026-10-25"
-    },
     "notes": null
   },
   {
@@ -698,14 +371,6 @@
     "maker": "openai",
     "context": "1025K",
     "image_input": "yes",
-    "aa_index": {
-      "value": 54.5,
-      "date": "2026-11-01",
-      "url": "https://artificialanalysis.ai/models/gpt-6-1-sol",
-      "basis": "direct",
-      "prev_value": 52,
-      "prev_date": "2026-10-25"
-    },
     "notes": null
   },
   {
@@ -714,14 +379,6 @@
     "maker": "zai",
     "context": "200K",
     "image_input": "no",
-    "aa_index": {
-      "value": 7.6,
-      "date": "2026-10-25",
-      "url": "https://artificialanalysis.ai/models/glm-4-7-flash",
-      "basis": "mapped",
-      "prev_value": 15,
-      "prev_date": "2026-10-25"
-    },
     "notes": "Text in, text out per OpenRouter and Vercel; no vision encoder in the HF zai-org/GLM-4.7-Flash config (2026-10-20)."
   },
   {
@@ -730,11 +387,6 @@
     "maker": "zai",
     "context": "200K",
     "image_input": "no",
-    "aa_index": {
-      "value": null,
-      "date": "2026-10-06",
-      "note": "not checked"
-    },
     "notes": "The BigModel model page states input modality: text (2026-10-20)."
   },
   {
@@ -743,11 +395,6 @@
     "maker": "zai",
     "context": "128K",
     "image_input": "not_checked",
-    "aa_index": {
-      "value": null,
-      "date": "2026-10-06",
-      "note": "not checked"
-    },
     "notes": null
   },
   {
@@ -756,11 +403,6 @@
     "maker": "qwen",
     "context": "32K",
     "image_input": "no",
-    "aa_index": {
-      "value": null,
-      "date": "2026-10-06",
-      "note": "not checked"
-    },
     "notes": "Text-only: no vision encoder in the HF Qwen/Qwen2.5-7B-Instruct config; OpenRouter lists text input (2026-10-20)."
   },
   {
@@ -769,14 +411,6 @@
     "maker": "qwen",
     "context": "128K",
     "image_input": "no",
-    "aa_index": {
-      "value": 2.9,
-      "date": "2026-10-25",
-      "url": "https://artificialanalysis.ai/models/qwen3-8b-instruct-reasoning",
-      "basis": "mapped",
-      "prev_value": 5,
-      "prev_date": "2026-10-25"
-    },
     "notes": "Text-only per the HF Qwen/Qwen3-8B config; vision sizes ship as the separate Qwen3-VL line (2026-10-20)."
   },
   {
@@ -785,14 +419,6 @@
     "maker": "qwen",
     "context": "256K",
     "image_input": "yes",
-    "aa_index": {
-      "value": 7.4,
-      "date": "2026-10-25",
-      "url": "https://artificialanalysis.ai/models/qwen3-5-4b",
-      "basis": "mapped",
-      "prev_value": 13,
-      "prev_date": "2026-10-25"
-    },
     "notes": "Image input: the HF Qwen/Qwen3.5-4B config carries a vision encoder (262,144 native context, 2026-10-20)."
   },
   {
@@ -801,11 +427,6 @@
     "maker": "zai",
     "context": "32K",
     "image_input": "no",
-    "aa_index": {
-      "value": null,
-      "date": "2026-10-06",
-      "note": "not checked"
-    },
     "notes": "No vision encoder in the HF zai-org/GLM-4-9B-0414 config (2026-10-20)."
   },
   {
@@ -814,11 +435,6 @@
     "maker": "zai",
     "context": "128K",
     "image_input": "no",
-    "aa_index": {
-      "value": null,
-      "date": "2026-10-06",
-      "note": "not checked"
-    },
     "notes": "No vision encoder in the HF zai-org/GLM-Z1-9B-0414 config (2026-10-20)."
   },
   {
@@ -827,11 +443,6 @@
     "maker": "xingchen",
     "context": "256K",
     "image_input": "no",
-    "aa_index": {
-      "value": null,
-      "date": "2026-10-06",
-      "note": "not checked"
-    },
     "notes": "OpenRouter lists xingchen-agi/xing4.0-29b-a4b:free (our own OR lane’s id) as text→text; the HF XingChen-AGI org’s only 29B chat release is the A4B (2026-10-20)."
   },
   {
@@ -840,14 +451,6 @@
     "maker": "deepseek",
     "context": "128K",
     "image_input": "no",
-    "aa_index": {
-      "value": 4.6,
-      "date": "2026-10-25",
-      "url": "https://artificialanalysis.ai/models/deepseek-r1-qwen3-8b",
-      "basis": "mapped",
-      "prev_value": 8,
-      "prev_date": "2026-10-25"
-    },
     "notes": "Text-only per the HF deepseek-ai/DeepSeek-R1-0528-Qwen3-8B config (2026-10-20)."
   },
   {
@@ -856,14 +459,6 @@
     "maker": "google",
     "context": "1M",
     "image_input": "yes",
-    "aa_index": {
-      "value": 30.5,
-      "date": "2026-11-01",
-      "url": "https://artificialanalysis.ai/models/gemini-3-8-flash",
-      "basis": "direct",
-      "prev_value": 41,
-      "prev_date": "2026-10-25"
-    },
     "notes": "Image+video input per the OpenRouter and Vercel AI Gateway catalogues (2026-10-20)."
   },
   {
@@ -872,14 +467,6 @@
     "maker": "google",
     "context": "1M",
     "image_input": "yes",
-    "aa_index": {
-      "value": 26.2,
-      "date": "2026-10-25",
-      "url": "https://artificialanalysis.ai/models/gemini-3-7-flash",
-      "basis": "mapped",
-      "prev_value": 39,
-      "prev_date": "2026-10-25"
-    },
     "notes": "Image+video input per the OpenRouter and Vercel AI Gateway catalogues (2026-10-20)."
   },
   {
@@ -888,14 +475,6 @@
     "maker": "google",
     "context": "1M",
     "image_input": "yes",
-    "aa_index": {
-      "value": 19.9,
-      "date": "2026-10-25",
-      "url": "https://artificialanalysis.ai/models/gemini-3-6-flash",
-      "basis": "mapped",
-      "prev_value": 34,
-      "prev_date": "2026-10-25"
-    },
     "notes": "Image+video input per the OpenRouter and Vercel AI Gateway catalogues (2026-10-20)."
   },
   {
@@ -904,14 +483,6 @@
     "maker": "google",
     "context": "1M",
     "image_input": "yes",
-    "aa_index": {
-      "value": 18.8,
-      "date": "2026-10-25",
-      "url": "https://artificialanalysis.ai/models/gemini-3-5-flash",
-      "basis": "mapped",
-      "prev_value": 33,
-      "prev_date": "2026-10-25"
-    },
     "notes": "Image+video input per the OpenRouter and Vercel AI Gateway catalogues (2026-10-20)."
   },
   {
@@ -920,14 +491,6 @@
     "maker": "google",
     "context": "1M",
     "image_input": "yes",
-    "aa_index": {
-      "value": 11.7,
-      "date": "2026-11-01",
-      "url": "https://artificialanalysis.ai/models/gemini-3-5-flash-lite",
-      "basis": "direct",
-      "prev_value": 22,
-      "prev_date": "2026-10-25"
-    },
     "notes": "Image+video input per the OpenRouter and Vercel AI Gateway catalogues (2026-10-20)."
   },
   {
@@ -936,14 +499,6 @@
     "maker": "qwen",
     "context": "1M",
     "image_input": "yes",
-    "aa_index": {
-      "value": 27.6,
-      "date": "2026-10-25",
-      "url": "https://artificialanalysis.ai/models/qwen3-8-flash-next",
-      "basis": "mapped",
-      "prev_value": 40,
-      "prev_date": "2026-10-25"
-    },
     "notes": "The AA page is \"Qwen3.8-Flash-Next\"; we assume it is the model Qoder calls Qwen3.8-Flash (not confirmed). Context 1M and image+video input per OpenRouter; Qoder’s promo page calls it multimodal with image understanding (2026-10-20)."
   },
   {
@@ -952,14 +507,6 @@
     "maker": "moonshot",
     "context": "1M",
     "image_input": "yes",
-    "aa_index": {
-      "value": 33.7,
-      "date": "2026-10-25",
-      "url": "https://artificialanalysis.ai/models/kimi-k3",
-      "basis": "mapped",
-      "prev_value": 44,
-      "prev_date": "2026-10-25"
-    },
     "notes": "Image+video input per OpenRouter and Vercel (2026-10-20)."
   },
   {
@@ -968,11 +515,6 @@
     "maker": "moonshot",
     "context": "1M",
     "image_input": "yes",
-    "aa_index": {
-      "value": null,
-      "date": "2026-10-06",
-      "note": "no AA page (coding variant of Kimi K3, AA 44 on the earlier scale)"
-    },
     "notes": "Per the AIHubMix catalogue: the coding-kimi-k3-free model page lists Text / Vision / Video input (2026-10-20)."
   },
   {
@@ -981,14 +523,6 @@
     "maker": "zai",
     "context": "1M",
     "image_input": "no",
-    "aa_index": {
-      "value": 31.7,
-      "date": "2026-11-01",
-      "url": "https://artificialanalysis.ai/models/glm-5-3",
-      "basis": "direct",
-      "prev_value": 45,
-      "prev_date": "2026-10-25"
-    },
     "notes": "Text-only on OpenRouter (z-ai/glm-5.3) and Vercel (zai/glm-5.3); image input sits on the GLM-5.3-Flash variants (2026-10-20)."
   },
   {
@@ -997,11 +531,6 @@
     "maker": "undisclosed",
     "context": "1M",
     "image_input": "yes",
-    "aa_index": {
-      "value": null,
-      "date": "2026-10-10",
-      "note": "not checked"
-    },
     "notes": "Zen describes it as a free-tier preview reasoning model with text and image input and tool use"
   },
   {
@@ -1010,11 +539,6 @@
     "maker": "undisclosed",
     "context": "256K",
     "image_input": "no",
-    "aa_index": {
-      "value": null,
-      "date": "2026-10-10",
-      "note": "not checked"
-    },
     "notes": null
   },
   {
@@ -1023,14 +547,6 @@
     "maker": "stepfun",
     "context": "1M",
     "image_input": "yes",
-    "aa_index": {
-      "value": 28.5,
-      "date": "2026-11-01",
-      "url": "https://artificialanalysis.ai/models/step-5",
-      "basis": "direct",
-      "prev_value": 44,
-      "prev_date": "2026-10-25"
-    },
     "notes": null
   },
   {
@@ -1039,15 +555,7 @@
     "maker": "qwen",
     "context": "262K",
     "image_input": "yes",
-    "aa_index": {
-      "value": 20.1,
-      "date": "2026-11-01",
-      "url": "https://artificialanalysis.ai/models/qwen3-8-27b",
-      "basis": "direct",
-      "prev_value": 34,
-      "prev_date": "2026-10-25"
-    },
-    "notes": "Dense 27B open-weight vision-language model, released 2026-08 (FTAA 20.1; 33.7 on the earlier AA scale)."
+    "notes": "Dense 27B open-weight vision-language model, released 2026-08."
   },
   {
     "id": "qwen3.5-397b-a17b",
@@ -1055,14 +563,6 @@
     "maker": "qwen",
     "context": "262K",
     "image_input": "yes",
-    "aa_index": {
-      "value": 8.4,
-      "date": "2026-10-25",
-      "url": "https://artificialanalysis.ai/models/qwen3-5-397b-a17b",
-      "basis": "mapped",
-      "prev_value": 18,
-      "prev_date": "2026-10-25"
-    },
     "notes": "Context 262,144 and image+video input per OpenRouter; OVHcloud (the free lane) lists the same 262,144 (2026-10-20)."
   },
   {
@@ -1071,14 +571,6 @@
     "maker": "qwen",
     "context": "262K",
     "image_input": "yes",
-    "aa_index": {
-      "value": 9.6,
-      "date": "2026-10-25",
-      "url": "https://artificialanalysis.ai/models/qwen3-6-27b",
-      "basis": "mapped",
-      "prev_value": 21,
-      "prev_date": "2026-10-25"
-    },
     "notes": "Context 262K and image+video input per OpenRouter (Vercel says 256K); OVHcloud lists 262,144 (2026-10-20)."
   },
   {
@@ -1087,14 +579,6 @@
     "maker": "qwen",
     "context": "262K",
     "image_input": "yes",
-    "aa_index": {
-      "value": 6.3,
-      "date": "2026-10-25",
-      "url": "https://artificialanalysis.ai/models/qwen3-5-9b",
-      "basis": "mapped",
-      "prev_value": 11,
-      "prev_date": "2026-10-25"
-    },
     "notes": "Context 262K and image+video input per OpenRouter; same on OVHcloud (2026-10-20)."
   },
   {
@@ -1103,11 +587,6 @@
     "maker": "qwen",
     "context": "128K (32K on OVHcloud)",
     "image_input": "yes",
-    "aa_index": {
-      "value": null,
-      "date": "2026-10-08",
-      "note": "not on Artificial Analysis"
-    },
     "notes": "Native 128,000 per the HF Qwen2.5-VL-72B-Instruct config and OpenRouter; the OVHcloud endpoint serves 32,768 (2026-10-20)."
   },
   {
@@ -1116,14 +595,6 @@
     "maker": "meta",
     "context": "128K",
     "image_input": "no",
-    "aa_index": {
-      "value": 4.6,
-      "date": "2026-10-25",
-      "url": "https://artificialanalysis.ai/models/llama-3-3-instruct-70b",
-      "basis": "mapped",
-      "prev_value": 8,
-      "prev_date": "2026-10-25"
-    },
     "notes": "131,072 per OpenRouter, Vercel and OVHcloud (2026-10-20)."
   },
   {
@@ -1132,14 +603,6 @@
     "maker": "mistral",
     "context": "256K (128K on OVHcloud)",
     "image_input": "yes",
-    "aa_index": {
-      "value": 4.0,
-      "date": "2026-10-25",
-      "url": "https://artificialanalysis.ai/models/mistral-small-3-2",
-      "basis": "mapped",
-      "prev_value": 7,
-      "prev_date": "2026-10-25"
-    },
     "notes": "Native 256K with image input per OpenRouter and the HF Mistral-Small-3.2-24B-Instruct-2506 card; OVHcloud serves 131,072 (2026-10-20)."
   },
   {
@@ -1148,11 +611,6 @@
     "maker": "mistral",
     "context": "128K (64K on OVHcloud)",
     "image_input": "no",
-    "aa_index": {
-      "value": null,
-      "date": "2026-10-08",
-      "note": "not on Artificial Analysis"
-    },
     "notes": "131,072 per OpenRouter and Vercel; the OVHcloud endpoint lists 65,536 (2026-10-20)."
   },
   {
@@ -1161,14 +619,6 @@
     "maker": "mistral",
     "context": "32K",
     "image_input": "no",
-    "aa_index": {
-      "value": 2.9,
-      "date": "2026-10-25",
-      "url": "https://artificialanalysis.ai/models/mistral-7b-instruct",
-      "basis": "mapped",
-      "prev_value": 5,
-      "prev_date": "2026-10-25"
-    },
     "notes": "32,768 per the HF Mistral-7B-Instruct-v0.3 config (2026-10-20)."
   },
   {
@@ -1177,14 +627,6 @@
     "maker": "openai",
     "context": "128K",
     "image_input": "no",
-    "aa_index": {
-      "value": 6.9,
-      "date": "2026-10-25",
-      "url": "https://artificialanalysis.ai/models/gpt-oss-120b",
-      "basis": "mapped",
-      "prev_value": 12,
-      "prev_date": "2026-10-25"
-    },
     "notes": "131,072 per OpenRouter, Vercel and OVHcloud (2026-10-20)."
   },
   {
@@ -1193,14 +635,6 @@
     "maker": "openai",
     "context": "128K",
     "image_input": "no",
-    "aa_index": {
-      "value": 5.1,
-      "date": "2026-10-25",
-      "url": "https://artificialanalysis.ai/models/gpt-oss-20b",
-      "basis": "mapped",
-      "prev_value": 9,
-      "prev_date": "2026-10-25"
-    },
     "notes": "131,072 per OpenRouter, Vercel and OVHcloud (2026-10-20)."
   },
   {
@@ -1209,11 +643,6 @@
     "maker": "undisclosed",
     "context": "1M",
     "image_input": "partial",
-    "aa_index": {
-      "value": null,
-      "date": "2026-10-13",
-      "note": "not ranked"
-    },
     "notes": "Context 262,144 per models.dev + video title (secondary, 2026-10-13); models.dev and the Vercel AI Gateway model page now both say 1,048,576 (2026-10-16). Zen lane answers text; image via agentic tool-use, not native vision (W6 2026-10-13)."
   },
   {
@@ -1222,14 +651,6 @@
     "maker": "nvidia",
     "context": "1M",
     "image_input": "yes",
-    "aa_index": {
-      "value": 13.6,
-      "date": "2026-11-01",
-      "url": "https://artificialanalysis.ai/models/nemotron-3-5-super-vl",
-      "basis": "direct",
-      "prev_value": 26,
-      "prev_date": "2026-10-25"
-    },
     "notes": null
   },
   {
@@ -1238,11 +659,6 @@
     "maker": "undisclosed",
     "context": "262K",
     "image_input": "no",
-    "aa_index": {
-      "value": null,
-      "date": "2026-10-16",
-      "note": "not ranked"
-    },
     "notes": "Stealth model: OpenCode Zen lists it as free for a limited time, no maker named. Context 262,144 and output 65,536 per models.dev (2026-10-16). The models.dev OpenCode Zen entry lists text input only (2026-10-20)."
   },
   {
@@ -1251,14 +667,6 @@
     "maker": "minimax",
     "context": "1M",
     "image_input": "yes",
-    "aa_index": {
-      "value": 28.9,
-      "date": "2026-11-01",
-      "url": "https://artificialanalysis.ai/models/minimax-m3-1-flash",
-      "basis": "direct",
-      "prev_value": 43,
-      "prev_date": "2026-10-25"
-    },
     "notes": "Context 1,000,000 and image+video input per the OpenRouter free listing and Vercel AI Gateway (2026-10-20)."
   },
   {
@@ -1267,15 +675,7 @@
     "maker": "reflection",
     "context": "1M",
     "image_input": "no",
-    "aa_index": {
-      "value": 17.7,
-      "date": "2026-11-01",
-      "url": "https://artificialanalysis.ai/models/reflection-beam",
-      "basis": "direct",
-      "prev_value": 30,
-      "prev_date": "2026-10-25"
-    },
-    "notes": "Released 2026-10-16; AA Intelligence Index 30 on the earlier AA scale, checked on the AA page 2026-10-20. 501B/23B-active MoE, Apache 2.0 open weights (HF reflection/Beam-1.0-501B-A23B); text-only with a 1M context per the card, OpenRouter and Vercel."
+    "notes": "Released 2026-10-16. 501B/23B-active MoE, Apache 2.0 open weights (HF reflection/Beam-1.0-501B-A23B); text-only with a 1M context per the card, OpenRouter and Vercel."
   },
   {
     "id": "flint",
@@ -1283,11 +683,6 @@
     "maker": "recursive",
     "context": "262K",
     "image_input": "no",
-    "aa_index": {
-      "value": null,
-      "date": "2026-10-22",
-      "note": "not ranked (no Artificial Analysis page for Flint in the sitemap read on 2026-10-22)"
-    },
     "notes": "Released 2026-10-21 as Recursive's open-weight (Apache 2.0) MoE for coding agents: 39.8B total, about 2.5B active per token, 262,144-token documented context, text in and text out, knowledge cutoff June 2026 (model card huggingface.co/RecursiveSI/flint). The two free IDs are this one model: OpenRouter's recursive/flint-v1.0:free reports 262,144 context and text→text on the models API (2026-10-22), and OpenCode Zen lists it as opencode/flint-40b-free, where 40B is the card's rounded designation for 40B-A2.5B."
   },
   {
@@ -1296,11 +691,6 @@
     "maker": "undisclosed",
     "context": "262K",
     "image_input": "no",
-    "aa_index": {
-      "value": null,
-      "date": "2026-10-25",
-      "note": "not ranked"
-    },
     "notes": "Stealth model: OpenCode's own data page gives the provider as \"Unknown\" (2026-10-25), and it has no row in the Go pricing or privacy tables. Context 262,144, output 131,072 and $0 pricing are models.dev registry values read 2026-10-25; OpenCode never cites models.dev and that registry's OpenCode Go snapshot has drifted from the live list in both directions, so treat them as unverified."
   },
   {
@@ -1309,11 +699,6 @@
     "maker": "tencent",
     "context": "not checked",
     "image_input": "no",
-    "aa_index": {
-      "value": null,
-      "date": "2026-10-28",
-      "note": "not checked"
-    },
     "notes": "Translation-specialised chat model (SiliconFlow plaza subType chat); rendered pricing table marks 免费 (2026-10-28)."
   },
   {
@@ -1322,11 +707,6 @@
     "maker": "tencent",
     "context": "not checked",
     "image_input": "no",
-    "aa_index": {
-      "value": null,
-      "date": "2026-10-28",
-      "note": "not checked"
-    },
     "notes": "Tencent Hunyuan Hy4 preview. Official notice (carried by IT之家 2026-10-02): a text LLM with no multimodal ability yet, so a Hy4 preview call that needs image or video generation is switched to another model and billed normally. CodeBuddy CLI showed the 0.29x credit multiplier at 13:20 on 2026-10-28."
   },
   {
@@ -1335,14 +715,6 @@
     "maker": "inclusionai",
     "context": "1M",
     "image_input": "not_checked",
-    "aa_index": {
-      "value": 29.5,
-      "date": "2026-11-01",
-      "url": "https://artificialanalysis.ai/models/ling-3-1-flash-1019",
-      "basis": "direct",
-      "prev_value": 44,
-      "prev_date": "2026-10-31"
-    },
     "notes": "Upgraded weights of Ling-3.1-flash (560B total / 25B active per token, 1M context, MIT); HF repo inclusionAI/Ling-3.1-flash-1019 created 2026-10-27, old repo still published, so a separate model entry, not a version field."
   }
 ]

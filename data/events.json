@@ -2261,7 +2261,7 @@
    "minimax-m3.1-flash-or"
   ],
   "kind": "available",
-  "text": "MiniMax M3.1 Flash is on OpenRouter's free catalogue as minimax/minimax-m3.1-flash:free ($0 per token on the models API): first seen by the daily free-catalogue check at 2026-10-20T08:00Z, Artificial Analysis index 43 (earlier v4 scale); we have not called it",
+  "text": "MiniMax M3.1 Flash is on OpenRouter's free catalogue as minimax/minimax-m3.1-flash:free ($0 per token on the models API): first seen by the daily free-catalogue check at 2026-10-20T08:00Z; we have not called it",
   "source": {
    "label": "Daily free-catalogue check of the OpenRouter models API (own tool)",
    "url": "https://openrouter.ai/api/v1/models"

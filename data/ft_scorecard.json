@@ -1,0 +1,93 @@
+{
+ "$comment": "ADR-036. Leave-one-out backtest against the frozen reference scores, written by tools/ft_backtest.py.",
+ "date": "2026-11-01",
+ "method_version": 1,
+ "band_width": 5,
+ "reference_models": 166,
+ "published": {
+  "overall": {
+   "n": 136,
+   "mean_abs_diff": 4.21,
+   "bias": 0.23,
+   "hit_rate": 0.35,
+   "within_3": 0.4
+  },
+  "by_evidence": {
+   "1": {
+    "n": 24,
+    "mean_abs_diff": 4.98,
+    "bias": -0.67,
+    "hit_rate": 0.29,
+    "within_3": 0.38
+   },
+   "2": {
+    "n": 28,
+    "mean_abs_diff": 4.23,
+    "bias": 0.58,
+    "hit_rate": 0.36,
+    "within_3": 0.39
+   },
+   "3": {
+    "n": 24,
+    "mean_abs_diff": 4.28,
+    "bias": 0.36,
+    "hit_rate": 0.46,
+    "within_3": 0.46
+   },
+   "4+": {
+    "n": 60,
+    "mean_abs_diff": 3.87,
+    "bias": 0.37,
+    "hit_rate": 0.32,
+    "within_3": 0.38
+   }
+  },
+  "exact_only": {
+   "n": 84,
+   "mean_abs_diff": 3.99,
+   "bias": 0.37,
+   "hit_rate": 0.36,
+   "within_3": 0.4
+  }
+ },
+ "vendor": {
+  "overall": {
+   "n": 54,
+   "mean_abs_diff": 4.13,
+   "bias": 1.05,
+   "hit_rate": 0.46,
+   "within_3": 0.54
+  },
+  "by_evidence": {
+   "1": {
+    "n": 12,
+    "mean_abs_diff": 3.37,
+    "bias": -1.57,
+    "hit_rate": 0.42,
+    "within_3": 0.5
+   },
+   "2": {
+    "n": 16,
+    "mean_abs_diff": 4.72,
+    "bias": 2.62,
+    "hit_rate": 0.44,
+    "within_3": 0.5
+   },
+   "3": {
+    "n": 13,
+    "mean_abs_diff": 3.72,
+    "bias": -0.02,
+    "hit_rate": 0.62,
+    "within_3": 0.62
+   },
+   "4+": {
+    "n": 13,
+    "mean_abs_diff": 4.52,
+    "bias": 2.6,
+    "hit_rate": 0.38,
+    "within_3": 0.54
+   }
+  },
+  "exact_only": null
+ }
+}

@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """Stable read-only queries over data/*.json for other tools (stdlib only, JSON out).
 
-    python3 tools/query.py score <model-id|name>      # FTAA (basis direct | mapped) or EST band, with sources
+    python3 tools/query.py score <model-id|name>      # FTI: value (centre), low, high, evidence count, sources (kind ft)
     python3 tools/query.py lanes <model-id|lane-id|channel>   # status, checks, limits, volume
     python3 tools/query.py events [--since YYYY-MM-DD] [--lane ID]
     python3 tools/query.py pool [--min 16]            # agent-usable free lanes with a score, best first
     python3 tools/query.py offers [--model ID] [--type T]   # free programs: allowances, credits, student plans (ADR-025)
 
-Scores use build.estimate(), the same code the site uses.
+Scores are the site's FT Intelligence (data/ft_scores.json, written by tools/ft_score.py).
 CONTRACT (parsed by chco `oc-free status`; tell m1max-dimmodel before renaming or removing any of these):
   score -> kind, value, low, high, confidence · lanes -> status, ends.expected, ends.announced, ends.confidence · pool -> lane, score.*
 New keys may be added freely.
@@ -23,7 +23,6 @@ MODELS = {m["id"]: m for m in build.load("models")}
 LANES = build.load("lanes")
 EVENTS = build.load("events")
 CHANS = {c["name"]: c for c in build.load_optional("channels", [])}
-EST, _ = build.estimate(list(MODELS.values()), build.load_optional("benchmarks", {}), build.load_optional("anchors", []))
 CLAIMS = build.load_optional("benchmarks", {}).get("claims", [])
 
 
@@ -34,20 +33,17 @@ def find_model(q):
 
 
 def score(m):
-    a = m["aa_index"]
-    if a.get("value") is not None:
-        mapped = a.get("basis") == "mapped"  # FTAA (ADR-035): direct = the AA v5 score; mapped = an older score put on that scale (about 3 points of error)
-        return {"model": m["id"], "name": m["name"], "kind": "aa", "value": a["value"], "low": a["value"], "high": a["value"],
-                "source": a.get("url"), "date": a.get("date"), "confidence": "medium" if mapped else "official",
-                "basis": a.get("basis", "direct"), "prev_value": a.get("prev_value"), "prev_date": a.get("prev_date")}
-    e = EST.get(m["id"], {})
-    if e.get("status") == "ok":
-        n = e.get("benchmarks", 0)
-        return {"model": m["id"], "name": m["name"], "kind": "est", "value": e["center"], "low": e["low"], "high": e["high"],
-                "confidence": "low" if e.get("vendor_only") or n < 2 else "medium", "basis": "est", "benchmarks": n,
-                "method": e.get("method"), "vendor_only": e.get("vendor_only", False),
-                "evidence": [{k: c.get(k) for k in ("benchmark", "score", "source_type", "url", "variant")} for c in CLAIMS if c["model"] == m["id"]]}
-    return {"model": m["id"], "name": m["name"], "kind": "none", "value": None, "basis": None, "note": a.get("note") or "no AA index and too little evidence for an estimate"}
+    """FT Intelligence (ADR-036): value = centre; low/high = the band (equal to value when evidence >= 3 with an independent source);
+    evidence = number of sources used. Artificial Analysis appears as a source with a link, never a number."""
+    f = m.get("ft") or {}
+    if f.get("status") == "ok":
+        used = [s for s in f.get("sources", []) if s.get("used")]
+        return {"model": m["id"], "name": m["name"], "kind": "ft", "value": f["center"], "low": f["low"], "high": f["high"],
+                "evidence": f["evidence"], "independent": f["independent"], "exact": f["exact"],
+                "confidence": "medium" if f["exact"] else "low", "basis": f.get("method"),
+                "sources": [{k: s.get(k) for k in ("name", "value", "url", "type")} for s in used]}
+    return {"model": m["id"], "name": m["name"], "kind": "none", "value": None, "low": None, "high": None, "evidence": 0, "basis": None,
+            "note": "too little benchmark evidence for an FT Intelligence score"}
 
 
 def lane_view(l):

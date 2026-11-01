@@ -3072,7 +3072,7 @@
    "date": "2026-10-31",
    "method": "catalogue"
   },
-  "note": "EST 17–22 (approx, peer comparison 2026-10-28: vendor benchmarks vs Qwen3.6 35B); T1 多步检索实测不可用（2026-10-28，上限低），价格表免费事实保留"
+  "note": "T1 多步检索实测不可用（2026-10-28，上限低），价格表免费事实保留"
  },
  {
   "id": "deepseek-r1-0528-qwen3-8b-siliconflow",

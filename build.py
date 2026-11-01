@@ -77,7 +77,12 @@ def zh_text(en):
 
 
 def load(name):
-    return json.loads((ROOT / f"data/{name}.json").read_text())
+    d = json.loads((ROOT / f"data/{name}.json").read_text())
+    if name == "models":  # ADR-036: every model carries its FT Intelligence entry (data/ft_scores.json)
+        ft = load_optional("ft_scores", {}).get("scores", {})
+        for m in d:
+            m["ft"] = ft.get(m["id"]) or {"status": "none", "evidence": 0, "independent": 0, "sources": []}
+    return d
 
 
 # ---------- dates ----------
@@ -145,14 +150,6 @@ def validate(lanes, events, models):
     for m in models:
         if not re.fullmatch(r"[a-z0-9][a-z0-9.-]*", m["id"]):
             errs.append(f"models[{m['id']}]: id must be lowercase letters, digits, '.' or '-' (it becomes a URL)")
-    for m in models:
-        a = m["aa_index"]
-        if a.get("value") is not None and not str(a.get("url", "")).startswith("https://artificialanalysis.ai/"):
-            errs.append(f"models[{m['id']}]: an AA index value needs aa_index.url (its artificialanalysis.ai page)")
-        if a.get("value") is not None and a.get("basis") not in ("direct", "mapped"):
-            errs.append(f"models[{m['id']}]: aa_index.basis must be 'direct' (the AA v5 score) or 'mapped' (an older score converted by schema ftaa)")
-        if a.get("basis") == "mapped" and (a.get("prev_value") is None or not a.get("prev_date")):
-            errs.append(f"models[{m['id']}]: a mapped FTAA keeps the older score it came from in prev_value / prev_date")
     model_ids = {m["id"] for m in models}
     lane_ids = {l["id"] for l in lanes}
     offer_ids = {o["id"] for o in load_optional("offers", [])}
@@ -277,17 +274,22 @@ def validate(lanes, events, models):
             sm = m.get("suspected_maker")
             if sm and (sm.get("maker") not in mk_ids or not str(sm.get("url", "")).startswith("http") or sm.get("confidence") != "unconfirmed"):
                 errs.append(f"models[{m['id']}]: suspected_maker needs a known maker id, a source url and confidence 'unconfirmed'")
-    bench, anchors = load_optional("benchmarks", {}), load_optional("anchors", [])
+    bench = load_optional("benchmarks", {})
     for c in bench.get("claims", []):
+        w = f"benchmarks.claims[{c.get('model')}/{c.get('benchmark')}]"
         if c["model"] not in model_ids:
             errs.append(f"benchmarks.claims: unknown model {c['model']!r}")
         if not str(c.get("url", "")).startswith("http"):
-            errs.append(f"benchmarks.claims[{c['model']}/{c['benchmark']}]: needs a source url")
-    for a in anchors:
-        if not str(a.get("aa_url", "")).startswith("https://artificialanalysis.ai/"):
-            errs.append(f"anchors[{a.get('name')}]: needs its artificialanalysis.ai url")
-        if a.get("aa_basis") not in ("direct", "mapped") or a.get("aa_prev") is None:
-            errs.append(f"anchors[{a.get('name')}]: aa_index is FTAA; aa_basis must be direct or mapped and aa_prev keeps the older score (tools/ftaa.py)")
+            errs.append(f"{w}: needs a source url")
+        if c.get("source_type") not in ("leaderboard", "third_party", "vendor", "community", "leak"):
+            errs.append(f"{w}: source_type {c.get('source_type')!r} is not leaderboard, third_party, vendor, community or leak")
+        if c.get("benchmark", "").startswith("aa_") or re.match(r"https?://([a-z0-9.-]*\.)?artificialanalysis\.ai(/|$)", str(c.get("url", ""))):
+            errs.append(f"{w}: Artificial Analysis data does not belong in public claims (ADR-036)")
+        if isinstance(c.get("score"), bool) or not isinstance(c.get("score"), (int, float)):
+            errs.append(f"{w}: score must be a number")
+    ft = load_optional("ft_scores", {}).get("scores", {})
+    if set(ft) != model_ids:
+        errs.append(f"data/ft_scores.json is out of step with models.json (run tools/ft_score.py): missing {sorted(model_ids - set(ft))[:3]}, extra {sorted(set(ft) - model_ids)[:3]}")
     return errs
 
 
@@ -396,147 +398,44 @@ def access_text(c):
     return s + "".join(" · " + label("access_rule", r) for r in a.get("rules", []))
 
 
-# ---------- EST: estimated FTAA (ADR-004 method v1, ADR-006 ranking; scale per ADR-035) ----------
+# ---------- FT Intelligence (ADR-036): scores are computed by tools/ft_score.py into data/ft_scores.json; build only reads them ----------
 
 def load_optional(name, default):
     f = ROOT / f"data/{name}.json"
     return json.loads(f.read_text()) if f.exists() else default
 
 
-def estimate(models, bench, anchors):
-    """Returns {model_id: est} for models without an official AA index. Pure function of data/ + schema est_rules."""
-    import statistics as st
-    R = SCHEMA["est_rules"]
-    fits = {}
-    for bid, b in bench.get("benchmarks", {}).items():
-        pts = [(a["scores"][bid]["score"], a["aa_index"]) for a in anchors if bid in a.get("scores", {})]
-        if len(pts) < R["min_anchors"]:
-            fits[bid] = {"ok": False, "why": f"only {len(pts)} reference models (need {R['min_anchors']})" if LANG == "en" else f"只有 {len(pts)} 个参考模型（需要 {R['min_anchors']} 个）", "n": len(pts)}
-            continue
-        xs, ys = [p[0] for p in pts], [p[1] for p in pts]
-        mx, my = st.mean(xs), st.mean(ys)
-        slope = sum((x - mx) * (y - my) for x, y in pts) / sum((x - mx) ** 2 for x in xs)
-        r = st.correlation(xs, ys)
-        fits[bid] = {"ok": r >= R["min_r"], "a": my - slope * mx, "b": slope, "r": round(r, 3), "n": len(pts),
-                     "why": None if r >= R["min_r"] else (f"correlation {r:.2f} below {R['min_r']}" if LANG == "en" else f"相关系数 {r:.2f} 低于 {R['min_r']}")}
-    out = {}
-    for m in models:
-        if m["aa_index"].get("value") is not None:
-            continue
-        claims = [c for c in bench.get("claims", []) if c["model"] == m["id"]]
-        if not claims:
-            continue
-        used, listed = [], []
-        for c in claims:
-            f = fits.get(c["benchmark"])
-            if c.get("excluded"):
-                listed.append(dict(c, implied=None, why=c["excluded"]))
-            elif not f or not f["ok"]:
-                listed.append(dict(c, implied=None, why=(f or {}).get("why") or ("no reference models for this benchmark" if LANG == "en" else "该基准尚无带 FTAA 的参考模型")))
-            else:
-                gap_max, scale = R.get("peer_max_gap", 10), R.get("peer_scale", 5)
-                near = [p for p in c.get("peers", []) if p.get("aa") is not None and abs(c["score"] - p["score"]) <= gap_max]
-                if near:  # ADR-023: compare inside the same table, so the vendor's harness and model-class bias cancel
-                    ws = [(p["aa"] + f["b"] * (c["score"] - p["score"]), 1 / (1 + abs(c["score"] - p["score"]) / scale)) for p in near]
-                    implied = sum(v * w for v, w in ws) / sum(w for _, w in ws)
-                    used.append(dict(c, implied=round(implied, 1), r=f["r"], anchors=f["n"], method="peer",
-                                     peers_used=[p["name"] for p in near], weight=R["weights"].get(c["source_type"], 0.5)))
-                else:
-                    used.append(dict(c, implied=round(f["a"] + f["b"] * c["score"], 1), r=f["r"], anchors=f["n"], method="fit",
-                                     weight=R["weights"].get(c["source_type"], 0.5)))
-        benches = {c["benchmark"] for c in used}
-        sources = {c["url"].split("/")[2] for c in used}
-        e = {"evidence": used + listed, "benchmarks": len(benches), "sources": len(sources),
-             "rule": f"needs {R['min_benchmarks']} benchmarks from {R['min_sources']} independent sources"}
-        if len(benches) >= R["min_benchmarks"] and len(sources) >= R["min_sources"]:
-            ws = [(c["implied"], c["weight"]) for c in used]
-            center = sum(v * w for v, w in ws) / sum(w for _, w in ws)  # weighted mean (ADR-023; a median of two picks the lower one)
-            vendor_only = all(c["source_type"] == "official" and c["method"] == "fit" for c in used)
-            width = R.get("vendor_only_band", 10) if vendor_only else R["band_width"]
-            low = round(center - width / 2)
-            e.update(status="ok", center=round(center, 1), low=low, high=low + width,
-                     method="peer" if any(c["method"] == "peer" for c in used) else "fit", vendor_only=vendor_only,
-                     spread=round(max(c["implied"] for c in used) - min(c["implied"] for c in used), 1))
-        else:
-            e["status"] = "insufficient"
-        out[m["id"]] = e
-    return out, fits
-
-
-# ---------- EST forward history + scorecard (ADR-031 item 5) ----------
-
-def update_est_history(models, est, rules, today):
-    """Grow data/est_history.json: one row per EST change, and settle a row the day a model
-    gets a real AA index (fell-inside band, how many points off, an aa_published record).
-    The forward exam never feeds tuning - it is the final the method cannot study for."""
-    hist = load_optional("est_history", [])
-    aa_by_id = {m["id"]: m["aa_index"].get("value") for m in models}
-    mv, date_s = rules.get("version"), today.isoformat()
-    # 1. settle any earlier EST whose model now has an official AA
-    for h in hist:
-        if not h.get("settled") and h.get("status") == "ok":
-            aa = aa_by_id.get(h["model"])
-            if aa is not None:
-                low, high, center = h["low"], h["high"], h["center"]
-                h.update(settled=True, settled_aa=aa, settled_date=date_s,
-                         fell_inside=(low <= aa <= high), diff=round(aa - center, 1),
-                         event={"kind": "aa_published", "date": date_s, "model": h["model"],
-                                "est": f"EST {low}-{high}", "aa": aa,
-                                "text": f"FTAA {aa} {'fell inside' if low <= aa <= high else 'fell outside'} the earlier EST {low}-{high}"})
-    # 2. append a row when a model's band differs from the last one we recorded
-    last = {}
-    for h in hist:
-        last[h["model"]] = h
-    for mid, e in est.items():
-        status = e.get("status")
-        if status == "ok":
-            center, low, high, nb = e["center"], e["low"], e["high"], e["benchmarks"]
-        else:
-            center, low, high, nb = None, None, None, e.get("benchmarks", 0)
-        prev = last.get(mid)
-        if prev is None or (prev.get("status"), prev.get("center")) != (status, center):
-            hist.append({"model": mid, "date": date_s, "method_version": mv, "status": status,
-                         "center": center, "low": low, "high": high, "n_bench": nb, "settled": False})
-    return hist
+def ft_label(m):
+    """FTI as text: '33' (3+ sources incl. an independent one), '31–36' (a band), '—' (no usable source)."""
+    f = m.get("ft") or {}
+    if f.get("status") != "ok":
+        return "—"
+    return str(round(f["center"])) if f.get("exact") else f"{f['low']}–{f['high']}"
 
 
 def _pct(x):
     return "—" if x is None else f"{round(x * 100)}%"
 
 
-def render_est_scorecard(lang, scorecard, hist, rules):
-    """Scorecard paragraph for METHOD.md's 'AA index and EST' section, from the backtest
-    (data/est_scorecard.json, written by tools/est_backtest.py) plus the forward exam count
-    (data/est_history.json). English is the source; the Chinese copy lives in METHOD.zh-CN.md."""
-    if not scorecard:
-        return (tr("Scorecard: run tools/est_backtest.py to fill in the backtest and forward numbers.")
-                if lang == "en" else "成绩单：运行 tools/est_backtest.py 生成回测与前瞻数字。")
-    bt = scorecard["backtest"]["overall"]
-    mv = scorecard.get("method_version", rules.get("version"))
-    band = scorecard.get("band_width", rules["band_width"])
-    depth = scorecard["backtest"].get("by_n_benchmarks", {})
-    unit = ("benchmark" if lang == "en" else "个基准")
-    depth_s = " · ".join(f"{k} {unit}{'s' if lang == 'en' and k != '1' else ''} {v['mean_abs_diff']:.2f}"
-                         for k, v in depth.items()) or "—"
-    settled = sum(1 for h in hist if h.get("settled"))
+def render_ft_scorecard(lang, card):
+    """Scorecard block of METHOD.md's FT Intelligence section, from data/ft_scorecard.json (tools/ft_backtest.py).
+    English is the source; the Chinese copy of the prose lives in i18n/METHOD.zh-CN.md and this block is generated for both."""
+    if not card:
+        return ("Scorecard: run tools/ft_backtest.py to fill in the backtest." if lang == "en" else "成绩单：运行 tools/ft_backtest.py 生成回测。")
+    p, v, band = card["published"]["overall"], card["vendor"]["overall"], card["band_width"]
+    depth = " · ".join(f"{k}{'' if k.endswith('+') else ''} {x['mean_abs_diff']:.2f}" for k, x in card["published"]["by_evidence"].items())
     if lang == "zh":
-        return ("**成绩单**（由 `build.py` 依据回测与前瞻生成，请勿手改）。\n\n"
-                f"对上文的估算方法做留一回测，覆盖 {bt['n']} 个参考模型（方法版本 {mv}，{band} 分区间）："
-                f"平均绝对差 **{bt['mean_abs_diff']:.2f}** 分，{band} 分区间命中率 **{_pct(bt['hit_rate'])}**。\n\n"
-                + ("方法版本 2 是换算到 FTAA 刻度（ADR-035）：参考模型的分数多数是由旧版折算而来；版本 1 的数字在旧 AA 刻度上，不可直接比较。\n\n" if mv >= 2 else "") +
-                f"按证据深度：{depth_s}——基准越多、估计越准。\n\n"
-                f"前瞻考试：到目前为止，已有 **{settled}** 条估计被公布的 v5 分数替换并按区间结算。"
-                f"上面的 {_pct(bt['hit_rate'])} 是回测，不是未来；真正评判方法的是前瞻数字，"
-                f"它会随 Artificial Analysis 公布分数而自动填入。")
-    return ("**Scorecard** (generated by `build.py` from the backtest and the forward exam; do not edit by hand).\n\n"
-            f"Leave-one-out backtest of the method above, on {bt['n']} reference models "
-            f"(method version {mv}, {band}-point band): mean absolute difference **{bt['mean_abs_diff']:.2f}** points, "
-            f"{band}-point hit rate **{_pct(bt['hit_rate'])}**.\n\n"
-            + ("Method version 2 is the change of scale to FTAA (ADR-035): most reference scores are converted from the earlier index version, and version 1 numbers were on the earlier AA scale, so the two are not comparable.\n\n" if mv >= 2 else "") +
-            f"By evidence depth: {depth_s} — more benchmarks, closer estimates.\n\n"
-            f"Forward exam: **{settled}** estimates have so far been replaced by a published v5 score "
-            f"and settled against their band. The {_pct(bt['hit_rate'])} above is the backtest, not the future; "
-            f"the forward number is what will judge the method, and it fills itself in as Artificial Analysis publishes scores.")
+        return ("**成绩单**（由 `build.py` 依据 `data/ft_scorecard.json` 生成，请勿手改）。\n\n"
+                f"留一回测，覆盖 {card['reference_models']} 个参考模型：隐藏某个模型的参考分，用其余模型重新拟合各基准线，再只凭该模型自己公布的基准分数给它打分（这个测试里不使用 Artificial Analysis）。"
+                f"{p['n']} 个模型的平均绝对差 **{p['mean_abs_diff']:.2f}** 分，{band} 分区间命中率 **{_pct(p['hit_rate'])}**，{_pct(p['within_3'])} 落在 3 分以内。"
+                f"按来源数：{depth}（来源越多、误差越小）。\n\n"
+                f"只用厂商自报分数与对比表的 {v['n']} 个模型：平均绝对差 **{v['mean_abs_diff']:.2f}** 分，偏差 {v['bias']:+.2f}（厂商自报偏高）。")
+    return ("**Scorecard** (generated by `build.py` from `data/ft_scorecard.json`; do not edit by hand).\n\n"
+            f"Leave-one-out backtest on {card['reference_models']} reference models: hide one model's reference score, refit the benchmark lines on the others, "
+            "then score that model from its own published benchmark scores only (Artificial Analysis is not a source in this test). "
+            f"On {p['n']} models the mean absolute difference is **{p['mean_abs_diff']:.2f}** points, the {band}-point hit rate **{_pct(p['hit_rate'])}**, and {_pct(p['within_3'])} land within 3 points. "
+            f"By number of sources: {depth} (more sources, smaller error).\n\n"
+            f"Using only vendor self-reports and comparison tables, on {v['n']} models: mean absolute difference **{v['mean_abs_diff']:.2f}** points, bias {v['bias']:+.2f} (vendor numbers run high).")
 
 
 def splice_region(text, key, body):
@@ -704,19 +603,11 @@ def md_models(models, lanes, events):
         return any(l["model"] == m["id"] and l["status"] in ("live", "overdue", "listed") for l in lanes)
 
     rows = []
-    for m in sorted(models, key=lambda m: (not live(m), -(m["aa_index"].get("value") or (m.get("est") or {}).get("center") or -1))):
-        a = m["aa_index"]
-        if a.get("value") is not None:
-            aa = ("≈ " if a.get("basis") == "mapped" else "") + str(round(a["value"]))
-        elif m.get("est", {}).get("status") == "ok":
-            aa = f"EST {m['est']['low']}–{m['est']['high']} {tr('(estimate)')}"
-        elif m.get("est"):
-            aa = f"EST — ({m['est']['benchmarks']} {tr('benchmark so far')})"
-        else:
-            aa = a.get("note", tr("not ranked"))
+    for m in sorted(models, key=lambda m: (not live(m), -((m.get("ft") or {}).get("center") or -1))):
+        aa = ft_label(m)
         n = sum(1 for e in events if any(next(l for l in lanes if l["id"] == i)["model"] == m["id"] for i in e.get("lanes", [])))
-        rows.append([f"[{m['name']}]({SITE}/models/{m['id']})", free_on(m), str(n), f"{aa} ({a['date']})", m["context"], label("image_input", m["image_input"]), {x["id"]: x["name"] for x in load_optional("makers", [])}.get(m["maker"], m["maker"]), m.get("notes") or "—"])
-    return md_table([tr("Model"), tr("Free on"), tr("Events"), tr("FTAA"), tr("Context"), tr("Image input"), tr("Maker"), tr("Notes")], rows)
+        rows.append([f"[{m['name']}]({SITE}/models/{m['id']})", free_on(m), str(n), aa, m["context"], label("image_input", m["image_input"]), {x["id"]: x["name"] for x in load_optional("makers", [])}.get(m["maker"], m["maker"]), m.get("notes") or "—"])
+    return md_table([tr("Model"), tr("Free on"), tr("Events"), tr("FTI"), tr("Context"), tr("Image input"), tr("Maker"), tr("Notes")], rows)
 
 
 def md_channels(lanes, models, today, chans):
@@ -873,15 +764,14 @@ def seo_model(m, lanes, today):
             alts = [f"{mx[1]} 在 {mx[2]} 等 {k} 个渠道免费", f"{mx[1]} 在 {k} 个渠道免费"]
         title = brand_title(step_down(core, alts))
         nxt = sorted((l for l in free if effective_end(l)), key=lambda l: effective_end(l))
-        a = m["aa_index"]
         parts = [f"{m['name']} 现在哪些渠道免费：{', '.join(chs) or '暂无渠道'}。"]
         up = [l for l in nxt if day(effective_end(l)) >= today]
         if up:
             parts.append(f"最近到期：{up[0]['channel']}，{fmt_date(effective_end(up[0]))}。")
         elif nxt:
             parts.append(f"上次已知结束 {nxt[-1]['channel']}，{fmt_date(effective_end(nxt[-1]))}（已过，待复测）。")
-        if a.get("value") is not None:
-            parts.append(f"FTAA {'≈' if a.get('basis') == 'mapped' else ''}{round(a['value'])}。")
+        if ft_label(m) != "—":
+            parts.append(f"FTI {ft_label(m)}。")
         parts.append(f"{zh_text(m['context'])}。每条事实都有出处和日期。")
         return title, clip(" ".join(parts))
     if n == 0:
@@ -899,15 +789,14 @@ def seo_model(m, lanes, today):
         alts = [f"{mx[1]} is free on {mx[2]} +{k - 1} more", f"{mx[1]}: free on {k} channels"]
     title = brand_title(step_down(core, alts))
     nxt = sorted((l for l in free if effective_end(l)), key=lambda l: effective_end(l))
-    a = m["aa_index"]
     parts = [f"Where {m['name']} is free right now: {', '.join(chs) or 'no channel at the moment'}."]
     up = [l for l in nxt if day(effective_end(l)) >= today]
     if up:
         parts.append(f"Next end: {up[0]['channel']}, {fmt_date(effective_end(up[0]))[:10]}.")
     elif nxt:
         parts.append(f"last known end {nxt[-1]['channel']}, {fmt_date(effective_end(nxt[-1]))[:10]} (passed; re-check due).")
-    if a.get("value") is not None:
-        parts.append(f"FTAA {'≈' if a.get('basis') == 'mapped' else ''}{round(a['value'])}.")
+    if ft_label(m) != "—":
+        parts.append(f"FTI {ft_label(m)}.")
     parts.append(f"{m['context']} context. Sources and dates for every fact.")
     return title, clip(" ".join(parts))
 
@@ -972,11 +861,11 @@ def seo_tag(slug_):
 def seo_methodology():
     """Methodology page (site build only): title + description, also what --check audits for it."""
     if LANG == "zh":
-        return (brand_title("freetokens 怎么运作：线路、核查与 EST 估算"),
-                "什么是一条线路、状态与截止可信度、“我们实测”限额怎么测、FTAA 的 EST 估算怎么算。")
-    return (brand_title("How freetokens works: lanes, checks and EST"),
+        return (brand_title("freetokens 怎么运作：线路、核查与 FTI 评分"),
+                "什么是一条线路、状态与截止可信度、“我们实测”限额怎么测、FT Intelligence（FTI）分数怎么算。")
+    return (brand_title("How freetokens works: lanes, checks and FTI"),
             "What a lane, status and end-date confidence mean, how 'Tested by us' limits are measured, "
-            "and how the EST estimate of FTAA is computed.")
+            "and how the FT Intelligence (FTI) score is computed.")
 
 
 def jsonld(obj):
@@ -1010,12 +899,15 @@ if (!navigator.webdriver) { (function () { var sent = false, go = function () { 
 SHARED_ASSETS = True  # deployed pages load the dataset from /assets/data.js (cached across pages); readers without JavaScript get the prerendered HTML (prerender())
 
 
+FOOTER_NOTE = {"en": "Scores are computed by freetokens from public benchmarks. Source owners can request removal via a GitHub issue.",
+               "zh": "分数由 freetokens 根据公开基准计算。来源方可通过 GitHub issue 申请移除。"}
+ISSUES_URL = "https://github.com/dimpurr/freetokens/issues/new"
+
+
 def site_footer():
-    """Footer of the blog shells: the usual line plus the Artificial Analysis source and non-endorsement notice (ADR-035)."""
-    return (tr("Collected by hand. Data: CC BY 4.0.") + ' <span class="src">' + tr("Source:")
-            + ' <a href="https://artificialanalysis.ai/" target="_blank" rel="noopener">Artificial Analysis (artificialanalysis.ai)</a>. '
-            + tr("FTAA is based on data from Artificial Analysis. It is created by freetokens and does not represent the views or endorsement of Artificial Analysis.")
-            + "</span>")
+    """Footer of the blog shells: the usual line plus the one-line scores note (ADR-036)."""
+    return (tr("Collected by hand. Data: CC BY 4.0.") + ' <span class="src"><a href="' + ISSUES_URL + '" target="_blank" rel="noopener">'
+            + FOOTER_NOTE["zh" if LANG == "zh" else "en"] + "</a></span>")
 
 
 def head_html(title, desc, url, today, extra_ld, og_image, lang="en", alternates=()):
@@ -1045,7 +937,7 @@ def head_html(title, desc, url, today, extra_ld, og_image, lang="en", alternates
 
 # ---------- pages ----------
 
-SHARED_KEYS = ("lanes", "events", "models", "chans", "makers", "offers", "logos", "vocab", "built", "ext", "est_rule")
+SHARED_KEYS = ("lanes", "events", "models", "chans", "makers", "offers", "logos", "vocab", "built", "ext")
 
 
 def _zh_swap(text):
@@ -1123,10 +1015,6 @@ def translate_dataset(base):
     Also promotes schema vocab zh labels/help/short over the English ones. Used for data.zh.js and zh page payloads."""
     import copy
     z = copy.deepcopy({k: base[k] for k in SHARED_KEYS if k in base})
-    if "est_rule" in z:
-        R = SCHEMA["est_rules"]
-        z["est_rule"] = (f"{R['min_benchmarks']} 个基准，来自 {R['min_sources']} 个独立来源，"
-                         f"每个拟合自 ≥{R['min_anchors']} 个参考模型且 r ≥ {R['min_r']}")
     for l in z.get("lanes", []):
         l["free_condition"] = zh_text(l.get("free_condition") or "")
         lo = l.get("limits_observed") or {}
@@ -1146,13 +1034,9 @@ def translate_dataset(base):
         m["context"] = zh_text(m.get("context") or "")
         if m.get("notes"):
             m["notes"] = zh_text(m["notes"])
-        if (m.get("aa_index") or {}).get("note"):
-            m["aa_index"]["note"] = zh_text(m["aa_index"]["note"])
-        for c in ((m.get("est") or {}).get("evidence") or []):
-            if c.get("why"):
-                c["why"] = zh_text(c["why"])
-            if c.get("variant"):
-                c["variant"] = zh_text(c["variant"])
+        for c in ((m.get("ft") or {}).get("sources") or []):
+            if c.get("note"):
+                c["note"] = zh_text(c["note"])
     for mk in z.get("makers", []):
         if mk.get("note"):
             mk["note"] = zh_text(mk["note"])
@@ -1194,11 +1078,7 @@ def build_pages(lanes, events, models, today, mode, lang="en"):
         load_zh()
     site = mode == "site"
     ext = "" if site else ".html"
-    est, _ = estimate(models, load_optional("benchmarks", {}), load_optional("anchors", []))
-    models = [dict(m, est=est[m["id"]]) if m["id"] in est else m for m in models]
-    R = SCHEMA["est_rules"]
-    base = {"lanes": lanes, "events": events, "models": models, "chans": load_optional("channels", []), "makers": load_optional("makers", []), "offers": load_optional("offers", []), "logos": json.loads((ROOT / "templates" / "logos" / "index.json").read_text()), "vocab": VOCAB, "built": today.isoformat(), "ext": ext,
-            "est_rule": f"{R['min_benchmarks']} benchmarks from {R['min_sources']} independent sources, each fitted on ≥{R['min_anchors']} reference models with r ≥ {R['min_r']}"}
+    base = {"lanes": lanes, "events": events, "models": models, "chans": load_optional("channels", []), "makers": load_optional("makers", []), "offers": load_optional("offers", []), "logos": json.loads((ROOT / "templates" / "logos" / "index.json").read_text()), "vocab": VOCAB, "built": today.isoformat(), "ext": ext}
     if zh:
         base = dict(base, **translate_dataset(base))
     P = "zh/" if zh else ""          # output path prefix
@@ -1392,17 +1272,14 @@ def md_to_html(md):
 
 def llms_txt(lanes, models, today):
     """llms.txt for AI assistants: the answer first (free now, best first, with scores and channels), then pages and data."""
-    est, _ = estimate(models, load_optional("benchmarks", {}), load_optional("anchors", []))
     chans = {c["name"]: c for c in load_optional("channels", [])}
     makers = {m["id"]: m["name"] for m in load_optional("makers", [])}
     raw = "https://raw.githubusercontent.com/dimpurr/freetokens/main/data"
     free = [l for l in lanes if l["status"] in FREE]
 
     def score(m):
-        if m["aa_index"].get("value") is not None:
-            return m["aa_index"]["value"], f"FTAA {'≈' if m['aa_index'].get('basis') == 'mapped' else ''}{round(m['aa_index']['value'])}"
-        e = est.get(m["id"], {})
-        return (e["center"], f"EST {e['low']}-{e['high']}") if e.get("status") == "ok" else (-1, "unscored")
+        f = m.get("ft") or {}
+        return (f["center"], f"FTI {ft_label(m).replace('–', '-')}") if f.get("status") == "ok" else (-1, "unscored")
 
     def agent_ok(l):
         a = l.get("access") or chans.get(l["channel"], {}).get("access") or {}
@@ -1423,8 +1300,8 @@ def llms_txt(lanes, models, today):
     return (f"# freetokens\n\n> Which LLMs you can use for free right now, through which channel, and until when. "
             f"{len(free)} free lanes, {len(rows)} models, {len({l['channel'] for l in lanes})} channels; every fact dated and sourced. "
             f"Generated {today.isoformat()}. Data under CC BY 4.0.\n\n"
-            "Scores: FTAA = Artificial Analysis Intelligence Index v5 scale (a v5 score as is; ≈ = an older score converted to it); EST = our estimate from benchmarks when AA has none (method in /methodology). "
-            "Source: Artificial Analysis (artificialanalysis.ai). FTAA is based on data from Artificial Analysis. It is created by freetokens and does not represent the views or endorsement of Artificial Analysis. "
+            "Scores: FTI = FT Intelligence, computed by freetokens from public benchmark scores (an integer = three or more sources; a range = fewer sources; method in /methodology). "
+            f"{FOOTER_NOTE['en']} "
             "\"(listed)\" = in the channel's free catalogue but not confirmed working by us. \"Usable by agents\" = an API key or a CLI whose terms allow automation.\n\n"
             "## Free now, best first\n\n" + "\n".join(r for _, r in rows) + "\n\n"
             "## Pages\n\n"
@@ -1433,12 +1310,13 @@ def llms_txt(lanes, models, today):
             f"- [All lanes]({SITE}/lanes): every model x channel route with status, limits, what we measured, model IDs\n"
             f"- [Timeline]({SITE}/timeline) and [Atom feed]({SITE}/feed.xml): every recorded change, with sources\n"
             f"- [Makers]({SITE}/makers): who makes the free models; stealth models with unconfirmed attributions\n"
-            f"- [Methodology]({SITE}/methodology): statuses, checks, the EST estimate, privacy\n\n"
+            f"- [Methodology]({SITE}/methodology): statuses, checks, how FT Intelligence is computed, privacy\n\n"
             "## Data (machine-readable, CC BY 4.0)\n\n"
             f"- [lanes.json]({raw}/lanes.json): one model x channel x free condition: status, dates, published limits, what we measured\n"
-            f"- [models.json]({raw}/models.json): models, maker, FTAA, context, image input\n"
+            f"- [models.json]({raw}/models.json): models, maker, context, image input\n"
             f"- [channels.json]({raw}/channels.json): cost to start, how free models can be used (API / CLI / app), free condition\n"
             f"- [events.json]({raw}/events.json): dated events with sources\n"
+            f"- [ft_scores.json]({raw}/ft_scores.json): FT Intelligence per model, with every source and link\n"
             f"- [makers.json]({raw}/makers.json) · [benchmarks.json]({raw}/benchmarks.json) · [schema.json]({REPO.replace('github.com', 'raw.githubusercontent.com')}/main/schema/schema.json): field definitions\n\n"
             "## Free programs (allowances and credits, not tied to one model)\n\n"
             + "\n".join(f"- [{o['name']}]({SITE}/offers/{o['id']}) · {o['gets']['text']} ({label('per', o['gets']['per'])}) · needs: {', '.join(label('requirement', r) for r in o.get('requires', [])) or 'nothing'}"
@@ -1566,8 +1444,11 @@ def residue_gate(dist, lanes, events, models):
         whitelist.update([mk["name"], mk.get("parent", "") or ""])
     for o in load_optional("offers", []):
         whitelist.update([o["name"], o.get("provider", "") or ""])
-    whitelist |= {"Artificial Analysis", "OpenAI", "Anthropic", "GitHub", "CC BY",
+    whitelist |= {"Artificial Analysis", "OpenAI", "Anthropic", "GitHub", "CC BY", "Epoch AI", "FT Intelligence",
                   "AI Coding Daily", "SWE-bench", "Terminal-Bench", "freetokens"}
+    bm = load_optional("benchmarks", {})
+    whitelist.update(v["name"] for v in bm.get("benchmarks", {}).values())
+    whitelist.update(c["benchmark"].replace("_", " ") for c in bm.get("claims", []))
     wl_words = set()
     for entry in whitelist:
         wl_words.update(entry.split())
@@ -1684,13 +1565,13 @@ def collect_free_keys(lanes, events, models):
     for m in models:
         add(m.get("context"))
         add(m.get("notes"))
-        add((m.get("aa_index") or {}).get("note"))
+        for s in (m.get("ft") or {}).get("sources", []):
+            add(s.get("note"))
     for mk in load_optional("makers", []):
         add(mk.get("note"))
         add(mk.get("parent"))
     for c in (load_optional("benchmarks", {}).get("claims", [])):
         add(c.get("excluded"))
-        add(c.get("variant"))
     for c in chans.values():
         add(c.get("free_condition"))
         add((c.get("entry") or {}).get("note"))
@@ -2471,8 +2352,7 @@ def main():
         print(f"✓ data valid: {len(lanes)} lanes · {len(events)} events · {len(models)} models")
         return
 
-    est, _ = estimate(models, load_optional("benchmarks", {}), load_optional("anchors", []))
-    models_md = [dict(m, est=est[m["id"]]) if m["id"] in est else m for m in models]
+    models_md = models
     readme_path = ROOT / "README.md"
     sections_en = {
         "legend": md_legend(),
@@ -2504,19 +2384,14 @@ def main():
         readme_zh = render_readme_zh(readme_path.read_text(), sections_en, sections_zh)
         outputs[ROOT / "README.zh-CN.md"] = readme_zh
 
-    # EST forward history + the METHOD.md scorecard (ADR-031 item 5). build owns the numbers:
-    # it grows data/est_history.json (and settles a row the day AA publishes) and regenerates the
-    # scorecard block in METHOD.md / METHOD.zh-CN.md between markers from that history + the
-    # backtest in data/est_scorecard.json (written by tools/est_backtest.py).
-    R = SCHEMA["est_rules"]
-    hist = update_est_history(models, est, R, today)
-    outputs[ROOT / "data" / "est_history.json"] = json.dumps(hist, indent=1, ensure_ascii=False) + "\n"
-    scorecard = load_optional("est_scorecard", {})
+    # METHOD.md scorecard block (ADR-036): build owns the numbers, regenerated between markers from data/ft_scorecard.json
+    # (written by tools/ft_backtest.py).
+    scorecard = load_optional("ft_scorecard", {})
     mpath = ROOT / "METHOD.md"
-    outputs[mpath] = splice_region(mpath.read_text(), "est-scorecard", render_est_scorecard("en", scorecard, hist, R))
+    outputs[mpath] = splice_region(mpath.read_text(), "ft-scorecard", render_ft_scorecard("en", scorecard))
     mzpath = ROOT / "i18n" / "METHOD.zh-CN.md"
     if mzpath.exists():
-        outputs[mzpath] = splice_region(mzpath.read_text(), "est-scorecard", render_est_scorecard("zh", scorecard, hist, R))
+        outputs[mzpath] = splice_region(mzpath.read_text(), "ft-scorecard", render_ft_scorecard("zh", scorecard))
 
     if a.check:
         stale = [str(p.relative_to(ROOT)) for p, c in outputs.items() if not p.exists() or p.read_text() != c]

@@ -1,0 +1,363 @@
+{
+ "$comment": "ADR-036. Fitted once by tools/ft_calibrate.py on frozen private reference scores; a = intercept, b = slope (benchmark score -> FT Intelligence), r, n = reference models. No reference scores are stored here.",
+ "version": 1,
+ "frozen": "2026-11-01",
+ "lines": {
+  "aicodingdaily": {
+   "a": -47.0945,
+   "b": 1.48661,
+   "r": 0.889,
+   "n": 17,
+   "x": [
+    40.35,
+    68.1
+   ],
+   "ok": true
+  },
+  "aider_polyglot": {
+   "a": 3.0232,
+   "b": 0.07762,
+   "r": 0.942,
+   "n": 17,
+   "x": [
+    4.9,
+    86.7
+   ],
+   "ok": true
+  },
+  "bfcl": {
+   "a": -0.2563,
+   "b": 0.14933,
+   "r": 0.593,
+   "n": 17,
+   "x": [
+    28.13,
+    77.47
+   ],
+   "ok": false,
+   "why": "correlation 0.593 below 0.6"
+  },
+  "epoch_chess_puzzles": {
+   "a": 3.5517,
+   "b": 0.6268,
+   "r": 0.784,
+   "n": 47,
+   "x": [
+    13.0,
+    76.0
+   ],
+   "ok": true
+  },
+  "epoch_ebr_bench": {
+   "a": 12.2712,
+   "b": 0.60246,
+   "r": 0.952,
+   "n": 24,
+   "x": [
+    2.38,
+    76.19
+   ],
+   "ok": true
+  },
+  "epoch_eci": {
+   "a": -183.0192,
+   "b": 1.34621,
+   "r": 0.893,
+   "n": 95,
+   "x": [
+    126.88,
+    169.06
+   ],
+   "ok": true
+  },
+  "epoch_frontiermath": {
+   "a": 2.8861,
+   "b": 0.39585,
+   "r": 0.726,
+   "n": 14,
+   "x": [
+    4.84,
+    47.24
+   ],
+   "ok": true
+  },
+  "epoch_frontiermath_erdos": {
+   "ok": false,
+   "n": 19,
+   "why": "floor or ceiling effect: most reference models share one score"
+  },
+  "epoch_frontiermath_tier_4": {
+   "a": 7.3697,
+   "b": 0.58961,
+   "r": 0.755,
+   "n": 14,
+   "x": [
+    2.1,
+    31.25
+   ],
+   "ok": true
+  },
+  "epoch_frontiermath_tier_4_v2": {
+   "a": 11.1038,
+   "b": 0.40215,
+   "r": 0.874,
+   "n": 43,
+   "x": [
+    0.0,
+    100.0
+   ],
+   "ok": true
+  },
+  "epoch_frontiermath_tiers_1_3_v2": {
+   "a": -11.9887,
+   "b": 0.61254,
+   "r": 0.865,
+   "n": 49,
+   "x": [
+    20.35,
+    93.68
+   ],
+   "ok": true
+  },
+  "epoch_furniture_assembly": {
+   "a": 7.925,
+   "b": 0.57147,
+   "r": 0.893,
+   "n": 31,
+   "x": [
+    20.83,
+    83.33
+   ],
+   "ok": true
+  },
+  "epoch_gpqa_diamond": {
+   "a": -20.2664,
+   "b": 0.49852,
+   "r": 0.54,
+   "n": 66,
+   "x": [
+    9.28,
+    96.4
+   ],
+   "ok": false,
+   "why": "correlation 0.54 below 0.6"
+  },
+  "epoch_math_level_5": {
+   "a": 3.1032,
+   "b": 0.02725,
+   "r": 0.479,
+   "n": 5,
+   "x": [
+    3.6,
+    75.55
+   ],
+   "ok": false,
+   "why": "correlation 0.479 below 0.6"
+  },
+  "epoch_mirrorcode": {
+   "a": 20.1311,
+   "b": 0.44797,
+   "r": 0.775,
+   "n": 18,
+   "x": [
+    8.89,
+    78.89
+   ],
+   "ok": true
+  },
+  "epoch_mystery_game_puzzles": {
+   "a": 6.3785,
+   "b": 0.60616,
+   "r": 0.885,
+   "n": 49,
+   "x": [
+    2.0,
+    84.0
+   ],
+   "ok": true
+  },
+  "epoch_otis_mock_aime_2024_2025": {
+   "a": -15.3967,
+   "b": 0.44849,
+   "r": 0.601,
+   "n": 69,
+   "x": [
+    0.28,
+    100.0
+   ],
+   "ok": true
+  },
+  "epoch_simpleqa_verified": {
+   "a": -5.6154,
+   "b": 0.65321,
+   "r": 0.713,
+   "n": 48,
+   "x": [
+    10.4,
+    76.0
+   ],
+   "ok": true
+  },
+  "epoch_spireclimb": {
+   "a": 45.6715,
+   "b": 0.34391,
+   "r": 0.453,
+   "n": 11,
+   "x": [
+    0.0,
+    25.67
+   ],
+   "ok": false,
+   "why": "correlation 0.453 below 0.6"
+  },
+  "epoch_spireclimb_sts1_a20_heart": {
+   "ok": false,
+   "n": 11,
+   "why": "floor or ceiling effect: most reference models share one score"
+  },
+  "epoch_spireclimb_sts2_a10": {
+   "a": 45.1993,
+   "b": 0.27622,
+   "r": 0.46,
+   "n": 11,
+   "x": [
+    0.0,
+    34.67
+   ],
+   "ok": false,
+   "why": "correlation 0.46 below 0.6"
+  },
+  "epoch_swe_bench_verified": {
+   "a": -15.7018,
+   "b": 0.41539,
+   "r": 0.619,
+   "n": 15,
+   "x": [
+    57.56,
+    83.47
+   ],
+   "ok": true
+  },
+  "gpqa_diamond": {
+   "a": -30.3619,
+   "b": 0.55767,
+   "r": 0.614,
+   "n": 68,
+   "x": [
+    34.85,
+    95.45
+   ],
+   "ok": true,
+   "vendor": {
+    "a": -23.5419,
+    "b": 0.44456,
+    "r": 0.66,
+    "n": 23,
+    "x": [
+     42.4,
+     93.5
+    ],
+    "ok": true
+   }
+  },
+  "hle": {
+   "a": 0.4913,
+   "b": 0.43015,
+   "r": 0.737,
+   "n": 46,
+   "x": [
+    3.7,
+    65.0
+   ],
+   "ok": true
+  },
+  "livecodebench": {
+   "a": 2.1327,
+   "b": 0.06797,
+   "r": 0.757,
+   "n": 9,
+   "x": [
+    38.3,
+    84.74
+   ],
+   "ok": true
+  },
+  "swe_bench_pro": {
+   "a": -0.1448,
+   "b": 0.32674,
+   "r": 0.816,
+   "n": 25,
+   "x": [
+    5.24,
+    69.2
+   ],
+   "ok": true,
+   "vendor": {
+    "a": -4.9207,
+    "b": 0.34439,
+    "r": 0.6,
+    "n": 23,
+    "x": [
+     19.11,
+     62.5
+    ],
+    "ok": true
+   }
+  },
+  "swe_bench_verified": {
+   "a": -7.1744,
+   "b": 0.31065,
+   "r": 0.717,
+   "n": 86,
+   "x": [
+    7.8,
+    96.2
+   ],
+   "ok": true,
+   "vendor": {
+    "a": -8.2857,
+    "b": 0.25764,
+    "r": 0.636,
+    "n": 29,
+    "x": [
+     42.0,
+     80.6
+    ],
+    "ok": true
+   }
+  },
+  "tau_bench": {
+   "a": 1.8472,
+   "b": 0.09493,
+   "r": 0.813,
+   "n": 6,
+   "x": [
+    53.0,
+    84.73
+   ],
+   "ok": true
+  },
+  "terminal_bench_2_1": {
+   "a": -12.9876,
+   "b": 0.55382,
+   "r": 0.759,
+   "n": 45,
+   "x": [
+    10.86,
+    88.8
+   ],
+   "ok": true,
+   "vendor": {
+    "a": -8.8524,
+    "b": 0.40573,
+    "r": 0.877,
+    "n": 25,
+    "x": [
+     20.56,
+     90.6
+    ],
+    "ok": true
+   }
+  }
+ }
+}

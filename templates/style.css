@@ -1,7 +1,7 @@
 /* Layout: a timetable. Summary first (ending soon), then the reference tables, each row two lines: the fact, then its qualifier.
    Visual system (v1.0, 2026-10): cool grey ground, white surfaces drawn by a hairline ring instead of a border, ink for
    structure, one blue for links and controls, teal only for "Tested by us". Logos name makers and channels at a glance;
-   numbers (AA index, days, counts) are set larger than the text around them. */
+   numbers (FTI, days, counts) are set larger than the text around them. */
 :root {
   --bg: #f3f4f6; --surface: #ffffff; --surface-2: #f6f7f9; --fg: #0f1729; --muted: #576071; --faint: #8b93a1;
   --line: #e4e7ec; --line-strong: #cdd2da;
@@ -10,7 +10,7 @@
   --live: #16834a; --live-soft: #ddf1e5; --overdue: #a8640b; --overdue-soft: #f8ecd6;
   --off: #707988; --off-soft: #eceef2; --ended: #b4323a; --ended-soft: #f9e2e3; --today: #c2410c;
   --score: #2451c9; --score-track: #e7eaf0;
-  /* trend detail heatmap: h0 no free model that day, h1 free but under the threshold, h2..h5 the AA ramp (strongest free model) */
+  /* trend detail heatmap: h0 no free model that day, h1 free but under the threshold, h2..h5 the FTI ramp (strongest free model) */
   --h0: #f1f3f5; --h1: #dfe3e8; --h2: #9dbcef; --h3: #5b8fe0; --h4: #1f5fcf; --h5: #0b2f6b;
   --ring: 0 0 0 1px var(--line), 0 1px 2px rgba(15, 23, 41, 0.04);
   --ring-hover: 0 0 0 1px var(--line-strong), 0 2px 6px rgba(15, 23, 41, 0.06);
@@ -182,7 +182,7 @@ a.when:hover { color: var(--accent); border-bottom-color: var(--accent); }
   .answers { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .answers > .tile.wide { grid-column: 1 / -1; order: 2; }
 }
-/* wide screens: title left, what the site is right (the AA header pattern) */
+/* wide screens: title left, what the site is right (the header pattern) */
 .intro-top { display: grid; gap: 8px; }
 .tile { padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; }
 .tile .foot { margin-top: auto; padding-top: 4px; }
@@ -279,7 +279,7 @@ code.id { font: 0.76rem var(--f-mono); color: var(--fg); background: var(--surfa
 .meter { display: inline-grid; grid-template-columns: repeat(var(--n), 10px); gap: 3px; vertical-align: middle; margin-right: 6px; }
 .meter i { height: 10px; border-radius: 2px; background: var(--off-soft); }
 .meter i.on { background: var(--live); }
-/* AA index: the number is the point; "AA" / "EST" says whose number it is */
+/* FTI: the number is the point; a dashed "FTI" tag marks a band */
 .aa { display: inline-flex; align-items: baseline; gap: 5px; font: 600 1.1rem var(--f-body); font-variant-numeric: tabular-nums; letter-spacing: -0.02em; color: var(--fg); text-decoration: none; white-space: nowrap; }
 a.aa:hover { color: var(--accent); }
 a.aa .ico { width: 11px; height: 11px; color: var(--faint); align-self: center; }
@@ -289,11 +289,13 @@ a.aa:hover .ico { color: var(--accent); }
 .aa.est small { color: var(--accent); border: 1px dashed currentColor; border-radius: 4px; padding: 0 4px; }
 .aa.est .ico { width: 13px; height: 13px; color: var(--faint); align-self: center; }
 .aa.est::-webkit-details-marker { display: none; }
+summary.aa { cursor: pointer; list-style: none; }
+summary.aa::-webkit-details-marker { display: none; }
 details.estd { display: inline-block; position: relative; }
 details.estd[open] summary { color: var(--accent); }
 .estpanel { position: absolute; z-index: 30; top: calc(100% + 6px); left: 0; width: min(380px, 80vw); background: var(--surface); box-shadow: 0 0 0 1px var(--line-strong), 0 12px 32px rgba(0,0,0,.16); border-radius: var(--r); padding: 12px 14px; font: 0.8rem/1.45 var(--f-body); white-space: normal; letter-spacing: 0; color: var(--fg); }
 .estpanel p { margin: 0 0 6px; } .estpanel ul { margin: 0 0 6px; padding-left: 16px; display: grid; gap: 4px; }
-/* score bar under the AA number: official = solid, EST = hatched band from low to high (scale 0–60) */
+/* score bar under the FTI number: an integer = solid, a band = hatched from low to high (scale 0–60) */
 .sbar { position: relative; display: block; width: 100%; max-width: 132px; height: 6px; margin-top: 7px; border-radius: 3px; background: var(--score-track); overflow: hidden; }
 .sbar i { position: absolute; top: 0; bottom: 0; left: 0; border-radius: 3px; background: var(--score); }
 /* in tables the bar sits beside the number, so the cell keeps two lines */
@@ -399,7 +401,7 @@ a.ev:hover::before, a.ev:focus-visible::before { background: var(--accent); bord
 .mhead .kicker { font: 600 0.74rem var(--f-body); text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); }
 .mhead .kicker a { color: inherit; }
 .mhead .notes { margin: 0; max-width: 72ch; color: var(--muted); }
-/* AA takes two slots; 6 slots in one row on wide screens, 3 per row in the middle, 2 per row on phones */
+/* FTI takes two slots; 6 slots in one row on wide screens, 3 per row in the middle, 2 per row on phones */
 .stats { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; }
 .stats:not(:has(.measured-stat)) { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 @media (max-width: 899px) { .stats, .stats:not(:has(.measured-stat)) { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
@@ -492,11 +494,11 @@ footer { font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--li
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; scroll-behavior: auto !important; } }
 
 /* models ranking (P1): rank column, "Not scored" group, top-N + show all */
-/* rank at the head of the model cell: a fixed slot so logos line up; an EST range is lighter */
+/* rank at the head of the model cell: a fixed slot so logos line up; a band range is lighter */
 .rk { flex: none; width: 3.4em; font: 600 0.78rem var(--f-mono); color: var(--fg); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .rk.est { color: var(--muted); font-weight: 500; font-size: 0.72rem; }
 .rk:empty { width: 0; margin-right: -10px; }
-/* AA cell: number · bar · date on one line */
+/* FTI cell: number · bar · date on one line */
 .aacell { display: inline-flex; align-items: center; gap: 0; }
 .aacell .sbar { margin-left: 8px; }
 .aad { margin-left: 8px; font-size: 0.72rem; color: var(--muted); }
@@ -507,7 +509,7 @@ footer { font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--li
 .more-row button { font: 600 0.85rem var(--f-body); color: var(--fg); background: var(--surface); border: 0; box-shadow: var(--ring); border-radius: 8px; padding: 7px 14px; cursor: pointer; }
 .more-row button:hover { box-shadow: var(--ring-hover); }
 /* the meta line under the model name carries Context, Images and Events; it shows only where those columns are folded (641-1099px).
-   There the table has fixed columns: Model 44%, AA 140px, Free on the rest. The AA date moves to the cell's tooltip and the bar shortens. */
+   There the table has fixed columns: Model 44%, FTI 140px, Free on the rest. The bar shortens. */
 .fold-meta { display: none; }
 @media (min-width: 641px) and (max-width: 1099px) {
   table.models { table-layout: fixed; }

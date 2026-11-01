@@ -5,25 +5,21 @@
 
 Prints a short report only when something changed (new $0 models, or tracked lanes missing from a catalogue);
 prints nothing otherwise, unless --heartbeat. Writes DIR/latest.json (default ~/scratch/DimResearchS/freetokens-watch).
-A new model whose Artificial Analysis v5 score (= FTAA) is at or above the pass floor is flagged as a free-pool candidate.
-AA comes from Artificial Analysis' own data API (ADR-031 / 16b-3): one authenticated call lists every model
-they index plus its sub-scores. The key is AA_API_KEY from the environment or chco .env, read at run time and
-never printed; without it the tool falls back to reading AA model pages one by one, as it did before.
+A model that is not on freetokens yet has no FT Intelligence score, so a new free model is listed without one (ADR-036:
+no Artificial Analysis calls and no page scraping here). The weekly self-check (--heartbeat) lists tracked lanes whose FTI
+(its centre, for a band) is at or above the pass floor.
 Channels: OpenRouter, OpenCode Zen/Go, Vercel AI Gateway, Kilo Code and SiliconFlow report $0 models (full);
 OVHcloud AI Endpoints, Groq, Google AI Studio and AIHubMix are gone-only (no per-model $0 price in their
 machine-readable list, so they only flag tracked lanes that vanished).
 A new channel's first read is a baseline run: it reports no "new" (that would flood on onboarding) and instead
 prints the untracked free inventory. Groq and Google AI Studio need an API key (GROQ_API_KEY /
 GOOGLE_GEMINI_API_KEY from the environment or chco .env); when the key is absent the channel is skipped cleanly.
-Freshly indexed AA models are diffed against DIR/aa_index.json (slug snapshot): new listings are reported, with a
-⭐ when the slug exactly matches a model free on a full channel. The first run only seeds the snapshot.
 """
 import json, os, re, sys, time, urllib.request, datetime as dt
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 UA = {"User-Agent": "freetokens-watch/1 (+https://freetokens.fyi)"}
-AA_API = "https://artificialanalysis.ai/api/v2/data/llms/models"  # one call: every model AA indexes, with sub-scores
 # chco .env directories, same search order as _pool_policy() below; the key value is never printed.
 CHCO_HOME = ["~/WorkflowUser/Code/Project/dimresearchcode", "~/WorkflowUser/Code/Personal/dimresearchcode",
              "~/Workflow/code/project/dimresearchcode"]
@@ -44,7 +40,7 @@ def _pool_policy():
     return 20, 24, 28
 
 
-PASS_BAR, BORDER_BAR, MAIN_BAR = _pool_policy()  # FTAA scale (ADR-035, main-session ruling 2026-11-01): 及格层 20-24 (retrieval / docs only), 擦线层 24-28, 主层 >= 28 (was 25/30/35 on the old AA scale; Dim, 2026-10-08)
+PASS_BAR, BORDER_BAR, MAIN_BAR = _pool_policy()  # FTI scale (the FTAA numbers, kept by ADR-036; main-session ruling 2026-11-01): 及格层 20-24 (retrieval / docs only), 擦线层 24-28, 主层 >= 28 (was 25/30/35 on the old AA scale; Dim, 2026-10-08)
 POOL_BAR = PASS_BAR  # lowest floor: anything at or above it is worth flagging
 # ids whose return to a free catalogue matters to someone: (channel, model_id) -> who to tell
 WATCH_RETURN = {
@@ -101,35 +97,6 @@ class Skip(Exception):
 
     def __init__(self, var):
         self.var = var
-
-
-def aa_key():
-    """AA_API_KEY from the environment, else parsed out of chco .env at run time. Never printed, never stored."""
-    return env_key("AA_API_KEY")
-
-
-def aa_table(cache={}):
-    """{slug: {name, aa, creator}} from the AA data API, or None when there is no key or the call fails
-    (then every AA lookup falls back to scraping the model page). One call covers the whole run."""
-    if "t" in cache:
-        return cache["t"]
-    cache["t"] = None  # one attempt per process, whatever happens
-    k = aa_key()
-    if not k:
-        return None
-    try:
-        rows = json.loads(get(AA_API, 120, {"x-api-key": k}))["data"]
-    except Exception:
-        return None
-    t = {}
-    for r in rows:
-        if not r.get("slug"):
-            continue
-        t[r["slug"]] = {"name": r.get("name") or r["slug"],
-                        "aa": (r.get("evaluations") or {}).get("artificial_analysis_intelligence_index"),
-                        "creator": (r.get("model_creator") or {}).get("name")}
-    cache["t"] = t
-    return t
 
 
 def zero(*vals):
@@ -284,43 +251,12 @@ CATALOGUES = {
 BASELINED = {"Kilo Code", "SiliconFlow"}
 
 
-def _slug(name_or_id):
-    """AA slug our model_id most likely maps to (last path segment, stripped of the free-suffix and punctuation)."""
-    return re.sub(r"[^a-z0-9]+", "-", name_or_id.split("/")[-1].lower().replace(":free", "").replace("-free", "")).strip("-")
-
-
-def aa_index(name_or_id, slugs, cache={}):
-    """Best-effort AA lookup by slug guess; None when AA has no page. The slug space and the index come from
-    the AA data API when it is reachable; otherwise from the AA sitemap plus one page per slug (the old route)."""
-    base = _slug(name_or_id)
-    table = aa_table()
-    pool = set(table) if table else set(slugs)
-    cands = [s for s in pool if s == base] or sorted(s for s in pool if s.startswith(base))[:1]
-    if not cands:
-        return None, None
-    s = cands[0]
-    url = f"https://artificialanalysis.ai/models/{s}"  # the attribution link we keep citing on the site
-    if table:
-        v = table[s]["aa"]
-        return (round(float(v)) if v is not None else None), url
-    if s not in cache:
-        try:
-            h = get(f"https://artificialanalysis.ai/models/{s}").replace('\\"', '"')
-            m = re.search(r'"slug":"%s"' % re.escape(s), h)
-            ii = re.search(r'"intelligenceIndex":([0-9.]+)', h[m.start():m.start() + 4000]) if m else None
-            cache[s] = round(float(ii.group(1))) if ii else None
-        except Exception:
-            cache[s] = None
-    return cache[s], url
-
-
 def screen():
     """Weekly self-check (the Dots3 lesson): lanes already in our data that agents may use, score >= POOL_BAR
-    (official AA or EST centre), still free, but never load-tested. Pool membership is not ours to know; just list them."""
+    (FT Intelligence centre), still free, but never load-tested. Pool membership is not ours to know; just list them."""
     sys.path.insert(0, str(ROOT))
     import build
     models = {m["id"]: m for m in build.load("models")}
-    est, _ = build.estimate(list(models.values()), build.load_optional("benchmarks", {}), build.load_optional("anchors", []))
     chans = {c["name"]: c for c in build.load_optional("channels", [])}
     out = []
     for l in build.load("lanes"):
@@ -328,7 +264,7 @@ def screen():
         if l["status"] not in ("live", "listed", "overdue") or "no_automation" in a.get("rules", []) or a.get("form") not in ("api", "own_cli"):
             continue
         m = models[l["model"]]
-        s = m["aa_index"].get("value") or (est.get(m["id"], {}).get("center") if est.get(m["id"], {}).get("status") == "ok" else None)
+        s = m["ft"]["center"] if m["ft"].get("status") == "ok" else None
         judged = l.get("limits_observed") or ((l.get("limits_stated") or {}).get("per_day") or 10**9) < 100  # under 100 a day is too few for agent use
         if s and s >= POOL_BAR and not judged:
             out.append((s, m["name"], l["channel"], l["status"]))
@@ -343,93 +279,6 @@ PAGES = {
 
 def norm_name(s):
     return re.sub(r"[^a-z0-9]+", " ", re.sub(r"\(.*?\)", "", (s or "").lower())).strip()
-
-
-def aa_recheck(out, slugs):
-    """Weekly (Dim 2026-10-22; on the AA data API since 16b-3): tracked models with no AA index get one more
-    lookup. One API call returns every model AA indexes with its intelligence index and name, so a late listing
-    is caught either by slug or by AA's own model name (the Beam 1.0 lesson: a slug our guess never produced).
-    Runs once per calendar week; state lives next to latest.json. Nothing is written into data/: the line tells
-    Dim to fill models.json himself."""
-    state_f = out / "aa_recheck.json"
-    state = json.loads(state_f.read_text()) if state_f.exists() else {}
-    week = list(dt.date.today().isocalendar()[:2])
-    if state.get("week") == week:
-        return state.get("lines", [])
-    models = json.loads((ROOT / "data/models.json").read_text())
-    table = aa_table()
-    by_name = {}
-    for s, r in (table or {}).items():
-        by_name.setdefault(norm_name(r["name"]), (s, r))
-    lines = []
-    for m in models:
-        a = m.get("aa_index") or {}
-        if a.get("value") and a.get("basis") != "mapped":
-            continue  # FTAA (ADR-035): a direct v5 score is settled; no value, or a mapped one from an older version, keeps being looked up
-        v, url = aa_index(m["id"], slugs)
-        how = ""
-        if not v and by_name:
-            hit = by_name.get(norm_name(m.get("name")))
-            if hit:
-                s, r = hit
-                v = round(float(r["aa"])) if r["aa"] is not None else None
-                url = f"https://artificialanalysis.ai/models/{s}"
-                how = " · matched on AA's model name"
-        if v:
-            held = " (we hold a mapped value)" if a.get("basis") == "mapped" else ""
-            lines.append(f"🆕 AA now lists {m['id']}: v5 index {v}{held} ({url}) — fill models.json as FTAA, basis direct{how}")
-    state = {"week": week, "via": "aa-data-api" if table else "aa-pages", "checked": len(models), "lines": lines}
-    state_f.write_text(json.dumps(state, ensure_ascii=False, indent=1))
-    return lines
-
-
-def aa_diff(out, watched, cap=15):
-    """New Artificial Analysis listings since the last run: added = current slugs - snapshot slugs, reusing the
-    same single aa_table() call. First ever run only seeds the snapshot; the snapshot is written after a
-    successful call only, so a failed run never clobbers it. (lines, entries, baseline_count)."""
-    table = aa_table()
-    if not table:
-        return [], [], None  # no key / call failed: skip silently, keep the old snapshot
-    f = out / "aa_index.json"
-    try:
-        prev = set(json.loads(f.read_text())) if f.exists() else set()
-    except Exception:
-        prev = set()  # a corrupt snapshot costs one day of diff, not the whole run: it is reseeded below
-    cur = set(table)
-    if prev and len(cur) < 0.9 * len(prev):
-        return [], [], None  # a short AA payload: keep the snapshot, or next run would call the whole library "new"
-    f.write_text(json.dumps(sorted(cur), ensure_ascii=False))  # successful call: refresh the snapshot
-    if not prev:
-        return [], [], len(cur)  # baseline run: nothing to report yet, just note the count
-    keys = []  # exact slug only: a prefix match would star a different model (Qwen3-8B vs Qwen3-8B-Instruct)
-    for w in watched:
-        b = _slug(w[0])
-        if b:
-            keys.append((b, w))
-    entries = []
-    for s in sorted(cur - prev):
-        r = table[s]
-        v = round(float(r["aa"])) if r["aa"] is not None else None
-        hit = next((w for b, w in keys if s == b), None)
-        entries.append({"slug": s, "name": r["name"], "aa": v, "url": f"https://artificialanalysis.ai/models/{s}",
-                        "free": bool(hit), "channel": hit[2] if hit else None, "model_id": hit[0] if hit else None})
-    if not entries:
-        return [], [], None
-    entries.sort(key=lambda e: (not e["free"], -(e["aa"] or -1)))  # a new listing we can offer for free leads
-    lines = [f"📰 AA 新收录 {len(entries)} 个"]
-    stars = [e for e in entries if e["free"]]
-    plain = [e for e in entries if not e["free"]]
-    for e in stars + plain[:cap]:
-        tier = ""
-        if e["free"]:
-            a = e["aa"] or 0
-            tier = (f" · ≥{MAIN_BAR} main-tier" if a >= MAIN_BAR else f" · ≥{BORDER_BAR} borderline" if a >= BORDER_BAR
-                    else f" · ≥{PASS_BAR} pass-tier" if a >= PASS_BAR else f" · below {PASS_BAR}")
-        lines.append(f"  {'⭐' if e['free'] else ''}{e['name']} · FTAA {e['aa'] if e['aa'] is not None else '—'} ({e['url']})"
-                     + (f" · free on {e['channel']}: {e['model_id']}" if e["free"] else "") + tier)
-    if len(plain) > cap:
-        lines.append(f"  … +{len(plain) - cap} more (see latest.json)")
-    return lines, entries, None
 
 
 def page_changes(out):
@@ -459,15 +308,8 @@ def main():
     lanes = json.loads((ROOT / "data/lanes.json").read_text())
     tracked = {(l["channel"], l["model_id"]) for l in lanes}
     live = {(l["channel"], l["model_id"]): l for l in lanes if l["status"] in ("live", "listed", "overdue")}
-    slugs = set()
-    if aa_table() is None:  # no AA API this run (no key, or the call failed): fall back to the AA sitemap
-        try:
-            slugs = set(re.findall(r"artificialanalysis\.ai/models/([a-z0-9.\-]+)</loc>", get("https://artificialanalysis.ai/sitemap.xml", 90)))
-        except Exception:
-            slugs = set()
     new, gone, errors, skipped = [], [], [], []
     baseline_lines = []  # (channel, total free, [untracked entries]) printed only on a channel's first baseline run
-    watched = []         # (model_id, name, channel) for every catalogue read this run, for the AA new-listing match
     fail_f = out / "source_failures.json"  # P18: single-day failure is logged, alert only after 2 consecutive days
     fails = json.loads(fail_f.read_text()) if fail_f.exists() else {}
     cat_f = out / "catalogue_state.json"  # per-channel baseline id lists, so onboarding a new channel does not flood
@@ -503,8 +345,7 @@ def main():
             else:
                 print(f"ℹ️ {ch} catalogue unreadable, retry 1× failed; logged, no alert (1st day)")
             continue
-        if mode == "full":  # a "gone" channel's dict is an availability list, not a free list: never new, never AA ⭐
-            watched += [(mid, name, ch) for mid, name in free.items() if (ch, mid) not in IGNORE]
+        if mode == "full":  # a "gone" channel's dict is an availability list, not a free list: never new
             first = ch in BASELINED and ch not in cat
             base = set(cat.get(ch, []))  # read before seeding, or the first run would find nothing to inventory
             if first:
@@ -512,45 +353,37 @@ def main():
             cands = [(mid, name) for mid, name in free.items()
                      if (ch, mid) not in tracked and (ch, mid) not in IGNORE and mid not in base]
             if first:
-                ent = sorted(({"channel": ch, "model_id": mid, "name": name, "aa": aa_index(mid, slugs)[0]} for mid, name in cands),
-                             key=lambda x: -(x["aa"] or -1))
+                ent = sorted(({"channel": ch, "model_id": mid, "name": name} for mid, name in cands), key=lambda x: x["name"])
                 if ent:
                     baseline_lines.append((ch, len(free), ent))
             else:
                 for mid, name in cands:
-                    aa, url = aa_index(mid, slugs)
-                    new.append({"channel": ch, "model_id": mid, "name": name, "aa": aa, "aa_url": url, "pool_candidate": bool(aa and aa >= POOL_BAR)})
+                    new.append({"channel": ch, "model_id": mid, "name": name})
         for (c, mid), l in live.items():
             if c == ch and mid not in free:
                 gone.append({"channel": ch, "model_id": mid, "lane": l["id"], "status": l["status"], "note": WATCH_GONE.get((ch, mid))})
     back = [{"channel": c, "model_id": m, "note": n} for (c, m), n in WATCH_RETURN.items()
             if any(x["channel"] == c and x["model_id"] == m for x in new)]
-    new.sort(key=lambda x: -(x["aa"] or -1))
+    new.sort(key=lambda x: x["name"])
     now = dt.datetime.now(dt.timezone.utc).isoformat(timespec="minutes")
-    aa_lines, aa_entries, aa_base = aa_diff(out, watched)  # reuses the one aa_table() call; no-ops without a key
     fail_f.write_text(json.dumps(fails, ensure_ascii=False, indent=1))
     cat_f.write_text(json.dumps(cat, ensure_ascii=False, indent=1))
     latest = {"checked": now, "back": back, "new": new, "gone": gone, "errors": errors,
-              "skipped": skipped, "baseline": [e for _, _, ents in baseline_lines for e in ents], "aa_new": aa_entries}
-    if aa_base is not None:
-        latest["aa_new_baseline"] = aa_base  # first AA run: snapshot seeded, nothing to diff yet
+              "skipped": skipped, "baseline": [e for _, _, ents in baseline_lines for e in ents]}
     (out / "latest.json").write_text(json.dumps(latest, ensure_ascii=False, indent=1))
-    lines = aa_recheck(out, slugs) + page_changes(out) + [f"🔁 back in a free catalogue: {x['model_id']} · {x['channel']} → {x['note']}" for x in back]
+    lines = page_changes(out) + [f"🔁 back in a free catalogue: {x['model_id']} · {x['channel']} → {x['note']}" for x in back]
     if new:
         lines.append(f"🆕 {len(new)} free model(s) not on freetokens yet:")
         for x in new:
-            tag = "⭐ pool candidate " if x["pool_candidate"] else ""
-            if x["pool_candidate"]: tag = "⭐ main-tier candidate " if x["aa"] >= MAIN_BAR else "◐ borderline candidate " if x["aa"] >= BORDER_BAR else "○ pass-tier candidate (retrieval / docs only) "
             weak = " · weak evidence (not in pricing table)" if (x["channel"] == "SiliconFlow" and x["model_id"] in SF_WEAK) else ""
-            lines.append(f"  {tag}{x['name']} · {x['channel']} · {x['model_id']} · AA {x['aa'] if x['aa'] is not None else '—'}{weak}")
+            lines.append(f"  {x['name']} · {x['channel']} · {x['model_id']}{weak}")
     for ch, n, ent in baseline_lines:
         lines.append(f"🧱 baseline · {ch}: {n} free model(s), {len(ent)} not on freetokens yet:")
         for e in ent[:25]:
             weak = " · weak evidence (not in pricing table)" if (ch == "SiliconFlow" and e['model_id'] in SF_WEAK) else ""
-        lines.append(f"  {e['name']} · {e['model_id']} · AA {e['aa'] if e['aa'] is not None else '—'}{weak}")
+            lines.append(f"  {e['name']} · {e['model_id']}{weak}")
         if len(ent) > 25:
             lines.append(f"  … +{len(ent) - 25} more (see latest.json)")
-    lines += aa_lines
     if gone:
         lines.append(f"🕳️ {len(gone)} tracked lane(s) no longer in the catalogue (maybe ended):")
         lines += [f"  {x['model_id']} · {x['channel']} (lane {x['lane']}, {x['status']})" + (f" → {x['note']}" if x["note"] else "") for x in gone]

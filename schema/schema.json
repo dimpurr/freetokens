@@ -258,14 +258,6 @@
      "zh": {
       "label": "已结束"
      }
-    },
-    "aa_published": {
-     "label": "AA v5 score published",
-     "help": "Artificial Analysis published a v5 Intelligence Index score for a model that had an EST; it becomes the model's FTAA, the estimate is replaced and checked against its band",
-     "zh": {
-      "label": "AA v5 分数公布",
-      "help": "Artificial Analysis 为一个原本只有 EST 的模型公布了 v5 智能指数分数；它成为该模型的 FTAA，估计被替换，并核对是否落在原区间内"
-     }
     }
    },
   "entry_kind": {
@@ -864,8 +856,7 @@
     "name",
     "maker",
     "context",
-    "image_input",
-    "aa_index"
+    "image_input"
    ],
    "vocab_fields": {
     "image_input": "image_input"
@@ -907,48 +898,27 @@
    }
   }
  },
- "ftaa": {
-  "$comment": "ADR-035. FTAA = Artificial Analysis Intelligence Index v5 scale, fixed. A model with a v5 score uses it (basis direct); one with only an older score goes through this curve (basis mapped). Fitted by tools/ftaa.py on pairs of our old score and the AA v5 score; a later AA version adds one more curve, FTAA is never rescaled.",
+ "ft_rules": {
+  "$comment": "ADR-036 FT Intelligence. Change values here, not in code. A benchmark joins the registry with >= min_anchors reference models and r >= min_r (ADR-031). weights: per source type, applied to the weighted median; vendor self-reports weigh least; vendor_peer is a vendor table read against peers whose reference score is known (ADR-023); aa is Artificial Analysis as one source. exact (an integer) needs evidence >= min_evidence and at least one independent (non-vendor) piece; otherwise a band of band_width points (vendor_only_band when every piece is a vendor claim). A line is refused when more than max_tie_share of its reference models share one score (floor effect); a claim is read at most extrapolate x (reference range) beyond the reference models. Artificial Analysis counts only while fewer than aa_below other pieces exist.",
   "version": 1,
-  "from": "AA v4.3.2",
-  "fitted": "2026-11-01",
-  "curve": {
-   "coef": [
-    10.6537824,
-    -0.57664775,
-    0.02499278
-   ],
-   "domain": [
-    12.9,
-    57.6
-   ]
-  },
-  "fit": {
-   "n": 36,
-   "loo_mean_abs_diff": 3.09,
-   "loo_within_3": 0.61,
-   "linear_loo_mean_abs_diff": 4.56
-  }
- },
- "est_rules": {
-  "$comment": "ADR-004 method v1 / ADR-006 ranking. Change values here, not in code. version increments when est_backtest.py --tune adopts better parameters (ADR-031); build records it on each est_history row.",
-  "version": 2,
-  "version_note": "2: scale change to FTAA (ADR-035, 2026-11-01); reference scores and est_history rows were converted to it. Method and parameters are the same as version 1.",
   "min_anchors": 4,
   "min_r": 0.6,
-  "min_benchmarks": 1,
-  "min_sources": 1,
+  "min_evidence": 3,
+  "aa_below": 3,
   "band_width": 5,
+  "vendor_only_band": 10,
+  "max_tie_share": 0.4,
+  "extrapolate": 0.15,
   "weights": {
-   "official": 1.0,
    "leaderboard": 1.0,
    "third_party": 0.75,
    "community": 0.5,
-   "leak": 0.5
+   "leak": 0.5,
+   "vendor": 0.4,
+   "vendor_peer": 0.6,
+   "aa": 0.75
   },
   "peer_max_gap": 10,
-  "peer_scale": 5,
-  "vendor_only_band": 10,
-  "$comment_peers": "ADR-023: a claim that comes from a comparison table carries peers [{name, aa, aa_url, score}] measured in the same table; implied AA = peer AA + fit slope x (score - peer score), using peers within peer_max_gap points, weighted 1/(1 + gap/peer_scale). Vendor-only claims without usable peers get a vendor_only_band wide band and low confidence."
+  "peer_scale": 5
  }
 }
