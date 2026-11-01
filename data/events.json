@@ -2806,5 +2806,21 @@
     "label": "Vercel changelog",
     "url": "https://vercel.com/changelog/ling-3-1-flash-1019-now-available-on-ai-gateway-for-free"
    }
+  },
+  {
+   "date": "2026-11-01",
+   "lanes": [
+    "laguna-s-2.1-or",
+    "laguna-xs-2.1-or",
+    "laguna-s-2.1-kilo",
+    "laguna-xs-2.1-kilo"
+   ],
+   "kind": "ended",
+   "end_date": "2026-11-01",
+   "text": "poolside/laguna-s-2.1:free and poolside/laguna-xs-2.1:free are no longer in the OpenRouter catalogue (452 models, zero laguna on re-read 2026-11-01, same snapshot hash) nor in the Kilo gateway catalogue (384 models, zero laguna on re-read 2026-11-01); no end date announced, true removal window 2026-10-27~11-01 for the s-2.1 arms and 2026-10-31~11-01 for the xs-2.1 arms",
+   "source": {
+    "label": "OpenRouter models API",
+    "url": "https://openrouter.ai/api/v1/models"
+   }
   }
 ]

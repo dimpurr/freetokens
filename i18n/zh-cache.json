@@ -910,5 +910,6 @@
  "Free until 2026-11-03 (Novita AI)": "免费至 2026-11-03（Novita AI）",
  "first seen in the daily free-catalogue check": "每日免费目录检查首次发现",
  "provided free of charge by Novita AI until November 3, 2026 (gateway model description)": "由 Novita AI 免费提供至 2026 年 11 月 3 日（网关模型描述）",
- "Kilo Code gateway models API": "Kilo Code 网关模型 API"
+ "Kilo Code gateway models API": "Kilo Code 网关模型 API",
+ "poolside/laguna-s-2.1:free and poolside/laguna-xs-2.1:free are no longer in the OpenRouter catalogue (452 models, zero laguna on re-read 2026-11-01, same snapshot hash) nor in the Kilo gateway catalogue (384 models, zero laguna on re-read 2026-11-01); no end date announced, true removal window 2026-10-27~11-01 for the s-2.1 arms and 2026-10-31~11-01 for the xs-2.1 arms": "poolside/laguna-s-2.1:free 与 poolside/laguna-xs-2.1:free 在 2026-11-01 重读时已不在 OpenRouter 目录（452 个模型、零 laguna，同快照哈希）与 Kilo 网关目录（384 个模型、零 laguna）；未公告截止时间，s-2.1 两臂真实下架窗口为 2026-10-27~11-01，xs-2.1 两臂为 2026-10-31~11-01"
 }

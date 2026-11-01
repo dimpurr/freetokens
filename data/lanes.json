@@ -652,9 +652,9 @@
    "confidence": "none"
   },
   "data_policy": "unstated",
-  "status": "live",
+  "status": "ended",
   "checked": {
-   "date": "2026-10-27",
+   "date": "2026-11-01",
    "method": "catalogue"
   },
   "volume": {
@@ -1181,9 +1181,9 @@
    "confidence": "none"
   },
   "data_policy": "unstated",
-  "status": "live",
+  "status": "ended",
   "checked": {
-   "date": "2026-10-27",
+   "date": "2026-11-01",
    "method": "catalogue"
   },
   "volume": {
@@ -2018,9 +2018,9 @@
    "confidence": "none"
   },
   "data_policy": "may_train",
-  "status": "live",
+  "status": "ended",
   "checked": {
-   "date": "2026-10-27",
+   "date": "2026-11-01",
    "method": "api_call"
   },
   "volume": {
@@ -2098,9 +2098,9 @@
    "confidence": "none"
   },
   "data_policy": "may_train",
-  "status": "listed",
+  "status": "ended",
   "checked": {
-   "date": "2026-10-31",
+   "date": "2026-11-01",
    "method": "catalogue"
   },
   "volume": {
