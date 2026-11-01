@@ -160,6 +160,24 @@ def test_a_band_never_starts_below_zero():
     assert e["low"] == 0 and e["high"] == RULES["band_width"]
 
 
+def test_all_clipped_sources_never_make_an_integer():
+    lines = {b: {"a": -50.0, "b": 0.5, "r": 0.9, "n": 20, "x": [0, 80], "ok": True} for b in ("k1", "k2", "k3")}  # every implied value is below 0
+    e = ft_score.score_model([claim("k1", 10), claim("k2", 10), claim("k3", 10)], lines, RULES)
+    assert e["evidence"] == 3 and e["independent_non_aa"] == 3 and e["spread"] == 0
+    assert not e["exact"] and e["clipped"] and (e["low"], e["high"]) == (0, RULES["band_width"])
+    ok = ft_score.score_model([claim("b1", 60), claim("b2", 60), claim("b3", 60)], LINES, RULES)
+    assert ok["exact"] and "clipped" not in ok
+
+
+def test_artificial_analysis_alone_is_not_the_independent_source_for_an_integer():
+    aa = {"value": 20.0, "url": "https://artificialanalysis.ai/models/x"}
+    e = ft_score.score_model([claim("b1", 40, "vendor"), claim("b2", 42, "vendor")], LINES, RULES, aa=aa)
+    assert e["evidence"] == 3 and e["independent"] == 1 and e["independent_non_aa"] == 0 and not e["exact"]
+    assert e["high"] - e["low"] == RULES["band_width"]
+    e = ft_score.score_model([claim("b1", 40, "vendor"), claim("b2", 42), claim("b3", 40, "vendor")], LINES, RULES, aa=aa)
+    assert e["independent_non_aa"] == 1 and e["exact"]
+
+
 def test_no_evidence_is_none():
     e = ft_score.score_model([claim("unfitted", 50)], LINES, RULES)
     assert e["status"] == "none" and e["evidence"] == 0 and e["sources"][0]["used"] is False

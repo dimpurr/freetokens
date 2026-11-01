@@ -11,7 +11,7 @@ when fewer than `aa_below` other pieces exist and the private snapshot has a val
 
 A source row that is not used carries `why`: no_refs | few_refs | low_r | floor | harness | excluded (with `note`).
 Display rule written into the output: exact (an integer) only with evidence >= min_evidence AND at least one
-independent (non-vendor) piece AND the pieces within max_spread points of each other; when they disagree and a
+independent (non-vendor, non-Artificial-Analysis) piece, no used value clipped at the floor or ceiling of the scale, AND the pieces within max_spread points of each other; when they disagree and a
 snapshot value exists, Artificial Analysis joins as one more source and the score is recomputed; otherwise a band of
 band_width points. Centre, low and high are published as integers;
 no evidence: status "none". Artificial Analysis is listed by name and link only, never a number.
@@ -100,8 +100,11 @@ def _score(claims, lines, rules, names=None, peer_refs=None, aa=None, force_band
             implied, method = line["a"] + line["b"] * x, "fit"
             weight = W.get(c["source_type"], 0.5)
             s["r"], s["n"] = line["r"], line["n"]
+        clipped = implied < 0.0 or implied > 70.0  # the line ran off the scale: this value is a floor or ceiling, not a measurement
         implied = min(max(implied, 0.0), 70.0)
         s.update(used=True, implied=round(implied, 1), method=method, weight=weight)
+        if clipped:
+            s["clipped"] = True
         sources.append(s)
         per.setdefault(family(bid), []).append(s)
     for ss in per.values():  # ADR-037 item 7: modes are not mixed; the vendor default configuration wins, else the first mode seen
@@ -117,11 +120,11 @@ def _score(claims, lines, rules, names=None, peer_refs=None, aa=None, force_band
     for bid, ss in per.items():
         w = sum(x["weight"] for x in ss)
         items.append({"bid": bid, "implied": sum(x["implied"] * x["weight"] for x in ss) / w, "weight": max(x["weight"] for x in ss),
-                      "independent": any(x["type"] != "vendor" for x in ss), "method": "peer" if any(x["method"] == "peer" for x in ss) else "fit"})
+                      "independent": any(x["type"] != "vendor" for x in ss), "clipped": any(x.get("clipped") for x in ss), "method": "peer" if any(x["method"] == "peer" for x in ss) else "fit"})
     has_aa = bool(aa and aa.get("value") is not None)
 
     def add_aa():
-        items.append({"bid": "artificial_analysis", "implied": aa["value"], "weight": W["aa"], "independent": True, "method": "aa"})
+        items.append({"bid": "artificial_analysis", "implied": aa["value"], "weight": W["aa"], "independent": True, "clipped": False, "method": "aa"})
         sources.append({"name": "Artificial Analysis", "benchmark": "artificial_analysis", "url": aa["url"], "type": "third_party", "used": True, "method": "aa"})
 
     def spread_of(its):
@@ -139,13 +142,15 @@ def _score(claims, lines, rules, names=None, peer_refs=None, aa=None, force_band
     center = weighted_median([(i["implied"], i["weight"]) for i in items])
     spread = spread_of(items)
     indep = sum(1 for i in items if i["independent"])
+    indep_non_aa = sum(1 for i in items if i["independent"] and i["method"] != "aa")  # Artificial Analysis does not count as the independent source for an integer
+    clipped = any(i["clipped"] for i in items)
     disagree = spread > rules["max_spread"]
-    exact = len(items) >= rules["min_evidence"] and indep >= 1 and not disagree and not force_band
+    exact = len(items) >= rules["min_evidence"] and indep_non_aa >= 1 and not disagree and not clipped and not force_band
     vendor_only = indep == 0 and all(i["method"] == "fit" for i in items)
     low = max(0, round(center - rules["band_width"] / 2))  # a band never starts below 0
     c = int(round(center))
     return {"status": "ok", "center": c, "low": c if exact else low, "high": c if exact else low + rules["band_width"],
-            "evidence": len(items), "independent": indep, "exact": exact, "vendor_only": vendor_only, "disagree": disagree,
+            "evidence": len(items), "independent": indep, "independent_non_aa": indep_non_aa, "exact": exact, "vendor_only": vendor_only, "disagree": disagree, **({"clipped": True} if clipped else {}),
             "method": "peer" if any(i["method"] == "peer" for i in items) else ("aa" if all(i["method"] == "aa" for i in items) else "fit"),
             "spread": int(math.ceil(spread - 1e-9)),  # stored as an integer; rounding up keeps `spread > max_spread` true exactly when it is disagree
             "sources": sources, **({"stale_snapshot": True} if force_band else {})}

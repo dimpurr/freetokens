@@ -26,7 +26,7 @@ These are limits we measured ourselves, such as how many coding-agent runs worke
 **FTI** is the one intelligence score used across the site. freetokens computes it from public benchmark scores, on a scale that was fixed once on Nov 1, 2026 and does not move when any single source changes its own scale. Every model goes through the same method.
 
 How it is shown:
-- `FTI 33`: three or more sources, at least one of them independent of the model's vendor, and no two of them more than 8 points apart.
+- `FTI 33`: three or more sources, at least one of them independent of the model's vendor (Artificial Analysis does not count as that one), no two of them more than 8 points apart, and no source's value cut off at the bottom or top of the scale.
 - `FTI 31–36`: fewer sources, or only the vendor's own numbers. A band 5 points wide around the computed centre. The same band is shown when three or more sources disagree by more than 8 points: then Artificial Analysis is added as one more source and the score is recomputed, and if they still disagree it stays a band.
 - `—`: no usable source yet.
 

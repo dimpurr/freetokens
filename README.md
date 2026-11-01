@@ -484,7 +484,7 @@ Benchmarks are kept here once per model rather than repeated on every lane. **FT
 | [Qwen3.6 27B](https://freetokens.fyi/models/qwen3.6-27b) | 🔵 OVHcloud AI Endpoints (no end announced) | 0 | 11 | 262K | yes | Qwen | Context 262K and image+video input per OpenRouter (Vercel says 256K); OVHcloud lists 262,144 (2026-10-20). |
 | [Flint](https://freetokens.fyi/models/flint) | 🔵 OpenRouter (no end announced) · 🔵 OpenCode Zen (no end announced) · 🔵 Kilo Code (no end announced) | 2 | 8–13 | 262K | no | Recursive | Released 2026-10-21 as Recursive's open-weight (Apache 2.0) MoE for coding agents: 39.8B total, about 2.5B active per token, 262,144-token documented context, text in and text out, knowledge cutoff June 2026 (model card huggingface.co/RecursiveSI/flint). The two free IDs are this one model: OpenRouter's recursive/flint-v1.0:free reports 262,144 context and text→text on the models API (2026-10-22), and OpenCode Zen lists it as opencode/flint-40b-free, where 40B is the card's rounded designation for 40B-A2.5B. |
 | [Qwen3.5 4B](https://freetokens.fyi/models/qwen3.5-4b) | 🔵 SiliconFlow (no end announced) | 2 | 10 | 256K | yes | Qwen | Image input: the HF Qwen/Qwen3.5-4B config carries a vision encoder (262,144 native context, 2026-10-20). |
-| [North Mini Code](https://freetokens.fyi/models/north-mini-code) | 🟢 Kilo Code (no end announced) · 🔴 Cline (ended 2026-10-11) · 🟢 OpenRouter (no end announced) | 6 | 9 | 256K | no | Cohere | — |
+| [North Mini Code](https://freetokens.fyi/models/north-mini-code) | 🟢 Kilo Code (no end announced) · 🔴 Cline (ended 2026-10-11) · 🟢 OpenRouter (no end announced) | 6 | 6–11 | 256K | no | Cohere | — |
 | [Step 3.7 Flash](https://freetokens.fyi/models/step-3.7-flash) | 🔴 Kilo Code (ended 2026-10-20) · 🔵 ModelScope (no end announced) | 3 | 7–12 | 256K | yes | StepFun | — |
 | [Gemma 4 31B](https://freetokens.fyi/models/gemma-4-31b-it) | 🔴 Cline (ended 2026-10-11) · 🔵 OpenRouter (no end announced) | 4 | 6–11 | 256K | yes | Google | — |
 | [Xing 4.0 29B](https://freetokens.fyi/models/xing4.0-29b) | 🔵 SiliconFlow (no end announced) · 🔵 OpenRouter (no end announced) · 🔵 Kilo Code (no end announced) | 2 | 7–12 | 256K | no | XingChen AGI | OpenRouter lists xingchen-agi/xing4.0-29b-a4b:free (our own OR lane’s id) as text→text; the HF XingChen-AGI org’s only 29B chat release is the A4B (2026-10-20). |
@@ -507,7 +507,7 @@ Benchmarks are kept here once per model rather than repeated on every lane. **FT
 | [Coding Kimi K3](https://freetokens.fyi/models/coding-kimi-k3) | 🔵 AIHubMix (no end announced) | 2 | — | 1M | yes | Moonshot AI (Kimi) | Per the AIHubMix catalogue: the coding-kimi-k3-free model page lists Text / Vision / Video input (2026-10-20). |
 | [Glyph Cluster](https://freetokens.fyi/models/glyph-cluster) | 🔵 Vercel AI Gateway (no end announced) · 🔵 Kilo Code (no end announced) | 1 | — | 256K | no | Undisclosed (stealth) | — |
 | [Qwen2.5 VL 72B Instruct](https://freetokens.fyi/models/qwen2.5-vl-72b) | 🔵 OVHcloud AI Endpoints (no end announced) | 0 | — | 128K (32K on OVHcloud) | yes | Qwen | Native 128,000 per the HF Qwen2.5-VL-72B-Instruct config and OpenRouter; the OVHcloud endpoint serves 32,768 (2026-10-20). |
-| [Mistral Nemo Instruct 2407](https://freetokens.fyi/models/mistral-nemo) | 🔵 OVHcloud AI Endpoints (ends 2026-11-04) | 1 | 0 | 128K (64K on OVHcloud) | no | Mistral AI | 131,072 per OpenRouter and Vercel; the OVHcloud endpoint lists 65,536 (2026-10-20). |
+| [Mistral Nemo Instruct 2407](https://freetokens.fyi/models/mistral-nemo) | 🔵 OVHcloud AI Endpoints (ends 2026-11-04) | 1 | 0–5 | 128K (64K on OVHcloud) | no | Mistral AI | 131,072 per OpenRouter and Vercel; the OVHcloud endpoint lists 65,536 (2026-10-20). |
 | [Hunyuan-MT-7B](https://freetokens.fyi/models/hunyuan-mt-7b) | 🔵 SiliconFlow (no end announced) | 1 | — | not checked | no | Tencent Hunyuan | Translation-specialised chat model (SiliconFlow plaza subType chat); rendered pricing table marks 免费 (2026-10-28). |
 | [GPT-6.1 Sol](https://freetokens.fyi/models/gpt-6.1-sol) | — | 0 | 52–57 | 1025K | yes | OpenAI | — |
 | [Space Bunny (stealth)](https://freetokens.fyi/models/space-bunny) | 🔴 OpenCode Go (ended 2026-10-06) · 🔴 Command Code (ended 2026-10-05) · 🔴 OpenRouter (ended 2026-10-05) · 🔴 OpenCode Zen (ended 2026-10-20) · 🔴 Kilo Code (ended 2026-10-06) | 15 | 35–40 | 1M | yes | Undisclosed (stealth) | Rumoured: MiniMax family (several independent tokenizer tests), possibly M3.1 / M3.1-Flash. Some sources dispute the exact version; no official confirmation. |
@@ -525,18 +525,18 @@ Benchmarks are kept here once per model rather than repeated on every lane. **FT
 | [Laguna S 2.1](https://freetokens.fyi/models/laguna-s-2.1) | 🔴 Kilo Code (ended 2026-11-01) · 🔴 Cline (ended 2026-10-11) · 🔴 OpenRouter (ended 2026-11-01) · 🔴 Vercel AI Gateway (ended 2026-10-31) | 11 | 14–19 | 262K | no | Poolside | — |
 | [MiniMax M2.7](https://freetokens.fyi/models/minimax-m2.7) | 🔴 Kilo Code (ended 2026-10-07) | 2 | 15 | 197K | no | MiniMax | — |
 | [Nex-N2-Pro](https://freetokens.fyi/models/nex-n2-pro) | 🔴 Kilo Code (ended 2026-10-07) | 2 | 13–18 | 262K | yes | Nex AGI | — |
-| [Ring-2.6-1T](https://freetokens.fyi/models/ring-2.6-1t) | 🔴 Kilo Code (ended 2026-10-07) | 2 | 15 | 262K | no | inclusionAI | — |
+| [Ring-2.6-1T](https://freetokens.fyi/models/ring-2.6-1t) | 🔴 Kilo Code (ended 2026-10-07) | 2 | 13–18 | 262K | no | inclusionAI | — |
 | [MiMo V2.5](https://freetokens.fyi/models/mimo-v2.5) | 🔴 OpenCode Zen (ended 2026-10-07) | 3 | 15 | 1M | yes | Xiaomi MiMo | — |
 | [Ling 3.0 Flash Fin](https://freetokens.fyi/models/ling-3.0-flash-fin) | 🔴 OpenCode Zen (ended 2026-10-13) | 3 | 10–15 | 256K | no | inclusionAI | — |
-| [Solar Pro 4](https://freetokens.fyi/models/solar-pro-4) | — | 0 | 13 | 512K | no | Upstage | — |
+| [Solar Pro 4](https://freetokens.fyi/models/solar-pro-4) | — | 0 | 11–16 | 512K | no | Upstage | — |
 | [Ling 3.0 Flash VL](https://freetokens.fyi/models/ling-3.0-flash-vl) | 🔴 Kilo Code (ended 2026-10-07) | 2 | 9–14 | 262K | yes | inclusionAI | — |
 | [Solar Mini 4](https://freetokens.fyi/models/solar-mini-4) | — | 0 | 9–14 | 512K | no | Upstage | — |
-| [Hy3 preview](https://freetokens.fyi/models/hy3-preview) | 🔴 Kilo Code (ended 2026-10-07) | 2 | 11 | 262K | no | Tencent Hunyuan | — |
+| [Hy3 preview](https://freetokens.fyi/models/hy3-preview) | 🔴 Kilo Code (ended 2026-10-07) | 2 | 8–13 | 262K | no | Tencent Hunyuan | — |
 | [Ling-3.0-flash](https://freetokens.fyi/models/ling-3.0-flash) | 🔴 Kilo Code (ended 2026-10-07) | 2 | 8–13 | 262K | no | inclusionAI | — |
 | [Laguna XS 2.1](https://freetokens.fyi/models/laguna-xs-2.1) | 🔴 Kilo Code (ended 2026-11-01) · 🔴 Cline (ended 2026-10-11) · 🔴 OpenRouter (ended 2026-11-01) | 7 | 7–12 | 256K | no | Poolside | — |
 | [Nemotron 3 Super](https://freetokens.fyi/models/nemotron-3-super-120b-a12b) | ⚪ Kilo Code (not answering) · 🔴 Cline (ended 2026-10-11) · 🔴 OpenRouter (ended 2026-10-27) | 8 | 5–10 | 262K | no | NVIDIA | — |
 | [Ling-2.6-1T](https://freetokens.fyi/models/ling-2.6-1t) | 🔴 Kilo Code (ended 2026-10-07) | 2 | 6–11 | 262K | no | inclusionAI | — |
-| [Ling-2.6-flash](https://freetokens.fyi/models/ling-2.6-flash) | 🔴 Kilo Code (ended 2026-10-07) | 2 | 6 | 262K | no | inclusionAI | — |
+| [Ling-2.6-flash](https://freetokens.fyi/models/ling-2.6-flash) | 🔴 Kilo Code (ended 2026-10-07) | 2 | 3–8 | 262K | no | inclusionAI | — |
 | [Mistral 7B Instruct v0.3](https://freetokens.fyi/models/mistral-7b-instruct) | 🔴 OVHcloud AI Endpoints (ended 2026-10-23) | 1 | 0–5 | 32K | no | Mistral AI | 32,768 per the HF Mistral-7B-Instruct-v0.3 config (2026-10-20). |
 | [Apodex 1.1 Mini](https://freetokens.fyi/models/apodex-1.1-mini) | 🔴 Kilo Code (ended 2026-10-07) · 🔴 Cline (ended 2026-10-11) · 🔴 OpenRouter (ended 2026-10-16) | 8 | — | 256K | no | Apodex | — |
 | [Ling 3.0 Flash Sante](https://freetokens.fyi/models/ling-3.0-flash-sante) | 🔴 Kilo Code (ended 2026-10-20) · 🔴 Cline (ended 2026-10-11) · ⚪ OpenRouter (not answering) | 8 | — | 256K | no | inclusionAI | — |
