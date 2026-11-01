@@ -523,6 +523,7 @@ def render_est_scorecard(lang, scorecard, hist, rules):
         return ("**成绩单**（由 `build.py` 依据回测与前瞻生成，请勿手改）。\n\n"
                 f"对上文的估算方法做留一回测，覆盖 {bt['n']} 个参考模型（方法版本 {mv}，{band} 分区间）："
                 f"平均绝对差 **{bt['mean_abs_diff']:.2f}** 分，{band} 分区间命中率 **{_pct(bt['hit_rate'])}**。\n\n"
+                + ("方法版本 2 是换算到 FTAA 刻度（ADR-035）：参考模型的分数多数是由旧版折算而来；版本 1 的数字在旧 AA 刻度上，不可直接比较。\n\n" if mv >= 2 else "") +
                 f"按证据深度：{depth_s}——基准越多、估计越准。\n\n"
                 f"前瞻考试：到目前为止，已有 **{settled}** 条估计被公布的 v5 分数替换并按区间结算。"
                 f"上面的 {_pct(bt['hit_rate'])} 是回测，不是未来；真正评判方法的是前瞻数字，"
@@ -531,6 +532,7 @@ def render_est_scorecard(lang, scorecard, hist, rules):
             f"Leave-one-out backtest of the method above, on {bt['n']} reference models "
             f"(method version {mv}, {band}-point band): mean absolute difference **{bt['mean_abs_diff']:.2f}** points, "
             f"{band}-point hit rate **{_pct(bt['hit_rate'])}**.\n\n"
+            + ("Method version 2 is the change of scale to FTAA (ADR-035): most reference scores are converted from the earlier index version, and version 1 numbers were on the earlier AA scale, so the two are not comparable.\n\n" if mv >= 2 else "") +
             f"By evidence depth: {depth_s} — more benchmarks, closer estimates.\n\n"
             f"Forward exam: **{settled}** estimates have so far been replaced by a published v5 score "
             f"and settled against their band. The {_pct(bt['hit_rate'])} above is the backtest, not the future; "

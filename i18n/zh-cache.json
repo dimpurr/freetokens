@@ -701,7 +701,6 @@
  "Daily free-catalogue check of the OpenCode Go model list (own tool)": "每日免费目录检查：OpenCode Go 模型列表（自有工具）",
  "Daily free-catalogue check of the OpenRouter models API (own tool)": "每日免费目录检查：OpenRouter 模型 API（自有工具）",
  "Daily free-catalogue check of the Vercel AI Gateway models API (own tool)": "每日免费目录检查：Vercel AI Gateway 模型 API（自有工具）",
- "MiniMax M3.1 Flash is on OpenRouter's free catalogue as minimax/minimax-m3.1-flash:free ($0 per token on the models API): first seen by the daily free-catalogue check at 2026-10-20T08:00Z, Artificial Analysis index 43; we have not called it": "MiniMax M3.1 Flash 以 minimax/minimax-m3.1-flash:free 上架 OpenRouter 免费目录（模型 API 显示每 token $0）：每日免费目录检查于 2026-10-20T08:00Z 首次发现，Artificial Analysis 指数 43；我们尚未实际调用",
  "MiniMax M3.1 Flash is on OpenCode Zen's free model list as opencode/minimax-m3.1-flash-free: first seen by the daily free-catalogue check at 2026-10-20T08:00Z; we have not called it": "MiniMax M3.1 Flash 以 opencode/minimax-m3.1-flash-free 出现在 OpenCode Zen 免费模型列表：每日免费目录检查于 2026-10-20T08:00Z 首次发现；我们尚未实际调用",
  "MiniMax M3.1 Flash is on OpenCode Go's free model list as opencode-go/minimax-m3.1-flash-free: first seen by the daily free-catalogue check at 2026-10-20T08:00Z; we have not called it": "MiniMax M3.1 Flash 以 opencode-go/minimax-m3.1-flash-free 出现在 OpenCode Go 免费模型列表：每日免费目录检查于 2026-10-20T08:00Z 首次发现；我们尚未实际调用",
  "MiniMax M3.1 Flash is on the Vercel AI Gateway free list as minimax/minimax-m3.1-flash at $0 input and $0 output: first seen by the daily free-catalogue check at 2026-10-20T08:00Z; we have not called it": "MiniMax M3.1 Flash 以 minimax/minimax-m3.1-flash 出现在 Vercel AI Gateway 免费列表，输入输出均 $0：每日免费目录检查于 2026-10-20T08:00Z 首次发现；我们尚未实际调用",
@@ -911,5 +910,6 @@
  "Dense 27B open-weight vision-language model, released 2026-08 (FTAA 20.1; 33.7 on the earlier AA scale).": "Dense 27B 开放权重视觉语言模型，2026-08 发布（FTAA 20.1；旧 AA 刻度下 33.7）。",
  "Released 2026-10-16; AA Intelligence Index 30 on the earlier AA scale, checked on the AA page 2026-10-20. 501B/23B-active MoE, Apache 2.0 open weights (HF reflection/Beam-1.0-501B-A23B); text-only with a 1M context per the card, OpenRouter and Vercel.": "2026-10-16 发布；旧 AA 刻度下智能指数 30（2026-10-20 在 AA 页面核实）。501B／激活 23B 的 MoE，Apache 2.0 开放权重（HF reflection/Beam-1.0-501B-A23B）；据模型卡、OpenRouter 与 Vercel：仅文本输入，上下文 1M。",
  "no AA page (coding variant of Kimi K3, AA 44 on the earlier scale)": "无 AA 页面（Kimi K3 的编码变体，旧 AA 刻度下 44）",
- "no reference models with an FTAA collected for this benchmark yet": "该基准尚无已收集带 FTAA 的参考模型"
+ "no reference models with an FTAA collected for this benchmark yet": "该基准尚无已收集带 FTAA 的参考模型",
+ "MiniMax M3.1 Flash is on OpenRouter's free catalogue as minimax/minimax-m3.1-flash:free ($0 per token on the models API): first seen by the daily free-catalogue check at 2026-10-20T08:00Z, Artificial Analysis index 43 (earlier v4 scale); we have not called it": "MiniMax M3.1 Flash 以 minimax/minimax-m3.1-flash:free 上架 OpenRouter 免费目录（模型 API 显示每 token $0）：每日免费目录检查于 2026-10-20T08:00Z 首次发现，Artificial Analysis 指数 43（旧 v4 刻度）；我们尚未实际调用"
 }

@@ -1,6 +1,6 @@
 {
  "generated": "2026-11-01",
- "method_version": 1,
+ "method_version": 2,
  "estimator": "v1",
  "band_width": 5,
  "backtest": {
@@ -99,7 +99,7 @@
   "note": "ADR-031 item 4. Leave-one-out, same data as the champion above, and the same protocol: an Artificial Analysis run of the held-out model's own test is never that model's claim (it is a component of the index being hidden). Nothing here is deployed: the production estimator is build.estimate(), and `estimator` above stays v1 until Dim reads this.",
   "generated": "2026-11-01",
   "band_width": 5,
-  "method_version": 1,
+  "method_version": 2,
   "overall": {
    "a": {
     "n": 136,

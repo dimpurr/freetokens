@@ -4,7 +4,7 @@
     python3 tools/query.py score <model-id|name>      # FTAA (basis direct | mapped) or EST band, with sources
     python3 tools/query.py lanes <model-id|lane-id|channel>   # status, checks, limits, volume
     python3 tools/query.py events [--since YYYY-MM-DD] [--lane ID]
-    python3 tools/query.py pool [--min 30]            # agent-usable free lanes with a score, best first
+    python3 tools/query.py pool [--min 16]            # agent-usable free lanes with a score, best first
     python3 tools/query.py offers [--model ID] [--type T]   # free programs: allowances, credits, student plans (ADR-025)
 
 Scores use build.estimate(), the same code the site uses.
@@ -76,7 +76,7 @@ def main(argv):
         since, lane = opt("--since", ""), opt("--lane")
         out = [e for e in sorted(EVENTS, key=lambda e: e["date"], reverse=True) if e["date"][:10] >= since and (not lane or lane in e.get("lanes", []))]
     elif cmd == "pool":
-        mn = float(opt("--min", 30))
+        mn = float(opt("--min", 16))
         out = []
         for l in LANES:
             v = lane_view(l)

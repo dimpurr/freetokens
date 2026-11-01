@@ -5,7 +5,7 @@
 
 Prints a short report only when something changed (new $0 models, or tracked lanes missing from a catalogue);
 prints nothing otherwise, unless --heartbeat. Writes DIR/latest.json (default ~/scratch/DimResearchS/freetokens-watch).
-A new model whose Artificial Analysis index >= 30 is flagged as a free-pool candidate.
+A new model whose Artificial Analysis v5 score (= FTAA) is at or above the pass floor is flagged as a free-pool candidate.
 AA comes from Artificial Analysis' own data API (ADR-031 / 16b-3): one authenticated call lists every model
 they index plus its sub-scores. The key is AA_API_KEY from the environment or chco .env, read at run time and
 never printed; without it the tool falls back to reading AA model pages one by one, as it did before.
@@ -34,17 +34,17 @@ def _pool_policy():
     try:
         import tomllib
     except ImportError:
-        return 25, 30, 35
+        return 20, 24, 28
     cands = [os.environ.get("FT_POOL_POLICY", "")] + [os.path.expanduser(p + "/tools/free-pool/arms.toml") for p in
              ("~/WorkflowUser/Code/Project/dimresearchcode", "~/WorkflowUser/Code/Personal/dimresearchcode", "~/Workflow/code/project/dimresearchcode")]
     for c in cands:
         if c and os.path.exists(c):
             pol = tomllib.load(open(c, "rb")).get("policy", {})
-            return pol.get("pass_bar", 25), pol.get("pool_bar", 30), pol.get("main_bar", 35)
-    return 25, 30, 35
+            return pol.get("pass_bar", 20), pol.get("pool_bar", 24), pol.get("main_bar", 28)
+    return 20, 24, 28
 
 
-PASS_BAR, BORDER_BAR, MAIN_BAR = _pool_policy()  # 及格层 25-30 (retrieval / docs only), 擦线层 30-35, 主层 >= 35 (Dim, 2026-10-08)
+PASS_BAR, BORDER_BAR, MAIN_BAR = _pool_policy()  # FTAA scale (ADR-035, main-session ruling 2026-11-01): 及格层 20-24 (retrieval / docs only), 擦线层 24-28, 主层 >= 28 (was 25/30/35 on the old AA scale; Dim, 2026-10-08)
 POOL_BAR = PASS_BAR  # lowest floor: anything at or above it is worth flagging
 # ids whose return to a free catalogue matters to someone: (channel, model_id) -> who to tell
 WATCH_RETURN = {

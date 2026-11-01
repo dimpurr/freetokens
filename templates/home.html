@@ -53,7 +53,7 @@
   </section>
 
   <section aria-labelledby="h-chart">
-    <h2 id="h-chart">Free periods <small>free lanes scoring 30+ or with an end date · bars against today</small></h2>
+    <h2 id="h-chart">Free periods <small>free lanes scoring 20+ or with an end date · bars against today</small></h2>
     <div class="key keyrow" id="chartkey"></div>
     <div class="chart-scroll"><div class="chart" id="chart" role="img" aria-label="Chart of each free lane's free period against today's date"></div></div>
     <div class="more-row"><a class="seeall" href="__ROOT__lanes#h-chart">All 115 lanes on the chart →</a></div>
@@ -139,7 +139,7 @@ onView(() => {
     }
     rungs.reverse();
     const on = new Set(rungs.flatMap((r) => [r.lead, ...r.alts]));
-    const out = all.filter((l) => !on.has(l) && sc(l) >= 30).map((l) => {
+    const out = all.filter((l) => !on.has(l) && sc(l) >= 16).map((l) => {
       if (!pool.includes(l)) return { l, why: Tx("Not confirmed yet", "Not confirmed yet") + (l.limits_observed ? `: ${obsText(l)}` : "") };
       const by = rungs.slice().reverse().find((r) => ti(r.lead) >= ti(l) && sc(r.lead) >= sc(l) - 2) || rungs[0];
       return { l, why: `Beaten by ${name(by.lead)}` };
@@ -280,7 +280,7 @@ onView(() => {
     <td data-label="You get">${getsHTML(o)}</td><td data-label="Needs">${reqHTML(o)}</td><td data-label="Use it">${accessHTML(offerAccess(o))}</td></tr>`).join("");
   $("offers-more").innerHTML = `<a class="seeall" href="${D.root}offers${D.ext}${VIEW === "all" ? "" : "?use=" + VIEW}">${ZH ? `全部 ${all.length} 个计划${VIEW === "all" ? "" : " " + byV(VIEW)}，含筛选 →` : `All ${all.length} programs${VIEW === "all" ? "" : " usable by " + VIEW}, with filters →`}</a>`;
 });
-mountChart(30);
+mountChart(20);
 
 /* P29-2: daily free-token trend */
 (function () {

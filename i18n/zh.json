@@ -394,8 +394,8 @@
   " Vendor numbers are read against the other models in the vendor's own comparison table, whose FTAA scores are known.": "厂商数字对照其自家对比表中已知 FTAA 分数的模型换算。",
   "FTAA": "FTAA",
   "models with no FTAA and too little benchmark evidence for an estimate": "个模型无 FTAA、证据也不足以估算",
-  "free lanes scoring 30+ or with an end date · bars against today": "FTAA 30 分以上或有截止日期的免费线路 · 以今天为基准画条",
   "Artificial Analysis (artificialanalysis.ai)": "Artificial Analysis (artificialanalysis.ai)",
-  "FTAA is based on data from Artificial Analysis. It is created by freetokens and does not represent the views or endorsement of Artificial Analysis.": "FTAA 基于 Artificial Analysis 的数据，由 freetokens 创建，不代表 Artificial Analysis 的观点或背书。"
+  "FTAA is based on data from Artificial Analysis. It is created by freetokens and does not represent the views or endorsement of Artificial Analysis.": "FTAA 基于 Artificial Analysis 的数据，由 freetokens 创建，不代表 Artificial Analysis 的观点或背书。",
+  "free lanes scoring 20+ or with an end date · bars against today": "FTAA 20 分以上或有截止日期的免费线路 · 以今天为基准画条"
  }
 }

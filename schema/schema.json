@@ -932,7 +932,8 @@
  },
  "est_rules": {
   "$comment": "ADR-004 method v1 / ADR-006 ranking. Change values here, not in code. version increments when est_backtest.py --tune adopts better parameters (ADR-031); build records it on each est_history row.",
-  "version": 1,
+  "version": 2,
+  "version_note": "2: scale change to FTAA (ADR-035, 2026-11-01); reference scores and est_history rows were converted to it. Method and parameters are the same as version 1.",
   "min_anchors": 4,
   "min_r": 0.6,
   "min_benchmarks": 1,
