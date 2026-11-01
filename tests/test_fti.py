@@ -81,6 +81,50 @@ def test_published_numbers_are_integers():
             assert all(isinstance(x[k], int) for k in ("center", "low", "high")), x
 
 
+SNAPS = [{"id": "a", "date": "2026-01-01"}, {"id": "b", "date": "2026-06-01"}]
+
+
+def test_only_the_current_snapshot_is_scored():
+    cl = [claim("b1", 60, snapshot="a"), claim("b2", 100, snapshot="b"), claim("b3", 100, snapshot="b"), claim("b4", 100, snapshot="b")]
+    e = ft_score.score_model(cl, LINES, RULES, snapshots=SNAPS)
+    assert e["center"] == 46 and e["snapshot"] == "b" and e["evidence"] == 3
+    old = [s for s in e["sources"] if s["snapshot"] == "a"]
+    assert old and not old[0]["used"] and old[0]["why"] == "older_snapshot"
+
+
+def test_no_current_evidence_falls_back_to_a_band():
+    e = ft_score.score_model([claim("b1", 60, snapshot="a"), claim("b2", 60, snapshot="a"), claim("b3", 60, snapshot="a")], LINES, RULES, snapshots=SNAPS)
+    assert e["status"] == "ok" and e["stale_snapshot"] and not e["exact"] and e["high"] - e["low"] == RULES["band_width"]
+
+
+def test_undated_rows_are_attributed_by_date_else_current():
+    cl = [claim("b1", 60, date="2026-02-01"), claim("b2", 100, date="2026-07-01"), claim("b3", 100)]
+    e = ft_score.score_model(cl, LINES, RULES, snapshots=SNAPS)
+    assert e["evidence"] == 2 and e["unattributed"] == 1 and e["center"] == 46
+    assert [s["why"] for s in e["sources"] if not s["used"]] == ["older_snapshot"]
+
+
+def test_history_has_each_snapshots_own_score_and_ends_at_the_current_score():
+    cl = [claim("b1", 60, snapshot="a"), claim("b2", 100, snapshot="b")]
+    e = ft_score.score_model(cl, LINES, RULES, snapshots=SNAPS)
+    assert [h["center"] for h in e["history"]] == [30, 46] and e["history"][-1]["center"] == e["center"]
+    assert "history" not in ft_score.score_model(cl, LINES, RULES)
+
+
+def test_modes_are_not_mixed():
+    cl = [claim("b1", 60), claim("b1", 100, mode="max"), claim("b2", 60)]
+    e = ft_score.score_model(cl, LINES, RULES)
+    assert [s["why"] for s in e["sources"] if not s["used"]] == ["other_mode"] and e["center"] == 30
+    only = ft_score.score_model([claim("b1", 100, mode="max"), claim("b1", 60, mode="low")], LINES, RULES)
+    assert only["center"] == 46 and len([s for s in only["sources"] if not s["used"]]) == 1
+
+
+def test_merge_checks_the_snapshot_id():
+    row = {"model": "m1", "benchmark": "hle", "score": 5, "variant": "v", "source_type": "leaderboard", "url": "https://x.org/a", "seen": "2026-11-01"}
+    assert merge_claims.check(dict(row, snapshot="a"), {"m1"}, {"m1": {"a", "b"}})[1] is None
+    assert "not one of the snapshots" in merge_claims.check(dict(row, snapshot="zz"), {"m1"}, {"m1": {"a", "b"}})[1]
+
+
 def test_no_evidence_is_none():
     e = ft_score.score_model([claim("unfitted", 50)], LINES, RULES)
     assert e["status"] == "none" and e["evidence"] == 0 and e["sources"][0]["used"] is False

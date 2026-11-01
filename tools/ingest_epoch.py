@@ -11,6 +11,9 @@ that mentions Artificial Analysis. Credit: Epoch AI, 'Capabilities & benchmarkin
 Per model and benchmark the best score over Epoch's effort settings is taken ("best reported setting",
 as for the other leaderboards); ECI uses the model's single ECI row.
 
+A model with `snapshots` in models.json is matched per snapshot on the exact name `<id>-<snapshot id>` (Epoch writes
+`deepseek-v4.1-flash-1017_max`); each claim carries its `snapshot`, and the reference score of such a model is paired
+only with the current snapshot's rows.
 Names are matched exactly after normalising (lowercase, alphanumerics only, effort suffix `_high`/`_max`... removed),
 the rule of match_epoch.py. A match is refused (and listed) when
   - Epoch also carries a dated snapshot of the same name (name plus 3-4 digits, e.g. ...flash0731): which one the
@@ -138,6 +141,7 @@ def main():
     refdoc = json.loads((pdir / "ft-reference.json").read_text())
 
     refused = []
+    snap_models = {m["id"]: m["snapshots"] for m in models if m.get("snapshots")}  # ADR-037: exact snapshot names only
 
     def find(names, mid=None):
         if mid in DOUBTFUL:
@@ -153,7 +157,10 @@ def main():
     ref_hits = {s: [] for s in series}
     for m in refdoc["models"]:
         slug = (m.get("aa_url") or "").rsplit("/", 1)[-1]
-        ks = find([m["name"], m.get("id"), slug], m.get("id"))
+        if m.get("id") in snap_models:  # the reference score is the current snapshot's: match only its exact Epoch name
+            ks = [norm(m["id"] + "-" + snap_models[m["id"]][-1]["id"])]
+        else:
+            ks = find([m["name"], m.get("id"), slug], m.get("id"))
         m["scores"] = {k: v for k, v in m["scores"].items() if not k.startswith("epoch_")}
         if not ks:
             continue
@@ -168,6 +175,17 @@ def main():
 
     claims, site_hits = [], set()
     for m in models:
+        if m["id"] in snap_models:  # one claim set per snapshot, tagged; the plain name is never used (it could be any snapshot)
+            for sn in snap_models[m["id"]]:
+                k = norm(m["id"] + "-" + sn["id"])
+                for s in sorted(good):
+                    if k in series[s]:
+                        v, eff = series[s][k]
+                        site_hits.add(m["id"])
+                        claims.append({"model": m["id"], "benchmark": "epoch_" + s, "score": round(v, 2), "source_type": "third_party", "snapshot": sn["id"],
+                                       "variant": ("Epoch AI Benchmarking Hub, best of effort settings (" + eff + ")") if s != "eci" else "Epoch Capabilities Index",
+                                       "url": HUB, "seen": a.today})
+            continue
         ks = find([m["id"], m["name"]], m["id"])
         if not ks:
             continue

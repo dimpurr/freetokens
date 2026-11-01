@@ -710,7 +710,8 @@
       "variant": "HLE score as listed by llm-stats for DeepSeek-V4.1-Flash: Pass@1; full multimodal evaluation, no tools. Maximum reaso…",
       "source_type": "third_party",
       "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
-      "seen": "2026-10-22"
+      "seen": "2026-10-22",
+      "snapshot": "0910"
     },
     {
       "model": "deepseek-v4.1-flash",
@@ -719,7 +720,8 @@
       "variant": "| GPQA Diamond (Pass@1) | 93.4 | **94.1** | 92.9 | 88.1 | 92.4 | 89.9 | 90.9 | [DS-V4.1-Flash column, Max reasoning effort]",
       "source_type": "vendor",
       "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
-      "seen": "2026-10-24"
+      "seen": "2026-10-24",
+      "snapshot": "0910"
     },
     {
       "model": "mimo-v2.6-pro",
@@ -899,7 +901,8 @@
       "variant": "GPQA-Diamond accuracy re-run by Vals AI (198 questions), table entry DeepSeek V4 Flash 0731",
       "source_type": "third_party",
       "url": "https://www.vals.ai/benchmarks/gpqa",
-      "seen": "2026-10-22"
+      "seen": "2026-10-22",
+      "snapshot": "0731"
     },
     {
       "model": "gemini-3.5-flash",
@@ -2193,6 +2196,76 @@
       "quote": "BrowseComp row: GLM-4.7-Flash 42.8"
     },
     {
+      "model": "deepseek-v4-flash",
+      "benchmark": "epoch_chess_puzzles",
+      "score": 32.0,
+      "variant": "Epoch AI Benchmarking Hub, best of effort settings (max)",
+      "source_type": "third_party",
+      "url": "https://epoch.ai/benchmarks",
+      "seen": "2026-11-01",
+      "snapshot": "0731"
+    },
+    {
+      "model": "deepseek-v4-flash",
+      "benchmark": "epoch_eci",
+      "score": 154.94,
+      "variant": "Epoch Capabilities Index",
+      "source_type": "third_party",
+      "url": "https://epoch.ai/benchmarks",
+      "seen": "2026-11-01",
+      "snapshot": "0731"
+    },
+    {
+      "model": "deepseek-v4-flash",
+      "benchmark": "epoch_frontiermath_tier_4_v2",
+      "score": 24.39,
+      "variant": "Epoch AI Benchmarking Hub, best of effort settings (max)",
+      "source_type": "third_party",
+      "url": "https://epoch.ai/benchmarks",
+      "seen": "2026-11-01",
+      "snapshot": "0731"
+    },
+    {
+      "model": "deepseek-v4-flash",
+      "benchmark": "epoch_frontiermath_tiers_1_3_v2",
+      "score": 57.54,
+      "variant": "Epoch AI Benchmarking Hub, best of effort settings (max)",
+      "source_type": "third_party",
+      "url": "https://epoch.ai/benchmarks",
+      "seen": "2026-11-01",
+      "snapshot": "0731"
+    },
+    {
+      "model": "deepseek-v4-flash",
+      "benchmark": "epoch_mystery_game_puzzles",
+      "score": 34.0,
+      "variant": "Epoch AI Benchmarking Hub, best of effort settings (max)",
+      "source_type": "third_party",
+      "url": "https://epoch.ai/benchmarks",
+      "seen": "2026-11-01",
+      "snapshot": "0731"
+    },
+    {
+      "model": "deepseek-v4-flash",
+      "benchmark": "epoch_otis_mock_aime_2024_2025",
+      "score": 94.44,
+      "variant": "Epoch AI Benchmarking Hub, best of effort settings (max)",
+      "source_type": "third_party",
+      "url": "https://epoch.ai/benchmarks",
+      "seen": "2026-11-01",
+      "snapshot": "0731"
+    },
+    {
+      "model": "deepseek-v4-flash",
+      "benchmark": "epoch_simpleqa_verified",
+      "score": 33.63,
+      "variant": "Epoch AI Benchmarking Hub, best of effort settings (max)",
+      "source_type": "third_party",
+      "url": "https://epoch.ai/benchmarks",
+      "seen": "2026-11-01",
+      "snapshot": "0731"
+    },
+    {
       "model": "nemotron-3-ultra",
       "benchmark": "epoch_eci",
       "score": 146.02,
@@ -2281,6 +2354,76 @@
       "source_type": "third_party",
       "url": "https://epoch.ai/benchmarks",
       "seen": "2026-11-01"
+    },
+    {
+      "model": "deepseek-v4.1-flash",
+      "benchmark": "epoch_chess_puzzles",
+      "score": 46.0,
+      "variant": "Epoch AI Benchmarking Hub, best of effort settings (max)",
+      "source_type": "third_party",
+      "url": "https://epoch.ai/benchmarks",
+      "seen": "2026-11-01",
+      "snapshot": "1017"
+    },
+    {
+      "model": "deepseek-v4.1-flash",
+      "benchmark": "epoch_eci",
+      "score": 158.83,
+      "variant": "Epoch Capabilities Index",
+      "source_type": "third_party",
+      "url": "https://epoch.ai/benchmarks",
+      "seen": "2026-11-01",
+      "snapshot": "1017"
+    },
+    {
+      "model": "deepseek-v4.1-flash",
+      "benchmark": "epoch_frontiermath_tier_4_v2",
+      "score": 46.34,
+      "variant": "Epoch AI Benchmarking Hub, best of effort settings (max)",
+      "source_type": "third_party",
+      "url": "https://epoch.ai/benchmarks",
+      "seen": "2026-11-01",
+      "snapshot": "1017"
+    },
+    {
+      "model": "deepseek-v4.1-flash",
+      "benchmark": "epoch_frontiermath_tiers_1_3_v2",
+      "score": 71.23,
+      "variant": "Epoch AI Benchmarking Hub, best of effort settings (max)",
+      "source_type": "third_party",
+      "url": "https://epoch.ai/benchmarks",
+      "seen": "2026-11-01",
+      "snapshot": "1017"
+    },
+    {
+      "model": "deepseek-v4.1-flash",
+      "benchmark": "epoch_mystery_game_puzzles",
+      "score": 49.0,
+      "variant": "Epoch AI Benchmarking Hub, best of effort settings (max)",
+      "source_type": "third_party",
+      "url": "https://epoch.ai/benchmarks",
+      "seen": "2026-11-01",
+      "snapshot": "1017"
+    },
+    {
+      "model": "deepseek-v4.1-flash",
+      "benchmark": "epoch_otis_mock_aime_2024_2025",
+      "score": 99.44,
+      "variant": "Epoch AI Benchmarking Hub, best of effort settings (max)",
+      "source_type": "third_party",
+      "url": "https://epoch.ai/benchmarks",
+      "seen": "2026-11-01",
+      "snapshot": "1017"
+    },
+    {
+      "model": "deepseek-v4.1-flash",
+      "benchmark": "epoch_simpleqa_verified",
+      "score": 42.5,
+      "variant": "Epoch AI Benchmarking Hub, best of effort settings (max)",
+      "source_type": "third_party",
+      "url": "https://epoch.ai/benchmarks",
+      "seen": "2026-11-01",
+      "snapshot": "1017"
     },
     {
       "model": "inkling-small",
@@ -3370,6 +3513,780 @@
       "source_type": "third_party",
       "url": "https://epoch.ai/benchmarks",
       "seen": "2026-11-01"
+    },
+    {
+      "model": "ling-2.6-flash",
+      "benchmark": "swe_bench_verified",
+      "score": 61.2,
+      "variant": "official HF model card text; metric label Swe Bench Resolved; no harness or setting stated",
+      "source_type": "vendor",
+      "url": "https://huggingface.co/inclusionAI/Ling-2.6-flash",
+      "seen": "2026-11-01",
+      "quote": "Swe Bench Resolved, 61.2"
+    },
+    {
+      "model": "ling-2.6-flash",
+      "benchmark": "aime_2026",
+      "score": 73.85,
+      "variant": "official HF model card text; MathArena AIME 2026 source; no setting stated",
+      "source_type": "vendor",
+      "url": "https://huggingface.co/inclusionAI/Ling-2.6-flash",
+      "seen": "2026-11-01",
+      "quote": "MathArena AIME 2026, 73.85"
+    },
+    {
+      "model": "ling-2.6-flash",
+      "benchmark": "hmmt_feb_2026",
+      "score": 49.29,
+      "variant": "official HF model card text; MathArena HMMT Feb 2026 source; no setting stated",
+      "source_type": "vendor",
+      "url": "https://huggingface.co/inclusionAI/Ling-2.6-flash",
+      "seen": "2026-11-01",
+      "quote": "MathArena HMMT Feb 2026, 49.29"
+    },
+    {
+      "model": "ring-2.6-1t",
+      "benchmark": "pinchbench",
+      "score": 87.6,
+      "variant": "official HF model card prose; Ring-2.6-1T high reasoning setting",
+      "source_type": "vendor",
+      "url": "https://huggingface.co/inclusionAI/Ring-2.6-1T",
+      "seen": "2026-11-01",
+      "quote": "PinchBench 87.60, Ring-2.6-1T high"
+    },
+    {
+      "model": "ring-2.6-1t",
+      "benchmark": "claw_eval",
+      "score": 63.82,
+      "variant": "official HF model card prose; setting not specified",
+      "source_type": "vendor",
+      "url": "https://huggingface.co/inclusionAI/Ring-2.6-1T",
+      "seen": "2026-11-01",
+      "quote": "ClawEval 63.82"
+    },
+    {
+      "model": "ring-2.6-1t",
+      "benchmark": "tau2_bench_telecom",
+      "score": 95.32,
+      "variant": "official HF model card prose; Telecom split; reasoning setting not specified",
+      "source_type": "vendor",
+      "url": "https://huggingface.co/inclusionAI/Ring-2.6-1T",
+      "seen": "2026-11-01",
+      "quote": "Tau2-Bench Telecom scenario 95.32"
+    },
+    {
+      "model": "ring-2.6-1t",
+      "benchmark": "arc_agi_v2",
+      "score": 66.18,
+      "variant": "official HF model card prose; xhigh reasoning effort",
+      "source_type": "vendor",
+      "url": "https://huggingface.co/inclusionAI/Ring-2.6-1T",
+      "seen": "2026-11-01",
+      "quote": "ARC-AGI-V2 66.18 at xhigh"
+    },
+    {
+      "model": "ring-2.6-1t",
+      "benchmark": "aime_2026",
+      "score": 95.83,
+      "variant": "official HF model card prose; xhigh reasoning effort",
+      "source_type": "vendor",
+      "url": "https://huggingface.co/inclusionAI/Ring-2.6-1T",
+      "seen": "2026-11-01",
+      "quote": "AIME 26 95.83 at xhigh"
+    },
+    {
+      "model": "ring-2.6-1t",
+      "benchmark": "gpqa_diamond",
+      "score": 88.27,
+      "variant": "official HF model card prose; xhigh reasoning effort",
+      "source_type": "vendor",
+      "url": "https://huggingface.co/inclusionAI/Ring-2.6-1T",
+      "seen": "2026-11-01",
+      "quote": "GPQA Diamond 88.27 at xhigh"
+    },
+    {
+      "model": "nemotron-3-super-120b-a12b",
+      "benchmark": "terminal_bench_2_0",
+      "score": 31.0,
+      "variant": "Terminal Bench Core 2.0 run with Harbor; reasoning on by default in chat template",
+      "source_type": "vendor",
+      "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16/raw/main/README.md",
+      "seen": "2026-11-01",
+      "quote": "Terminal Bench Core 2.0 | 31.00"
+    },
+    {
+      "model": "nemotron-3-super-120b-a12b",
+      "benchmark": "swe_bench_openhands",
+      "score": 60.47,
+      "variant": "SWE-Bench (OpenHands) scaffold; reasoning setting not stated per row",
+      "source_type": "vendor",
+      "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16/raw/main/README.md",
+      "seen": "2026-11-01",
+      "quote": "SWE-Bench (OpenHands) | 60.47"
+    },
+    {
+      "model": "nemotron-3-super-120b-a12b",
+      "benchmark": "swe_bench_multilingual",
+      "score": 45.78,
+      "variant": "SWE-Bench Multilingual (OpenHands) scaffold",
+      "source_type": "vendor",
+      "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16/raw/main/README.md",
+      "seen": "2026-11-01",
+      "quote": "SWE-Bench Multilingual (OpenHands) | 45.78"
+    },
+    {
+      "model": "nemotron-3-super-120b-a12b",
+      "benchmark": "tau_bench",
+      "score": 61.15,
+      "variant": "TauBench V2 average over airline, retail, telecom; default prompt",
+      "source_type": "vendor",
+      "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16/raw/main/README.md",
+      "seen": "2026-11-01",
+      "quote": "TauBench V2 Average | 61.15"
+    },
+    {
+      "model": "nemotron-3-super-120b-a12b",
+      "benchmark": "livecodebench",
+      "score": 81.19,
+      "variant": "LiveCodeBench v5 (2024-07 to 2024-12); NeMo Skills harness",
+      "source_type": "vendor",
+      "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16/raw/main/README.md",
+      "seen": "2026-11-01",
+      "quote": "LiveCodeBench (v5 2024-07 to 2024-12) | 81.19"
+    },
+    {
+      "model": "nemotron-3-super-120b-a12b",
+      "benchmark": "gpqa",
+      "score": 79.23,
+      "variant": "GPQA (no tools); reasoning on by default",
+      "source_type": "vendor",
+      "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16/raw/main/README.md",
+      "seen": "2026-11-01",
+      "quote": "GPQA (no tools) | 79.23"
+    },
+    {
+      "model": "nemotron-3-super-120b-a12b",
+      "benchmark": "hle",
+      "score": 18.26,
+      "variant": "HLE (no tools)",
+      "source_type": "vendor",
+      "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16/raw/main/README.md",
+      "seen": "2026-11-01",
+      "quote": "HLE (no tools) | 18.26"
+    },
+    {
+      "model": "nemotron-3.5-super-vl",
+      "benchmark": "swe_bench_verified",
+      "score": 71.1,
+      "variant": "BF16 card; NeMo Gym harness; text sampling temp 1.0 top_p 0.95; reasoning on/off via chat template, not stated per row",
+      "source_type": "vendor",
+      "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-BF16/raw/main/README.md",
+      "seen": "2026-11-01",
+      "quote": "SWE-bench Verified | 71.10"
+    },
+    {
+      "model": "nemotron-3.5-super-vl",
+      "benchmark": "swe_bench_pro",
+      "score": 51.78,
+      "variant": "BF16 card; NeMo Gym harness; value from main table (harness detail in an image not read)",
+      "source_type": "vendor",
+      "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-BF16/raw/main/README.md",
+      "seen": "2026-11-01",
+      "quote": "SWE-bench Pro | 51.78"
+    },
+    {
+      "model": "nemotron-3.5-super-vl",
+      "benchmark": "terminal_bench_2_1",
+      "score": 60.67,
+      "variant": "BF16 card; NeMo Gym harness; value from main table",
+      "source_type": "vendor",
+      "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-BF16/raw/main/README.md",
+      "seen": "2026-11-01",
+      "quote": "Terminal-Bench 2.1 | 60.67"
+    },
+    {
+      "model": "nemotron-3.5-super-vl",
+      "benchmark": "livecodebench",
+      "score": 88.22,
+      "variant": "LiveCodeBench v6; BF16 card; NeMo Gym harness",
+      "source_type": "vendor",
+      "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-BF16/raw/main/README.md",
+      "seen": "2026-11-01",
+      "quote": "LiveCodeBench v6 | 88.22"
+    },
+    {
+      "model": "nemotron-3.5-super-vl",
+      "benchmark": "gpqa_diamond",
+      "score": 89.52,
+      "variant": "GPQA-Diamond; BF16 card",
+      "source_type": "vendor",
+      "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-BF16/raw/main/README.md",
+      "seen": "2026-11-01",
+      "quote": "GPQA-Diamond | 89.52"
+    },
+    {
+      "model": "nemotron-3.5-super-vl",
+      "benchmark": "hle",
+      "score": 31.79,
+      "variant": "HLE text-only; BF16 card",
+      "source_type": "vendor",
+      "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-BF16/raw/main/README.md",
+      "seen": "2026-11-01",
+      "quote": "HLE, text-only | 31.79"
+    },
+    {
+      "model": "nemotron-3.5-super-vl",
+      "benchmark": "parallel_search_intelligence",
+      "score": 59.1,
+      "variant": "Parallel Search Intelligence leaderboard; evaluated 2026-10-16; page shows rank 39 (a search snippet said 33, not used)",
+      "source_type": "third_party",
+      "url": "https://parallel.ai/leaderboard/nemotron-3-5-super-vl.md",
+      "seen": "2026-11-01",
+      "quote": "Search Intelligence Score: 59.1 (#39 in Search Intelligence)"
+    },
+    {
+      "model": "nemotron-3-nano-omni-30b-a3b",
+      "benchmark": "mathvista_mini",
+      "score": 82.8,
+      "variant": "Reasoning on (Table 7 of tech report); values from flattened HTML text, column alignment inferred, medium confidence",
+      "source_type": "vendor",
+      "url": "https://arxiv.org/html/2604.24954v2",
+      "seen": "2026-11-01",
+      "quote": "MathVista-Mini | 82.8"
+    },
+    {
+      "model": "nemotron-3-nano-omni-30b-a3b",
+      "benchmark": "mmmu_val",
+      "score": 70.8,
+      "variant": "Reasoning on (Table 7); flattened HTML, medium confidence",
+      "source_type": "vendor",
+      "url": "https://arxiv.org/html/2604.24954v2",
+      "seen": "2026-11-01",
+      "quote": "MMMU (val) | 70.8"
+    },
+    {
+      "model": "nemotron-3-nano-omni-30b-a3b",
+      "benchmark": "videomme_wo_sub",
+      "score": 72.2,
+      "variant": "VideoMME without subtitles; reasoning on (Table 7); flattened HTML, medium confidence",
+      "source_type": "vendor",
+      "url": "https://arxiv.org/html/2604.24954v2",
+      "seen": "2026-11-01",
+      "quote": "VideoMME (w/o sub) | 72.2"
+    },
+    {
+      "model": "nemotron-3-nano-omni-30b-a3b",
+      "benchmark": "osworld",
+      "score": 47.4,
+      "variant": "OSWorld; reasoning on (Table 7); flattened HTML, medium confidence",
+      "source_type": "vendor",
+      "url": "https://arxiv.org/html/2604.24954v2",
+      "seen": "2026-11-01",
+      "quote": "OSWorld | 47.4"
+    },
+    {
+      "model": "nemotron-3-nano-omni-30b-a3b",
+      "benchmark": "screenspot_pro",
+      "score": 57.8,
+      "variant": "ScreenSpot-Pro; reasoning on (Table 7); flattened HTML, medium confidence",
+      "source_type": "vendor",
+      "url": "https://arxiv.org/html/2604.24954v2",
+      "seen": "2026-11-01",
+      "quote": "ScreenSpot-Pro | 57.8"
+    },
+    {
+      "model": "nemotron-3-nano-omni-30b-a3b",
+      "benchmark": "docvqa_test",
+      "score": 95.6,
+      "variant": "DocVQA test; reasoning on (Table 7); flattened HTML, medium confidence",
+      "source_type": "vendor",
+      "url": "https://arxiv.org/html/2604.24954v2",
+      "seen": "2026-11-01",
+      "quote": "DocVQA (Test) | 95.6"
+    },
+    {
+      "model": "hy3-preview",
+      "benchmark": "swe_bench_verified",
+      "score": 74.4,
+      "variant": "Hy3 preview release (instruct, setting not stated in article)",
+      "source_type": "vendor",
+      "url": "https://decrypt.co/365297/tencent-hy3-preview-open-source-moe-model",
+      "seen": "2026-11-01",
+      "quote": "jumped from 53% (Hy2) to 74.4%"
+    },
+    {
+      "model": "hy3-preview",
+      "benchmark": "terminal_bench_2_0",
+      "score": 54.4,
+      "variant": "Hy3 preview release (setting not stated)",
+      "source_type": "vendor",
+      "url": "https://decrypt.co/365297/bitcoin-ethereum-metaverse-tokens-sink-further-after-holiday-crypto-rally?amp=1",
+      "seen": "2026-11-01",
+      "quote": "went from 23.2% to 54.4%"
+    },
+    {
+      "model": "hy3-preview",
+      "benchmark": "browsecomp",
+      "score": 67.1,
+      "variant": "Hy3 preview release (setting not stated)",
+      "source_type": "vendor",
+      "url": "https://decrypt.co/365297/tencent-hy3-preview-open-source-moe-model",
+      "seen": "2026-11-01",
+      "quote": "Hy3 preview reached 67.1%"
+    },
+    {
+      "model": "hy3-preview",
+      "benchmark": "wide_search",
+      "score": 70.2,
+      "variant": "Hy3 preview release (setting not stated)",
+      "source_type": "vendor",
+      "url": "https://decrypt.co/365297/tencent-hy3-preview-open-source-moe-model",
+      "seen": "2026-11-01",
+      "quote": "On WideSearch, it hit 70.2%"
+    },
+    {
+      "model": "hy3",
+      "benchmark": "browsecomp",
+      "score": 84.2,
+      "variant": "Hy3 full release (setting not stated)",
+      "source_type": "vendor",
+      "url": "https://www.i-scoop.eu/hy3-by-tencent-brings-the-open-frontier-within-reach/",
+      "seen": "2026-11-01",
+      "quote": "moved from 67.1 all the way to 84.2"
+    },
+    {
+      "model": "hy3",
+      "benchmark": "swe_bench_pro",
+      "score": 57.9,
+      "variant": "Hy3 full release (setting not stated)",
+      "source_type": "vendor",
+      "url": "https://www.i-scoop.eu/hy3-by-tencent-brings-the-open-frontier-within-reach/",
+      "seen": "2026-11-01",
+      "quote": "the score rose from 46.0 to 57.9"
+    },
+    {
+      "model": "hy3",
+      "benchmark": "matharena_apex",
+      "score": 38.7,
+      "variant": "Hy3 full release (setting not stated)",
+      "source_type": "vendor",
+      "url": "https://www.i-scoop.eu/hy3-by-tencent-brings-the-open-frontier-within-reach/",
+      "seen": "2026-11-01",
+      "quote": "MathArena Apex climbed from 12.6 to 38.7"
+    },
+    {
+      "model": "step-5-preview",
+      "benchmark": "vals_index",
+      "score": 54.76,
+      "variant": "Vals comparison page; reasoning setting not stated on page",
+      "source_type": "third_party",
+      "url": "https://www.vals.ai/comparisons/stepfun_step-5-preview-vs-tencent_hy4-preview",
+      "seen": "2026-11-01",
+      "quote": "Vals Index 54.76%"
+    },
+    {
+      "model": "step-5-preview",
+      "benchmark": "terminal_bench_4_0",
+      "score": 31.82,
+      "variant": "Vals comparison page; reasoning setting not stated on page",
+      "source_type": "third_party",
+      "url": "https://www.vals.ai/comparisons/stepfun_step-5-preview-vs-tencent_hy4-preview",
+      "seen": "2026-11-01",
+      "quote": "Terminal-Bench 4.0 31.82%"
+    },
+    {
+      "model": "step-5-preview",
+      "benchmark": "ioi",
+      "score": 38.06,
+      "variant": "Vals comparison page; reasoning setting not stated on page",
+      "source_type": "third_party",
+      "url": "https://www.vals.ai/comparisons/stepfun_step-5-preview-vs-tencent_hy4-preview",
+      "seen": "2026-11-01",
+      "quote": "IOI 38.06%"
+    },
+    {
+      "model": "step-5-preview",
+      "benchmark": "vibe_code_bench_v1_1",
+      "score": 70.4,
+      "variant": "Vals comparison page; reasoning setting not stated on page",
+      "source_type": "third_party",
+      "url": "https://www.vals.ai/comparisons/stepfun_step-5-preview-vs-tencent_hy4-preview",
+      "seen": "2026-11-01",
+      "quote": "Vibe Code Bench v1.1 70.40%"
+    },
+    {
+      "model": "step-5-preview",
+      "benchmark": "finance_agent_v2_1",
+      "score": 58.9,
+      "variant": "Vals comparison page; reasoning setting not stated on page",
+      "source_type": "third_party",
+      "url": "https://www.vals.ai/comparisons/stepfun_step-5-preview-vs-tencent_hy4-preview",
+      "seen": "2026-11-01",
+      "quote": "Finance Agent v2.1 58.90%"
+    },
+    {
+      "model": "step-5-preview",
+      "benchmark": "code_migration_v1_1",
+      "score": 47.0,
+      "variant": "Vals comparison page; reasoning setting not stated on page",
+      "source_type": "third_party",
+      "url": "https://www.vals.ai/comparisons/stepfun_step-5-preview-vs-tencent_hy4-preview",
+      "seen": "2026-11-01",
+      "quote": "Code Migration v1.1 47.00%"
+    },
+    {
+      "model": "beam",
+      "benchmark": "swe_bench_verified",
+      "score": 80.9,
+      "variant": "Reflection launch post table; setting not specified; post carries Update 10/27/26 note",
+      "source_type": "vendor",
+      "url": "https://reflection.ai/blog/introducing-beam",
+      "seen": "2026-11-01",
+      "quote": "SWEBench Verified | 80.9"
+    },
+    {
+      "model": "beam",
+      "benchmark": "swe_bench_pro_v1",
+      "score": 65.5,
+      "variant": "Reflection post table; SWE Bench Pro v1 subset",
+      "source_type": "vendor",
+      "url": "https://reflection.ai/blog/introducing-beam",
+      "seen": "2026-11-01",
+      "quote": "SWE Bench Pro v1 | 65.5"
+    },
+    {
+      "model": "beam",
+      "benchmark": "swe_bench_pro_v2_hard",
+      "score": 77.2,
+      "variant": "Reflection post table; v2-Hard subset",
+      "source_type": "vendor",
+      "url": "https://reflection.ai/blog/introducing-beam",
+      "seen": "2026-11-01",
+      "quote": "SWE Bench Pro v2-Hard | 77.2"
+    },
+    {
+      "model": "beam",
+      "benchmark": "terminal_bench_2_1",
+      "score": 80.1,
+      "variant": "Reflection post table; Terminal Bench v2.1; setting not specified",
+      "source_type": "vendor",
+      "url": "https://reflection.ai/blog/introducing-beam",
+      "seen": "2026-11-01",
+      "quote": "Terminal Bench v2.1 | 80.1"
+    },
+    {
+      "model": "beam",
+      "benchmark": "swe_bench_multilingual",
+      "score": 78.0,
+      "variant": "Reflection post table; setting not specified",
+      "source_type": "vendor",
+      "url": "https://reflection.ai/blog/introducing-beam",
+      "seen": "2026-11-01",
+      "quote": "SWEBench Multilingual | 78.0"
+    },
+    {
+      "model": "beam",
+      "benchmark": "swe_atlas_codebase_qna",
+      "score": 34.6,
+      "variant": "Reflection post table; setting not specified",
+      "source_type": "vendor",
+      "url": "https://reflection.ai/blog/introducing-beam",
+      "seen": "2026-11-01",
+      "quote": "SWE Atlas Codebase QnA | 34.6"
+    },
+    {
+      "model": "beam",
+      "benchmark": "deepswe_v1_1",
+      "score": 44.4,
+      "variant": "Reflection post table; setting not specified; benchmark by Datacurve",
+      "source_type": "vendor",
+      "url": "https://reflection.ai/blog/introducing-beam",
+      "seen": "2026-11-01",
+      "quote": "DeepSWE v1.1 | 44.4"
+    },
+    {
+      "model": "beam",
+      "benchmark": "aime_2026",
+      "score": 97.8,
+      "variant": "Reflection post table; setting not specified",
+      "source_type": "vendor",
+      "url": "https://reflection.ai/blog/introducing-beam",
+      "seen": "2026-11-01",
+      "quote": "AIME 2026 | 97.8"
+    },
+    {
+      "model": "beam",
+      "benchmark": "hle",
+      "score": 36.2,
+      "variant": "Reflection post table; No tools setting",
+      "source_type": "vendor",
+      "url": "https://reflection.ai/blog/introducing-beam",
+      "seen": "2026-11-01",
+      "quote": "HLE (no tools) | 36.2"
+    },
+    {
+      "model": "beam",
+      "benchmark": "hle",
+      "score": 51.2,
+      "variant": "Reflection post table; With tools setting",
+      "source_type": "vendor",
+      "url": "https://reflection.ai/blog/introducing-beam",
+      "seen": "2026-11-01",
+      "quote": "HLE (with tools) | 51.2",
+      "mode": "with tools"
+    },
+    {
+      "model": "beam",
+      "benchmark": "gpqa_diamond",
+      "score": 90.5,
+      "variant": "Reflection post table; setting not specified",
+      "source_type": "vendor",
+      "url": "https://reflection.ai/blog/introducing-beam",
+      "seen": "2026-11-01",
+      "quote": "GPQA Diamond | 90.5"
+    },
+    {
+      "model": "beam",
+      "benchmark": "automationbench_public",
+      "score": 37.0,
+      "variant": "Reflection post table; public split; AutomationBench-AA is a separate AA metric and is not used",
+      "source_type": "vendor",
+      "url": "https://reflection.ai/blog/introducing-beam",
+      "seen": "2026-11-01",
+      "quote": "AutomationBench public | 37.0"
+    },
+    {
+      "model": "beam",
+      "benchmark": "mcp_atlas",
+      "score": 78.7,
+      "variant": "Reflection post table; setting not specified",
+      "source_type": "vendor",
+      "url": "https://reflection.ai/blog/introducing-beam",
+      "seen": "2026-11-01",
+      "quote": "MCP Atlas | 78.7"
+    },
+    {
+      "model": "beam",
+      "benchmark": "tau3_banking",
+      "score": 38.0,
+      "variant": "Reflection post table; setting not specified",
+      "source_type": "vendor",
+      "url": "https://reflection.ai/blog/introducing-beam",
+      "seen": "2026-11-01",
+      "quote": "tau3 banking | 38.0"
+    },
+    {
+      "model": "beam",
+      "benchmark": "browsecomp",
+      "score": 77.4,
+      "variant": "Reflection post table; with context management",
+      "source_type": "vendor",
+      "url": "https://reflection.ai/blog/introducing-beam",
+      "seen": "2026-11-01",
+      "quote": "BrowseComp | 77.4"
+    },
+    {
+      "model": "beam",
+      "benchmark": "deepsearchqa",
+      "score": 80.1,
+      "variant": "Reflection post table; with context management",
+      "source_type": "vendor",
+      "url": "https://reflection.ai/blog/introducing-beam",
+      "seen": "2026-11-01",
+      "quote": "DeepSearchQA | 80.1"
+    },
+    {
+      "model": "beam",
+      "benchmark": "longbench_v2",
+      "score": 66.9,
+      "variant": "Reflection post table; setting not specified",
+      "source_type": "vendor",
+      "url": "https://reflection.ai/blog/introducing-beam",
+      "seen": "2026-11-01",
+      "quote": "LongBench v2 | 66.9"
+    },
+    {
+      "model": "beam",
+      "benchmark": "ifbench",
+      "score": 79.7,
+      "variant": "Reflection post table; setting not specified",
+      "source_type": "vendor",
+      "url": "https://reflection.ai/blog/introducing-beam",
+      "seen": "2026-11-01",
+      "quote": "IFBench | 79.7"
+    },
+    {
+      "model": "solar-mini-4",
+      "benchmark": "tau3_banking",
+      "score": 47.2,
+      "variant": "Upstage blog; no setting stated; described as a separate evaluation",
+      "source_type": "vendor",
+      "url": "https://www.upstage.ai/blog/en/solar-mini-4",
+      "seen": "2026-11-01",
+      "quote": "tau3-Banking 47.2"
+    },
+    {
+      "model": "solar-mini-4",
+      "benchmark": "hle",
+      "score": 25.8,
+      "variant": "Upstage blog; no setting or comparator stated",
+      "source_type": "vendor",
+      "url": "https://www.upstage.ai/blog/en/solar-mini-4",
+      "seen": "2026-11-01",
+      "quote": "Humanity Last Exam 25.8%"
+    },
+    {
+      "model": "ling-3.0-flash-vl",
+      "benchmark": "mmmu_pro",
+      "score": 79.0,
+      "variant": "Vendor chart on HF card (benchmark image); STEM Reasoning row, Ling-3.0-flash-VL column; no tool setting stated",
+      "source_type": "vendor",
+      "url": "https://cdn-uploads.huggingface.co/production/uploads/6666ca359f5a0b3229238a1a/w-V0gtCa3qy0un6vuz-sj.png",
+      "seen": "2026-11-01",
+      "quote": "MMMU-Pro 79.00",
+      "from_image": true
+    },
+    {
+      "model": "ling-3.0-flash-vl",
+      "benchmark": "mathvision",
+      "score": 84.87,
+      "variant": "Vendor chart on HF card (benchmark image); STEM Reasoning row, Ling-3.0-flash-VL column",
+      "source_type": "vendor",
+      "url": "https://cdn-uploads.huggingface.co/production/uploads/6666ca359f5a0b3229238a1a/w-V0gtCa3qy0un6vuz-sj.png",
+      "seen": "2026-11-01",
+      "quote": "MathVision 84.87",
+      "from_image": true
+    },
+    {
+      "model": "ling-3.0-flash-vl",
+      "benchmark": "omnidocbench_1_5",
+      "score": 91.35,
+      "variant": "Vendor chart on HF card (benchmark image); Document intelligence row, Ling-3.0-flash-VL column",
+      "source_type": "vendor",
+      "url": "https://cdn-uploads.huggingface.co/production/uploads/6666ca359f5a0b3229238a1a/w-V0gtCa3qy0un6vuz-sj.png",
+      "seen": "2026-11-01",
+      "quote": "OmniDocBench1.5 91.35",
+      "from_image": true
+    },
+    {
+      "model": "ling-3.0-flash-vl",
+      "benchmark": "charxiv_rq",
+      "score": 81.3,
+      "variant": "Vendor chart on HF card (benchmark image); Document intelligence row, Ling-3.0-flash-VL column",
+      "source_type": "vendor",
+      "url": "https://cdn-uploads.huggingface.co/production/uploads/6666ca359f5a0b3229238a1a/w-V0gtCa3qy0un6vuz-sj.png",
+      "seen": "2026-11-01",
+      "quote": "CharXiv_RQ 81.30",
+      "from_image": true
+    },
+    {
+      "model": "ling-3.0-flash-vl",
+      "benchmark": "mmsearch",
+      "score": 79.0,
+      "variant": "Vendor chart on HF card (benchmark image); Agentic Multimodal row, Ling-3.0-flash-VL column",
+      "source_type": "vendor",
+      "url": "https://cdn-uploads.huggingface.co/production/uploads/6666ca359f5a0b3229238a1a/w-V0gtCa3qy0un6vuz-sj.png",
+      "seen": "2026-11-01",
+      "quote": "MMSearch 79.00",
+      "from_image": true
+    },
+    {
+      "model": "ling-3.0-flash-vl",
+      "benchmark": "claweval_mm",
+      "score": 59.9,
+      "variant": "Vendor chart on HF card (benchmark image); Agentic Multimodal row, Ling-3.0-flash-VL column",
+      "source_type": "vendor",
+      "url": "https://cdn-uploads.huggingface.co/production/uploads/6666ca359f5a0b3229238a1a/w-V0gtCa3qy0un6vuz-sj.png",
+      "seen": "2026-11-01",
+      "quote": "ClawEval-MM 59.9",
+      "from_image": true
+    },
+    {
+      "model": "ling-3.0-flash-vl",
+      "benchmark": "webvoyager",
+      "score": 90.83,
+      "variant": "Vendor chart on HF card (benchmark image); Agentic Multimodal row, Ling-3.0-flash-VL column",
+      "source_type": "vendor",
+      "url": "https://cdn-uploads.huggingface.co/production/uploads/6666ca359f5a0b3229238a1a/w-V0gtCa3qy0un6vuz-sj.png",
+      "seen": "2026-11-01",
+      "quote": "WebVoyager 90.83",
+      "from_image": true
+    },
+    {
+      "model": "ling-2.6-1t",
+      "benchmark": "swe_bench_verified",
+      "score": 72.2,
+      "variant": "HF eval-results metadata (.eval_results/swe-bench_verified.yaml) on the model; verified:false; source name Model Card; the chart (openhands scaffold) also shows 72.20",
+      "source_type": "vendor",
+      "url": "https://huggingface.co/api/models/inclusionAI/Ling-2.6-1T?expand[]=evalResults",
+      "seen": "2026-11-01",
+      "quote": "\"value\":72.2,\"source\":{\"url\":\"https://huggingface.co/inclusionAI/Ling-2.6-1T\""
+    },
+    {
+      "model": "ling-2.6-1t",
+      "benchmark": "pinchbench",
+      "score": 87.4,
+      "variant": "Vendor chart on HF card (benchmark image); PinchBench (Avg. Score), Ling-2.6-1T bar",
+      "source_type": "vendor",
+      "url": "https://mdn.alipayobjects.com/huamei_fst7or/afts/img/Ykl9QZamkj0AAAAAgBAAAAgADpRXAQJr/original",
+      "seen": "2026-11-01",
+      "quote": "PinchBench (Avg. Score) 87.40",
+      "from_image": true
+    },
+    {
+      "model": "ling-2.6-1t",
+      "benchmark": "claw_eval",
+      "score": 51.0,
+      "variant": "Vendor chart on HF card (benchmark image); Claw-Eval (pass ^3), Ling-2.6-1T bar",
+      "source_type": "vendor",
+      "url": "https://mdn.alipayobjects.com/huamei_fst7or/afts/img/Ykl9QZamkj0AAAAAgBAAAAgADpRXAQJr/original",
+      "seen": "2026-11-01",
+      "quote": "Claw-Eval (pass ^3) 51.00",
+      "from_image": true
+    },
+    {
+      "model": "ling-2.6-1t",
+      "benchmark": "bfcl_v4",
+      "score": 70.64,
+      "variant": "Vendor chart on HF card (benchmark image); BFCL-V4, Ling-2.6-1T bar",
+      "source_type": "vendor",
+      "url": "https://mdn.alipayobjects.com/huamei_fst7or/afts/img/Ykl9QZamkj0AAAAAgBAAAAgADpRXAQJr/original",
+      "seen": "2026-11-01",
+      "quote": "BFCL-V4 70.64",
+      "from_image": true
+    },
+    {
+      "model": "ling-2.6-1t",
+      "benchmark": "tau2_bench",
+      "score": 78.36,
+      "variant": "Vendor chart on HF card (benchmark image); TAU2-Bench, Ling-2.6-1T bar",
+      "source_type": "vendor",
+      "url": "https://mdn.alipayobjects.com/huamei_fst7or/afts/img/Ykl9QZamkj0AAAAAgBAAAAgADpRXAQJr/original",
+      "seen": "2026-11-01",
+      "quote": "TAU2-Bench 78.36",
+      "from_image": true
+    },
+    {
+      "model": "ling-2.6-1t",
+      "benchmark": "ifbench",
+      "score": 57.0,
+      "variant": "Vendor chart on HF card (benchmark image); IFBench, Ling-2.6-1T bar",
+      "source_type": "vendor",
+      "url": "https://mdn.alipayobjects.com/huamei_fst7or/afts/img/Ykl9QZamkj0AAAAAgBAAAAgADpRXAQJr/original",
+      "seen": "2026-11-01",
+      "quote": "IFBench 57.00",
+      "from_image": true
+    },
+    {
+      "model": "ling-2.6-1t",
+      "benchmark": "mrcr_16k_256k",
+      "score": 80.37,
+      "variant": "Vendor chart on HF card (benchmark image); MRCR (16K-256K), Ling-2.6-1T bar",
+      "source_type": "vendor",
+      "url": "https://mdn.alipayobjects.com/huamei_fst7or/afts/img/Ykl9QZamkj0AAAAAgBAAAAgADpRXAQJr/original",
+      "seen": "2026-11-01",
+      "quote": "MRCR (16K-256K) 80.37",
+      "from_image": true
     }
   ]
 }

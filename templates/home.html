@@ -311,10 +311,10 @@ mountChart(20);
     if (endT != null && dayT >= endT) return false;
     return true;
   }
-  function laneScore(l) { return ftValue(models[l.model]); }
-  function meetsThreshold(l, thr) {
+  function laneScore(l, dayT) { return dayT == null ? ftValue(models[l.model]) : scoreOn(models[l.model], dayT); }
+  function meetsThreshold(l, thr, dayT) {
     if (!thr) return true;
-    const s = laneScore(l);
+    const s = laneScore(l, dayT);
     return s != null && s >= thr;
   }
   function channelNoAuto(c) { const ch = CH[c]; const a = ch && ch.access; return !!a && (a.rules || []).includes("no_automation"); }
@@ -348,7 +348,7 @@ mountChart(20);
     for (const l of D.lanes) {
       if (!presetSet.has(l.channel)) continue;
       if (!laneActive(l, dayT)) continue;
-      const s = laneScore(l);
+      const s = laneScore(l, dayT);
       if (s != null && s > a) a = s;
     }
     return a;
@@ -362,7 +362,7 @@ mountChart(20);
     const channelTotals = {};
     for (const ch of presetCh) channelTotals[ch] = 0;
     const perDay = days.map((dayT) => {
-      const active = D.lanes.filter((l) => presetSet.has(l.channel) && laneActive(l, dayT) && (metric === "models" ? meetsThreshold(l, thr) : (meetsThreshold(l, thr) && laneTokenValue(l) != null)));
+      const active = D.lanes.filter((l) => presetSet.has(l.channel) && laneActive(l, dayT) && (metric === "models" ? meetsThreshold(l, thr, dayT) : (meetsThreshold(l, thr, dayT) && laneTokenValue(l) != null)));
       const byCh = {};
       const perSum = {};
       const pooledMax = {};
@@ -729,7 +729,7 @@ mountChart(20);
       for (const l of D.lanes) {
         if (l.channel !== ch) continue;
         if (!laneActive(l, dayT)) continue;
-        const s = laneScore(l);
+        const s = laneScore(l, dayT);
         if (s != null && s > bestAA) bestAA = s;
       }
       return bestAA;
@@ -757,7 +757,7 @@ mountChart(20);
       for (const l of D.lanes) {
         if (l.channel !== r.ch) continue;
         if (!laneActive(l, todayT)) continue;
-        const s = laneScore(l); if (s != null && s > todayBest) todayBest = s;
+        const s = laneScore(l, todayT); if (s != null && s > todayBest) todayBest = s;
       }
       const tokenToday = data.perDay[N-1].byCh[r.ch] || 0;
       return `${rects}<text x="${heatDays.length * cellW + 6}" y="${y + cellH - 2}" font-size="11" font-family="IBM Plex Mono,monospace" fill="${todayBest >= thr ? "var(--fg)" : "var(--muted)"}">${todayBest ? Math.round(todayBest) : "—"}</text><text x="${heatDays.length * cellW + 34}" y="${y + cellH - 2}" font-size="11" font-family="IBM Plex Mono,monospace" fill="var(--muted)">${tokenToday ? tokenToday.toFixed(1) : ""}</text>`;

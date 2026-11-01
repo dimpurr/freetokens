@@ -5,7 +5,7 @@
     "maker": "inclusionai",
     "context": "262K",
     "image_input": "no",
-    "notes": null
+    "notes": "Its upgrade, Ling 3.1 Flash 1019, is a separate entry (the old weights stay published and can be chosen by ID)."
   },
   {
     "id": "mimo-v2.6-flash",
@@ -43,7 +43,21 @@
     "maker": "deepseek",
     "context": "200K on the Zen free tier",
     "image_input": "no",
-    "notes": "Channels label it plain \"deepseek-v4-flash\"; the 0731 update and the April 0420 release are different snapshots."
+    "notes": "One model name, two snapshots (0420, 0731): the API name stayed deepseek-v4-flash. Scores use the current snapshot's evidence only.",
+    "snapshots": [
+      {
+        "id": "0420",
+        "date": "2026-04-24",
+        "source": "https://api-docs.deepseek.com/updates",
+        "note": "V4 launch (the Preview weights); deepseek-v4-flash on the API"
+      },
+      {
+        "id": "0731",
+        "date": "2026-07-31",
+        "source": "https://api-docs.deepseek.com/updates",
+        "note": "re-post-trained on the same architecture, in place under the same name"
+      }
+    ]
   },
   {
     "id": "nemotron-3-ultra",
@@ -179,7 +193,21 @@
     "maker": "deepseek",
     "context": "1M",
     "image_input": "yes",
-    "notes": "1017 snapshot (released 2026-10-17, in-place upgrade); an older slug listed the earlier snapshot."
+    "notes": "One model name, two snapshots (0910, 1017): the API name stayed deepseek-flash. Scores use the current snapshot's evidence only.",
+    "snapshots": [
+      {
+        "id": "0910",
+        "date": "2026-09-10",
+        "source": "https://api-docs.deepseek.com/updates",
+        "note": "V4.1 Flash release; the old deepseek-v4-flash name was routed to it"
+      },
+      {
+        "id": "1017",
+        "date": "2026-10-17",
+        "source": "https://api-docs.deepseek.com/updates",
+        "note": "in-place upgrade, same API name (deepseek-flash) and price"
+      }
+    ]
   },
   {
     "id": "apodex-1.1-mini",
@@ -715,6 +743,6 @@
     "maker": "inclusionai",
     "context": "1M",
     "image_input": "not_checked",
-    "notes": "Upgraded weights of Ling-3.1-flash (560B total / 25B active per token, 1M context, MIT); HF repo inclusionAI/Ling-3.1-flash-1019 created 2026-10-27, old repo still published, so a separate model entry, not a version field."
+    "notes": "Upgraded weights of Ling-3.1-flash (560B total / 25B active per token, 1M context, MIT). A separate entry from Ling 3.1 Flash because the old repository inclusionAI/Ling-3.1-flash is still published and channels list both IDs."
   }
 ]

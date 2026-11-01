@@ -5,6 +5,7 @@
 
 Prints a short report only when something changed (new $0 models, or tracked lanes missing from a catalogue);
 prints nothing otherwise, unless --heartbeat. Writes DIR/latest.json (default ~/scratch/DimResearchS/freetokens-watch).
+A free model whose ID ends in a date and resembles a tracked ID is marked for manual confirmation (a snapshot of that model, or a separate one; ADR-037).
 A model that is not on freetokens yet has no FT Intelligence score, so a new free model is listed without one (ADR-036:
 no Artificial Analysis calls and no page scraping here). The weekly self-check (--heartbeat) lists tracked lanes whose FTI
 (its centre, for a band) is at or above the pass floor.
@@ -97,6 +98,25 @@ class Skip(Exception):
 
     def __init__(self, var):
         self.var = var
+
+
+DATED_ID = re.compile(r"[-_](?:\d{4}|\d{6}|\d{8})(?::free|-free)?$")
+
+
+def snapshot_hint(mid, tracked_ids):
+    """ADR-037: an ID ending in a date (-0731, -1017, -20260731) is often an in-place snapshot of a model we already track.
+    Returns the tracked model_id with the same stem, or None. Only a hint: a person decides (snapshot or separate model)."""
+    m = DATED_ID.search(mid)
+    if not m:
+        return None
+    stem = mid[:m.start()].split("/")[-1].replace(":free", "")
+    for t in sorted(tracked_ids):
+        base = t.split("/")[-1].replace(":free", "")
+        if base != stem and (base.startswith(stem) or stem.startswith(base)) and not DATED_ID.search(t):
+            return t
+        if base == stem:
+            return t
+    return None
 
 
 def zero(*vals):
@@ -307,6 +327,7 @@ def main():
     out.mkdir(parents=True, exist_ok=True)
     lanes = json.loads((ROOT / "data/lanes.json").read_text())
     tracked = {(l["channel"], l["model_id"]) for l in lanes}
+    tracked_ids = {l["model_id"] for l in lanes}
     live = {(l["channel"], l["model_id"]): l for l in lanes if l["status"] in ("live", "listed", "overdue")}
     new, gone, errors, skipped = [], [], [], []
     baseline_lines = []  # (channel, total free, [untracked entries]) printed only on a channel's first baseline run
@@ -358,7 +379,7 @@ def main():
                     baseline_lines.append((ch, len(free), ent))
             else:
                 for mid, name in cands:
-                    new.append({"channel": ch, "model_id": mid, "name": name})
+                    new.append({"channel": ch, "model_id": mid, "name": name, "snapshot_hint": snapshot_hint(mid, tracked_ids)})
         for (c, mid), l in live.items():
             if c == ch and mid not in free:
                 gone.append({"channel": ch, "model_id": mid, "lane": l["id"], "status": l["status"], "note": WATCH_GONE.get((ch, mid))})
@@ -376,7 +397,8 @@ def main():
         lines.append(f"🆕 {len(new)} free model(s) not on freetokens yet:")
         for x in new:
             weak = " · weak evidence (not in pricing table)" if (x["channel"] == "SiliconFlow" and x["model_id"] in SF_WEAK) else ""
-            lines.append(f"  {x['name']} · {x['channel']} · {x['model_id']}{weak}")
+            hint = f" · 🗓 dated ID, maybe a snapshot of {x['snapshot_hint']}: confirm by hand (snapshot or separate model, ADR-037)" if x.get("snapshot_hint") else ""
+            lines.append(f"  {x['name']} · {x['channel']} · {x['model_id']}{weak}{hint}")
     for ch, n, ent in baseline_lines:
         lines.append(f"🧱 baseline · {ch}: {n} free model(s), {len(ent)} not on freetokens yet:")
         for e in ent[:25]:

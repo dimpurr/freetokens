@@ -217,6 +217,14 @@
    }
   },
   "event_kind": {
+   "snapshot_update": {
+    "label": "snapshot updated",
+    "help": "The maker replaced the weights behind an unchanged model name or API name; the model keeps one entry and records the snapshot (ADR-037)",
+    "zh": {
+     "label": "快照更新",
+     "help": "厂商在模型名或 API 名不变的情况下换了权重；模型仍是一条记录，并记下快照（ADR-037）"
+    }
+   },
    "announced": {
     "label": "free offer announced",
     "zh": {

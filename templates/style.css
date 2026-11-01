@@ -888,3 +888,6 @@ li:target { background: var(--accent-soft); border-radius: 4px; }
 .pool-badge.pooled { background: var(--accent-soft); color: var(--accent); border-color: var(--accent); }
 .pool-badge.per_model { background: var(--surface-2); color: var(--muted); }
 .meter.pooled { color: var(--accent); font-weight: 600; letter-spacing: 0.04em; }
+
+.snapmark { font: 600 0.62rem var(--f-mono, monospace); color: var(--muted); border: 1px dashed currentColor; border-radius: 4px; padding: 0 3px; margin-left: 4px; }
+.notes.snaps { font-size: 0.82rem; }

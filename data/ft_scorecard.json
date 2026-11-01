@@ -7,39 +7,39 @@
  "published": {
   "overall": {
    "n": 136,
-   "mean_abs_diff": 4.25,
-   "bias": 0.28,
-   "hit_rate": 0.35,
-   "within_3": 0.39
+   "mean_abs_diff": 4.3,
+   "bias": 0.21,
+   "hit_rate": 0.34,
+   "within_3": 0.38
   },
   "by_evidence": {
    "1": {
     "n": 24,
-    "mean_abs_diff": 4.96,
-    "bias": -0.57,
-    "hit_rate": 0.29,
-    "within_3": 0.38
+    "mean_abs_diff": 5.12,
+    "bias": -0.73,
+    "hit_rate": 0.25,
+    "within_3": 0.33
    },
    "2": {
-    "n": 28,
-    "mean_abs_diff": 4.27,
-    "bias": 0.61,
-    "hit_rate": 0.36,
-    "within_3": 0.39
+    "n": 27,
+    "mean_abs_diff": 4.41,
+    "bias": 0.54,
+    "hit_rate": 0.33,
+    "within_3": 0.37
    },
    "3": {
     "n": 24,
-    "mean_abs_diff": 4.4,
-    "bias": 0.46,
+    "mean_abs_diff": 4.49,
+    "bias": 0.37,
     "hit_rate": 0.42,
     "within_3": 0.46
    },
    "4+": {
-    "n": 60,
-    "mean_abs_diff": 3.91,
-    "bias": 0.39,
-    "hit_rate": 0.33,
-    "within_3": 0.37
+    "n": 61,
+    "mean_abs_diff": 3.85,
+    "bias": 0.38,
+    "hit_rate": 0.34,
+    "within_3": 0.38
    }
   },
   "exact_only": {

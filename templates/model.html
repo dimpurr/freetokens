@@ -56,6 +56,7 @@ const ML = lanesOf(M.id);
       <h1>${esc(M.name)}</h1>
     </div></div>
     ${M.notes ? `<p class="notes">${esc(M.notes)}</p>` : ""}
+    ${M.snapshots ? `<p class="notes snaps">${Tx("Snapshots", "Snapshots")}: ${M.snapshots.map((s, i) => `<a class="mono" href="${esc(s.source)}" target="_blank" rel="noopener">${esc(s.id)}</a> <span class="muted">${esc(absDate(s.date))}${i === M.snapshots.length - 1 ? " · " + Tx("current", "current") : ""}</span>`).join(" → ")}</p>` : ""}
     <div class="stats">
       ${stat(Tx("FTI", "FTI"), `<span class="aacell">${ftHTML(M, true)}${scoreBar(M)}</span>`,
         [ftSource(M), rankText(M) ? esc(rankText(M)) : ""].filter(Boolean).join(" · "), "aa-stat")}

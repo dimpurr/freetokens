@@ -385,6 +385,9 @@
   "how FTI is computed": "FTI 怎么算的",
   "models with no usable benchmark source yet": "个模型暂时没有可用的基准来源",
   "Rank among scored models; a range where a score is a band": "已评分模型中的名次；分数为区间时显示名次范围",
-  "Scores are computed by freetokens from public benchmarks. Source owners can request removal via a GitHub issue.": "分数由 freetokens 根据公开基准计算。来源方可通过 GitHub issue 申请移除。"
+  "Scores are computed by freetokens from public benchmarks. Source owners can request removal via a GitHub issue.": "分数由 freetokens 根据公开基准计算。来源方可通过 GitHub issue 申请移除。",
+  "Snapshots": "快照",
+  "current": "当前",
+  "serves an older snapshot:": "提供的是旧快照："
  }
 }

@@ -151,6 +151,24 @@ def validate(lanes, events, models):
         if not re.fullmatch(r"[a-z0-9][a-z0-9.-]*", m["id"]):
             errs.append(f"models[{m['id']}]: id must be lowercase letters, digits, '.' or '-' (it becomes a URL)")
     model_ids = {m["id"] for m in models}
+    snaps = {}
+    for m in models:  # ADR-037: one entry, several snapshots, the last is current
+        sn = m.get("snapshots")
+        if sn is None:
+            continue
+        snaps[m["id"]] = {s.get("id") for s in sn}
+        w = f"models[{m['id']}].snapshots"
+        if len(sn) < 2 or len(snaps[m["id"]]) != len(sn):
+            errs.append(f"{w}: needs two or more snapshots with distinct ids (a model with one snapshot has no field)")
+        for s in sn:
+            if not (s.get("id") and re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(s.get("date", ""))) and str(s.get("source", "")).startswith("http")):
+                errs.append(f"{w}: each snapshot needs an id, a date YYYY-MM-DD and a source url")
+        dates = [str(s.get("date")) for s in sn]
+        if dates != sorted(dates):
+            errs.append(f"{w}: snapshots must be in date order, the current one last")
+    for l in lanes:
+        if l.get("serves") is not None and l["serves"] not in snaps.get(l["model"], set()):
+            errs.append(f"lanes[{l['id']}]: serves {l['serves']!r} is not a snapshot of {l['model']}")
     lane_ids = {l["id"] for l in lanes}
     offer_ids = {o["id"] for o in load_optional("offers", [])}
     for coll, name in ((lanes, "lanes"), (models, "models")):
@@ -287,6 +305,8 @@ def validate(lanes, events, models):
             errs.append(f"{w}: Artificial Analysis data does not belong in public claims (ADR-036)")
         if isinstance(c.get("score"), bool) or not isinstance(c.get("score"), (int, float)):
             errs.append(f"{w}: score must be a number")
+        if c.get("snapshot") is not None and c["snapshot"] not in snaps.get(c["model"], set()):
+            errs.append(f"{w}: snapshot {c['snapshot']!r} is not a snapshot of {c['model']}")
     ft = load_optional("ft_scores", {}).get("scores", {})
     if set(ft) != model_ids:
         errs.append(f"data/ft_scores.json is out of step with models.json (run tools/ft_score.py): missing {sorted(model_ids - set(ft))[:3]}, extra {sorted(set(ft) - model_ids)[:3]}")
@@ -1213,7 +1233,9 @@ def build_pages(lanes, events, models, today, mode, lang="en"):
                    + mfig(len(events), tr("events"))
                    + f'<span class="fresh">{tr("data as of")} <b>{html.escape(fmt_date(today.isoformat()))}</b></span></div>')
         pages[P + "methodology.html"] = (head_html(mtitle, mdesc, U + "/methodology", today, [crumbs([("freetokens", HU), (tr("Methodology"), U + "/methodology")])], og, lang, alt("methodology")),
-                                     topbar + '<div class="wrap prose">' + back + m_stamp + md_to_html(method_body) + '</div>')
+                                     topbar + '<div class="wrap prose">' + back + m_stamp + md_to_html(method_body) + "</div>"
+                                     # the page is assembled here from METHOD.md, not from a template, so it never had the footer the template pages carry
+                                     + f'<footer><span class="src"><a href="{ISSUES_URL}" target="_blank" rel="noopener">{FOOTER_NOTE["zh" if zh else "en"]}</a></span></footer>')
     if site:
         add_langsw(pages, zh)
     return pages

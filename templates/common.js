@@ -303,8 +303,9 @@ const meterBadge = (l) => {
     ? `<span class="pool-badge ${m}" title="${esc(v.help)}">${esc(v.short || v.label)}</span>`
     : `<span class="pool-badge ${m}" title="${esc(v.help)}">${esc(v.short || v.label)}</span>`;
 };
-const chipTo = (href, text, l) => `<a class="chip" href="${href}" title="${esc(text + ": " + stateWords(l))}" aria-label="${esc(text + ", " + stateWords(l))}">${statusHTML(l.status, text)}${regionTag(l)}${l.meter === "pooled" ? '<span class="meter pooled" title="' + esc(Tx("shared allowance across models", "shared allowance across models")) + '">' + esc(Tx("pooled", "pooled")) + '</span>' : ""}${chipNote(l) ? `<small>${esc(chipNote(l))}</small>` : ""}</a>`;
+const chipTo = (href, text, l) => `<a class="chip" href="${href}" title="${esc(text + ": " + stateWords(l))}" aria-label="${esc(text + ", " + stateWords(l))}">${statusHTML(l.status, text)}${regionTag(l)}${snapMark(l)}${l.meter === "pooled" ? '<span class="meter pooled" title="' + esc(Tx("shared allowance across models", "shared allowance across models")) + '">' + esc(Tx("pooled", "pooled")) + '</span>' : ""}${chipNote(l) ? `<small>${esc(chipNote(l))}</small>` : ""}</a>`;
 const channelChip = (l) => chipTo(channelHref(l.channel), l.channel, l).replace("</a>", needsPay(l.channel) ? `<span class="paymark" title="${esc(costText(l.channel))}">$</span></a>` : "</a>");
+const snapMark = (l) => { const m = models[l.model], s = m && m.snapshots; return (!l.serves || !s || l.serves === s[s.length - 1].id) ? "" : `<span class="snapmark" title="${esc(Tx("serves an older snapshot:", "serves an older snapshot:") + " " + l.serves)}">${esc(l.serves)}</span>`; };
 const modelChip = (l) => chipTo(modelHref(l.model), models[l.model].name, l);
 
 /* our own measurements: the site's unique data */
@@ -359,6 +360,8 @@ const limitHTML = (l) => {
    exact (3+ sources, one independent of the vendor) = an integer · fewer = a 5-point band · none = — */
 const ftOf = (m) => (m.ft && m.ft.status === "ok" ? m.ft : null);
 const ftValue = (m) => { const f = ftOf(m); return f ? f.center : null; };
+/* ADR-037: the score on a given day: a model with several snapshots applies each snapshot's own score from its date, so an in-place upgrade does not rewrite past days */
+const scoreOn = (m, dayT) => { const f = ftOf(m); if (!f) return null; const h = f.history; if (!h) return f.center; let c = h[0].center; for (const x of h) if (pd(x.date).t <= dayT) c = x.center; return c; };
 const isBand = (m) => { const f = ftOf(m); return !!f && !f.exact; };
 const band = (m) => { const f = ftOf(m); return f ? [f.low, f.high] : null; };
 const ftLabel = (m) => { const f = ftOf(m); return f ? (f.exact ? String(Math.round(f.center)) : `${f.low}–${f.high}`) : "—"; };
@@ -386,6 +389,8 @@ function ftWhy(s) {
   if (s.why === "excluded") return esc(s.note || "");
   if (s.why === "few_refs") return ZH ? `只有 ${s.n} 个参考模型` : `only ${s.n} reference models`;
   if (s.why === "low_r") return ZH ? `相关系数 ${s.r} 偏低` : `correlation ${s.r} too low`;
+  if (s.why === "older_snapshot") return ZH ? `旧快照（${esc(s.snapshot)}）的证据` : `evidence for an older snapshot (${esc(s.snapshot)})`;
+  if (s.why === "other_mode") return ZH ? "推理模式不同，不混算" : "a different reasoning mode, not mixed";
   if (s.why === "floor") return ZH ? "多数参考模型同分，无法拟合" : "most reference models share one score";
   return ZH ? "该基准尚无参考模型" : "no reference models for this benchmark";
 }
@@ -393,12 +398,13 @@ function ftPanel(m) {
   const f = m.ft, n = f.evidence;
   const row = (s) => s.method === "aa"
     ? `<li><a href="${esc(s.url)}" target="_blank" rel="noopener">Artificial Analysis</a> · ${esc(srcType(s.type))}</li>`
-    : `<li>${s.used ? `<b class="mono" title="${esc(Tx("this source alone puts the model at", "this source alone puts the model at"))}">${esc(s.implied)}</b> ` : ""}<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a>: ${esc(s.value)} · ${esc(srcType(s.type))}${s.used ? (s.peers_used ? (ZH ? ` · 对照同表模型换算（${esc(s.peers_used.join("、"))}）` : ` · read against ${esc(s.peers_used.join(", "))} in the same table`) : "") : ` · <span class="muted">${Tx("not used:", "not used:")} ${ftWhy(s)}</span>`}</li>`;
+    : `<li>${s.used ? `<b class="mono" title="${esc(Tx("this source alone puts the model at", "this source alone puts the model at"))}">${esc(s.implied)}</b> ` : ""}<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a>: ${esc(s.value)} · ${esc(srcType(s.type))}${s.snapshot ? ` · ${esc(s.snapshot)}` : ""}${s.used ? (s.peers_used ? (ZH ? ` · 对照同表模型换算（${esc(s.peers_used.join("、"))}）` : ` · read against ${esc(s.peers_used.join(", "))} in the same table`) : "") : ` · <span class="muted">${Tx("not used:", "not used:")} ${ftWhy(s)}</span>`}</li>`;
   const head = f.status === "ok"
     ? (ZH ? `${n} 个来源，其中 ${f.independent} 个独立于厂商：中心 ${f.center}${f.exact ? "" : f.disagree ? "，来源分歧较大，所以显示为区间" : "，来源不足 3 个或没有独立来源，所以显示为区间"}${f.disagree && f.exact ? " · 来源分歧较大" : ""}。` + (f.vendor_only ? " 全部是厂商自报，可信度低。" : "")
            : `${n} source${n === 1 ? "" : "s"}, ${f.independent} independent of the vendor: centre ${f.center}${f.exact ? "" : f.disagree ? "; the sources disagree widely, so shown as a band" : "; fewer than 3 sources or none independent, so shown as a band"}${f.disagree && f.exact ? " · sources disagree widely" : ""}.` + (f.vendor_only ? " Vendor claims only: low confidence." : ""))
     : (ZH ? "暂时没有可用来源。" : "No usable source yet.");
-  return `<div class="estpanel"><p>${head}</p><ul>${f.sources.map(row).join("")}</ul><p class="muted"><a href="https://github.com/dimpurr/freetokens/blob/main/METHOD.md">${Tx("how FTI is computed", "how FTI is computed")}</a></p></div>`;
+  const stale = f.stale_snapshot ? (ZH ? " 当前快照还没有证据，这里用的是旧快照的证据，所以显示为区间。" : " No evidence for the current snapshot yet: this comes from an older snapshot, so it is shown as a band.") : "";
+  return `<div class="estpanel"><p>${head}${stale}</p><ul>${f.sources.map(row).join("")}</ul><p class="muted"><a href="https://github.com/dimpurr/freetokens/blob/main/METHOD.md">${Tx("how FTI is computed", "how FTI is computed")}</a></p></div>`;
 }
 function ftHTML(m, bare) {
   const f = ftOf(m), has = m.ft && m.ft.sources && m.ft.sources.length;

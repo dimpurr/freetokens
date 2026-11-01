@@ -225,24 +225,103 @@
    "center": 20,
    "low": 20,
    "high": 20,
-   "evidence": 3,
-   "independent": 3,
+   "evidence": 4,
+   "independent": 4,
    "exact": true,
    "vendor_only": false,
    "disagree": false,
    "method": "fit",
-   "spread": 3,
+   "spread": 6,
    "sources": [
+    {
+     "name": "Chess Puzzles (Epoch AI)",
+     "benchmark": "epoch_chess_puzzles",
+     "value": 32.0,
+     "url": "https://epoch.ai/benchmarks",
+     "type": "third_party",
+     "snapshot": "0731",
+     "r": 0.786,
+     "n": 49,
+     "used": true,
+     "implied": 23.5,
+     "method": "fit"
+    },
+    {
+     "name": "Epoch Capabilities Index (Epoch AI)",
+     "benchmark": "epoch_eci",
+     "value": 154.94,
+     "url": "https://epoch.ai/benchmarks",
+     "type": "third_party",
+     "snapshot": "0731",
+     "r": 0.893,
+     "n": 97,
+     "used": true,
+     "implied": 25.5,
+     "method": "fit"
+    },
+    {
+     "name": "FrontierMath-Tier-4-v2-Private (Epoch AI)",
+     "benchmark": "epoch_frontiermath_tier_4_v2",
+     "value": 24.39,
+     "url": "https://epoch.ai/benchmarks",
+     "type": "third_party",
+     "snapshot": "0731",
+     "r": 0.875,
+     "n": 45,
+     "used": true,
+     "implied": 21.0,
+     "method": "fit"
+    },
+    {
+     "name": "FrontierMath-Tiers-1-3-v2-Private (Epoch AI)",
+     "benchmark": "epoch_frontiermath_tiers_1_3_v2",
+     "value": 57.54,
+     "url": "https://epoch.ai/benchmarks",
+     "type": "third_party",
+     "snapshot": "0731",
+     "r": 0.866,
+     "n": 51,
+     "used": true,
+     "implied": 23.2,
+     "method": "fit"
+    },
     {
      "name": "GPQA Diamond",
      "benchmark": "gpqa_diamond",
      "value": 89.9,
      "url": "https://www.vals.ai/benchmarks/gpqa",
      "type": "third_party",
+     "snapshot": "0731",
      "r": 0.614,
      "n": 68,
      "used": true,
      "implied": 19.8,
+     "method": "fit"
+    },
+    {
+     "name": "Mystery Game Puzzles (Epoch AI)",
+     "benchmark": "epoch_mystery_game_puzzles",
+     "value": 34.0,
+     "url": "https://epoch.ai/benchmarks",
+     "type": "third_party",
+     "snapshot": "0731",
+     "r": 0.884,
+     "n": 51,
+     "used": true,
+     "implied": 26.8,
+     "method": "fit"
+    },
+    {
+     "name": "OTIS Mock AIME 2024-2025 (Epoch AI)",
+     "benchmark": "epoch_otis_mock_aime_2024_2025",
+     "value": 94.44,
+     "url": "https://epoch.ai/benchmarks",
+     "type": "third_party",
+     "snapshot": "0731",
+     "r": 0.602,
+     "n": 71,
+     "used": true,
+     "implied": 26.9,
      "method": "fit"
     },
     {
@@ -258,6 +337,19 @@
      "method": "fit"
     },
     {
+     "name": "SimpleQA Verified (Epoch AI)",
+     "benchmark": "epoch_simpleqa_verified",
+     "value": 33.63,
+     "url": "https://epoch.ai/benchmarks",
+     "type": "third_party",
+     "snapshot": "0731",
+     "r": 0.709,
+     "n": 50,
+     "used": true,
+     "implied": 16.9,
+     "method": "fit"
+    },
+    {
      "name": "Terminal-Bench 2.1",
      "benchmark": "terminal_bench_2_1",
      "value": 58.62,
@@ -268,6 +360,20 @@
      "used": true,
      "implied": 19.5,
      "method": "fit"
+    }
+   ],
+   "snapshot": "0731",
+   "unattributed": 2,
+   "history": [
+    {
+     "id": "0420",
+     "date": "2026-04-24",
+     "center": 20
+    },
+    {
+     "id": "0731",
+     "date": "2026-07-31",
+     "center": 20
     }
    ]
   },
@@ -299,9 +405,9 @@
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
      "r": 0.893,
-     "n": 95,
+     "n": 97,
      "used": true,
-     "implied": 13.6,
+     "implied": 13.5,
      "method": "fit"
     },
     {
@@ -322,10 +428,10 @@
      "value": 20.0,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.885,
-     "n": 49,
+     "r": 0.884,
+     "n": 51,
      "used": true,
-     "implied": 18.5,
+     "implied": 18.3,
      "method": "fit"
     },
     {
@@ -334,10 +440,10 @@
      "value": 86.67,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.601,
-     "n": 69,
+     "r": 0.602,
+     "n": 71,
      "used": true,
-     "implied": 23.5,
+     "implied": 23.4,
      "method": "fit"
     },
     {
@@ -459,9 +565,9 @@
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
      "r": 0.893,
-     "n": 95,
+     "n": 97,
      "used": true,
-     "implied": 8.1,
+     "implied": 8.0,
      "method": "fit"
     },
     {
@@ -470,10 +576,10 @@
      "value": 82.22,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.601,
-     "n": 69,
+     "r": 0.602,
+     "n": 71,
      "used": true,
-     "implied": 21.5,
+     "implied": 21.4,
      "method": "fit"
     }
    ]
@@ -571,7 +677,7 @@
    "vendor_only": false,
    "disagree": false,
    "method": "fit",
-   "spread": 4,
+   "spread": 5,
    "sources": [
     {
      "name": "Epoch Capabilities Index (Epoch AI)",
@@ -580,9 +686,9 @@
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
      "r": 0.893,
-     "n": 95,
+     "n": 97,
      "used": true,
-     "implied": 13.4,
+     "implied": 13.3,
      "method": "fit"
     },
     {
@@ -662,10 +768,10 @@
      "value": 13.0,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.784,
-     "n": 47,
+     "r": 0.786,
+     "n": 49,
      "used": true,
-     "implied": 11.7,
+     "implied": 11.6,
      "method": "fit"
     },
     {
@@ -675,9 +781,9 @@
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
      "r": 0.893,
-     "n": 95,
+     "n": 97,
      "used": true,
-     "implied": 14.8,
+     "implied": 14.7,
      "method": "fit"
     },
     {
@@ -698,10 +804,10 @@
      "value": 8.0,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.885,
-     "n": 49,
+     "r": 0.884,
+     "n": 51,
      "used": true,
-     "implied": 11.2,
+     "implied": 11.1,
      "method": "fit"
     },
     {
@@ -710,8 +816,8 @@
      "value": 71.11,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.601,
-     "n": 69,
+     "r": 0.602,
+     "n": 71,
      "used": true,
      "implied": 16.5,
      "method": "fit"
@@ -744,24 +850,88 @@
   },
   "nemotron-3-super-120b-a12b": {
    "status": "ok",
-   "center": 7,
+   "center": 8,
    "low": 5,
    "high": 10,
-   "evidence": 1,
-   "independent": 1,
+   "evidence": 3,
+   "independent": 0,
    "exact": false,
-   "vendor_only": false,
+   "vendor_only": true,
    "disagree": false,
-   "method": "aa",
-   "spread": 0,
+   "method": "fit",
+   "spread": 1,
    "sources": [
     {
-     "name": "Artificial Analysis",
-     "benchmark": "artificial_analysis",
-     "url": "https://artificialanalysis.ai/models/nvidia-nemotron-3-super-120b-a12b",
-     "type": "third_party",
+     "name": "Humanity's Last Exam",
+     "benchmark": "hle",
+     "value": 18.26,
+     "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16/raw/main/README.md",
+     "type": "vendor",
+     "r": 0.737,
+     "n": 46,
      "used": true,
-     "method": "aa"
+     "implied": 8.3,
+     "method": "fit"
+    },
+    {
+     "name": "LiveCodeBench",
+     "benchmark": "livecodebench",
+     "value": 81.19,
+     "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16/raw/main/README.md",
+     "type": "vendor",
+     "r": 0.757,
+     "n": 9,
+     "used": true,
+     "implied": 7.7,
+     "method": "fit"
+    },
+    {
+     "name": "tau-bench (airline + retail + telecom)",
+     "benchmark": "tau_bench",
+     "value": 61.15,
+     "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16/raw/main/README.md",
+     "type": "vendor",
+     "r": 0.813,
+     "n": 6,
+     "used": true,
+     "implied": 7.7,
+     "method": "fit"
+    },
+    {
+     "name": "gpqa",
+     "benchmark": "gpqa",
+     "value": 79.23,
+     "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16/raw/main/README.md",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "swe bench multilingual",
+     "benchmark": "swe_bench_multilingual",
+     "value": 45.78,
+     "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16/raw/main/README.md",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "swe bench openhands",
+     "benchmark": "swe_bench_openhands",
+     "value": 60.47,
+     "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16/raw/main/README.md",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "terminal bench 2 0",
+     "benchmark": "terminal_bench_2_0",
+     "value": 31.0,
+     "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16/raw/main/README.md",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
     }
    ]
   },
@@ -1036,13 +1206,13 @@
    "center": 12,
    "low": 9,
    "high": 14,
-   "evidence": 1,
+   "evidence": 2,
    "independent": 1,
    "exact": false,
    "vendor_only": false,
    "disagree": false,
-   "method": "aa",
-   "spread": 0,
+   "method": "fit",
+   "spread": 3,
    "sources": [
     {
      "name": "Artificial Analysis",
@@ -1051,6 +1221,36 @@
      "type": "third_party",
      "used": true,
      "method": "aa"
+    },
+    {
+     "name": "SWE-bench Pro (public)",
+     "benchmark": "swe_bench_pro",
+     "value": 57.9,
+     "url": "https://www.i-scoop.eu/hy3-by-tencent-brings-the-open-frontier-within-reach/",
+     "type": "vendor",
+     "r": 0.6,
+     "n": 23,
+     "used": true,
+     "implied": 15.0,
+     "method": "fit"
+    },
+    {
+     "name": "browsecomp",
+     "benchmark": "browsecomp",
+     "value": 84.2,
+     "url": "https://www.i-scoop.eu/hy3-by-tencent-brings-the-open-frontier-within-reach/",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "matharena apex",
+     "benchmark": "matharena_apex",
+     "value": 38.7,
+     "url": "https://www.i-scoop.eu/hy3-by-tencent-brings-the-open-frontier-within-reach/",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
     }
    ]
   },
@@ -1100,10 +1300,49 @@
      "method": "fit"
     },
     {
+     "name": "SWE-bench Verified",
+     "benchmark": "swe_bench_verified",
+     "value": 74.4,
+     "url": "https://decrypt.co/365297/tencent-hy3-preview-open-source-moe-model",
+     "type": "vendor",
+     "r": 0.636,
+     "n": 29,
+     "used": true,
+     "implied": 10.9,
+     "method": "fit"
+    },
+    {
+     "name": "browsecomp",
+     "benchmark": "browsecomp",
+     "value": 67.1,
+     "url": "https://decrypt.co/365297/tencent-hy3-preview-open-source-moe-model",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
      "name": "terminal bench 2 0",
      "benchmark": "terminal_bench_2_0",
      "value": 54.4,
      "url": "https://huggingface.co/tencent/Hy3-preview",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "terminal bench 2 0",
+     "benchmark": "terminal_bench_2_0",
+     "value": 54.4,
+     "url": "https://decrypt.co/365297/bitcoin-ethereum-metaverse-tokens-sink-further-after-holiday-crypto-rally?amp=1",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "wide search",
+     "benchmark": "wide_search",
+     "value": 70.2,
+     "url": "https://decrypt.co/365297/tencent-hy3-preview-open-source-moe-model",
      "type": "vendor",
      "used": false,
      "why": "no_refs"
@@ -1130,6 +1369,69 @@
      "type": "third_party",
      "used": true,
      "method": "aa"
+    },
+    {
+     "name": "charxiv rq",
+     "benchmark": "charxiv_rq",
+     "value": 81.3,
+     "url": "https://cdn-uploads.huggingface.co/production/uploads/6666ca359f5a0b3229238a1a/w-V0gtCa3qy0un6vuz-sj.png",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "claweval mm",
+     "benchmark": "claweval_mm",
+     "value": 59.9,
+     "url": "https://cdn-uploads.huggingface.co/production/uploads/6666ca359f5a0b3229238a1a/w-V0gtCa3qy0un6vuz-sj.png",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "mathvision",
+     "benchmark": "mathvision",
+     "value": 84.87,
+     "url": "https://cdn-uploads.huggingface.co/production/uploads/6666ca359f5a0b3229238a1a/w-V0gtCa3qy0un6vuz-sj.png",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "mmmu pro",
+     "benchmark": "mmmu_pro",
+     "value": 79.0,
+     "url": "https://cdn-uploads.huggingface.co/production/uploads/6666ca359f5a0b3229238a1a/w-V0gtCa3qy0un6vuz-sj.png",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "mmsearch",
+     "benchmark": "mmsearch",
+     "value": 79.0,
+     "url": "https://cdn-uploads.huggingface.co/production/uploads/6666ca359f5a0b3229238a1a/w-V0gtCa3qy0un6vuz-sj.png",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "omnidocbench 1 5",
+     "benchmark": "omnidocbench_1_5",
+     "value": 91.35,
+     "url": "https://cdn-uploads.huggingface.co/production/uploads/6666ca359f5a0b3229238a1a/w-V0gtCa3qy0un6vuz-sj.png",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "webvoyager",
+     "benchmark": "webvoyager",
+     "value": 90.83,
+     "url": "https://cdn-uploads.huggingface.co/production/uploads/6666ca359f5a0b3229238a1a/w-V0gtCa3qy0un6vuz-sj.png",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
     }
    ]
   },
@@ -1138,13 +1440,13 @@
    "center": 8,
    "low": 6,
    "high": 11,
-   "evidence": 1,
+   "evidence": 2,
    "independent": 1,
    "exact": false,
    "vendor_only": false,
    "disagree": false,
-   "method": "aa",
-   "spread": 0,
+   "method": "fit",
+   "spread": 2,
    "sources": [
     {
      "name": "Artificial Analysis",
@@ -1153,6 +1455,72 @@
      "type": "third_party",
      "used": true,
      "method": "aa"
+    },
+    {
+     "name": "SWE-bench Verified",
+     "benchmark": "swe_bench_verified",
+     "value": 72.2,
+     "url": "https://huggingface.co/api/models/inclusionAI/Ling-2.6-1T?expand[]=evalResults",
+     "type": "vendor",
+     "r": 0.636,
+     "n": 29,
+     "used": true,
+     "implied": 10.3,
+     "method": "fit"
+    },
+    {
+     "name": "bfcl v4",
+     "benchmark": "bfcl_v4",
+     "value": 70.64,
+     "url": "https://mdn.alipayobjects.com/huamei_fst7or/afts/img/Ykl9QZamkj0AAAAAgBAAAAgADpRXAQJr/original",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "claw eval",
+     "benchmark": "claw_eval",
+     "value": 51.0,
+     "url": "https://mdn.alipayobjects.com/huamei_fst7or/afts/img/Ykl9QZamkj0AAAAAgBAAAAgADpRXAQJr/original",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "ifbench",
+     "benchmark": "ifbench",
+     "value": 57.0,
+     "url": "https://mdn.alipayobjects.com/huamei_fst7or/afts/img/Ykl9QZamkj0AAAAAgBAAAAgADpRXAQJr/original",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "mrcr 16k 256k",
+     "benchmark": "mrcr_16k_256k",
+     "value": 80.37,
+     "url": "https://mdn.alipayobjects.com/huamei_fst7or/afts/img/Ykl9QZamkj0AAAAAgBAAAAgADpRXAQJr/original",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "pinchbench",
+     "benchmark": "pinchbench",
+     "value": 87.4,
+     "url": "https://mdn.alipayobjects.com/huamei_fst7or/afts/img/Ykl9QZamkj0AAAAAgBAAAAgADpRXAQJr/original",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "tau2 bench",
+     "benchmark": "tau2_bench",
+     "value": 78.36,
+     "url": "https://mdn.alipayobjects.com/huamei_fst7or/afts/img/Ykl9QZamkj0AAAAAgBAAAAgADpRXAQJr/original",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
     }
    ]
   },
@@ -1161,13 +1529,13 @@
    "center": 6,
    "low": 3,
    "high": 8,
-   "evidence": 1,
+   "evidence": 2,
    "independent": 1,
    "exact": false,
    "vendor_only": false,
    "disagree": false,
-   "method": "aa",
-   "spread": 0,
+   "method": "fit",
+   "spread": 2,
    "sources": [
     {
      "name": "Artificial Analysis",
@@ -1176,6 +1544,36 @@
      "type": "third_party",
      "used": true,
      "method": "aa"
+    },
+    {
+     "name": "SWE-bench Verified",
+     "benchmark": "swe_bench_verified",
+     "value": 61.2,
+     "url": "https://huggingface.co/inclusionAI/Ling-2.6-flash",
+     "type": "vendor",
+     "r": 0.636,
+     "n": 29,
+     "used": true,
+     "implied": 7.5,
+     "method": "fit"
+    },
+    {
+     "name": "aime 2026",
+     "benchmark": "aime_2026",
+     "value": 73.85,
+     "url": "https://huggingface.co/inclusionAI/Ling-2.6-flash",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "hmmt feb 2026",
+     "benchmark": "hmmt_feb_2026",
+     "value": 49.29,
+     "url": "https://huggingface.co/inclusionAI/Ling-2.6-flash",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
     }
    ]
   },
@@ -1184,13 +1582,13 @@
    "center": 8,
    "low": 6,
    "high": 11,
-   "evidence": 1,
+   "evidence": 2,
    "independent": 1,
    "exact": false,
    "vendor_only": false,
    "disagree": false,
-   "method": "aa",
-   "spread": 0,
+   "method": "fit",
+   "spread": 8,
    "sources": [
     {
      "name": "Artificial Analysis",
@@ -1199,21 +1597,78 @@
      "type": "third_party",
      "used": true,
      "method": "aa"
+    },
+    {
+     "name": "GPQA Diamond",
+     "benchmark": "gpqa_diamond",
+     "value": 88.27,
+     "url": "https://huggingface.co/inclusionAI/Ring-2.6-1T",
+     "type": "vendor",
+     "r": 0.66,
+     "n": 23,
+     "used": true,
+     "implied": 15.7,
+     "method": "fit"
+    },
+    {
+     "name": "aime 2026",
+     "benchmark": "aime_2026",
+     "value": 95.83,
+     "url": "https://huggingface.co/inclusionAI/Ring-2.6-1T",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "arc agi v2",
+     "benchmark": "arc_agi_v2",
+     "value": 66.18,
+     "url": "https://huggingface.co/inclusionAI/Ring-2.6-1T",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "claw eval",
+     "benchmark": "claw_eval",
+     "value": 63.82,
+     "url": "https://huggingface.co/inclusionAI/Ring-2.6-1T",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "pinchbench",
+     "benchmark": "pinchbench",
+     "value": 87.6,
+     "url": "https://huggingface.co/inclusionAI/Ring-2.6-1T",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "tau2 bench telecom",
+     "benchmark": "tau2_bench_telecom",
+     "value": 95.32,
+     "url": "https://huggingface.co/inclusionAI/Ring-2.6-1T",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
     }
    ]
   },
   "deepseek-v4.1-flash": {
    "status": "ok",
    "center": 32,
-   "low": 30,
-   "high": 35,
-   "evidence": 4,
+   "low": 32,
+   "high": 32,
+   "evidence": 3,
    "independent": 3,
-   "exact": false,
+   "exact": true,
    "vendor_only": false,
-   "disagree": true,
+   "disagree": false,
    "method": "fit",
-   "spread": 17,
+   "spread": 3,
    "sources": [
     {
      "name": "AI Coding Daily LLM Coding Leaderboard",
@@ -1236,16 +1691,105 @@
      "method": "aa"
     },
     {
+     "name": "Chess Puzzles (Epoch AI)",
+     "benchmark": "epoch_chess_puzzles",
+     "value": 46.0,
+     "url": "https://epoch.ai/benchmarks",
+     "type": "third_party",
+     "snapshot": "1017",
+     "r": 0.786,
+     "n": 49,
+     "used": true,
+     "implied": 32.3,
+     "method": "fit"
+    },
+    {
+     "name": "Epoch Capabilities Index (Epoch AI)",
+     "benchmark": "epoch_eci",
+     "value": 158.83,
+     "url": "https://epoch.ai/benchmarks",
+     "type": "third_party",
+     "snapshot": "1017",
+     "r": 0.893,
+     "n": 97,
+     "used": true,
+     "implied": 30.8,
+     "method": "fit"
+    },
+    {
+     "name": "FrontierMath-Tier-4-v2-Private (Epoch AI)",
+     "benchmark": "epoch_frontiermath_tier_4_v2",
+     "value": 46.34,
+     "url": "https://epoch.ai/benchmarks",
+     "type": "third_party",
+     "snapshot": "1017",
+     "r": 0.875,
+     "n": 45,
+     "used": true,
+     "implied": 29.8,
+     "method": "fit"
+    },
+    {
+     "name": "FrontierMath-Tiers-1-3-v2-Private (Epoch AI)",
+     "benchmark": "epoch_frontiermath_tiers_1_3_v2",
+     "value": 71.23,
+     "url": "https://epoch.ai/benchmarks",
+     "type": "third_party",
+     "snapshot": "1017",
+     "r": 0.866,
+     "n": 51,
+     "used": true,
+     "implied": 31.6,
+     "method": "fit"
+    },
+    {
+     "name": "Mystery Game Puzzles (Epoch AI)",
+     "benchmark": "epoch_mystery_game_puzzles",
+     "value": 49.0,
+     "url": "https://epoch.ai/benchmarks",
+     "type": "third_party",
+     "snapshot": "1017",
+     "r": 0.884,
+     "n": 51,
+     "used": true,
+     "implied": 35.9,
+     "method": "fit"
+    },
+    {
+     "name": "OTIS Mock AIME 2024-2025 (Epoch AI)",
+     "benchmark": "epoch_otis_mock_aime_2024_2025",
+     "value": 99.44,
+     "url": "https://epoch.ai/benchmarks",
+     "type": "third_party",
+     "snapshot": "1017",
+     "r": 0.602,
+     "n": 71,
+     "used": true,
+     "implied": 29.1,
+     "method": "fit"
+    },
+    {
+     "name": "SimpleQA Verified (Epoch AI)",
+     "benchmark": "epoch_simpleqa_verified",
+     "value": 42.5,
+     "url": "https://epoch.ai/benchmarks",
+     "type": "third_party",
+     "snapshot": "1017",
+     "r": 0.709,
+     "n": 50,
+     "used": true,
+     "implied": 22.6,
+     "method": "fit"
+    },
+    {
      "name": "GPQA Diamond",
      "benchmark": "gpqa_diamond",
      "value": 90.9,
      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
      "type": "vendor",
-     "r": 0.66,
-     "n": 23,
-     "used": true,
-     "implied": 16.9,
-     "method": "fit"
+     "snapshot": "0910",
+     "used": false,
+     "why": "older_snapshot"
     },
     {
      "name": "Humanity's Last Exam",
@@ -1253,11 +1797,23 @@
      "value": 36.8,
      "url": "https://llm-stats.com/benchmarks/humanity%27s-last-exam",
      "type": "third_party",
-     "r": 0.737,
-     "n": 46,
-     "used": true,
-     "implied": 16.3,
-     "method": "fit"
+     "snapshot": "0910",
+     "used": false,
+     "why": "older_snapshot"
+    }
+   ],
+   "snapshot": "1017",
+   "unattributed": 1,
+   "history": [
+    {
+     "id": "0910",
+     "date": "2026-09-10",
+     "center": 16
+    },
+    {
+     "id": "1017",
+     "date": "2026-10-17",
+     "center": 32
     }
    ]
   },
@@ -1440,6 +1996,60 @@
      "type": "third_party",
      "used": true,
      "method": "aa"
+    },
+    {
+     "name": "docvqa test",
+     "benchmark": "docvqa_test",
+     "value": 95.6,
+     "url": "https://arxiv.org/html/2604.24954v2",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "mathvista mini",
+     "benchmark": "mathvista_mini",
+     "value": 82.8,
+     "url": "https://arxiv.org/html/2604.24954v2",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "mmmu val",
+     "benchmark": "mmmu_val",
+     "value": 70.8,
+     "url": "https://arxiv.org/html/2604.24954v2",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "osworld",
+     "benchmark": "osworld",
+     "value": 47.4,
+     "url": "https://arxiv.org/html/2604.24954v2",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "screenspot pro",
+     "benchmark": "screenspot_pro",
+     "value": 57.8,
+     "url": "https://arxiv.org/html/2604.24954v2",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "videomme wo sub",
+     "benchmark": "videomme_wo_sub",
+     "value": 72.2,
+     "url": "https://arxiv.org/html/2604.24954v2",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
     }
    ]
   },
@@ -1708,7 +2318,7 @@
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
      "r": 0.893,
-     "n": 95,
+     "n": 97,
      "used": true,
      "implied": 19.5,
      "method": "fit"
@@ -1719,8 +2329,8 @@
      "value": 17.07,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.874,
-     "n": 43,
+     "r": 0.875,
+     "n": 45,
      "used": true,
      "implied": 18.0,
      "method": "fit"
@@ -1731,10 +2341,10 @@
      "value": 46.32,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.865,
-     "n": 49,
+     "r": 0.866,
+     "n": 51,
      "used": true,
-     "implied": 16.4,
+     "implied": 16.3,
      "method": "fit"
     },
     {
@@ -1767,10 +2377,10 @@
      "value": 6.0,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.885,
-     "n": 49,
+     "r": 0.884,
+     "n": 51,
      "used": true,
-     "implied": 10.0,
+     "implied": 9.8,
      "method": "fit"
     },
     {
@@ -1779,10 +2389,10 @@
      "value": 90.0,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.601,
-     "n": 69,
+     "r": 0.602,
+     "n": 71,
      "used": true,
-     "implied": 25.0,
+     "implied": 24.9,
      "method": "fit"
     },
     {
@@ -1803,10 +2413,10 @@
      "value": 19.1,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.713,
-     "n": 48,
+     "r": 0.709,
+     "n": 50,
      "used": true,
-     "implied": 6.9,
+     "implied": 7.6,
      "method": "fit"
     },
     {
@@ -1851,7 +2461,7 @@
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
      "r": 0.893,
-     "n": 95,
+     "n": 97,
      "used": true,
      "implied": 9.6,
      "method": "fit"
@@ -1862,10 +2472,10 @@
      "value": 73.33,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.601,
-     "n": 69,
+     "r": 0.602,
+     "n": 71,
      "used": true,
-     "implied": 17.5,
+     "implied": 17.4,
      "method": "fit"
     },
     {
@@ -1874,10 +2484,10 @@
      "value": 10.4,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.713,
-     "n": 48,
+     "r": 0.709,
+     "n": 50,
      "used": true,
-     "implied": 1.2,
+     "implied": 2.0,
      "method": "fit"
     }
    ]
@@ -1909,10 +2519,10 @@
      "value": 21.0,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.784,
-     "n": 47,
+     "r": 0.786,
+     "n": 49,
      "used": true,
-     "implied": 16.7,
+     "implied": 16.6,
      "method": "fit"
     },
     {
@@ -1922,7 +2532,7 @@
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
      "r": 0.893,
-     "n": 95,
+     "n": 97,
      "used": true,
      "implied": 16.9,
      "method": "fit"
@@ -1933,8 +2543,8 @@
      "value": 4.88,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.874,
-     "n": 43,
+     "r": 0.875,
+     "n": 45,
      "used": true,
      "implied": 13.1,
      "method": "fit"
@@ -1945,10 +2555,10 @@
      "value": 33.33,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.865,
-     "n": 49,
+     "r": 0.866,
+     "n": 51,
      "used": true,
-     "implied": 8.4,
+     "implied": 8.3,
      "method": "fit"
     },
     {
@@ -1957,10 +2567,10 @@
      "value": 88.89,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.601,
-     "n": 69,
+     "r": 0.602,
+     "n": 71,
      "used": true,
-     "implied": 24.5,
+     "implied": 24.4,
      "method": "fit"
     },
     {
@@ -1969,10 +2579,10 @@
      "value": 40.3,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.713,
-     "n": 48,
+     "r": 0.709,
+     "n": 50,
      "used": true,
-     "implied": 20.7,
+     "implied": 21.2,
      "method": "fit"
     }
    ]
@@ -2212,12 +2822,12 @@
    "center": 11,
    "low": 9,
    "high": 14,
-   "evidence": 1,
+   "evidence": 2,
    "independent": 1,
    "exact": false,
    "vendor_only": false,
    "disagree": false,
-   "method": "aa",
+   "method": "fit",
    "spread": 0,
    "sources": [
     {
@@ -2227,6 +2837,27 @@
      "type": "third_party",
      "used": true,
      "method": "aa"
+    },
+    {
+     "name": "Humanity's Last Exam",
+     "benchmark": "hle",
+     "value": 25.8,
+     "url": "https://www.upstage.ai/blog/en/solar-mini-4",
+     "type": "vendor",
+     "r": 0.737,
+     "n": 46,
+     "used": true,
+     "implied": 11.6,
+     "method": "fit"
+    },
+    {
+     "name": "tau3 banking",
+     "benchmark": "tau3_banking",
+     "value": 47.2,
+     "url": "https://www.upstage.ai/blog/en/solar-mini-4",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
     }
    ]
   },
@@ -2249,10 +2880,10 @@
      "value": 21.0,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.784,
-     "n": 47,
+     "r": 0.786,
+     "n": 49,
      "used": true,
-     "implied": 16.7,
+     "implied": 16.6,
      "method": "fit"
     },
     {
@@ -2262,7 +2893,7 @@
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
      "r": 0.893,
-     "n": 95,
+     "n": 97,
      "used": true,
      "implied": 23.2,
      "method": "fit"
@@ -2273,8 +2904,8 @@
      "value": 17.07,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.874,
-     "n": 43,
+     "r": 0.875,
+     "n": 45,
      "used": true,
      "implied": 18.0,
      "method": "fit"
@@ -2285,10 +2916,10 @@
      "value": 55.79,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.865,
-     "n": 49,
+     "r": 0.866,
+     "n": 51,
      "used": true,
-     "implied": 22.2,
+     "implied": 22.1,
      "method": "fit"
     },
     {
@@ -2321,10 +2952,10 @@
      "value": 8.0,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.885,
-     "n": 49,
+     "r": 0.884,
+     "n": 51,
      "used": true,
-     "implied": 11.2,
+     "implied": 11.1,
      "method": "fit"
     },
     {
@@ -2333,8 +2964,8 @@
      "value": 93.89,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.601,
-     "n": 69,
+     "r": 0.602,
+     "n": 71,
      "used": true,
      "implied": 26.7,
      "method": "fit"
@@ -2404,10 +3035,10 @@
      "value": 36.0,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.784,
-     "n": 47,
+     "r": 0.786,
+     "n": 49,
      "used": true,
-     "implied": 26.1,
+     "implied": 26.0,
      "method": "fit"
     },
     {
@@ -2417,7 +3048,7 @@
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
      "r": 0.893,
-     "n": 95,
+     "n": 97,
      "used": true,
      "implied": 28.0,
      "method": "fit"
@@ -2428,8 +3059,8 @@
      "value": 56.1,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.874,
-     "n": 43,
+     "r": 0.875,
+     "n": 45,
      "used": true,
      "implied": 33.7,
      "method": "fit"
@@ -2440,10 +3071,10 @@
      "value": 78.95,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.865,
-     "n": 49,
+     "r": 0.866,
+     "n": 51,
      "used": true,
-     "implied": 36.4,
+     "implied": 36.3,
      "method": "fit"
     },
     {
@@ -2476,10 +3107,10 @@
      "value": 7.0,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.885,
-     "n": 49,
+     "r": 0.884,
+     "n": 51,
      "used": true,
-     "implied": 10.6,
+     "implied": 10.4,
      "method": "fit"
     },
     {
@@ -2488,10 +3119,10 @@
      "value": 98.89,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.601,
-     "n": 69,
+     "r": 0.602,
+     "n": 71,
      "used": true,
-     "implied": 29.0,
+     "implied": 28.9,
      "method": "fit"
     },
     {
@@ -2500,10 +3131,10 @@
      "value": 41.4,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.713,
-     "n": 48,
+     "r": 0.709,
+     "n": 50,
      "used": true,
-     "implied": 21.4,
+     "implied": 21.9,
      "method": "fit"
     },
     {
@@ -2606,8 +3237,8 @@
      "value": 68.0,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.784,
-     "n": 47,
+     "r": 0.786,
+     "n": 49,
      "used": true,
      "implied": 46.2,
      "method": "fit"
@@ -2631,9 +3262,9 @@
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
      "r": 0.893,
-     "n": 95,
+     "n": 97,
      "used": true,
-     "implied": 42.9,
+     "implied": 42.8,
      "method": "fit"
     },
     {
@@ -2642,10 +3273,10 @@
      "value": 100.0,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.874,
-     "n": 43,
+     "r": 0.875,
+     "n": 45,
      "used": true,
-     "implied": 51.3,
+     "implied": 51.4,
      "method": "fit"
     },
     {
@@ -2654,8 +3285,8 @@
      "value": 93.68,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.865,
-     "n": 49,
+     "r": 0.866,
+     "n": 51,
      "used": true,
      "implied": 45.4,
      "method": "fit"
@@ -2678,10 +3309,10 @@
      "value": 80.0,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.885,
-     "n": 49,
+     "r": 0.884,
+     "n": 51,
      "used": true,
-     "implied": 54.9,
+     "implied": 54.6,
      "method": "fit"
     },
     {
@@ -2690,10 +3321,10 @@
      "value": 100.0,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.601,
-     "n": 69,
+     "r": 0.602,
+     "n": 71,
      "used": true,
-     "implied": 29.5,
+     "implied": 29.4,
      "method": "fit"
     },
     {
@@ -2702,8 +3333,8 @@
      "value": 73.9,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.713,
-     "n": 48,
+     "r": 0.709,
+     "n": 50,
      "used": true,
      "implied": 42.7,
      "method": "fit"
@@ -2753,10 +3384,10 @@
      "value": 58.33,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.601,
-     "n": 69,
+     "r": 0.602,
+     "n": 71,
      "used": true,
-     "implied": 10.8,
+     "implied": 10.7,
      "method": "fit"
     },
     {
@@ -2843,8 +3474,8 @@
      "value": 2.5,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.601,
-     "n": 69,
+     "r": 0.602,
+     "n": 71,
      "used": true,
      "implied": 0.0,
      "method": "fit"
@@ -2879,7 +3510,7 @@
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
      "r": 0.893,
-     "n": 95,
+     "n": 97,
      "used": true,
      "implied": 0.2,
      "method": "fit"
@@ -2890,10 +3521,10 @@
      "value": 56.11,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.601,
-     "n": 69,
+     "r": 0.602,
+     "n": 71,
      "used": true,
-     "implied": 9.8,
+     "implied": 9.7,
      "method": "fit"
     }
    ]
@@ -2941,8 +3572,8 @@
      "value": 55.83,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.601,
-     "n": 69,
+     "r": 0.602,
+     "n": 71,
      "used": true,
      "implied": 9.6,
      "method": "fit"
@@ -3146,8 +3777,8 @@
      "value": 43.89,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.601,
-     "n": 69,
+     "r": 0.602,
+     "n": 71,
      "used": true,
      "implied": 4.3,
      "method": "fit"
@@ -3220,8 +3851,8 @@
      "value": 58.0,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.784,
-     "n": 47,
+     "r": 0.786,
+     "n": 49,
      "used": true,
      "implied": 39.9,
      "method": "fit"
@@ -3233,7 +3864,7 @@
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
      "r": 0.893,
-     "n": 95,
+     "n": 97,
      "used": true,
      "implied": 29.2,
      "method": "fit"
@@ -3244,10 +3875,10 @@
      "value": 21.95,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.874,
-     "n": 43,
+     "r": 0.875,
+     "n": 45,
      "used": true,
-     "implied": 19.9,
+     "implied": 20.0,
      "method": "fit"
     },
     {
@@ -3256,8 +3887,8 @@
      "value": 68.42,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.865,
-     "n": 49,
+     "r": 0.866,
+     "n": 51,
      "used": true,
      "implied": 29.9,
      "method": "fit"
@@ -3292,10 +3923,10 @@
      "value": 47.0,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.885,
-     "n": 49,
+     "r": 0.884,
+     "n": 51,
      "used": true,
-     "implied": 34.9,
+     "implied": 34.7,
      "method": "fit"
     },
     {
@@ -3304,10 +3935,10 @@
      "value": 98.89,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.601,
-     "n": 69,
+     "r": 0.602,
+     "n": 71,
      "used": true,
-     "implied": 29.0,
+     "implied": 28.9,
      "method": "fit"
     },
     {
@@ -3328,10 +3959,10 @@
      "value": 69.7,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.713,
-     "n": 48,
+     "r": 0.709,
+     "n": 50,
      "used": true,
-     "implied": 39.9,
+     "implied": 40.0,
      "method": "fit"
     }
    ]
@@ -3363,8 +3994,8 @@
      "value": 66.0,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.784,
-     "n": 47,
+     "r": 0.786,
+     "n": 49,
      "used": true,
      "implied": 44.9,
      "method": "fit"
@@ -3376,7 +4007,7 @@
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
      "r": 0.893,
-     "n": 95,
+     "n": 97,
      "used": true,
      "implied": 29.9,
      "method": "fit"
@@ -3387,10 +4018,10 @@
      "value": 36.59,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.874,
-     "n": 43,
+     "r": 0.875,
+     "n": 45,
      "used": true,
-     "implied": 25.8,
+     "implied": 25.9,
      "method": "fit"
     },
     {
@@ -3399,10 +4030,10 @@
      "value": 71.58,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.865,
-     "n": 49,
+     "r": 0.866,
+     "n": 51,
      "used": true,
-     "implied": 31.9,
+     "implied": 31.8,
      "method": "fit"
     },
     {
@@ -3447,10 +4078,10 @@
      "value": 37.0,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.885,
-     "n": 49,
+     "r": 0.884,
+     "n": 51,
      "used": true,
-     "implied": 28.8,
+     "implied": 28.6,
      "method": "fit"
     },
     {
@@ -3459,8 +4090,8 @@
      "value": 97.22,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.601,
-     "n": 69,
+     "r": 0.602,
+     "n": 71,
      "used": true,
      "implied": 28.2,
      "method": "fit"
@@ -3483,10 +4114,10 @@
      "value": 69.2,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.713,
-     "n": 48,
+     "r": 0.709,
+     "n": 50,
      "used": true,
-     "implied": 39.6,
+     "implied": 39.7,
      "method": "fit"
     },
     {
@@ -3530,10 +4161,10 @@
      "value": 42.0,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.784,
-     "n": 47,
+     "r": 0.786,
+     "n": 49,
      "used": true,
-     "implied": 29.9,
+     "implied": 29.8,
      "method": "fit"
     },
     {
@@ -3543,7 +4174,7 @@
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
      "r": 0.893,
-     "n": 95,
+     "n": 97,
      "used": true,
      "implied": 25.2,
      "method": "fit"
@@ -3554,10 +4185,10 @@
      "value": 21.95,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.874,
-     "n": 43,
+     "r": 0.875,
+     "n": 45,
      "used": true,
-     "implied": 19.9,
+     "implied": 20.0,
      "method": "fit"
     },
     {
@@ -3566,8 +4197,8 @@
      "value": 58.95,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.865,
-     "n": 49,
+     "r": 0.866,
+     "n": 51,
      "used": true,
      "implied": 24.1,
      "method": "fit"
@@ -3602,10 +4233,10 @@
      "value": 30.0,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.885,
-     "n": 49,
+     "r": 0.884,
+     "n": 51,
      "used": true,
-     "implied": 24.6,
+     "implied": 24.4,
      "method": "fit"
     },
     {
@@ -3614,8 +4245,8 @@
      "value": 94.17,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.601,
-     "n": 69,
+     "r": 0.602,
+     "n": 71,
      "used": true,
      "implied": 26.8,
      "method": "fit"
@@ -3638,10 +4269,10 @@
      "value": 66.2,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.713,
-     "n": 48,
+     "r": 0.709,
+     "n": 50,
      "used": true,
-     "implied": 37.6,
+     "implied": 37.7,
      "method": "fit"
     },
     {
@@ -3677,10 +4308,10 @@
      "value": 45.0,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.784,
-     "n": 47,
+     "r": 0.786,
+     "n": 49,
      "used": true,
-     "implied": 31.8,
+     "implied": 31.7,
      "method": "fit"
     },
     {
@@ -3702,9 +4333,9 @@
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
      "r": 0.893,
-     "n": 95,
+     "n": 97,
      "used": true,
-     "implied": 25.7,
+     "implied": 25.6,
      "method": "fit"
     },
     {
@@ -3737,8 +4368,8 @@
      "value": 26.83,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.874,
-     "n": 43,
+     "r": 0.875,
+     "n": 45,
      "used": true,
      "implied": 21.9,
      "method": "fit"
@@ -3749,10 +4380,10 @@
      "value": 62.81,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.865,
-     "n": 49,
+     "r": 0.866,
+     "n": 51,
      "used": true,
-     "implied": 26.5,
+     "implied": 26.4,
      "method": "fit"
     },
     {
@@ -3785,10 +4416,10 @@
      "value": 32.0,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.885,
-     "n": 49,
+     "r": 0.884,
+     "n": 51,
      "used": true,
-     "implied": 25.8,
+     "implied": 25.6,
      "method": "fit"
     },
     {
@@ -3797,10 +4428,10 @@
      "value": 95.56,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.601,
-     "n": 69,
+     "r": 0.602,
+     "n": 71,
      "used": true,
-     "implied": 27.5,
+     "implied": 27.4,
      "method": "fit"
     },
     {
@@ -3821,10 +4452,10 @@
      "value": 66.2,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.713,
-     "n": 48,
+     "r": 0.709,
+     "n": 50,
      "used": true,
-     "implied": 37.6,
+     "implied": 37.7,
      "method": "fit"
     },
     {
@@ -3860,10 +4491,10 @@
      "value": 21.0,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.784,
-     "n": 47,
+     "r": 0.786,
+     "n": 49,
      "used": true,
-     "implied": 16.7,
+     "implied": 16.6,
      "method": "fit"
     },
     {
@@ -3873,7 +4504,7 @@
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
      "r": 0.893,
-     "n": 95,
+     "n": 97,
      "used": true,
      "implied": 12.1,
      "method": "fit"
@@ -3884,8 +4515,8 @@
      "value": 0.0,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.874,
-     "n": 43,
+     "r": 0.875,
+     "n": 45,
      "used": true,
      "implied": 11.1,
      "method": "fit"
@@ -3896,10 +4527,10 @@
      "value": 25.96,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.865,
-     "n": 49,
+     "r": 0.866,
+     "n": 51,
      "used": true,
-     "implied": 3.9,
+     "implied": 3.8,
      "method": "fit"
     },
     {
@@ -3920,10 +4551,10 @@
      "value": 19.0,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.885,
-     "n": 49,
+     "r": 0.884,
+     "n": 51,
      "used": true,
-     "implied": 17.9,
+     "implied": 17.7,
      "method": "fit"
     },
     {
@@ -3932,8 +4563,8 @@
      "value": 71.11,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.601,
-     "n": 69,
+     "r": 0.602,
+     "n": 71,
      "used": true,
      "implied": 16.5,
      "method": "fit"
@@ -4038,8 +4669,8 @@
      "value": 37.0,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.784,
-     "n": 47,
+     "r": 0.786,
+     "n": 49,
      "used": true,
      "implied": 26.7,
      "method": "fit"
@@ -4051,7 +4682,7 @@
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
      "r": 0.893,
-     "n": 95,
+     "n": 97,
      "used": true,
      "implied": 30.1,
      "method": "fit"
@@ -4062,8 +4693,8 @@
      "value": 39.02,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.874,
-     "n": 43,
+     "r": 0.875,
+     "n": 45,
      "used": true,
      "implied": 26.8,
      "method": "fit"
@@ -4074,8 +4705,8 @@
      "value": 72.18,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.865,
-     "n": 49,
+     "r": 0.866,
+     "n": 51,
      "used": true,
      "implied": 32.2,
      "method": "fit"
@@ -4122,10 +4753,10 @@
      "value": 26.0,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.885,
-     "n": 49,
+     "r": 0.884,
+     "n": 51,
      "used": true,
-     "implied": 22.1,
+     "implied": 21.9,
      "method": "fit"
     },
     {
@@ -4134,8 +4765,8 @@
      "value": 97.22,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.601,
-     "n": 69,
+     "r": 0.602,
+     "n": 71,
      "used": true,
      "implied": 28.2,
      "method": "fit"
@@ -4158,10 +4789,10 @@
      "value": 50.6,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.713,
-     "n": 48,
+     "r": 0.709,
+     "n": 50,
      "used": true,
-     "implied": 27.4,
+     "implied": 27.8,
      "method": "fit"
     },
     {
@@ -4223,8 +4854,8 @@
      "value": 37.0,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.784,
-     "n": 47,
+     "r": 0.786,
+     "n": 49,
      "used": true,
      "implied": 26.7,
      "method": "fit"
@@ -4236,7 +4867,7 @@
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
      "r": 0.893,
-     "n": 95,
+     "n": 97,
      "used": true,
      "implied": 27.2,
      "method": "fit"
@@ -4247,8 +4878,8 @@
      "value": 29.27,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.874,
-     "n": 43,
+     "r": 0.875,
+     "n": 45,
      "used": true,
      "implied": 22.9,
      "method": "fit"
@@ -4259,8 +4890,8 @@
      "value": 68.77,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.865,
-     "n": 49,
+     "r": 0.866,
+     "n": 51,
      "used": true,
      "implied": 30.1,
      "method": "fit"
@@ -4295,10 +4926,10 @@
      "value": 33.0,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.885,
-     "n": 49,
+     "r": 0.884,
+     "n": 51,
      "used": true,
-     "implied": 26.4,
+     "implied": 26.2,
      "method": "fit"
     },
     {
@@ -4307,10 +4938,10 @@
      "value": 91.11,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.601,
-     "n": 69,
+     "r": 0.602,
+     "n": 71,
      "used": true,
-     "implied": 25.5,
+     "implied": 25.4,
      "method": "fit"
     },
     {
@@ -4331,10 +4962,10 @@
      "value": 41.0,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.713,
-     "n": 48,
+     "r": 0.709,
+     "n": 50,
      "used": true,
-     "implied": 21.2,
+     "implied": 21.6,
      "method": "fit"
     },
     {
@@ -4394,6 +5025,60 @@
      "type": "third_party",
      "used": true,
      "method": "aa"
+    },
+    {
+     "name": "code migration v1 1",
+     "benchmark": "code_migration_v1_1",
+     "value": 47.0,
+     "url": "https://www.vals.ai/comparisons/stepfun_step-5-preview-vs-tencent_hy4-preview",
+     "type": "third_party",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "finance agent v2 1",
+     "benchmark": "finance_agent_v2_1",
+     "value": 58.9,
+     "url": "https://www.vals.ai/comparisons/stepfun_step-5-preview-vs-tencent_hy4-preview",
+     "type": "third_party",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "ioi",
+     "benchmark": "ioi",
+     "value": 38.06,
+     "url": "https://www.vals.ai/comparisons/stepfun_step-5-preview-vs-tencent_hy4-preview",
+     "type": "third_party",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "terminal bench 4 0",
+     "benchmark": "terminal_bench_4_0",
+     "value": 31.82,
+     "url": "https://www.vals.ai/comparisons/stepfun_step-5-preview-vs-tencent_hy4-preview",
+     "type": "third_party",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "vals index",
+     "benchmark": "vals_index",
+     "value": 54.76,
+     "url": "https://www.vals.ai/comparisons/stepfun_step-5-preview-vs-tencent_hy4-preview",
+     "type": "third_party",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "vibe code bench v1 1",
+     "benchmark": "vibe_code_bench_v1_1",
+     "value": 70.4,
+     "url": "https://www.vals.ai/comparisons/stepfun_step-5-preview-vs-tencent_hy4-preview",
+     "type": "third_party",
+     "used": false,
+     "why": "no_refs"
     }
    ]
   },
@@ -4429,7 +5114,7 @@
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
      "r": 0.893,
-     "n": 95,
+     "n": 97,
      "used": true,
      "implied": 21.3,
      "method": "fit"
@@ -4483,7 +5168,7 @@
    "vendor_only": false,
    "disagree": false,
    "method": "fit",
-   "spread": 8,
+   "spread": 7,
    "sources": [
     {
      "name": "Artificial Analysis",
@@ -4500,9 +5185,9 @@
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
      "r": 0.893,
-     "n": 95,
+     "n": 97,
      "used": true,
-     "implied": 14.7,
+     "implied": 14.6,
      "method": "fit"
     },
     {
@@ -4511,8 +5196,8 @@
      "value": 31.23,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.865,
-     "n": 49,
+     "r": 0.866,
+     "n": 51,
      "used": true,
      "implied": 7.1,
      "method": "fit"
@@ -4523,10 +5208,10 @@
      "value": 18.0,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.885,
-     "n": 49,
+     "r": 0.884,
+     "n": 51,
      "used": true,
-     "implied": 17.3,
+     "implied": 17.1,
      "method": "fit"
     },
     {
@@ -4535,10 +5220,10 @@
      "value": 88.89,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.601,
-     "n": 69,
+     "r": 0.602,
+     "n": 71,
      "used": true,
-     "implied": 24.5,
+     "implied": 24.4,
      "method": "fit"
     }
    ]
@@ -4571,9 +5256,9 @@
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
      "r": 0.893,
-     "n": 95,
+     "n": 97,
      "used": true,
-     "implied": 14.0,
+     "implied": 13.9,
      "method": "fit"
     },
     {
@@ -4582,10 +5267,10 @@
      "value": 35.09,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.865,
-     "n": 49,
+     "r": 0.866,
+     "n": 51,
      "used": true,
-     "implied": 9.5,
+     "implied": 9.4,
      "method": "fit"
     },
     {
@@ -4606,10 +5291,10 @@
      "value": 7.0,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.885,
-     "n": 49,
+     "r": 0.884,
+     "n": 51,
      "used": true,
-     "implied": 10.6,
+     "implied": 10.4,
      "method": "fit"
     },
     {
@@ -4618,10 +5303,10 @@
      "value": 91.11,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.601,
-     "n": 69,
+     "r": 0.602,
+     "n": 71,
      "used": true,
-     "implied": 25.5,
+     "implied": 25.4,
      "method": "fit"
     }
    ]
@@ -4654,7 +5339,7 @@
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
      "r": 0.893,
-     "n": 95,
+     "n": 97,
      "used": true,
      "implied": 4.6,
      "method": "fit"
@@ -4665,10 +5350,10 @@
      "value": 61.67,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.601,
-     "n": 69,
+     "r": 0.602,
+     "n": 71,
      "used": true,
-     "implied": 12.3,
+     "implied": 12.2,
      "method": "fit"
     }
    ]
@@ -4707,7 +5392,7 @@
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
      "r": 0.893,
-     "n": 95,
+     "n": 97,
      "used": true,
      "implied": 0.0,
      "method": "fit"
@@ -4718,8 +5403,8 @@
      "value": 5.14,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.601,
-     "n": 69,
+     "r": 0.602,
+     "n": 71,
      "used": true,
      "implied": 0.0,
      "method": "fit"
@@ -4817,7 +5502,7 @@
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
      "r": 0.893,
-     "n": 95,
+     "n": 97,
      "used": true,
      "implied": 0.0,
      "method": "fit"
@@ -4899,8 +5584,8 @@
      "value": 0.28,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.601,
-     "n": 69,
+     "r": 0.602,
+     "n": 71,
      "used": true,
      "implied": 0.0,
      "method": "fit"
@@ -4947,7 +5632,7 @@
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
      "r": 0.893,
-     "n": 95,
+     "n": 97,
      "used": true,
      "implied": 5.2,
      "method": "fit"
@@ -4982,10 +5667,10 @@
      "value": 2.0,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.885,
-     "n": 49,
+     "r": 0.884,
+     "n": 51,
      "used": true,
-     "implied": 7.6,
+     "implied": 7.4,
      "method": "fit"
     },
     {
@@ -5042,7 +5727,7 @@
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
      "r": 0.893,
-     "n": 95,
+     "n": 97,
      "used": true,
      "implied": 2.4,
      "method": "fit"
@@ -5053,10 +5738,10 @@
      "value": 65.28,
      "url": "https://epoch.ai/benchmarks",
      "type": "third_party",
-     "r": 0.601,
-     "n": 69,
+     "r": 0.602,
+     "n": 71,
      "used": true,
-     "implied": 13.9,
+     "implied": 13.8,
      "method": "fit"
     }
    ]
@@ -5072,13 +5757,13 @@
    "center": 14,
    "low": 11,
    "high": 16,
-   "evidence": 1,
+   "evidence": 7,
    "independent": 1,
    "exact": false,
    "vendor_only": false,
-   "disagree": false,
-   "method": "aa",
-   "spread": 0,
+   "disagree": true,
+   "method": "fit",
+   "spread": 8,
    "sources": [
     {
      "name": "Artificial Analysis",
@@ -5087,6 +5772,87 @@
      "type": "third_party",
      "used": true,
      "method": "aa"
+    },
+    {
+     "name": "GPQA Diamond",
+     "benchmark": "gpqa_diamond",
+     "value": 89.52,
+     "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-BF16/raw/main/README.md",
+     "type": "vendor",
+     "r": 0.66,
+     "n": 23,
+     "used": true,
+     "implied": 16.3,
+     "method": "fit"
+    },
+    {
+     "name": "Humanity's Last Exam",
+     "benchmark": "hle",
+     "value": 31.79,
+     "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-BF16/raw/main/README.md",
+     "type": "vendor",
+     "r": 0.737,
+     "n": 46,
+     "used": true,
+     "implied": 14.2,
+     "method": "fit"
+    },
+    {
+     "name": "LiveCodeBench",
+     "benchmark": "livecodebench",
+     "value": 88.22,
+     "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-BF16/raw/main/README.md",
+     "type": "vendor",
+     "r": 0.757,
+     "n": 9,
+     "used": true,
+     "implied": 8.1,
+     "method": "fit"
+    },
+    {
+     "name": "SWE-bench Pro (public)",
+     "benchmark": "swe_bench_pro",
+     "value": 51.78,
+     "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-BF16/raw/main/README.md",
+     "type": "vendor",
+     "r": 0.6,
+     "n": 23,
+     "used": true,
+     "implied": 12.9,
+     "method": "fit"
+    },
+    {
+     "name": "SWE-bench Verified",
+     "benchmark": "swe_bench_verified",
+     "value": 71.1,
+     "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-BF16/raw/main/README.md",
+     "type": "vendor",
+     "r": 0.636,
+     "n": 29,
+     "used": true,
+     "implied": 10.0,
+     "method": "fit"
+    },
+    {
+     "name": "Terminal-Bench 2.1",
+     "benchmark": "terminal_bench_2_1",
+     "value": 60.67,
+     "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-BF16/raw/main/README.md",
+     "type": "vendor",
+     "r": 0.877,
+     "n": 25,
+     "used": true,
+     "implied": 15.8,
+     "method": "fit"
+    },
+    {
+     "name": "parallel search intelligence",
+     "benchmark": "parallel_search_intelligence",
+     "value": 59.1,
+     "url": "https://parallel.ai/leaderboard/nemotron-3-5-super-vl.md",
+     "type": "third_party",
+     "used": false,
+     "why": "no_refs"
     }
    ]
   },
@@ -5151,16 +5917,16 @@
   },
   "beam": {
    "status": "ok",
-   "center": 18,
-   "low": 15,
-   "high": 20,
-   "evidence": 1,
+   "center": 17,
+   "low": 14,
+   "high": 19,
+   "evidence": 5,
    "independent": 1,
    "exact": false,
    "vendor_only": false,
-   "disagree": false,
-   "method": "aa",
-   "spread": 0,
+   "disagree": true,
+   "method": "fit",
+   "spread": 11,
    "sources": [
     {
      "name": "Artificial Analysis",
@@ -5169,6 +5935,181 @@
      "type": "third_party",
      "used": true,
      "method": "aa"
+    },
+    {
+     "name": "GPQA Diamond",
+     "benchmark": "gpqa_diamond",
+     "value": 90.5,
+     "url": "https://reflection.ai/blog/introducing-beam",
+     "type": "vendor",
+     "r": 0.66,
+     "n": 23,
+     "used": true,
+     "implied": 16.7,
+     "method": "fit"
+    },
+    {
+     "name": "Humanity's Last Exam",
+     "benchmark": "hle",
+     "value": 36.2,
+     "url": "https://reflection.ai/blog/introducing-beam",
+     "type": "vendor",
+     "r": 0.737,
+     "n": 46,
+     "used": true,
+     "implied": 16.1,
+     "method": "fit"
+    },
+    {
+     "name": "SWE-bench Verified",
+     "benchmark": "swe_bench_verified",
+     "value": 80.9,
+     "url": "https://reflection.ai/blog/introducing-beam",
+     "type": "vendor",
+     "r": 0.636,
+     "n": 29,
+     "used": true,
+     "implied": 12.6,
+     "method": "fit"
+    },
+    {
+     "name": "Terminal-Bench 2.1",
+     "benchmark": "terminal_bench_2_1",
+     "value": 80.1,
+     "url": "https://reflection.ai/blog/introducing-beam",
+     "type": "vendor",
+     "r": 0.877,
+     "n": 25,
+     "used": true,
+     "implied": 23.6,
+     "method": "fit"
+    },
+    {
+     "name": "Humanity's Last Exam",
+     "benchmark": "hle",
+     "value": 51.2,
+     "url": "https://reflection.ai/blog/introducing-beam",
+     "type": "vendor",
+     "mode": "with tools",
+     "used": false,
+     "why": "other_mode"
+    },
+    {
+     "name": "aime 2026",
+     "benchmark": "aime_2026",
+     "value": 97.8,
+     "url": "https://reflection.ai/blog/introducing-beam",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "automationbench public",
+     "benchmark": "automationbench_public",
+     "value": 37.0,
+     "url": "https://reflection.ai/blog/introducing-beam",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "browsecomp",
+     "benchmark": "browsecomp",
+     "value": 77.4,
+     "url": "https://reflection.ai/blog/introducing-beam",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "deepsearchqa",
+     "benchmark": "deepsearchqa",
+     "value": 80.1,
+     "url": "https://reflection.ai/blog/introducing-beam",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "deepswe v1 1",
+     "benchmark": "deepswe_v1_1",
+     "value": 44.4,
+     "url": "https://reflection.ai/blog/introducing-beam",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "ifbench",
+     "benchmark": "ifbench",
+     "value": 79.7,
+     "url": "https://reflection.ai/blog/introducing-beam",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "longbench v2",
+     "benchmark": "longbench_v2",
+     "value": 66.9,
+     "url": "https://reflection.ai/blog/introducing-beam",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "mcp atlas",
+     "benchmark": "mcp_atlas",
+     "value": 78.7,
+     "url": "https://reflection.ai/blog/introducing-beam",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "swe atlas codebase qna",
+     "benchmark": "swe_atlas_codebase_qna",
+     "value": 34.6,
+     "url": "https://reflection.ai/blog/introducing-beam",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "swe bench multilingual",
+     "benchmark": "swe_bench_multilingual",
+     "value": 78.0,
+     "url": "https://reflection.ai/blog/introducing-beam",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "swe bench pro v1",
+     "benchmark": "swe_bench_pro_v1",
+     "value": 65.5,
+     "url": "https://reflection.ai/blog/introducing-beam",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "swe bench pro v2 hard",
+     "benchmark": "swe_bench_pro_v2_hard",
+     "value": 77.2,
+     "url": "https://reflection.ai/blog/introducing-beam",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
+    },
+    {
+     "name": "tau3 banking",
+     "benchmark": "tau3_banking",
+     "value": 38.0,
+     "url": "https://reflection.ai/blog/introducing-beam",
+     "type": "vendor",
+     "used": false,
+     "why": "no_refs"
     }
    ]
   },
