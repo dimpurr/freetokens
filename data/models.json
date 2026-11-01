@@ -744,5 +744,187 @@
     "context": "1M",
     "image_input": "not_checked",
     "notes": "Upgraded weights of Ling-3.1-flash (560B total / 25B active per token, 1M context, MIT). A separate entry from Ling 3.1 Flash because the old repository inclusionAI/Ling-3.1-flash is still published and channels list both IDs."
+  },
+  {
+    "id": "quasar-alpha",
+    "name": "Quasar Alpha",
+    "maker": "undisclosed",
+    "context": "not checked",
+    "image_input": "not_checked",
+    "notes": "Stealth model, no maker named. GPT-4.1 per OpenRouter reveal post (2025-04-14): https://openrouter.ai/blog/announcements/quasar-alpha-and-optimus-alpha-reveal/"
+  },
+  {
+    "id": "optimus-alpha",
+    "name": "Optimus Alpha",
+    "maker": "undisclosed",
+    "context": "not checked",
+    "image_input": "not_checked",
+    "notes": "Stealth model, no maker named. GPT-4.1 per OpenRouter reveal post (2025-04-14): https://openrouter.ai/blog/announcements/quasar-alpha-and-optimus-alpha-reveal/"
+  },
+  {
+    "id": "cypher-alpha",
+    "name": "Cypher Alpha",
+    "maker": "undisclosed",
+    "context": "not checked",
+    "image_input": "not_checked",
+    "notes": "Stealth model, no maker named."
+  },
+  {
+    "id": "sonoma-dusk-alpha",
+    "name": "Sonoma Dusk Alpha",
+    "maker": "undisclosed",
+    "context": "not checked",
+    "image_input": "not_checked",
+    "notes": "Stealth model, no maker named."
+  },
+  {
+    "id": "andromeda-alpha",
+    "name": "Andromeda Alpha",
+    "maker": "undisclosed",
+    "context": "not checked",
+    "image_input": "not_checked",
+    "notes": "Stealth model, no maker named."
+  },
+  {
+    "id": "polaris-alpha",
+    "name": "Polaris Alpha",
+    "maker": "undisclosed",
+    "context": "not checked",
+    "image_input": "not_checked",
+    "notes": "Stealth model, no maker named."
+  },
+  {
+    "id": "sherlock-dash-alpha",
+    "name": "Sherlock Dash Alpha",
+    "maker": "undisclosed",
+    "context": "not checked",
+    "image_input": "not_checked",
+    "notes": "Stealth model, no maker named."
+  },
+  {
+    "id": "sherlock-think-alpha",
+    "name": "Sherlock Think Alpha",
+    "maker": "undisclosed",
+    "context": "not checked",
+    "image_input": "not_checked",
+    "notes": "Stealth model, no maker named."
+  },
+  {
+    "id": "bert-nebulon-alpha",
+    "name": "Bert-Nebulon Alpha",
+    "maker": "undisclosed",
+    "context": "not checked",
+    "image_input": "not_checked",
+    "notes": "Stealth model, no maker named."
+  },
+  {
+    "id": "aurora-alpha",
+    "name": "Aurora Alpha",
+    "maker": "undisclosed",
+    "context": "not checked",
+    "image_input": "not_checked",
+    "notes": "Stealth model, no maker named."
+  },
+  {
+    "id": "healer-alpha",
+    "name": "Healer Alpha",
+    "maker": "undisclosed",
+    "context": "not checked",
+    "image_input": "not_checked",
+    "notes": "Stealth model, no maker named."
+  },
+  {
+    "id": "hunter-alpha",
+    "name": "Hunter Alpha",
+    "maker": "undisclosed",
+    "context": "not checked",
+    "image_input": "not_checked",
+    "notes": "Stealth model, no maker named."
+  },
+  {
+    "id": "ox-alpha",
+    "name": "Ox Alpha",
+    "maker": "undisclosed",
+    "context": "not checked",
+    "image_input": "not_checked",
+    "notes": "Stealth model, no maker named."
+  },
+  {
+    "id": "union-alpha",
+    "name": "Union Alpha",
+    "maker": "undisclosed",
+    "context": "not checked",
+    "image_input": "not_checked",
+    "notes": "Stealth model, no maker named."
+  },
+  {
+    "id": "rwkv-5-3b-ai-town",
+    "name": "RWKV-5 3B AI Town",
+    "maker": "recursal",
+    "context": "not checked",
+    "image_input": "not_checked"
+  },
+  {
+    "id": "zephyr-7b-beta",
+    "name": "Zephyr 7B Beta",
+    "maker": "huggingfaceh4",
+    "context": "not checked",
+    "image_input": "not_checked"
+  },
+  {
+    "id": "openchat-7b",
+    "name": "OpenChat 7B",
+    "maker": "openchat",
+    "context": "not checked",
+    "image_input": "not_checked"
+  },
+  {
+    "id": "toppy-m-7b",
+    "name": "Toppy M 7B",
+    "maker": "undi95",
+    "context": "not checked",
+    "image_input": "not_checked"
+  },
+  {
+    "id": "mythomist-7b",
+    "name": "MythoMist 7B",
+    "maker": "gryphe",
+    "context": "not checked",
+    "image_input": "not_checked"
+  },
+  {
+    "id": "nous-capybara-7b",
+    "name": "Nous Capybara 7B",
+    "maker": "nousresearch",
+    "context": "not checked",
+    "image_input": "not_checked"
+  },
+  {
+    "id": "cinematika-7b",
+    "name": "Cinematika 7B (alpha)",
+    "maker": "undisclosed",
+    "context": "not checked",
+    "image_input": "not_checked"
+  },
+  {
+    "id": "gemma-7b-it",
+    "name": "Gemma 7B IT",
+    "maker": "google",
+    "context": "not checked",
+    "image_input": "not_checked"
+  },
+  {
+    "id": "gemini-2.0-flash-exp",
+    "name": "Gemini 2.0 Flash Experimental",
+    "maker": "google",
+    "context": "not checked",
+    "image_input": "not_checked"
+  },
+  {
+    "id": "gemini-2.5-pro-exp-03-25",
+    "name": "Gemini 2.5 Pro Experimental (03-25)",
+    "maker": "google",
+    "context": "not checked",
+    "image_input": "not_checked"
   }
 ]

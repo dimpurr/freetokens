@@ -239,5 +239,35 @@
    "site": "https://recursive.com",
    "models": "https://huggingface.co/RecursiveSI"
   }
+ },
+ {
+  "id": "recursal",
+  "name": "Recursal",
+  "note": "Name taken from the recursal/ namespace of the OpenRouter id (Wayback catalogue capture, 2026-11-01 backfill)."
+ },
+ {
+  "id": "huggingfaceh4",
+  "name": "Hugging Face H4",
+  "note": "Name taken from the huggingfaceh4/ namespace of the OpenRouter id (Wayback catalogue capture, 2026-11-01 backfill)."
+ },
+ {
+  "id": "openchat",
+  "name": "OpenChat",
+  "note": "Name taken from the openchat/ namespace of the OpenRouter id (Wayback catalogue capture, 2026-11-01 backfill)."
+ },
+ {
+  "id": "undi95",
+  "name": "Undi95",
+  "note": "Name taken from the undi95/ namespace of the OpenRouter id (Wayback catalogue capture, 2026-11-01 backfill)."
+ },
+ {
+  "id": "gryphe",
+  "name": "Gryphe",
+  "note": "Name taken from the gryphe/ namespace of the OpenRouter id (Wayback catalogue capture, 2026-11-01 backfill)."
+ },
+ {
+  "id": "nousresearch",
+  "name": "Nous Research",
+  "note": "Name taken from the nousresearch/ namespace of the OpenRouter id (Wayback catalogue capture, 2026-11-01 backfill)."
  }
 ]

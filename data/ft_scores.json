@@ -6405,6 +6405,150 @@
      "method": "aa"
     }
    ]
+  },
+  "quasar-alpha": {
+   "status": "none",
+   "evidence": 0,
+   "independent": 0,
+   "sources": []
+  },
+  "optimus-alpha": {
+   "status": "none",
+   "evidence": 0,
+   "independent": 0,
+   "sources": []
+  },
+  "cypher-alpha": {
+   "status": "none",
+   "evidence": 0,
+   "independent": 0,
+   "sources": []
+  },
+  "sonoma-dusk-alpha": {
+   "status": "none",
+   "evidence": 0,
+   "independent": 0,
+   "sources": []
+  },
+  "andromeda-alpha": {
+   "status": "none",
+   "evidence": 0,
+   "independent": 0,
+   "sources": []
+  },
+  "polaris-alpha": {
+   "status": "none",
+   "evidence": 0,
+   "independent": 0,
+   "sources": []
+  },
+  "sherlock-dash-alpha": {
+   "status": "none",
+   "evidence": 0,
+   "independent": 0,
+   "sources": []
+  },
+  "sherlock-think-alpha": {
+   "status": "none",
+   "evidence": 0,
+   "independent": 0,
+   "sources": []
+  },
+  "bert-nebulon-alpha": {
+   "status": "none",
+   "evidence": 0,
+   "independent": 0,
+   "sources": []
+  },
+  "aurora-alpha": {
+   "status": "none",
+   "evidence": 0,
+   "independent": 0,
+   "sources": []
+  },
+  "healer-alpha": {
+   "status": "none",
+   "evidence": 0,
+   "independent": 0,
+   "sources": []
+  },
+  "hunter-alpha": {
+   "status": "none",
+   "evidence": 0,
+   "independent": 0,
+   "sources": []
+  },
+  "ox-alpha": {
+   "status": "none",
+   "evidence": 0,
+   "independent": 0,
+   "sources": []
+  },
+  "union-alpha": {
+   "status": "none",
+   "evidence": 0,
+   "independent": 0,
+   "sources": []
+  },
+  "rwkv-5-3b-ai-town": {
+   "status": "none",
+   "evidence": 0,
+   "independent": 0,
+   "sources": []
+  },
+  "zephyr-7b-beta": {
+   "status": "none",
+   "evidence": 0,
+   "independent": 0,
+   "sources": []
+  },
+  "openchat-7b": {
+   "status": "none",
+   "evidence": 0,
+   "independent": 0,
+   "sources": []
+  },
+  "toppy-m-7b": {
+   "status": "none",
+   "evidence": 0,
+   "independent": 0,
+   "sources": []
+  },
+  "mythomist-7b": {
+   "status": "none",
+   "evidence": 0,
+   "independent": 0,
+   "sources": []
+  },
+  "nous-capybara-7b": {
+   "status": "none",
+   "evidence": 0,
+   "independent": 0,
+   "sources": []
+  },
+  "cinematika-7b": {
+   "status": "none",
+   "evidence": 0,
+   "independent": 0,
+   "sources": []
+  },
+  "gemma-7b-it": {
+   "status": "none",
+   "evidence": 0,
+   "independent": 0,
+   "sources": []
+  },
+  "gemini-2.0-flash-exp": {
+   "status": "none",
+   "evidence": 0,
+   "independent": 0,
+   "sources": []
+  },
+  "gemini-2.5-pro-exp-03-25": {
+   "status": "none",
+   "evidence": 0,
+   "independent": 0,
+   "sources": []
   }
  }
 }

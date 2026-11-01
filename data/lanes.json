@@ -2733,7 +2733,7 @@
    "method": "catalogue"
   }
  },
-  {
+ {
   "id": "glm-4.5-flash-zai",
   "model": "glm-4.5-flash",
   "channel": "Z.ai",
@@ -3104,7 +3104,7 @@
    "method": "catalogue"
   }
  },
-  {
+ {
   "id": "gemini-3.8-flash-gai",
   "model": "gemini-3.8-flash",
   "channel": "Google AI Studio",
@@ -3180,7 +3180,7 @@
   },
   "note": "Dropped from Google AI Studio: gemini-3.7-flash was deprecated on 2026-10-08, is no longer available to select in AI Studio and its requests auto-route to gemini-3.8-flash; at the 2026-10-23 recheck the id is absent from both the free-tier endpoint table and the pricing page (the 2026-10-08 changelog entry is the second source); last listed 2026-10-06 (catalogue)"
  },
-  {
+ {
   "id": "gemini-3.6-flash-gai",
   "model": "gemini-3.6-flash",
   "channel": "Google AI Studio",
@@ -4525,88 +4525,88 @@
    "date": "2026-10-20",
    "note": "first seen in the daily free-catalogue check; may predate it"
   },
-   "ends": {
-    "announced": null,
-    "expected": null,
-    "confidence": "none",
-    "note": "no end announced; observed gone from the OpenRouter free catalogue on 2026-10-23"
-   },
-   "data_policy": "not_checked",
-   "status": "ended",
-   "checked": {
-    "date": "2026-10-23",
-    "method": "catalogue"
-   },
-   "volume": {
-    "tier": "taste",
-    "basis": "50 requests a day without credits (stated)"
-   },
-   "note": "Dropped from OpenRouter: minimax/minimax-m3.1-flash:free is not in the free catalogue at the 2026-10-23T08:00Z daily catalogue check (re-confirmed by our own read of the same API on 2026-10-23); the paid minimax/minimax-m3.1-flash remains at $0.15/$0.60 per Mtoken; last present 2026-10-20 (catalogue); no end date announced"
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none",
+   "note": "no end announced; observed gone from the OpenRouter free catalogue on 2026-10-23"
   },
+  "data_policy": "not_checked",
+  "status": "ended",
+  "checked": {
+   "date": "2026-10-23",
+   "method": "catalogue"
+  },
+  "volume": {
+   "tier": "taste",
+   "basis": "50 requests a day without credits (stated)"
+  },
+  "note": "Dropped from OpenRouter: minimax/minimax-m3.1-flash:free is not in the free catalogue at the 2026-10-23T08:00Z daily catalogue check (re-confirmed by our own read of the same API on 2026-10-23); the paid minimax/minimax-m3.1-flash remains at $0.15/$0.60 per Mtoken; last present 2026-10-20 (catalogue); no end date announced"
+ },
  {
-   "id": "minimax-m3.1-flash-zen",
-   "model": "minimax-m3.1-flash",
-   "channel": "OpenCode Zen",
-   "type": "agent_tool",
-   "model_id": "opencode/minimax-m3.1-flash-free",
-   "free_condition": null,
+  "id": "minimax-m3.1-flash-zen",
+  "model": "minimax-m3.1-flash",
+  "channel": "OpenCode Zen",
+  "type": "agent_tool",
+  "model_id": "opencode/minimax-m3.1-flash-free",
+  "free_condition": null,
   "meter": "per_model",
-   "limits_stated": {
-    "basis": "unpublished"
-   },
-   "limits_observed": null,
-   "started": {
-    "date": "2026-10-20",
-    "note": "first seen in the daily free-catalogue check; may predate it"
-   },
-   "ends": {
-    "announced": null,
-    "expected": null,
-    "confidence": "none",
-    "note": "no end announced; observed gone from the OpenCode Zen free catalogue on 2026-10-23"
-   },
-   "data_policy": "not_checked",
-   "status": "ended",
-   "checked": {
-    "date": "2026-10-23",
-    "method": "catalogue"
-   },
-   "volume": {
-    "tier": "daily",
-    "basis": "channel rule: Zen's free allowance is per IP per day; this model not load-tested"
-   },
-   "note": "Dropped from OpenCode Zen: opencode/minimax-m3.1-flash-free is not in the free model list at the 2026-10-23T08:00Z daily catalogue check (re-confirmed by our own read of the same list on 2026-10-23); last present 2026-10-20 (catalogue); no end date announced"
+  "limits_stated": {
+   "basis": "unpublished"
   },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-10-20",
+   "note": "first seen in the daily free-catalogue check; may predate it"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none",
+   "note": "no end announced; observed gone from the OpenCode Zen free catalogue on 2026-10-23"
+  },
+  "data_policy": "not_checked",
+  "status": "ended",
+  "checked": {
+   "date": "2026-10-23",
+   "method": "catalogue"
+  },
+  "volume": {
+   "tier": "daily",
+   "basis": "channel rule: Zen's free allowance is per IP per day; this model not load-tested"
+  },
+  "note": "Dropped from OpenCode Zen: opencode/minimax-m3.1-flash-free is not in the free model list at the 2026-10-23T08:00Z daily catalogue check (re-confirmed by our own read of the same list on 2026-10-23); last present 2026-10-20 (catalogue); no end date announced"
+ },
  {
-   "id": "minimax-m3.1-flash-go",
-   "model": "minimax-m3.1-flash",
-   "channel": "OpenCode Go",
-   "type": "agent_tool",
-   "model_id": "opencode-go/minimax-m3.1-flash-free",
-   "free_condition": null,
+  "id": "minimax-m3.1-flash-go",
+  "model": "minimax-m3.1-flash",
+  "channel": "OpenCode Go",
+  "type": "agent_tool",
+  "model_id": "opencode-go/minimax-m3.1-flash-free",
+  "free_condition": null,
   "meter": "per_model",
-   "limits_stated": {
-    "basis": "unpublished"
-   },
-   "limits_observed": null,
-   "started": {
-    "date": "2026-10-20",
-    "note": "first seen in the daily free-catalogue check; may predate it"
-   },
-   "ends": {
-    "announced": null,
-    "expected": null,
-    "confidence": "none",
-    "note": "no end announced; observed gone from the OpenCode Go free catalogue on 2026-10-23"
-   },
-   "data_policy": "not_checked",
-   "status": "ended",
-   "checked": {
-    "date": "2026-10-23",
-    "method": "catalogue"
-   },
-   "note": "Free ID dropped from Go: opencode-go/minimax-m3.1-flash-free is not in the free model list at the 2026-10-23T08:00Z daily catalogue check (re-confirmed by our own read of the same list on 2026-10-23); the list keeps the bare minimax-m3.1-flash paid entry; last present 2026-10-20 (catalogue); no end date announced"
+  "limits_stated": {
+   "basis": "unpublished"
   },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-10-20",
+   "note": "first seen in the daily free-catalogue check; may predate it"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none",
+   "note": "no end announced; observed gone from the OpenCode Go free catalogue on 2026-10-23"
+  },
+  "data_policy": "not_checked",
+  "status": "ended",
+  "checked": {
+   "date": "2026-10-23",
+   "method": "catalogue"
+  },
+  "note": "Free ID dropped from Go: opencode-go/minimax-m3.1-flash-free is not in the free model list at the 2026-10-23T08:00Z daily catalogue check (re-confirmed by our own read of the same list on 2026-10-23); the list keeps the bare minimax-m3.1-flash paid entry; last present 2026-10-20 (catalogue); no end date announced"
+ },
  {
   "id": "minimax-m3.1-flash-vercel",
   "model": "minimax-m3.1-flash",
@@ -4625,20 +4625,20 @@
    "date": "2026-10-20",
    "note": "first seen in the daily free-catalogue check; may predate it"
   },
-   "ends": {
-    "announced": null,
-    "expected": null,
-    "confidence": "none",
-    "note": "no end announced; observed gone from the AI Gateway free list on 2026-10-23"
-   },
-   "data_policy": "not_checked",
-   "status": "ended",
-   "checked": {
-    "date": "2026-10-23",
-    "method": "catalogue"
-   },
-   "note": "Dropped from Vercel AI Gateway: minimax/minimax-m3.1-flash is not in the free list at the 2026-10-23T08:00Z daily catalogue check — the models API still lists the ID but now prices it at $0.15/$0.60 per Mtoken instead of $0 (re-confirmed by our own read of the same API on 2026-10-23); last present 2026-10-20 (catalogue). Was: Admitted from the free-catalogue check on 2026-10-20 (the AI Gateway models API reported $0 input and output for this ID; it carries no -free suffix and was the only MiniMax M3.1 Flash ID on the free list; a Vercel ID at $0 per token is not automatically free to call — precedent: stealth/glyph-cluster needs a paid plan plus credits)"
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none",
+   "note": "no end announced; observed gone from the AI Gateway free list on 2026-10-23"
   },
+  "data_policy": "not_checked",
+  "status": "ended",
+  "checked": {
+   "date": "2026-10-23",
+   "method": "catalogue"
+  },
+  "note": "Dropped from Vercel AI Gateway: minimax/minimax-m3.1-flash is not in the free list at the 2026-10-23T08:00Z daily catalogue check — the models API still lists the ID but now prices it at $0.15/$0.60 per Mtoken instead of $0 (re-confirmed by our own read of the same API on 2026-10-23); last present 2026-10-20 (catalogue). Was: Admitted from the free-catalogue check on 2026-10-20 (the AI Gateway models API reported $0 input and output for this ID; it carries no -free suffix and was the only MiniMax M3.1 Flash ID on the free list; a Vercel ID at $0 per token is not automatically free to call — precedent: stealth/glyph-cluster needs a paid plan plus credits)"
+ },
  {
   "id": "beam-zen",
   "model": "beam",
@@ -5114,7 +5114,7 @@
    "expected": null,
    "confidence": "none"
   },
-   "data_policy": "not_checked",
+  "data_policy": "not_checked",
   "status": "live",
   "checked": {
    "date": "2026-10-28",
@@ -5610,5 +5610,749 @@
    "method": "catalogue"
   },
   "note": "Kilo gateway marks mayTrainOnYourPrompts true: the free arm may train on prompts. Only in the gateway models list, not the marketing catalogue."
+ },
+ {
+  "id": "quasar-alpha-or",
+  "model": "quasar-alpha",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "openrouter/quasar-alpha",
+  "free_condition": null,
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "not_checked",
+   "source": "https://web.archive.org/web/20250410182211/https://openrouter.ai/api/v1/models"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2025-04-10",
+   "note": "approx: not in the OpenRouter catalogue at 2025-04-03T04:31Z, priced 0/0 by 2025-04-10T18:22Z"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none",
+   "note": "approx end: first capture without the free price, see ended event"
+  },
+  "data_policy": "not_checked",
+  "status": "ended",
+  "checked": {
+   "date": "2026-11-01",
+   "method": "public_record"
+  },
+  "note": "Window from Wayback captures of OpenRouter /api/v1/models (price 0/0): free from between 2025-04-03T04:31Z and 2025-04-10T18:22Z until before 2025-04-15T18:51Z (last free capture 2025-04-10T18:22Z). Dates are approx brackets, not exact times. GPT-4.1 per OpenRouter reveal post (2025-04-14): https://openrouter.ai/blog/announcements/quasar-alpha-and-optimus-alpha-reveal/"
+ },
+ {
+  "id": "optimus-alpha-or",
+  "model": "optimus-alpha",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "openrouter/optimus-alpha",
+  "free_condition": null,
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "not_checked",
+   "source": "https://web.archive.org/web/20250410182211/https://openrouter.ai/api/v1/models"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2025-04-10",
+   "note": "approx: not in the OpenRouter catalogue at 2025-04-03T04:31Z, priced 0/0 by 2025-04-10T18:22Z"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none",
+   "note": "approx end: first capture without the free price, see ended event"
+  },
+  "data_policy": "not_checked",
+  "status": "ended",
+  "checked": {
+   "date": "2026-11-01",
+   "method": "public_record"
+  },
+  "note": "Window from Wayback captures of OpenRouter /api/v1/models (price 0/0): free from between 2025-04-03T04:31Z and 2025-04-10T18:22Z until before 2025-04-15T18:51Z (last free capture 2025-04-10T18:22Z). Dates are approx brackets, not exact times. GPT-4.1 per OpenRouter reveal post (2025-04-14): https://openrouter.ai/blog/announcements/quasar-alpha-and-optimus-alpha-reveal/"
+ },
+ {
+  "id": "cypher-alpha-or",
+  "model": "cypher-alpha",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "openrouter/cypher-alpha:free",
+  "free_condition": null,
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "not_checked",
+   "source": "https://web.archive.org/web/20250704154038/https://openrouter.ai/api/v1/models"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2025-07-04",
+   "note": "approx: not in the OpenRouter catalogue at 2025-07-01T11:11Z, priced 0/0 by 2025-07-04T15:40Z"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none",
+   "note": "approx end: first capture without the free price, see ended event"
+  },
+  "data_policy": "not_checked",
+  "status": "ended",
+  "checked": {
+   "date": "2026-11-01",
+   "method": "public_record"
+  },
+  "note": "Window from Wayback captures of OpenRouter /api/v1/models (price 0/0): free from between 2025-07-01T11:11Z and 2025-07-04T15:40Z until before 2025-07-14T17:33Z (last free capture 2025-07-14T08:26Z). Dates are approx brackets, not exact times."
+ },
+ {
+  "id": "sonoma-dusk-alpha-or",
+  "model": "sonoma-dusk-alpha",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "openrouter/sonoma-dusk-alpha",
+  "free_condition": null,
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "not_checked",
+   "source": "https://web.archive.org/web/20250911103722/https://openrouter.ai/api/v1/models"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2025-09-11",
+   "note": "approx: not in the OpenRouter catalogue at 2025-09-04T19:23Z, priced 0/0 by 2025-09-11T10:37Z"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none",
+   "note": "approx end: first capture without the free price, see ended event"
+  },
+  "data_policy": "not_checked",
+  "status": "ended",
+  "checked": {
+   "date": "2026-11-01",
+   "method": "public_record"
+  },
+  "note": "Window from Wayback captures of OpenRouter /api/v1/models (price 0/0): free from between 2025-09-04T19:23Z and 2025-09-11T10:37Z until before 2025-09-22T19:04Z (last free capture 2025-09-18T18:54Z). Dates are approx brackets, not exact times."
+ },
+ {
+  "id": "andromeda-alpha-or",
+  "model": "andromeda-alpha",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "openrouter/andromeda-alpha",
+  "free_condition": null,
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "not_checked",
+   "source": "https://web.archive.org/web/20251022183911/https://openrouter.ai/api/v1/models"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2025-10-22",
+   "note": "approx: not in the OpenRouter catalogue at 2025-10-20T00:18Z, priced 0/0 by 2025-10-22T18:39Z"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none",
+   "note": "approx end: first capture without the free price, see ended event"
+  },
+  "data_policy": "not_checked",
+  "status": "ended",
+  "checked": {
+   "date": "2026-11-01",
+   "method": "public_record"
+  },
+  "note": "Window from Wayback captures of OpenRouter /api/v1/models (price 0/0): free from between 2025-10-20T00:18Z and 2025-10-22T18:39Z until before 2025-10-31T18:00Z (last free capture 2025-10-22T18:39Z). Dates are approx brackets, not exact times."
+ },
+ {
+  "id": "polaris-alpha-or",
+  "model": "polaris-alpha",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "openrouter/polaris-alpha",
+  "free_condition": null,
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "not_checked",
+   "source": "https://web.archive.org/web/20251107014007/https://openrouter.ai/api/v1/models"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2025-11-07",
+   "note": "approx: not in the OpenRouter catalogue at 2025-11-02T18:55Z, priced 0/0 by 2025-11-07T01:40Z"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none",
+   "note": "approx end: first capture without the free price, see ended event"
+  },
+  "data_policy": "not_checked",
+  "status": "ended",
+  "checked": {
+   "date": "2026-11-01",
+   "method": "public_record"
+  },
+  "note": "Window from Wayback captures of OpenRouter /api/v1/models (price 0/0): free from between 2025-11-02T18:55Z and 2025-11-07T01:40Z until before 2025-11-14T18:31Z (last free capture 2025-11-08T12:17Z). Dates are approx brackets, not exact times."
+ },
+ {
+  "id": "sherlock-dash-alpha-or",
+  "model": "sherlock-dash-alpha",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "openrouter/sherlock-dash-alpha",
+  "free_condition": null,
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "not_checked",
+   "source": "https://web.archive.org/web/20251119130712/https://openrouter.ai/api/v1/models"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2025-11-19",
+   "note": "approx: not in the OpenRouter catalogue at 2025-11-14T18:31Z, priced 0/0 by 2025-11-19T13:07Z"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none",
+   "note": "approx end: first capture without the free price, see ended event"
+  },
+  "data_policy": "not_checked",
+  "status": "ended",
+  "checked": {
+   "date": "2026-11-01",
+   "method": "public_record"
+  },
+  "note": "Window from Wayback captures of OpenRouter /api/v1/models (price 0/0): free from between 2025-11-14T18:31Z and 2025-11-19T13:07Z until before 2025-11-30T07:53Z (last free capture 2025-11-19T13:07Z). Dates are approx brackets, not exact times."
+ },
+ {
+  "id": "sherlock-think-alpha-or",
+  "model": "sherlock-think-alpha",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "openrouter/sherlock-think-alpha",
+  "free_condition": null,
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "not_checked",
+   "source": "https://web.archive.org/web/20251119130712/https://openrouter.ai/api/v1/models"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2025-11-19",
+   "note": "approx: not in the OpenRouter catalogue at 2025-11-14T18:31Z, priced 0/0 by 2025-11-19T13:07Z"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none",
+   "note": "approx end: first capture without the free price, see ended event"
+  },
+  "data_policy": "not_checked",
+  "status": "ended",
+  "checked": {
+   "date": "2026-11-01",
+   "method": "public_record"
+  },
+  "note": "Window from Wayback captures of OpenRouter /api/v1/models (price 0/0): free from between 2025-11-14T18:31Z and 2025-11-19T13:07Z until before 2025-11-30T07:53Z (last free capture 2025-11-19T13:07Z). Dates are approx brackets, not exact times."
+ },
+ {
+  "id": "bert-nebulon-alpha-or",
+  "model": "bert-nebulon-alpha",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "openrouter/bert-nebulon-alpha",
+  "free_condition": null,
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "not_checked",
+   "source": "https://web.archive.org/web/20251130075355/https://openrouter.ai/api/v1/models"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2025-11-30",
+   "note": "approx: not in the OpenRouter catalogue at 2025-11-19T13:07Z, priced 0/0 by 2025-11-30T07:53Z"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none",
+   "note": "approx end: first capture without the free price, see ended event"
+  },
+  "data_policy": "not_checked",
+  "status": "ended",
+  "checked": {
+   "date": "2026-11-01",
+   "method": "public_record"
+  },
+  "note": "Window from Wayback captures of OpenRouter /api/v1/models (price 0/0): free from between 2025-11-19T13:07Z and 2025-11-30T07:53Z until before 2025-12-06T22:41Z (last free capture 2025-11-30T07:53Z). Dates are approx brackets, not exact times."
+ },
+ {
+  "id": "aurora-alpha-or",
+  "model": "aurora-alpha",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "openrouter/aurora-alpha",
+  "free_condition": null,
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "not_checked",
+   "source": "https://web.archive.org/web/20260215041252/https://openrouter.ai/api/v1/models"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-02-15",
+   "note": "approx: not in the OpenRouter catalogue at 2026-02-01T23:22Z, priced 0/0 by 2026-02-15T04:12Z"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none",
+   "note": "approx end: first capture without the free price, see ended event"
+  },
+  "data_policy": "not_checked",
+  "status": "ended",
+  "checked": {
+   "date": "2026-11-01",
+   "method": "public_record"
+  },
+  "note": "Window from Wayback captures of OpenRouter /api/v1/models (price 0/0): free from between 2026-02-01T23:22Z and 2026-02-15T04:12Z until before 2026-03-03T07:52Z (last free capture 2026-02-19T04:56Z). Dates are approx brackets, not exact times."
+ },
+ {
+  "id": "healer-alpha-or",
+  "model": "healer-alpha",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "openrouter/healer-alpha",
+  "free_condition": null,
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "not_checked",
+   "source": "https://web.archive.org/web/20260317070710/https://openrouter.ai/api/v1/models"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-03-17",
+   "note": "approx: not in the OpenRouter catalogue at 2026-03-06T15:49Z, priced 0/0 by 2026-03-17T07:07Z"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none",
+   "note": "approx end: first capture without the free price, see ended event"
+  },
+  "data_policy": "not_checked",
+  "status": "ended",
+  "checked": {
+   "date": "2026-11-01",
+   "method": "public_record"
+  },
+  "note": "Window from Wayback captures of OpenRouter /api/v1/models (price 0/0): free from between 2026-03-06T15:49Z and 2026-03-17T07:07Z until before 2026-03-19T16:24Z (last free capture 2026-03-17T07:07Z). Dates are approx brackets, not exact times."
+ },
+ {
+  "id": "hunter-alpha-or",
+  "model": "hunter-alpha",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "openrouter/hunter-alpha",
+  "free_condition": null,
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "not_checked",
+   "source": "https://web.archive.org/web/20260317070710/https://openrouter.ai/api/v1/models"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-03-17",
+   "note": "approx: not in the OpenRouter catalogue at 2026-03-06T15:49Z, priced 0/0 by 2026-03-17T07:07Z"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none",
+   "note": "approx end: first capture without the free price, see ended event"
+  },
+  "data_policy": "not_checked",
+  "status": "ended",
+  "checked": {
+   "date": "2026-11-01",
+   "method": "public_record"
+  },
+  "note": "Window from Wayback captures of OpenRouter /api/v1/models (price 0/0): free from between 2026-03-06T15:49Z and 2026-03-17T07:07Z until before 2026-03-19T16:24Z (last free capture 2026-03-17T07:07Z). Dates are approx brackets, not exact times."
+ },
+ {
+  "id": "ox-alpha-or",
+  "model": "ox-alpha",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "stealth/ox-alpha",
+  "free_condition": null,
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "not_checked",
+   "source": "https://web.archive.org/web/20260821150252/https://openrouter.ai/api/v1/models"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-08-21",
+   "note": "approx: not in the OpenRouter catalogue at 2026-08-14T06:05Z, priced 0/0 by 2026-08-21T15:02Z"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none",
+   "note": "approx end: first capture without the free price, see ended event"
+  },
+  "data_policy": "not_checked",
+  "status": "ended",
+  "checked": {
+   "date": "2026-11-01",
+   "method": "public_record"
+  },
+  "note": "Window from Wayback captures of OpenRouter /api/v1/models (price 0/0): free from between 2026-08-14T06:05Z and 2026-08-21T15:02Z until before 2026-08-28T14:03Z (last free capture 2026-08-25T12:44Z). Dates are approx brackets, not exact times."
+ },
+ {
+  "id": "union-alpha-or",
+  "model": "union-alpha",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "stealth/union-alpha",
+  "free_condition": null,
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "not_checked",
+   "source": "https://web.archive.org/web/20260916193004/https://openrouter.ai/api/v1/models"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-09-16",
+   "note": "approx: not in the OpenRouter catalogue at 2026-09-15T19:30Z, priced 0/0 by 2026-09-16T19:30Z"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none",
+   "note": "approx end: first capture without the free price, see ended event"
+  },
+  "data_policy": "not_checked",
+  "status": "ended",
+  "checked": {
+   "date": "2026-11-01",
+   "method": "public_record"
+  },
+  "note": "Window from Wayback captures of OpenRouter /api/v1/models (price 0/0): free from between 2026-09-15T19:30Z and 2026-09-16T19:30Z until before 2026-09-18T16:22Z (last free capture 2026-09-17T00:59Z). Dates are approx brackets, not exact times."
+ },
+ {
+  "id": "rwkv-5-3b-ai-town-or",
+  "model": "rwkv-5-3b-ai-town",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "recursal/rwkv-5-3b-ai-town",
+  "free_condition": null,
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "not_checked",
+   "source": "https://web.archive.org/web/20231212114323/https://openrouter.ai/api/v1/models"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2023-12-12",
+   "note": "approx: not in the OpenRouter catalogue at 2023-12-03T05:13Z, priced 0/0 by 2023-12-12T11:43Z"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none",
+   "note": "approx end: first capture without the free price, see ended event"
+  },
+  "data_policy": "not_checked",
+  "status": "ended",
+  "checked": {
+   "date": "2026-11-01",
+   "method": "public_record"
+  },
+  "note": "Earliest candidate group. Window from Wayback captures of OpenRouter /api/v1/models (price 0/0): free from between 2023-12-03T05:13Z and 2023-12-12T11:43Z until before 2024-09-05T18:09Z (last free capture 2024-06-26T13:26Z). Dates are approx brackets, not exact times."
+ },
+ {
+  "id": "zephyr-7b-beta-or",
+  "model": "zephyr-7b-beta",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "huggingfaceh4/zephyr-7b-beta:free",
+  "free_condition": null,
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "not_checked",
+   "source": "https://web.archive.org/web/20240326211843/https://openrouter.ai/api/v1/models"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2024-03-26",
+   "note": "approx: not in the OpenRouter catalogue at 2023-12-26T21:28Z, priced 0/0 by 2024-03-26T21:18Z"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none",
+   "note": "approx end: first capture without the free price, see ended event"
+  },
+  "data_policy": "not_checked",
+  "status": "ended",
+  "checked": {
+   "date": "2026-11-01",
+   "method": "public_record"
+  },
+  "note": "Early :free 7B group (catalogue snapshots only; no official free announcement read). Window from Wayback captures of OpenRouter /api/v1/models (price 0/0): free from between 2023-12-26T21:28Z and 2024-03-26T21:18Z until before 2025-05-09T02:50Z (last free capture 2025-05-05T17:01Z). Dates are approx brackets, not exact times. last free capture 2025-05-05; the 2025-04-20 capture was an unreadable HTML page, not an absence"
+ },
+ {
+  "id": "openchat-7b-or",
+  "model": "openchat-7b",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "openchat/openchat-7b:free",
+  "free_condition": null,
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "not_checked",
+   "source": "https://web.archive.org/web/20240326211843/https://openrouter.ai/api/v1/models"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2024-03-26",
+   "note": "approx: not in the OpenRouter catalogue at 2023-12-26T21:28Z, priced 0/0 by 2024-03-26T21:18Z"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none",
+   "note": "approx end: first capture without the free price, see ended event"
+  },
+  "data_policy": "not_checked",
+  "status": "ended",
+  "checked": {
+   "date": "2026-11-01",
+   "method": "public_record"
+  },
+  "note": "Early :free 7B group (catalogue snapshots only; no official free announcement read). Window from Wayback captures of OpenRouter /api/v1/models (price 0/0): free from between 2023-12-26T21:28Z and 2024-03-26T21:18Z until before 2025-04-10T18:22Z (last free capture 2025-04-03T04:31Z). Dates are approx brackets, not exact times."
+ },
+ {
+  "id": "toppy-m-7b-or",
+  "model": "toppy-m-7b",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "undi95/toppy-m-7b:free",
+  "free_condition": null,
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "not_checked",
+   "source": "https://web.archive.org/web/20240326211843/https://openrouter.ai/api/v1/models"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2024-03-26",
+   "note": "approx: not in the OpenRouter catalogue at 2023-12-26T21:28Z, priced 0/0 by 2024-03-26T21:18Z"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none",
+   "note": "approx end: first capture without the free price, see ended event"
+  },
+  "data_policy": "not_checked",
+  "status": "ended",
+  "checked": {
+   "date": "2026-11-01",
+   "method": "public_record"
+  },
+  "note": "Early :free 7B group (catalogue snapshots only; no official free announcement read). Window from Wayback captures of OpenRouter /api/v1/models (price 0/0): free from between 2023-12-26T21:28Z and 2024-03-26T21:18Z until before 2025-04-10T18:22Z (last free capture 2025-04-03T04:31Z). Dates are approx brackets, not exact times."
+ },
+ {
+  "id": "mythomist-7b-or",
+  "model": "mythomist-7b",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "gryphe/mythomist-7b:free",
+  "free_condition": null,
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "not_checked",
+   "source": "https://web.archive.org/web/20240326211843/https://openrouter.ai/api/v1/models"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2024-03-26",
+   "note": "approx: not in the OpenRouter catalogue at 2023-12-26T21:28Z, priced 0/0 by 2024-03-26T21:18Z"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none",
+   "note": "approx end: first capture without the free price, see ended event"
+  },
+  "data_policy": "not_checked",
+  "status": "ended",
+  "checked": {
+   "date": "2026-11-01",
+   "method": "public_record"
+  },
+  "note": "Early :free 7B group (catalogue snapshots only; no official free announcement read). Window from Wayback captures of OpenRouter /api/v1/models (price 0/0): free from between 2023-12-26T21:28Z and 2024-03-26T21:18Z until before 2024-11-22T22:53Z (last free capture 2024-11-09T02:49Z). Dates are approx brackets, not exact times."
+ },
+ {
+  "id": "nous-capybara-7b-or",
+  "model": "nous-capybara-7b",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "nousresearch/nous-capybara-7b:free",
+  "free_condition": null,
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "not_checked",
+   "source": "https://web.archive.org/web/20240326211843/https://openrouter.ai/api/v1/models"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2024-03-26",
+   "note": "approx: not in the OpenRouter catalogue at 2023-12-26T21:28Z, priced 0/0 by 2024-03-26T21:18Z"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none",
+   "note": "approx end: first capture without the free price, see ended event"
+  },
+  "data_policy": "not_checked",
+  "status": "ended",
+  "checked": {
+   "date": "2026-11-01",
+   "method": "public_record"
+  },
+  "note": "Early :free 7B group (catalogue snapshots only; no official free announcement read). Window from Wayback captures of OpenRouter /api/v1/models (price 0/0): free from between 2023-12-26T21:28Z and 2024-03-26T21:18Z until before 2024-09-05T18:09Z (last free capture 2024-06-26T13:26Z). Dates are approx brackets, not exact times."
+ },
+ {
+  "id": "cinematika-7b-or",
+  "model": "cinematika-7b",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "openrouter/cinematika-7b:free",
+  "free_condition": null,
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "not_checked",
+   "source": "https://web.archive.org/web/20240326211843/https://openrouter.ai/api/v1/models"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2024-03-26",
+   "note": "approx: not in the OpenRouter catalogue at 2023-12-26T21:28Z, priced 0/0 by 2024-03-26T21:18Z"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none",
+   "note": "approx end: first capture without the free price, see ended event"
+  },
+  "data_policy": "not_checked",
+  "status": "ended",
+  "checked": {
+   "date": "2026-11-01",
+   "method": "public_record"
+  },
+  "note": "Early :free 7B group (catalogue snapshots only; no official free announcement read). Window from Wayback captures of OpenRouter /api/v1/models (price 0/0): free from between 2023-12-26T21:28Z and 2024-03-26T21:18Z until before 2024-06-19T08:19Z (last free capture 2024-05-08T19:32Z). Dates are approx brackets, not exact times."
+ },
+ {
+  "id": "gemma-7b-it-or",
+  "model": "gemma-7b-it",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "google/gemma-7b-it:free",
+  "free_condition": null,
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "not_checked",
+   "source": "https://web.archive.org/web/20240326211843/https://openrouter.ai/api/v1/models"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2024-03-26",
+   "note": "approx: not in the OpenRouter catalogue at 2023-12-26T21:28Z, priced 0/0 by 2024-03-26T21:18Z"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none",
+   "note": "approx end: first capture without the free price, see ended event"
+  },
+  "data_policy": "not_checked",
+  "status": "ended",
+  "checked": {
+   "date": "2026-11-01",
+   "method": "public_record"
+  },
+  "note": "Early :free 7B group (catalogue snapshots only; no official free announcement read). Window from Wayback captures of OpenRouter /api/v1/models (price 0/0): free from between 2023-12-26T21:28Z and 2024-03-26T21:18Z until before 2024-09-05T18:09Z (last free capture 2024-06-26T13:26Z). Dates are approx brackets, not exact times."
+ },
+ {
+  "id": "gemini-2.0-flash-exp-or",
+  "model": "gemini-2.0-flash-exp",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "google/gemini-2.0-flash-exp:free",
+  "free_condition": null,
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "not_checked",
+   "source": "https://web.archive.org/web/20241217203456/https://openrouter.ai/api/v1/models"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2024-12-12",
+   "note": "official post 2024-12-12; Wayback: absent 2024-12-11T01:18Z, free by 2024-12-17T20:34Z"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none",
+   "note": "approx end: first capture without the free price, see ended event"
+  },
+  "data_policy": "not_checked",
+  "status": "ended",
+  "checked": {
+   "date": "2026-11-01",
+   "method": "public_record"
+  },
+  "note": "Window from Wayback captures of OpenRouter /api/v1/models (price 0/0): free from between 2024-12-11T01:18Z and 2024-12-17T20:34Z until before 2026-02-01T23:22Z (last free capture 2026-01-28T22:57Z). Dates are approx brackets, not exact times. OpenRouter 2024-12-12 post: free Gemini Flash 2.0 exp; the 2026-01-23 capture shows non-zero price, free again 2026-01-28"
+ },
+ {
+  "id": "gemini-2.5-pro-exp-03-25-aistudio",
+  "model": "gemini-2.5-pro-exp-03-25",
+  "channel": "Google AI Studio",
+  "type": "first_party",
+  "model_id": "gemini-2.5-pro-exp-03-25",
+  "free_condition": null,
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "not_checked",
+   "source": "https://ai.google.dev/gemini-api/docs/changelog"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": null,
+   "note": "released 2025-03-25 as experimental; free-tier use first stated 2025-04-04 (changelog); start of free access not established"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none",
+   "note": "endpoint shut down 2025-06-26; free access may have ended earlier"
+  },
+  "data_policy": "not_checked",
+  "status": "ended",
+  "checked": {
+   "date": "2026-11-01",
+   "method": "public_record"
+  },
+  "note": "Google changelog: 2025-04-04 users can continue gemini-2.5-pro-exp-03-25 on the free tier; 2025-06-26 endpoint shut down. The pricing page capture of 2025-05-13 still lists the id, 2025-05-15 does not (presence only, not proof of price)."
  }
 ]

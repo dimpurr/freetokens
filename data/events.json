@@ -2851,5 +2851,581 @@
       "label": "OpenRouter models API",
       "url": "https://openrouter.ai/api/v1/models"
     }
+  },
+  {
+    "date": "2025-04-10",
+    "kind": "available",
+    "lanes": [
+      "quasar-alpha-or"
+    ],
+    "text": "Priced $0 in the OpenRouter catalogue capture of 2025-04-10T18:22Z (approx start; not listed in the capture of 2025-04-03T04:31Z)",
+    "source": {
+      "label": "Wayback capture of OpenRouter catalogue",
+      "url": "https://web.archive.org/web/20250410182211/https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2025-04-14",
+    "kind": "ended",
+    "lanes": [
+      "quasar-alpha-or"
+    ],
+    "text": "OpenRouter retired the free alpha endpoint (reveal post)",
+    "source": {
+      "label": "OpenRouter reveal post",
+      "url": "https://openrouter.ai/blog/announcements/quasar-alpha-and-optimus-alpha-reveal/"
+    }
+  },
+  {
+    "date": "2025-04-10",
+    "kind": "available",
+    "lanes": [
+      "optimus-alpha-or"
+    ],
+    "text": "Priced $0 in the OpenRouter catalogue capture of 2025-04-10T18:22Z (approx start; not listed in the capture of 2025-04-03T04:31Z)",
+    "source": {
+      "label": "Wayback capture of OpenRouter catalogue",
+      "url": "https://web.archive.org/web/20250410182211/https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2025-04-14",
+    "kind": "ended",
+    "lanes": [
+      "optimus-alpha-or"
+    ],
+    "text": "OpenRouter retired the free alpha endpoint (reveal post)",
+    "source": {
+      "label": "OpenRouter reveal post",
+      "url": "https://openrouter.ai/blog/announcements/quasar-alpha-and-optimus-alpha-reveal/"
+    }
+  },
+  {
+    "date": "2025-07-04",
+    "kind": "available",
+    "lanes": [
+      "cypher-alpha-or"
+    ],
+    "text": "Priced $0 in the OpenRouter catalogue capture of 2025-07-04T15:40Z (approx start; not listed in the capture of 2025-07-01T11:11Z)",
+    "source": {
+      "label": "Wayback capture of OpenRouter catalogue",
+      "url": "https://web.archive.org/web/20250704154038/https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2025-07-14",
+    "kind": "ended",
+    "lanes": [
+      "cypher-alpha-or"
+    ],
+    "text": "No longer listed in the OpenRouter catalogue capture of 2025-07-14T17:33Z; last priced $0 in the capture of 2025-07-14T08:26Z (approx end, an upper bound)",
+    "source": {
+      "label": "Wayback capture of OpenRouter catalogue",
+      "url": "https://web.archive.org/web/20250714173332/https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2025-09-11",
+    "kind": "available",
+    "lanes": [
+      "sonoma-dusk-alpha-or"
+    ],
+    "text": "Priced $0 in the OpenRouter catalogue capture of 2025-09-11T10:37Z (approx start; not listed in the capture of 2025-09-04T19:23Z)",
+    "source": {
+      "label": "Wayback capture of OpenRouter catalogue",
+      "url": "https://web.archive.org/web/20250911103722/https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2025-09-22",
+    "kind": "ended",
+    "lanes": [
+      "sonoma-dusk-alpha-or"
+    ],
+    "text": "No longer listed in the OpenRouter catalogue capture of 2025-09-22T19:04Z; last priced $0 in the capture of 2025-09-18T18:54Z (approx end, an upper bound)",
+    "source": {
+      "label": "Wayback capture of OpenRouter catalogue",
+      "url": "https://web.archive.org/web/20250922190416/https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2025-10-22",
+    "kind": "available",
+    "lanes": [
+      "andromeda-alpha-or"
+    ],
+    "text": "Priced $0 in the OpenRouter catalogue capture of 2025-10-22T18:39Z (approx start; not listed in the capture of 2025-10-20T00:18Z)",
+    "source": {
+      "label": "Wayback capture of OpenRouter catalogue",
+      "url": "https://web.archive.org/web/20251022183911/https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2025-10-31",
+    "kind": "ended",
+    "lanes": [
+      "andromeda-alpha-or"
+    ],
+    "text": "No longer listed in the OpenRouter catalogue capture of 2025-10-31T18:00Z; last priced $0 in the capture of 2025-10-22T18:39Z (approx end, an upper bound)",
+    "source": {
+      "label": "Wayback capture of OpenRouter catalogue",
+      "url": "https://web.archive.org/web/20251031180025/https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2025-11-07",
+    "kind": "available",
+    "lanes": [
+      "polaris-alpha-or"
+    ],
+    "text": "Priced $0 in the OpenRouter catalogue capture of 2025-11-07T01:40Z (approx start; not listed in the capture of 2025-11-02T18:55Z)",
+    "source": {
+      "label": "Wayback capture of OpenRouter catalogue",
+      "url": "https://web.archive.org/web/20251107014007/https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2025-11-14",
+    "kind": "ended",
+    "lanes": [
+      "polaris-alpha-or"
+    ],
+    "text": "No longer listed in the OpenRouter catalogue capture of 2025-11-14T18:31Z; last priced $0 in the capture of 2025-11-08T12:17Z (approx end, an upper bound)",
+    "source": {
+      "label": "Wayback capture of OpenRouter catalogue",
+      "url": "https://web.archive.org/web/20251114183110/https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2025-11-19",
+    "kind": "available",
+    "lanes": [
+      "sherlock-dash-alpha-or"
+    ],
+    "text": "Priced $0 in the OpenRouter catalogue capture of 2025-11-19T13:07Z (approx start; not listed in the capture of 2025-11-14T18:31Z)",
+    "source": {
+      "label": "Wayback capture of OpenRouter catalogue",
+      "url": "https://web.archive.org/web/20251119130712/https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2025-11-30",
+    "kind": "ended",
+    "lanes": [
+      "sherlock-dash-alpha-or"
+    ],
+    "text": "No longer listed in the OpenRouter catalogue capture of 2025-11-30T07:53Z; last priced $0 in the capture of 2025-11-19T13:07Z (approx end, an upper bound)",
+    "source": {
+      "label": "Wayback capture of OpenRouter catalogue",
+      "url": "https://web.archive.org/web/20251130075355/https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2025-11-19",
+    "kind": "available",
+    "lanes": [
+      "sherlock-think-alpha-or"
+    ],
+    "text": "Priced $0 in the OpenRouter catalogue capture of 2025-11-19T13:07Z (approx start; not listed in the capture of 2025-11-14T18:31Z)",
+    "source": {
+      "label": "Wayback capture of OpenRouter catalogue",
+      "url": "https://web.archive.org/web/20251119130712/https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2025-11-30",
+    "kind": "ended",
+    "lanes": [
+      "sherlock-think-alpha-or"
+    ],
+    "text": "No longer listed in the OpenRouter catalogue capture of 2025-11-30T07:53Z; last priced $0 in the capture of 2025-11-19T13:07Z (approx end, an upper bound)",
+    "source": {
+      "label": "Wayback capture of OpenRouter catalogue",
+      "url": "https://web.archive.org/web/20251130075355/https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2025-11-30",
+    "kind": "available",
+    "lanes": [
+      "bert-nebulon-alpha-or"
+    ],
+    "text": "Priced $0 in the OpenRouter catalogue capture of 2025-11-30T07:53Z (approx start; not listed in the capture of 2025-11-19T13:07Z)",
+    "source": {
+      "label": "Wayback capture of OpenRouter catalogue",
+      "url": "https://web.archive.org/web/20251130075355/https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2025-12-06",
+    "kind": "ended",
+    "lanes": [
+      "bert-nebulon-alpha-or"
+    ],
+    "text": "No longer listed in the OpenRouter catalogue capture of 2025-12-06T22:41Z; last priced $0 in the capture of 2025-11-30T07:53Z (approx end, an upper bound)",
+    "source": {
+      "label": "Wayback capture of OpenRouter catalogue",
+      "url": "https://web.archive.org/web/20251206224151/https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2026-02-15",
+    "kind": "available",
+    "lanes": [
+      "aurora-alpha-or"
+    ],
+    "text": "Priced $0 in the OpenRouter catalogue capture of 2026-02-15T04:12Z (approx start; not listed in the capture of 2026-02-01T23:22Z)",
+    "source": {
+      "label": "Wayback capture of OpenRouter catalogue",
+      "url": "https://web.archive.org/web/20260215041252/https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2026-03-03",
+    "kind": "ended",
+    "lanes": [
+      "aurora-alpha-or"
+    ],
+    "text": "No longer listed in the OpenRouter catalogue capture of 2026-03-03T07:52Z; last priced $0 in the capture of 2026-02-19T04:56Z (approx end, an upper bound)",
+    "source": {
+      "label": "Wayback capture of OpenRouter catalogue",
+      "url": "https://web.archive.org/web/20260303075210/https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2026-03-17",
+    "kind": "available",
+    "lanes": [
+      "healer-alpha-or"
+    ],
+    "text": "Priced $0 in the OpenRouter catalogue capture of 2026-03-17T07:07Z (approx start; not listed in the capture of 2026-03-06T15:49Z)",
+    "source": {
+      "label": "Wayback capture of OpenRouter catalogue",
+      "url": "https://web.archive.org/web/20260317070710/https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2026-03-19",
+    "kind": "ended",
+    "lanes": [
+      "healer-alpha-or"
+    ],
+    "text": "No longer listed in the OpenRouter catalogue capture of 2026-03-19T16:24Z; last priced $0 in the capture of 2026-03-17T07:07Z (approx end, an upper bound)",
+    "source": {
+      "label": "Wayback capture of OpenRouter catalogue",
+      "url": "https://web.archive.org/web/20260319162447/https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2026-03-17",
+    "kind": "available",
+    "lanes": [
+      "hunter-alpha-or"
+    ],
+    "text": "Priced $0 in the OpenRouter catalogue capture of 2026-03-17T07:07Z (approx start; not listed in the capture of 2026-03-06T15:49Z)",
+    "source": {
+      "label": "Wayback capture of OpenRouter catalogue",
+      "url": "https://web.archive.org/web/20260317070710/https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2026-03-19",
+    "kind": "ended",
+    "lanes": [
+      "hunter-alpha-or"
+    ],
+    "text": "No longer listed in the OpenRouter catalogue capture of 2026-03-19T16:24Z; last priced $0 in the capture of 2026-03-17T07:07Z (approx end, an upper bound)",
+    "source": {
+      "label": "Wayback capture of OpenRouter catalogue",
+      "url": "https://web.archive.org/web/20260319162447/https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2026-08-21",
+    "kind": "available",
+    "lanes": [
+      "ox-alpha-or"
+    ],
+    "text": "Priced $0 in the OpenRouter catalogue capture of 2026-08-21T15:02Z (approx start; not listed in the capture of 2026-08-14T06:05Z)",
+    "source": {
+      "label": "Wayback capture of OpenRouter catalogue",
+      "url": "https://web.archive.org/web/20260821150252/https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2026-08-28",
+    "kind": "ended",
+    "lanes": [
+      "ox-alpha-or"
+    ],
+    "text": "No longer listed in the OpenRouter catalogue capture of 2026-08-28T14:03Z; last priced $0 in the capture of 2026-08-25T12:44Z (approx end, an upper bound)",
+    "source": {
+      "label": "Wayback capture of OpenRouter catalogue",
+      "url": "https://web.archive.org/web/20260828140349/https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2026-09-16",
+    "kind": "available",
+    "lanes": [
+      "union-alpha-or"
+    ],
+    "text": "Priced $0 in the OpenRouter catalogue capture of 2026-09-16T19:30Z (approx start; not listed in the capture of 2026-09-15T19:30Z)",
+    "source": {
+      "label": "Wayback capture of OpenRouter catalogue",
+      "url": "https://web.archive.org/web/20260916193004/https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2026-09-18",
+    "kind": "ended",
+    "lanes": [
+      "union-alpha-or"
+    ],
+    "text": "No longer listed in the OpenRouter catalogue capture of 2026-09-18T16:22Z; last priced $0 in the capture of 2026-09-17T00:59Z (approx end, an upper bound)",
+    "source": {
+      "label": "Wayback capture of OpenRouter catalogue",
+      "url": "https://web.archive.org/web/20260918162212/https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2023-12-12",
+    "kind": "available",
+    "lanes": [
+      "rwkv-5-3b-ai-town-or"
+    ],
+    "text": "Priced $0 in the OpenRouter catalogue capture of 2023-12-12T11:43Z (approx start; not listed in the capture of 2023-12-03T05:13Z)",
+    "source": {
+      "label": "Wayback capture of OpenRouter catalogue",
+      "url": "https://web.archive.org/web/20231212114323/https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2024-09-05",
+    "kind": "ended",
+    "lanes": [
+      "rwkv-5-3b-ai-town-or"
+    ],
+    "text": "No longer listed in the OpenRouter catalogue capture of 2024-09-05T18:09Z; last priced $0 in the capture of 2024-06-26T13:26Z (approx end, an upper bound)",
+    "source": {
+      "label": "Wayback capture of OpenRouter catalogue",
+      "url": "https://web.archive.org/web/20240905180900/https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2024-03-26",
+    "kind": "available",
+    "lanes": [
+      "zephyr-7b-beta-or"
+    ],
+    "text": "Priced $0 in the OpenRouter catalogue capture of 2024-03-26T21:18Z (approx start; not listed in the capture of 2023-12-26T21:28Z)",
+    "source": {
+      "label": "Wayback capture of OpenRouter catalogue",
+      "url": "https://web.archive.org/web/20240326211843/https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2025-05-09",
+    "kind": "ended",
+    "lanes": [
+      "zephyr-7b-beta-or"
+    ],
+    "text": "No longer listed in the OpenRouter catalogue capture of 2025-05-09T02:50Z; last priced $0 in the capture of 2025-05-05T17:01Z (approx end, an upper bound)",
+    "source": {
+      "label": "Wayback capture of OpenRouter catalogue",
+      "url": "https://web.archive.org/web/20250509025038/https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2024-03-26",
+    "kind": "available",
+    "lanes": [
+      "openchat-7b-or"
+    ],
+    "text": "Priced $0 in the OpenRouter catalogue capture of 2024-03-26T21:18Z (approx start; not listed in the capture of 2023-12-26T21:28Z)",
+    "source": {
+      "label": "Wayback capture of OpenRouter catalogue",
+      "url": "https://web.archive.org/web/20240326211843/https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2025-04-10",
+    "kind": "ended",
+    "lanes": [
+      "openchat-7b-or"
+    ],
+    "text": "No longer listed in the OpenRouter catalogue capture of 2025-04-10T18:22Z; last priced $0 in the capture of 2025-04-03T04:31Z (approx end, an upper bound)",
+    "source": {
+      "label": "Wayback capture of OpenRouter catalogue",
+      "url": "https://web.archive.org/web/20250410182211/https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2024-03-26",
+    "kind": "available",
+    "lanes": [
+      "toppy-m-7b-or"
+    ],
+    "text": "Priced $0 in the OpenRouter catalogue capture of 2024-03-26T21:18Z (approx start; not listed in the capture of 2023-12-26T21:28Z)",
+    "source": {
+      "label": "Wayback capture of OpenRouter catalogue",
+      "url": "https://web.archive.org/web/20240326211843/https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2025-04-10",
+    "kind": "ended",
+    "lanes": [
+      "toppy-m-7b-or"
+    ],
+    "text": "No longer listed in the OpenRouter catalogue capture of 2025-04-10T18:22Z; last priced $0 in the capture of 2025-04-03T04:31Z (approx end, an upper bound)",
+    "source": {
+      "label": "Wayback capture of OpenRouter catalogue",
+      "url": "https://web.archive.org/web/20250410182211/https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2024-03-26",
+    "kind": "available",
+    "lanes": [
+      "mythomist-7b-or"
+    ],
+    "text": "Priced $0 in the OpenRouter catalogue capture of 2024-03-26T21:18Z (approx start; not listed in the capture of 2023-12-26T21:28Z)",
+    "source": {
+      "label": "Wayback capture of OpenRouter catalogue",
+      "url": "https://web.archive.org/web/20240326211843/https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2024-11-22",
+    "kind": "ended",
+    "lanes": [
+      "mythomist-7b-or"
+    ],
+    "text": "No longer listed in the OpenRouter catalogue capture of 2024-11-22T22:53Z; last priced $0 in the capture of 2024-11-09T02:49Z (approx end, an upper bound)",
+    "source": {
+      "label": "Wayback capture of OpenRouter catalogue",
+      "url": "https://web.archive.org/web/20241122225336/https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2024-03-26",
+    "kind": "available",
+    "lanes": [
+      "nous-capybara-7b-or"
+    ],
+    "text": "Priced $0 in the OpenRouter catalogue capture of 2024-03-26T21:18Z (approx start; not listed in the capture of 2023-12-26T21:28Z)",
+    "source": {
+      "label": "Wayback capture of OpenRouter catalogue",
+      "url": "https://web.archive.org/web/20240326211843/https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2024-09-05",
+    "kind": "ended",
+    "lanes": [
+      "nous-capybara-7b-or"
+    ],
+    "text": "No longer listed in the OpenRouter catalogue capture of 2024-09-05T18:09Z; last priced $0 in the capture of 2024-06-26T13:26Z (approx end, an upper bound)",
+    "source": {
+      "label": "Wayback capture of OpenRouter catalogue",
+      "url": "https://web.archive.org/web/20240905180900/https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2024-03-26",
+    "kind": "available",
+    "lanes": [
+      "cinematika-7b-or"
+    ],
+    "text": "Priced $0 in the OpenRouter catalogue capture of 2024-03-26T21:18Z (approx start; not listed in the capture of 2023-12-26T21:28Z)",
+    "source": {
+      "label": "Wayback capture of OpenRouter catalogue",
+      "url": "https://web.archive.org/web/20240326211843/https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2024-06-19",
+    "kind": "ended",
+    "lanes": [
+      "cinematika-7b-or"
+    ],
+    "text": "No longer listed in the OpenRouter catalogue capture of 2024-06-19T08:19Z; last priced $0 in the capture of 2024-05-08T19:32Z (approx end, an upper bound)",
+    "source": {
+      "label": "Wayback capture of OpenRouter catalogue",
+      "url": "https://web.archive.org/web/20240619081953/https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2024-03-26",
+    "kind": "available",
+    "lanes": [
+      "gemma-7b-it-or"
+    ],
+    "text": "Priced $0 in the OpenRouter catalogue capture of 2024-03-26T21:18Z (approx start; not listed in the capture of 2023-12-26T21:28Z)",
+    "source": {
+      "label": "Wayback capture of OpenRouter catalogue",
+      "url": "https://web.archive.org/web/20240326211843/https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2024-09-05",
+    "kind": "ended",
+    "lanes": [
+      "gemma-7b-it-or"
+    ],
+    "text": "No longer listed in the OpenRouter catalogue capture of 2024-09-05T18:09Z; last priced $0 in the capture of 2024-06-26T13:26Z (approx end, an upper bound)",
+    "source": {
+      "label": "Wayback capture of OpenRouter catalogue",
+      "url": "https://web.archive.org/web/20240905180900/https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2024-12-12",
+    "kind": "available",
+    "lanes": [
+      "gemini-2.0-flash-exp-or"
+    ],
+    "text": "OpenRouter announced free access to google/gemini-2.0-flash-exp:free (heavily rate limited)",
+    "source": {
+      "label": "OpenRouter announcement",
+      "url": "https://openrouter.ai/blog/announcements/structured-outputs-and-free-gemini-flash-20/"
+    }
+  },
+  {
+    "date": "2026-02-01",
+    "kind": "ended",
+    "lanes": [
+      "gemini-2.0-flash-exp-or"
+    ],
+    "text": "No longer listed in the OpenRouter catalogue capture of 2026-02-01T23:22Z; last priced $0 in the capture of 2026-01-28T22:57Z (approx end, an upper bound)",
+    "source": {
+      "label": "Wayback capture of OpenRouter catalogue",
+      "url": "https://web.archive.org/web/20260201232250/https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2025-04-04",
+    "kind": "listed",
+    "lanes": [
+      "gemini-2.5-pro-exp-03-25-aistudio"
+    ],
+    "text": "Google changelog says gemini-2.5-pro-exp-03-25 stays usable on the free tier",
+    "source": {
+      "label": "Gemini API changelog",
+      "url": "https://ai.google.dev/gemini-api/docs/changelog"
+    }
+  },
+  {
+    "date": "2025-06-26",
+    "kind": "ended",
+    "lanes": [
+      "gemini-2.5-pro-exp-03-25-aistudio"
+    ],
+    "text": "Google shut down gemini-2.5-pro-exp-03-25 (end of free access is at or before this date)",
+    "source": {
+      "label": "Gemini API changelog",
+      "url": "https://ai.google.dev/gemini-api/docs/changelog"
+    }
   }
 ]
