@@ -13,6 +13,12 @@ freetokens is licensed by folder.
 If a file is not listed, it falls under the license of the nearest listed folder;
 otherwise all rights are reserved.
 
+Exception for data/: Artificial Analysis scores and sub-score data (the aa_index,
+prev_value, aa_prev and aa_* values in models.json, anchors.json and benchmarks.json)
+are not under CC BY 4.0. You can read them here, but we do not license them to you
+under CC BY; any use of them must follow Artificial Analysis's own terms
+(https://artificialanalysis.ai). See data/LICENSE.md.
+
 ------------------------------------------------------------------------------
 MIT License — build.py and schema/
 

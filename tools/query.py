@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Stable read-only queries over data/*.json for other tools (stdlib only, JSON out).
 
-    python3 tools/query.py score <model-id|name>      # AA index or EST band, with sources
+    python3 tools/query.py score <model-id|name>      # FTAA (basis direct | mapped) or EST band, with sources
     python3 tools/query.py lanes <model-id|lane-id|channel>   # status, checks, limits, volume
     python3 tools/query.py events [--since YYYY-MM-DD] [--lane ID]
     python3 tools/query.py pool [--min 30]            # agent-usable free lanes with a score, best first
@@ -36,16 +36,18 @@ def find_model(q):
 def score(m):
     a = m["aa_index"]
     if a.get("value") is not None:
+        mapped = a.get("basis") == "mapped"  # FTAA (ADR-035): direct = the AA v5 score; mapped = an older score put on that scale (about 3 points of error)
         return {"model": m["id"], "name": m["name"], "kind": "aa", "value": a["value"], "low": a["value"], "high": a["value"],
-                "source": a.get("url"), "date": a.get("date"), "confidence": "official"}
+                "source": a.get("url"), "date": a.get("date"), "confidence": "medium" if mapped else "official",
+                "basis": a.get("basis", "direct"), "prev_value": a.get("prev_value"), "prev_date": a.get("prev_date")}
     e = EST.get(m["id"], {})
     if e.get("status") == "ok":
         n = e.get("benchmarks", 0)
         return {"model": m["id"], "name": m["name"], "kind": "est", "value": e["center"], "low": e["low"], "high": e["high"],
-                "confidence": "low" if e.get("vendor_only") or n < 2 else "medium", "benchmarks": n,
+                "confidence": "low" if e.get("vendor_only") or n < 2 else "medium", "basis": "est", "benchmarks": n,
                 "method": e.get("method"), "vendor_only": e.get("vendor_only", False),
                 "evidence": [{k: c.get(k) for k in ("benchmark", "score", "source_type", "url", "variant")} for c in CLAIMS if c["model"] == m["id"]]}
-    return {"model": m["id"], "name": m["name"], "kind": "none", "value": None, "note": a.get("note") or "no AA index and too little evidence for an estimate"}
+    return {"model": m["id"], "name": m["name"], "kind": "none", "value": None, "basis": None, "note": a.get("note") or "no AA index and too little evidence for an estimate"}
 
 
 def lane_view(l):

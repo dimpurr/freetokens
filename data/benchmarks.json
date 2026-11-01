@@ -210,7 +210,7 @@
       "source_type": "community",
       "url": "https://spacebunnyalpha.com/",
       "seen": "2026-10-05",
-      "excluded": "no reference models with an AA index collected for this benchmark yet"
+      "excluded": "no reference models with an FTAA collected for this benchmark yet"
     },
     {
       "model": "dots-3-note-preview",
@@ -223,27 +223,35 @@
       "peers": [
         {
           "name": "Hy3",
-          "aa": 25,
+          "aa": 11.9,
           "aa_url": "https://artificialanalysis.ai/models/hy3",
-          "score": 78.0
+          "score": 78.0,
+          "aa_basis": "mapped",
+          "aa_prev": 25
         },
         {
           "name": "GLM 5.2",
-          "aa": 33.71,
+          "aa": 19.6,
           "aa_url": "https://artificialanalysis.ai/models/glm-5-2",
-          "score": 84.2
+          "score": 84.2,
+          "aa_basis": "mapped",
+          "aa_prev": 33.71
         },
         {
           "name": "DeepSeek V4 Flash 0420 (table: \"preview\")",
-          "aa": 24.16,
+          "aa": 11.3,
           "aa_url": "https://artificialanalysis.ai/models/deepseek-v4-flash-0420",
-          "score": 79.0
+          "score": 79.0,
+          "aa_basis": "mapped",
+          "aa_prev": 24.16
         },
         {
           "name": "Claude Opus 4.8",
-          "aa": 41.78,
+          "aa": 30.2,
           "aa_url": "https://artificialanalysis.ai/models/claude-opus-4-8",
-          "score": 88.6
+          "score": 88.6,
+          "aa_basis": "mapped",
+          "aa_prev": 41.78
         }
       ]
     },
@@ -258,39 +266,51 @@
       "peers": [
         {
           "name": "Hy3",
-          "aa": 25,
+          "aa": 11.9,
           "aa_url": "https://artificialanalysis.ai/models/hy3",
-          "score": 57.9
+          "score": 57.9,
+          "aa_basis": "mapped",
+          "aa_prev": 25
         },
         {
           "name": "GLM 5.2",
-          "aa": 33.71,
+          "aa": 19.6,
           "aa_url": "https://artificialanalysis.ai/models/glm-5-2",
-          "score": 62.1
+          "score": 62.1,
+          "aa_basis": "mapped",
+          "aa_prev": 33.71
         },
         {
           "name": "DeepSeek V4 Flash 0420 (table: \"preview\")",
-          "aa": 24.16,
+          "aa": 11.3,
           "aa_url": "https://artificialanalysis.ai/models/deepseek-v4-flash-0420",
-          "score": 52.6
+          "score": 52.6,
+          "aa_basis": "mapped",
+          "aa_prev": 24.16
         },
         {
           "name": "Kimi K3",
-          "aa": 44,
+          "aa": 33.7,
           "aa_url": "https://artificialanalysis.ai/models/kimi-k3",
-          "score": 63.4
+          "score": 63.4,
+          "aa_basis": "mapped",
+          "aa_prev": 44
         },
         {
           "name": "Claude Opus 4.8",
-          "aa": 41.78,
+          "aa": 30.2,
           "aa_url": "https://artificialanalysis.ai/models/claude-opus-4-8",
-          "score": 69.2
+          "score": 69.2,
+          "aa_basis": "mapped",
+          "aa_prev": 41.78
         },
         {
           "name": "GPT-5.5",
-          "aa": 38.36,
+          "aa": 25.3,
           "aa_url": "https://artificialanalysis.ai/models/gpt-5-5",
-          "score": 58.6
+          "score": 58.6,
+          "aa_basis": "mapped",
+          "aa_prev": 38.36
         }
       ]
     },
@@ -305,45 +325,59 @@
       "peers": [
         {
           "name": "Hy3",
-          "aa": 25,
+          "aa": 11.9,
           "aa_url": "https://artificialanalysis.ai/models/hy3",
-          "score": 71.7
+          "score": 71.7,
+          "aa_basis": "mapped",
+          "aa_prev": 25
         },
         {
           "name": "GLM 5.2",
-          "aa": 33.71,
+          "aa": 19.6,
           "aa_url": "https://artificialanalysis.ai/models/glm-5-2",
-          "score": 81.0
+          "score": 81.0,
+          "aa_basis": "mapped",
+          "aa_prev": 33.71
         },
         {
           "name": "DeepSeek V4 Flash 0731",
-          "aa": 34.33,
+          "aa": 20.3,
           "aa_url": "https://artificialanalysis.ai/models/deepseek-v4-flash",
-          "score": 82.7
+          "score": 82.7,
+          "aa_basis": "mapped",
+          "aa_prev": 34.33
         },
         {
           "name": "DeepSeek V4 Flash 0420 (table: \"preview\")",
-          "aa": 24.16,
+          "aa": 11.3,
           "aa_url": "https://artificialanalysis.ai/models/deepseek-v4-flash-0420",
-          "score": 61.8
+          "score": 61.8,
+          "aa_basis": "mapped",
+          "aa_prev": 24.16
         },
         {
           "name": "Kimi K3",
-          "aa": 44,
+          "aa": 33.7,
           "aa_url": "https://artificialanalysis.ai/models/kimi-k3",
-          "score": 88.3
+          "score": 88.3,
+          "aa_basis": "mapped",
+          "aa_prev": 44
         },
         {
           "name": "Claude Opus 4.8",
-          "aa": 41.78,
+          "aa": 30.2,
           "aa_url": "https://artificialanalysis.ai/models/claude-opus-4-8",
-          "score": 84.6
+          "score": 84.6,
+          "aa_basis": "mapped",
+          "aa_prev": 41.78
         },
         {
           "name": "GPT-5.5",
-          "aa": 38.36,
+          "aa": 25.3,
           "aa_url": "https://artificialanalysis.ai/models/gpt-5-5",
-          "score": 82.7
+          "score": 82.7,
+          "aa_basis": "mapped",
+          "aa_prev": 38.36
         }
       ]
     },
@@ -358,39 +392,51 @@
       "peers": [
         {
           "name": "Kimi K3",
-          "aa": 44,
+          "aa": 33.7,
           "aa_url": "https://artificialanalysis.ai/models/kimi-k3",
-          "score": 88.3
+          "score": 88.3,
+          "aa_basis": "mapped",
+          "aa_prev": 44
         },
         {
           "name": "GLM-5.3",
-          "aa": 45,
+          "aa": 31.7,
           "aa_url": "https://artificialanalysis.ai/models/glm-5-3",
-          "score": 88.2
+          "score": 88.2,
+          "aa_basis": "direct",
+          "aa_prev": 45
         },
         {
           "name": "DeepSeek V4 Pro 0813",
-          "aa": 35.99,
+          "aa": 23.1,
           "aa_url": "https://artificialanalysis.ai/models/deepseek-v4-pro",
-          "score": 87.9
+          "score": 87.9,
+          "aa_basis": "direct",
+          "aa_prev": 35.99
         },
         {
           "name": "Qwen3.8 Max",
-          "aa": 45.41,
+          "aa": 33.6,
           "aa_url": "https://artificialanalysis.ai/models/qwen3-8-max",
-          "score": 86.6
+          "score": 86.6,
+          "aa_basis": "direct",
+          "aa_prev": 45.41
         },
         {
           "name": "Claude Opus 5",
-          "aa": 50.78,
+          "aa": 45.8,
           "aa_url": "https://artificialanalysis.ai/models/claude-opus-5",
-          "score": 89.1
+          "score": 89.1,
+          "aa_basis": "mapped",
+          "aa_prev": 50.78
         },
         {
           "name": "GPT-5.6 Sol",
-          "aa": 46.97,
+          "aa": 38.7,
           "aa_url": "https://artificialanalysis.ai/models/gpt-5-6-sol",
-          "score": 88.8
+          "score": 88.8,
+          "aa_basis": "mapped",
+          "aa_prev": 46.97
         }
       ]
     },
@@ -405,39 +451,51 @@
       "peers": [
         {
           "name": "Kimi K3",
-          "aa": 44,
+          "aa": 33.7,
           "aa_url": "https://artificialanalysis.ai/models/kimi-k3",
-          "score": 63.3
+          "score": 63.3,
+          "aa_basis": "mapped",
+          "aa_prev": 44
         },
         {
           "name": "GLM-5.3",
-          "aa": 45,
+          "aa": 31.7,
           "aa_url": "https://artificialanalysis.ai/models/glm-5-3",
-          "score": 64.6
+          "score": 64.6,
+          "aa_basis": "direct",
+          "aa_prev": 45
         },
         {
           "name": "DeepSeek V4 Pro 0813",
-          "aa": 35.99,
+          "aa": 23.1,
           "aa_url": "https://artificialanalysis.ai/models/deepseek-v4-pro",
-          "score": 55.4
+          "score": 55.4,
+          "aa_basis": "direct",
+          "aa_prev": 35.99
         },
         {
           "name": "Qwen3.8 Max",
-          "aa": 45.41,
+          "aa": 33.6,
           "aa_url": "https://artificialanalysis.ai/models/qwen3-8-max",
-          "score": 67.7
+          "score": 67.7,
+          "aa_basis": "direct",
+          "aa_prev": 45.41
         },
         {
           "name": "Claude Opus 5",
-          "aa": 50.78,
+          "aa": 45.8,
           "aa_url": "https://artificialanalysis.ai/models/claude-opus-5",
-          "score": 79.2
+          "score": 79.2,
+          "aa_basis": "mapped",
+          "aa_prev": 50.78
         },
         {
           "name": "GPT-5.6 Sol",
-          "aa": 46.97,
+          "aa": 38.7,
           "aa_url": "https://artificialanalysis.ai/models/gpt-5-6-sol",
-          "score": 64.6
+          "score": 64.6,
+          "aa_basis": "mapped",
+          "aa_prev": 46.97
         }
       ]
     },
@@ -452,51 +510,67 @@
       "peers": [
         {
           "name": "Hy3",
-          "aa": 25,
+          "aa": 11.9,
           "aa_url": "https://artificialanalysis.ai/models/hy3",
-          "score": 71.7
+          "score": 71.7,
+          "aa_basis": "mapped",
+          "aa_prev": 25
         },
         {
           "name": "Inkling (Xhigh)",
-          "aa": 24.98,
+          "aa": 12.5,
           "aa_url": "https://artificialanalysis.ai/models/inkling",
-          "score": 63.8
+          "score": 63.8,
+          "aa_basis": "direct",
+          "aa_prev": 24.98
         },
         {
           "name": "Nemotron 3 Ultra",
-          "aa": 22.93,
+          "aa": 10.6,
           "aa_url": "https://artificialanalysis.ai/models/nemotron-3-ultra",
-          "score": 56.4
+          "score": 56.4,
+          "aa_basis": "mapped",
+          "aa_prev": 22.93
         },
         {
           "name": "DeepSeek V4 Pro 0813",
-          "aa": 35.99,
+          "aa": 23.1,
           "aa_url": "https://artificialanalysis.ai/models/deepseek-v4-pro",
-          "score": 64.0
+          "score": 64.0,
+          "aa_basis": "direct",
+          "aa_prev": 35.99
         },
         {
           "name": "Kimi K3",
-          "aa": 44,
+          "aa": 33.7,
           "aa_url": "https://artificialanalysis.ai/models/kimi-k3",
-          "score": 88.3
+          "score": 88.3,
+          "aa_basis": "mapped",
+          "aa_prev": 44
         },
         {
           "name": "Qwen3.7 Max",
-          "aa": 29.46,
+          "aa": 15.4,
           "aa_url": "https://artificialanalysis.ai/models/qwen3-7-max",
-          "score": 74.5
+          "score": 74.5,
+          "aa_basis": "mapped",
+          "aa_prev": 29.46
         },
         {
           "name": "Muse Spark 1.1",
-          "aa": 33.73,
+          "aa": 19.6,
           "aa_url": "https://artificialanalysis.ai/models/muse-spark-1-1",
-          "score": 80.0
+          "score": 80.0,
+          "aa_basis": "mapped",
+          "aa_prev": 33.73
         },
         {
           "name": "Claude Fable 5",
-          "aa": 49.62,
+          "aa": 43.6,
           "aa_url": "https://artificialanalysis.ai/models/claude-fable-5",
-          "score": 88.0
+          "score": 88.0,
+          "aa_basis": "mapped",
+          "aa_prev": 49.62
         }
       ]
     },
@@ -511,39 +585,51 @@
       "peers": [
         {
           "name": "Hy3",
-          "aa": 25,
+          "aa": 11.9,
           "aa_url": "https://artificialanalysis.ai/models/hy3",
-          "score": 57.9
+          "score": 57.9,
+          "aa_basis": "mapped",
+          "aa_prev": 25
         },
         {
           "name": "Inkling (Xhigh)",
-          "aa": 24.98,
+          "aa": 12.5,
           "aa_url": "https://artificialanalysis.ai/models/inkling",
-          "score": 54.3
+          "score": 54.3,
+          "aa_basis": "direct",
+          "aa_prev": 24.98
         },
         {
           "name": "DeepSeek V4 Pro 0813",
-          "aa": 35.99,
+          "aa": 23.1,
           "aa_url": "https://artificialanalysis.ai/models/deepseek-v4-pro",
-          "score": 55.4
+          "score": 55.4,
+          "aa_basis": "direct",
+          "aa_prev": 35.99
         },
         {
           "name": "Qwen3.7 Max",
-          "aa": 29.46,
+          "aa": 15.4,
           "aa_url": "https://artificialanalysis.ai/models/qwen3-7-max",
-          "score": 60.6
+          "score": 60.6,
+          "aa_basis": "mapped",
+          "aa_prev": 29.46
         },
         {
           "name": "Muse Spark 1.1",
-          "aa": 33.73,
+          "aa": 19.6,
           "aa_url": "https://artificialanalysis.ai/models/muse-spark-1-1",
-          "score": 61.5
+          "score": 61.5,
+          "aa_basis": "mapped",
+          "aa_prev": 33.73
         },
         {
           "name": "Claude Fable 5",
-          "aa": 49.62,
+          "aa": 43.6,
           "aa_url": "https://artificialanalysis.ai/models/claude-fable-5",
-          "score": 80.3
+          "score": 80.3,
+          "aa_basis": "mapped",
+          "aa_prev": 49.62
         }
       ]
     },
@@ -558,21 +644,27 @@
       "peers": [
         {
           "name": "Qwen3.6 35B A3B",
-          "aa": 18.23,
+          "aa": 8.4,
           "aa_url": "https://artificialanalysis.ai/models/qwen3-6-35b-a3b",
-          "score": 73.4
+          "score": 73.4,
+          "aa_basis": "mapped",
+          "aa_prev": 18.23
         },
         {
           "name": "North Mini Code",
-          "aa": 10,
+          "aa": 5.7,
           "aa_url": "https://artificialanalysis.ai/models/north-mini-code",
-          "score": 67.6
+          "score": 67.6,
+          "aa_basis": "mapped",
+          "aa_prev": 10
         },
         {
           "name": "Claude Haiku 4.5 (thinking)",
-          "aa": 16.88,
+          "aa": 8.0,
           "aa_url": "https://artificialanalysis.ai/models/claude-4-5-haiku-reasoning",
-          "score": 73.3
+          "score": 73.3,
+          "aa_basis": "mapped",
+          "aa_prev": 16.88
         }
       ]
     },
@@ -587,33 +679,43 @@
       "peers": [
         {
           "name": "Qwen3.6 35B A3B",
-          "aa": 18.23,
+          "aa": 8.4,
           "aa_url": "https://artificialanalysis.ai/models/qwen3-6-35b-a3b",
-          "score": 49.5
+          "score": 49.5,
+          "aa_basis": "mapped",
+          "aa_prev": 18.23
         },
         {
           "name": "North Mini Code",
-          "aa": 10,
+          "aa": 5.7,
           "aa_url": "https://artificialanalysis.ai/models/north-mini-code",
-          "score": 40.2
+          "score": 40.2,
+          "aa_basis": "mapped",
+          "aa_prev": 10
         },
         {
           "name": "Claude Haiku 4.5 (thinking)",
-          "aa": 16.88,
+          "aa": 8.0,
           "aa_url": "https://artificialanalysis.ai/models/claude-4-5-haiku-reasoning",
-          "score": 39.5
+          "score": 39.5,
+          "aa_basis": "mapped",
+          "aa_prev": 16.88
         },
         {
           "name": "gpt-oss-120b",
-          "aa": 11.6,
+          "aa": 6.6,
           "aa_url": "https://artificialanalysis.ai/models/gpt-oss-120b",
-          "score": 16.2
+          "score": 16.2,
+          "aa_basis": "mapped",
+          "aa_prev": 11.6
         },
         {
           "name": "GPT-5.4 Nano",
-          "aa": 20.72,
+          "aa": 9.4,
           "aa_url": "https://artificialanalysis.ai/models/gpt-5-4-nano",
-          "score": 52.4
+          "score": 52.4,
+          "aa_basis": "mapped",
+          "aa_prev": 20.72
         }
       ]
     },
@@ -628,15 +730,19 @@
       "peers": [
         {
           "name": "Qwen3.6 35B A3B",
-          "aa": 18.23,
+          "aa": 8.4,
           "aa_url": "https://artificialanalysis.ai/models/qwen3-6-35b-a3b",
-          "score": 76.0
+          "score": 76.0,
+          "aa_basis": "mapped",
+          "aa_prev": 18.23
         },
         {
           "name": "Gemma 4 26B A4B",
-          "aa": 16.67,
+          "aa": 8.0,
           "aa_url": "https://artificialanalysis.ai/models/gemma-4-26b-a4b",
-          "score": 53.0
+          "score": 53.0,
+          "aa_basis": "mapped",
+          "aa_prev": 16.67
         }
       ]
     },
@@ -651,15 +757,19 @@
       "peers": [
         {
           "name": "Qwen3.6 35B A3B",
-          "aa": 18.23,
+          "aa": 8.4,
           "aa_url": "https://artificialanalysis.ai/models/qwen3-6-35b-a3b",
-          "score": 51.5
+          "score": 51.5,
+          "aa_basis": "mapped",
+          "aa_prev": 18.23
         },
         {
           "name": "Gemma 4 26B A4B",
-          "aa": 16.67,
+          "aa": 8.0,
           "aa_url": "https://artificialanalysis.ai/models/gemma-4-26b-a4b",
-          "score": 30.0
+          "score": 30.0,
+          "aa_basis": "mapped",
+          "aa_prev": 16.67
         }
       ]
     },
@@ -684,15 +794,19 @@
       "peers": [
         {
           "name": "Qwen3.6 35B A3B",
-          "aa": 18.23,
+          "aa": 8.4,
           "aa_url": "https://artificialanalysis.ai/models/qwen3-6-35b-a3b",
-          "score": 44.9
+          "score": 44.9,
+          "aa_basis": "mapped",
+          "aa_prev": 18.23
         },
         {
           "name": "Gemma 4 26B A4B",
-          "aa": 16.67,
+          "aa": 8.0,
           "aa_url": "https://artificialanalysis.ai/models/gemma-4-26b-a4b",
-          "score": 43.4
+          "score": 43.4,
+          "aa_basis": "mapped",
+          "aa_prev": 16.67
         }
       ]
     },
@@ -707,15 +821,19 @@
       "peers": [
         {
           "name": "Qwen3.6 35B A3B",
-          "aa": 18.23,
+          "aa": 8.4,
           "aa_url": "https://artificialanalysis.ai/models/qwen3-6-35b-a3b",
-          "score": 73.4
+          "score": 73.4,
+          "aa_basis": "mapped",
+          "aa_prev": 18.23
         },
         {
           "name": "Gemma 4 26B A4B",
-          "aa": 16.67,
+          "aa": 8.0,
           "aa_url": "https://artificialanalysis.ai/models/gemma-4-26b-a4b",
-          "score": 66.6
+          "score": 66.6,
+          "aa_basis": "mapped",
+          "aa_prev": 16.67
         }
       ]
     },

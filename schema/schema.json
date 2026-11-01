@@ -907,6 +907,29 @@
    }
   }
  },
+ "ftaa": {
+  "$comment": "ADR-035. FTAA = Artificial Analysis Intelligence Index v5 scale, fixed. A model with a v5 score uses it (basis direct); one with only an older score goes through this curve (basis mapped). Fitted by tools/ftaa.py on pairs of our old score and the AA v5 score; a later AA version adds one more curve, FTAA is never rescaled.",
+  "version": 1,
+  "from": "AA v4.3.2",
+  "fitted": "2026-11-01",
+  "curve": {
+   "coef": [
+    10.6537824,
+    -0.57664775,
+    0.02499278
+   ],
+   "domain": [
+    12.9,
+    57.6
+   ]
+  },
+  "fit": {
+   "n": 36,
+   "loo_mean_abs_diff": 3.09,
+   "loo_within_3": 0.61,
+   "linear_loo_mean_abs_diff": 4.56
+  }
+ },
  "est_rules": {
   "$comment": "ADR-004 method v1 / ADR-006 ranking. Change values here, not in code. version increments when est_backtest.py --tune adopts better parameters (ADR-031); build records it on each est_history row.",
   "version": 1,

@@ -6,11 +6,12 @@
     "context": "262K",
     "image_input": "no",
     "aa_index": {
-      "value": 41,
+      "value": 29.0,
       "date": "2026-10-25",
       "url": "https://artificialanalysis.ai/models/ling-3-1-flash",
+      "basis": "mapped",
       "prev_value": 41,
-      "prev_date": "2026-10-05"
+      "prev_date": "2026-10-25"
     },
     "notes": null
   },
@@ -21,11 +22,12 @@
     "context": "1050K (200K on the Zen free tier)",
     "image_input": "no",
     "aa_index": {
-      "value": 38,
-      "date": "2026-10-25",
+      "value": 26.7,
+      "date": "2026-11-01",
       "url": "https://artificialanalysis.ai/models/mimo-v2-6-flash",
+      "basis": "direct",
       "prev_value": 38,
-      "prev_date": "2026-10-05"
+      "prev_date": "2026-10-25"
     },
     "notes": "1,050,000 per OpenRouter (Vercel says 1,048,576); the OpenCode Zen free tier caps it at 200K, per the models.dev Zen entry (2026-10-20)."
   },
@@ -68,13 +70,14 @@
     "context": "200K on the Zen free tier",
     "image_input": "no",
     "aa_index": {
-      "value": 34,
+      "value": 19.9,
       "date": "2026-10-25",
       "url": "https://artificialanalysis.ai/models/deepseek-v4-flash",
+      "basis": "mapped",
       "prev_value": 34,
-      "prev_date": "2026-10-08"
+      "prev_date": "2026-10-25"
     },
-    "notes": "AA's page is the 0731 update (34); the April 0420 release scores 24 (artificialanalysis.ai/models/deepseek-v4-flash-0420). Channels label it plain \"deepseek-v4-flash\"."
+    "notes": "AA's page is the 0731 update (34); the April 0420 release scores 24 (artificialanalysis.ai/models/deepseek-v4-flash-0420). Both numbers are on the earlier AA scale. Channels label it plain \"deepseek-v4-flash\"."
   },
   {
     "id": "nemotron-3-ultra",
@@ -83,11 +86,12 @@
     "context": "1M",
     "image_input": "no",
     "aa_index": {
-      "value": 23,
-      "date": "2026-10-25",
+      "value": 11.8,
+      "date": "2026-11-01",
       "url": "https://artificialanalysis.ai/models/nvidia-nemotron-3-ultra-550b-a55b",
+      "basis": "direct",
       "prev_value": 23,
-      "prev_date": "2026-10-05"
+      "prev_date": "2026-10-25"
     },
     "notes": null
   },
@@ -111,12 +115,12 @@
     "context": "262K",
     "image_input": "yes",
     "aa_index": {
-      "value": 17,
+      "value": 8.1,
       "date": "2026-10-25",
       "url": "https://artificialanalysis.ai/models/gemma-4-26b-a4b",
-      "approx": true,
+      "basis": "mapped",
       "prev_value": 17,
-      "prev_date": "2026-10-06"
+      "prev_date": "2026-10-25"
     },
     "notes": null
   },
@@ -127,11 +131,12 @@
     "context": "262K",
     "image_input": "no",
     "aa_index": {
-      "value": 20,
+      "value": 9.1,
       "date": "2026-10-25",
       "url": "https://artificialanalysis.ai/models/ling-3-0-flash",
+      "basis": "mapped",
       "prev_value": 20,
-      "prev_date": "2026-10-06"
+      "prev_date": "2026-10-25"
     },
     "notes": null
   },
@@ -142,11 +147,12 @@
     "context": "197K",
     "image_input": "no",
     "aa_index": {
-      "value": 23,
+      "value": 10.6,
       "date": "2026-10-25",
       "url": "https://artificialanalysis.ai/models/minimax-m2-7",
+      "basis": "mapped",
       "prev_value": 23,
-      "prev_date": "2026-10-06"
+      "prev_date": "2026-10-25"
     },
     "notes": null
   },
@@ -157,11 +163,12 @@
     "context": "1M",
     "image_input": "yes",
     "aa_index": {
-      "value": 29,
-      "date": "2026-10-25",
+      "value": 18.7,
+      "date": "2026-11-01",
       "url": "https://artificialanalysis.ai/models/minimax-m3",
+      "basis": "direct",
       "prev_value": 29,
-      "prev_date": "2026-10-05"
+      "prev_date": "2026-10-25"
     },
     "notes": null
   },
@@ -172,11 +179,12 @@
     "context": "262K",
     "image_input": "no",
     "aa_index": {
-      "value": 13,
+      "value": 7.4,
       "date": "2026-10-25",
       "url": "https://artificialanalysis.ai/models/nvidia-nemotron-3-super-120b-a12b",
+      "basis": "mapped",
       "prev_value": 13,
-      "prev_date": "2026-10-06"
+      "prev_date": "2026-10-25"
     },
     "notes": null
   },
@@ -187,12 +195,12 @@
     "context": "262K",
     "image_input": "yes",
     "aa_index": {
-      "value": 28,
+      "value": 14.1,
       "date": "2026-10-25",
       "url": "https://artificialanalysis.ai/models/nex-n2-pro",
-      "approx": true,
+      "basis": "mapped",
       "prev_value": 28,
-      "prev_date": "2026-10-06"
+      "prev_date": "2026-10-25"
     },
     "notes": null
   },
@@ -229,11 +237,12 @@
     "context": "262K",
     "image_input": "no",
     "aa_index": {
-      "value": 25,
+      "value": 11.9,
       "date": "2026-10-25",
       "url": "https://artificialanalysis.ai/models/hy3",
+      "basis": "mapped",
       "prev_value": 25,
-      "prev_date": "2026-10-06"
+      "prev_date": "2026-10-25"
     },
     "notes": null
   },
@@ -244,12 +253,12 @@
     "context": "262K",
     "image_input": "no",
     "aa_index": {
-      "value": 23,
+      "value": 10.6,
       "date": "2026-10-25",
       "url": "https://artificialanalysis.ai/models/hy3-preview",
-      "approx": true,
+      "basis": "mapped",
       "prev_value": 23,
-      "prev_date": "2026-10-06"
+      "prev_date": "2026-10-25"
     },
     "notes": null
   },
@@ -260,11 +269,12 @@
     "context": "262K",
     "image_input": "yes",
     "aa_index": {
-      "value": 25,
+      "value": 11.9,
       "date": "2026-10-25",
       "url": "https://artificialanalysis.ai/models/ling-3-0-flash-vl",
+      "basis": "mapped",
       "prev_value": 25,
-      "prev_date": "2026-10-06"
+      "prev_date": "2026-10-25"
     },
     "notes": null
   },
@@ -275,12 +285,12 @@
     "context": "262K",
     "image_input": "no",
     "aa_index": {
-      "value": 17,
+      "value": 8.1,
       "date": "2026-10-25",
       "url": "https://artificialanalysis.ai/models/ling-2-6-1t",
-      "approx": true,
+      "basis": "mapped",
       "prev_value": 17,
-      "prev_date": "2026-10-06"
+      "prev_date": "2026-10-25"
     },
     "notes": null
   },
@@ -291,12 +301,12 @@
     "context": "262K",
     "image_input": "no",
     "aa_index": {
-      "value": 10,
+      "value": 5.7,
       "date": "2026-10-25",
       "url": "https://artificialanalysis.ai/models/ling-2-6-flash",
-      "approx": true,
+      "basis": "mapped",
       "prev_value": 10,
-      "prev_date": "2026-10-06"
+      "prev_date": "2026-10-25"
     },
     "notes": null
   },
@@ -307,11 +317,12 @@
     "context": "262K",
     "image_input": "no",
     "aa_index": {
-      "value": 17,
+      "value": 8.1,
       "date": "2026-10-25",
       "url": "https://artificialanalysis.ai/models/ring-2-6-1t",
+      "basis": "mapped",
       "prev_value": 17,
-      "prev_date": "2026-10-06"
+      "prev_date": "2026-10-25"
     },
     "notes": null
   },
@@ -321,14 +332,15 @@
     "maker": "deepseek",
     "context": "1M",
     "image_input": "yes",
-  "aa_index": {
-   "value": 45,
-   "date": "2026-10-27",
-   "url": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017",
-   "prev_value": 40,
-   "prev_date": "2026-10-25"
-  },
-  "notes": "1017 snapshot (released 2026-10-17, in-place upgrade): AA Intelligence Index 45 per AA data API 2026-10-27; old slug read 40"
+    "aa_index": {
+      "value": 32.5,
+      "date": "2026-11-01",
+      "url": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017",
+      "basis": "direct",
+      "prev_value": 45,
+      "prev_date": "2026-10-27"
+    },
+    "notes": "1017 snapshot (released 2026-10-17, in-place upgrade): AA Intelligence Index 45 on the earlier AA scale per AA data API 2026-10-27; old slug read 40"
   },
   {
     "id": "apodex-1.1-mini",
@@ -350,11 +362,12 @@
     "context": "256K",
     "image_input": "no",
     "aa_index": {
-      "value": 10,
+      "value": 5.7,
       "date": "2026-10-25",
       "url": "https://artificialanalysis.ai/models/north-mini-code",
+      "basis": "mapped",
       "prev_value": 10,
-      "prev_date": "2026-10-06"
+      "prev_date": "2026-10-25"
     },
     "notes": null
   },
@@ -378,12 +391,12 @@
     "context": "128K",
     "image_input": "no",
     "aa_index": {
-      "value": 8,
+      "value": 4.6,
       "date": "2026-10-25",
       "url": "https://artificialanalysis.ai/models/lfm2-5-2-6b",
-      "approx": true,
+      "basis": "mapped",
       "prev_value": 8,
-      "prev_date": "2026-10-06"
+      "prev_date": "2026-10-25"
     },
     "notes": null
   },
@@ -394,12 +407,12 @@
     "context": "256K",
     "image_input": "yes",
     "aa_index": {
-      "value": 10,
+      "value": 5.7,
       "date": "2026-10-25",
       "url": "https://artificialanalysis.ai/models/nemotron-3-nano-omni-30b-a3b",
-      "approx": true,
+      "basis": "mapped",
       "prev_value": 10,
-      "prev_date": "2026-10-06"
+      "prev_date": "2026-10-25"
     },
     "notes": null
   },
@@ -410,11 +423,12 @@
     "context": "1M",
     "image_input": "no",
     "aa_index": {
-      "value": 13,
-      "date": "2026-10-25",
+      "value": 5.5,
+      "date": "2026-11-01",
       "url": "https://artificialanalysis.ai/models/nemotron-3-5-lightning",
+      "basis": "direct",
       "prev_value": 13,
-      "prev_date": "2026-10-06"
+      "prev_date": "2026-10-25"
     },
     "notes": null
   },
@@ -438,12 +452,12 @@
     "context": "256K",
     "image_input": "yes",
     "aa_index": {
-      "value": 20,
+      "value": 9.1,
       "date": "2026-10-25",
       "url": "https://artificialanalysis.ai/models/step-3-7-flash",
-      "approx": true,
-      "prev_value": 19,
-      "prev_date": "2026-10-06"
+      "basis": "mapped",
+      "prev_value": 20,
+      "prev_date": "2026-10-25"
     },
     "notes": null
   },
@@ -454,11 +468,12 @@
     "context": "1M",
     "image_input": "yes",
     "aa_index": {
-      "value": 26,
-      "date": "2026-10-25",
+      "value": 12.9,
+      "date": "2026-11-01",
       "url": "https://artificialanalysis.ai/models/inkling-small",
+      "basis": "direct",
       "prev_value": 26,
-      "prev_date": "2026-10-06"
+      "prev_date": "2026-10-25"
     },
     "notes": null
   },
@@ -469,11 +484,12 @@
     "context": "256K",
     "image_input": "yes",
     "aa_index": {
-      "value": 15,
+      "value": 7.6,
       "date": "2026-10-25",
       "url": "https://artificialanalysis.ai/models/gemma-4-31b",
+      "basis": "mapped",
       "prev_value": 15,
-      "prev_date": "2026-10-06"
+      "prev_date": "2026-10-25"
     },
     "notes": null
   },
@@ -484,11 +500,12 @@
     "context": "1M",
     "image_input": "yes",
     "aa_index": {
-      "value": 25,
-      "date": "2026-10-25",
+      "value": 12.5,
+      "date": "2026-11-01",
       "url": "https://artificialanalysis.ai/models/inkling",
+      "basis": "direct",
       "prev_value": 25,
-      "prev_date": "2026-10-06"
+      "prev_date": "2026-10-25"
     },
     "notes": null
   },
@@ -525,12 +542,12 @@
     "context": "1M",
     "image_input": "yes",
     "aa_index": {
-      "value": 22,
+      "value": 10.1,
       "date": "2026-10-25",
       "url": "https://artificialanalysis.ai/models/mimo-v2-5-0424",
-      "approx": true,
-      "prev_value": 25,
-      "prev_date": "2026-10-06"
+      "basis": "mapped",
+      "prev_value": 22,
+      "prev_date": "2026-10-25"
     },
     "notes": null
   },
@@ -541,11 +558,12 @@
     "context": "256K",
     "image_input": "no",
     "aa_index": {
-      "value": 23,
+      "value": 10.6,
       "date": "2026-10-25",
       "url": "https://artificialanalysis.ai/models/ling-3-0-flash-fin",
+      "basis": "mapped",
       "prev_value": 23,
-      "prev_date": "2026-10-06"
+      "prev_date": "2026-10-25"
     },
     "notes": null
   },
@@ -569,11 +587,12 @@
     "context": "1M",
     "image_input": "yes",
     "aa_index": {
-      "value": 48,
-      "date": "2026-10-25",
+      "value": 36.4,
+      "date": "2026-11-01",
       "url": "https://artificialanalysis.ai/models/muse-spark-1-3",
+      "basis": "direct",
       "prev_value": 48,
-      "prev_date": "2026-10-06"
+      "prev_date": "2026-10-25"
     },
     "notes": null
   },
@@ -584,11 +603,12 @@
     "context": "1M",
     "image_input": "yes",
     "aa_index": {
-      "value": 40,
+      "value": 27.6,
       "date": "2026-10-25",
       "url": "https://artificialanalysis.ai/models/muse-spark-1-2",
+      "basis": "mapped",
       "prev_value": 40,
-      "prev_date": "2026-10-06"
+      "prev_date": "2026-10-25"
     },
     "notes": null
   },
@@ -599,11 +619,12 @@
     "context": "512K",
     "image_input": "no",
     "aa_index": {
-      "value": 27,
+      "value": 13.3,
       "date": "2026-10-25",
       "url": "https://artificialanalysis.ai/models/solar-pro4",
-      "prev_value": 28,
-      "prev_date": "2026-10-07"
+      "basis": "mapped",
+      "prev_value": 27,
+      "prev_date": "2026-10-25"
     },
     "notes": null
   },
@@ -614,11 +635,12 @@
     "context": "512K",
     "image_input": "no",
     "aa_index": {
-      "value": 24,
+      "value": 11.2,
       "date": "2026-10-25",
       "url": "https://artificialanalysis.ai/models/solar-mini4",
+      "basis": "mapped",
       "prev_value": 24,
-      "prev_date": "2026-10-07"
+      "prev_date": "2026-10-25"
     },
     "notes": null
   },
@@ -629,11 +651,12 @@
     "context": "1M",
     "image_input": "yes",
     "aa_index": {
-      "value": 42,
-      "date": "2026-10-25",
+      "value": 27.8,
+      "date": "2026-11-01",
       "url": "https://artificialanalysis.ai/models/glm-5-3-flash",
+      "basis": "direct",
       "prev_value": 42,
-      "prev_date": "2026-10-06"
+      "prev_date": "2026-10-25"
     },
     "notes": null
   },
@@ -644,11 +667,12 @@
     "context": "1025K",
     "image_input": "yes",
     "aa_index": {
-      "value": 38,
-      "date": "2026-10-25",
+      "value": 27.8,
+      "date": "2026-11-01",
       "url": "https://artificialanalysis.ai/models/gpt-6-luna",
+      "basis": "direct",
       "prev_value": 38,
-      "prev_date": "2026-10-06"
+      "prev_date": "2026-10-25"
     },
     "notes": null
   },
@@ -659,11 +683,12 @@
     "context": "1M",
     "image_input": "yes",
     "aa_index": {
-      "value": 46,
-      "date": "2026-10-25",
+      "value": 29.9,
+      "date": "2026-11-01",
       "url": "https://artificialanalysis.ai/models/mimo-v2-6-pro",
+      "basis": "direct",
       "prev_value": 46,
-      "prev_date": "2026-10-06"
+      "prev_date": "2026-10-25"
     },
     "notes": null
   },
@@ -674,11 +699,12 @@
     "context": "1025K",
     "image_input": "yes",
     "aa_index": {
-      "value": 52,
-      "date": "2026-10-25",
+      "value": 54.5,
+      "date": "2026-11-01",
       "url": "https://artificialanalysis.ai/models/gpt-6-1-sol",
+      "basis": "direct",
       "prev_value": 52,
-      "prev_date": "2026-10-06"
+      "prev_date": "2026-10-25"
     },
     "notes": null
   },
@@ -689,12 +715,12 @@
     "context": "200K",
     "image_input": "no",
     "aa_index": {
-      "value": 15,
+      "value": 7.6,
       "date": "2026-10-25",
       "url": "https://artificialanalysis.ai/models/glm-4-7-flash",
-      "approx": true,
+      "basis": "mapped",
       "prev_value": 15,
-      "prev_date": "2026-10-06"
+      "prev_date": "2026-10-25"
     },
     "notes": "Text in, text out per OpenRouter and Vercel; no vision encoder in the HF zai-org/GLM-4.7-Flash config (2026-10-20)."
   },
@@ -744,12 +770,12 @@
     "context": "128K",
     "image_input": "no",
     "aa_index": {
-      "value": 5,
+      "value": 2.9,
       "date": "2026-10-25",
       "url": "https://artificialanalysis.ai/models/qwen3-8b-instruct-reasoning",
-      "approx": true,
-      "prev_value": 7,
-      "prev_date": "2026-10-06"
+      "basis": "mapped",
+      "prev_value": 5,
+      "prev_date": "2026-10-25"
     },
     "notes": "Text-only per the HF Qwen/Qwen3-8B config; vision sizes ship as the separate Qwen3-VL line (2026-10-20)."
   },
@@ -760,12 +786,12 @@
     "context": "256K",
     "image_input": "yes",
     "aa_index": {
-      "value": 13,
+      "value": 7.4,
       "date": "2026-10-25",
       "url": "https://artificialanalysis.ai/models/qwen3-5-4b",
-      "approx": true,
+      "basis": "mapped",
       "prev_value": 13,
-      "prev_date": "2026-10-06"
+      "prev_date": "2026-10-25"
     },
     "notes": "Image input: the HF Qwen/Qwen3.5-4B config carries a vision encoder (262,144 native context, 2026-10-20)."
   },
@@ -815,11 +841,12 @@
     "context": "128K",
     "image_input": "no",
     "aa_index": {
-      "value": 8,
+      "value": 4.6,
       "date": "2026-10-25",
       "url": "https://artificialanalysis.ai/models/deepseek-r1-qwen3-8b",
+      "basis": "mapped",
       "prev_value": 8,
-      "prev_date": "2026-10-07"
+      "prev_date": "2026-10-25"
     },
     "notes": "Text-only per the HF deepseek-ai/DeepSeek-R1-0528-Qwen3-8B config (2026-10-20)."
   },
@@ -830,11 +857,12 @@
     "context": "1M",
     "image_input": "yes",
     "aa_index": {
-      "value": 41,
-      "date": "2026-10-25",
+      "value": 30.5,
+      "date": "2026-11-01",
       "url": "https://artificialanalysis.ai/models/gemini-3-8-flash",
+      "basis": "direct",
       "prev_value": 41,
-      "prev_date": "2026-10-06"
+      "prev_date": "2026-10-25"
     },
     "notes": "Image+video input per the OpenRouter and Vercel AI Gateway catalogues (2026-10-20)."
   },
@@ -845,11 +873,12 @@
     "context": "1M",
     "image_input": "yes",
     "aa_index": {
-      "value": 39,
+      "value": 26.2,
       "date": "2026-10-25",
       "url": "https://artificialanalysis.ai/models/gemini-3-7-flash",
+      "basis": "mapped",
       "prev_value": 39,
-      "prev_date": "2026-10-06"
+      "prev_date": "2026-10-25"
     },
     "notes": "Image+video input per the OpenRouter and Vercel AI Gateway catalogues (2026-10-20)."
   },
@@ -860,11 +889,12 @@
     "context": "1M",
     "image_input": "yes",
     "aa_index": {
-      "value": 34,
+      "value": 19.9,
       "date": "2026-10-25",
       "url": "https://artificialanalysis.ai/models/gemini-3-6-flash",
+      "basis": "mapped",
       "prev_value": 34,
-      "prev_date": "2026-10-06"
+      "prev_date": "2026-10-25"
     },
     "notes": "Image+video input per the OpenRouter and Vercel AI Gateway catalogues (2026-10-20)."
   },
@@ -875,11 +905,12 @@
     "context": "1M",
     "image_input": "yes",
     "aa_index": {
-      "value": 33,
+      "value": 18.8,
       "date": "2026-10-25",
       "url": "https://artificialanalysis.ai/models/gemini-3-5-flash",
+      "basis": "mapped",
       "prev_value": 33,
-      "prev_date": "2026-10-06"
+      "prev_date": "2026-10-25"
     },
     "notes": "Image+video input per the OpenRouter and Vercel AI Gateway catalogues (2026-10-20)."
   },
@@ -890,11 +921,12 @@
     "context": "1M",
     "image_input": "yes",
     "aa_index": {
-      "value": 22,
-      "date": "2026-10-25",
+      "value": 11.7,
+      "date": "2026-11-01",
       "url": "https://artificialanalysis.ai/models/gemini-3-5-flash-lite",
+      "basis": "direct",
       "prev_value": 22,
-      "prev_date": "2026-10-06"
+      "prev_date": "2026-10-25"
     },
     "notes": "Image+video input per the OpenRouter and Vercel AI Gateway catalogues (2026-10-20)."
   },
@@ -905,12 +937,12 @@
     "context": "1M",
     "image_input": "yes",
     "aa_index": {
-      "value": 40,
+      "value": 27.6,
       "date": "2026-10-25",
       "url": "https://artificialanalysis.ai/models/qwen3-8-flash-next",
-      "approx": true,
+      "basis": "mapped",
       "prev_value": 40,
-      "prev_date": "2026-10-06"
+      "prev_date": "2026-10-25"
     },
     "notes": "The AA page is \"Qwen3.8-Flash-Next\"; we assume it is the model Qoder calls Qwen3.8-Flash (not confirmed). Context 1M and image+video input per OpenRouter; Qoder’s promo page calls it multimodal with image understanding (2026-10-20)."
   },
@@ -921,11 +953,12 @@
     "context": "1M",
     "image_input": "yes",
     "aa_index": {
-      "value": 44,
+      "value": 33.7,
       "date": "2026-10-25",
       "url": "https://artificialanalysis.ai/models/kimi-k3",
+      "basis": "mapped",
       "prev_value": 44,
-      "prev_date": "2026-10-06"
+      "prev_date": "2026-10-25"
     },
     "notes": "Image+video input per OpenRouter and Vercel (2026-10-20)."
   },
@@ -938,7 +971,7 @@
     "aa_index": {
       "value": null,
       "date": "2026-10-06",
-      "note": "no AA page (coding variant of Kimi K3, AA 44)"
+      "note": "no AA page (coding variant of Kimi K3, AA 44 on the earlier scale)"
     },
     "notes": "Per the AIHubMix catalogue: the coding-kimi-k3-free model page lists Text / Vision / Video input (2026-10-20)."
   },
@@ -949,11 +982,12 @@
     "context": "1M",
     "image_input": "no",
     "aa_index": {
-      "value": 45,
-      "date": "2026-10-25",
+      "value": 31.7,
+      "date": "2026-11-01",
       "url": "https://artificialanalysis.ai/models/glm-5-3",
+      "basis": "direct",
       "prev_value": 45,
-      "prev_date": "2026-10-06"
+      "prev_date": "2026-10-25"
     },
     "notes": "Text-only on OpenRouter (z-ai/glm-5.3) and Vercel (zai/glm-5.3); image input sits on the GLM-5.3-Flash variants (2026-10-20)."
   },
@@ -990,12 +1024,12 @@
     "context": "1M",
     "image_input": "yes",
     "aa_index": {
-      "value": 44,
-      "date": "2026-10-25",
+      "value": 28.5,
+      "date": "2026-11-01",
       "url": "https://artificialanalysis.ai/models/step-5",
-      "approx": true,
+      "basis": "direct",
       "prev_value": 44,
-      "prev_date": "2026-10-10"
+      "prev_date": "2026-10-25"
     },
     "notes": null
   },
@@ -1006,13 +1040,14 @@
     "context": "262K",
     "image_input": "yes",
     "aa_index": {
-      "value": 34,
-      "date": "2026-10-25",
+      "value": 20.1,
+      "date": "2026-11-01",
       "url": "https://artificialanalysis.ai/models/qwen3-8-27b",
+      "basis": "direct",
       "prev_value": 34,
-      "prev_date": "2026-10-08"
+      "prev_date": "2026-10-25"
     },
-    "notes": "Dense 27B open-weight vision-language model, released 2026-08 (AA index 33.7)."
+    "notes": "Dense 27B open-weight vision-language model, released 2026-08 (FTAA 20.1; 33.7 on the earlier AA scale)."
   },
   {
     "id": "qwen3.5-397b-a17b",
@@ -1021,11 +1056,12 @@
     "context": "262K",
     "image_input": "yes",
     "aa_index": {
-      "value": 18,
+      "value": 8.4,
       "date": "2026-10-25",
       "url": "https://artificialanalysis.ai/models/qwen3-5-397b-a17b",
-      "prev_value": 21,
-      "prev_date": "2026-10-08"
+      "basis": "mapped",
+      "prev_value": 18,
+      "prev_date": "2026-10-25"
     },
     "notes": "Context 262,144 and image+video input per OpenRouter; OVHcloud (the free lane) lists the same 262,144 (2026-10-20)."
   },
@@ -1036,11 +1072,12 @@
     "context": "262K",
     "image_input": "yes",
     "aa_index": {
-      "value": 21,
+      "value": 9.6,
       "date": "2026-10-25",
       "url": "https://artificialanalysis.ai/models/qwen3-6-27b",
+      "basis": "mapped",
       "prev_value": 21,
-      "prev_date": "2026-10-08"
+      "prev_date": "2026-10-25"
     },
     "notes": "Context 262K and image+video input per OpenRouter (Vercel says 256K); OVHcloud lists 262,144 (2026-10-20)."
   },
@@ -1051,11 +1088,12 @@
     "context": "262K",
     "image_input": "yes",
     "aa_index": {
-      "value": 11,
+      "value": 6.3,
       "date": "2026-10-25",
       "url": "https://artificialanalysis.ai/models/qwen3-5-9b",
-      "prev_value": 13,
-      "prev_date": "2026-10-08"
+      "basis": "mapped",
+      "prev_value": 11,
+      "prev_date": "2026-10-25"
     },
     "notes": "Context 262K and image+video input per OpenRouter; same on OVHcloud (2026-10-20)."
   },
@@ -1079,11 +1117,12 @@
     "context": "128K",
     "image_input": "no",
     "aa_index": {
-      "value": 8,
+      "value": 4.6,
       "date": "2026-10-25",
       "url": "https://artificialanalysis.ai/models/llama-3-3-instruct-70b",
+      "basis": "mapped",
       "prev_value": 8,
-      "prev_date": "2026-10-08"
+      "prev_date": "2026-10-25"
     },
     "notes": "131,072 per OpenRouter, Vercel and OVHcloud (2026-10-20)."
   },
@@ -1094,11 +1133,12 @@
     "context": "256K (128K on OVHcloud)",
     "image_input": "yes",
     "aa_index": {
-      "value": 7,
+      "value": 4.0,
       "date": "2026-10-25",
       "url": "https://artificialanalysis.ai/models/mistral-small-3-2",
-      "prev_value": 8,
-      "prev_date": "2026-10-08"
+      "basis": "mapped",
+      "prev_value": 7,
+      "prev_date": "2026-10-25"
     },
     "notes": "Native 256K with image input per OpenRouter and the HF Mistral-Small-3.2-24B-Instruct-2506 card; OVHcloud serves 131,072 (2026-10-20)."
   },
@@ -1122,11 +1162,12 @@
     "context": "32K",
     "image_input": "no",
     "aa_index": {
-      "value": 5,
+      "value": 2.9,
       "date": "2026-10-25",
       "url": "https://artificialanalysis.ai/models/mistral-7b-instruct",
+      "basis": "mapped",
       "prev_value": 5,
-      "prev_date": "2026-10-08"
+      "prev_date": "2026-10-25"
     },
     "notes": "32,768 per the HF Mistral-7B-Instruct-v0.3 config (2026-10-20)."
   },
@@ -1137,11 +1178,12 @@
     "context": "128K",
     "image_input": "no",
     "aa_index": {
-      "value": 12,
+      "value": 6.9,
       "date": "2026-10-25",
       "url": "https://artificialanalysis.ai/models/gpt-oss-120b",
+      "basis": "mapped",
       "prev_value": 12,
-      "prev_date": "2026-10-08"
+      "prev_date": "2026-10-25"
     },
     "notes": "131,072 per OpenRouter, Vercel and OVHcloud (2026-10-20)."
   },
@@ -1152,11 +1194,12 @@
     "context": "128K",
     "image_input": "no",
     "aa_index": {
-      "value": 9,
+      "value": 5.1,
       "date": "2026-10-25",
       "url": "https://artificialanalysis.ai/models/gpt-oss-20b",
-      "prev_value": 10,
-      "prev_date": "2026-10-08"
+      "basis": "mapped",
+      "prev_value": 9,
+      "prev_date": "2026-10-25"
     },
     "notes": "131,072 per OpenRouter, Vercel and OVHcloud (2026-10-20)."
   },
@@ -1180,11 +1223,12 @@
     "context": "1M",
     "image_input": "yes",
     "aa_index": {
-      "value": 26,
-      "date": "2026-10-25",
+      "value": 13.6,
+      "date": "2026-11-01",
       "url": "https://artificialanalysis.ai/models/nemotron-3-5-super-vl",
+      "basis": "direct",
       "prev_value": 26,
-      "prev_date": "2026-10-16"
+      "prev_date": "2026-10-25"
     },
     "notes": null
   },
@@ -1208,11 +1252,12 @@
     "context": "1M",
     "image_input": "yes",
     "aa_index": {
-      "value": 43,
-      "date": "2026-10-25",
+      "value": 28.9,
+      "date": "2026-11-01",
       "url": "https://artificialanalysis.ai/models/minimax-m3-1-flash",
+      "basis": "direct",
       "prev_value": 43,
-      "prev_date": "2026-10-20"
+      "prev_date": "2026-10-25"
     },
     "notes": "Context 1,000,000 and image+video input per the OpenRouter free listing and Vercel AI Gateway (2026-10-20)."
   },
@@ -1223,13 +1268,14 @@
     "context": "1M",
     "image_input": "no",
     "aa_index": {
-      "value": 30,
-      "date": "2026-10-25",
+      "value": 17.7,
+      "date": "2026-11-01",
       "url": "https://artificialanalysis.ai/models/reflection-beam",
+      "basis": "direct",
       "prev_value": 30,
-      "prev_date": "2026-10-20"
+      "prev_date": "2026-10-25"
     },
-    "notes": "Released 2026-10-16; AA Intelligence Index 30, checked on the AA page 2026-10-20. 501B/23B-active MoE, Apache 2.0 open weights (HF reflection/Beam-1.0-501B-A23B); text-only with a 1M context per the card, OpenRouter and Vercel."
+    "notes": "Released 2026-10-16; AA Intelligence Index 30 on the earlier AA scale, checked on the AA page 2026-10-20. 501B/23B-active MoE, Apache 2.0 open weights (HF reflection/Beam-1.0-501B-A23B); text-only with a 1M context per the card, OpenRouter and Vercel."
   },
   {
     "id": "flint",
@@ -1283,17 +1329,20 @@
     },
     "notes": "Tencent Hunyuan Hy4 preview. Official notice (carried by IT之家 2026-10-02): a text LLM with no multimodal ability yet, so a Hy4 preview call that needs image or video generation is switched to another model and billed normally. CodeBuddy CLI showed the 0.29x credit multiplier at 13:20 on 2026-10-28."
   },
- {
-  "id": "ling-3.1-flash-1019",
-  "name": "Ling 3.1 Flash 1019",
-  "maker": "inclusionai",
-  "context": "1M",
-  "image_input": "not_checked",
-  "aa_index": {
-   "value": 44,
-   "date": "2026-10-31",
-   "url": "https://artificialanalysis.ai/models/ling-3-1-flash-1019"
-  },
-  "notes": "Upgraded weights of Ling-3.1-flash (560B total / 25B active per token, 1M context, MIT); HF repo inclusionAI/Ling-3.1-flash-1019 created 2026-10-27, old repo still published, so a separate model entry, not a version field."
- }
+  {
+    "id": "ling-3.1-flash-1019",
+    "name": "Ling 3.1 Flash 1019",
+    "maker": "inclusionai",
+    "context": "1M",
+    "image_input": "not_checked",
+    "aa_index": {
+      "value": 29.5,
+      "date": "2026-11-01",
+      "url": "https://artificialanalysis.ai/models/ling-3-1-flash-1019",
+      "basis": "direct",
+      "prev_value": 44,
+      "prev_date": "2026-10-31"
+    },
+    "notes": "Upgraded weights of Ling-3.1-flash (560B total / 25B active per token, 1M context, MIT); HF repo inclusionAI/Ling-3.1-flash-1019 created 2026-10-27, old repo still published, so a separate model entry, not a version field."
+  }
 ]

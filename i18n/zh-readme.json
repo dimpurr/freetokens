@@ -18,7 +18,7 @@
     "## 2 · Timeline": "## 2 · 时间线",
     "Newest first. Expected future ends are in **Ending soon** above; they are computed from the lanes, not stored as events.": "最新的在前。预计的未来截止列在上方**即将到期**里；它们由免费线路算出，并不作为事件存储。",
     "## 3 · Models": "## 3 · 模型",
-    "Benchmarks are kept here once per model rather than repeated on every lane. **AA index** = the [Artificial Analysis](https://artificialanalysis.ai) Intelligence Index.": "基准分数在这里每个模型只存一份，而不是在每条免费线路上重复。**AA 指数** = [Artificial Analysis](https://artificialanalysis.ai) Intelligence Index。",
+    "Benchmarks are kept here once per model rather than repeated on every lane. **FTAA** = one intelligence score on the scale of the [Artificial Analysis](https://artificialanalysis.ai) Intelligence Index v5: a v5 score as is, an older score converted (shown `≈`). See [METHOD.md](METHOD.md).": "基准分数在这里每个模型只存一份，而不是在每条免费线路上重复。**FTAA** = 全站统一的一条智力分，刻度同 [Artificial Analysis](https://artificialanalysis.ai) Intelligence Index v5：有 v5 分就直接用，只有旧分就折算（显示 `≈`）。见 [METHOD.md](METHOD.md)。",
     "## 4 · Channels": "## 4 · 渠道",
     "Each channel links to its own page. Everything here is derived from the lanes above.": "每个渠道都链接到它自己的页面。这里的一切都由上面的免费线路推导得出。",
     "## How to read this": "## 如何阅读本文",

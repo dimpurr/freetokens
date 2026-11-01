@@ -20,7 +20,7 @@ Both are welcome; an issue with a good link is just as useful as a PR. The rest 
 | A free offer that stopped | set the lane's `status` to `ended` and add an `ended` event | calls start returning 404 / 402 |
 | A changed limit | add a `limit_changed` event and update `limits_stated` | "now 300 requests/day" |
 | A limit you measured yourself | `limits_observed` with the date (see the rules below) | "10 parallel agent runs OK, 15 hung" |
-| A new model's facts | add it to `data/models.json` | context window, image input, AA index |
+| A new model's facts | add it to `data/models.json` | context window, image input, FTAA (the Artificial Analysis v5 score, `basis: direct`) |
 | A mistake | fix it, and say in the PR how you know | |
 
 ## The rules (the build checks most of them)
@@ -45,7 +45,7 @@ Both are welcome; an issue with a good link is just as useful as a PR. The rest 
    - Don't load-test shared free tiers.
    - Give the date and what you ran ("15 parallel coding-agent runs, each a small task, all passed").
    - Never include API keys, account names or request IDs that identify you.
-8. **No descriptions or opinions.** freetokens records facts with sources. The only estimate on the site is the EST band for models without an official AA index, and it is computed by a published method, not written by hand.
+8. **No descriptions or opinions.** freetokens records facts with sources. The only estimate on the site is the EST band for models without an Artificial Analysis score, and it is computed by a published method, not written by hand.
 9. **Benchmarks for a model that isn't the one listed don't count.** A stealth model's rumoured identity, a predecessor or a sibling model are different models.
 
 ## Field reference

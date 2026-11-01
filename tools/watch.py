@@ -363,8 +363,9 @@ def aa_recheck(out, slugs):
         by_name.setdefault(norm_name(r["name"]), (s, r))
     lines = []
     for m in models:
-        if (m.get("aa_index") or {}).get("value"):
-            continue
+        a = m.get("aa_index") or {}
+        if a.get("value") and a.get("basis") != "mapped":
+            continue  # FTAA (ADR-035): a direct v5 score is settled; no value, or a mapped one from an older version, keeps being looked up
         v, url = aa_index(m["id"], slugs)
         how = ""
         if not v and by_name:
@@ -375,7 +376,8 @@ def aa_recheck(out, slugs):
                 url = f"https://artificialanalysis.ai/models/{s}"
                 how = " · matched on AA's model name"
         if v:
-            lines.append(f"🆕 AA now lists {m['id']}: index {v} ({url}) — fill models.json{how}")
+            held = " (we hold a mapped value)" if a.get("basis") == "mapped" else ""
+            lines.append(f"🆕 AA now lists {m['id']}: v5 index {v}{held} ({url}) — fill models.json as FTAA, basis direct{how}")
     state = {"week": week, "via": "aa-data-api" if table else "aa-pages", "checked": len(models), "lines": lines}
     state_f.write_text(json.dumps(state, ensure_ascii=False, indent=1))
     return lines
@@ -423,7 +425,7 @@ def aa_diff(out, watched, cap=15):
             a = e["aa"] or 0
             tier = (f" · ≥{MAIN_BAR} main-tier" if a >= MAIN_BAR else f" · ≥{BORDER_BAR} borderline" if a >= BORDER_BAR
                     else f" · ≥{PASS_BAR} pass-tier" if a >= PASS_BAR else f" · below {PASS_BAR}")
-        lines.append(f"  {'⭐' if e['free'] else ''}{e['name']} · AA {e['aa'] if e['aa'] is not None else '—'} ({e['url']})"
+        lines.append(f"  {'⭐' if e['free'] else ''}{e['name']} · FTAA {e['aa'] if e['aa'] is not None else '—'} ({e['url']})"
                      + (f" · free on {e['channel']}: {e['model_id']}" if e["free"] else "") + tier)
     if len(plain) > cap:
         lines.append(f"  … +{len(plain) - cap} more (see latest.json)")

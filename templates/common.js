@@ -355,7 +355,9 @@ const limitHTML = (l) => {
   const main = ls.source ? `<a href="${esc(ls.source)}" target="_blank" rel="noopener" title="${esc(tip)}">${head}</a>` : `<span title="${esc(tip)}">${head}</span>`;
   return main + (ls.note ? `<details class="obs-i"><summary aria-label="${esc(Tx("About this limit", "About this limit"))}">ⓘ</summary><span>${esc(ls.note)}</span></details>` : "");
 };
-/* AA: official label (links to AA) · EST band with evidence (ADR-004/006) · or not ranked */
+/* FTAA (ADR-035): AA v5 scale. direct = AA's v5 score · mapped = an older AA score put on that scale by our fit (shown ≈) · EST band with evidence (ADR-004/006) · or not ranked */
+const isMapped = (m) => m.aa_index.value != null && (m.aa_index.basis === "mapped" || !!m.aa_index.approx);
+const ftaaTxt = (m) => isEst(m) ? "EST ≈" + Math.round(aaValue(m)) : "FTAA " + (isMapped(m) ? "≈" : "") + Math.round(aaValue(m));
 const aaValue = (m) => m.aa_index.value != null ? m.aa_index.value : (m.est && m.est.status === "ok" ? m.est.center : null);
 /* one ranking for every page (ADR-009 as revised by Dim 2026-10-06): official AA scores rank #1, #2, #3 among themselves;
    an EST sits between them by its band, shown as "≈#a–b" = between official #a and #b. Never a single #n for an estimate. */
@@ -374,19 +376,19 @@ function rankOf(m) {
 const rankLabel = (r) => `${r.est ? "≈" : ""}#${r.a}${r.b > r.a ? "–" + r.b : ""}`;
 function rankText(m) {
   const r = rankOf(m); if (!r) return "";
-  const n = viewScored().filter((x) => !isEst(x)).length, where = VIEW === "all" ? Tx("with an AA score", "with an AA score") : `${Tx("with an AA score", "with an AA score")}，${byV(VIEW)}`;
+  const n = viewScored().filter((x) => !isEst(x)).length, where = VIEW === "all" ? Tx("with an FTAA score", "with an FTAA score") : `${Tx("with an FTAA score", "with an FTAA score")}，${byV(VIEW)}`;
   return r.est ? (r.b > r.a ? (ZH ? `估算：共 ${n} 个${where}，介于 #${r.a} 和 #${r.b} 之间` : `estimate: between #${r.a} and #${r.b} of the ${n} ${where}`) : (ZH ? `估算：共 ${n} 个${where}，约 #${r.a}` : `estimate: around #${r.a} of the ${n} ${where}`)) : (ZH ? `共 ${n} 个${where}中排 #${r.a}` : `#${r.a} of ${n} ${where}`);
 }
 function estPanel(m) {
   const e = m.est;
   const tail = (c) => c.implied != null
-    ? (c.method === "peer" ? (ZH ? ` · 对照同表已知 AA 分数的模型换算（${esc(c.peers_used.join("、"))}）` : ` · compared with ${esc(c.peers_used.join(", "))} in the same table`) : (ZH ? ` · 拟合 r=${c.r}，${c.anchors} 个参考模型` : ` · fit r=${c.r}, ${c.anchors} reference models`))
+    ? (c.method === "peer" ? (ZH ? ` · 对照同表已知 FTAA 分数的模型换算（${esc(c.peers_used.join("、"))}）` : ` · compared with ${esc(c.peers_used.join(", "))} in the same table`) : (ZH ? ` · 拟合 r=${c.r}，${c.anchors} 个参考模型` : ` · fit r=${c.r}, ${c.anchors} reference models`))
     : (ZH ? ` · <span class="muted">未采用：${esc(c.why)}</span>` : ` · <span class="muted">not used: ${esc(c.why)}</span>`);
   const rows = e.evidence.map((c) => `<li>${c.implied != null ? `<b class="mono">≈${c.implied}</b> ` : ""}<a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(({ aicodingdaily: "AI Coding Daily", swe_bench_verified: "SWE-bench Verified", swe_bench_pro: "SWE-bench Pro", terminal_bench_2_1: "Terminal-Bench 2.1" })[c.benchmark] || c.benchmark)}</a>: ${esc(c.score)}${c.variant ? ` <span class="muted">(${esc(c.variant)})</span>` : ""} · ${esc(c.source_type)}${tail(c)}</li>`).join("");
   const head = e.status === "ok"
     ? (ZH ? `根据 ${e.benchmarks} 个基准估算${e.benchmarks === 1 ? "（只有一个来源，仅供参考）" : ""}：中心 ${e.center}${e.spread > 10 ? " · 来源分歧较大" : ""}。` :
       `Estimated from ${e.benchmarks} benchmark${e.benchmarks === 1 ? " (one source only: a rough guide)" : "s"}: centre ${e.center}${e.spread > 10 ? " · sources disagree widely" : ""}.`) +
-      (e.method === "peer" ? Tx(" Vendor numbers are read against the other models in the vendor's own comparison table, whose AA scores are known.", " Vendor numbers are read against the other models in the vendor's own comparison table, whose AA scores are known.") : "") +
+      (e.method === "peer" ? Tx(" Vendor numbers are read against the other models in the vendor's own comparison table, whose FTAA scores are known.", " Vendor numbers are read against the other models in the vendor's own comparison table, whose FTAA scores are known.") : "") +
       (e.vendor_only ? Tx(" Vendor-reported only, with no comparison models: treat as low confidence (wider band).", " Vendor-reported only, with no comparison models: treat as low confidence (wider band).") : "")
     : (ZH ? `证据还不够：已有 ${e.benchmarks} 个所需基准（规则：${esc(D.est_rule)}）。` : `Not enough evidence yet: ${e.benchmarks} of the required benchmarks (rule: ${esc(D.est_rule)}).`);
   return `<div class="estpanel"><p>${head}</p><ul>${rows}</ul><p class="muted">${Tx("An estimate, not an Artificial Analysis score. Method:", "An estimate, not an Artificial Analysis score. Method:")} <a href="https://github.com/dimpurr/freetokens/blob/main/METHOD.md">${Tx("how EST works", "how EST works")}</a>.</p></div>`;
@@ -394,23 +396,28 @@ function estPanel(m) {
 function aaHTML(m) {
   const a = m.aa_index;
   if (a.value != null) {
-    const title = ZH ? `Artificial Analysis 智能指数，${absDate(a.date)}` : `Artificial Analysis Intelligence Index, ${absDate(a.date)}`;
-    const inner = `<small>AA</small>${a.approx ? "≈" : ""}${a.value}`;
+    const mapped = isMapped(m), r = Math.round(a.value);
+    const title = mapped && a.prev_value != null
+      ? (ZH ? `≈${r}：Artificial Analysis 旧版指数分 ${a.prev_value}（${absDate(a.prev_date)}），由 freetokens 按拟合曲线换算到 v5 刻度，典型误差约 3 分`
+            : `≈${r}: Artificial Analysis score ${a.prev_value} (${absDate(a.prev_date)}, an older index version), converted to the v5 scale by freetokens' fit; typical error about 3 points`)
+      : (ZH ? `FTAA ${r}：Artificial Analysis 智能指数 v5 分数，${absDate(a.date)}` : `FTAA ${r}: Artificial Analysis Intelligence Index v5 score, ${absDate(a.date)}`);
+    const inner = `<small>FTAA</small>${mapped ? "≈" : ""}${r}`;
     return a.url ? `<a class="aa" href="${esc(a.url)}" target="_blank" rel="noopener" title="${esc(title)}">${inner}${I.ext()}</a>` : `<span class="aa" title="${esc(title)}">${inner}</span>`;
   }
   if (m.est) {
     const label = m.est.status === "ok" ? `${m.est.low}–${m.est.high}` : "—";
-    return `<details class="estd"><summary class="aa est" title="${esc(Tx("Estimated AA index: tap for the evidence", "Estimated AA index: tap for the evidence"))}"><small>EST</small>${label} ${I.help()}</summary>${estPanel(m)}</details>`;
+    return `<details class="estd"><summary class="aa est" title="${esc(Tx("Estimated FTAA: tap for the evidence", "Estimated FTAA: tap for the evidence"))}"><small>EST</small>${label} ${I.help()}</summary>${estPanel(m)}</details>`;
   }
   return `<span class="muted">${esc(a.note || Tx("not ranked", "not ranked"))}</span>`;
 }
 /* P7: one line under the score chip saying where the number comes from */
+const aaSrc = (m) => isMapped(m) ? (ZH ? "Artificial Analysis 旧分，已换算" : "Artificial Analysis, converted") : "Artificial Analysis";
 const aaSource = (m) => m.aa_index.value != null
-  ? `<span class="sub">Artificial Analysis · ${esc(absDate(m.aa_index.date))}</span>`
+  ? `<span class="sub">${aaSrc(m)} · ${esc(absDate(isMapped(m) && m.aa_index.prev_date ? m.aa_index.prev_date : m.aa_index.date))}</span>`
   : isEst(m) ? `<span class="sub">${m.est.benchmarks} ${ZH ? "个基准" : `benchmark${m.est.benchmarks === 1 ? "" : "s"}`} · ${Tx("estimate", "estimate")}</span>`
   : "";
 
-/* score bar under the AA number, on a fixed 0–60 scale so bars compare across pages; an EST draws its band */
+/* score bar under the FTAA number, on a fixed 0–60 scale so bars compare across pages; an EST draws its band */
 const SCORE_MAX = 60;
 function scoreBar(m) {
   const pc = (v) => Math.max(0, Math.min(100, (100 * v) / SCORE_MAX)).toFixed(1);
@@ -636,7 +643,7 @@ function modelRow(m, i, off, TOP = 10) {
     const foldMeta = [ctxMeta, imgMeta, evMeta].filter(Boolean).join(sep);
     return `<tr class="${i >= TOP ? "more" : ""}${off ? " offrow" : ""}">
       <td><span class="ent"><span class="rk${r && r.est ? " est" : ""}"${r ? ` title="${esc(rankText(m))}"` : ""}>${r ? esc(rankLabel(r)) : ""}</span>${modelTile(m)}<span><span class="name">${mlink(m.id)}</span><span class="sub">${mklink(m.maker)}${regionOnly ? " " + regionTag(ok.find(isFree)) : ""}</span><span class="sub fold-meta">${foldMeta}</span></span></span></td>
-      <td class="nowrap" data-label="${Tx("AA index", "AA index")}"><span class="aacell"${aaTitle}>${aaHTML(m)}${scoreBar(m)}${aaDate}</span>${m.aa_index.value != null ? "" : aaSource(m)}</td>
+      <td class="nowrap" data-label="${Tx("FTAA", "FTAA")}"><span class="aacell"${aaTitle}>${aaHTML(m)}${scoreBar(m)}${aaDate}</span>${m.aa_index.value != null ? "" : aaSource(m)}</td>
       <td data-label="${Tx("Free on", "Free on")}"><div class="chips">${shown.map(channelChip).join("")}${offersFor(m.id).filter((o) => offerUsable(o)).map((o) => `<a class="chip offerchip" href="${offerHref(o.id)}" title="${esc(o.name + ": " + o.gets.text + " " + lab("per", o.gets.per) + (ZH ? "（与其他模型共用的额度）" : " (an allowance shared with other models)"))}">via ${esc(o.channel || o.provider)}</a>`).join("")}${folded}${nFold ? `<button type="button" class="morechips" aria-expanded="false" data-label="${esc(foldLabel)}">${esc(foldLabel)}</button>` : ""}</div></td>
       <td class="m-hide fold" data-label="${Tx("Context", "Context")}">${ctx}</td>
       <td class="nowrap m-hide fold" data-label="${Tx("Images", "Images")}">${img}</td>
