@@ -973,10 +973,10 @@ def seo_methodology():
     """Methodology page (site build only): title + description, also what --check audits for it."""
     if LANG == "zh":
         return (brand_title("freetokens 怎么运作：线路、核查与 EST 估算"),
-                "什么是一条线路、状态与截止可信度、“我们实测”限额怎么测、AA 指数的 EST 估算怎么算。")
+                "什么是一条线路、状态与截止可信度、“我们实测”限额怎么测、FTAA 的 EST 估算怎么算。")
     return (brand_title("How freetokens works: lanes, checks and EST"),
             "What a lane, status and end-date confidence mean, how 'Tested by us' limits are measured, "
-            "and how the EST estimate of the AA index is computed.")
+            "and how the EST estimate of FTAA is computed.")
 
 
 def jsonld(obj):

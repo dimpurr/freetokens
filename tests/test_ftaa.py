@@ -56,6 +56,16 @@ def test_data_follows_the_curve():
             assert h["high"] - h["low"] == h["prev"]["high"] - h["prev"]["low"], "band width survives the conversion"
 
 
+def test_join_is_continuous_and_monotone():
+    lo, hi = CURVE["domain"]
+    for edge in (lo, hi):
+        step = ftaa.curve_value(CURVE, edge + 1e-9) - ftaa.curve_value(CURVE, edge - 1e-9)
+        assert 0 <= step < 1e-6, f"no jump at {edge}"
+    assert 0 <= ftaa.curve_value(CURVE, hi + 0.1) - ftaa.curve_value(CURVE, hi) <= 0.1 + 1e-9
+    ys = [ftaa.curve_value(CURVE, x / 10) for x in range(0, 900)]
+    assert all(b >= a for a, b in zip(ys, ys[1:])), "monotone across both joins"
+
+
 def test_query_score_carries_basis():
     for m in query.MODELS.values():
         s = query.score(m)

@@ -260,11 +260,11 @@
      }
     },
     "aa_published": {
-     "label": "official AA index published",
-     "help": "Artificial Analysis published an official Intelligence Index for a model that had an EST; the estimate is replaced and checked against its band",
+     "label": "AA v5 score published",
+     "help": "Artificial Analysis published a v5 Intelligence Index score for a model that had an EST; it becomes the model's FTAA, the estimate is replaced and checked against its band",
      "zh": {
-      "label": "官方 AA 指数公布",
-      "help": "Artificial Analysis 为一个原本只有 EST 的模型公布了官方智能指数；估计被替换，并核对是否落在原区间内"
+      "label": "AA v5 分数公布",
+      "help": "Artificial Analysis 为一个原本只有 EST 的模型公布了 v5 智能指数分数；它成为该模型的 FTAA，估计被替换，并核对是否落在原区间内"
      }
     }
    },

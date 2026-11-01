@@ -58,7 +58,7 @@ const ML = lanesOf(M.id);
     </div></div>
     ${M.notes ? `<p class="notes">${esc(M.notes)}</p>` : ""}
     <div class="stats">
-      ${stat(Tx("FTAA", "FTAA"), `<span class="aacell">${M.est || a.value != null ? aaHTML(M) : `<span class="muted" style="font:500 0.9rem var(--f-body)">${esc(a.note || Tx("not ranked", "not ranked"))}</span>`}${scoreBar(M)}</span>`,
+      ${stat(Tx("FTAA", "FTAA"), `<span class="aacell">${M.est || a.value != null ? aaHTML(M, true) : `<span class="muted" style="font:500 0.9rem var(--f-body)">${esc(a.note || Tx("not ranked", "not ranked"))}</span>`}${scoreBar(M)}</span>`,
         [aaSource(M), rankText(M) ? esc(rankText(M)) : ""].filter(Boolean).join(" · "), "aa-stat")}
       ${stat(Tx("Context", "Context"), c ? esc(c[1]) : `<span class="muted" style="font:500 0.9rem var(--f-body)">${esc(M.context.split(" (")[0])}</span>`, c ? esc(c[2] || Tx("tokens", "tokens")) : esc((M.context.split(" (")[1] || "").replace(/\)$/, "")))}
       ${stat(Tx("Images", "Images"), esc(lab("image_input", M.image_input)), Tx("image input", "image input"))}

@@ -393,7 +393,7 @@ function estPanel(m) {
     : (ZH ? `证据还不够：已有 ${e.benchmarks} 个所需基准（规则：${esc(D.est_rule)}）。` : `Not enough evidence yet: ${e.benchmarks} of the required benchmarks (rule: ${esc(D.est_rule)}).`);
   return `<div class="estpanel"><p>${head}</p><ul>${rows}</ul><p class="muted">${Tx("An estimate, not an Artificial Analysis score. Method:", "An estimate, not an Artificial Analysis score. Method:")} <a href="https://github.com/dimpurr/freetokens/blob/main/METHOD.md">${Tx("how EST works", "how EST works")}</a>.</p></div>`;
 }
-function aaHTML(m) {
+function aaHTML(m, bare) {
   const a = m.aa_index;
   if (a.value != null) {
     const mapped = isMapped(m), r = Math.round(a.value);
@@ -401,7 +401,7 @@ function aaHTML(m) {
       ? (ZH ? `≈${r}：Artificial Analysis 旧版指数分 ${a.prev_value}（${absDate(a.prev_date)}），由 freetokens 按拟合曲线换算到 v5 刻度，典型误差约 3 分`
             : `≈${r}: Artificial Analysis score ${a.prev_value} (${absDate(a.prev_date)}, an older index version), converted to the v5 scale by freetokens' fit; typical error about 3 points`)
       : (ZH ? `FTAA ${r}：Artificial Analysis 智能指数 v5 分数，${absDate(a.date)}` : `FTAA ${r}: Artificial Analysis Intelligence Index v5 score, ${absDate(a.date)}`);
-    const inner = `<small>FTAA</small>${mapped ? "≈" : ""}${r}`;
+    const inner = `${bare ? "" : "<small>FTAA</small>"}${mapped ? "≈" : ""}${r}`;
     return a.url ? `<a class="aa" href="${esc(a.url)}" target="_blank" rel="noopener" title="${esc(title)}">${inner}${I.ext()}</a>` : `<span class="aa" title="${esc(title)}">${inner}</span>`;
   }
   if (m.est) {
