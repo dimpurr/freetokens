@@ -390,6 +390,7 @@ function ftWhy(s) {
   if (s.why === "few_refs") return ZH ? `只有 ${s.n} 个参考模型` : `only ${s.n} reference models`;
   if (s.why === "low_r") return ZH ? `相关系数 ${s.r} 偏低` : `correlation ${s.r} too low`;
   if (s.why === "older_snapshot") return ZH ? `旧快照（${esc(s.snapshot)}）的证据` : `evidence for an older snapshot (${esc(s.snapshot)})`;
+  if (s.why === "harness") return ZH ? "没有同一评测框架的参考分" : "no reference runs on the same harness";
   if (s.why === "other_mode") return ZH ? "推理模式不同，不混算" : "a different reasoning mode, not mixed";
   if (s.why === "floor") return ZH ? "多数参考模型同分，无法拟合" : "most reference models share one score";
   return ZH ? "该基准尚无参考模型" : "no reference models for this benchmark";

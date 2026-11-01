@@ -67,7 +67,9 @@
      "url": "https://huggingface.co/inclusionAI/Ling-3.1-flash",
      "type": "vendor",
      "used": false,
-     "why": "no_refs"
+     "why": "low_r",
+     "n": 28,
+     "r": 0.598
     },
     {
      "name": "swe bench multilingual",
@@ -76,16 +78,18 @@
      "url": "https://huggingface.co/inclusionAI/Ling-3.1-flash",
      "type": "vendor",
      "used": false,
-     "why": "no_refs"
+     "why": "low_r",
+     "n": 11,
+     "r": 0.328
     },
     {
-     "name": "terminal bench 4",
-     "benchmark": "terminal_bench_4",
+     "name": "terminal bench 4 0",
+     "benchmark": "terminal_bench_4_0",
      "value": 46.03,
      "url": "https://huggingface.co/inclusionAI/Ling-3.1-flash",
      "type": "vendor",
      "used": false,
-     "why": "no_refs"
+     "why": "harness"
     }
    ]
   },
@@ -231,7 +235,7 @@
    "vendor_only": false,
    "disagree": false,
    "method": "fit",
-   "spread": 6,
+   "spread": 7,
    "sources": [
     {
      "name": "Chess Puzzles (Epoch AI)",
@@ -483,7 +487,7 @@
    "vendor_only": false,
    "disagree": true,
    "method": "peer",
-   "spread": 9,
+   "spread": 10,
    "sources": [
     {
      "name": "SWE-bench Pro (public)",
@@ -595,7 +599,7 @@
    "vendor_only": false,
    "disagree": true,
    "method": "fit",
-   "spread": 9,
+   "spread": 10,
    "sources": [
     {
      "name": "Artificial Analysis",
@@ -740,7 +744,7 @@
    "vendor_only": false,
    "disagree": true,
    "method": "fit",
-   "spread": 8,
+   "spread": 9,
    "sources": [
     {
      "name": "AI Coding Daily LLM Coding Leaderboard",
@@ -913,7 +917,9 @@
      "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16/raw/main/README.md",
      "type": "vendor",
      "used": false,
-     "why": "no_refs"
+     "why": "low_r",
+     "n": 11,
+     "r": 0.328
     },
     {
      "name": "swe bench openhands",
@@ -931,7 +937,7 @@
      "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16/raw/main/README.md",
      "type": "vendor",
      "used": false,
-     "why": "no_refs"
+     "why": "harness"
     }
    ]
   },
@@ -946,7 +952,7 @@
    "vendor_only": false,
    "disagree": true,
    "method": "fit",
-   "spread": 9,
+   "spread": 10,
    "sources": [
     {
      "name": "Artificial Analysis",
@@ -1020,13 +1026,13 @@
    "center": 32,
    "low": 29,
    "high": 34,
-   "evidence": 2,
+   "evidence": 3,
    "independent": 0,
    "exact": false,
    "vendor_only": false,
-   "disagree": false,
+   "disagree": true,
    "method": "peer",
-   "spread": 0,
+   "spread": 11,
    "sources": [
     {
      "name": "SWE-bench Pro (public)",
@@ -1064,6 +1070,18 @@
      "method": "peer"
     },
     {
+     "name": "toolathlon verified",
+     "benchmark": "toolathlon_verified",
+     "value": 68.5,
+     "url": "https://huggingface.co/nex-agi/Nex-N2.5-Pro",
+     "type": "vendor",
+     "r": 0.852,
+     "n": 21,
+     "used": true,
+     "implied": 21.9,
+     "method": "fit"
+    },
+    {
      "name": "browsecomp",
      "benchmark": "browsecomp",
      "value": 89.7,
@@ -1079,7 +1097,7 @@
      "url": "https://huggingface.co/nex-agi/Nex-N2.5-Pro",
      "type": "vendor",
      "used": false,
-     "why": "no_refs"
+     "why": "harness"
     },
     {
      "name": "osworld verified",
@@ -1089,30 +1107,21 @@
      "type": "vendor",
      "used": false,
      "why": "no_refs"
-    },
-    {
-     "name": "toolathlon verified",
-     "benchmark": "toolathlon_verified",
-     "value": 68.5,
-     "url": "https://huggingface.co/nex-agi/Nex-N2.5-Pro",
-     "type": "vendor",
-     "used": false,
-     "why": "no_refs"
     }
    ]
   },
   "laguna-s-2.1": {
    "status": "ok",
-   "center": 17,
+   "center": 16,
    "low": 14,
    "high": 19,
-   "evidence": 2,
+   "evidence": 3,
    "independent": 0,
    "exact": false,
    "vendor_only": false,
    "disagree": false,
    "method": "peer",
-   "spread": 1,
+   "spread": 5,
    "sources": [
     {
      "name": "SWE-bench Pro (public)",
@@ -1173,6 +1182,18 @@
      "method": "fit"
     },
     {
+     "name": "toolathlon verified",
+     "benchmark": "toolathlon_verified",
+     "value": 49.7,
+     "url": "https://huggingface.co/poolside/Laguna-S-2.1",
+     "type": "vendor",
+     "r": 0.852,
+     "n": 21,
+     "used": true,
+     "implied": 12.8,
+     "method": "fit"
+    },
+    {
      "name": "deepswe",
      "benchmark": "deepswe",
      "value": 40.4,
@@ -1188,16 +1209,9 @@
      "url": "https://huggingface.co/poolside/Laguna-S-2.1",
      "type": "vendor",
      "used": false,
-     "why": "no_refs"
-    },
-    {
-     "name": "toolathlon verified",
-     "benchmark": "toolathlon_verified",
-     "value": 49.7,
-     "url": "https://huggingface.co/poolside/Laguna-S-2.1",
-     "type": "vendor",
-     "used": false,
-     "why": "no_refs"
+     "why": "low_r",
+     "n": 11,
+     "r": 0.328
     }
    ]
   },
@@ -1212,7 +1226,7 @@
    "vendor_only": false,
    "disagree": false,
    "method": "fit",
-   "spread": 3,
+   "spread": 4,
    "sources": [
     {
      "name": "Artificial Analysis",
@@ -1265,7 +1279,7 @@
    "vendor_only": false,
    "disagree": false,
    "method": "fit",
-   "spread": 6,
+   "spread": 7,
    "sources": [
     {
      "name": "Artificial Analysis",
@@ -1327,7 +1341,7 @@
      "url": "https://huggingface.co/tencent/Hy3-preview",
      "type": "vendor",
      "used": false,
-     "why": "no_refs"
+     "why": "harness"
     },
     {
      "name": "terminal bench 2 0",
@@ -1336,7 +1350,7 @@
      "url": "https://decrypt.co/365297/bitcoin-ethereum-metaverse-tokens-sink-further-after-holiday-crypto-rally?amp=1",
      "type": "vendor",
      "used": false,
-     "why": "no_refs"
+     "why": "harness"
     },
     {
      "name": "wide search",
@@ -1377,7 +1391,8 @@
      "url": "https://cdn-uploads.huggingface.co/production/uploads/6666ca359f5a0b3229238a1a/w-V0gtCa3qy0un6vuz-sj.png",
      "type": "vendor",
      "used": false,
-     "why": "no_refs"
+     "why": "few_refs",
+     "n": 0
     },
     {
      "name": "claweval mm",
@@ -1404,7 +1419,7 @@
      "url": "https://cdn-uploads.huggingface.co/production/uploads/6666ca359f5a0b3229238a1a/w-V0gtCa3qy0un6vuz-sj.png",
      "type": "vendor",
      "used": false,
-     "why": "no_refs"
+     "why": "harness"
     },
     {
      "name": "mmsearch",
@@ -1446,7 +1461,7 @@
    "vendor_only": false,
    "disagree": false,
    "method": "fit",
-   "spread": 2,
+   "spread": 3,
    "sources": [
     {
      "name": "Artificial Analysis",
@@ -1484,7 +1499,8 @@
      "url": "https://mdn.alipayobjects.com/huamei_fst7or/afts/img/Ykl9QZamkj0AAAAAgBAAAAgADpRXAQJr/original",
      "type": "vendor",
      "used": false,
-     "why": "no_refs"
+     "why": "few_refs",
+     "n": 0
     },
     {
      "name": "ifbench",
@@ -1493,7 +1509,8 @@
      "url": "https://mdn.alipayobjects.com/huamei_fst7or/afts/img/Ykl9QZamkj0AAAAAgBAAAAgADpRXAQJr/original",
      "type": "vendor",
      "used": false,
-     "why": "no_refs"
+     "why": "few_refs",
+     "n": 0
     },
     {
      "name": "mrcr 16k 256k",
@@ -1511,7 +1528,8 @@
      "url": "https://mdn.alipayobjects.com/huamei_fst7or/afts/img/Ykl9QZamkj0AAAAAgBAAAAgADpRXAQJr/original",
      "type": "vendor",
      "used": false,
-     "why": "no_refs"
+     "why": "floor",
+     "n": 4
     },
     {
      "name": "tau2 bench",
@@ -1520,22 +1538,23 @@
      "url": "https://mdn.alipayobjects.com/huamei_fst7or/afts/img/Ykl9QZamkj0AAAAAgBAAAAgADpRXAQJr/original",
      "type": "vendor",
      "used": false,
-     "why": "no_refs"
+     "why": "few_refs",
+     "n": 0
     }
    ]
   },
   "ling-2.6-flash": {
    "status": "ok",
    "center": 6,
-   "low": 3,
-   "high": 8,
-   "evidence": 2,
+   "low": 6,
+   "high": 6,
+   "evidence": 3,
    "independent": 1,
-   "exact": false,
+   "exact": true,
    "vendor_only": false,
    "disagree": false,
    "method": "fit",
-   "spread": 2,
+   "spread": 4,
    "sources": [
     {
      "name": "Artificial Analysis",
@@ -1563,8 +1582,11 @@
      "value": 73.85,
      "url": "https://huggingface.co/inclusionAI/Ling-2.6-flash",
      "type": "vendor",
-     "used": false,
-     "why": "no_refs"
+     "r": 0.813,
+     "n": 12,
+     "used": true,
+     "implied": 3.8,
+     "method": "fit"
     },
     {
      "name": "hmmt feb 2026",
@@ -1579,12 +1601,12 @@
   },
   "ring-2.6-1t": {
    "status": "ok",
-   "center": 8,
-   "low": 6,
-   "high": 11,
-   "evidence": 2,
+   "center": 15,
+   "low": 15,
+   "high": 15,
+   "evidence": 3,
    "independent": 1,
-   "exact": false,
+   "exact": true,
    "vendor_only": false,
    "disagree": false,
    "method": "fit",
@@ -1616,8 +1638,11 @@
      "value": 95.83,
      "url": "https://huggingface.co/inclusionAI/Ring-2.6-1T",
      "type": "vendor",
-     "used": false,
-     "why": "no_refs"
+     "r": 0.813,
+     "n": 12,
+     "used": true,
+     "implied": 15.1,
+     "method": "fit"
     },
     {
      "name": "arc agi v2",
@@ -1635,7 +1660,8 @@
      "url": "https://huggingface.co/inclusionAI/Ring-2.6-1T",
      "type": "vendor",
      "used": false,
-     "why": "no_refs"
+     "why": "few_refs",
+     "n": 0
     },
     {
      "name": "pinchbench",
@@ -1644,7 +1670,8 @@
      "url": "https://huggingface.co/inclusionAI/Ring-2.6-1T",
      "type": "vendor",
      "used": false,
-     "why": "no_refs"
+     "why": "floor",
+     "n": 4
     },
     {
      "name": "tau2 bench telecom",
@@ -1668,7 +1695,7 @@
    "vendor_only": false,
    "disagree": false,
    "method": "fit",
-   "spread": 3,
+   "spread": 4,
    "sources": [
     {
      "name": "AI Coding Daily LLM Coding Leaderboard",
@@ -1834,7 +1861,7 @@
    "vendor_only": false,
    "disagree": false,
    "method": "fit",
-   "spread": 3,
+   "spread": 4,
    "sources": [
     {
      "name": "Artificial Analysis",
@@ -1930,13 +1957,14 @@
      "r": 0.593
     },
     {
-     "name": "aime25",
-     "benchmark": "aime25",
+     "name": "aime 2025",
+     "benchmark": "aime_2025",
      "value": 51.87,
      "url": "https://huggingface.co/LiquidAI/LFM2.5-2.6B",
      "type": "vendor",
      "used": false,
-     "why": "no_refs"
+     "why": "few_refs",
+     "n": 0
     },
     {
      "name": "ifbench",
@@ -1945,7 +1973,8 @@
      "url": "https://huggingface.co/LiquidAI/LFM2.5-2.6B",
      "type": "vendor",
      "used": false,
-     "why": "no_refs"
+     "why": "few_refs",
+     "n": 0
     },
     {
      "name": "ifstruct",
@@ -1963,7 +1992,8 @@
      "url": "https://huggingface.co/LiquidAI/LFM2.5-2.6B",
      "type": "vendor",
      "used": false,
-     "why": "no_refs"
+     "why": "few_refs",
+     "n": 0
     },
     {
      "name": "toolsandbox",
@@ -2013,7 +2043,8 @@
      "url": "https://arxiv.org/html/2604.24954v2",
      "type": "vendor",
      "used": false,
-     "why": "no_refs"
+     "why": "few_refs",
+     "n": 0
     },
     {
      "name": "mmmu val",
@@ -2022,7 +2053,8 @@
      "url": "https://arxiv.org/html/2604.24954v2",
      "type": "vendor",
      "used": false,
-     "why": "no_refs"
+     "why": "few_refs",
+     "n": 0
     },
     {
      "name": "osworld",
@@ -2031,7 +2063,8 @@
      "url": "https://arxiv.org/html/2604.24954v2",
      "type": "vendor",
      "used": false,
-     "why": "no_refs"
+     "why": "few_refs",
+     "n": 0
     },
     {
      "name": "screenspot pro",
@@ -2040,7 +2073,8 @@
      "url": "https://arxiv.org/html/2604.24954v2",
      "type": "vendor",
      "used": false,
-     "why": "no_refs"
+     "why": "few_refs",
+     "n": 0
     },
     {
      "name": "videomme wo sub",
@@ -2153,7 +2187,8 @@
      "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16",
      "type": "vendor",
      "used": false,
-     "why": "no_refs"
+     "why": "few_refs",
+     "n": 0
     },
     {
      "name": "mmlu pro",
@@ -2162,7 +2197,7 @@
      "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16",
      "type": "vendor",
      "used": false,
-     "why": "no_refs"
+     "why": "harness"
     },
     {
      "name": "swe bench multilingual",
@@ -2171,7 +2206,9 @@
      "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16",
      "type": "vendor",
      "used": false,
-     "why": "no_refs"
+     "why": "low_r",
+     "n": 11,
+     "r": 0.328
     }
    ]
   },
@@ -2186,7 +2223,7 @@
    "vendor_only": false,
    "disagree": false,
    "method": "peer",
-   "spread": 1,
+   "spread": 2,
    "sources": [
     {
      "name": "SWE-bench Pro (public)",
@@ -2250,7 +2287,9 @@
      "url": "https://huggingface.co/poolside/Laguna-XS-2.1",
      "type": "vendor",
      "used": false,
-     "why": "no_refs"
+     "why": "low_r",
+     "n": 11,
+     "r": 0.328
     },
     {
      "name": "terminal bench 2 0",
@@ -2259,7 +2298,7 @@
      "url": "https://huggingface.co/poolside/Laguna-XS-2.1",
      "type": "vendor",
      "used": false,
-     "why": "no_refs"
+     "why": "harness"
     }
    ]
   },
@@ -2274,7 +2313,7 @@
    "vendor_only": false,
    "disagree": true,
    "method": "fit",
-   "spread": 12,
+   "spread": 13,
    "sources": [
     {
      "name": "Artificial Analysis",
@@ -2309,7 +2348,7 @@
    "vendor_only": false,
    "disagree": false,
    "method": "fit",
-   "spread": 6,
+   "spread": 7,
    "sources": [
     {
      "name": "Epoch Capabilities Index (Epoch AI)",
@@ -2444,7 +2483,7 @@
    "vendor_only": false,
    "disagree": false,
    "method": "fit",
-   "spread": 2,
+   "spread": 3,
    "sources": [
     {
      "name": "Artificial Analysis",
@@ -2503,7 +2542,7 @@
    "vendor_only": false,
    "disagree": false,
    "method": "fit",
-   "spread": 4,
+   "spread": 5,
    "sources": [
     {
      "name": "Artificial Analysis",
@@ -2661,7 +2700,7 @@
    "vendor_only": false,
    "disagree": false,
    "method": "fit",
-   "spread": 4,
+   "spread": 5,
    "sources": [
     {
      "name": "Artificial Analysis",
@@ -2702,7 +2741,7 @@
    "vendor_only": false,
    "disagree": true,
    "method": "fit",
-   "spread": 9,
+   "spread": 10,
    "sources": [
     {
      "name": "AI Coding Daily LLM Coding Leaderboard",
@@ -2776,15 +2815,15 @@
   "solar-pro-4": {
    "status": "ok",
    "center": 13,
-   "low": 11,
-   "high": 16,
-   "evidence": 2,
+   "low": 13,
+   "high": 13,
+   "evidence": 3,
    "independent": 1,
-   "exact": false,
+   "exact": true,
    "vendor_only": false,
    "disagree": false,
    "method": "fit",
-   "spread": 1,
+   "spread": 3,
    "sources": [
     {
      "name": "Artificial Analysis",
@@ -2812,23 +2851,26 @@
      "value": 23,
      "url": "https://tech.ifeng.com/c/8vYGCajr2Do",
      "type": "vendor",
-     "used": false,
-     "why": "no_refs"
+     "r": 0.834,
+     "n": 16,
+     "used": true,
+     "implied": 11.7,
+     "method": "fit"
     }
    ]
   },
   "solar-mini-4": {
    "status": "ok",
-   "center": 11,
+   "center": 12,
    "low": 9,
    "high": 14,
-   "evidence": 2,
+   "evidence": 3,
    "independent": 1,
    "exact": false,
    "vendor_only": false,
-   "disagree": false,
+   "disagree": true,
    "method": "fit",
-   "spread": 0,
+   "spread": 22,
    "sources": [
     {
      "name": "Artificial Analysis",
@@ -2856,8 +2898,11 @@
      "value": 47.2,
      "url": "https://www.upstage.ai/blog/en/solar-mini-4",
      "type": "vendor",
-     "used": false,
-     "why": "no_refs"
+     "r": 0.834,
+     "n": 16,
+     "used": true,
+     "implied": 32.7,
+     "method": "fit"
     }
    ]
   },
@@ -3007,7 +3052,7 @@
    "vendor_only": false,
    "disagree": true,
    "method": "fit",
-   "spread": 13,
+   "spread": 14,
    "sources": [
     {
      "name": "AI Coding Daily LLM Coding Leaderboard",
@@ -3352,7 +3397,7 @@
    "vendor_only": false,
    "disagree": false,
    "method": "fit",
-   "spread": 4,
+   "spread": 5,
    "sources": [
     {
      "name": "Humanity's Last Exam",
@@ -3421,7 +3466,8 @@
      "url": "https://huggingface.co/zai-org/GLM-4.7-Flash",
      "type": "vendor",
      "used": false,
-     "why": "no_refs"
+     "why": "few_refs",
+     "n": 0
     },
     {
      "name": "browsecomp",
@@ -3458,8 +3504,8 @@
   "qwen2.5-7b-instruct": {
    "status": "ok",
    "center": 0,
-   "low": -2,
-   "high": 3,
+   "low": 0,
+   "high": 5,
    "evidence": 1,
    "independent": 1,
    "exact": false,
@@ -3493,7 +3539,7 @@
    "vendor_only": false,
    "disagree": false,
    "method": "fit",
-   "spread": 2,
+   "spread": 3,
    "sources": [
     {
      "name": "Artificial Analysis",
@@ -3540,7 +3586,7 @@
    "vendor_only": false,
    "disagree": false,
    "method": "fit",
-   "spread": 4,
+   "spread": 5,
    "sources": [
     {
      "name": "GPQA Diamond",
@@ -3608,7 +3654,7 @@
      "url": "https://huggingface.co/Qwen/Qwen3.5-4B",
      "type": "vendor",
      "used": false,
-     "why": "no_refs"
+     "why": "harness"
     }
    ]
   },
@@ -3626,16 +3672,16 @@
   },
   "xing4.0-29b": {
    "status": "ok",
-   "center": 11,
-   "low": 8,
-   "high": 13,
-   "evidence": 2,
+   "center": 9,
+   "low": 7,
+   "high": 12,
+   "evidence": 3,
    "independent": 0,
    "exact": false,
    "vendor_only": false,
    "disagree": false,
    "method": "peer",
-   "spread": 3,
+   "spread": 5,
    "sources": [
     {
      "name": "SWE-bench Verified",
@@ -3688,13 +3734,16 @@
      "method": "fit"
     },
     {
-     "name": "aime2026",
-     "benchmark": "aime2026",
+     "name": "aime 2026",
+     "benchmark": "aime_2026",
      "value": 90.0,
      "url": "https://raw.githubusercontent.com/XingChen-AGI/Xing4.0-29B-A4B/main/README.md",
      "type": "vendor",
-     "used": false,
-     "why": "no_refs"
+     "r": 0.813,
+     "n": 12,
+     "used": true,
+     "implied": 7.9,
+     "method": "fit"
     },
     {
      "name": "claw eval",
@@ -3703,7 +3752,8 @@
      "url": "https://raw.githubusercontent.com/XingChen-AGI/Xing4.0-29B-A4B/main/README.md",
      "type": "vendor",
      "used": false,
-     "why": "no_refs"
+     "why": "few_refs",
+     "n": 0
     },
     {
      "name": "deepresearch bii",
@@ -3721,7 +3771,9 @@
      "url": "https://raw.githubusercontent.com/XingChen-AGI/Xing4.0-29B-A4B/main/README.md",
      "type": "vendor",
      "used": false,
-     "why": "no_refs"
+     "why": "low_r",
+     "n": 11,
+     "r": 0.328
     },
     {
      "name": "tau3 bench",
@@ -3799,7 +3851,8 @@
      "url": "https://huggingface.co/deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
      "type": "vendor",
      "used": false,
-     "why": "no_refs"
+     "why": "few_refs",
+     "n": 0
     },
     {
      "name": "hmmt feb 2025",
@@ -3808,7 +3861,8 @@
      "url": "https://huggingface.co/deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
      "type": "vendor",
      "used": false,
-     "why": "no_refs"
+     "why": "few_refs",
+     "n": 0
     }
    ]
   },
@@ -3823,7 +3877,7 @@
    "vendor_only": false,
    "disagree": true,
    "method": "fit",
-   "spread": 13,
+   "spread": 14,
    "sources": [
     {
      "name": "AI Coding Daily LLM Coding Leaderboard",
@@ -4145,7 +4199,7 @@
    "vendor_only": false,
    "disagree": true,
    "method": "fit",
-   "spread": 10,
+   "spread": 11,
    "sources": [
     {
      "name": "Artificial Analysis",
@@ -4483,7 +4537,7 @@
    "vendor_only": false,
    "disagree": false,
    "method": "fit",
-   "spread": 3,
+   "spread": 4,
    "sources": [
     {
      "name": "Chess Puzzles (Epoch AI)",
@@ -4641,7 +4695,7 @@
    "vendor_only": false,
    "disagree": true,
    "method": "fit",
-   "spread": 18,
+   "spread": 19,
    "sources": [
     {
      "name": "AI Coding Daily LLM Coding Leaderboard",
@@ -5007,16 +5061,16 @@
   },
   "step-5-preview": {
    "status": "ok",
-   "center": 28,
-   "low": 26,
-   "high": 31,
-   "evidence": 1,
-   "independent": 1,
+   "center": 32,
+   "low": 29,
+   "high": 34,
+   "evidence": 2,
+   "independent": 2,
    "exact": false,
    "vendor_only": false,
    "disagree": false,
-   "method": "aa",
-   "spread": 0,
+   "method": "fit",
+   "spread": 7,
    "sources": [
     {
      "name": "Artificial Analysis",
@@ -5025,6 +5079,18 @@
      "type": "third_party",
      "used": true,
      "method": "aa"
+    },
+    {
+     "name": "terminal bench 4 0",
+     "benchmark": "terminal_bench_4_0",
+     "value": 31.82,
+     "url": "https://www.vals.ai/comparisons/stepfun_step-5-preview-vs-tencent_hy4-preview",
+     "type": "third_party",
+     "r": 0.903,
+     "n": 29,
+     "used": true,
+     "implied": 34.7,
+     "method": "fit"
     },
     {
      "name": "code migration v1 1",
@@ -5048,15 +5114,6 @@
      "name": "ioi",
      "benchmark": "ioi",
      "value": 38.06,
-     "url": "https://www.vals.ai/comparisons/stepfun_step-5-preview-vs-tencent_hy4-preview",
-     "type": "third_party",
-     "used": false,
-     "why": "no_refs"
-    },
-    {
-     "name": "terminal bench 4 0",
-     "benchmark": "terminal_bench_4_0",
-     "value": 31.82,
      "url": "https://www.vals.ai/comparisons/stepfun_step-5-preview-vs-tencent_hy4-preview",
      "type": "third_party",
      "used": false,
@@ -5168,7 +5225,7 @@
    "vendor_only": false,
    "disagree": false,
    "method": "fit",
-   "spread": 7,
+   "spread": 8,
    "sources": [
     {
      "name": "Artificial Analysis",
@@ -5239,7 +5296,7 @@
    "vendor_only": false,
    "disagree": false,
    "method": "fit",
-   "spread": 5,
+   "spread": 6,
    "sources": [
     {
      "name": "Artificial Analysis",
@@ -5322,7 +5379,7 @@
    "vendor_only": false,
    "disagree": false,
    "method": "fit",
-   "spread": 2,
+   "spread": 3,
    "sources": [
     {
      "name": "Artificial Analysis",
@@ -5469,7 +5526,7 @@
      "url": "https://huggingface.co/mistralai/Mistral-Small-3.2-24B-Instruct-2506",
      "type": "vendor",
      "used": false,
-     "why": "no_refs"
+     "why": "harness"
     },
     {
      "name": "wildbench v2",
@@ -5485,11 +5542,11 @@
   "mistral-nemo": {
    "status": "ok",
    "center": 0,
-   "low": -2,
-   "high": 3,
-   "evidence": 2,
-   "independent": 2,
-   "exact": false,
+   "low": 0,
+   "high": 0,
+   "evidence": 3,
+   "independent": 3,
+   "exact": true,
    "vendor_only": false,
    "disagree": false,
    "method": "fit",
@@ -5520,6 +5577,18 @@
      "method": "fit"
     },
     {
+     "name": "mmlu pro",
+     "benchmark": "mmlu_pro",
+     "value": 44.8,
+     "url": "https://llmrun.dev/model/mistralai-mistral-nemo-instruct-2407/benchmarks",
+     "type": "third_party",
+     "r": 0.721,
+     "n": 26,
+     "used": true,
+     "implied": 0.0,
+     "method": "fit"
+    },
+    {
      "name": "balrog",
      "benchmark": "balrog",
      "value": 17.6,
@@ -5545,23 +5614,14 @@
      "type": "third_party",
      "used": false,
      "why": "no_refs"
-    },
-    {
-     "name": "mmlu pro",
-     "benchmark": "mmlu_pro",
-     "value": 44.8,
-     "url": "https://llmrun.dev/model/mistralai-mistral-nemo-instruct-2407/benchmarks",
-     "type": "third_party",
-     "used": false,
-     "why": "no_refs"
     }
    ]
   },
   "mistral-7b-instruct": {
    "status": "ok",
    "center": 1,
-   "low": -1,
-   "high": 4,
+   "low": 0,
+   "high": 5,
    "evidence": 2,
    "independent": 2,
    "exact": false,
@@ -5603,7 +5663,7 @@
    "vendor_only": false,
    "disagree": true,
    "method": "fit",
-   "spread": 11,
+   "spread": 12,
    "sources": [
     {
      "name": "Aider Polyglot",
@@ -5763,7 +5823,7 @@
    "vendor_only": false,
    "disagree": true,
    "method": "fit",
-   "spread": 8,
+   "spread": 9,
    "sources": [
     {
      "name": "Artificial Analysis",
@@ -5902,7 +5962,7 @@
      "url": "https://aimlapi.com/blog/minimax-m3-1-flash-review",
      "type": "vendor",
      "used": false,
-     "why": "no_refs"
+     "why": "harness"
     },
     {
      "name": "terminal bench 4 0",
@@ -5911,22 +5971,22 @@
      "url": "https://aimlapi.com/blog/minimax-m3-1-flash-review",
      "type": "vendor",
      "used": false,
-     "why": "no_refs"
+     "why": "harness"
     }
    ]
   },
   "beam": {
    "status": "ok",
-   "center": 17,
-   "low": 14,
-   "high": 19,
-   "evidence": 5,
+   "center": 18,
+   "low": 15,
+   "high": 20,
+   "evidence": 7,
    "independent": 1,
    "exact": false,
    "vendor_only": false,
    "disagree": true,
    "method": "fit",
-   "spread": 11,
+   "spread": 13,
    "sources": [
     {
      "name": "Artificial Analysis",
@@ -5985,6 +6045,30 @@
      "method": "fit"
     },
     {
+     "name": "aime 2026",
+     "benchmark": "aime_2026",
+     "value": 97.8,
+     "url": "https://reflection.ai/blog/introducing-beam",
+     "type": "vendor",
+     "r": 0.813,
+     "n": 12,
+     "used": true,
+     "implied": 17.5,
+     "method": "fit"
+    },
+    {
+     "name": "tau3 banking",
+     "benchmark": "tau3_banking",
+     "value": 38.0,
+     "url": "https://reflection.ai/blog/introducing-beam",
+     "type": "vendor",
+     "r": 0.834,
+     "n": 16,
+     "used": true,
+     "implied": 24.7,
+     "method": "fit"
+    },
+    {
      "name": "Humanity's Last Exam",
      "benchmark": "hle",
      "value": 51.2,
@@ -5993,15 +6077,6 @@
      "mode": "with tools",
      "used": false,
      "why": "other_mode"
-    },
-    {
-     "name": "aime 2026",
-     "benchmark": "aime_2026",
-     "value": 97.8,
-     "url": "https://reflection.ai/blog/introducing-beam",
-     "type": "vendor",
-     "used": false,
-     "why": "no_refs"
     },
     {
      "name": "automationbench public",
@@ -6037,7 +6112,7 @@
      "url": "https://reflection.ai/blog/introducing-beam",
      "type": "vendor",
      "used": false,
-     "why": "no_refs"
+     "why": "harness"
     },
     {
      "name": "ifbench",
@@ -6046,7 +6121,8 @@
      "url": "https://reflection.ai/blog/introducing-beam",
      "type": "vendor",
      "used": false,
-     "why": "no_refs"
+     "why": "few_refs",
+     "n": 0
     },
     {
      "name": "longbench v2",
@@ -6082,7 +6158,9 @@
      "url": "https://reflection.ai/blog/introducing-beam",
      "type": "vendor",
      "used": false,
-     "why": "no_refs"
+     "why": "low_r",
+     "n": 11,
+     "r": 0.328
     },
     {
      "name": "swe bench pro v1",
@@ -6097,15 +6175,6 @@
      "name": "swe bench pro v2 hard",
      "benchmark": "swe_bench_pro_v2_hard",
      "value": 77.2,
-     "url": "https://reflection.ai/blog/introducing-beam",
-     "type": "vendor",
-     "used": false,
-     "why": "no_refs"
-    },
-    {
-     "name": "tau3 banking",
-     "benchmark": "tau3_banking",
-     "value": 38.0,
      "url": "https://reflection.ai/blog/introducing-beam",
      "type": "vendor",
      "used": false,
@@ -6187,7 +6256,7 @@
    "vendor_only": true,
    "disagree": true,
    "method": "fit",
-   "spread": 8,
+   "spread": 9,
    "sources": [
     {
      "name": "GPQA Diamond",

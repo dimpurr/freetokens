@@ -907,7 +907,7 @@
   }
  },
  "ft_rules": {
-  "$comment": "ADR-036 FT Intelligence. Change values here, not in code. A benchmark joins the registry with >= min_anchors reference models and r >= min_r (ADR-031). weights: per source type, applied to the weighted median; vendor self-reports weigh least; vendor_peer is a vendor table read against peers whose reference score is known (ADR-023); aa is Artificial Analysis as one source. exact (an integer) needs evidence >= min_evidence, at least one independent (non-vendor) piece, and pieces within max_spread points of each other (when they disagree, Artificial Analysis is added as one more source if a snapshot value exists, then the score is recomputed); otherwise a band of band_width points (also when every piece is a vendor claim). A line is refused when more than max_tie_share of its reference models share one score (floor effect); a claim is read at most extrapolate x (reference range) beyond the reference models. Artificial Analysis counts only while fewer than aa_below other pieces exist.",
+  "$comment": "ADR-036 FT Intelligence. Change values here, not in code. A benchmark joins the registry with >= min_anchors reference models and r >= min_r (ADR-031). weights: per source type, applied to the weighted median; vendor self-reports weigh least; vendor_peer is a vendor table read against peers whose reference score is known (ADR-023); aa is Artificial Analysis as one source. exact (an integer) needs evidence >= min_evidence, at least one independent (non-vendor) piece, and pieces within max_spread points of each other (when they disagree, Artificial Analysis is added as one more source if a snapshot value exists, then the score is recomputed); otherwise a band of band_width points (also when every piece is a vendor claim). A line is refused when more than max_tie_share of its reference models share one score, or when its reference scores span less than min_range points (floor or ceiling effect); for strict_benchmarks (added with the second reference harvest) a vendor claim is read only through a vendor line and an independent claim only through the independent line, because the harnesses differ; a claim is read at most extrapolate x (reference range) beyond the reference models. Artificial Analysis counts only while fewer than aa_below other pieces exist.",
   "version": 1,
   "min_anchors": 4,
   "min_r": 0.6,
@@ -915,6 +915,8 @@
   "aa_below": 3,
   "band_width": 5,
   "max_spread": 8,
+  "min_range": 10,
+  "strict_benchmarks": ["terminal_bench_2_0", "terminal_bench_4_0", "deepswe_v1_1", "skillsbench", "toolathlon_verified", "swe_bench_multilingual", "tau2_bench", "tau3_banking", "mmlu_pro", "ifbench", "multi_if", "mmmu_pro", "mmmu_val", "mathvista_mini", "charxiv_rq", "osworld", "screenspot_pro", "claw_eval", "pinchbench", "aime_2025", "aime_2026", "hmmt_feb_2025"],
   "max_tie_share": 0.4,
   "extrapolate": 0.15,
   "weights": {

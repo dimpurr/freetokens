@@ -16,6 +16,7 @@ Standard library only.
 import argparse
 import json
 import os
+import re
 import statistics as st
 from pathlib import Path
 from urllib.parse import urlparse
@@ -31,6 +32,18 @@ def private_dir():
 NO_FIT_HOSTS = ("artificialanalysis.ai", "benchlm.ai")  # AA itself; BenchLM may relay AA numbers (provenance unclear)
 
 
+BENCH_ALIASES = {"terminal_bench_4": "terminal_bench_4_0", "aime25": "aime_2025", "claweval": "claw_eval", "aime2026": "aime_2026"}
+
+
+def canon(bid, variant=""):
+    """One name per benchmark. Versions and harnesses are never merged: terminal_bench_2_0 / 2_1 / 4_0 stay apart, and
+    deep_swe / deepswe only count as deepswe_v1_1 when the variant says version 1.1."""
+    bid = (bid or "").strip().lower()
+    if bid in ("deep_swe", "deepswe"):
+        return "deepswe_v1_1" if re.search(r"v?1[._-]1\b", variant or "") else bid
+    return BENCH_ALIASES.get(bid, bid)
+
+
 def is_aa_url(url):
     """True for a source that never enters a fit (name kept for the callers: AA and its possible relays)."""
     h = urlparse(url or "").hostname or ""
@@ -44,6 +57,8 @@ def fit(pts, rules):
     xs, ys = [p[0] for p in pts], [p[1] for p in pts]
     if max(xs.count(x) for x in set(xs)) / len(xs) > rules["max_tie_share"]:
         return {"ok": False, "n": len(pts), "why": "floor or ceiling effect: most reference models share one score"}
+    if max(xs) - min(xs) < rules["min_range"]:
+        return {"ok": False, "n": len(pts), "range": round(max(xs) - min(xs), 2), "why": f"floor or ceiling effect: reference scores span only {max(xs) - min(xs):.1f} points"}
     mx, my = st.mean(xs), st.mean(ys)
     sxx = sum((x - mx) ** 2 for x in xs)
     if sxx == 0 or len(set(ys)) < 2:
@@ -73,6 +88,10 @@ def fit_lines(models, rules):
         v = fit(vpts.get(bid, []), rules)
         if f is not None and f.get("ok") is False and "why" in f:
             lines[bid] = f
+            if bid in rules.get("strict_benchmarks", []):
+                lines[bid]["strict"] = True
+            if v and v["ok"]:
+                lines[bid]["vendor"] = v
             continue
         if f is None and v is None:
             lines[bid] = {"ok": False, "n": len(pts.get(bid, [])), "why": f"only {len(pts.get(bid, []))} reference models (need {rules['min_anchors']})"}
@@ -84,6 +103,8 @@ def fit_lines(models, rules):
             e["vendor"] = v
         if v and v["ok"] and not e["ok"]:
             e["ok"] = False  # a vendor-only line never makes the benchmark usable for independent claims
+        if bid in rules.get("strict_benchmarks", []):
+            e["strict"] = True  # ADR-036 round 2: vendor claims read only the vendor line, independent claims only the independent line (harnesses differ)
         lines[bid] = e
     return lines
 

@@ -125,6 +125,41 @@ def test_merge_checks_the_snapshot_id():
     assert "not one of the snapshots" in merge_claims.check(dict(row, snapshot="zz"), {"m1"}, {"m1": {"a", "b"}})[1]
 
 
+def test_a_narrow_reference_range_is_refused():
+    pts = [(80 + i, 20 + i) for i in range(8)]  # r = 1, but the reference scores span 7 points (saturated)
+    f = ft_calibrate.fit(pts, RULES)
+    assert f["ok"] is False and "span" in f["why"]
+
+
+def test_aliases_do_not_merge_versions_or_harnesses():
+    c = ft_calibrate.canon
+    assert c("terminal_bench_4") == "terminal_bench_4_0" and c("aime25") == "aime_2025" and c("claweval") == "claw_eval"
+    assert c("terminal_bench_2_0") == "terminal_bench_2_0" and c("terminal_bench_2_1") == "terminal_bench_2_1"
+    assert c("deep_swe", "DeepSWE v1.1 leaderboard") == "deepswe_v1_1" and c("deep_swe", "datacurve; percent") == "deep_swe"
+
+
+def test_strict_benchmarks_do_not_cross_harnesses():
+    lines = {"s": {"a": 0.0, "b": 0.5, "r": 0.9, "n": 20, "x": [0, 80], "ok": True, "strict": True}}
+    e = ft_score.score_model([claim("s", 60, "vendor")], lines, RULES)
+    assert e["status"] == "none" and e["sources"][0]["why"] == "harness"
+    assert ft_score.score_model([claim("s", 60, "third_party")], lines, RULES)["center"] == 30
+    lines["s"]["vendor"] = {"a": 5.0, "b": 0.5, "r": 0.8, "n": 9, "x": [0, 80]}
+    assert ft_score.score_model([claim("s", 60, "vendor")], lines, RULES)["center"] == 35
+
+
+def test_stored_spread_is_rounded_up_so_it_matches_disagree():
+    lines = {b: dict(LINES["b2"]) for b in ("c1", "c2", "c3")}
+    e = ft_score.score_model([claim("c1", 60), claim("c2", 60), claim("c3", 76.8)], lines, RULES)  # implied 30, 30, 38.4: spread 8.4
+    assert e["spread"] == 9 and e["disagree"] and not e["exact"]
+    e = ft_score.score_model([claim("c1", 60), claim("c2", 60), claim("c3", 75.6)], lines, RULES)  # spread 7.8
+    assert e["spread"] == 8 and not e["disagree"] and e["exact"]
+
+
+def test_a_band_never_starts_below_zero():
+    e = ft_score.score_model([claim("b1", 2)], LINES, RULES)
+    assert e["low"] == 0 and e["high"] == RULES["band_width"]
+
+
 def test_no_evidence_is_none():
     e = ft_score.score_model([claim("unfitted", 50)], LINES, RULES)
     assert e["status"] == "none" and e["evidence"] == 0 and e["sources"][0]["used"] is False

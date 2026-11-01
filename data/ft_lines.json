@@ -25,6 +25,28 @@
    ],
    "ok": true
   },
+  "aime_2025": {
+   "ok": false,
+   "n": 0,
+   "why": "only 0 reference models (need 4)"
+  },
+  "aime_2026": {
+   "ok": false,
+   "n": 0,
+   "why": "only 0 reference models (need 4)",
+   "vendor": {
+    "a": -102.4787,
+    "b": 1.22666,
+    "r": 0.813,
+    "n": 12,
+    "x": [
+     88.3,
+     99.2
+    ],
+    "ok": true
+   },
+   "strict": true
+  },
   "bfcl": {
    "a": -0.2563,
    "b": 0.14933,
@@ -36,6 +58,30 @@
    ],
    "ok": false,
    "why": "correlation 0.593 below 0.6"
+  },
+  "charxiv_rq": {
+   "ok": false,
+   "n": 0,
+   "why": "only 0 reference models (need 4)",
+   "strict": true
+  },
+  "claw_eval": {
+   "ok": false,
+   "n": 0,
+   "why": "only 0 reference models (need 4)",
+   "strict": true
+  },
+  "deepswe_v1_1": {
+   "a": -7.1317,
+   "b": 0.59753,
+   "r": 0.767,
+   "n": 20,
+   "x": [
+    30,
+    74
+   ],
+   "ok": true,
+   "strict": true
   },
   "epoch_chess_puzzles": {
    "a": 3.3972,
@@ -271,6 +317,18 @@
    ],
    "ok": true
   },
+  "hmmt_feb_2025": {
+   "ok": false,
+   "n": 0,
+   "why": "only 0 reference models (need 4)",
+   "strict": true
+  },
+  "ifbench": {
+   "ok": false,
+   "n": 0,
+   "why": "only 0 reference models (need 4)",
+   "strict": true
+  },
   "livecodebench": {
    "a": 2.1327,
    "b": 0.06797,
@@ -281,6 +339,93 @@
     84.74
    ],
    "ok": true
+  },
+  "mathvista_mini": {
+   "ok": false,
+   "n": 0,
+   "why": "only 0 reference models (need 4)",
+   "strict": true
+  },
+  "mmlu_pro": {
+   "a": -97.6158,
+   "b": 1.37251,
+   "r": 0.721,
+   "n": 26,
+   "x": [
+    69.17,
+    92.38
+   ],
+   "ok": true,
+   "strict": true
+  },
+  "mmmu_pro": {
+   "a": -43.6057,
+   "b": 0.83225,
+   "r": 0.698,
+   "n": 13,
+   "x": [
+    46.07,
+    90.64
+   ],
+   "ok": true,
+   "strict": true
+  },
+  "mmmu_val": {
+   "ok": false,
+   "n": 0,
+   "why": "only 0 reference models (need 4)",
+   "strict": true
+  },
+  "multi_if": {
+   "ok": false,
+   "n": 0,
+   "why": "only 0 reference models (need 4)",
+   "strict": true
+  },
+  "osworld": {
+   "ok": false,
+   "n": 0,
+   "why": "only 0 reference models (need 4)",
+   "strict": true
+  },
+  "pinchbench": {
+   "ok": false,
+   "n": 4,
+   "range": 3.8,
+   "why": "floor or ceiling effect: reference scores span only 3.8 points",
+   "strict": true
+  },
+  "screenspot_pro": {
+   "ok": false,
+   "n": 0,
+   "why": "only 0 reference models (need 4)",
+   "strict": true
+  },
+  "skillsbench": {
+   "a": -1.9221,
+   "b": 0.49413,
+   "r": 0.598,
+   "n": 28,
+   "x": [
+    18.06,
+    66.03
+   ],
+   "ok": false,
+   "why": "correlation 0.598 below 0.6",
+   "strict": true
+  },
+  "swe_bench_multilingual": {
+   "a": 4.037,
+   "b": 0.11027,
+   "r": 0.328,
+   "n": 11,
+   "x": [
+    39.7,
+    72.7
+   ],
+   "ok": false,
+   "why": "correlation 0.328 below 0.6",
+   "strict": true
   },
   "swe_bench_pro": {
    "a": -0.1448,
@@ -326,6 +471,29 @@
     "ok": true
    }
   },
+  "tau2_bench": {
+   "ok": false,
+   "n": 0,
+   "why": "only 0 reference models (need 4)",
+   "strict": true
+  },
+  "tau3_banking": {
+   "ok": false,
+   "n": 0,
+   "why": "only 0 reference models (need 4)",
+   "vendor": {
+    "a": -8.1772,
+    "b": 0.8652,
+    "r": 0.834,
+    "n": 16,
+    "x": [
+     13.66,
+     48.71
+    ],
+    "ok": true
+   },
+   "strict": true
+  },
   "tau_bench": {
    "a": 1.8472,
    "b": 0.09493,
@@ -336,6 +504,18 @@
     84.73
    ],
    "ok": true
+  },
+  "terminal_bench_2_0": {
+   "a": 0.5512,
+   "b": 0.28345,
+   "r": 0.77,
+   "n": 30,
+   "x": [
+    2.25,
+    73.2
+   ],
+   "ok": true,
+   "strict": true
   },
   "terminal_bench_2_1": {
    "a": -12.9876,
@@ -358,6 +538,35 @@
     ],
     "ok": true
    }
+  },
+  "terminal_bench_4_0": {
+   "a": 16.1799,
+   "b": 0.58142,
+   "r": 0.903,
+   "n": 29,
+   "x": [
+    2.52,
+    65.15
+   ],
+   "ok": true,
+   "strict": true
+  },
+  "toolathlon_verified": {
+   "ok": false,
+   "n": 0,
+   "why": "only 0 reference models (need 4)",
+   "vendor": {
+    "a": -11.4247,
+    "b": 0.48683,
+    "r": 0.852,
+    "n": 21,
+    "x": [
+     33.0,
+     78.4
+    ],
+    "ok": true
+   },
+   "strict": true
   }
  }
 }

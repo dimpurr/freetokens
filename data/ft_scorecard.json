@@ -6,86 +6,86 @@
  "reference_models": 166,
  "published": {
   "overall": {
-   "n": 136,
-   "mean_abs_diff": 4.3,
-   "bias": 0.21,
-   "hit_rate": 0.34,
-   "within_3": 0.38
+   "n": 138,
+   "mean_abs_diff": 4.04,
+   "bias": 0.6,
+   "hit_rate": 0.36,
+   "within_3": 0.41
   },
   "by_evidence": {
    "1": {
-    "n": 24,
-    "mean_abs_diff": 5.12,
-    "bias": -0.73,
-    "hit_rate": 0.25,
-    "within_3": 0.33
+    "n": 23,
+    "mean_abs_diff": 5.05,
+    "bias": 0.28,
+    "hit_rate": 0.3,
+    "within_3": 0.39
    },
    "2": {
-    "n": 27,
-    "mean_abs_diff": 4.41,
-    "bias": 0.54,
-    "hit_rate": 0.33,
-    "within_3": 0.37
+    "n": 17,
+    "mean_abs_diff": 4.02,
+    "bias": 1.08,
+    "hit_rate": 0.35,
+    "within_3": 0.35
    },
    "3": {
-    "n": 24,
-    "mean_abs_diff": 4.49,
-    "bias": 0.37,
-    "hit_rate": 0.42,
-    "within_3": 0.46
+    "n": 21,
+    "mean_abs_diff": 3.47,
+    "bias": 1.38,
+    "hit_rate": 0.48,
+    "within_3": 0.48
    },
    "4+": {
-    "n": 61,
-    "mean_abs_diff": 3.85,
+    "n": 77,
+    "mean_abs_diff": 3.9,
     "bias": 0.38,
     "hit_rate": 0.34,
-    "within_3": 0.38
+    "within_3": 0.42
    }
   },
   "exact_only": {
-   "n": 46,
-   "mean_abs_diff": 3.28,
-   "bias": 2.2,
-   "hit_rate": 0.37,
-   "within_3": 0.43
+   "n": 42,
+   "mean_abs_diff": 3.31,
+   "bias": 2.34,
+   "hit_rate": 0.33,
+   "within_3": 0.4
   }
  },
  "vendor": {
   "overall": {
-   "n": 54,
-   "mean_abs_diff": 4.14,
-   "bias": 1.04,
-   "hit_rate": 0.43,
-   "within_3": 0.5
+   "n": 80,
+   "mean_abs_diff": 3.89,
+   "bias": 0.19,
+   "hit_rate": 0.45,
+   "within_3": 0.54
   },
   "by_evidence": {
    "1": {
-    "n": 12,
-    "mean_abs_diff": 3.55,
-    "bias": -1.48,
-    "hit_rate": 0.33,
-    "within_3": 0.42
-   },
-   "2": {
-    "n": 16,
-    "mean_abs_diff": 4.67,
-    "bias": 2.51,
-    "hit_rate": 0.38,
+    "n": 32,
+    "mean_abs_diff": 4.36,
+    "bias": -0.95,
+    "hit_rate": 0.34,
     "within_3": 0.44
    },
+   "2": {
+    "n": 15,
+    "mean_abs_diff": 3.42,
+    "bias": 0.3,
+    "hit_rate": 0.4,
+    "within_3": 0.53
+   },
    "3": {
-    "n": 13,
-    "mean_abs_diff": 3.68,
-    "bias": 0.1,
-    "hit_rate": 0.54,
-    "within_3": 0.62
+    "n": 15,
+    "mean_abs_diff": 3.05,
+    "bias": 0.75,
+    "hit_rate": 0.67,
+    "within_3": 0.73
    },
    "4+": {
-    "n": 13,
-    "mean_abs_diff": 4.48,
-    "bias": 2.49,
-    "hit_rate": 0.46,
-    "within_3": 0.54
+    "n": 18,
+    "mean_abs_diff": 4.16,
+    "bias": 1.66,
+    "hit_rate": 0.5,
+    "within_3": 0.56
    }
   },
   "exact_only": null

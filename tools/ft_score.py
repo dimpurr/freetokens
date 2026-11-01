@@ -9,7 +9,7 @@ Claims on one benchmark (all Epoch AI benchmarks count as one) collapse to one p
 pieces (weights in schema ft_rules). Evidence counts benchmarks, plus Artificial Analysis as one source
 when fewer than `aa_below` other pieces exist and the private snapshot has a value.
 
-A source row that is not used carries `why`: no_refs | few_refs | low_r | floor | excluded (with `note`).
+A source row that is not used carries `why`: no_refs | few_refs | low_r | floor | harness | excluded (with `note`).
 Display rule written into the output: exact (an integer) only with evidence >= min_evidence AND at least one
 independent (non-vendor) piece AND the pieces within max_spread points of each other; when they disagree and a
 snapshot value exists, Artificial Analysis joins as one more source and the score is recomputed; otherwise a band of
@@ -23,6 +23,7 @@ Usage: python3 tools/ft_score.py [--no-write]
 """
 import argparse
 import json
+import math
 import sys
 from pathlib import Path
 
@@ -70,7 +71,13 @@ def _score(claims, lines, rules, names=None, peer_refs=None, aa=None, force_band
         if c.get("excluded"):
             sources.append(dict(s, used=False, why="excluded", note=c["excluded"]))
             continue
-        line = ln.get("vendor") if (vendor and ln and ln.get("vendor")) else (ln if ln and ln.get("ok") else None)
+        if ln and ln.get("strict"):  # harnesses differ: a vendor number is read only through a vendor line, an independent one only through the independent line
+            line = ln.get("vendor") if vendor else (ln if ln.get("ok") else None)
+            if line is None and (ln.get("ok") if vendor else bool(ln.get("vendor"))):
+                sources.append(dict(s, used=False, why="harness"))
+                continue
+        else:
+            line = ln.get("vendor") if (vendor and ln and ln.get("vendor")) else (ln if ln and ln.get("ok") else None)
         if line is None:
             w = (ln or {}).get("why") or ""
             sources.append(dict(s, used=False, why="few_refs" if w.startswith("only") else "low_r" if w.startswith("corr") else "floor" if w.startswith("floor") else "no_refs",
@@ -135,12 +142,12 @@ def _score(claims, lines, rules, names=None, peer_refs=None, aa=None, force_band
     disagree = spread > rules["max_spread"]
     exact = len(items) >= rules["min_evidence"] and indep >= 1 and not disagree and not force_band
     vendor_only = indep == 0 and all(i["method"] == "fit" for i in items)
-    low = round(center - rules["band_width"] / 2)
+    low = max(0, round(center - rules["band_width"] / 2))  # a band never starts below 0
     c = int(round(center))
     return {"status": "ok", "center": c, "low": c if exact else low, "high": c if exact else low + rules["band_width"],
             "evidence": len(items), "independent": indep, "exact": exact, "vendor_only": vendor_only, "disagree": disagree,
             "method": "peer" if any(i["method"] == "peer" for i in items) else ("aa" if all(i["method"] == "aa" for i in items) else "fit"),
-            "spread": int(round(spread)),
+            "spread": int(math.ceil(spread - 1e-9)),  # stored as an integer; rounding up keeps `spread > max_spread` true exactly when it is disagree
             "sources": sources, **({"stale_snapshot": True} if force_band else {})}
 
 

@@ -31,7 +31,7 @@ from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tools"))
-from ft_calibrate import private_dir  # noqa: E402
+from ft_calibrate import canon, private_dir  # noqa: E402
 
 TYPES = {"leaderboard", "third_party", "vendor", "community", "leak"}
 DENY_HOSTS = {
@@ -91,6 +91,7 @@ def check(r, model_ids, snaps=None):
         return None, f"source_type {r['source_type']!r} not one of {sorted(TYPES)}"
     if b == "gpqa" and "diamond" in r["variant"].lower():
         b = "gpqa_diamond"
+    b = canon(b, r["variant"])
     st = "vendor" if r["source_type"] == "official" else r["source_type"]
     if host_in(h, VENDOR_HOSTS):
         st = "vendor"

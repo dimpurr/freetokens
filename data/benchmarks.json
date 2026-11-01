@@ -1487,7 +1487,7 @@
     },
     {
       "model": "ling-3.1-flash",
-      "benchmark": "terminal_bench_4",
+      "benchmark": "terminal_bench_4_0",
       "score": 46.03,
       "variant": "harborframework/terminal-bench; percent; source footnote marker unexplained",
       "source_type": "vendor",
@@ -1497,7 +1497,7 @@
     },
     {
       "model": "lfm-2.5-2.6b",
-      "benchmark": "aime25",
+      "benchmark": "aime_2025",
       "score": 51.87,
       "variant": "Liquid AI model-card table; percent",
       "source_type": "vendor",
@@ -2087,7 +2087,7 @@
     },
     {
       "model": "xing4.0-29b",
-      "benchmark": "aime2026",
+      "benchmark": "aime_2026",
       "score": 90.0,
       "variant": "vendor README table; eval setting not stated; Xing4.0-29B-A4B",
       "source_type": "vendor",
