@@ -899,14 +899,14 @@
   }
  },
  "ft_rules": {
-  "$comment": "ADR-036 FT Intelligence. Change values here, not in code. A benchmark joins the registry with >= min_anchors reference models and r >= min_r (ADR-031). weights: per source type, applied to the weighted median; vendor self-reports weigh least; vendor_peer is a vendor table read against peers whose reference score is known (ADR-023); aa is Artificial Analysis as one source. exact (an integer) needs evidence >= min_evidence and at least one independent (non-vendor) piece; otherwise a band of band_width points (vendor_only_band when every piece is a vendor claim). A line is refused when more than max_tie_share of its reference models share one score (floor effect); a claim is read at most extrapolate x (reference range) beyond the reference models. Artificial Analysis counts only while fewer than aa_below other pieces exist.",
+  "$comment": "ADR-036 FT Intelligence. Change values here, not in code. A benchmark joins the registry with >= min_anchors reference models and r >= min_r (ADR-031). weights: per source type, applied to the weighted median; vendor self-reports weigh least; vendor_peer is a vendor table read against peers whose reference score is known (ADR-023); aa is Artificial Analysis as one source. exact (an integer) needs evidence >= min_evidence, at least one independent (non-vendor) piece, and pieces within max_spread points of each other (when they disagree, Artificial Analysis is added as one more source if a snapshot value exists, then the score is recomputed); otherwise a band of band_width points (also when every piece is a vendor claim). A line is refused when more than max_tie_share of its reference models share one score (floor effect); a claim is read at most extrapolate x (reference range) beyond the reference models. Artificial Analysis counts only while fewer than aa_below other pieces exist.",
   "version": 1,
   "min_anchors": 4,
   "min_r": 0.6,
   "min_evidence": 3,
   "aa_below": 3,
   "band_width": 5,
-  "vendor_only_band": 10,
+  "max_spread": 8,
   "max_tie_share": 0.4,
   "extrapolate": 0.15,
   "weights": {

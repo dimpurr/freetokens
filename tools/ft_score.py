@@ -11,7 +11,9 @@ when fewer than `aa_below` other pieces exist and the private snapshot has a val
 
 A source row that is not used carries `why`: no_refs | few_refs | low_r | floor | excluded (with `note`).
 Display rule written into the output: exact (an integer) only with evidence >= min_evidence AND at least one
-independent (non-vendor) piece; otherwise a band of band_width points (vendor-only: vendor_only_band);
+independent (non-vendor) piece AND the pieces within max_spread points of each other; when they disagree and a
+snapshot value exists, Artificial Analysis joins as one more source and the score is recomputed; otherwise a band of
+band_width points. Centre, low and high are published as integers;
 no evidence: status "none". Artificial Analysis is listed by name and link only, never a number.
 
 Private input (optional, $FT_PRIVATE): aa-snapshot.json, ft-reference.json (peer reference scores).
@@ -96,24 +98,36 @@ def score_model(claims, lines, rules, names=None, peer_refs=None, aa=None):
         w = sum(x["weight"] for x in ss)
         items.append({"bid": bid, "implied": sum(x["implied"] * x["weight"] for x in ss) / w, "weight": max(x["weight"] for x in ss),
                       "independent": any(x["type"] != "vendor" for x in ss), "method": "peer" if any(x["method"] == "peer" for x in ss) else "fit"})
-    if len(items) < rules["aa_below"] and aa and aa.get("value") is not None:
+    has_aa = bool(aa and aa.get("value") is not None)
+
+    def add_aa():
         items.append({"bid": "artificial_analysis", "implied": aa["value"], "weight": W["aa"], "independent": True, "method": "aa"})
         sources.append({"name": "Artificial Analysis", "benchmark": "artificial_analysis", "url": aa["url"], "type": "third_party", "used": True, "method": "aa"})
+
+    def spread_of(its):
+        return max(i["implied"] for i in its) - min(i["implied"] for i in its) if its else 0.0
+
+    if len(items) < rules["aa_below"] and has_aa:
+        add_aa()
+    elif has_aa and len(items) >= rules["min_evidence"] and spread_of(items) > rules["max_spread"]:
+        add_aa()  # the sources disagree: Artificial Analysis joins as one more ordinary source, then everything is recomputed
     for s in sources:
         s.pop("weight", None)
     sources.sort(key=lambda s: (not s["used"], s["name"]))
     if not items:
         return {"status": "none", "evidence": 0, "independent": 0, "sources": sources}
     center = weighted_median([(i["implied"], i["weight"]) for i in items])
+    spread = spread_of(items)
     indep = sum(1 for i in items if i["independent"])
-    exact = len(items) >= rules["min_evidence"] and indep >= 1
+    disagree = spread > rules["max_spread"]
+    exact = len(items) >= rules["min_evidence"] and indep >= 1 and not disagree
     vendor_only = indep == 0 and all(i["method"] == "fit" for i in items)
-    width = rules["vendor_only_band"] if vendor_only else rules["band_width"]
-    low = round(center - width / 2)
-    return {"status": "ok", "center": round(center, 1), "low": round(center, 1) if exact else low, "high": round(center, 1) if exact else low + width,
-            "evidence": len(items), "independent": indep, "exact": exact, "vendor_only": vendor_only,
+    low = round(center - rules["band_width"] / 2)
+    c = int(round(center))
+    return {"status": "ok", "center": c, "low": c if exact else low, "high": c if exact else low + rules["band_width"],
+            "evidence": len(items), "independent": indep, "exact": exact, "vendor_only": vendor_only, "disagree": disagree,
             "method": "peer" if any(i["method"] == "peer" for i in items) else ("aa" if all(i["method"] == "aa" for i in items) else "fit"),
-            "spread": round(max(i["implied"] for i in items) - min(i["implied"] for i in items), 1),
+            "spread": int(round(spread)),
             "sources": sources}
 
 

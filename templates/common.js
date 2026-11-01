@@ -395,8 +395,8 @@ function ftPanel(m) {
     ? `<li><a href="${esc(s.url)}" target="_blank" rel="noopener">Artificial Analysis</a> · ${esc(srcType(s.type))}</li>`
     : `<li>${s.used ? `<b class="mono" title="${esc(Tx("this source alone puts the model at", "this source alone puts the model at"))}">${esc(s.implied)}</b> ` : ""}<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a>: ${esc(s.value)} · ${esc(srcType(s.type))}${s.used ? (s.peers_used ? (ZH ? ` · 对照同表模型换算（${esc(s.peers_used.join("、"))}）` : ` · read against ${esc(s.peers_used.join(", "))} in the same table`) : "") : ` · <span class="muted">${Tx("not used:", "not used:")} ${ftWhy(s)}</span>`}</li>`;
   const head = f.status === "ok"
-    ? (ZH ? `${n} 个来源，其中 ${f.independent} 个独立于厂商：中心 ${f.center}${f.exact ? "" : "，来源不足 3 个或没有独立来源，所以显示为区间"}${f.spread > 10 ? " · 来源分歧较大" : ""}。` + (f.vendor_only ? " 全部是厂商自报，可信度低（区间更宽）。" : "")
-           : `${n} source${n === 1 ? "" : "s"}, ${f.independent} independent of the vendor: centre ${f.center}${f.exact ? "" : "; fewer than 3 sources or none independent, so shown as a band"}${f.spread > 10 ? " · sources disagree widely" : ""}.` + (f.vendor_only ? " Vendor claims only: low confidence (wider band)." : ""))
+    ? (ZH ? `${n} 个来源，其中 ${f.independent} 个独立于厂商：中心 ${f.center}${f.exact ? "" : f.disagree ? "，来源分歧较大，所以显示为区间" : "，来源不足 3 个或没有独立来源，所以显示为区间"}${f.disagree && f.exact ? " · 来源分歧较大" : ""}。` + (f.vendor_only ? " 全部是厂商自报，可信度低。" : "")
+           : `${n} source${n === 1 ? "" : "s"}, ${f.independent} independent of the vendor: centre ${f.center}${f.exact ? "" : f.disagree ? "; the sources disagree widely, so shown as a band" : "; fewer than 3 sources or none independent, so shown as a band"}${f.disagree && f.exact ? " · sources disagree widely" : ""}.` + (f.vendor_only ? " Vendor claims only: low confidence." : ""))
     : (ZH ? "暂时没有可用来源。" : "No usable source yet.");
   return `<div class="estpanel"><p>${head}</p><ul>${f.sources.map(row).join("")}</ul><p class="muted"><a href="https://github.com/dimpurr/freetokens/blob/main/METHOD.md">${Tx("how FTI is computed", "how FTI is computed")}</a></p></div>`;
 }

@@ -457,44 +457,44 @@ freetokens 追踪的是**免费线路**：一个模型 × 一个渠道 × 一个
 | 模型 | 免费渠道 | 事件 | FTI | 背景 | 图片输入 | 厂商 | 备注 |
 |---|---|---|---|---|---|---|---|
 | [MiMo V2.6 Flash](https://freetokens.fyi/models/mimo-v2.6-flash) | 🟡 OpenCode Zen (已过公布的截止 2026年9月28日) | 1 | 32 | 1050K（Zen 免费档 200K） | 不支持 | Xiaomi MiMo | 据 OpenRouter 为 1,050,000（Vercel 称 1,048,576）；据 models.dev 的 Zen 条目，OpenCode Zen 免费档上限 200K（2026-10-20）。 |
+| [DeepSeek V4.1 Flash](https://freetokens.fyi/models/deepseek-v4.1-flash) | 🔴 Letta (已结束 2026年10月17) · 🟢 OpenCode Zen (未公布截止) · 🔵 ModelScope (未公布截止) | 5 | 30–35 | 1M | 支持 | DeepSeek | 1017 快照（2026-10-17 发布，原地升级）；旧的 slug 对应更早的快照。 |
 | [Ling 3.1 Flash 1019](https://freetokens.fyi/models/ling-3.1-flash-1019) | 🔵 Vercel AI Gateway (截止 2026年11月3日) · 🔵 Kilo Code (截止 2026年11月3日) | 1 | 27–32 | 1M | 未核查 | inclusionAI | Ling-3.1-flash 升级权重（总量 560B / 每 token 激活 25B，上下文 1M，MIT）；HF 仓库 inclusionAI/Ling-3.1-flash-1019 建于 2026-10-27，旧仓库仍在发布，故立独立模型条目，而非版本字段。 |
-| [Kimi K3](https://freetokens.fyi/models/kimi-k3) | 🔴 Cline (已结束 2026年10月11) · 🟢 SenseNova (未公布截止) | 2 | 28 | 1M | 支持 | Moonshot AI (Kimi) | 据 OpenRouter 与 Vercel：支持图片+视频输入（2026-10-20）。 |
-| [GLM 5.3](https://freetokens.fyi/models/glm-5.3) | 🔵 ModelScope (未公布截止) | 0 | 26 | 1M | 不支持 | Z.ai | OpenRouter（z-ai/glm-5.3）与 Vercel（zai/glm-5.3）均为纯文本；图片输入在 GLM-5.3-Flash 系列上（2026-10-20）。 |
-| [Gemini 3.6 Flash](https://freetokens.fyi/models/gemini-3.6-flash) | 🔵 Google AI Studio (未公布截止) | 1 | 24 | 1M | 支持 | Google | 据 OpenRouter 与 Vercel AI Gateway 目录：支持图片+视频输入（2026-10-20）。 |
-| [Gemini 3.8 Flash](https://freetokens.fyi/models/gemini-3.8-flash) | 🔵 Google AI Studio (未公布截止) | 2 | 23 | 1M | 支持 | Google | 据 OpenRouter 与 Vercel AI Gateway 目录：支持图片+视频输入（2026-10-20）。 |
+| [Kimi K3](https://freetokens.fyi/models/kimi-k3) | 🔴 Cline (已结束 2026年10月11) · 🟢 SenseNova (未公布截止) | 2 | 25–30 | 1M | 支持 | Moonshot AI (Kimi) | 据 OpenRouter 与 Vercel：支持图片+视频输入（2026-10-20）。 |
+| [GLM 5.3](https://freetokens.fyi/models/glm-5.3) | 🔵 ModelScope (未公布截止) | 0 | 24–29 | 1M | 不支持 | Z.ai | OpenRouter（z-ai/glm-5.3）与 Vercel（zai/glm-5.3）均为纯文本；图片输入在 GLM-5.3-Flash 系列上（2026-10-20）。 |
+| [Gemini 3.8 Flash](https://freetokens.fyi/models/gemini-3.8-flash) | 🔵 Google AI Studio (未公布截止) | 2 | 20–25 | 1M | 支持 | Google | 据 OpenRouter 与 Vercel AI Gateway 目录：支持图片+视频输入（2026-10-20）。 |
+| [Gemini 3.6 Flash](https://freetokens.fyi/models/gemini-3.6-flash) | 🔵 Google AI Studio (未公布截止) | 1 | 19–24 | 1M | 支持 | Google | 据 OpenRouter 与 Vercel AI Gateway 目录：支持图片+视频输入（2026-10-20）。 |
 | [Qwen3.8 Flash](https://freetokens.fyi/models/qwen3.8-flash) | 🟢 Qoder (未公布截止) · 🔵 ModelScope (未公布截止) | 3 | 19–24 | 1M | 支持 | Qwen | AA 页面是 "Qwen3.8-Flash-Next"；我们假定它就是 Qoder 所说的 Qwen3.8-Flash（未确认）。据 OpenRouter：上下文 1M、支持图片+视频输入；Qoder 宣传页称其多模态、可图像理解（2026-10-20）。 |
 | [GLM 5.3 Flash](https://freetokens.fyi/models/glm-5.3-flash) | 🟢 OpenCode Zen (未公布截止) · 🔴 SiliconFlow (已结束 2026年10月28) | 2 | 21 | 1M | 支持 | Z.ai | — |
 | [Qwen3.8 27B](https://freetokens.fyi/models/qwen3.8-27b) | 🔴 OpenRouter (已结束 2026年10月8日) · 🔵 Groq (未公布截止) · 🟢 OVHcloud AI Endpoints (未公布截止) · 🔵 Hetzner Experiments (未公布截止) · 🔵 Cloudflare Workers AI (未公布截止) · 🔵 ModelScope (未公布截止) | 3 | 21 | 262K | 支持 | Qwen | 稠密 27B 开源权重视觉语言模型，2026-08 发布。 |
 | [DeepSeek V4 Flash](https://freetokens.fyi/models/deepseek-v4-flash) | ⚪ OpenCode Zen (暂无响应) · 🔴 Letta (已结束 2026年10月23) · 🔵 SenseNova (未公布截止) · 🔵 ModelScope (未公布截止) | 5 | 20 | Zen 免费档 200K | 不支持 | DeepSeek | 渠道上一律标成 "deepseek-v4-flash"；0731 更新和 4 月的 0420 版本是不同的快照。 |
 | [Dots3-Note Preview](https://freetokens.fyi/models/dots-3-note-preview) | 🟢 Kilo Code (未公布截止) · 🔴 Cline (已结束 2026年10月11) · 🟢 OpenRouter (未公布截止) · 🔵 AIHubMix (未公布截止) | 7 | 16–21 | 512K | 支持 | Dots Studio | — |
 | [Beam 1.0](https://freetokens.fyi/models/beam) | 🔵 OpenCode Zen (未公布截止) · 🔵 OpenCode Go (未公布截止) · 🔵 Vercel AI Gateway (未公布截止) · 🔵 Kilo Code (未公布截止) | 3 | 15–20 | 1M | 不支持 | Reflection AI | 2026-10-16 发布。501B/23B 激活的 MoE，Apache 2.0 开放权重（HF reflection/Beam-1.0-501B-A23B）；模型卡、OpenRouter 和 Vercel 均写明纯文本、1M 上下文。 |
-| [Hy4 preview](https://freetokens.fyi/models/hy4-preview) | 🔵 CodeBuddy (截止 2026年10月31) | 2 | 13–23 | 未检查 | 不支持 | Tencent Hunyuan | 腾讯混元 Hy4 preview。官方公告（IT之家 2026-10-02 转述）：纯文本 LLM，暂无多模态能力，需图/视频生成的调用会切换他模型并正常计费。CodeBuddy CLI 2026-10-28 13:20 显示倍率 0.29x。 |
-| [DeepSeek V4.1 Flash](https://freetokens.fyi/models/deepseek-v4.1-flash) | 🔴 Letta (已结束 2026年10月17) · 🟢 OpenCode Zen (未公布截止) · 🔵 ModelScope (未公布截止) | 5 | 17 | 1M | 支持 | DeepSeek | 1017 快照（2026-10-17 发布，原地升级）；旧的 slug 对应更早的快照。 |
+| [Hy4 preview](https://freetokens.fyi/models/hy4-preview) | 🔵 CodeBuddy (截止 2026年10月31) | 2 | 15–20 | 未检查 | 不支持 | Tencent Hunyuan | 腾讯混元 Hy4 preview。官方公告（IT之家 2026-10-02 转述）：纯文本 LLM，暂无多模态能力，需图/视频生成的调用会切换他模型并正常计费。CodeBuddy CLI 2026-10-28 13:20 显示倍率 0.29x。 |
 | [Inkling Small](https://freetokens.fyi/models/inkling-small) | 🔴 Kilo Code (已结束 2026年10月23) · 🔴 Cline (已结束 2026年10月11) · 🟢 OpenRouter (未公布截止) | 6 | 16 | 1M | 支持 | Thinking Machines | — |
 | [Gemini 3.5 Flash-Lite](https://freetokens.fyi/models/gemini-3.5-flash-lite) | 🔵 Google AI Studio (未公布截止) | 1 | 16 | 1M | 支持 | Google | 据 OpenRouter 与 Vercel AI Gateway 目录：支持图片+视频输入（2026-10-20）。 |
+| [MiniMax M3](https://freetokens.fyi/models/minimax-m3) | 🔴 Kilo Code (已结束 2026年10月7日) · 🔵 ModelScope (未公布截止) | 2 | 13–18 | 1M | 支持 | MiniMax | — |
 | [Inkling](https://freetokens.fyi/models/inkling) | 🔴 Cline (已结束 2026年10月11) · 🟢 OpenRouter (未公布截止) | 4 | 12–17 | 1M | 支持 | Thinking Machines | — |
-| [Nemotron 3 Ultra (550B-A55B)](https://freetokens.fyi/models/nemotron-3-ultra) | 🟢 OpenRouter (未公布截止) · 🟢 Kilo Code (未公布截止) · 🔴 Cline (已结束 2026年10月11) · 🔴 OpenCode Zen (已结束 2026年10月13) | 9 | 14 | 1M | 不支持 | NVIDIA | — |
 | [Nemotron 3.5 Super VL](https://freetokens.fyi/models/nemotron-3.5-super-vl) | 🔵 OpenCode Zen (未公布截止) · 🔵 OpenRouter (未公布截止) · 🔵 Kilo Code (未公布截止) | 2 | 11–16 | 1M | 支持 | NVIDIA | — |
-| [MiniMax M3](https://freetokens.fyi/models/minimax-m3) | 🔴 Kilo Code (已结束 2026年10月7日) · 🔵 ModelScope (未公布截止) | 2 | 14 | 1M | 支持 | MiniMax | — |
-| [Qwen3.5 397B A17B](https://freetokens.fyi/models/qwen3.5-397b-a17b) | 🔵 OVHcloud AI Endpoints (未公布截止) | 0 | 10–15 | 262K | 支持 | Qwen | 据 OpenRouter：上下文 262,144，支持图片+视频输入；OVHcloud（免费渠道）同为 262,144（2026-10-20）。 |
+| [Nemotron 3 Ultra (550B-A55B)](https://freetokens.fyi/models/nemotron-3-ultra) | 🟢 OpenRouter (未公布截止) · 🟢 Kilo Code (未公布截止) · 🔴 Cline (已结束 2026年10月11) · 🔴 OpenCode Zen (已结束 2026年10月13) | 9 | 10–15 | 1M | 不支持 | NVIDIA | — |
 | [Hy3](https://freetokens.fyi/models/hy3) | 🔴 Kilo Code (已结束 2026年10月7日) · 🟢 CodeBuddy (截止 2026年10月31) | 4 | 9–14 | 262K | 不支持 | Tencent Hunyuan | — |
+| [Qwen3.5 397B A17B](https://freetokens.fyi/models/qwen3.5-397b-a17b) | 🔵 OVHcloud AI Endpoints (未公布截止) | 0 | 10–15 | 262K | 支持 | Qwen | 据 OpenRouter：上下文 262,144，支持图片+视频输入；OVHcloud（免费渠道）同为 262,144（2026-10-20）。 |
 | [Gemma 4 26B A4B](https://freetokens.fyi/models/gemma-4-26b-a4b-it) | 🔴 Kilo Code (已结束 2026年10月7日) · 🔴 Cline (已结束 2026年10月11) · 🔵 OpenRouter (未公布截止) | 6 | 9–14 | 262K | 支持 | Google | — |
 | [Xing 4.0 29B](https://freetokens.fyi/models/xing4.0-29b) | 🔵 SiliconFlow (未公布截止) · 🔵 OpenRouter (未公布截止) · 🔵 Kilo Code (未公布截止) | 2 | 8–13 | 256K | 不支持 | XingChen AGI | OpenRouter 将 xingchen-agi/xing4.0-29b-a4b:free（我们自己 OR 渠道的 id）标为文本→文本；HF 上 XingChen-AGI 组织唯一的 29B 对话模型就是 A4B（2026-10-20）。 |
 | [Qwen3.6 27B](https://freetokens.fyi/models/qwen3.6-27b) | 🔵 OVHcloud AI Endpoints (未公布截止) | 0 | 11 | 262K | 支持 | Qwen | 据 OpenRouter：上下文 262K，支持图片+视频输入（Vercel 称 256K）；OVHcloud 列出 262,144（2026-10-20）。 |
 | [Flint](https://freetokens.fyi/models/flint) | 🔵 OpenRouter (未公布截止) · 🔵 OpenCode Zen (未公布截止) · 🔵 Kilo Code (未公布截止) | 2 | 8–13 | 262K | 不支持 | Recursive | 2026-10-21 发布，是 Recursive 面向编码 agent 的开放权重（Apache 2.0）MoE：总参数 39.8B、每 token 激活约 2.5B、模型卡写明上下文 262,144、文本进文本出、知识截止 2026 年 6 月（模型卡 huggingface.co/RecursiveSI/flint）。两个免费 id 是同一个模型：OpenRouter 的 recursive/flint-v1.0:free 在模型 API 上报告上下文 262,144、文本→文本（2026-10-22），OpenCode Zen 记作 opencode/flint-40b-free，其中 40B 是模型卡对 40B-A2.5B 的取整称呼。 |
 | [Qwen3.5 4B](https://freetokens.fyi/models/qwen3.5-4b) | 🔵 SiliconFlow (未公布截止) | 2 | 10 | 256K | 支持 | Qwen | 图片输入：HF Qwen/Qwen3.5-4B 配置含视觉编码器（原生上下文 262,144，2026-10-20）。 |
-| [Step 3.7 Flash](https://freetokens.fyi/models/step-3.7-flash) | 🔴 Kilo Code (已结束 2026年10月20) · 🔵 ModelScope (未公布截止) | 3 | 7–12 | 256K | 支持 | StepFun | — |
 | [North Mini Code](https://freetokens.fyi/models/north-mini-code) | 🟢 Kilo Code (未公布截止) · 🔴 Cline (已结束 2026年10月11) · 🟢 OpenRouter (未公布截止) | 6 | 9 | 256K | 不支持 | Cohere | — |
+| [Step 3.7 Flash](https://freetokens.fyi/models/step-3.7-flash) | 🔴 Kilo Code (已结束 2026年10月20) · 🔵 ModelScope (未公布截止) | 3 | 7–12 | 256K | 支持 | StepFun | — |
 | [Gemma 4 31B](https://freetokens.fyi/models/gemma-4-31b-it) | 🔴 Cline (已结束 2026年10月11) · 🔵 OpenRouter (未公布截止) | 4 | 6–11 | 256K | 支持 | Google | — |
-| [Qwen3.5 9B](https://freetokens.fyi/models/qwen3.5-9b) | 🔵 OVHcloud AI Endpoints (未公布截止) | 0 | 5–10 | 262K | 支持 | Qwen | 据 OpenRouter：上下文 262K，支持图片+视频输入；OVHcloud 相同（2026-10-20）。 |
 | [GLM-4.7-Flash](https://freetokens.fyi/models/glm-4.7-flash) | 🔵 Z.ai (未公布截止) · 🔵 Zhipu BigModel (未公布截止) | 4 | 7 | 200K | 不支持 | Z.ai | 据 OpenRouter 与 Vercel：文本进、文本出；HF zai-org/GLM-4.7-Flash 配置无视觉编码器（2026-10-20）。 |
-| [Nemotron 3.5 Lightning](https://freetokens.fyi/models/nemotron-3.5-lightning) | 🟢 Kilo Code (未公布截止) · 🔴 Cline (已结束 2026年10月11) · 🟢 OpenRouter (未公布截止) · 🟢 OpenCode Zen (未公布截止) · 🔵 Vercel AI Gateway (未公布截止) | 9 | 7 | 1M | 不支持 | NVIDIA | — |
+| [Qwen3.5 9B](https://freetokens.fyi/models/qwen3.5-9b) | 🔵 OVHcloud AI Endpoints (未公布截止) | 0 | 5–10 | 262K | 支持 | Qwen | 据 OpenRouter：上下文 262K，支持图片+视频输入；OVHcloud 相同（2026-10-20）。 |
 | [gpt-oss-20b](https://freetokens.fyi/models/gpt-oss-20b) | 🔵 OVHcloud AI Endpoints (未公布截止) · 🔵 Groq (未公布截止) | 0 | 4–9 | 128K | 不支持 | OpenAI | 据 OpenRouter、Vercel 与 OVHcloud 均为 131,072（2026-10-20）。 |
-| [gpt-oss-120b](https://freetokens.fyi/models/gpt-oss-120b) | 🔵 OVHcloud AI Endpoints (未公布截止) · 🔵 Groq (未公布截止) | 0 | 6 | 128K | 不支持 | OpenAI | 据 OpenRouter、Vercel 与 OVHcloud 均为 131,072（2026-10-20）。 |
 | [Nemotron 3 Nano Omni 30B A3B (reasoning)](https://freetokens.fyi/models/nemotron-3-nano-omni-30b-a3b) | 🟢 Kilo Code (未公布截止) · 🔴 Cline (已结束 2026年10月11) · 🟢 OpenRouter (未公布截止) | 6 | 3–8 | 256K | 支持 | NVIDIA | — |
+| [Nemotron 3.5 Lightning](https://freetokens.fyi/models/nemotron-3.5-lightning) | 🟢 Kilo Code (未公布截止) · 🔴 Cline (已结束 2026年10月11) · 🟢 OpenRouter (未公布截止) · 🟢 OpenCode Zen (未公布截止) · 🔵 Vercel AI Gateway (未公布截止) | 9 | 3–8 | 1M | 不支持 | NVIDIA | — |
+| [gpt-oss-120b](https://freetokens.fyi/models/gpt-oss-120b) | 🔵 OVHcloud AI Endpoints (未公布截止) · 🔵 Groq (未公布截止) | 0 | 4–9 | 128K | 不支持 | OpenAI | 据 OpenRouter、Vercel 与 OVHcloud 均为 131,072（2026-10-20）。 |
 | [LFM 2.5 2.6B](https://freetokens.fyi/models/lfm-2.5-2.6b) | 🟢 Kilo Code (未公布截止) · 🔴 Cline (已结束 2026年10月11) · 🟢 OpenRouter (未公布截止) | 6 | 2–7 | 128K | 不支持 | Liquid AI | — |
-| [DeepSeek R1 0528 Qwen3 8B](https://freetokens.fyi/models/deepseek-r1-0528-qwen3-8b) | 🔵 SiliconFlow (未公布截止) | 1 | 4 | 128K | 不支持 | DeepSeek | 据 HF deepseek-ai/DeepSeek-R1-0528-Qwen3-8B 配置为纯文本（2026-10-20）。 |
 | [Qwen3 8B](https://freetokens.fyi/models/qwen3-8b) | 🔵 SiliconFlow (未公布截止) | 2 | 1–6 | 128K | 不支持 | Qwen | 据 HF Qwen/Qwen3-8B 配置为纯文本；视觉版本是独立的 Qwen3-VL 系列（2026-10-20）。 |
+| [DeepSeek R1 0528 Qwen3 8B](https://freetokens.fyi/models/deepseek-r1-0528-qwen3-8b) | 🔵 SiliconFlow (未公布截止) | 1 | 4 | 128K | 不支持 | DeepSeek | 据 HF deepseek-ai/DeepSeek-R1-0528-Qwen3-8B 配置为纯文本（2026-10-20）。 |
 | [Mistral Small 3.2 24B](https://freetokens.fyi/models/mistral-small-3.2) | 🔵 OVHcloud AI Endpoints (截止 2026年11月4日) | 1 | 2–7 | 256K（OVHcloud 上 128K） | 支持 | Mistral AI | 据 OpenRouter 与 HF Mistral-Small-3.2-24B-Instruct-2506 模型卡：原生 256K、支持图片输入；OVHcloud 提供 131,072（2026-10-20）。 |
 | [Llama 3.3 70B Instruct](https://freetokens.fyi/models/llama-3.3-70b) | 🔵 OVHcloud AI Endpoints (未公布截止) | 0 | 0–5 | 128K | 不支持 | Meta | 据 OpenRouter、Vercel 与 OVHcloud 均为 131,072（2026-10-20）。 |
 | [Big Pickle](https://freetokens.fyi/models/big-pickle) | 🟢 OpenCode Zen (未公布截止) | 2 | — | 195K | 不支持 | Undisclosed (stealth) | — |
@@ -507,29 +507,29 @@ freetokens 追踪的是**免费线路**：一个模型 × 一个渠道 × 一个
 | [Qwen2.5 VL 72B Instruct](https://freetokens.fyi/models/qwen2.5-vl-72b) | 🔵 OVHcloud AI Endpoints (未公布截止) | 0 | — | 128K（OVHcloud 上 32K） | 支持 | Qwen | 据 HF Qwen2.5-VL-72B-Instruct 配置与 OpenRouter：原生 128,000；OVHcloud 端点提供 32,768（2026-10-20）。 |
 | [Mistral Nemo Instruct 2407](https://freetokens.fyi/models/mistral-nemo) | 🔵 OVHcloud AI Endpoints (截止 2026年11月4日) | 1 | -2–3 | 128K（OVHcloud 上 64K） | 不支持 | Mistral AI | 据 OpenRouter 与 Vercel 为 131,072；OVHcloud 端点列出 65,536（2026-10-20）。 |
 | [Hunyuan-MT-7B](https://freetokens.fyi/models/hunyuan-mt-7b) | 🔵 SiliconFlow (未公布截止) | 1 | — | 未检查 | 不支持 | Tencent Hunyuan | 翻译专用对话模型（SiliconFlow 广场 subType chat）；渲染价格表明写免费（2026-10-28）。 |
-| [GPT-6.1 Sol](https://freetokens.fyi/models/gpt-6.1-sol) | — | 0 | 54 | 1025K | 支持 | OpenAI | — |
+| [GPT-6.1 Sol](https://freetokens.fyi/models/gpt-6.1-sol) | — | 0 | 52–57 | 1025K | 支持 | OpenAI | — |
 | [Space Bunny (stealth)](https://freetokens.fyi/models/space-bunny) | 🔴 OpenCode Go (已结束 2026年10月6日) · 🔴 Command Code (已结束 2026年10月5日) · 🔴 OpenRouter (已结束 2026年10月5日) · 🔴 OpenCode Zen (已结束 2026年10月20) · 🔴 Kilo Code (已结束 2026年10月6日) | 15 | 35–40 | 1M | 支持 | Undisclosed (stealth) | 传闻：MiniMax 家族（多个独立 tokenizer 测试），可能是 M3.1／M3.1-Flash。有来源质疑确切版本，无官方确认。 |
 | [Nex-N2.5-Pro](https://freetokens.fyi/models/nex-n2.5-pro) | 🔴 Kilo Code (已结束 2026年10月7日) | 2 | 29–34 | 262K | 支持 | Nex AGI | — |
-| [Muse Spark 1.3 (Contributor)](https://freetokens.fyi/models/muse-spark-1.3-contributor) | 🔴 OpenCode Zen (已结束 2026年10月20) | 5 | 32 | 1M | 支持 | Meta | — |
+| [Muse Spark 1.3 (Contributor)](https://freetokens.fyi/models/muse-spark-1.3-contributor) | 🔴 OpenCode Zen (已结束 2026年10月20) | 5 | 29–34 | 1M | 支持 | Meta | — |
 | [MiMo V2.6 Pro](https://freetokens.fyi/models/mimo-v2.6-pro) | — | 0 | 31 | 1M | 支持 | Xiaomi MiMo | — |
 | [MiniMax M3.1 Flash](https://freetokens.fyi/models/minimax-m3.1-flash) | 🔴 OpenRouter (已结束 2026年10月23) · 🔴 OpenCode Zen (已结束 2026年10月23) · 🔴 OpenCode Go (已结束 2026年10月23) · 🔴 Vercel AI Gateway (已结束 2026年10月23) | 8 | 26–31 | 1M | 支持 | MiniMax | 据 OpenRouter 免费列表与 Vercel AI Gateway：上下文 1,000,000，支持图片+视频输入（2026-10-20）。 |
+| [GPT-6 Luna](https://freetokens.fyi/models/gpt-6-luna) | — | 0 | 25–30 | 1025K | 支持 | OpenAI | — |
 | [Step 5 Preview](https://freetokens.fyi/models/step-5-preview) | 🔴 OpenCode Zen (已结束 2026年10月16) · 🔴 OpenCode Go (已结束 2026年10月16) | 4 | 26–31 | 1M | 支持 | StepFun | — |
-| [GPT-6 Luna](https://freetokens.fyi/models/gpt-6-luna) | — | 0 | 28 | 1025K | 支持 | OpenAI | — |
-| [Gemini 3.7 Flash](https://freetokens.fyi/models/gemini-3.7-flash) | 🔴 Google AI Studio (已结束 2026年10月23) | 3 | 27 | 1M | 支持 | Google | 据 OpenRouter 与 Vercel AI Gateway 目录：支持图片+视频输入（2026-10-20）。 |
+| [Gemini 3.7 Flash](https://freetokens.fyi/models/gemini-3.7-flash) | 🔴 Google AI Studio (已结束 2026年10月23) | 3 | 24–29 | 1M | 支持 | Google | 据 OpenRouter 与 Vercel AI Gateway 目录：支持图片+视频输入（2026-10-20）。 |
 | [Muse Spark 1.2 (Contributor)](https://freetokens.fyi/models/muse-spark-1.2-contributor) | 🔴 OpenCode Zen (已结束 2026年10月20) | 5 | 21–26 | 1M | 支持 | Meta | — |
 | [LongCat 2.5 Preview](https://freetokens.fyi/models/longcat-2.5-preview) | 🔴 OpenCode Go (已结束 2026年10月22) · 🔴 OpenCode Zen (已结束 2026年10月22) | 5 | 20–25 | 1M | 支持但不稳定 | Meituan LongCat | ≈1.6T 总量／48B 激活 MoE；2026-09-25 发布。一次图片颜色测试答错。 |
 | [Gemini 3.5 Flash](https://freetokens.fyi/models/gemini-3.5-flash) | 🔴 Google AI Studio (已结束 2026年10月23) | 2 | 20 | 1M | 支持 | Google | 据 OpenRouter 与 Vercel AI Gateway 目录：支持图片+视频输入（2026-10-20）。 |
-| [Ling 3.1 Flash](https://freetokens.fyi/models/ling-3.1-flash) | 🔴 Command Code (已结束 2026年10月16) · 🔴 Kilo Code (已结束 2026年10月14) · 🔴 OpenRouter (已结束 2026年10月14) · 🔴 OpenCode Zen (已结束 2026年10月15) · 🔴 Vercel AI Gateway (已结束 2026年10月14) · 🔴 Ant Ling (已结束 2026年10月15) | 19 | 14–24 | 262K | 不支持 | inclusionAI | — |
+| [Ling 3.1 Flash](https://freetokens.fyi/models/ling-3.1-flash) | 🔴 Command Code (已结束 2026年10月16) · 🔴 Kilo Code (已结束 2026年10月14) · 🔴 OpenRouter (已结束 2026年10月14) · 🔴 OpenCode Zen (已结束 2026年10月15) · 🔴 Vercel AI Gateway (已结束 2026年10月14) · 🔴 Ant Ling (已结束 2026年10月15) | 19 | 16–21 | 262K | 不支持 | inclusionAI | — |
 | [Laguna S 2.1](https://freetokens.fyi/models/laguna-s-2.1) | 🔴 Kilo Code (已结束 2026年11月1日) · 🔴 Cline (已结束 2026年10月11) · 🔴 OpenRouter (已结束 2026年11月1日) · 🔴 Vercel AI Gateway (已结束 2026年10月31) | 11 | 14–19 | 262K | 不支持 | Poolside | — |
-| [Nex-N2-Pro](https://freetokens.fyi/models/nex-n2-pro) | 🔴 Kilo Code (已结束 2026年10月7日) | 2 | 11–21 | 262K | 支持 | Nex AGI | — |
-| [MiMo V2.5](https://freetokens.fyi/models/mimo-v2.5) | 🔴 OpenCode Zen (已结束 2026年10月7日) | 3 | 15 | 1M | 支持 | Xiaomi MiMo | — |
 | [MiniMax M2.7](https://freetokens.fyi/models/minimax-m2.7) | 🔴 Kilo Code (已结束 2026年10月7日) | 2 | 15 | 197K | 不支持 | MiniMax | — |
-| [Solar Pro 4](https://freetokens.fyi/models/solar-pro-4) | — | 0 | 11–16 | 512K | 不支持 | Upstage | — |
-| [Ling-3.0-flash](https://freetokens.fyi/models/ling-3.0-flash) | 🔴 Kilo Code (已结束 2026年10月7日) | 2 | 13 | 262K | 不支持 | inclusionAI | — |
+| [Nex-N2-Pro](https://freetokens.fyi/models/nex-n2-pro) | 🔴 Kilo Code (已结束 2026年10月7日) | 2 | 13–18 | 262K | 支持 | Nex AGI | — |
+| [MiMo V2.5](https://freetokens.fyi/models/mimo-v2.5) | 🔴 OpenCode Zen (已结束 2026年10月7日) | 3 | 15 | 1M | 支持 | Xiaomi MiMo | — |
 | [Ling 3.0 Flash Fin](https://freetokens.fyi/models/ling-3.0-flash-fin) | 🔴 OpenCode Zen (已结束 2026年10月13) | 3 | 10–15 | 256K | 不支持 | inclusionAI | — |
+| [Solar Pro 4](https://freetokens.fyi/models/solar-pro-4) | — | 0 | 11–16 | 512K | 不支持 | Upstage | — |
 | [Ling 3.0 Flash VL](https://freetokens.fyi/models/ling-3.0-flash-vl) | 🔴 Kilo Code (已结束 2026年10月7日) | 2 | 9–14 | 262K | 支持 | inclusionAI | — |
-| [Solar Mini 4](https://freetokens.fyi/models/solar-mini-4) | — | 0 | 9–14 | 512K | 不支持 | Upstage | — |
 | [Hy3 preview](https://freetokens.fyi/models/hy3-preview) | 🔴 Kilo Code (已结束 2026年10月7日) | 2 | 11 | 262K | 不支持 | Tencent Hunyuan | — |
+| [Solar Mini 4](https://freetokens.fyi/models/solar-mini-4) | — | 0 | 9–14 | 512K | 不支持 | Upstage | — |
+| [Ling-3.0-flash](https://freetokens.fyi/models/ling-3.0-flash) | 🔴 Kilo Code (已结束 2026年10月7日) | 2 | 8–13 | 262K | 不支持 | inclusionAI | — |
 | [Laguna XS 2.1](https://freetokens.fyi/models/laguna-xs-2.1) | 🔴 Kilo Code (已结束 2026年11月1日) · 🔴 Cline (已结束 2026年10月11) · 🔴 OpenRouter (已结束 2026年11月1日) | 7 | 7–12 | 256K | 不支持 | Poolside | — |
 | [Ling-2.6-1T](https://freetokens.fyi/models/ling-2.6-1t) | 🔴 Kilo Code (已结束 2026年10月7日) | 2 | 6–11 | 262K | 不支持 | inclusionAI | — |
 | [Ring-2.6-1T](https://freetokens.fyi/models/ring-2.6-1t) | 🔴 Kilo Code (已结束 2026年10月7日) | 2 | 6–11 | 262K | 不支持 | inclusionAI | — |

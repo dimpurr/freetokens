@@ -42,7 +42,7 @@ def test_two_sources_give_a_five_point_band():
 def test_vendor_only_is_never_exact_and_is_wider():
     e = ft_score.score_model([claim("b1", 60, "vendor"), claim("b2", 60, "vendor"), claim("b3", 60, "vendor")], LINES, RULES)
     assert not e["exact"] and e["independent"] == 0 and e["vendor_only"]
-    assert e["high"] - e["low"] == RULES["vendor_only_band"]
+    assert e["high"] - e["low"] == RULES["band_width"]
 
 
 def test_vendor_claim_uses_the_vendor_line():
@@ -59,6 +59,26 @@ def test_aa_only_below_three_other_sources_and_without_a_number():
     assert not [s for s in e3["sources"] if s["name"] == "Artificial Analysis"] and e3["evidence"] == 3
     only = ft_score.score_model([], LINES, RULES, aa=aa)
     assert only["status"] == "ok" and only["evidence"] == 1 and not only["exact"]
+
+
+def test_disagreement_blocks_an_integer_and_pulls_in_aa():
+    lines = dict(LINES, **{"b%d" % i: dict(LINES["b2"]) for i in range(5, 8)})
+    cl = [claim("b2", 60), claim("b3", 60), claim("b4", 100)]  # implied 30, 30, 50: spread 20
+    e = ft_score.score_model(cl, LINES, RULES)
+    assert not e["exact"] and e["disagree"] and e["evidence"] == 3 and e["high"] - e["low"] == RULES["band_width"]
+    aa = {"value": 31.0, "url": "https://artificialanalysis.ai/models/x"}
+    e = ft_score.score_model(cl, LINES, RULES, aa=aa)
+    assert e["evidence"] == 4 and any(s["name"] == "Artificial Analysis" for s in e["sources"]) and not e["exact"]
+    close = ft_score.score_model([claim("b2", 60), claim("b3", 60), claim("b4", 70)], LINES, RULES, aa=aa)
+    assert close["exact"] and close["evidence"] == 3  # spread 5: AA stays out
+
+
+def test_published_numbers_are_integers():
+    e = ft_score.score_model([claim("b2", 61), claim("b3", 63), claim("b4", 60)], LINES, RULES)
+    assert all(isinstance(e[k], int) for k in ("center", "low", "high", "spread"))
+    for x in json.loads((ROOT / "data/ft_scores.json").read_text())["scores"].values():
+        if x["status"] == "ok":
+            assert all(isinstance(x[k], int) for k in ("center", "low", "high")), x
 
 
 def test_no_evidence_is_none():
