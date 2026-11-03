@@ -2853,6 +2853,43 @@
     }
   },
   {
+    "date": "2026-11-03",
+    "lanes": [
+      "gemma-4-31b-it-kilo"
+    ],
+    "kind": "listed",
+    "text": "google/gemma-4-31b-it:free is listed in the Kilo gateway catalogue at $0/$0 with no announced end (expiration_date null); 262K context via google-ai-studio, may train on prompts",
+    "source": {
+      "label": "own check of the Kilo Gateway model list",
+      "url": "https://api.kilo.ai/api/gateway/models"
+    }
+  },
+  {
+    "date": "2026-11-03",
+    "lanes": [
+      "inkling-kilo"
+    ],
+    "kind": "listed",
+    "end_date": "2026-11-04",
+    "text": "thinkingmachines/inkling:free is listed in the Kilo gateway catalogue at $0/$0 until 2026-11-04 (gateway expiration_date); 1M context, may train on prompts",
+    "source": {
+      "label": "own check of the Kilo Gateway model list",
+      "url": "https://api.kilo.ai/api/gateway/models"
+    }
+  },
+  {
+    "date": "2026-11-03",
+    "lanes": [
+      "pulse-alpha-zen"
+    ],
+    "kind": "listed",
+    "text": "opencode/pulse-alpha-free is listed in the Zen catalogue at $0 (stealth model, free for a limited time to collect feedback, no end date published); 1M context; EU and other regions excluded",
+    "source": {
+      "label": "OpenCode Zen model list, price table and privacy notes",
+      "url": "https://opencode.ai/v2/docs/console/models"
+    }
+  },
+  {
     "date": "2025-04-10",
     "kind": "available",
     "lanes": [

@@ -6354,5 +6354,103 @@
    "method": "public_record"
   },
   "note": "Google changelog: 2025-04-04 users can continue gemini-2.5-pro-exp-03-25 on the free tier; 2025-06-26 endpoint shut down. The pricing page capture of 2025-05-13 still lists the id, 2025-05-15 does not (presence only, not proof of price)."
+ },
+ {
+  "id": "gemma-4-31b-it-kilo",
+  "model": "gemma-4-31b-it",
+  "channel": "Kilo Code",
+  "type": "agent_tool",
+  "model_id": "google/gemma-4-31b-it:free",
+  "free_condition": null,
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "official",
+   "note": "No announced end (Kilo gateway API)",
+   "source": "https://api.kilo.ai/api/gateway/models"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-11-03",
+   "note": "first seen in the daily free-catalogue check"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "may_train",
+  "status": "listed",
+  "checked": {
+   "date": "2026-11-03",
+   "method": "catalogue"
+  },
+  "note": "Kilo gateway free arm via google-ai-studio (may train on prompts); 262K context, 32K max output; paid twin at $0.10/$0.34."
+ },
+ {
+  "id": "inkling-kilo",
+  "model": "inkling",
+  "channel": "Kilo Code",
+  "type": "agent_tool",
+  "model_id": "thinkingmachines/inkling:free",
+  "free_condition": null,
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "official",
+   "note": "Free until 2026-11-04 (Kilo gateway API)",
+   "source": "https://api.kilo.ai/api/gateway/models"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-11-03",
+   "note": "first seen in the daily free-catalogue check"
+  },
+  "ends": {
+   "announced": "2026-11-04",
+   "expected": null,
+   "confidence": "official",
+   "note": "Gateway expiration_date is 2026-11-04; the free arm may train on prompts"
+  },
+  "data_policy": "may_train",
+  "status": "listed",
+  "checked": {
+   "date": "2026-11-03",
+   "method": "catalogue"
+  },
+  "note": "Kilo gateway free arm via thinkingmachines (may train on prompts); 1M context, 256K max output; expires 2026-11-04 per gateway expiration_date. Distinct from inkling-small:free, which expires the same day."
+ },
+ {
+  "id": "pulse-alpha-zen",
+  "model": "pulse-alpha",
+  "channel": "OpenCode Zen",
+  "type": "agent_tool",
+  "model_id": "opencode/pulse-alpha-free",
+  "free_condition": "Limited time; no end date published",
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "official",
+   "note": "Free for a limited time (Zen docs)",
+   "source": "https://opencode.ai/v2/docs/console/models"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-11-03",
+   "note": "first seen in the daily free-catalogue check"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "may_train",
+  "status": "listed",
+  "checked": {
+   "date": "2026-11-03",
+   "method": "catalogue"
+  },
+  "volume": {
+   "tier": "daily",
+   "basis": "channel rule: Zen's free allowance is per IP per day; this model not load-tested"
+  },
+  "note": "Stealth model, free for a limited time to collect feedback (Zen docs); 1M context, 128K max output; EU and other regions excluded; free-period data may be retained for training."
  }
 ]

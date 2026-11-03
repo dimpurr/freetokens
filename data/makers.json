@@ -269,5 +269,13 @@
   "id": "nousresearch",
   "name": "Nous Research",
   "note": "Name taken from the nousresearch/ namespace of the OpenRouter id (Wayback catalogue capture, 2026-11-01 backfill)."
+ },
+ {
+  "id": "opencode",
+  "name": "OpenCode",
+  "country": "US",
+  "links": {
+   "site": "https://opencode.ai"
+  }
  }
 ]

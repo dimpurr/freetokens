@@ -975,5 +975,12 @@
  "approx: not in the OpenRouter catalogue at 2026-09-15T19:30Z, priced 0/0 by 2026-09-16T19:30Z": "约数：2026-09-15T19:30Z 的 OpenRouter 目录中没有，2026-09-16T19:30Z 已标价 0/0",
  "endpoint shut down 2025-06-26; free access may have ended earlier": "端点于 2025-06-26 关闭；免费访问可能更早结束",
  "official post 2024-12-12; Wayback: absent 2024-12-11T01:18Z, free by 2024-12-17T20:34Z": "官方文章 2024-12-12；Wayback：2024-12-11T01:18Z 尚无，2024-12-17T20:34Z 已免费",
- "released 2025-03-25 as experimental; free-tier use first stated 2025-04-04 (changelog); start of free access not established": "2025-03-25 作为实验版发布；更新日志 2025-04-04 才首次提到免费层可用；免费开始日未查明"
+ "released 2025-03-25 as experimental; free-tier use first stated 2025-04-04 (changelog); start of free access not established": "2025-03-25 作为实验版发布；更新日志 2025-04-04 才首次提到免费层可用；免费开始日未查明",
+ "No announced end (Kilo gateway API)": "无公布的结束日期（Kilo gateway API）",
+ "Free until 2026-11-04 (Kilo gateway API)": "免费至 2026-11-04（Kilo gateway API）",
+ "Gateway expiration_date is 2026-11-04; the free arm may train on prompts": "网关 expiration_date 为 2026-11-04；免费通道可能用提示词训练模型",
+ "Free for a limited time (Zen docs)": "限时免费（Zen 文档）",
+ "google/gemma-4-31b-it:free is listed in the Kilo gateway catalogue at $0/$0 with no announced end (expiration_date null); 262K context via google-ai-studio, may train on prompts": "google/gemma-4-31b-it:free 已列入 Kilo 网关目录，价格 $0/$0，无公布的结束日期（expiration_date 为空）；经 google-ai-studio 提供 262K 上下文，可能用提示词训练模型",
+ "thinkingmachines/inkling:free is listed in the Kilo gateway catalogue at $0/$0 until 2026-11-04 (gateway expiration_date); 1M context, may train on prompts": "thinkingmachines/inkling:free 已列入 Kilo 网关目录，价格 $0/$0，有效期至 2026-11-04（网关 expiration_date）；1M 上下文，可能用提示词训练模型",
+ "opencode/pulse-alpha-free is listed in the Zen catalogue at $0 (stealth model, free for a limited time to collect feedback, no end date published); 1M context; EU and other regions excluded": "opencode/pulse-alpha-free 已列入 Zen 目录，价格 $0（为收集反馈而限时免费的 stealth 模型，未公布结束日期）；1M 上下文；欧盟等地区除外"
 }

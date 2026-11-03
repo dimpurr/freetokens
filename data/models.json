@@ -926,5 +926,12 @@
     "maker": "google",
     "context": "not checked",
     "image_input": "not_checked"
+  },
+  {
+    "id": "pulse-alpha",
+    "name": "Pulse Alpha",
+    "maker": "opencode",
+    "context": "1M",
+    "image_input": "not_checked"
   }
 ]
