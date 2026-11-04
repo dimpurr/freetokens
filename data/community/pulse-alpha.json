@@ -1,0 +1,345 @@
+{
+ "model": "pulse-alpha",
+ "collected": "2026-11-04",
+ "pass": "day1",
+ "harvest": {
+  "channel": "grok-cli",
+  "report": "/Users/dimpurr/scratch/handoff/2026-11-04-stealth-grok/pulse-alpha.out.md"
+ },
+ "authors": 12,
+ "posts": [
+  {
+   "id": "pulse-alpha-p01",
+   "url": "https://www.reddit.com/r/opencode/comments/1xmg1e9/a_new_model_pulse_alpha_is_seen/",
+   "platform": "reddit",
+   "author": "r/opencode",
+   "date": "2026-11-02",
+   "grade": "opinion",
+   "quote": null,
+   "gone": false,
+   "labels": {}
+  },
+  {
+   "id": "pulse-alpha-p02",
+   "url": "https://www.reddit.com/r/opencode/comments/1xmh1zt/pulse_alpha_is_not_flagship_horse_test/",
+   "platform": "reddit",
+   "author": "r/opencode",
+   "date": "2026-11-02",
+   "grade": "hands_on",
+   "quote": "my opus 5.5 manager was impressed with the math section review",
+   "gone": false,
+   "labels": {
+    "compared_to": [
+     {
+      "model": "Qwen 3.8 27B",
+      "direction": "worse"
+     }
+    ],
+    "strengths": [
+     "reasoning"
+    ],
+    "sentiment": "mixed"
+   }
+  },
+  {
+   "id": "pulse-alpha-p03",
+   "url": "https://x.com/LuminaBench/status/2117383091551682726",
+   "platform": "x",
+   "author": "@LuminaBench",
+   "date": "2026-11-02",
+   "grade": "opinion",
+   "quote": "There is a new free stealth model on Opencode called Pulse Alpha.",
+   "gone": false,
+   "labels": {}
+  },
+  {
+   "id": "pulse-alpha-p04",
+   "url": "https://x.com/aitrackerbot/status/2117394510288228757",
+   "platform": "x",
+   "author": "@aitrackerbot",
+   "date": "2026-11-02",
+   "grade": "forensic",
+   "quote": "We think Pulse Alpha is a new Thinking Machines model. It isn't Inkling.",
+   "gone": false,
+   "labels": {}
+  },
+  {
+   "id": "pulse-alpha-p05",
+   "url": "https://x.com/mylifcc/status/2117753942461354250",
+   "platform": "x",
+   "author": "@mylifcc",
+   "date": "2026-11-03",
+   "grade": "forensic",
+   "quote": null,
+   "gone": false,
+   "labels": {}
+  },
+  {
+   "id": "pulse-alpha-p06",
+   "url": "https://x.com/Smlay_ero/status/2117425173825749395",
+   "platform": "x",
+   "author": "@Smlay_ero",
+   "date": "2026-11-03",
+   "grade": "opinion",
+   "quote": "Feels closer to Qwen or Tencent Hunyuan",
+   "gone": false,
+   "labels": {}
+  },
+  {
+   "id": "pulse-alpha-p07",
+   "url": "https://x.com/Anak1n_I/status/2118010950381089178",
+   "platform": "x",
+   "author": "@Anak1n_I",
+   "date": "2026-11-04",
+   "grade": "hands_on",
+   "quote": "Its not a Frontier Model, but seems to be close to MiniMax M3.1 Flash and DeepSeek V4.1 Flash.",
+   "gone": false,
+   "labels": {
+    "tier": "flash",
+    "compared_to": [
+     {
+      "model": "MiniMax M3.1 Flash",
+      "direction": "similar"
+     },
+     {
+      "model": "DeepSeek V4.1 Flash",
+      "direction": "similar"
+     }
+    ],
+    "sentiment": "positive"
+   }
+  },
+  {
+   "id": "pulse-alpha-p08",
+   "url": "https://x.com/roytam1/status/2117972231737520409",
+   "platform": "x",
+   "author": "@roytam1",
+   "date": "2026-11-04",
+   "grade": "hands_on",
+   "quote": null,
+   "gone": false,
+   "labels": {}
+  },
+  {
+   "id": "pulse-alpha-p09",
+   "url": "https://x.com/PromptHex/status/2117931338938626343",
+   "platform": "x",
+   "author": "@PromptHex",
+   "date": "2026-11-04",
+   "grade": "hands_on",
+   "quote": null,
+   "gone": false,
+   "labels": {}
+  },
+  {
+   "id": "pulse-alpha-p10",
+   "url": "https://x.com/kamkmgamer/status/2117985398215651724",
+   "platform": "x",
+   "author": "@kamkmgamer",
+   "date": "2026-11-04",
+   "grade": "opinion",
+   "quote": "Pulse Alpha is bad, but Crouton Alpha is way worse.",
+   "gone": false,
+   "labels": {
+    "compared_to": [
+     {
+      "model": "Crouton Alpha",
+      "direction": "better"
+     }
+    ],
+    "sentiment": "negative"
+   }
+  },
+  {
+   "id": "pulse-alpha-p11",
+   "url": "https://x.com/notjazii/status/2117576405261434886",
+   "platform": "x",
+   "author": "@notjazii",
+   "date": "2026-11-03",
+   "grade": "hands_on",
+   "quote": "not good, tried it this morning",
+   "gone": false,
+   "labels": {}
+  },
+  {
+   "id": "pulse-alpha-p12",
+   "url": "https://www.techgogogo.com/2026-11-03/pulse-alpha-benchmark-opencode-mystery-model/",
+   "platform": "blog",
+   "author": "AI产品狙击手 (techgogogo.com)",
+   "date": "2026-11-03",
+   "grade": "measured",
+   "quote": null,
+   "gone": false,
+   "labels": {
+    "weaknesses": [
+     "instruction_following",
+     "other"
+    ],
+    "issues": [
+     "instruction_following"
+    ],
+    "sentiment": "negative"
+   }
+  },
+  {
+   "id": "pulse-alpha-p13",
+   "url": "https://x.com/harshvdev/status/2117891506497540578",
+   "platform": "x",
+   "author": "@harshvdev",
+   "date": "2026-11-04",
+   "grade": "measured",
+   "quote": null,
+   "gone": false,
+   "labels": {}
+  }
+ ],
+ "tier": {
+  "flash": 1
+ },
+ "compared_to": [
+  {
+   "model": "Crouton Alpha",
+   "direction": "better",
+   "posts": 1
+  },
+  {
+   "model": "DeepSeek V4.1 Flash",
+   "direction": "similar",
+   "posts": 1
+  },
+  {
+   "model": "MiniMax M3.1 Flash",
+   "direction": "similar",
+   "posts": 1
+  },
+  {
+   "model": "qwen3.8-27b",
+   "direction": "worse",
+   "posts": 1
+  }
+ ],
+ "maker_guess": [],
+ "size_guess": "not discussed",
+ "strengths": {
+  "reasoning": 1
+ },
+ "weaknesses": {
+  "instruction_following": 1,
+  "other": 1
+ },
+ "issues": {
+  "instruction_following": 1
+ },
+ "sentiment": {
+  "mixed": 1,
+  "positive": 1,
+  "negative": 2
+ },
+ "numbers": [],
+ "sources": {
+  "reddit": 2,
+  "x": 10,
+  "blog": 1
+ },
+ "quotes": [
+  {
+   "platform": "reddit",
+   "author": "r/opencode",
+   "date": "2026-11-02",
+   "text": "my opus 5.5 manager was impressed with the math section review",
+   "url": "https://www.reddit.com/r/opencode/comments/1xmh1zt/pulse_alpha_is_not_flagship_horse_test/",
+   "grade": "hands_on",
+   "gone": false
+  },
+  {
+   "platform": "x",
+   "author": "@LuminaBench",
+   "date": "2026-11-02",
+   "text": "There is a new free stealth model on Opencode called Pulse Alpha.",
+   "url": "https://x.com/LuminaBench/status/2117383091551682726",
+   "grade": "opinion",
+   "gone": false
+  },
+  {
+   "platform": "x",
+   "author": "@aitrackerbot",
+   "date": "2026-11-02",
+   "text": "We think Pulse Alpha is a new Thinking Machines model. It isn't Inkling.",
+   "url": "https://x.com/aitrackerbot/status/2117394510288228757",
+   "grade": "forensic",
+   "gone": false
+  },
+  {
+   "platform": "x",
+   "author": "@Smlay_ero",
+   "date": "2026-11-03",
+   "text": "Feels closer to Qwen or Tencent Hunyuan",
+   "url": "https://x.com/Smlay_ero/status/2117425173825749395",
+   "grade": "opinion",
+   "gone": false
+  },
+  {
+   "platform": "x",
+   "author": "@Anak1n_I",
+   "date": "2026-11-04",
+   "text": "Its not a Frontier Model, but seems to be close to MiniMax M3.1 Flash and DeepSeek V4.1 Flash.",
+   "url": "https://x.com/Anak1n_I/status/2118010950381089178",
+   "grade": "hands_on",
+   "gone": false
+  }
+ ],
+ "disputed": [
+  {
+   "post": "pulse-alpha-p01",
+   "cell": "maker_guess"
+  },
+  {
+   "post": "pulse-alpha-p02",
+   "cell": "maker_guess"
+  },
+  {
+   "post": "pulse-alpha-p02",
+   "cell": "issues"
+  },
+  {
+   "post": "pulse-alpha-p04",
+   "cell": "maker_guess"
+  },
+  {
+   "post": "pulse-alpha-p05",
+   "cell": "numbers"
+  },
+  {
+   "post": "pulse-alpha-p06",
+   "cell": "maker_guess"
+  },
+  {
+   "post": "pulse-alpha-p10",
+   "cell": "weaknesses"
+  },
+  {
+   "post": "pulse-alpha-p11",
+   "cell": "strengths"
+  },
+  {
+   "post": "pulse-alpha-p11",
+   "cell": "weaknesses"
+  },
+  {
+   "post": "pulse-alpha-p11",
+   "cell": "sentiment"
+  },
+  {
+   "post": "pulse-alpha-p12",
+   "cell": "numbers"
+  },
+  {
+   "post": "pulse-alpha-p13",
+   "cell": "numbers"
+  }
+ ],
+ "first_seen": {
+  "date": "2026-11-02",
+  "url": "https://www.reddit.com/r/opencode/comments/1xmg1e9/a_new_model_pulse_alpha_is_seen/"
+ }
+}
