@@ -1,4 +1,4 @@
-# Community take · codebook v0
+# Community take · codebook v0.1
 
 How freetokens turns public discussion of a model into countable, sourced cells. Decision record: ADR-038 (private). This is method, not opinion: every cell is a count of posts, and every post links back to its source. Nothing here feeds FT Intelligence.
 
@@ -33,11 +33,26 @@ How freetokens turns public discussion of a model into countable, sourced cells.
 
 ## Quotes
 
-3–5 per model. Prefer `measured` and `forensic`, then `hands_on`; cover both sides when sentiment is split. Each quote ≤25 words, verbatim, with platform, handle, date and URL. If the source later disappears, keep the card and mark it `gone`.
+3–5 per model. Prefer `measured` and `forensic`, then `hands_on`; cover both sides when sentiment is split. Each quote ≤25 words, verbatim, with platform, handle, date and URL. If the source later disappears (404 or removed notice), keep the card and mark it `gone`. A login wall or 403 is not `gone`.
 
-## Double coding
+## Two stages: one post ledger, then labels
 
-Two coders (different models) code the same harvest report independently. Cells where they disagree on direction or differ by more than one post are flagged `disputed` and shown only after review. If more than 30% of cells disagree, fix the codebook before going on (ADR-038 regret condition).
+v0 let each coder pick and count posts from the harvest report; coders disagreed on the post set itself (24 vs 35 authors), so every count diverged. v0.1 separates the two jobs.
+
+1. **Extract** (one worker, once per pass): turn the harvest report into `posts`: one row per post with `id`, `url`, `platform`, `author`, `date`, `grade`, and an optional verbatim `quote` (≤25 words). A script dedupes by URL and by author per thread, and fixes `authors`.
+2. **Label** (two coders, different model families, same `posts` list): for each post, fill only the cells the post speaks to: `tier`, `compared_to` [{model, direction}], `maker_guess` [{maker, evidence}], `size_guess`, `strengths`, `weaknesses`, `issues`, `sentiment`. Silent = absent, not a guess.
+3. **Count** (script): all cell counts are computed from the labels. Coders never write counts.
+
+## Agreement
+
+Measured per post × cell, on direction or value only (not on counts). A cell is `disputed` when the coders disagree on it for any post; disputed labels are dropped from counts unless a reviewer resolves them. If fewer than 70% of post×cell labels agree, fix the codebook before going on (ADR-038 regret condition).
+
+## Enumerations
+
+- `platform`: `x`, `reddit`, `hn`, `linux_do`, `v2ex`, `zhihu`, `bilibili`, `blog`, `news`, `github`, `discord`, `other`.
+- `pass`: `day1`, `day3`, `day7`, `reveal`, `retrospective` (back-test harvests of already revealed models).
+- `size_guess`: `{"<guess>": posts}`, or the string `not discussed`.
+- `compared_to` targets without an FT Intelligence score (e.g. 2024–25 models) are kept for display but excluded from any peer estimate.
 
 ## Data shape
 
@@ -50,6 +65,8 @@ One file per model: `data/community/<model-id>.json`
   "pass": "day1",
   "harvest": {"channel": "grok-cli", "report": "<private path>"},
   "authors": 18,
+  "posts": [{"id": "p1", "url": "…", "platform": "reddit", "author": "u/…", "date": "2026-11-03", "grade": "hands_on", "quote": "…", "gone": false,
+             "labels": {"a": {"tier": "flash", "sentiment": "negative", "issues": ["hallucination"]}, "b": {"tier": "flash", "sentiment": "negative", "issues": ["hallucination"]}}}],
   "tier": {"flash": 7, "mid": 2},
   "compared_to": [{"model": "minimax-m3.1-flash", "direction": "similar", "posts": 4}],
   "maker_guess": [{"maker": "meta", "posts": 5, "evidence": ["geo_block", "api_shape", "style"], "against": {"tokenizer": 3}}],
@@ -72,4 +89,5 @@ Collected on intake day, day 3, day 7 and reveal day; frozen after that. Each pa
 
 ## Changelog
 
+- v0.1 (2026-11-04): two stages (post ledger, then per-post labels; counts by script); agreement per post×cell ≥70%; enumerations; 403 ≠ gone. Cause: v0 double coding diverged on the post set (P0 back-test).
 - v0 (2026-11-04): derived from the first two harvests (Crouton Alpha, Pulse Alpha).
