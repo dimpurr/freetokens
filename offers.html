@@ -938,44 +938,67 @@ li:target { background: var(--accent-soft); border-radius: 4px; }
 
 /* community take (ADR-038): counted public discussion, self-rendered, display only — never part of FTI */
 details.community { background: var(--surface); box-shadow: var(--ring); border-radius: var(--r); overflow: hidden; }
-details.community > summary { cursor: pointer; list-style: none; padding: 16px 18px; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+details.community > summary { cursor: pointer; list-style: none; padding: 16px 18px; display: flex; align-items: baseline; gap: 10px; flex-wrap: nowrap; }
 details.community > summary::-webkit-details-marker { display: none; }
-details.community > summary h2 { margin: 0; }
+details.community > summary h2 { margin: 0; min-width: 0; }
 details.community > summary::before { content: ""; width: 8px; height: 8px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: rotate(-45deg); transition: transform .15s; flex: none; align-self: center; }
 details.community[open] > summary::before { transform: rotate(45deg); }
 details.community[open] > summary { border-bottom: 1px solid var(--line); }
-.ct { padding: 6px 18px 16px; display: grid; gap: 16px; }
+.ct { padding: 6px 18px 16px; display: grid; gap: 14px; }
 .ct-thin, .ct-meta { color: var(--muted); margin: 0; }
 .ct-meta { font-size: 0.8rem; }
-.ct-cells { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); gap: 0 22px; }
-.ct-cell { display: grid; gap: 2px; padding: 8px 0; border-bottom: 1px solid var(--line); min-width: 0; }
-.ct-cell.ct-wide { grid-column: 1 / -1; }
+/* cells are as wide as what they say (a one-word cell does not take a column) and sit tight to the top of their row */
+.ct-cells { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 0 26px; }
+.ct-cell { min-width: 0; max-width: 100%; padding: 8px 0; display: grid; gap: 3px; align-content: start; }
+.ct-cell.ct-wide { flex: 1 1 100%; border-top: 1px solid var(--line); }
 .ct-cell .k { font: 600 0.68rem var(--f-body); text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); }
-.ct-cell .v { font-size: 0.92rem; line-height: 1.5; color: var(--fg); overflow-wrap: anywhere; }
+.ct-cell .v { font-size: 0.92rem; line-height: 1.5; color: var(--fg); overflow-wrap: anywhere; min-width: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 1px 14px; }
+.ct-cell .v.ct-rows { display: grid; gap: 1px; justify-items: start; }
+.ct-cell .v > [hidden] { display: none; }
 .ct-cell .v b { font-weight: 600; font-variant-numeric: tabular-nums; }
+/* one count: the word, its sign and its marks never wrap apart */
+.ct-term { display: inline-flex; align-items: baseline; gap: 6px; white-space: nowrap; min-width: 0; }
+.ct-row { display: inline-flex; align-items: baseline; gap: 1px 8px; min-width: 0; }
+.ct-row .ct-dir { font-weight: 500; white-space: nowrap; }
+.ct-mk { display: inline-flex; align-items: baseline; flex-wrap: wrap; gap: 1px 6px; min-width: 0; }
+.ct-nm { display: inline-flex; align-items: baseline; gap: 6px; min-width: 0; }
+.ct-nm .ct-marks, .ct-row .ct-marks, .ct-term .ct-marks, .ct-n { white-space: nowrap; }
+.ct-sign { font-style: normal; font-weight: 600; color: var(--muted); }
+.ct-n { font: 600 0.72rem var(--f-body); color: var(--muted); font-variant-numeric: tabular-nums; }
+.ct-pos .ct-sign { color: var(--live); }
+.ct-neg .ct-sign, .ct-neg .ct-dir { color: var(--ended); }
+.ct-cell .ct-marks { grid-template-columns: repeat(var(--n), 8px); gap: 2px; margin-right: 0; align-self: center; }
+.ct-cell .ct-marks i { height: 6px; background: var(--faint); }
+.ct-cell .ct-pos .ct-marks i { background: var(--live); }
+.ct-cell .ct-neg .ct-marks i { background: var(--ended); }
+.ct-cell .ct-mix .ct-marks i { background: var(--off); }
+.ct-cell .ct-warn .ct-marks i { background: var(--overdue); }
+.ct-more { font: 400 0.86rem var(--f-body); color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer; white-space: nowrap; }
+.ct-more:hover { text-decoration: underline; }
 .ct-dir.better { color: var(--live); }
 .ct-dir.worse { color: var(--ended); }
 .ct-dir.similar { color: var(--muted); }
-.ct-ev { font-size: 0.72rem; color: var(--faint); }
-.ct-against { font-size: 0.72rem; color: var(--overdue); }
+.ct-ev { font-size: 0.72rem; color: var(--muted); }
+.ct-against { font-size: 0.72rem; color: var(--overdue); white-space: nowrap; }
 .ctag { display: inline-flex; align-items: center; gap: 4px; font: 600 0.66rem/1.6 var(--f-body); padding: 0 6px; border-radius: 5px; background: var(--off-soft); color: var(--muted); white-space: nowrap; vertical-align: 1px; }
 .ctag.gone { background: var(--ended-soft); color: var(--ended); }
 .ctag.measured { background: var(--measured-soft); color: var(--measured); }
 .ctag.forensic { background: var(--accent-soft); color: var(--accent); }
+.ct-num { display: inline-flex; align-items: baseline; gap: 5px; min-width: 0; }
 .ct-num b { font-weight: 600; font-variant-numeric: tabular-nums; }
-.cquotes { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: 12px; }
-.cquote { background: var(--surface-2); box-shadow: var(--ring); border-radius: var(--r); padding: 12px 14px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+/* up to 3 cards in a row; a short last row fills its own line instead of leaving an empty slot beside it */
+.cquotes { display: flex; flex-wrap: wrap; gap: 12px; }
+.cquote { flex: 1 1 calc((100% - 32px) / 3); min-width: min(100%, 236px); max-width: 100%; background: var(--surface-2); box-shadow: var(--ring); border-radius: var(--r); padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; }
 .cq-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .cq-by { font-size: 0.8rem; color: var(--fg); font-weight: 500; overflow-wrap: anywhere; }
 .cq-date { font: 0.72rem var(--f-mono); color: var(--muted); }
 .cq-text { margin: 0; font: 0.92rem/1.5 var(--f-body); color: var(--fg); }
-.cq-link { display: inline-flex; align-items: center; gap: 4px; font-size: 0.76rem; color: var(--accent); text-decoration: none; }
+.cq-link { display: inline-flex; align-items: center; gap: 4px; font-size: 0.76rem; color: var(--accent); text-decoration: none; margin-top: auto; }
 .cq-link:hover { text-decoration: underline; }
 .ct-foot { font-size: 0.8rem; color: var(--muted); }
 .ct-foot a { color: var(--accent); text-decoration: none; }
 .ct-foot a:hover { text-decoration: underline; }
 .ct-notfti { font-weight: 600; color: var(--fg); }
-@media (max-width: 560px) { .ct-cells { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>

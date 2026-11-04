@@ -939,44 +939,67 @@ li:target { background: var(--accent-soft); border-radius: 4px; }
 
 /* community take (ADR-038): counted public discussion, self-rendered, display only — never part of FTI */
 details.community { background: var(--surface); box-shadow: var(--ring); border-radius: var(--r); overflow: hidden; }
-details.community > summary { cursor: pointer; list-style: none; padding: 16px 18px; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+details.community > summary { cursor: pointer; list-style: none; padding: 16px 18px; display: flex; align-items: baseline; gap: 10px; flex-wrap: nowrap; }
 details.community > summary::-webkit-details-marker { display: none; }
-details.community > summary h2 { margin: 0; }
+details.community > summary h2 { margin: 0; min-width: 0; }
 details.community > summary::before { content: ""; width: 8px; height: 8px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: rotate(-45deg); transition: transform .15s; flex: none; align-self: center; }
 details.community[open] > summary::before { transform: rotate(45deg); }
 details.community[open] > summary { border-bottom: 1px solid var(--line); }
-.ct { padding: 6px 18px 16px; display: grid; gap: 16px; }
+.ct { padding: 6px 18px 16px; display: grid; gap: 14px; }
 .ct-thin, .ct-meta { color: var(--muted); margin: 0; }
 .ct-meta { font-size: 0.8rem; }
-.ct-cells { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); gap: 0 22px; }
-.ct-cell { display: grid; gap: 2px; padding: 8px 0; border-bottom: 1px solid var(--line); min-width: 0; }
-.ct-cell.ct-wide { grid-column: 1 / -1; }
+/* cells are as wide as what they say (a one-word cell does not take a column) and sit tight to the top of their row */
+.ct-cells { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 0 26px; }
+.ct-cell { min-width: 0; max-width: 100%; padding: 8px 0; display: grid; gap: 3px; align-content: start; }
+.ct-cell.ct-wide { flex: 1 1 100%; border-top: 1px solid var(--line); }
 .ct-cell .k { font: 600 0.68rem var(--f-body); text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); }
-.ct-cell .v { font-size: 0.92rem; line-height: 1.5; color: var(--fg); overflow-wrap: anywhere; }
+.ct-cell .v { font-size: 0.92rem; line-height: 1.5; color: var(--fg); overflow-wrap: anywhere; min-width: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 1px 14px; }
+.ct-cell .v.ct-rows { display: grid; gap: 1px; justify-items: start; }
+.ct-cell .v > [hidden] { display: none; }
 .ct-cell .v b { font-weight: 600; font-variant-numeric: tabular-nums; }
+/* one count: the word, its sign and its marks never wrap apart */
+.ct-term { display: inline-flex; align-items: baseline; gap: 6px; white-space: nowrap; min-width: 0; }
+.ct-row { display: inline-flex; align-items: baseline; gap: 1px 8px; min-width: 0; }
+.ct-row .ct-dir { font-weight: 500; white-space: nowrap; }
+.ct-mk { display: inline-flex; align-items: baseline; flex-wrap: wrap; gap: 1px 6px; min-width: 0; }
+.ct-nm { display: inline-flex; align-items: baseline; gap: 6px; min-width: 0; }
+.ct-nm .ct-marks, .ct-row .ct-marks, .ct-term .ct-marks, .ct-n { white-space: nowrap; }
+.ct-sign { font-style: normal; font-weight: 600; color: var(--muted); }
+.ct-n { font: 600 0.72rem var(--f-body); color: var(--muted); font-variant-numeric: tabular-nums; }
+.ct-pos .ct-sign { color: var(--live); }
+.ct-neg .ct-sign, .ct-neg .ct-dir { color: var(--ended); }
+.ct-cell .ct-marks { grid-template-columns: repeat(var(--n), 8px); gap: 2px; margin-right: 0; align-self: center; }
+.ct-cell .ct-marks i { height: 6px; background: var(--faint); }
+.ct-cell .ct-pos .ct-marks i { background: var(--live); }
+.ct-cell .ct-neg .ct-marks i { background: var(--ended); }
+.ct-cell .ct-mix .ct-marks i { background: var(--off); }
+.ct-cell .ct-warn .ct-marks i { background: var(--overdue); }
+.ct-more { font: 400 0.86rem var(--f-body); color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer; white-space: nowrap; }
+.ct-more:hover { text-decoration: underline; }
 .ct-dir.better { color: var(--live); }
 .ct-dir.worse { color: var(--ended); }
 .ct-dir.similar { color: var(--muted); }
-.ct-ev { font-size: 0.72rem; color: var(--faint); }
-.ct-against { font-size: 0.72rem; color: var(--overdue); }
+.ct-ev { font-size: 0.72rem; color: var(--muted); }
+.ct-against { font-size: 0.72rem; color: var(--overdue); white-space: nowrap; }
 .ctag { display: inline-flex; align-items: center; gap: 4px; font: 600 0.66rem/1.6 var(--f-body); padding: 0 6px; border-radius: 5px; background: var(--off-soft); color: var(--muted); white-space: nowrap; vertical-align: 1px; }
 .ctag.gone { background: var(--ended-soft); color: var(--ended); }
 .ctag.measured { background: var(--measured-soft); color: var(--measured); }
 .ctag.forensic { background: var(--accent-soft); color: var(--accent); }
+.ct-num { display: inline-flex; align-items: baseline; gap: 5px; min-width: 0; }
 .ct-num b { font-weight: 600; font-variant-numeric: tabular-nums; }
-.cquotes { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: 12px; }
-.cquote { background: var(--surface-2); box-shadow: var(--ring); border-radius: var(--r); padding: 12px 14px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+/* up to 3 cards in a row; a short last row fills its own line instead of leaving an empty slot beside it */
+.cquotes { display: flex; flex-wrap: wrap; gap: 12px; }
+.cquote { flex: 1 1 calc((100% - 32px) / 3); min-width: min(100%, 236px); max-width: 100%; background: var(--surface-2); box-shadow: var(--ring); border-radius: var(--r); padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; }
 .cq-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .cq-by { font-size: 0.8rem; color: var(--fg); font-weight: 500; overflow-wrap: anywhere; }
 .cq-date { font: 0.72rem var(--f-mono); color: var(--muted); }
 .cq-text { margin: 0; font: 0.92rem/1.5 var(--f-body); color: var(--fg); }
-.cq-link { display: inline-flex; align-items: center; gap: 4px; font-size: 0.76rem; color: var(--accent); text-decoration: none; }
+.cq-link { display: inline-flex; align-items: center; gap: 4px; font-size: 0.76rem; color: var(--accent); text-decoration: none; margin-top: auto; }
 .cq-link:hover { text-decoration: underline; }
 .ct-foot { font-size: 0.8rem; color: var(--muted); }
 .ct-foot a { color: var(--accent); text-decoration: none; }
 .ct-foot a:hover { text-decoration: underline; }
 .ct-notfti { font-weight: 600; color: var(--fg); }
-@media (max-width: 560px) { .ct-cells { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -1781,19 +1804,45 @@ $("details").innerHTML = ML.map((l) => {
     return;
   }
   const PLAT = { x: "X", hn: "HN", v2ex: "V2EX", linux_do: "Linux.do", reddit: "Reddit", zhihu: "Zhihu", bilibili: "Bilibili", github: "GitHub", discord: "Discord", blog: "Blog", news: "News", other: "Other" };
-  const pretty = (s) => PLAT[s] || String(s).replace(/_/g, " ");
+  const pretty = (s) => PLAT[s] || String(s).replace(/[_-]/g, " ");
   const MN = Object.fromEntries(D.models.map((x) => [x.id, x.name]));
   const mlink = (id) => (MN[id] ? `<a href="${modelHref(id)}">${esc(MN[id])}</a>` : esc(id));
-  const dist = (o, sign) => Object.entries(o || {}).sort((a, b) => b[1] - a[1]).map(([k, n]) => `${esc(pretty(k))} <b>${sign || ""}${n}</b>`).join(" · ");
-  const cell = (k, v) => v ? `<div class="ct-cell"><span class="k">${k}</span><span class="v">${v}</span></div>` : "";
-  const cmp = (C.compared_to || []).slice().sort((a, b) => b.posts - a.posts).slice(0, 4)
-    .map((x) => `${mlink(x.model)} <span class="ct-dir ${x.direction}">${esc(x.direction)}</span> <b>${x.posts}</b>`).join(" · ");
-  const mk = (C.maker_guess || []).slice().sort((a, b) => b.posts - a.posts).slice(0, 3).map((g) => {
-    const ag = Object.entries(g.against || {}).map(([k, n]) => ` <span class="ct-against" title="${Tx("contrary evidence", "contrary evidence")}">¬${esc(pretty(k))} ${n}</span>`).join("");
-    return `<span class="suspect">${Tx("rumoured", "rumoured")} ${mklink(g.maker)}</span>${g.evidence && g.evidence.length ? ` <span class="ct-ev">${esc(g.evidence.map(pretty).join(", "))}</span>` : ""}${ag}`;
-  }).join("<br>");
-  const sz = typeof C.size_guess === "string" ? esc(C.size_guess) : dist(C.size_guess);
-  const nums = (C.numbers || []).map((n) => `<span class="ct-num"><b>${esc(n.value)}</b> ${esc(n.unit || "")} <a href="${esc(n.url)}" target="_blank" rel="noopener">${esc(pretty(n.metric))}</a> <span class="ctag ${n.grade}">${esc(pretty(n.grade))}</span></span>`).join(" ");
+  const POST = Object.fromEntries((C.posts || []).map((p) => [p.id, p]));
+  /* an "other" bucket or a "not discussed" placeholder carries no fact: the term, and with it the whole cell, is dropped */
+  const junk = (s) => /^(|other|others|misc|miscellaneous|n\/?a|none|not discussed|no data|unknown|unsure)$/.test(String(s).toLowerCase().replace(/[_-]+/g, " ").trim());
+  /* counts are read as marks, never as prose: one bar per post (saturating at 6), the number stays in the accessible name */
+  const CAP = 6;
+  const bars = (n) => {
+    const k = Math.max(1, Math.min(n, CAP));
+    return `<span class="meter ct-marks" style="--n:${k}" role="img" aria-label="${n} ${Tx("posts", "posts")}">${'<i class="on"></i>'.repeat(k)}</span>${n > CAP ? `<b class="ct-n">${n}</b>` : ""}`;
+  };
+  const term = (k, n, cls, sign) => `<span class="ct-term${cls ? " " + cls : ""}" title="${esc(pretty(k))} · ${n} ${Tx("posts", "posts")}">${esc(pretty(k))}${sign ? `<i class="ct-sign">${sign}</i>` : ""}${bars(n)}</span>`;
+  const tally = (o, cls, sign) => Object.entries(o || {}).filter(([k]) => !junk(k)).sort((a, b) => b[1] - a[1]).map(([k, n]) => term(k, n, cls, sign)).join("");
+  const POL = { negative: "ct-neg", mixed: "ct-mix", positive: "ct-pos" };
+  const senti = Object.entries(C.sentiment || {}).sort((a, b) => b[1] - a[1]).map(([k, n]) => term(k, n, POL[k] || "ct-flat")).join("");
+  const cell = (k, v, rows) => v ? `<div class="ct-cell"><span class="k">${k}</span><span class="v${rows ? " ct-rows" : ""}">${v}</span></div>` : "";
+  const cmp = (C.compared_to || []).slice().sort((a, b) => b.posts - a.posts)
+    .map((x) => `<span class="ct-row">${mlink(x.model)} <span class="ct-dir ${x.direction}">${esc(x.direction)}</span>${bars(x.posts)}</span>`).join("");
+  const EVW = { tokenizer: "tokenizer", geo_block: "geo block", api_shape: "API shape", self_report: "self-report", style: "style", version: "version" };
+  const evword = (k) => Tx(EVW[k] || pretty(k), EVW[k] || pretty(k));
+  /* a maker guess may name a company, a stealth model or nothing: show a readable name, link where one exists */
+  const mkname = (id) => (MK[id] && MK[id].name) || (MN[id] && MN[id].name) || pretty(id).replace(/\b[a-z]/g, (c) => c.toUpperCase());
+  const mktag = (id) => (MK[id] ? mklink(id) : MN[id] ? `<a href="${modelHref(id)}">${esc(mkname(id))}</a>` : esc(mkname(id)));
+  /* the cell header already says rumoured: a chip is the maker, how many posts say it, and what the evidence was */
+  const mk = (C.maker_guess || []).slice().sort((a, b) => b.posts - a.posts).map((g) => {
+    const ev = (g.evidence || []).filter((e) => !junk(e)).map(evword);
+    const ag = Object.entries(g.against || {}).filter(([k]) => !junk(k)).map(([k, n]) => `<span class="ct-against" title="${Tx("contrary evidence", "contrary evidence")}">¬${esc(k === "tokenizer" ? Tx("tokenizer mismatch", "tokenizer mismatch") : evword(k))} ×${n}</span>`).join("");
+    const nm = mkname(g.maker);
+    return `<span class="ct-mk" title="${esc(nm)} · ${g.posts} ${Tx("posts", "posts")}"><span class="ct-nm">${mktag(g.maker)}${bars(g.posts)}</span>${ev.length ? `<small class="ct-ev">${esc(ev.join(" · "))}</small>` : ""}${ag}</span>`;
+  }).join("");
+  const sz = typeof C.size_guess === "string" ? (junk(C.size_guess) ? "" : esc(C.size_guess)) : tally(C.size_guess, "ct-flat");
+  const nk = (s) => String(s).toLowerCase().replace(/[_-]+/g, " ").replace(/\s+/g, " ").trim();
+  const wk = C.weaknesses || {}, wkk = new Set(Object.keys(wk).map(nk));
+  const iss = Object.fromEntries(Object.entries(C.issues || {}).filter(([k]) => !wkk.has(nk(k))));
+  const nums = (C.numbers || []).map((n) => {
+    const src = POST[n.post], u = src && src.url, m = junk(n.metric) ? Tx("source", "source") : pretty(n.metric);
+    return `<span class="ct-num" title="${esc(n.note || "")}"><b>${esc(String(n.value))}</b>${n.unit ? ` ${esc(n.unit)}` : ""}${u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(m)}</a>` : `<span>${esc(m)}</span>`}${n.grade ? `<span class="ctag ${esc(n.grade)}">${esc(pretty(n.grade))}</span>` : ""}</span>`;
+  }).join("");
   const quotes = (C.quotes || []).map((q) => `<article class="cquote">
     <div class="cq-top"><span class="ctag plat">${esc(pretty(q.platform))}</span><span class="cq-by">${esc(q.author)}</span><span class="cq-date">${esc(absDate(q.date))}</span>${q.gone ? `<span class="ctag gone">${Tx("deleted", "deleted")}</span>` : ""}</div>
     <blockquote class="cq-text">${esc(q.text)}</blockquote>
@@ -1804,19 +1853,47 @@ $("details").innerHTML = ML.map((l) => {
   ct.innerHTML = `
     <p class="ct-meta">${C.authors} ${Tx("authors", "authors")} · ${(C.posts || []).length} ${Tx("posts", "posts")} · ${Tx("collected", "collected")} ${esc(absDate(C.collected))}</p>
     <div class="ct-cells">
-      ${cell(Tx("Level", "Level"), dist(C.tier))}
-      ${cell(Tx("Compared to", "Compared to"), cmp)}
+      ${cell(Tx("Level", "Level"), tally(C.tier, "ct-flat"))}
+      ${cell(Tx("Compared to", "Compared to"), cmp, true)}
       ${cell(Tx("Rumoured maker", "Rumoured maker"), mk)}
       ${cell(Tx("Size", "Size"), sz)}
-      ${cell(Tx("Strengths", "Strengths"), dist(C.strengths, "+"))}
-      ${cell(Tx("Weaknesses", "Weaknesses"), dist(C.weaknesses, "−"))}
-      ${cell(Tx("Issues", "Issues"), dist(C.issues))}
-      ${cell(Tx("Sentiment", "Sentiment"), dist(C.sentiment))}
-      ${cell(Tx("Sources", "Sources"), Object.entries(C.sources || {}).map(([k, n]) => `${esc(pretty(k))} <b>${n}</b>`).join(" · "))}
+      ${cell(Tx("Strengths", "Strengths"), tally(C.strengths, "ct-pos", "+"))}
+      ${cell(Tx("Weaknesses", "Weaknesses"), tally(wk, "ct-neg", "−"))}
+      ${cell(Tx("Issues", "Issues"), tally(iss, "ct-warn"))}
+      ${cell(Tx("Sentiment", "Sentiment"), senti)}
+      ${cell(Tx("Sources", "Sources"), tally(C.sources, "ct-flat"))}
       ${nums ? `<div class="ct-cell ct-wide"><span class="k">${Tx("Numbers as reported", "Numbers as reported")}</span><span class="v">${nums}</span></div>` : ""}
     </div>
     ${quotes ? `<div class="cquotes">${quotes}</div>` : ""}
     <div class="ct-foot"><span class="ct-notfti">${Tx("Not part of FTI", "Not part of FTI")}</span> · <a href="${METHOD_URL}">${Tx("method", "method")}</a> · <a href="${ISSUE_URL}" target="_blank" rel="noopener">${Tx("report a post", "report a post")}</a></div>`;
+
+  /* a value block is two lines of reading, whatever the width: what does not fit folds behind one "+N more" control */
+  const fit = (box) => {
+    if (box.dataset.ctopen) return;
+    const kids = Array.from(box.children).filter((e) => !e.classList.contains("ct-more"));
+    kids.forEach((k) => { k.hidden = false; });
+    const unit = parseFloat(getComputedStyle(box).lineHeight) || (kids[0] ? kids[0].getBoundingClientRect().height : 0) || 20;
+    const fits = (extra) => Math.ceil((box.scrollHeight - 8) / unit) <= 2 + extra;
+    if (kids.length < 2 || fits(0)) { const old = box.querySelector(".ct-more"); if (old) old.remove(); return; }
+    let more = box.querySelector(".ct-more");
+    if (!more) {
+      more = document.createElement("button");
+      more.type = "button"; more.className = "ct-more";
+      more.addEventListener("click", () => { box.dataset.ctopen = "1"; kids.forEach((k) => { k.hidden = false; }); more.remove(); });
+      box.appendChild(more);
+    }
+    for (let hide = 0; hide < kids.length - 1; hide++) {
+      kids.slice(kids.length - hide - 1).forEach((k) => { k.hidden = true; });
+      more.textContent = `+${hide + 1} ${Tx("more", "more")}`;
+      if (fits(1)) return;
+    }
+  };
+  const fitAll = () => ct.querySelectorAll(".ct-cell .v").forEach(fit);
+  fitAll();
+  det.addEventListener("toggle", fitAll);
+  let ctT = 0;
+  addEventListener("resize", () => { clearTimeout(ctT); ctT = setTimeout(fitAll, 120); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitAll);
 })();
 
 $("stamp").innerHTML = `${Tx("Data as of", "Data as of")} ${esc(absDate(D.built))}.`;

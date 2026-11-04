@@ -131,19 +131,45 @@ $("details").innerHTML = ML.map((l) => {
     return;
   }
   const PLAT = { x: "X", hn: "HN", v2ex: "V2EX", linux_do: "Linux.do", reddit: "Reddit", zhihu: "Zhihu", bilibili: "Bilibili", github: "GitHub", discord: "Discord", blog: "Blog", news: "News", other: "Other" };
-  const pretty = (s) => PLAT[s] || String(s).replace(/_/g, " ");
+  const pretty = (s) => PLAT[s] || String(s).replace(/[_-]/g, " ");
   const MN = Object.fromEntries(D.models.map((x) => [x.id, x.name]));
   const mlink = (id) => (MN[id] ? `<a href="${modelHref(id)}">${esc(MN[id])}</a>` : esc(id));
-  const dist = (o, sign) => Object.entries(o || {}).sort((a, b) => b[1] - a[1]).map(([k, n]) => `${esc(pretty(k))} <b>${sign || ""}${n}</b>`).join(" · ");
-  const cell = (k, v) => v ? `<div class="ct-cell"><span class="k">${k}</span><span class="v">${v}</span></div>` : "";
-  const cmp = (C.compared_to || []).slice().sort((a, b) => b.posts - a.posts).slice(0, 4)
-    .map((x) => `${mlink(x.model)} <span class="ct-dir ${x.direction}">${esc(x.direction)}</span> <b>${x.posts}</b>`).join(" · ");
-  const mk = (C.maker_guess || []).slice().sort((a, b) => b.posts - a.posts).slice(0, 3).map((g) => {
-    const ag = Object.entries(g.against || {}).map(([k, n]) => ` <span class="ct-against" title="${Tx("contrary evidence", "contrary evidence")}">¬${esc(pretty(k))} ${n}</span>`).join("");
-    return `<span class="suspect">${Tx("rumoured", "rumoured")} ${mklink(g.maker)}</span>${g.evidence && g.evidence.length ? ` <span class="ct-ev">${esc(g.evidence.map(pretty).join(", "))}</span>` : ""}${ag}`;
-  }).join("<br>");
-  const sz = typeof C.size_guess === "string" ? esc(C.size_guess) : dist(C.size_guess);
-  const nums = (C.numbers || []).map((n) => `<span class="ct-num"><b>${esc(n.value)}</b> ${esc(n.unit || "")} <a href="${esc(n.url)}" target="_blank" rel="noopener">${esc(pretty(n.metric))}</a> <span class="ctag ${n.grade}">${esc(pretty(n.grade))}</span></span>`).join(" ");
+  const POST = Object.fromEntries((C.posts || []).map((p) => [p.id, p]));
+  /* an "other" bucket or a "not discussed" placeholder carries no fact: the term, and with it the whole cell, is dropped */
+  const junk = (s) => /^(|other|others|misc|miscellaneous|n\/?a|none|not discussed|no data|unknown|unsure)$/.test(String(s).toLowerCase().replace(/[_-]+/g, " ").trim());
+  /* counts are read as marks, never as prose: one bar per post (saturating at 6), the number stays in the accessible name */
+  const CAP = 6;
+  const bars = (n) => {
+    const k = Math.max(1, Math.min(n, CAP));
+    return `<span class="meter ct-marks" style="--n:${k}" role="img" aria-label="${n} ${Tx("posts", "posts")}">${'<i class="on"></i>'.repeat(k)}</span>${n > CAP ? `<b class="ct-n">${n}</b>` : ""}`;
+  };
+  const term = (k, n, cls, sign) => `<span class="ct-term${cls ? " " + cls : ""}" title="${esc(pretty(k))} · ${n} ${Tx("posts", "posts")}">${esc(pretty(k))}${sign ? `<i class="ct-sign">${sign}</i>` : ""}${bars(n)}</span>`;
+  const tally = (o, cls, sign) => Object.entries(o || {}).filter(([k]) => !junk(k)).sort((a, b) => b[1] - a[1]).map(([k, n]) => term(k, n, cls, sign)).join("");
+  const POL = { negative: "ct-neg", mixed: "ct-mix", positive: "ct-pos" };
+  const senti = Object.entries(C.sentiment || {}).sort((a, b) => b[1] - a[1]).map(([k, n]) => term(k, n, POL[k] || "ct-flat")).join("");
+  const cell = (k, v, rows) => v ? `<div class="ct-cell"><span class="k">${k}</span><span class="v${rows ? " ct-rows" : ""}">${v}</span></div>` : "";
+  const cmp = (C.compared_to || []).slice().sort((a, b) => b.posts - a.posts)
+    .map((x) => `<span class="ct-row">${mlink(x.model)} <span class="ct-dir ${x.direction}">${esc(x.direction)}</span>${bars(x.posts)}</span>`).join("");
+  const EVW = { tokenizer: "tokenizer", geo_block: "geo block", api_shape: "API shape", self_report: "self-report", style: "style", version: "version" };
+  const evword = (k) => Tx(EVW[k] || pretty(k), EVW[k] || pretty(k));
+  /* a maker guess may name a company, a stealth model or nothing: show a readable name, link where one exists */
+  const mkname = (id) => (MK[id] && MK[id].name) || (MN[id] && MN[id].name) || pretty(id).replace(/\b[a-z]/g, (c) => c.toUpperCase());
+  const mktag = (id) => (MK[id] ? mklink(id) : MN[id] ? `<a href="${modelHref(id)}">${esc(mkname(id))}</a>` : esc(mkname(id)));
+  /* the cell header already says rumoured: a chip is the maker, how many posts say it, and what the evidence was */
+  const mk = (C.maker_guess || []).slice().sort((a, b) => b.posts - a.posts).map((g) => {
+    const ev = (g.evidence || []).filter((e) => !junk(e)).map(evword);
+    const ag = Object.entries(g.against || {}).filter(([k]) => !junk(k)).map(([k, n]) => `<span class="ct-against" title="${Tx("contrary evidence", "contrary evidence")}">¬${esc(k === "tokenizer" ? Tx("tokenizer mismatch", "tokenizer mismatch") : evword(k))} ×${n}</span>`).join("");
+    const nm = mkname(g.maker);
+    return `<span class="ct-mk" title="${esc(nm)} · ${g.posts} ${Tx("posts", "posts")}"><span class="ct-nm">${mktag(g.maker)}${bars(g.posts)}</span>${ev.length ? `<small class="ct-ev">${esc(ev.join(" · "))}</small>` : ""}${ag}</span>`;
+  }).join("");
+  const sz = typeof C.size_guess === "string" ? (junk(C.size_guess) ? "" : esc(C.size_guess)) : tally(C.size_guess, "ct-flat");
+  const nk = (s) => String(s).toLowerCase().replace(/[_-]+/g, " ").replace(/\s+/g, " ").trim();
+  const wk = C.weaknesses || {}, wkk = new Set(Object.keys(wk).map(nk));
+  const iss = Object.fromEntries(Object.entries(C.issues || {}).filter(([k]) => !wkk.has(nk(k))));
+  const nums = (C.numbers || []).map((n) => {
+    const src = POST[n.post], u = src && src.url, m = junk(n.metric) ? Tx("source", "source") : pretty(n.metric);
+    return `<span class="ct-num" title="${esc(n.note || "")}"><b>${esc(String(n.value))}</b>${n.unit ? ` ${esc(n.unit)}` : ""}${u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(m)}</a>` : `<span>${esc(m)}</span>`}${n.grade ? `<span class="ctag ${esc(n.grade)}">${esc(pretty(n.grade))}</span>` : ""}</span>`;
+  }).join("");
   const quotes = (C.quotes || []).map((q) => `<article class="cquote">
     <div class="cq-top"><span class="ctag plat">${esc(pretty(q.platform))}</span><span class="cq-by">${esc(q.author)}</span><span class="cq-date">${esc(absDate(q.date))}</span>${q.gone ? `<span class="ctag gone">${Tx("deleted", "deleted")}</span>` : ""}</div>
     <blockquote class="cq-text">${esc(q.text)}</blockquote>
@@ -154,19 +180,47 @@ $("details").innerHTML = ML.map((l) => {
   ct.innerHTML = `
     <p class="ct-meta">${C.authors} ${Tx("authors", "authors")} · ${(C.posts || []).length} ${Tx("posts", "posts")} · ${Tx("collected", "collected")} ${esc(absDate(C.collected))}</p>
     <div class="ct-cells">
-      ${cell(Tx("Level", "Level"), dist(C.tier))}
-      ${cell(Tx("Compared to", "Compared to"), cmp)}
+      ${cell(Tx("Level", "Level"), tally(C.tier, "ct-flat"))}
+      ${cell(Tx("Compared to", "Compared to"), cmp, true)}
       ${cell(Tx("Rumoured maker", "Rumoured maker"), mk)}
       ${cell(Tx("Size", "Size"), sz)}
-      ${cell(Tx("Strengths", "Strengths"), dist(C.strengths, "+"))}
-      ${cell(Tx("Weaknesses", "Weaknesses"), dist(C.weaknesses, "−"))}
-      ${cell(Tx("Issues", "Issues"), dist(C.issues))}
-      ${cell(Tx("Sentiment", "Sentiment"), dist(C.sentiment))}
-      ${cell(Tx("Sources", "Sources"), Object.entries(C.sources || {}).map(([k, n]) => `${esc(pretty(k))} <b>${n}</b>`).join(" · "))}
+      ${cell(Tx("Strengths", "Strengths"), tally(C.strengths, "ct-pos", "+"))}
+      ${cell(Tx("Weaknesses", "Weaknesses"), tally(wk, "ct-neg", "−"))}
+      ${cell(Tx("Issues", "Issues"), tally(iss, "ct-warn"))}
+      ${cell(Tx("Sentiment", "Sentiment"), senti)}
+      ${cell(Tx("Sources", "Sources"), tally(C.sources, "ct-flat"))}
       ${nums ? `<div class="ct-cell ct-wide"><span class="k">${Tx("Numbers as reported", "Numbers as reported")}</span><span class="v">${nums}</span></div>` : ""}
     </div>
     ${quotes ? `<div class="cquotes">${quotes}</div>` : ""}
     <div class="ct-foot"><span class="ct-notfti">${Tx("Not part of FTI", "Not part of FTI")}</span> · <a href="${METHOD_URL}">${Tx("method", "method")}</a> · <a href="${ISSUE_URL}" target="_blank" rel="noopener">${Tx("report a post", "report a post")}</a></div>`;
+
+  /* a value block is two lines of reading, whatever the width: what does not fit folds behind one "+N more" control */
+  const fit = (box) => {
+    if (box.dataset.ctopen) return;
+    const kids = Array.from(box.children).filter((e) => !e.classList.contains("ct-more"));
+    kids.forEach((k) => { k.hidden = false; });
+    const unit = parseFloat(getComputedStyle(box).lineHeight) || (kids[0] ? kids[0].getBoundingClientRect().height : 0) || 20;
+    const fits = (extra) => Math.ceil((box.scrollHeight - 8) / unit) <= 2 + extra;
+    if (kids.length < 2 || fits(0)) { const old = box.querySelector(".ct-more"); if (old) old.remove(); return; }
+    let more = box.querySelector(".ct-more");
+    if (!more) {
+      more = document.createElement("button");
+      more.type = "button"; more.className = "ct-more";
+      more.addEventListener("click", () => { box.dataset.ctopen = "1"; kids.forEach((k) => { k.hidden = false; }); more.remove(); });
+      box.appendChild(more);
+    }
+    for (let hide = 0; hide < kids.length - 1; hide++) {
+      kids.slice(kids.length - hide - 1).forEach((k) => { k.hidden = true; });
+      more.textContent = `+${hide + 1} ${Tx("more", "more")}`;
+      if (fits(1)) return;
+    }
+  };
+  const fitAll = () => ct.querySelectorAll(".ct-cell .v").forEach(fit);
+  fitAll();
+  det.addEventListener("toggle", fitAll);
+  let ctT = 0;
+  addEventListener("resize", () => { clearTimeout(ctT); ctT = setTimeout(fitAll, 120); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitAll);
 })();
 
 $("stamp").innerHTML = `${Tx("Data as of", "Data as of")} ${esc(absDate(D.built))}.`;
