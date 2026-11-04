@@ -2909,8 +2909,53 @@
     ],
     "text": "OpenRouter retired the free alpha endpoint (reveal post)",
     "source": {
-      "label": "OpenRouter reveal post",
-      "url": "https://openrouter.ai/blog/announcements/quasar-alpha-and-optimus-alpha-reveal/"
+      "label": "OpenRouter models API",
+      "url": "https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2026-11-04",
+    "lanes": [
+      "crouton-or",
+      "crouton-kilo",
+      "crouton-zen"
+    ],
+    "kind": "listed",
+    "text": "stealth/crouton-alpha is listed at $0 on OpenRouter and the Kilo gateway (expiration_date null), and crouton-alpha-free is listed at $0 in the Zen catalogue; stealth model released 2026-11-03",
+    "source": {
+      "label": "own check of the OpenRouter models API, the Kilo Gateway model list and the Zen models API",
+      "url": "https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2026-11-04",
+    "lanes": [
+      "ling-3.1-flash-1019-kilo",
+      "gemma-4-31b-it-kilo",
+      "inkling-kilo",
+      "lfm-2.5-2.6b-kilo",
+      "flint-kilo",
+      "xing4.0-29b-kilo"
+    ],
+    "kind": "ended",
+    "end_date": "2026-11-04",
+    "text": "Six Kilo gateway free arms are gone from the catalogue at the 2026-11-04 daily check (380 models, confirmed against models.dev kilo): ling-3.1-flash-1019-free (promo expired 2026-11-03), gemma-4-31b-it:free, inkling:free (expiration 2026-11-04), lfm-2.5-2.6b:free (paid id stays), flint-v1.0:free and xing4.0-29b-a4b:free (whole vendor prefixes absent); the OpenRouter :free arms stay listed",
+    "source": {
+      "label": "own check of the Kilo Gateway model list",
+      "url": "https://api.kilo.ai/api/gateway/models"
+    }
+  },
+  {
+    "date": "2026-11-04",
+    "lanes": [
+      "mistral-nemo-ovh"
+    ],
+    "kind": "ended",
+    "end_date": "2026-11-04",
+    "text": "Mistral-Nemo-Instruct-2407 reaches EOL: the OVH catalog API marks it available=false with model_eol_date 04/11/2026 and the official decommission table lists it (announced 2026-08-04, decommission 2026-11-04)",
+    "source": {
+      "label": "OVHcloud AI Endpoints catalog API and lifecycle documentation",
+      "url": "https://catalog.endpoints.ai.ovh.net/rest/v1/models_v2"
     }
   },
   {

@@ -933,5 +933,12 @@
     "maker": "opencode",
     "context": "1M",
     "image_input": "not_checked"
+  },
+  {
+    "id": "crouton-alpha",
+    "name": "Crouton Alpha (stealth)",
+    "maker": "undisclosed",
+    "context": "1M",
+    "image_input": "yes"
   }
 ]
