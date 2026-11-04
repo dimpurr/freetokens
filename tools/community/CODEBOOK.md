@@ -1,4 +1,4 @@
-# Community take · codebook v0.1
+# Community take · codebook v0.2
 
 How freetokens turns public discussion of a model into countable, sourced cells. Decision record: ADR-038 (private). This is method, not opinion: every cell is a count of posts, and every post links back to its source. Nothing here feeds FT Intelligence.
 
@@ -43,9 +43,17 @@ v0 let each coder pick and count posts from the harvest report; coders disagreed
 2. **Label** (two coders, different model families, same `posts` list): for each post, fill only the cells the post speaks to: `tier`, `compared_to` [{model, direction}], `maker_guess` [{maker, evidence}], `size_guess`, `strengths`, `weaknesses`, `issues`, `sentiment`. Silent = absent, not a guess.
 3. **Count** (script): all cell counts are computed from the labels. Coders never write counts.
 
+## Decision rules (v0.2)
+
+- `tier`: only when the post names a tier ("flash-class", "frontier") or places it against a model of known tier. A bare comparison goes in `compared_to`, not `tier`.
+- `sentiment`: the post's overall verdict on the model, not any single sentence. Praise plus a serious complaint = `mixed`. No verdict = absent.
+- `numbers.metric` ∈ `throughput`, `latency`, `context`, `max_output`, `needle`, `suite_score`, `benchmark`, `tokenizer_match`, `price`, `other`; anything finer goes in `note`.
+- `size_guess`: numeric range plus unit (e.g. `30-40B total, 2-5B active`); spelling is cleaned by script.
+- Model and maker names may be written as in the post; the counting script normalizes them to `data/models.json` / `data/makers.json` ids through an alias table before counting.
+
 ## Agreement
 
-Measured per post × cell, on direction or value only (not on counts). A cell is `disputed` when the coders disagree on it for any post; disputed labels are dropped from counts unless a reviewer resolves them. If fewer than 70% of post×cell labels agree, fix the codebook before going on (ADR-038 regret condition).
+Measured per post × cell, on direction or value only (not on counts), and only where both coders filled the cell; one coder filling a cell the other left empty is reported separately as `one_sided`, not as disagreement. A cell is `disputed` when the coders disagree on it for any post; disputed labels are dropped from counts unless a reviewer resolves them. If fewer than 70% of post×cell labels agree, fix the codebook before going on (ADR-038 regret condition).
 
 ## Enumerations
 
@@ -89,5 +97,6 @@ Collected on intake day, day 3, day 7 and reveal day; frozen after that. Each pa
 
 ## Changelog
 
+- v0.2 (2026-11-04): decision rules for tier and sentiment, metric enumeration, size format, alias normalization, one-sided fills counted separately. Cause: P0b disagreement patterns (92.3% agreement overall).
 - v0.1 (2026-11-04): two stages (post ledger, then per-post labels; counts by script); agreement per post×cell ≥70%; enumerations; 403 ≠ gone. Cause: v0 double coding diverged on the post set (P0 back-test).
 - v0 (2026-11-04): derived from the first two harvests (Crouton Alpha, Pulse Alpha).
