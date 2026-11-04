@@ -18,10 +18,16 @@
    "quote": "the level of hallucination, i have never seen with any Chinese flash models",
    "gone": false,
    "labels": {
+    "sentiment": "negative",
+    "compared_to": [
+     {
+      "model": "deepseek-v4.1-flash",
+      "direction": "worse"
+     }
+    ],
     "issues": [
      "hallucination"
-    ],
-    "sentiment": "negative"
+    ]
    }
   },
   {
@@ -34,15 +40,16 @@
    "quote": "hallucinating and writing in broken Russian",
    "gone": false,
    "labels": {
+    "sentiment": "negative",
     "maker_guess": [
      {
-      "maker": "GLM",
+      "maker": "zai",
       "evidence": [
        "other"
       ]
      },
      {
-      "maker": "Mistral",
+      "maker": "mistral",
       "evidence": [
        "other"
       ]
@@ -51,7 +58,9 @@
     "weaknesses": [
      "writing"
     ],
-    "sentiment": "negative"
+    "issues": [
+     "hallucination"
+    ]
    }
   },
   {
@@ -63,7 +72,15 @@
    "grade": "hands_on",
    "quote": "Roughly as good as DeepSeek",
    "gone": false,
-   "labels": {}
+   "labels": {
+    "sentiment": "positive",
+    "compared_to": [
+     {
+      "model": "deepseek-v4.1-flash",
+      "direction": "similar"
+     }
+    ]
+   }
   },
   {
    "id": "crouton-alpha-p04",
@@ -99,7 +116,7 @@
    "labels": {
     "maker_guess": [
      {
-      "maker": "Meta",
+      "maker": "meta",
       "evidence": [
        "geo_block"
       ]
@@ -116,7 +133,24 @@
    "grade": "forensic",
    "quote": "token counts don't match Meta's published tokenizer, so it may use a new one",
    "gone": false,
-   "labels": {}
+   "labels": {
+    "maker_guess": [
+     {
+      "maker": "meta",
+      "evidence": [
+       "tokenizer"
+      ]
+     }
+    ],
+    "numbers": [
+     {
+      "metric": "tokenizer_match",
+      "value": "mismatch",
+      "unit": null,
+      "note": "token counts don't match Meta's published tokenizer, so it may use a new one"
+     }
+    ]
+   }
   },
   {
    "id": "crouton-alpha-p08",
@@ -128,12 +162,42 @@
    "quote": "with the exact response that muse 1.3 contributor gives",
    "gone": false,
    "labels": {
+    "tier": "flash",
+    "compared_to": [
+     {
+      "model": "muse-spark-1.3-contributor",
+      "direction": "similar"
+     }
+    ],
+    "maker_guess": [
+     {
+      "maker": "meta",
+      "evidence": [
+       "style"
+      ]
+     },
+     {
+      "maker": "minimax",
+      "evidence": [
+       "other"
+      ]
+     }
+    ],
     "strengths": [
      "speed"
     ],
     "issues": [
      "region_block"
-    ]
+    ],
+    "numbers": [
+     {
+      "metric": "throughput",
+      "value": 333.7,
+      "unit": "tok/s",
+      "note": "thread title 333.7 tok/s; EU/Germany block in thread"
+     }
+    ],
+    "sentiment": "mixed"
    }
   },
   {
@@ -156,7 +220,15 @@
    "grade": "forensic",
    "quote": null,
    "gone": false,
-   "labels": {}
+   "labels": {
+    "numbers": [
+     {
+      "metric": "tokenizer_match",
+      "value": "mismatch",
+      "note": "12-model tokenizer comparison; matched none"
+     }
+    ]
+   }
   },
   {
    "id": "crouton-alpha-p11",
@@ -167,7 +239,14 @@
    "grade": "hands_on",
    "quote": "本当に Muse Spark 味",
    "gone": false,
-   "labels": {}
+   "labels": {
+    "compared_to": [
+     {
+      "model": "muse-spark-1.3-contributor",
+      "direction": "similar"
+     }
+    ]
+   }
   },
   {
    "id": "crouton-alpha-p12",
@@ -179,7 +258,13 @@
    "quote": "doesn't look any better than muse spark 1.3",
    "gone": false,
    "labels": {
-    "sentiment": "negative"
+    "sentiment": "negative",
+    "compared_to": [
+     {
+      "model": "muse-spark-1.3-contributor",
+      "direction": "worse"
+     }
+    ]
    }
   },
   {
@@ -192,16 +277,16 @@
    "quote": "The speed is incredible, almost on the same level as GPT-6.1 Terra, but the quality is nowhere near.",
    "gone": false,
    "labels": {
+    "sentiment": "mixed",
     "compared_to": [
      {
-      "model": "GPT-6.1 Terra",
+      "model": "gpt-6.1-sol",
       "direction": "worse"
      }
     ],
     "strengths": [
      "speed"
-    ],
-    "sentiment": "mixed"
+    ]
    }
   },
   {
@@ -214,7 +299,14 @@
    "quote": "Pretty weak",
    "gone": false,
    "labels": {
-    "sentiment": "negative"
+    "sentiment": "negative",
+    "numbers": [
+     {
+      "metric": "tokenizer_match",
+      "value": "mismatch",
+      "note": "tokenizer check does not match published Muse"
+     }
+    ]
    }
   },
   {
@@ -227,10 +319,36 @@
    "quote": "The output is very good too, considering it does not thinks much",
    "gone": false,
    "labels": {
+    "tier": "flash",
+    "sentiment": "mixed",
+    "maker_guess": [
+     {
+      "maker": "google",
+      "evidence": [
+       "other"
+      ]
+     },
+     {
+      "maker": "undisclosed",
+      "evidence": [
+       "other"
+      ]
+     }
+    ],
     "issues": [
      "stops_mid_task"
     ],
-    "sentiment": "mixed"
+    "strengths": [
+     "speed"
+    ],
+    "numbers": [
+     {
+      "metric": "throughput",
+      "value": 150,
+      "unit": "tok/s",
+      "note": "150+ tok/s reported in thread"
+     }
+    ]
    }
   },
   {
@@ -243,13 +361,13 @@
    "quote": "very fast and doesn't seem to be particularly intelligent",
    "gone": false,
    "labels": {
+    "sentiment": "mixed",
     "strengths": [
      "speed"
     ],
     "weaknesses": [
      "reasoning"
-    ],
-    "sentiment": "mixed"
+    ]
    }
   },
   {
@@ -273,39 +391,84 @@
    "quote": "a good model for agent work that repeats a lot of searches",
    "gone": false,
    "labels": {
+    "sentiment": "positive",
     "strengths": [
      "agentic",
      "search_subagent"
-    ],
-    "sentiment": "positive"
+    ]
    }
   }
  ],
- "tier": {},
+ "tier": {
+  "flash": 2
+ },
  "compared_to": [
   {
+   "model": "deepseek-v4.1-flash",
+   "direction": "similar",
+   "posts": 1
+  },
+  {
+   "model": "deepseek-v4.1-flash",
+   "direction": "worse",
+   "posts": 1
+  },
+  {
    "model": "gpt-6.1-sol",
+   "direction": "worse",
+   "posts": 1
+  },
+  {
+   "model": "muse-spark-1.3-contributor",
+   "direction": "similar",
+   "posts": 2
+  },
+  {
+   "model": "muse-spark-1.3-contributor",
    "direction": "worse",
    "posts": 1
   }
  ],
  "maker_guess": [
   {
-   "maker": "GLM",
+   "maker": "google",
    "posts": 1,
    "evidence": [
     "other"
    ]
   },
   {
-   "maker": "Meta",
-   "posts": 1,
+   "maker": "meta",
+   "posts": 3,
    "evidence": [
-    "geo_block"
+    "geo_block",
+    "style",
+    "tokenizer"
    ]
   },
   {
-   "maker": "Mistral",
+   "maker": "minimax",
+   "posts": 1,
+   "evidence": [
+    "other"
+   ]
+  },
+  {
+   "maker": "mistral",
+   "posts": 1,
+   "evidence": [
+    "other"
+   ]
+  },
+  {
+   "maker": "undisclosed",
+   "posts": 1,
+   "evidence": [
+    "other"
+   ]
+  },
+  {
+   "maker": "zai",
    "posts": 1,
    "evidence": [
     "other"
@@ -314,7 +477,7 @@
  ],
  "size_guess": "not discussed",
  "strengths": {
-  "speed": 3,
+  "speed": 4,
   "agentic": 1,
   "search_subagent": 1
  },
@@ -323,16 +486,55 @@
   "reasoning": 1
  },
  "issues": {
-  "hallucination": 1,
+  "hallucination": 2,
   "region_block": 1,
   "stops_mid_task": 1
  },
  "sentiment": {
   "negative": 4,
-  "mixed": 3,
-  "positive": 1
+  "positive": 2,
+  "mixed": 4
  },
- "numbers": [],
+ "numbers": [
+  {
+   "post": "crouton-alpha-p07",
+   "metric": "tokenizer_match",
+   "value": "mismatch",
+   "unit": null,
+   "note": "token counts don't match Meta's published tokenizer, so it may use a new one",
+   "url": "https://x.com/aitrackerbot/status/2117717116916785325"
+  },
+  {
+   "post": "crouton-alpha-p08",
+   "metric": "throughput",
+   "value": 333.7,
+   "unit": "tok/s",
+   "note": "thread title 333.7 tok/s; EU/Germany block in thread",
+   "url": "https://www.reddit.com/r/opencode/comments/1xne9po/crouton_alpha_is_insanely_fast_3337_toks/"
+  },
+  {
+   "post": "crouton-alpha-p10",
+   "metric": "tokenizer_match",
+   "value": "mismatch",
+   "note": "12-model tokenizer comparison; matched none",
+   "url": "https://x.com/PokeBenchTV/status/2117721369215680706"
+  },
+  {
+   "post": "crouton-alpha-p14",
+   "metric": "tokenizer_match",
+   "value": "mismatch",
+   "note": "tokenizer check does not match published Muse",
+   "url": "https://x.com/superalesha/status/2117906698014777563"
+  },
+  {
+   "post": "crouton-alpha-p15",
+   "metric": "throughput",
+   "value": 150,
+   "unit": "tok/s",
+   "note": "150+ tok/s reported in thread",
+   "url": "https://www.reddit.com/r/opencode/comments/1xnc2y8/crouton_alpha_is_very_fast_did_it_in_37_seconds/"
+  }
+ ],
  "sources": {
   "reddit": 6,
   "blog": 3,
@@ -385,98 +587,114 @@
    "gone": false
   }
  ],
- "disputed": [
+ "dropped": [
   {
    "post": "crouton-alpha-p01",
-   "cell": "compared_to"
-  },
-  {
-   "post": "crouton-alpha-p01",
-   "cell": "weaknesses"
+   "cell": "weaknesses",
+   "key": "('ability-', 'other')",
+   "reason": "no stated weakness; hallucination already in issues"
   },
   {
    "post": "crouton-alpha-p02",
-   "cell": "issues"
+   "cell": "issues",
+   "key": "('issue', 'other')",
+   "reason": "no second issue in post; hallucination counted"
   },
   {
    "post": "crouton-alpha-p03",
-   "cell": "compared_to"
+   "cell": "maker_guess",
+   "key": "('maker_guess', 'Spark')",
+   "reason": "one-sided ['a'] without ruling"
   },
   {
    "post": "crouton-alpha-p03",
-   "cell": "maker_guess"
+   "cell": "compared_to",
+   "key": "('compared_to', 'muse-spark-1.3-contributor', 'similar')",
+   "reason": "maker-style guess misfiled as comparison"
   },
   {
-   "post": "crouton-alpha-p03",
-   "cell": "sentiment"
+   "post": "crouton-alpha-p04",
+   "cell": "maker_guess",
+   "key": "('maker_guess', 'Muse Spark 1.3')",
+   "reason": "one-sided ['b'] without ruling"
   },
   {
    "post": "crouton-alpha-p07",
-   "cell": "maker_guess"
-  },
-  {
-   "post": "crouton-alpha-p07",
-   "cell": "numbers"
-  },
-  {
-   "post": "crouton-alpha-p08",
-   "cell": "tier"
+   "cell": "numbers",
+   "key": "('numbers', 'tokenizer_match', \"mismatch vs Meta's published tokenizer\")",
+   "reason": "one-sided ['a'] without ruling"
   },
   {
    "post": "crouton-alpha-p08",
-   "cell": "compared_to"
+   "cell": "sentiment",
+   "key": "('sentiment', 'positive')",
+   "reason": "one-sided ['a'] without ruling"
   },
   {
    "post": "crouton-alpha-p08",
-   "cell": "maker_guess"
+   "cell": "maker_guess",
+   "key": "('maker_guess', 'MiniMax')",
+   "reason": "one-sided ['a'] without ruling"
   },
   {
    "post": "crouton-alpha-p08",
-   "cell": "sentiment"
-  },
-  {
-   "post": "crouton-alpha-p08",
-   "cell": "numbers"
+   "cell": "maker_guess",
+   "key": "('maker_guess', 'undisclosed')",
+   "reason": "one-sided ['b'] without ruling"
   },
   {
    "post": "crouton-alpha-p10",
-   "cell": "numbers"
+   "cell": "numbers",
+   "key": "('numbers', 'tokenizer_match', '12-model tokenizer comparison')",
+   "reason": "one-sided ['a'] without ruling"
   },
   {
    "post": "crouton-alpha-p11",
-   "cell": "compared_to"
+   "cell": "maker_guess",
+   "key": "('maker_guess', 'Muse Spark')",
+   "reason": "one-sided ['b'] without ruling"
   },
   {
    "post": "crouton-alpha-p12",
-   "cell": "compared_to"
+   "cell": "compared_to",
+   "key": "('compared_to', 'muse-spark-1.3-contributor', 'similar')",
+   "reason": "one-sided ['b'] without ruling"
   },
   {
    "post": "crouton-alpha-p13",
-   "cell": "weaknesses"
+   "cell": "weaknesses",
+   "key": "('ability-', 'other')",
+   "reason": "vague; quality complaint maps to no single ability cleanly"
+  },
+  {
+   "post": "crouton-alpha-p13",
+   "cell": "weaknesses",
+   "key": "('ability-', 'coding')",
+   "reason": "one-sided ['b'] without ruling"
   },
   {
    "post": "crouton-alpha-p14",
-   "cell": "weaknesses"
+   "cell": "weaknesses",
+   "key": "('ability-', 'other')",
+   "reason": "one-sided ['a'] without ruling"
   },
   {
    "post": "crouton-alpha-p14",
-   "cell": "numbers"
+   "cell": "numbers",
+   "key": "('numbers', 'tokenizer_match', 'mismatch vs published Muse')",
+   "reason": "one-sided ['a'] without ruling"
   },
   {
    "post": "crouton-alpha-p15",
-   "cell": "tier"
+   "cell": "strengths",
+   "key": "('ability+', 'other')",
+   "reason": "one-sided ['a'] without ruling"
   },
   {
    "post": "crouton-alpha-p15",
-   "cell": "maker_guess"
-  },
-  {
-   "post": "crouton-alpha-p15",
-   "cell": "strengths"
-  },
-  {
-   "post": "crouton-alpha-p15",
-   "cell": "numbers"
+   "cell": "numbers",
+   "key": "('numbers', 'throughput', '150+')",
+   "reason": "one-sided ['a'] without ruling"
   }
  ],
  "first_seen": {

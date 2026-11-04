@@ -17,7 +17,22 @@
    "grade": "opinion",
    "quote": null,
    "gone": false,
-   "labels": {}
+   "labels": {
+    "maker_guess": [
+     {
+      "maker": "qwen",
+      "evidence": [
+       "other"
+      ]
+     },
+     {
+      "maker": "zai",
+      "evidence": [
+       "other"
+      ]
+     }
+    ]
+   }
   },
   {
    "id": "pulse-alpha-p02",
@@ -29,16 +44,30 @@
    "quote": "my opus 5.5 manager was impressed with the math section review",
    "gone": false,
    "labels": {
+    "sentiment": "mixed",
     "compared_to": [
      {
-      "model": "Qwen 3.8 27B",
+      "model": "qwen3.8-27b",
       "direction": "worse"
+     }
+    ],
+    "maker_guess": [
+     {
+      "maker": "thinking-machines",
+      "evidence": [
+       "other"
+      ]
+     },
+     {
+      "maker": "undisclosed",
+      "evidence": [
+       "other"
+      ]
      }
     ],
     "strengths": [
      "reasoning"
-    ],
-    "sentiment": "mixed"
+    ]
    }
   },
   {
@@ -61,7 +90,17 @@
    "grade": "forensic",
    "quote": "We think Pulse Alpha is a new Thinking Machines model. It isn't Inkling.",
    "gone": false,
-   "labels": {}
+   "labels": {
+    "maker_guess": [
+     {
+      "maker": "thinking-machines",
+      "evidence": [
+       "self_report",
+       "other"
+      ]
+     }
+    ]
+   }
   },
   {
    "id": "pulse-alpha-p05",
@@ -83,7 +122,23 @@
    "grade": "opinion",
    "quote": "Feels closer to Qwen or Tencent Hunyuan",
    "gone": false,
-   "labels": {}
+   "labels": {
+    "maker_guess": [
+     {
+      "maker": "qwen",
+      "evidence": [
+       "style",
+       "self_report"
+      ]
+     },
+     {
+      "maker": "tencent",
+      "evidence": [
+       "style"
+      ]
+     }
+    ]
+   }
   },
   {
    "id": "pulse-alpha-p07",
@@ -96,17 +151,17 @@
    "gone": false,
    "labels": {
     "tier": "flash",
+    "sentiment": "positive",
     "compared_to": [
      {
-      "model": "MiniMax M3.1 Flash",
+      "model": "minimax-m3.1-flash",
       "direction": "similar"
      },
      {
-      "model": "DeepSeek V4.1 Flash",
+      "model": "deepseek-v4.1-flash",
       "direction": "similar"
      }
-    ],
-    "sentiment": "positive"
+    ]
    }
   },
   {
@@ -141,13 +196,13 @@
    "quote": "Pulse Alpha is bad, but Crouton Alpha is way worse.",
    "gone": false,
    "labels": {
+    "sentiment": "negative",
     "compared_to": [
      {
-      "model": "Crouton Alpha",
+      "model": "crouton-alpha",
       "direction": "better"
      }
-    ],
-    "sentiment": "negative"
+    ]
    }
   },
   {
@@ -159,7 +214,12 @@
    "grade": "hands_on",
    "quote": "not good, tried it this morning",
    "gone": false,
-   "labels": {}
+   "labels": {
+    "sentiment": "mixed",
+    "strengths": [
+     "speed"
+    ]
+   }
   },
   {
    "id": "pulse-alpha-p12",
@@ -171,6 +231,7 @@
    "quote": null,
    "gone": false,
    "labels": {
+    "sentiment": "negative",
     "weaknesses": [
      "instruction_following",
      "other"
@@ -178,7 +239,14 @@
     "issues": [
      "instruction_following"
     ],
-    "sentiment": "negative"
+    "numbers": [
+     {
+      "metric": "benchmark",
+      "value": "6 toy tasks",
+      "unit": "tasks",
+      "note": "failures cluster on instruction following and spatial detail"
+     }
+    ]
    }
   },
   {
@@ -190,7 +258,22 @@
    "grade": "measured",
    "quote": null,
    "gone": false,
-   "labels": {}
+   "labels": {
+    "compared_to": [
+     {
+      "model": "crouton-alpha",
+      "direction": "worse"
+     }
+    ],
+    "numbers": [
+     {
+      "metric": "other",
+      "value": 115100,
+      "unit": "tokens",
+      "note": "115.1k tokens in 21m21s vs Crouton Alpha 7.7k tokens in 33.2s"
+     }
+    ]
+   }
   }
  ],
  "tier": {
@@ -198,17 +281,22 @@
  },
  "compared_to": [
   {
-   "model": "Crouton Alpha",
+   "model": "crouton-alpha",
    "direction": "better",
    "posts": 1
   },
   {
-   "model": "DeepSeek V4.1 Flash",
+   "model": "crouton-alpha",
+   "direction": "worse",
+   "posts": 1
+  },
+  {
+   "model": "deepseek-v4.1-flash",
    "direction": "similar",
    "posts": 1
   },
   {
-   "model": "MiniMax M3.1 Flash",
+   "model": "minimax-m3.1-flash",
    "direction": "similar",
    "posts": 1
   },
@@ -218,10 +306,50 @@
    "posts": 1
   }
  ],
- "maker_guess": [],
+ "maker_guess": [
+  {
+   "maker": "qwen",
+   "posts": 2,
+   "evidence": [
+    "other",
+    "self_report",
+    "style"
+   ]
+  },
+  {
+   "maker": "tencent",
+   "posts": 1,
+   "evidence": [
+    "style"
+   ]
+  },
+  {
+   "maker": "thinking-machines",
+   "posts": 2,
+   "evidence": [
+    "other",
+    "self_report"
+   ]
+  },
+  {
+   "maker": "undisclosed",
+   "posts": 1,
+   "evidence": [
+    "other"
+   ]
+  },
+  {
+   "maker": "zai",
+   "posts": 1,
+   "evidence": [
+    "other"
+   ]
+  }
+ ],
  "size_guess": "not discussed",
  "strengths": {
-  "reasoning": 1
+  "reasoning": 1,
+  "speed": 1
  },
  "weaknesses": {
   "instruction_following": 1,
@@ -231,11 +359,28 @@
   "instruction_following": 1
  },
  "sentiment": {
-  "mixed": 1,
+  "mixed": 2,
   "positive": 1,
   "negative": 2
  },
- "numbers": [],
+ "numbers": [
+  {
+   "post": "pulse-alpha-p12",
+   "metric": "benchmark",
+   "value": "6 toy tasks",
+   "unit": "tasks",
+   "note": "failures cluster on instruction following and spatial detail",
+   "url": "https://www.techgogogo.com/2026-11-03/pulse-alpha-benchmark-opencode-mystery-model/"
+  },
+  {
+   "post": "pulse-alpha-p13",
+   "metric": "other",
+   "value": 115100,
+   "unit": "tokens",
+   "note": "115.1k tokens in 21m21s vs Crouton Alpha 7.7k tokens in 33.2s",
+   "url": "https://x.com/harshvdev/status/2117891506497540578"
+  }
+ ],
  "sources": {
   "reddit": 2,
   "x": 10,
@@ -288,54 +433,60 @@
    "gone": false
   }
  ],
- "disputed": [
-  {
-   "post": "pulse-alpha-p01",
-   "cell": "maker_guess"
-  },
+ "dropped": [
   {
    "post": "pulse-alpha-p02",
-   "cell": "maker_guess"
-  },
-  {
-   "post": "pulse-alpha-p02",
-   "cell": "issues"
+   "cell": "issues",
+   "key": "('issue', 'other')",
+   "reason": "sentiment content, not a product issue"
   },
   {
    "post": "pulse-alpha-p04",
-   "cell": "maker_guess"
+   "cell": "numbers",
+   "key": "('numbers', 'other', 'None')",
+   "reason": "null value, not a number"
   },
   {
    "post": "pulse-alpha-p05",
-   "cell": "numbers"
+   "cell": "numbers",
+   "key": "('numbers', 'tokenizer_match', 'tokenizer study naming no matching lab')",
+   "reason": "one-sided ['a'] without ruling"
   },
   {
-   "post": "pulse-alpha-p06",
-   "cell": "maker_guess"
+   "post": "pulse-alpha-p05",
+   "cell": "numbers",
+   "key": "('numbers', 'tokenizer_match', 'mismatch')",
+   "reason": "one-sided ['b'] without ruling"
   },
   {
    "post": "pulse-alpha-p10",
-   "cell": "weaknesses"
+   "cell": "weaknesses",
+   "key": "('ability-', 'other')",
+   "reason": "one-line put-down, no ability named"
   },
   {
    "post": "pulse-alpha-p11",
-   "cell": "strengths"
+   "cell": "weaknesses",
+   "key": "('ability-', 'other')",
+   "reason": "no ability named"
   },
   {
    "post": "pulse-alpha-p11",
-   "cell": "weaknesses"
-  },
-  {
-   "post": "pulse-alpha-p11",
-   "cell": "sentiment"
-  },
-  {
-   "post": "pulse-alpha-p12",
-   "cell": "numbers"
+   "cell": "sentiment",
+   "key": "('sentiment', 'negative')",
+   "reason": "one-sided ['b'] without ruling"
   },
   {
    "post": "pulse-alpha-p13",
-   "cell": "numbers"
+   "cell": "numbers",
+   "key": "('numbers', 'other', '115.1k tokens in 21m21s')",
+   "reason": "one-sided ['a'] without ruling"
+  },
+  {
+   "post": "pulse-alpha-p13",
+   "cell": "numbers",
+   "key": "('numbers', 'latency', '1281')",
+   "reason": "wall time already in the other-number note; avoid double count"
   }
  ],
  "first_seen": {
