@@ -166,9 +166,20 @@ $("details").innerHTML = ML.map((l) => {
   const nk = (s) => String(s).toLowerCase().replace(/[_-]+/g, " ").replace(/\s+/g, " ").trim();
   const wk = C.weaknesses || {}, wkk = new Set(Object.keys(wk).map(nk));
   const iss = Object.fromEntries(Object.entries(C.issues || {}).filter(([k]) => !wkk.has(nk(k))));
+  /* a number row repeats itself when the metric or unit restates the value ("mismatch · tokenizer match", "6 toy tasks · tasks · benchmark"): each word is said once */
+  const wds = (s) => nk(s).split(" ").filter(Boolean);
   const nums = (C.numbers || []).map((n) => {
-    const src = POST[n.post], u = src && src.url, m = junk(n.metric) ? Tx("source", "source") : pretty(n.metric);
-    return `<span class="ct-num" title="${esc(n.note || "")}"><b>${esc(String(n.value))}</b>${n.unit ? ` ${esc(n.unit)}` : ""}${u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(m)}</a>` : `<span>${esc(m)}</span>`}${n.grade ? `<span class="ctag ${esc(n.grade)}">${esc(pretty(n.grade))}</span>` : ""}</span>`;
+    const src = POST[n.post], u = src && src.url;
+    const vset = new Set(wds(n.value));
+    const inVal = (w) => { const t = nk(w); return !!t && [...vset].some((v) => v === t || (v.length >= 3 && t.length >= 3 && (v.includes(t) || t.includes(v)))); };
+    const showUnit = !!n.unit && !wds(n.unit).every(inVal);
+    let m = junk(n.metric) ? Tx("source", "source") : pretty(n.metric);
+    if (!junk(n.metric)) {
+      const dw = pretty(n.metric).split(" "), nw = wds(n.metric);
+      const keep = dw.filter((_, i) => !(i < nw.length && inVal(nw[i])));
+      if (keep.length) m = keep.join(" ");
+    }
+    return `<span class="ct-num" title="${esc(n.note || "")}"><b>${esc(String(n.value))}</b>${showUnit ? ` ${esc(n.unit)}` : ""}${u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(m)}</a>` : `<span>${esc(m)}</span>`}${n.grade ? `<span class="ctag ${esc(n.grade)}">${esc(pretty(n.grade))}</span>` : ""}</span>`;
   }).join("");
   const quotes = (C.quotes || []).map((q) => `<article class="cquote">
     <div class="cq-top"><span class="ctag plat">${esc(pretty(q.platform))}</span><span class="cq-by">${esc(q.author)}</span><span class="cq-date">${esc(absDate(q.date))}</span>${q.gone ? `<span class="ctag gone">${Tx("deleted", "deleted")}</span>` : ""}</div>

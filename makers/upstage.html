@@ -942,7 +942,7 @@ details.community { background: var(--surface); box-shadow: var(--ring); border-
 details.community > summary { cursor: pointer; list-style: none; padding: 16px 18px; display: flex; align-items: baseline; gap: 10px; flex-wrap: nowrap; }
 details.community > summary::-webkit-details-marker { display: none; }
 details.community > summary h2 { margin: 0; min-width: 0; }
-details.community > summary::before { content: ""; width: 8px; height: 8px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: rotate(-45deg); transition: transform .15s; flex: none; align-self: center; }
+details.community > summary::before { content: ""; width: 8px; height: 8px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: rotate(-45deg); transition: transform .15s; flex: none; align-self: baseline; }
 details.community[open] > summary::before { transform: rotate(45deg); }
 details.community[open] > summary { border-bottom: 1px solid var(--line); }
 .ct { padding: 6px 18px 16px; display: grid; gap: 14px; }
