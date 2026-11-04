@@ -930,5 +930,134 @@
   },
   "peer_max_gap": 10,
   "peer_scale": 5
+ },
+ "community":  {
+  "$comment": "ADR-038 Community take. One file per model at data/community/<model-id>.json. Cell counts are computed by the counting script from posts[].labels (one resolved label per post); disputed labels are not in the file. Quotes are verbatim, <=25 words, self-rendered; no third-party embed. Nothing here feeds FT Intelligence.",
+  "required": [
+   "model",
+   "collected",
+   "pass",
+   "authors",
+   "posts",
+   "quotes"
+  ],
+  "quote_max_words": 25,
+  "label_cells": [
+   "tier",
+   "compared_to",
+   "maker_guess",
+   "size_guess",
+   "strengths",
+   "weaknesses",
+   "issues",
+   "sentiment",
+   "numbers"
+  ],
+  "enums": {
+   "grade": [
+    "measured",
+    "forensic",
+    "hands_on",
+    "opinion"
+   ],
+   "platform": [
+    "x",
+    "reddit",
+    "hn",
+    "linux_do",
+    "v2ex",
+    "zhihu",
+    "bilibili",
+    "blog",
+    "news",
+    "github",
+    "discord",
+    "other"
+   ],
+   "pass": [
+    "day1",
+    "day3",
+    "day7",
+    "reveal",
+    "retrospective"
+   ],
+   "tier": [
+    "frontier",
+    "mid",
+    "flash",
+    "small"
+   ],
+   "direction": [
+    "better",
+    "similar",
+    "worse"
+   ],
+   "evidence": [
+    "tokenizer",
+    "geo_block",
+    "api_shape",
+    "self_report",
+    "style",
+    "other"
+   ],
+   "ability": [
+    "coding",
+    "agentic",
+    "search_subagent",
+    "writing",
+    "vision",
+    "reasoning",
+    "long_context",
+    "speed",
+    "instruction_following",
+    "other"
+   ],
+   "issue": [
+    "hallucination",
+    "stops_mid_task",
+    "verbose",
+    "instruction_following",
+    "region_block",
+    "rate_limit",
+    "other"
+   ],
+   "sentiment": [
+    "positive",
+    "mixed",
+    "negative"
+   ],
+   "metric": [
+    "throughput",
+    "latency",
+    "context",
+    "max_output",
+    "needle",
+    "suite_score",
+    "benchmark",
+    "tokenizer_match",
+    "price",
+    "other"
+   ]
+  },
+  "enum_cells": {
+   "tier": "tier",
+   "sentiment": "sentiment"
+  },
+  "enum_cell_lists": {
+   "strengths": "ability",
+   "weaknesses": "ability",
+   "issues": "issue"
+  },
+  "free_text_cells": [
+   "size_guess"
+  ],
+  "forbidden_keys": [
+   "peer_estimate",
+   "estimate",
+   "fti",
+   "fti_estimate",
+   "fti_score",
+   "weighted_score"
+  ]
  }
 }

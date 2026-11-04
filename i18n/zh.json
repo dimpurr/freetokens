@@ -388,6 +388,27 @@
   "Scores are computed by freetokens from public benchmarks. Source owners can request removal via a GitHub issue.": "分数由 freetokens 根据公开基准计算。来源方可通过 GitHub issue 申请移除。",
   "Snapshots": "快照",
   "current": "当前",
-  "serves an older snapshot:": "提供的是旧快照："
+  "serves an older snapshot:": "提供的是旧快照：",
+  "Community take": "社区风评",
+  "What independent posts say, counted · not our verdict": "独立帖子怎么说，按帖计数 · 非本站结论",
+  "Too little discussion yet.": "讨论还太少。",
+  "authors": "位作者",
+  "posts": "帖",
+  "collected": "采集于",
+  "Level": "级别",
+  "Compared to": "常被比较",
+  "Rumoured maker": "疑似厂商",
+  "Size": "参数量",
+  "Strengths": "擅长",
+  "Weaknesses": "短板",
+  "Issues": "已知问题",
+  "Sentiment": "好恶",
+  "Numbers as reported": "帖内数字（原样）",
+  "rumoured": "传",
+  "contrary evidence": "相反证据",
+  "deleted": "已删帖",
+  "Not part of FTI": "不计入 FTI",
+  "method": "方法",
+  "report a post": "反馈某帖"
  }
 }

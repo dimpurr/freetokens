@@ -425,6 +425,96 @@ def load_optional(name, default):
     return json.loads(f.read_text()) if f.exists() else default
 
 
+def load_community():
+    """ADR-038: read data/community/<model-id>.json into {model-id: data}. A missing directory means no community
+    data at all (the block stays off and the build never breaks); the deputy lands these files separately."""
+    d = ROOT / "data" / "community"
+    if not d.exists():
+        return {}
+    return {f.stem: json.loads(f.read_text()) for f in sorted(d.glob("*.json"))}
+
+
+def _words(s):
+    return [w for w in re.split(r"\s+", str(s).strip()) if w]
+
+
+def validate_community(community):
+    """ADR-038: validate data/community/*.json against SCHEMA['community']. Every labelled cell matches the
+    codebook enumerations; quotes are verbatim and <=25 words; no peer-estimate or FTI field reaches public data.
+    Returns an error list (empty = green); absent data is green (the block simply does not show)."""
+    errs = []
+    if not community:
+        return errs
+    cs = SCHEMA["community"]
+    E, forbidden, maxw = cs["enums"], set(cs["forbidden_keys"]), cs["quote_max_words"]
+
+    def scan(node, where):
+        if isinstance(node, dict):
+            for k, v in node.items():
+                if k in forbidden or "estimate" in str(k).lower():
+                    errs.append(f"{where}: public data must not carry the field {k!r} (peer estimates stay private)")
+                scan(v, f"{where}.{k}")
+        elif isinstance(node, list):
+            for i, v in enumerate(node):
+                scan(v, f"{where}[{i}]")
+
+    for mid, c in community.items():
+        where = f"community[{mid}]"
+        scan(c, where)
+        if c.get("model") != mid:
+            errs.append(f"{where}: model {c.get('model')!r} must equal the file name")
+        for f in cs["required"]:
+            if f not in c:
+                errs.append(f"{where}: missing field {f!r}")
+        if c.get("pass") not in E["pass"]:
+            errs.append(f"{where}: pass={c.get('pass')!r} not in {E['pass']}")
+        if not isinstance(c.get("authors"), int):
+            errs.append(f"{where}: authors must be an integer")
+        ids = []
+        for i, p in enumerate(c.get("posts", [])):
+            pw = f"{where}.posts[{p.get('id', i)}]"
+            ids.append(p.get("id"))
+            if p.get("platform") not in E["platform"]:
+                errs.append(f"{pw}: platform={p.get('platform')!r} not in enumerations")
+            if p.get("grade") not in E["grade"]:
+                errs.append(f"{pw}: grade={p.get('grade')!r} not in enumerations")
+            for cell, v in (p.get("labels") or {}).items():
+                if cell in cs["enum_cells"]:
+                    if v not in E[cs["enum_cells"][cell]]:
+                        errs.append(f"{pw}: labels.{cell}={v!r} not in enumerations")
+                elif cell in cs["enum_cell_lists"]:
+                    en = E[cs["enum_cell_lists"][cell]]
+                    if not isinstance(v, list) or any(x not in en for x in v):
+                        errs.append(f"{pw}: labels.{cell}={v!r} is not a list of {en}")
+                elif cell == "compared_to":
+                    for it in v:
+                        if it.get("direction") not in E["direction"]:
+                            errs.append(f"{pw}: labels.compared_to direction={it.get('direction')!r} not in enumerations")
+                elif cell == "maker_guess":
+                    for it in v:
+                        for ev in it.get("evidence", []):
+                            if ev not in E["evidence"]:
+                                errs.append(f"{pw}: labels.maker_guess evidence={ev!r} not in enumerations")
+                elif cell == "numbers":
+                    for it in v:
+                        if not (it.get("metric") and "value" in it):
+                            errs.append(f"{pw}: labels.numbers entry needs a metric and a value")
+                elif cell not in cs["label_cells"]:
+                    errs.append(f"{pw}: labels has unknown cell {cell!r}")
+        if len(ids) != len(set(ids)):
+            errs.append(f"{where}.posts: duplicate post ids")
+        for i, q in enumerate(c.get("quotes", [])):
+            qw = f"{where}.quotes[{i}]"
+            n = len(_words(q.get("text", "")))
+            if n > maxw:
+                errs.append(f"{qw}: quote is {n} words (max {maxw})")
+            if not (q.get("url") and q.get("platform") and q.get("author") and q.get("date")):
+                errs.append(f"{qw}: quote needs url, platform, author and date")
+            if q.get("platform") not in E["platform"]:
+                errs.append(f"{qw}: platform={q.get('platform')!r} not in enumerations")
+    return errs
+
+
 def ft_label(m):
     """FTI as text: '33' (3+ sources incl. an independent one), '31–36' (a band), '—' (no usable source)."""
     f = m.get("ft") or {}
@@ -1013,7 +1103,7 @@ def render_body(template, payload, root, home, shared=False, lang="en"):
         page = {k: v for k, v in payload.items() if k not in SHARED_KEYS}
         data_asset = "data.zh.js" if lang == "zh" else "data.js"
         boot = (f'<script src="/assets/{data_asset}?v={ASSET_VERSIONS[data_asset]}"></script>\n<script>const D = Object.assign({{}}, window.FT_DATA, '
-                f'{json.dumps(page, ensure_ascii=False)});</script>\n<script src="/assets/common.js?v={ASSET_VERSIONS["common.js"]}"></script>\n<script>')
+                f'{json.dumps(page, ensure_ascii=False).replace("</", "<\\/")});</script>\n<script src="/assets/common.js?v={ASSET_VERSIONS["common.js"]}"></script>\n<script>')
         return body.replace("<script>\n/*__COMMON__*/", boot, 1)
     data = json.dumps(payload, ensure_ascii=False).replace("</", "<\\/")
     return body.replace("/*__COMMON__*/", f"const D = {data};\n" + common)
@@ -1099,6 +1189,9 @@ def build_pages(lanes, events, models, today, mode, lang="en"):
     site = mode == "site"
     ext = "" if site else ".html"
     base = {"lanes": lanes, "events": events, "models": models, "chans": load_optional("channels", []), "makers": load_optional("makers", []), "offers": load_optional("offers", []), "logos": json.loads((ROOT / "templates" / "logos" / "index.json").read_text()), "vocab": VOCAB, "built": today.isoformat(), "ext": ext}
+    # ADR-038: community take rides only on model pages (not in base, so it never reaches data.js or other pages,
+    # and never goes through translate_dataset: quotes stay verbatim). Absent dir = {} = no block.
+    community = load_community()
     if zh:
         base = dict(base, **translate_dataset(base))
     P = "zh/" if zh else ""          # output path prefix
@@ -1143,7 +1236,7 @@ def build_pages(lanes, events, models, today, mode, lang="en"):
               {"@context": "https://schema.org", "@type": "WebPage", "name": title, "url": url, "description": desc,
                "dateModified": today.isoformat(), "about": {"@type": "Thing", "name": m["name"]}}]
         pages[P + f"models/{m['id']}.html"] = (head_html(title, desc, url, today, ld, og, lang, alt(f"models/{m['id']}")),
-                                            render_body("model.html", dict(base, root=sub_root, model=m["id"]), sub_root, sub_home, site and SHARED_ASSETS, lang))
+                                            render_body("model.html", dict(base, root=sub_root, model=m["id"], community=community), sub_root, sub_home, site and SHARED_ASSETS, lang))
     for c in chans:
         title, desc = seo_channel(c, lanes, models)
         url = f"{U}/channels/{slug(c)}"
@@ -1259,7 +1352,8 @@ def add_langsw(pages, zh):
 
 # section headings other pages link to (common.js view switch, home ladder): EN and ZH text -> the same anchor
 MD_ANCHORS = {"Use-case views": "use-case-views", "Fallback ladder": "fallback-ladder",
-              "使用场景视图": "use-case-views", "备用顺序": "fallback-ladder"}
+              "使用场景视图": "use-case-views", "备用顺序": "fallback-ladder",
+              "Community take": "community-take", "社区风评（不进 FTI）": "community-take"}
 
 
 def md_to_html(md):
@@ -2366,12 +2460,18 @@ def main():
 
     lanes, events, models = load("lanes"), load("events"), load("models")
     chans = load_optional("channels", [])
-    errs = validate(lanes, events, models) + validate_channels(chans, lanes) + validate_offers(load_optional("offers", []), chans, models)
+    community = load_community()
+    # ADR-038 guard: the Community take block is display-only and must not move FT Intelligence. Snapshot every
+    # model's ft now; --check fails if the build leaves any of them changed.
+    ft_snapshot = {m["id"]: json.dumps(m.get("ft"), sort_keys=True) for m in models}
+    errs = (validate(lanes, events, models) + validate_channels(chans, lanes)
+            + validate_offers(load_optional("offers", []), chans, models) + validate_community(community))
     if errs:
         print("✗ data does not validate:", *errs, sep="\n  ", file=sys.stderr)
         sys.exit(1)
     if a.validate:
-        print(f"✓ data valid: {len(lanes)} lanes · {len(events)} events · {len(models)} models")
+        print(f"✓ data valid: {len(lanes)} lanes · {len(events)} events · {len(models)} models"
+              + (f" · {len(community)} community files" if community else ""))
         return
 
     models_md = models
@@ -2443,7 +2543,14 @@ def main():
         if serr:
             print("✗ SEO titles/descriptions:", *serr, sep="\n  ", file=sys.stderr)
             sys.exit(1)
+        # ADR-038: Community take is display-only; fail if the build moved any model's FT Intelligence.
+        ft_now = {m["id"]: json.dumps(m.get("ft"), sort_keys=True) for m in load("models")}
+        if ft_now != ft_snapshot:
+            changed = sorted(k for k in ft_now if ft_now[k] != ft_snapshot.get(k))
+            print("✗ Community take must not change FTI; changed:", *changed, sep="\n  ", file=sys.stderr)
+            sys.exit(1)
         print(f"✓ data valid, generated files up to date, i18n complete, blog valid, "
+              f"community validated ({len(community)} file(s), FTI unchanged), "
               f"{len(seo_pages) + len(extra)} titles ≤{TITLE_LIMIT}px with descriptions")
         return
     (ROOT / "models").mkdir(exist_ok=True)

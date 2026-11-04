@@ -10,6 +10,13 @@
   <header class="mhead" id="mhead"></header>
   <!--RELATED-->
 
+  <section class="community" id="community-sec" aria-labelledby="h-community" hidden>
+    <details class="community" id="community">
+      <summary><h2 id="h-community">Community take <small>What independent posts say, counted · not our verdict</small></h2></summary>
+      <div class="ct" id="ct"></div>
+    </details>
+  </section>
+
   <section aria-labelledby="h-now">
     <h2 id="h-now">Where it's free now <small id="now-sub"></small></h2>
     <div class="chcards chcards-now" id="now"></div>
@@ -107,6 +114,60 @@ $("details").innerHTML = ML.map((l) => {
     ${row(Tx("Checked", "Checked"), `${esc(absDate(l.checked.date))} · ${esc(lab("check_method", l.checked.method))}`)}
   </dl></div>`;
 }).join("");
+
+/* community take (ADR-038): self-rendered counts of public posts, no third-party embed, display only — never feeds FTI */
+(function () {
+  const C = (D.community || {})[D.model];
+  if (!C) return;
+  const sec = $("community-sec"), det = $("community"), ct = $("ct");
+  sec.hidden = false;
+  const evts = eventsOf(M.id).map((e) => pd(e.date)).filter(Boolean).map((x) => x.t);
+  const seeds = [C.first_seen && pd(C.first_seen.date), C.collected && pd(C.collected)].filter(Boolean).map((x) => x.t);
+  const first = Math.min.apply(null, evts.concat(seeds));
+  const fresh = !ftOf(M) || (isFinite(first) && (Date.parse(D.built + "T00:00Z") - first) / DAY <= 14);
+  if (fresh) det.open = true;
+  if ((C.authors || 0) < 3) {
+    ct.innerHTML = `<p class="ct-thin">${Tx("Too little discussion yet.", "Too little discussion yet.")}</p>`;
+    return;
+  }
+  const PLAT = { x: "X", hn: "HN", v2ex: "V2EX", linux_do: "Linux.do", reddit: "Reddit", zhihu: "Zhihu", bilibili: "Bilibili", github: "GitHub", discord: "Discord", blog: "Blog", news: "News", other: "Other" };
+  const pretty = (s) => PLAT[s] || String(s).replace(/_/g, " ");
+  const MN = Object.fromEntries(D.models.map((x) => [x.id, x.name]));
+  const mlink = (id) => (MN[id] ? `<a href="${modelHref(id)}">${esc(MN[id])}</a>` : esc(id));
+  const dist = (o, sign) => Object.entries(o || {}).sort((a, b) => b[1] - a[1]).map(([k, n]) => `${esc(pretty(k))} <b>${sign || ""}${n}</b>`).join(" · ");
+  const cell = (k, v) => v ? `<div class="ct-cell"><span class="k">${k}</span><span class="v">${v}</span></div>` : "";
+  const cmp = (C.compared_to || []).slice().sort((a, b) => b.posts - a.posts).slice(0, 4)
+    .map((x) => `${mlink(x.model)} <span class="ct-dir ${x.direction}">${esc(x.direction)}</span> <b>${x.posts}</b>`).join(" · ");
+  const mk = (C.maker_guess || []).slice().sort((a, b) => b.posts - a.posts).slice(0, 3).map((g) => {
+    const ag = Object.entries(g.against || {}).map(([k, n]) => ` <span class="ct-against" title="${Tx("contrary evidence", "contrary evidence")}">¬${esc(pretty(k))} ${n}</span>`).join("");
+    return `<span class="suspect">${Tx("rumoured", "rumoured")} ${mklink(g.maker)}</span>${g.evidence && g.evidence.length ? ` <span class="ct-ev">${esc(g.evidence.map(pretty).join(", "))}</span>` : ""}${ag}`;
+  }).join("<br>");
+  const sz = typeof C.size_guess === "string" ? esc(C.size_guess) : dist(C.size_guess);
+  const nums = (C.numbers || []).map((n) => `<span class="ct-num"><b>${esc(n.value)}</b> ${esc(n.unit || "")} <a href="${esc(n.url)}" target="_blank" rel="noopener">${esc(pretty(n.metric))}</a> <span class="ctag ${n.grade}">${esc(pretty(n.grade))}</span></span>`).join(" ");
+  const quotes = (C.quotes || []).map((q) => `<article class="cquote">
+    <div class="cq-top"><span class="ctag plat">${esc(pretty(q.platform))}</span><span class="cq-by">${esc(q.author)}</span><span class="cq-date">${esc(absDate(q.date))}</span>${q.gone ? `<span class="ctag gone">${Tx("deleted", "deleted")}</span>` : ""}</div>
+    <blockquote class="cq-text">${esc(q.text)}</blockquote>
+    <a class="cq-link" href="${esc(q.url)}" target="_blank" rel="noopener">${Tx("source", "source")} ${I.ext()}</a>
+  </article>`).join("");
+  const METHOD_URL = ZH ? "https://freetokens.fyi/zh/methodology#community-take" : "https://freetokens.fyi/methodology#community-take";
+  const ISSUE_URL = "https://github.com/dimpurr/freetokens/issues/new";
+  ct.innerHTML = `
+    <p class="ct-meta">${C.authors} ${Tx("authors", "authors")} · ${(C.posts || []).length} ${Tx("posts", "posts")} · ${Tx("collected", "collected")} ${esc(absDate(C.collected))}</p>
+    <div class="ct-cells">
+      ${cell(Tx("Level", "Level"), dist(C.tier))}
+      ${cell(Tx("Compared to", "Compared to"), cmp)}
+      ${cell(Tx("Rumoured maker", "Rumoured maker"), mk)}
+      ${cell(Tx("Size", "Size"), sz)}
+      ${cell(Tx("Strengths", "Strengths"), dist(C.strengths, "+"))}
+      ${cell(Tx("Weaknesses", "Weaknesses"), dist(C.weaknesses, "−"))}
+      ${cell(Tx("Issues", "Issues"), dist(C.issues))}
+      ${cell(Tx("Sentiment", "Sentiment"), dist(C.sentiment))}
+      ${cell(Tx("Sources", "Sources"), Object.entries(C.sources || {}).map(([k, n]) => `${esc(pretty(k))} <b>${n}</b>`).join(" · "))}
+      ${nums ? `<div class="ct-cell ct-wide"><span class="k">${Tx("Numbers as reported", "Numbers as reported")}</span><span class="v">${nums}</span></div>` : ""}
+    </div>
+    ${quotes ? `<div class="cquotes">${quotes}</div>` : ""}
+    <div class="ct-foot"><span class="ct-notfti">${Tx("Not part of FTI", "Not part of FTI")}</span> · <a href="${METHOD_URL}">${Tx("method", "method")}</a> · <a href="${ISSUE_URL}" target="_blank" rel="noopener">${Tx("report a post", "report a post")}</a></div>`;
+})();
 
 $("stamp").innerHTML = `${Tx("Data as of", "Data as of")} ${esc(absDate(D.built))}.`;
 onView(() => document.querySelectorAll("[data-lane]").forEach((el) => {
