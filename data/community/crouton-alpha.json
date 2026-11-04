@@ -91,7 +91,16 @@
    "grade": "forensic",
    "quote": null,
    "gone": false,
-   "labels": {}
+   "labels": {
+    "maker_guess": [
+     {
+      "maker": "meta",
+      "evidence": [
+       "tokenizer"
+      ]
+     }
+    ]
+   }
   },
   {
    "id": "crouton-alpha-p05",
@@ -102,7 +111,22 @@
    "grade": "measured",
    "quote": "My public deployment name is Crouton Alpha. I can't verify the underlying model name or who made it.",
    "gone": false,
-   "labels": {}
+   "labels": {
+    "compared_to": [
+     {
+      "model": "minimax-m3.1-flash",
+      "direction": "similar"
+     }
+    ],
+    "numbers": [
+     {
+      "metric": "suite_score",
+      "value": "140/157",
+      "unit": "tasks",
+      "note": "rank 10/26, between Claude Fable 5.1 (142) and MiniMax M3.1 Flash (136); one run, author calls it a hint"
+     }
+    ]
+   }
   },
   {
    "id": "crouton-alpha-p06",
@@ -180,12 +204,6 @@
       "maker": "minimax",
       "evidence": [
        "other"
-      ]
-     },
-     {
-      "maker": "muse-spark-1.3-contributor",
-      "evidence": [
-       "style"
       ]
      }
     ],
@@ -425,6 +443,11 @@
    "posts": 1
   },
   {
+   "model": "minimax-m3.1-flash",
+   "direction": "similar",
+   "posts": 1
+  },
+  {
    "model": "muse-spark-1.3-contributor",
    "direction": "similar",
    "posts": 2
@@ -445,7 +468,7 @@
   },
   {
    "maker": "meta",
-   "posts": 3,
+   "posts": 4,
    "evidence": [
     "geo_block",
     "style",
@@ -468,16 +491,6 @@
    "evidence": [
     "other"
    ]
-  },
-  {
-   "maker": "muse-spark-1.3-contributor",
-   "posts": 1,
-   "evidence": [
-    "style"
-   ],
-   "against": {
-    "tokenizer": 1
-   }
   },
   {
    "maker": "undisclosed",
@@ -516,42 +529,44 @@
  },
  "numbers": [
   {
+   "post": "crouton-alpha-p05",
+   "metric": "suite_score",
+   "value": "140/157",
+   "unit": "tasks",
+   "note": "rank 10/26, between Claude Fable 5.1 (142) and MiniMax M3.1 Flash (136); one run, author calls it a hint"
+  },
+  {
    "post": "crouton-alpha-p07",
    "metric": "tokenizer_match",
    "value": "mismatch",
    "unit": null,
-   "note": "token counts don't match Meta's published tokenizer, so it may use a new one",
-   "grade": "forensic"
+   "note": "token counts don't match Meta's published tokenizer, so it may use a new one"
   },
   {
    "post": "crouton-alpha-p08",
    "metric": "throughput",
    "value": 333.7,
    "unit": "tok/s",
-   "note": "thread title 333.7 tok/s; EU/Germany block in thread",
-   "grade": "measured"
+   "note": "thread title 333.7 tok/s; EU/Germany block in thread"
   },
   {
    "post": "crouton-alpha-p10",
    "metric": "tokenizer_match",
    "value": "mismatch",
-   "note": "12-model tokenizer comparison; matched none",
-   "grade": "forensic"
+   "note": "12-model tokenizer comparison; matched none"
   },
   {
    "post": "crouton-alpha-p14",
    "metric": "tokenizer_match",
    "value": "mismatch",
-   "note": "tokenizer check does not match published Muse",
-   "grade": "measured"
+   "note": "tokenizer check does not match published Muse"
   },
   {
    "post": "crouton-alpha-p15",
    "metric": "throughput",
    "value": 150,
    "unit": "tok/s",
-   "note": "150+ tok/s reported in thread",
-   "grade": "hands_on"
+   "note": "150+ tok/s reported in thread"
   }
  ],
  "sources": {
@@ -632,12 +647,6 @@
    "reason": "maker-style guess misfiled as comparison"
   },
   {
-   "post": "crouton-alpha-p04",
-   "cell": "maker_guess",
-   "key": "('maker_guess', 'Muse Spark 1.3')",
-   "reason": "one-sided ['b'] without ruling"
-  },
-  {
    "post": "crouton-alpha-p07",
    "cell": "numbers",
    "key": "('numbers', 'tokenizer_match', \"mismatch vs Meta's published tokenizer\")",
@@ -664,7 +673,7 @@
   {
    "post": "crouton-alpha-p11",
    "cell": "maker_guess",
-   "key": "('maker_guess', 'Muse Spark')",
+   "key": "('maker_guess', 'meta')",
    "reason": "one-sided ['b'] without ruling"
   },
   {

@@ -259,18 +259,12 @@
    "quote": null,
    "gone": false,
    "labels": {
-    "compared_to": [
-     {
-      "model": "crouton-alpha",
-      "direction": "worse"
-     }
-    ],
     "numbers": [
      {
       "metric": "other",
       "value": 115100,
       "unit": "tokens",
-      "note": "115.1k tokens in 21m21s vs Crouton Alpha 7.7k tokens in 33.2s"
+      "note": "115.1k tokens in 21m21s vs Crouton Alpha 7.7k tokens in 33.2s; wall time, not tok/s"
      }
     ]
    }
@@ -283,11 +277,6 @@
   {
    "model": "crouton-alpha",
    "direction": "better",
-   "posts": 1
-  },
-  {
-   "model": "crouton-alpha",
-   "direction": "worse",
    "posts": 1
   },
   {
@@ -314,14 +303,20 @@
     "other",
     "self_report",
     "style"
-   ]
+   ],
+   "against": {
+    "tokenizer": 1
+   }
   },
   {
    "maker": "tencent",
    "posts": 1,
    "evidence": [
     "style"
-   ]
+   ],
+   "against": {
+    "tokenizer": 1
+   }
   },
   {
    "maker": "thinking-machines",
@@ -343,7 +338,10 @@
    "posts": 1,
    "evidence": [
     "other"
-   ]
+   ],
+   "against": {
+    "tokenizer": 1
+   }
   }
  ],
  "size_guess": "not discussed",
@@ -369,16 +367,14 @@
    "metric": "benchmark",
    "value": "6 toy tasks",
    "unit": "tasks",
-   "note": "failures cluster on instruction following and spatial detail",
-   "grade": "measured"
+   "note": "failures cluster on instruction following and spatial detail"
   },
   {
    "post": "pulse-alpha-p13",
    "metric": "other",
    "value": 115100,
    "unit": "tokens",
-   "note": "115.1k tokens in 21m21s vs Crouton Alpha 7.7k tokens in 33.2s",
-   "grade": "measured"
+   "note": "115.1k tokens in 21m21s vs Crouton Alpha 7.7k tokens in 33.2s; wall time, not tok/s"
   }
  ],
  "sources": {
@@ -481,6 +477,12 @@
    "cell": "numbers",
    "key": "('numbers', 'other', '115.1k tokens in 21m21s')",
    "reason": "one-sided ['a'] without ruling"
+  },
+  {
+   "post": "pulse-alpha-p13",
+   "cell": "compared_to",
+   "key": "('compared_to', 'crouton-alpha', 'worse')",
+   "reason": "speed anecdote, not a quality comparison (report: \"Pulse spent the time writing, not necessarily decoding slowly\")"
   },
   {
    "post": "pulse-alpha-p13",
