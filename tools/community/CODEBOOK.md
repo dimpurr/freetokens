@@ -1,4 +1,4 @@
-# Community take · codebook v0.2
+# Community take · codebook v0.3
 
 How freetokens turns public discussion of a model into countable, sourced cells. Decision record: ADR-038 (private). This is method, not opinion: every cell is a count of posts, and every post links back to its source. Nothing here feeds FT Intelligence.
 
@@ -51,6 +51,21 @@ v0 let each coder pick and count posts from the harvest report; coders disagreed
 - `size_guess`: numeric range plus unit (e.g. `30-40B total, 2-5B active`); spelling is cleaned by script.
 - Model and maker names may be written as in the post; the counting script normalizes them to `data/models.json` / `data/makers.json` ids through an alias table before counting.
 
+## Agreement unit (v0.3)
+
+Agreement is checked on the **key** of each label, not on its decorations:
+- `maker_guess`: the maker. Evidence types are merged (union) across coders, never a reason to drop the label.
+- `compared_to`: (model, direction).
+- `numbers`: (metric, value). `note` is free.
+- `strengths` / `weaknesses` / `issues`: each item separately.
+- `tier`, `sentiment`, `size_guess`: the value.
+
+One-sided labels (only one coder filled the cell) go to a single **reviewer** pass (a third coder, or the deputy) that reads the post and accepts or rejects each one. Accepted labels count; rejected ones are dropped. Two-sided disagreements go to the same reviewer. Nothing is silently lost: the file keeps `dropped` with the reason.
+
+**Sanity check before publishing**: the published cells must reproduce the main findings of the harvest report (leading maker guess, the most-cited comparisons, overall tone). If they don't, the labels are wrong, not the report: fix and re-run before building.
+
+Empty cells are not rendered.
+
 ## Agreement
 
 Measured per post × cell, on direction or value only (not on counts), and only where both coders filled the cell; one coder filling a cell the other left empty is reported separately as `one_sided`, not as disagreement. A cell is `disputed` when the coders disagree on it for any post; disputed labels are dropped from counts unless a reviewer resolves them. If fewer than 70% of post×cell labels agree, fix the codebook before going on (ADR-038 regret condition).
@@ -97,6 +112,7 @@ Collected on intake day, day 3, day 7 and reveal day; frozen after that. Each pa
 
 ## Changelog
 
+- v0.3 (2026-11-04): agreement on label keys (maker, model+direction, metric+value), evidence merged; reviewer pass for one-sided and disputed labels; sanity check against the harvest report; empty cells hidden. Cause: P1 data dropped most labels (Crouton maker showed Meta 1 / GLM 1 / Mistral 1 while the report had Meta leading).
 - v0.2 (2026-11-04): decision rules for tier and sentiment, metric enumeration, size format, alias normalization, one-sided fills counted separately. Cause: P0b disagreement patterns (92.3% agreement overall).
 - v0.1 (2026-11-04): two stages (post ledger, then per-post labels; counts by script); agreement per post×cell ≥70%; enumerations; 403 ≠ gone. Cause: v0 double coding diverged on the post set (P0 back-test).
 - v0 (2026-11-04): derived from the first two harvests (Crouton Alpha, Pulse Alpha).
