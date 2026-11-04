@@ -370,7 +370,7 @@
    "value": "6 toy tasks",
    "unit": "tasks",
    "note": "failures cluster on instruction following and spatial detail",
-   "url": "https://www.techgogogo.com/2026-11-03/pulse-alpha-benchmark-opencode-mystery-model/"
+   "grade": "measured"
   },
   {
    "post": "pulse-alpha-p13",
@@ -378,7 +378,7 @@
    "value": 115100,
    "unit": "tokens",
    "note": "115.1k tokens in 21m21s vs Crouton Alpha 7.7k tokens in 33.2s",
-   "url": "https://x.com/harshvdev/status/2117891506497540578"
+   "grade": "measured"
   }
  ],
  "sources": {
