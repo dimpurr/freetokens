@@ -1981,11 +1981,12 @@
    "confidence": "none"
   },
   "data_policy": "may_train",
-  "status": "live",
+  "status": "ended",
   "checked": {
-   "date": "2026-10-27",
+   "date": "2026-11-05",
    "method": "catalogue"
   },
+  "note": "Removed from the OpenRouter catalogue at the 2026-11-05 daily check (absent in the 455-model list); paid thinkingmachines/inkling-small stays listed.",
   "volume": {
    "tier": "daily",
    "basis": "own check: 10 parallel runs; OpenRouter :free shares 1000 requests/day per account"
@@ -2061,11 +2062,12 @@
    "confidence": "none"
   },
   "data_policy": "may_train",
-  "status": "live",
+  "status": "ended",
   "checked": {
-   "date": "2026-10-27",
+   "date": "2026-11-05",
    "method": "catalogue"
   },
+  "note": "Removed from the OpenRouter catalogue at the 2026-11-05 daily check (absent in the 455-model list); paid thinkingmachines/inkling stays listed.",
   "volume": {
    "tier": "daily",
    "basis": "own check: 10 parallel runs; OpenRouter :free shares 1000 requests/day per account"
@@ -3781,19 +3783,19 @@
     "announced": "2026-11-04",
     "expected": null,
     "confidence": "official",
-    "note": "OVH badges it Being retired, EOL 2026-11-04; catalogue shows available=false on the 2026-11-04 recheck but the decommission table does not name it; lane stays listed, uncertain"
+    "note": "OVH badges it Retired, EOL 2026-11-04; absent from the availability list a 2nd consecutive day (2026-11-04, 2026-11-05 rechecks); official decommission table names Nemo only"
    },
    "data_policy": "zero_retention",
-   "status": "listed",
+   "status": "ended",
    "checked": {
-    "date": "2026-11-04",
+    "date": "2026-11-05",
     "method": "catalogue"
    },
    "volume": {
     "tier": "taste",
     "basis": "2 requests a minute per IP (stated)"
    },
-   "note": "EOL date reached but removal unconfirmed: catalog API says available=false, endpoint still answers (2026-11-04); official decommission table names Nemo only."
+   "note": "EOL date reached and catalogue page badges it Retired: absent from the availability list a 2nd consecutive day (2026-11-04, 2026-11-05); endpoint still answered on 2026-11-04."
   },
   {
    "id": "mistral-nemo-ovh",
@@ -5577,12 +5579,12 @@
    "note": "Vercel changelog: free until November 3, 2026; post-promo pricing not published"
   },
   "data_policy": "unstated",
-  "status": "overdue",
+  "status": "ended",
   "checked": {
-   "date": "2026-11-04",
+   "date": "2026-11-05",
    "method": "catalogue"
   },
-  "note": "Promo expired: Vercel gateway now prices it $0.30/$0.90 (2026-11-04); changelog said free until 2026-11-03. Old inclusionai/ling-3.1-flash stays listed at the same price."
+  "note": "Promo expired: Vercel gateway now prices it $0.30/$0.90 (verified 2026-11-05); changelog said free until 2026-11-03. Old inclusionai/ling-3.1-flash stays listed at the same price."
  },
  {
   "id": "ling-3.1-flash-1019-kilo",
@@ -6530,7 +6532,7 @@
   "model": "crouton-alpha",
   "channel": "OpenCode Zen",
   "type": "agent_tool",
-  "model_id": "crouton-alpha-free",
+  "model_id": "opencode/crouton-alpha-free",
   "free_condition": null,
   "meter": "per_model",
   "limits_stated": {
@@ -6549,13 +6551,13 @@
   "data_policy": "may_train",
   "status": "listed",
   "checked": {
-   "date": "2026-11-04",
+   "date": "2026-11-05",
    "method": "catalogue"
   },
   "volume": {
    "tier": "daily",
    "basis": "channel rule: Zen's free allowance is per IP per day; this model not load-tested"
   },
-  "note": "Stealth reasoning model (text/image/video/pdf in, tool use); 1M context, 270K max output; cost $0/$0."
+  "note": "Stealth reasoning model (text/image/video/pdf in, tool use); 1M context, 270K max output; cost $0/$0. Zen catalogue id opencode/crouton-alpha-free; still listed at $0 at the 2026-11-05 check."
  }
 ]

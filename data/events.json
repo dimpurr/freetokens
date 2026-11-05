@@ -1,5 +1,45 @@
 [
   {
+    "date": "2026-11-05",
+    "lanes": [
+      "inkling-or",
+      "inkling-small-or"
+    ],
+    "kind": "ended",
+    "end_date": "2026-11-05",
+    "text": "thinkingmachines/inkling:free and thinkingmachines/inkling-small:free are gone from the OpenRouter catalogue at the 2026-11-05 daily check (455 models); the paid ids stay listed",
+    "source": {
+      "label": "own check of the OpenRouter models API",
+      "url": "https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2026-11-05",
+    "lanes": [
+      "ling-3.1-flash-1019-vercel"
+    ],
+    "kind": "ended",
+    "end_date": "2026-11-03",
+    "text": "Vercel AI Gateway promo over: inclusionai/ling-3.1-flash-1019 now prices $0.30/$0.90 (verified 2026-11-05) after free-until-2026-11-03; absent from the $0 list a 2nd consecutive day",
+    "source": {
+      "label": "own check of the Vercel AI Gateway model list",
+      "url": "https://ai-gateway.vercel.sh/v1/models"
+    }
+  },
+  {
+    "date": "2026-11-05",
+    "lanes": [
+      "mistral-small-3.2-ovh"
+    ],
+    "kind": "ended",
+    "end_date": "2026-11-04",
+    "text": "Mistral-Small-3.2-24B-Instruct-2506 reaches EOL: the OVH catalogue page badges it Retired and it is absent from the availability list a 2nd consecutive day (2026-11-04, 2026-11-05); endpoint still answered on 2026-11-04",
+    "source": {
+      "label": "OVHcloud AI Endpoints catalogue page",
+      "url": "https://www.ovhcloud.com/en-gb/public-cloud/ai-endpoints/catalog/"
+    }
+  },
+  {
     "date": "2026-10-11",
     "lanes": [
       "dots-3-note-preview-cline",
