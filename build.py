@@ -1577,6 +1577,8 @@ def residue_gate(dist, lanes, events, models):
         t = re.sub(r"<script.*?</script>", "\x00", t, flags=re.S)
         t = re.sub(r"<style.*?</style>", "\x00", t, flags=re.S)
         t = re.sub(r"<code.*?</code>", "\x00", t, flags=re.S)
+        # community-take quote cards are verbatim posts (CODEBOOK: quotes stay in the original language)
+        t = re.sub(r"<blockquote.*?</blockquote>", "\x00", t, flags=re.S)
         text = re.sub(r"<[^>]+>", "\x00", t)
         for q in re.findall(r'"([^"\x00]{8,})"', text):
             text = text.replace(f'"{q}"', "\x00")

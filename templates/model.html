@@ -143,13 +143,14 @@ $("details").innerHTML = ML.map((l) => {
     const k = Math.max(1, Math.min(n, CAP));
     return `<span class="meter ct-marks" style="--n:${k}" role="img" aria-label="${n} ${Tx("posts", "posts")}">${'<i class="on"></i>'.repeat(k)}</span>${n > CAP ? `<b class="ct-n">${n}</b>` : ""}`;
   };
-  const term = (k, n, cls, sign) => `<span class="ct-term${cls ? " " + cls : ""}" title="${esc(pretty(k))} · ${n} ${Tx("posts", "posts")}">${esc(pretty(k))}${sign ? `<i class="ct-sign">${sign}</i>` : ""}${bars(n)}</span>`;
+  const lab = (k) => Tx(pretty(k), pretty(k));
+  const term = (k, n, cls, sign) => `<span class="ct-term${cls ? " " + cls : ""}" title="${esc(lab(k))} · ${n} ${Tx("posts", "posts")}">${esc(lab(k))}${sign ? `<i class="ct-sign">${sign}</i>` : ""}${bars(n)}</span>`;
   const tally = (o, cls, sign) => Object.entries(o || {}).filter(([k]) => !junk(k)).sort((a, b) => b[1] - a[1]).map(([k, n]) => term(k, n, cls, sign)).join("");
   const POL = { negative: "ct-neg", mixed: "ct-mix", positive: "ct-pos" };
   const senti = Object.entries(C.sentiment || {}).sort((a, b) => b[1] - a[1]).map(([k, n]) => term(k, n, POL[k] || "ct-flat")).join("");
   const cell = (k, v, rows) => v ? `<div class="ct-cell"><span class="k">${k}</span><span class="v${rows ? " ct-rows" : ""}">${v}</span></div>` : "";
   const cmp = (C.compared_to || []).slice().sort((a, b) => b.posts - a.posts)
-    .map((x) => `<span class="ct-row">${mlink(x.model)} <span class="ct-dir ${x.direction}">${esc(x.direction)}</span>${bars(x.posts)}</span>`).join("");
+    .map((x) => `<span class="ct-row">${mlink(x.model)} <span class="ct-dir ${x.direction}">${esc(Tx(x.direction, x.direction))}</span>${bars(x.posts)}</span>`).join("");
   const EVW = { tokenizer: "tokenizer", geo_block: "geo block", api_shape: "API shape", self_report: "self-report", style: "style", version: "version" };
   const evword = (k) => Tx(EVW[k] || pretty(k), EVW[k] || pretty(k));
   /* a maker guess may name a company, a stealth model or nothing: show a readable name, link where one exists */
