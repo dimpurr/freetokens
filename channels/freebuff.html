@@ -109,6 +109,15 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 .sub { display: block; font-size: 0.78rem; color: var(--muted); line-height: 1.35; margin-top: 2px; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .ico { width: 1em; height: 1em; vertical-align: -0.14em; flex: none; }
+/* THE help mark, site-wide (11-06: Dim —「这个问号也太大了」「怎么都又大尺寸又不一致」): one size, one colour, one weight.
+   0.8em of the body text (never of the big number beside it, which is what made the stat cells shout), --muted, thin
+   stroke, bottom on the baseline, and it only deepens on hover or when its panel is open.
+   Every "?" on the site is drawn by common.js helpIcon() with this class; no page or column may restyle it per context. */
+.ico.help { font-size: 1rem; width: 0.8em; height: 0.8em; vertical-align: -0.1em; color: var(--muted); stroke-width: 1.6; }
+/* flex containers align a replaced item by its bottom edge: nudge the same 0.1em the inline vertical-align gives us */
+.aa > .ico.help, .vs-help > .ico.help { position: relative; top: 0.1em; }
+.aa:hover .ico.help, .vs-help:hover .ico.help, .obs-i:hover .ico.help, .pol:hover .ico.help,
+details.estd[open] .ico.help, details.obs-i[open] .ico.help { color: var(--fg); }
 
 /* logos: maker and channel marks. Colour marks are images; one-colour marks are masks so they follow the text colour in both themes.
    .lg = bare mark next to text · .lg.t = mark on a small tile (rows, cards) · .lg.xl = page header */
@@ -207,7 +216,7 @@ a.when { color: inherit; text-decoration: none; border-bottom: 1px dotted var(--
 a.when:hover { color: var(--accent); border-bottom-color: var(--accent); }
 
 /* surfaces: white on grey, drawn by a hairline ring */
-.card, .tile, .tbl-scroll, .chart-scroll, .tl, .chlist, .friends, .detail, .stat, .chcard, .where-now, .lad-chart { background: var(--surface); border: 0; border-radius: var(--r); box-shadow: var(--ring); }
+.card, .tile, .tbl-scroll, .chart-scroll, .tl, .chlist, .friends, .detail, .stat, .chcard, .a-live, .lad-chart { background: var(--surface); border: 0; border-radius: var(--r); box-shadow: var(--ring); }
 
 /* ending soon */
 .soon { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: 12px; }
@@ -269,12 +278,15 @@ a.when:hover { color: var(--accent); border-bottom-color: var(--accent); }
 
 /* tables: two lines per cell, first column pinned when the table scrolls */
 .tbl-scroll { overflow-x: auto; }
-/* article live box: where the model is free now, rebuilt from data on every build */
-.where-now { margin: 12px 0; padding: 10px 14px; display: grid; gap: 8px; }
+/* article live card head: the state line inside .a-live, rebuilt from data on every build */
 .where-now-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; font-size: 0.9rem; }
 /* article answer box (ADR-028 blockquote) */
 blockquote { margin: 0; padding: 12px 16px; background: var(--surface); box-shadow: var(--ring), inset 4px 0 0 var(--measured); border-radius: 0 var(--r) var(--r) 0; display: grid; gap: 6px; }
 blockquote p { margin: 0; }
+/* ADR-032 补记 10-27: the hero's state moved after the article's date — the answer box says which day it was written
+   and its accent bar goes neutral (--line-strong, same hairline as every divider; no status colour, it is not a status). */
+blockquote.as-written { box-shadow: var(--ring), inset 4px 0 0 var(--line-strong); }
+.aw-note { font-size: 0.78rem; color: var(--muted); font-variant-numeric: tabular-nums; }
 table { border-collapse: separate; border-spacing: 0; width: 100%; font-size: 0.86rem; }
 th { text-align: left; font: 600 0.68rem var(--f-body); text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); padding: 10px 14px; border-bottom: 1px solid var(--line); white-space: nowrap; background: var(--surface-2); }
 th:first-child { border-top-left-radius: var(--r); } th:last-child { border-top-right-radius: var(--r); }
@@ -327,12 +339,9 @@ code.id { font: 0.76rem var(--f-mono); color: var(--fg); background: var(--surfa
 /* FTI: the number is the point; a dashed "FTI" tag marks a band */
 .aa { display: inline-flex; align-items: baseline; gap: 5px; font: 600 1.1rem var(--f-body); font-variant-numeric: tabular-nums; letter-spacing: -0.02em; color: var(--fg); text-decoration: none; white-space: nowrap; }
 a.aa:hover { color: var(--accent); }
-a.aa .ico { width: 11px; height: 11px; color: var(--faint); align-self: center; }
-a.aa:hover .ico { color: var(--accent); }
 .aa small { font: 700 0.6rem var(--f-body); color: var(--muted); letter-spacing: 0.06em; }
 .aa.est { cursor: pointer; list-style: none; color: var(--muted); }
 .aa.est small { color: var(--accent); border: 1px dashed currentColor; border-radius: 4px; padding: 0 4px; }
-.aa.est .ico { width: 13px; height: 13px; color: var(--faint); align-self: center; }
 .aa.est::-webkit-details-marker { display: none; }
 summary.aa { cursor: pointer; list-style: none; }
 summary.aa::-webkit-details-marker { display: none; }
@@ -793,14 +802,43 @@ ol.rungs > li.muted::before { content: none; }
 .wrap.blog { gap: 28px; }
 .a-layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; }
 .a-main { display: contents; }
-.a-side { order: 2; min-width: 0; }
 .ahead { order: 1; }
-.a-main > .article { order: 3; }
-.a-main > .endmatter { order: 4; }
+.a-live { order: 2; }             /* ADR-032 补记 10-27: the live card sits directly under the byline … */
+.a-side { order: 3; min-width: 0; }   /* … and the contents fold drops below it (was: right under the header) */
+.a-main > .article { order: 4; }
+.a-main > .endmatter { order: 5; }
+
+/* The live card, one element at every width: a compact row under the byline up to 1360px, the sticky third column above it.
+   Everything inside it is an existing component (the card surface, .chips/.chip with its state shape, .where-now-head). */
+.a-live { display: grid; gap: 8px 14px; padding: 12px 14px; align-content: start; font-size: 0.86rem; min-width: 0; }
+.a-live .where-now-head { grid-column: 1 / -1; }
+.lc-who { margin: 0; font-weight: 600; }
+.lc-who a { color: var(--fg); text-decoration: none; }
+.lc-who a:hover { color: var(--accent); }
+.a-live > .chips { align-self: center; }
+.lc-none { margin: 0; display: flex; align-items: center; gap: 8px; }
+.lc-alt { grid-column: 1 / -1; display: grid; gap: 6px; padding-top: 8px; border-top: 1px solid var(--line); }
+.lc-alt > span { font-size: 0.75rem; }
+.lc-all { font-size: 0.8rem; }
+@media (min-width: 760px) {   /* the subject and its channels share a line: [model] [where] */
+  .a-live { grid-template-columns: auto minmax(0, 1fr); }
+  .lc-who { grid-column: 1; }
+  .a-live > .chips { grid-column: 2; }
+}
 @media (min-width: 1200px) {
   .a-layout { grid-template-columns: 220px minmax(0, 720px); column-gap: 64px; row-gap: 40px; justify-content: start; }
-  .a-side { grid-column: 1; grid-row: 1 / span 4; align-self: start; position: sticky; top: 72px; max-height: calc(100vh - 96px); overflow-y: auto; scrollbar-width: thin; }
-  .ahead, .a-main > .article, .a-main > .endmatter { grid-column: 2; }
+  .a-side { grid-column: 1; grid-row: 1 / span 5; align-self: start; position: sticky; top: 72px; max-height: calc(100vh - 96px); overflow-y: auto; scrollbar-width: thin; }
+  .ahead, .a-live, .a-main > .article, .a-main > .endmatter { grid-column: 2; }
+}
+/* 1360, not 1200: the reading column is fixed at 720 (DESIGN §1 — no narrower measure to buy a third column),
+   the shell is 1200 − 40 padding, so a 252px column plus two 64px gutters does not fit until the shell widens here.
+   1200–1359 therefore keeps the two-column article page with the card as the line under the byline. */
+@media (min-width: 1360px) {
+  .wrap.blog { max-width: 1360px; }
+  .a-layout { grid-template-columns: 220px minmax(0, 720px) minmax(0, 252px); }
+  .a-live { grid-column: 3; grid-row: 1 / span 5; grid-template-columns: minmax(0, 1fr); align-self: start; position: sticky; top: 72px; max-height: calc(100vh - 96px); overflow-y: auto; scrollbar-width: thin; }
+  .a-live > .chips, .lc-alt .chips { display: grid; gap: 5px; }
+  .a-live .chip { white-space: normal; max-width: 100%; }
 }
 @media (min-width: 760px) and (max-width: 1199px) { .a-layout > *, .a-main > * { max-width: 720px; } }
 
@@ -861,7 +899,6 @@ sup { line-height: 0; font-size: 0.68em; vertical-align: super; }
 .article .tbl-scroll { font-size: 0.92rem; line-height: 1.5; }
 .article .tbl-scroll table { font-size: inherit; }
 .article td, .article th { padding: 10px 14px; }
-.article .where-now { margin-top: 1em; }
 .article figure { margin: 2em 0 0; display: grid; gap: 10px; }
 .article figure + * { margin-top: 1.6em; }
 .fig-img { display: block; }
@@ -1095,11 +1132,14 @@ function relDays(t) {
 
 /* ---------- icons (inline SVG, stroke = currentColor) ---------- */
 const svg = (p, label) => `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ${label ? `role="img" aria-label="${label}"` : 'aria-hidden="true"'}>${p}</svg>`;
+/* THE help glyph (DESIGN §2: one mark, one look): thin line, --muted, 0.8em, on the number's baseline, darkens only on hover.
+   Size and colour live in style.css (.ico.help); nothing else may draw a question mark. Every call site goes through helpIcon. */
+const helpIcon = (l) => `<svg class="ico help" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" ${l ? `role="img" aria-label="${l}"` : 'aria-hidden="true"'}><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14"/><path d="M12 17h.01"/></svg>`;
 const I = {
   bolt: (l) => svg('<path d="M13 2 4 14h7l-1 8 9-12h-7z"/>', l),
   lock: (l) => svg('<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>', l),
   eye: (l) => svg('<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>', l),
-  help: (l) => svg('<circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14"/><path d="M12 17h.01"/>', l),
+  help: (l) => helpIcon(l),
   copy: (l) => svg('<rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/>', l),
   ext: (l) => svg('<path d="M14 4h6v6"/><path d="M20 4 10 14"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/>', l),
   image: (l) => svg('<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-9 9"/>', l),
@@ -1379,7 +1419,7 @@ function measuredHTML(l, badge = false) {
   const parts = obsParts(l), shown = badge ? parts.slice(0, 2) : parts;
   const prov = [lo.note, `${Tx("checked", "checked")} ${absDate(lo.date)}`, lo.checks > 1 ? `${lo.checks} ${Tx("checks", "checks")}` : "", lo.networks > 1 ? `${Tx("from", "from")} ${lo.networks} ${Tx("networks", "networks")}` : ""].filter(Boolean).join(" · ");
   return `<span class="obs${badge ? " badge" : ""}">${I.bolt()}${shown.map((x) => `<span class="ob ${x.c}" title="${esc(x.h)}">${esc(x.t)}</span>`).join("")}` +
-    (badge ? "" : `<details class="obs-i"><summary aria-label="${esc(Tx("Details of our check", "Details of our check"))}">ⓘ</summary><span>${esc(prov)}</span></details>`) + `</span>`;
+    (badge ? "" : `<details class="obs-i"><summary aria-label="${esc(Tx("Details of our check", "Details of our check"))}">${helpIcon()}</summary><span>${esc(prov)}</span></details>`) + `</span>`;
 }
 /* a live lane not re-checked for 7 days is due for a re-check: shown, and not counted as confirmed (OBSERVE.md) */
 const STALE_DAYS = 7;
@@ -1402,7 +1442,7 @@ const limitHTML = (l) => {
   const head = nums ? `<b class="mono">${ls.basis === "community" ? "≈" : ""}${esc(nums)}</b>` : `<span class="muted nowrap">${esc(lab("limit_basis", ls.basis))}</span>`;
   const tip = V.limit_basis[ls.basis].help;
   const main = ls.source ? `<a href="${esc(ls.source)}" target="_blank" rel="noopener" title="${esc(tip)}">${head}</a>` : `<span title="${esc(tip)}">${head}</span>`;
-  return main + (ls.note ? `<details class="obs-i"><summary aria-label="${esc(Tx("About this limit", "About this limit"))}">ⓘ</summary><span>${esc(ls.note)}</span></details>` : "");
+  return main + (ls.note ? `<details class="obs-i"><summary aria-label="${esc(Tx("About this limit", "About this limit"))}">${helpIcon()}</summary><span>${esc(ls.note)}</span></details>` : "");
 };
 /* FT Intelligence (ADR-036): m.ft = {status, center, low, high, evidence, independent, exact, sources}.
    exact (3+ sources, one independent of the vendor) = an integer · fewer = a 5-point band · none = — */

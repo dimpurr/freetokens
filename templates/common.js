@@ -47,11 +47,14 @@ function relDays(t) {
 
 /* ---------- icons (inline SVG, stroke = currentColor) ---------- */
 const svg = (p, label) => `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ${label ? `role="img" aria-label="${label}"` : 'aria-hidden="true"'}>${p}</svg>`;
+/* THE help glyph (DESIGN §2: one mark, one look): thin line, --muted, 0.8em, on the number's baseline, darkens only on hover.
+   Size and colour live in style.css (.ico.help); nothing else may draw a question mark. Every call site goes through helpIcon. */
+const helpIcon = (l) => `<svg class="ico help" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" ${l ? `role="img" aria-label="${l}"` : 'aria-hidden="true"'}><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14"/><path d="M12 17h.01"/></svg>`;
 const I = {
   bolt: (l) => svg('<path d="M13 2 4 14h7l-1 8 9-12h-7z"/>', l),
   lock: (l) => svg('<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>', l),
   eye: (l) => svg('<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>', l),
-  help: (l) => svg('<circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14"/><path d="M12 17h.01"/>', l),
+  help: (l) => helpIcon(l),
   copy: (l) => svg('<rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/>', l),
   ext: (l) => svg('<path d="M14 4h6v6"/><path d="M20 4 10 14"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/>', l),
   image: (l) => svg('<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-9 9"/>', l),
@@ -331,7 +334,7 @@ function measuredHTML(l, badge = false) {
   const parts = obsParts(l), shown = badge ? parts.slice(0, 2) : parts;
   const prov = [lo.note, `${Tx("checked", "checked")} ${absDate(lo.date)}`, lo.checks > 1 ? `${lo.checks} ${Tx("checks", "checks")}` : "", lo.networks > 1 ? `${Tx("from", "from")} ${lo.networks} ${Tx("networks", "networks")}` : ""].filter(Boolean).join(" · ");
   return `<span class="obs${badge ? " badge" : ""}">${I.bolt()}${shown.map((x) => `<span class="ob ${x.c}" title="${esc(x.h)}">${esc(x.t)}</span>`).join("")}` +
-    (badge ? "" : `<details class="obs-i"><summary aria-label="${esc(Tx("Details of our check", "Details of our check"))}">ⓘ</summary><span>${esc(prov)}</span></details>`) + `</span>`;
+    (badge ? "" : `<details class="obs-i"><summary aria-label="${esc(Tx("Details of our check", "Details of our check"))}">${helpIcon()}</summary><span>${esc(prov)}</span></details>`) + `</span>`;
 }
 /* a live lane not re-checked for 7 days is due for a re-check: shown, and not counted as confirmed (OBSERVE.md) */
 const STALE_DAYS = 7;
@@ -354,7 +357,7 @@ const limitHTML = (l) => {
   const head = nums ? `<b class="mono">${ls.basis === "community" ? "≈" : ""}${esc(nums)}</b>` : `<span class="muted nowrap">${esc(lab("limit_basis", ls.basis))}</span>`;
   const tip = V.limit_basis[ls.basis].help;
   const main = ls.source ? `<a href="${esc(ls.source)}" target="_blank" rel="noopener" title="${esc(tip)}">${head}</a>` : `<span title="${esc(tip)}">${head}</span>`;
-  return main + (ls.note ? `<details class="obs-i"><summary aria-label="${esc(Tx("About this limit", "About this limit"))}">ⓘ</summary><span>${esc(ls.note)}</span></details>` : "");
+  return main + (ls.note ? `<details class="obs-i"><summary aria-label="${esc(Tx("About this limit", "About this limit"))}">${helpIcon()}</summary><span>${esc(ls.note)}</span></details>` : "");
 };
 /* FT Intelligence (ADR-036): m.ft = {status, center, low, high, evidence, independent, exact, sources}.
    exact (3+ sources, one independent of the vendor) = an integer · fewer = a 5-point band · none = — */

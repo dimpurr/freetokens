@@ -1851,21 +1851,172 @@ def render_live_block(spec, lanes, models, today):
         return str(n)
     if "model" not in kv:
         sys.exit(f"✗ live:where-to-use needs model=: {spec[:60]}")
-    rows = [l for l in lanes if l["model"] == kv["model"] and l["status"] in FREE]
-    pre = "/zh" if LANG == "zh" else ""
+    # ADR-032 补记 (2026-10-27): the live state is the card's job; in the body this marker is one line pointing at it,
+    # so the article text and the build-time state never say the same thing twice (DESIGN §4).
+    return f'<p class="live-ref"><a href="#a-live">{tr("Where it is free now →")}</a></p>'
 
-    def end_note(l):
-        e = l["ends"]
-        if e.get("announced"):
-            return f"{tr('ends')} {fmt_date(e['announced'])}"
-        if e.get("expected"):
-            return f"{tr('expected to end')} {fmt_date(e['expected'])}"
-        return tr("no end date announced")
-    chips = "".join(f'<a class="chip" href="{pre}/channels/{slug(l["channel"])}">{html.escape(l["channel"])}<small>{html.escape(end_note(l))}</small></a>' for l in rows) \
-        or f'<span class="muted">{tr("none")}</span>'
-    head = tr("Where it's free now")
-    return (f'<div class="where-now"><div class="where-now-head"><b>{head}</b><span class="muted">{tr("As of the build date")} {today.isoformat()}</span></div>'
-            f'<div class="chips">{chips}</div></div>')
+
+def short_label(vname, key):
+    """A vocabulary label with no icon and no sentence: the short form when the schema has one (a chip fits one word)."""
+    v = VOCAB[vname][key]
+    zh = v.get("zh") if LANG == "zh" and isinstance(v.get("zh"), dict) else None
+    return (zh or {}).get("short") or (zh or {}).get("label") or v.get("short") or v["label"]
+
+
+def lane_end_dates(events):
+    """lane id → the day its ended event records (the date the free period stopped, not the day we looked).
+    events.json is not date-sorted (checked 11-06), so keep the latest ISO date, not the last row of the file."""
+    out = {}
+    for e in events:
+        if e["kind"] == "ended":
+            for i in e.get("lanes", []):
+                if i not in out or e["date"] > out[i]:
+                    out[i] = e["date"]
+    return out
+
+
+def state_chip(text, href, status, note=""):
+    """One entity plus its state, in the shape the whole site already uses (common.js chipTo): the state is a shape
+    and a colour, the exception is the small print, the words are in the accessible name (ADR-016). The article
+    card is built from this so it is not a second design of the same thing."""
+    t = html.escape(text)
+    st = html.escape(short_label("status", status))
+    return (f'<a class="chip" href="{href}" title="{t}, {st}" aria-label="{t}, {st}"><span class="st {status}">{t}</span>'
+            + (f'<small>{html.escape(note)}</small>' if note else "") + "</a>")
+
+
+def end_note(l):
+    e = l["ends"]
+    if e.get("announced"):
+        return f"{tr('ends')} {fmt_date(e['announced'])}"
+    if e.get("expected"):
+        return f"{tr('expected to end')} {fmt_date(e['expected'])}"
+    return tr("no end date announced")
+
+
+def end_date_note(l, lane_end):
+    if l["status"] == "ended" and l["id"] in lane_end:
+        # ended-event dates are day- or minute-precision ISO (data/events.json, checked 11-06); fmt_date renders both
+        # (zh "2026年10月20日"), and a [:10] slice would chop the 日 off the zh string — so no slicing here.
+        return f"{tr('ended')} {fmt_date(lane_end[l['id']])}"
+    return end_note(l)
+
+
+def hero_model(body_md, meta, models):
+    """The article's subject: whichever model its live block asks about, else the first tag that is a tracked model."""
+    ids = {m["id"] for m in models}
+    m = re.search(r"\{\{\s*live:where-to-use\s+model=([a-z0-9.\-]+)\s*\}\}", body_md)
+    if m and m.group(1) in ids:
+        return m.group(1)
+    return next((t for t in meta.get("tags", []) if t in ids), None)
+
+
+def maker_family(m):
+    """Whose model it is: a stealth model counts as its rumoured family (ADR-032 §2 ① 同厂商或同传闻家族)."""
+    mk = (m.get("suspected_maker") or {}).get("maker") or m.get("maker")
+    return mk if mk and mk != "undisclosed" else None
+
+
+def free_instead(models, lanes, mid, limit=3):
+    """ADR-032 §2: the rows that stand in for a model with nothing free left. In order: ① the same maker or rumoured
+    family; ② the closest score that is not more than 5 below the original (skipped when the original has no score);
+    ③ the head of the free list by score. ③ says "current view" — a build-time card has no view switch, so it uses
+    the whole list. Returns [(model, its best free lane)]."""
+    by_id = {m["id"]: m for m in models}
+    best = {}
+    for l in lanes:
+        if l["model"] == mid or l["status"] not in FREE:
+            continue
+        cur = best.get(l["model"])
+        if cur is None or FREE.index(l["status"]) < FREE.index(cur["status"]):
+            best[l["model"]] = l
+    if not best:
+        return []
+
+    def center(i):
+        f = by_id[i].get("ft") or {}
+        return f.get("center") if f.get("status") == "ok" else None
+
+    base = center(mid)
+    fam = maker_family(by_id[mid])
+
+    def dist(i):
+        c = center(i)
+        return abs(c - base) if c is not None and base is not None else 99
+
+    fam_ids = sorted((i for i in best if fam and maker_family(by_id[i]) == fam), key=lambda i: (dist(i), by_id[i]["name"]))
+    near = [] if base is None else sorted((i for i in best if i not in fam_ids and center(i) is not None and center(i) >= base - 5),
+                                          key=lambda i: (dist(i), by_id[i]["name"]))
+    rest = sorted((i for i in best if i not in fam_ids and i not in near), key=lambda i: (-(center(i) if center(i) is not None else -1), by_id[i]["name"]))
+    return [(i, best[i]) for i in (fam_ids + near + rest)[:limit]]
+
+
+def render_live_card(mid, lanes, models, events, today, root):
+    """ADR-032 补记 (2026-10-27, 「文章两个时钟」): the article stops still (ADR-028 §5) and this card carries the
+    live state. One element at every width (style.css .a-live): the sticky third column from 1360px, one line under
+    the byline below that. Empty for an article that is not about one tracked model."""
+    if not mid:
+        return ""
+    own = [l for l in lanes if l["model"] == mid]
+    if not own:
+        return ""
+    by_id = {m["id"]: m for m in models}
+    pre = "/zh" if LANG == "zh" else ""
+    free = sorted([l for l in own if l["status"] in FREE], key=lambda l: (FREE.index(l["status"]), l["channel"]))
+    lane_end = lane_end_dates(events)
+    out = [f'<aside class="a-live" id="a-live" aria-labelledby="a-live-h">',
+           f'<div class="where-now-head"><b id="a-live-h">{tr("Where it\'s free now")}</b>'
+           f'<span class="muted">{tr("As of the build date")} {today.isoformat()}</span></div>',
+           f'<p class="lc-who"><a href="{pre}/models/{html.escape(mid)}">{html.escape(by_id[mid]["name"])}</a></p>']
+    if free:
+        out.append('<div class="chips">' + "".join(
+            state_chip(l["channel"], f'{pre}/channels/{slug(l["channel"])}', l["status"], end_date_note(l, lane_end)) for l in free) + "</div>")
+    else:
+        stops = [lane_end[l["id"]] for l in own if l["id"] in lane_end]
+        last = max(stops) if stops else None
+        out.append(f'<p class="lc-none"><span class="st ended">{html.escape(short_label("status", "ended"))}</span>'
+                   + (f'<b class="mono">{html.escape(fmt_date(last))}</b>' if last else "") + "</p>")
+        alt = free_instead(models, lanes, mid)
+        if alt:
+            out.append(f'<div class="lc-alt"><b>{tr("Free now instead")}</b>'
+                       f'<span class="muted">{tr("Same maker · closest score · top of the free list")}</span>'
+                       + '<div class="chips">' + "".join(
+                           state_chip(by_id[i]["name"], f'{pre}/models/{html.escape(i)}', l["status"], end_date_note(l, lane_end)) for i, l in alt) + "</div>"
+                       + f'<a class="lc-all" href="{root}#h-models">{tr("See all free now")}</a></div>')
+    out.append("</aside>")
+    return "".join(out)
+
+
+LANE_STATE_KINDS = ("listed", "available", "ended", "unavailable")  # the event kinds that flip a lane's status (schema vocab.status)
+
+
+def as_written_mark(html_body, meta, mid, lanes, events):
+    """ADR-032 补记 (2026-10-27): the article file stays frozen (ADR-028 §5); when one of the hero's lanes changed
+    state after the day the article was last updated, its Short answer box carries 「As written · {date}」 and the
+    neutral bar — the answer is honest about its own clock, the card beside it carries the present."""
+    if not mid:
+        return html_body
+    upd = str(meta.get("updated") or meta.get("published") or "")
+    if not upd or not re.match(r"<blockquote>", html_body.lstrip()):
+        return html_body
+    own = {l["id"] for l in lanes if l["model"] == mid}
+    if not own:
+        return html_body
+    if not any(e["kind"] in LANE_STATE_KINDS and own & set(e.get("lanes", [])) and day(e["date"]) > day(upd) for e in events):
+        return html_body
+    note = (f'<p class="aw-note">{html.escape(tr("As written"))} &#183; '
+            f'<time datetime="{html.escape(upd)}">{html.escape(fmt_date(upd))}</time></p>')
+    return re.sub(r"<blockquote>", lambda _m: '<blockquote class="as-written">' + note, html_body, count=1)
+
+
+def hero_fully_ended(body_md, meta, lanes, models):
+    """ADR-032 补记 (2026-10-27) 「文章卡片加 ended 标签」: True when the article's hero model has lanes on record
+    and none of them is free — the blog index card says so with the site's one ended mark (.st.ended)."""
+    mid = hero_model(body_md, meta, models)
+    if not mid:
+        return False
+    own = [l for l in lanes if l["model"] == mid]
+    return bool(own) and not any(l["status"] in FREE for l in own)
 
 
 def render_md_article(md_text, ctx, slug):
@@ -2082,6 +2233,9 @@ def build_blog(lanes, events, models, today, mode, lang="en"):
                           f' <span class="src-dom">{html.escape(src_label(srcs[c]["url"]))}</span>'
                           f' <a class="src-back" href="#cite-{i + 1}" aria-label="{tr("Back to text")}">↩</a></li>' for i, c in enumerate(cites))
         byline = byline_html(meta, body_md, RT)
+        mid = hero_model(body_md, meta, models)
+        card = render_live_card(mid, lanes, models, events, today, RT)
+        html_body = as_written_mark(html_body, meta, mid, lanes, events)
         t = (ROOT / "templates" / "article.html").read_text()
         t = t.replace("__NAV__", gnav(RT, RT)).replace("__BRAND__", BRAND).replace("__GH__", GH).replace("__HOME__", RT).replace("__ROOT__", RT)
         if zh:
@@ -2090,6 +2244,7 @@ def build_blog(lanes, events, models, today, mode, lang="en"):
                  .replace("__STATUS_CLASS__", html.escape(meta.get("status", "")))
                  .replace("__TITLE__", html.escape(meta["title"])).replace("__DESCRIPTION__", html.escape(meta.get("description", "")))
                  .replace("__BYLINE__", byline).replace("__TOC__", toc).replace("__BODY__", html_body)
+                 .replace("__LIVECARD__", card)
                  .replace("__CHANGES_H__", tr("Changelog")).replace("__CHANGELOG__", changes)
                  .replace("__SOURCES_H__", tr("Sources")).replace("__SOURCES__", srclist)
                  .replace("__FOOTER__", site_footer()))
@@ -2238,7 +2393,9 @@ def build_blog_pages(lanes, events, models, today, mode, lang="en"):
                 secname = sec if zh else {"档案": "Profiles", "指南": "Guides", "盘点": "Roundups"}.get(sec, sec)
                 parts.append(f'<h2 class="bsec">{html.escape(secname)} <small>{len(items)}</small></h2>')
             if items:
-                parts.append('<div class="posts">' + "".join(post_card(s, m, arts[s][lang][1], U, show_section=sec is None) for s, m in items) + "</div>")
+                parts.append('<div class="posts">' + "".join(
+                    post_card(s, m, arts[s][lang][1], U, show_section=sec is None,
+                              hero_ended=hero_fully_ended(arts[s][lang][1], m, lanes, models)) for s, m in items) + "</div>")
         if not parts:
             parts.append(f"<p>{tr('No articles yet.')}</p>")
         return "\n".join(parts)
@@ -2288,13 +2445,16 @@ def no_slots(body, where):
     return body
 
 
-def post_card(slug_, m, body_md, U, show_section=True):
-    """Blog index card: section · status, title, description, date · reading time."""
+def post_card(slug_, m, body_md, U, show_section=True, hero_ended=False):
+    """Blog index card: section · status, title, description, date · reading time. hero_ended adds the site's
+    ended mark (ADR-032 补记 10-27) — the article still reads as written, the card says the hero is not free anymore."""
     upd = str(m.get("updated") or m.get("published") or "")
     st = m.get("status", "")
     sec = f'<span class="secbadge">{html.escape(esc_section(m.get("section", "")))}</span>' if show_section else ""
+    ended = f'<span class="st ended">{html.escape(short_label("status", "ended"))}</span>' if hero_ended else ""
     return (f'<a class="post" href="{U}/blog/{slug_}"><span class="meta-top">{sec}'
             + (f'<span class="statusbadge {html.escape(st)}">{html.escape(esc_status(st))}</span>' if st else "")
+            + ended
             + f'</span><span class="post-t">{html.escape(m["title"])}</span>'
             f'<span class="post-d">{html.escape(m.get("description", ""))}</span>'
             f'<span class="post-m"><time datetime="{html.escape(upd)}">{html.escape(fmt_date(upd) if upd else "")}</time>'
@@ -2338,8 +2498,12 @@ def check_blog(lanes, events, models):
                 if t not in model_ids and t not in chan_slugs and t not in maker_ids:
                     errs.append(f"{where}: unknown tag {t!r}")
             for c in re.findall(r"\{\{.+?\}\}", body):
-                if not re.fullmatch(r"\{\{\s*(live:where-to-use|count:live-lanes)\s+(model|channel)=[a-z0-9][a-z0-9.-]*\s*\}\}", c.strip()):
+                mb = re.fullmatch(r"\{\{\s*(live:where-to-use|count:live-lanes)\s+(model|channel)=([a-z0-9][a-z0-9.-]*)\s*\}\}", c.strip())
+                if not mb:
                     errs.append(f"{where}: bad live block {c[:50]}")
+                elif mb.group(1) == "live:where-to-use" and (mb.group(3) not in model_ids or not any(l["model"] == mb.group(3) for l in lanes)):
+                    # the body's one line links to #a-live, and that is the live card: a block with no card would dangle
+                    errs.append(f"{where}: live:where-to-use names a model with no lane to put in the card: {mb.group(3)}")
             for src in re.findall(r"^!\[.*?\]\((\S+?)(?:\s+\".*?\")?\)$", body, flags=re.M):  # same image gates as the site build (10-13: VP8X webp only failed at deploy)
                 p_ = article_img_path(s_, src)
                 if p_ is None:
