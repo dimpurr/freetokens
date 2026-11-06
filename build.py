@@ -457,6 +457,8 @@ def validate_community(community):
         elif isinstance(node, list):
             for i, v in enumerate(node):
                 scan(v, f"{where}[{i}]")
+        elif isinstance(node, str) and re.search(r"(^|[\s\"'(])(/Users/|/home/|~/|[A-Za-z]:\\\\)|\bscratch/", node):
+            errs.append(f"{where}: local file path in public data ({node[:60]!r}); write 'private' instead")
 
     for mid, c in community.items():
         where = f"community[{mid}]"
