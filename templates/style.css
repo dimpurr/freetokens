@@ -797,8 +797,14 @@ ol.rungs > li.muted::before { content: none; }
   .a-live .where-now-head, .a-live > .lc-who, .a-live > .chips { grid-column: 1; }
   .a-live > .chips { align-self: stretch; min-width: 0; }
   .a-live > .chips, .lc-alt .chips { display: grid; gap: 5px; }
-  .a-live .chip { white-space: normal; max-width: 100%; min-width: 0; }
+  /* On the 252px arm each chip is a full-width flex row [name][note]. In EN "no end date announced" is wider than
+     the ~208px interior once it shares the row with the channel name: the row shrank .st below its nowrap width and
+     the note painted over the name (11-06 preview review round 2, Blocking 1). Let the row wrap, and on the en page
+     put the note on its own line (flex-basis:100%) so every chip reads [name] then [note] at content height. The
+     zh-CN card is not selected, so its short note stays on the name's line — the Chinese card is untouched. */
+  .a-live .chip { white-space: normal; max-width: 100%; min-width: 0; flex-wrap: wrap; }
   .a-live .chip .st, .a-live .chip small { min-width: 0; }
+  html[lang="en"] .a-live .chip small { flex: 1 1 100%; }
 }
 @media (min-width: 760px) and (max-width: 1199px) { .a-layout > *, .a-main > * { max-width: 720px; } }
 
