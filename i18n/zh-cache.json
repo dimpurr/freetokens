@@ -1014,5 +1014,8 @@
  "own check of the OpenRouter models API": "自行核查 OpenRouter 模型 API",
  "own check of the Vercel AI Gateway model list": "自行核查 Vercel AI Gateway 模型列表",
  "Stealth reasoning model (text/image/video/pdf in, tool use); 1M context, 270K max output; cost $0/$0. Go catalogue id opencode-go/crouton-alpha-free; first listed at the 2026-11-06 check.": "Stealth 推理模型（text/image/video/pdf 输入，可用工具）；1M 上下文，270K 最大输出，费用 $0/$0。Go 目录 id 为 opencode-go/crouton-alpha-free；2026-11-06 核查首次在列。",
- "opencode-go/crouton-alpha-free is listed at $0 in the OpenCode Go catalogue at the 2026-11-06 daily check (30 models); stealth model released 2026-11-03, 1M context, 270K max output; cost $0/$0": "opencode-go/crouton-alpha-free 在 2026-11-06 日常核查中以 $0 列于 OpenCode Go 目录（30 模型）；stealth 模型发布于 2026-11-03，1M 上下文，270K 最大输出，费用 $0/$0"
+ "opencode-go/crouton-alpha-free is listed at $0 in the OpenCode Go catalogue at the 2026-11-06 daily check (30 models); stealth model released 2026-11-03, 1M context, 270K max output; cost $0/$0": "opencode-go/crouton-alpha-free 在 2026-11-06 日常核查中以 $0 列于 OpenCode Go 目录（30 模型）；stealth 模型发布于 2026-11-03，1M 上下文，270K 最大输出，费用 $0/$0",
+ "Command Code lists Crouton Alpha as free (up to 1000 requests a day while the stealth preview lasts; Go plan and above, account balance >= $1)": "Command Code 上架 Crouton Alpha 免费（隐身预览期间每日最多 1000 次请求；Go 档及以上，账户余额 ≥ $1）",
+ "Command Code pricing-limits docs": "Command Code 定价与限额文档",
+ "first verified in pricing-limits docs; listing likely launch-day 11-03 (docs page itself undated, model page undated)": "首次在定价与限额文档中核实；可能是上线当天（11-03）即上架（文档页与模型页均无日期）"
 }

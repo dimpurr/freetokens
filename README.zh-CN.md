@@ -238,6 +238,7 @@ freetokens 追踪的是**免费线路**：一个模型 × 一个渠道 × 一个
 | Crouton Alpha (stealth) | Kilo Code | agent 工具 | `stealth/crouton-alpha` | Kilo 账户；Kilo 模型列表每 token $0 | [已公布 (无公布的结束日期（Kilo gateway API）)](https://api.kilo.ai/api/gateway/models) | 未实测 | 2026年11月4日 | — (无) | 可能记录／用于训练 | 🔵 标称免费（未实测） | 2026-11-04 · 查目录 |
 | Crouton Alpha (stealth) | OpenCode Zen | agent 工具 | `opencode/crouton-alpha-free` | 在 OpenCode 应用内，无需账户；原始 API 拒绝免费模型（403 FreeTierError） | 未公布 | 未实测 | 2026年11月4日 | — (无) | 可能记录／用于训练 | 🔵 标称免费（未实测） | 2026-11-05 · 查目录 |
 | Crouton Alpha (stealth) | OpenCode Go | agent 工具 | `opencode-go/crouton-alpha-free` | OpenCode Go 计划；免费模型不使用该计划的额度 | 未公布 | 未实测 | 2026年11月6日 | — (无) | 未核查 | 🔵 标称免费（未实测） | 2026-11-06 · 查目录 |
+| Crouton Alpha (stealth) | Command Code | agent 工具 | `crouton-alpha` | Go 计划（$1/月）或更高；免费模型不消耗 credits（"while it lasts"） | [已公布](https://commandcode.ai/docs/resources/pricing-limits#crouton-alpha-free) | 未实测 | 2026年11月6日 | — (无) | 未核查 | 🔵 标称免费（未实测） | 2026-11-06 · 仅看页面 |
 <!-- END:lanes -->
 
 也见到、但尚未纳入追踪（未核实）：Cline 上的 Ling 3.1 Flash（据称免费到 10-13）以及 OpenCode 上的 Ling 3.1 Flash（据称自 10-02 起免费）；Nous Portal 上的 Space Bunny（Sep 25 宣布免费，Oct 5 在 portal 上已看不到），以及 Tencent WorkBuddy 中的 Space Bunny（是折扣，并非免费，到 Oct 7）。
@@ -251,6 +252,7 @@ freetokens 追踪的是**免费线路**：一个模型 × 一个渠道 × 一个
 | 日期 | 线路 | 事件 | 详情 | 出处 |
 |---|---|---|---|---|
 | 2026年11月6日 | Crouton Alpha (stealth) · OpenCode Go | 收录 | opencode-go/crouton-alpha-free 在 2026-11-06 日常核查中以 $0 列于 OpenCode Go 目录（30 模型）；stealth 模型发布于 2026-11-03，1M 上下文，270K 最大输出，费用 $0/$0 | [每日免费目录检查：OpenCode Go 模型列表（自有工具）](https://opencode.ai/zen/go/v1/models) |
+| 2026年11月6日 | Crouton Alpha (stealth) · Command Code | 收录 | Command Code 上架 Crouton Alpha 免费（隐身预览期间每日最多 1000 次请求；Go 档及以上，账户余额 ≥ $1） | [Command Code 定价与限额文档](https://commandcode.ai/docs/resources/pricing-limits#crouton-alpha-free) |
 | 2026年11月5日 | Inkling · OpenRouter, Inkling Small · OpenRouter | 已结束 | thinkingmachines/inkling:free 与 thinkingmachines/inkling-small:free 在 2026-11-05 日常核查中从 OpenRouter 目录消失（455 模型）；付费版 id 仍在。 → ends 2026年11月5日 | [自行核查 OpenRouter 模型 API](https://openrouter.ai/api/v1/models) |
 | 2026年11月5日 | Ling 3.1 Flash 1019 · Vercel AI Gateway | 已结束 | Vercel AI Gateway 促销结束：免费至 2026-11-03 后，inclusionai/ling-3.1-flash-1019 现定价 $0.30/$0.90（2026-11-05 已验证）；连续两天缺席 $0 名单。 → ends 2026年11月3日 | [自行核查 Vercel AI Gateway 模型列表](https://ai-gateway.vercel.sh/v1/models) |
 | 2026年11月5日 | Mistral Small 3.2 24B · OVHcloud AI Endpoints | 已结束 | Mistral-Small-3.2-24B-Instruct-2506 到 EOL：OVH 目录页挂 Retired 徽标，连续两天缺席可用名单（2026-11-04、2026-11-05）；2026-11-04 时端点仍可应答。 → ends 2026年11月4日 | [OVHcloud AI Endpoints 目录页](https://www.ovhcloud.com/en-gb/public-cloud/ai-endpoints/catalog/) |
@@ -590,7 +592,7 @@ freetokens 追踪的是**免费线路**：一个模型 × 一个渠道 × 一个
 | [Qwen2.5 VL 72B Instruct](https://freetokens.fyi/models/qwen2.5-vl-72b) | 🔵 OVHcloud AI Endpoints (未公布截止) | 0 | — | 128K（OVHcloud 上 32K） | 支持 | Qwen | 据 HF Qwen2.5-VL-72B-Instruct 配置与 OpenRouter：原生 128,000；OVHcloud 端点提供 32,768（2026-10-20）。 |
 | [Hunyuan-MT-7B](https://freetokens.fyi/models/hunyuan-mt-7b) | 🔵 SiliconFlow (未公布截止) | 1 | — | 未检查 | 不支持 | Tencent Hunyuan | 翻译专用对话模型（SiliconFlow 广场 subType chat）；渲染价格表明写免费（2026-10-28）。 |
 | [Pulse Alpha](https://freetokens.fyi/models/pulse-alpha) | 🔵 OpenCode Zen (未公布截止) | 1 | — | 1M | 未核查 | OpenCode | — |
-| [Crouton Alpha (stealth)](https://freetokens.fyi/models/crouton-alpha) | 🔵 OpenRouter (未公布截止) · 🔵 Kilo Code (未公布截止) · 🔵 OpenCode Zen (未公布截止) · 🔵 OpenCode Go (未公布截止) | 2 | — | 1M | 支持 | Undisclosed (stealth) | — |
+| [Crouton Alpha (stealth)](https://freetokens.fyi/models/crouton-alpha) | 🔵 OpenRouter (未公布截止) · 🔵 Kilo Code (未公布截止) · 🔵 OpenCode Zen (未公布截止) · 🔵 OpenCode Go (未公布截止) · 🔵 Command Code (未公布截止) | 3 | — | 1M | 支持 | Undisclosed (stealth) | — |
 | [GPT-6.1 Sol](https://freetokens.fyi/models/gpt-6.1-sol) | — | 0 | 52–57 | 1025K | 支持 | OpenAI | — |
 | [Space Bunny (stealth)](https://freetokens.fyi/models/space-bunny) | 🔴 OpenCode Go (已结束 2026年10月6日) · 🔴 Command Code (已结束 2026年10月5日) · 🔴 OpenRouter (已结束 2026年10月5日) · 🔴 OpenCode Zen (已结束 2026年10月20) · 🔴 Kilo Code (已结束 2026年10月6日) | 15 | 35–40 | 1M | 支持 | Undisclosed (stealth) | 传闻：MiniMax 家族（多个独立 tokenizer 测试），可能是 M3.1／M3.1-Flash。有来源质疑确切版本，无官方确认。 |
 | [Nex-N2.5-Pro](https://freetokens.fyi/models/nex-n2.5-pro) | 🔴 Kilo Code (已结束 2026年10月7日) | 2 | 29–34 | 262K | 支持 | Nex AGI | — |
@@ -683,12 +685,12 @@ freetokens 追踪的是**免费线路**：一个模型 × 一个渠道 × 一个
 | [SenseNova](https://freetokens.fyi/channels/sensenova) | 聚合商 | [$0，需账号](https://platform.sensenova.cn/token-plan) | [API · OpenAI 对话](https://platform.sensenova.cn/docs) | 2 / 2 | 未公布 | 🟢 Kimi K3 · 🔵 DeepSeek V4 Flash |
 | [Zhipu BigModel](https://freetokens.fyi/channels/zhipu-bigmodel) | 官方 | [$0，需账号](https://docs.bigmodel.cn/cn/guide/start/pricing) | [API · 3 种格式](https://docs.bigmodel.cn/cn/guide/start/pricing) | 2 / 2 | 未公布 | 🔵 GLM-4.7-Flash · 🔵 GLM-4-Flash-250414 |
 | [Cloudflare Workers AI](https://freetokens.fyi/channels/cloudflare-workers-ai) | 聚合商 | [$0，需账号](https://developers.cloudflare.com/workers-ai/platform/pricing/) | [API · OpenAI 对话](https://developers.cloudflare.com/workers-ai/) | 1 / 1 | 未公布 | 🔵 Qwen3.8 27B |
+| [Command Code](https://freetokens.fyi/channels/command-code) | agent 工具 | [$1/month 需先订阅](https://commandcode.ai/docs/plans/go) | [API · 3 种格式 · 仅限人工](https://commandcode.ai/terms) | 1 / 3 | 未公布 | 🔴 Ling 3.1 Flash · 🔴 Space Bunny (stealth) · 🔵 Crouton Alpha (stealth) |
 | [Hetzner Experiments](https://freetokens.fyi/channels/hetzner-experiments) | 官方 | [$0，需账号](https://docs.hetzner.com/general/company-and-policy/experiments/inference/) | [API · OpenAI 对话](https://docs.hetzner.com/general/company-and-policy/experiments/inference/) | 1 / 1 | 未公布 | 🔵 Qwen3.8 27B |
 | [Qoder](https://freetokens.fyi/channels/qoder) | agent 工具 | [$0，需账号](https://docs.qoder.com/zh/events/flashoffer) | [仅 CLI](https://docs.qoder.com/zh/events/flashoffer) | 1 / 1 | 未公布 | 🟢 Qwen3.8 Flash |
 | [Z.ai](https://freetokens.fyi/channels/z-ai) | 官方 | [$0，需账号](https://docs.z.ai/guides/overview/pricing) | [API · OpenAI 对话](https://docs.z.ai/guides/overview/pricing) | 1 / 2 | 未公布 | 🔵 GLM-4.7-Flash · 🔴 GLM-4.5-Flash |
 | [Ant Ling](https://freetokens.fyi/channels/ant-ling) | 官方 | [$0，需账号](https://developer.ant-ling.com/zh-CN/docs/models/price/) | [API · 2 种格式](https://developer.ant-ling.com/zh-CN/docs/) | 0 / 1 | 未公布 | 🔴 Ling 3.1 Flash |
 | [Cline](https://freetokens.fyi/channels/cline) | agent 工具 | [$0，需账号](https://docs.cline.bot/getting-started/free-models) | [仅 CLI · 仅限人工](https://cline.bot/tos) | 0 / 16 | 未公布 | 🔴 North Mini Code · 🔴 Ling 3.0 Flash Sante · 🔴 Nemotron 3 Nano Omni 30B A3B (reasoning) · 🔴 Nemotron 3 Super · 🔴 Nemotron 3 Ultra (550B-A55B) · 🔴 Nemotron 3.5 Lightning · 🔴 Laguna S 2.1 · 🔴 Laguna XS 2.1 · 🔴 LFM 2.5 2.6B · 🔴 Apodex 1.1 Mini · 🔴 Dots3-Note Preview · 🔴 Gemma 4 26B A4B · 🔴 Gemma 4 31B · 🔴 Inkling Small · 🔴 Inkling · 🔴 Kimi K3 |
-| [Command Code](https://freetokens.fyi/channels/command-code) | agent 工具 | [$1/month 需先订阅](https://commandcode.ai/docs/plans/go) | [API · 3 种格式 · 仅限人工](https://commandcode.ai/terms) | 0 / 2 | 未公布 | 🔴 Ling 3.1 Flash · 🔴 Space Bunny (stealth) |
 | [Letta](https://freetokens.fyi/channels/letta) | agent 工具 | [$0，需账号](https://docs.letta.com/pricing/) | [仅 CLI](https://docs.letta.com/pricing/) | 0 / 2 | 未公布 | 🔴 DeepSeek V4.1 Flash · 🔴 DeepSeek V4 Flash |
 <!-- END:channels -->
 

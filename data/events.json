@@ -3561,5 +3561,17 @@
       "label": "Gemini API changelog",
       "url": "https://ai.google.dev/gemini-api/docs/changelog"
     }
+  },
+  {
+    "date": "2026-11-06",
+    "lanes": [
+      "crouton-cc"
+    ],
+    "kind": "listed",
+    "text": "Command Code lists Crouton Alpha as free (up to 1000 requests a day while the stealth preview lasts; Go plan and above, account balance >= $1)",
+    "source": {
+      "label": "Command Code pricing-limits docs",
+      "url": "https://commandcode.ai/docs/resources/pricing-limits#crouton-alpha-free"
+    }
   }
 ]

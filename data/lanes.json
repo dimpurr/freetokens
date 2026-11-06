@@ -6592,5 +6592,39 @@
     "basis": "Go catalogue lists it at $0/$0 at the 2026-11-06 check; this model not load-tested"
    },
    "note": "Stealth reasoning model (text/image/video/pdf in, tool use); 1M context, 270K max output; cost $0/$0. Go catalogue id opencode-go/crouton-alpha-free; first listed at the 2026-11-06 check."
-  }
+   },
+   {
+    "id": "crouton-cc",
+    "model": "crouton-alpha",
+    "channel": "Command Code",
+    "type": "agent_tool",
+    "model_id": "crouton-alpha",
+    "free_condition": null,
+    "meter": "per_model",
+    "limits_stated": {
+     "basis": "official",
+     "source": "https://commandcode.ai/docs/resources/pricing-limits#crouton-alpha-free"
+    },
+    "limits_observed": null,
+    "started": {
+     "date": "2026-11-06",
+     "note": "first verified in pricing-limits docs; listing likely launch-day 11-03 (docs page itself undated, model page undated)"
+    },
+    "ends": {
+     "announced": null,
+     "expected": null,
+     "confidence": "none"
+    },
+    "data_policy": "not_checked",
+    "status": "listed",
+    "checked": {
+     "date": "2026-11-06",
+     "method": "listing"
+    },
+    "volume": {
+     "tier": "daily",
+     "basis": "pricing-limits docs: free up to 1000 requests a day while the stealth preview lasts (Go plan and above, account balance >= $1)"
+    },
+    "note": "Stealth model; 1M context, Free/Free/Free on the models page. Docs display name Crouton Alpha (anchor #crouton-alpha-free); CLI model id unconfirmed. Same inclusion class as crouton-go ($0 inside a paid plan) and bunny-cc precedent."
+   }
 ]
