@@ -155,12 +155,14 @@ function endInfo(l) {
     return { main: Tx("no end announced", "no end announced"), sub: l.started.date ? `${Tx("free since", "free since")} ${whenLink(l.started.date, se)}` : "" };
   }
   const t2 = pd(end).t, n = daysTo(t2);
-  if (l.status === "overdue" && !l.ends.expected) {
-    return { main: ZH ? `已逾期 ${-n} 天` : `${-n} day${-n === 1 ? "" : "s"} overdue`, sub: `${confHTML(conf)} ${Tx("end was", "end was")} ${whenLink(l.ends.announced, announceEvent(l))}` };
+  /* overdue = free past its announced end (still live): the site-wide legend wording, never a past date as if it ends then */
+  if (l.status === "overdue") {
+    const was = `${Tx("end was", "end was")} ${whenLink(l.ends.announced, announceEvent(l))}`;
+    const sub = l.ends.expected ? `${confHTML(conf)} ${esc(absDate(end))} · ${was}` : `${confHTML(conf)} ${was}`;
+    return { main: Tx("past announced end · still free", "past announced end · still free"), sub };
   }
   const main = n === 0 ? Tx("ends today", "ends today") : n > 0 ? (ZH ? `${Tx("ends", "ends")} ${relDays(t2) || absDate(end)}` : `ends ${relDays(t2) || absDate(end)}`) : `${Tx("end passed", "end passed")} ${absDate(end)}`;
   let sub = `${confHTML(conf)} ${l.ends.expected ? esc(absDate(end)) : whenLink(end, announceEvent(l))}`;
-  if (l.status === "overdue" && l.ends.announced) sub += ` · ${Tx("was", "was")} ${whenLink(l.ends.announced, announceEvent(l))}`;
   return { main, sub };
 }
 

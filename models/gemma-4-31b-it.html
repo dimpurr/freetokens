@@ -816,6 +816,10 @@ ol.rungs > li.muted::before { content: none; }
 .lc-who a { color: var(--fg); text-decoration: none; }
 .lc-who a:hover { color: var(--accent); }
 .a-live > .chips { align-self: center; }
+/* the card's chips: state pill on one line, its note on the next, never a folded date tail (UI-ADDENDUM ②; one line at 252px) */
+.a-live .chip { display: flex; flex-wrap: wrap; white-space: normal; max-width: 100%; }
+.a-live .chip .st { white-space: normal; }
+.a-live .chip small { flex: 1 1 100%; white-space: nowrap; }
 .lc-none { margin: 0; display: flex; align-items: center; gap: 8px; }
 .lc-alt { grid-column: 1 / -1; display: grid; gap: 6px; padding-top: 8px; border-top: 1px solid var(--line); }
 .lc-alt > span { font-size: 0.75rem; }
@@ -982,49 +986,88 @@ details.community > summary h2 { margin: 0; min-width: 0; }
 details.community > summary::before { content: ""; width: 8px; height: 8px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: rotate(-45deg); transition: transform .15s; flex: none; align-self: baseline; }
 details.community[open] > summary::before { transform: rotate(45deg); }
 details.community[open] > summary { border-bottom: 1px solid var(--line); }
-.ct { padding: 6px 18px 16px; display: grid; gap: 14px; }
+.ct { padding: 6px 18px 16px; display: grid; gap: 16px; }
 .ct-thin, .ct-meta { color: var(--muted); margin: 0; }
 .ct-meta { font-size: 0.8rem; }
-/* cells are as wide as what they say (a one-word cell does not take a column) and sit tight to the top of their row */
-.ct-cells { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 0 26px; }
-.ct-cell { min-width: 0; max-width: 100%; padding: 8px 0; display: grid; gap: 3px; align-content: start; }
-.ct-cell.ct-wide { flex: 1 1 100%; border-top: 1px solid var(--line); }
-.ct-cell .k { font: 600 0.68rem var(--f-body); text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); }
-.ct-cell .v { font-size: 0.92rem; line-height: 1.5; color: var(--fg); overflow-wrap: anywhere; min-width: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 1px 14px; }
-.ct-cell .v.ct-rows { display: grid; gap: 1px; justify-items: start; }
-.ct-cell .v > [hidden] { display: none; }
-.ct-cell .v b { font-weight: 600; font-variant-numeric: tabular-nums; }
-/* one count: the word, its sign and its marks never wrap apart */
-.ct-term { display: inline-flex; align-items: baseline; gap: 6px; white-space: nowrap; min-width: 0; }
-.ct-row { display: inline-flex; align-items: baseline; gap: 1px 8px; min-width: 0; }
-.ct-row .ct-dir { font-weight: 500; white-space: nowrap; }
-.ct-mk { display: inline-flex; align-items: baseline; flex-wrap: wrap; gap: 1px 6px; min-width: 0; }
-.ct-nm { display: inline-flex; align-items: baseline; gap: 6px; min-width: 0; }
-.ct-nm .ct-marks, .ct-row .ct-marks, .ct-term .ct-marks, .ct-n { white-space: nowrap; }
+/* a group = one small header + its content; the four groups stack, columns inside adapt to the width */
+.ct-group { display: grid; gap: 8px; min-width: 0; }
+.ct-group-h { margin: 0; font: 600 0.68rem var(--f-body); text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); }
+.ct-group-wide { border-top: 1px solid var(--line); padding-top: 14px; }
+/* sub-blocks that share a group sit in equal columns, wrapping to one column when they get tight */
+.ct-subs { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 184px), 1fr)); gap: 6px 28px; }
+.ct-sub { display: grid; gap: 5px; align-content: start; min-width: 0; }
+.ct-sub > :first-child { font: 600 0.66rem var(--f-body); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+/* an aligned list: name (with its mark) → marks → number, so the point columns line up down the group */
+.ct-list { display: grid; grid-template-columns: minmax(0, 1fr) max-content max-content; column-gap: 10px; row-gap: 4px; align-items: center; }
+.ct-name { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 6px; min-width: 0; }
+.ct-name a { color: var(--fg); text-decoration: none; }
+.ct-name a:hover { color: var(--accent); }
+.ct-name .lg { flex: none; }
+.ct-line-sub { flex: 1 1 100%; font-size: 0.72rem; color: var(--muted); min-width: 0; }
+.ct-line-text { font-size: 0.92rem; color: var(--fg); }
+.ct-count { font: 600 0.82rem var(--f-body); color: var(--muted); font-variant-numeric: tabular-nums; min-width: 1.4em; text-align: right; }
+.ct-term { display: inline-flex; align-items: baseline; gap: 4px; min-width: 0; }
 .ct-sign { font-style: normal; font-weight: 600; color: var(--muted); }
-.ct-n { font: 600 0.72rem var(--f-body); color: var(--muted); font-variant-numeric: tabular-nums; }
+.ct-list .ct-marks { display: grid; grid-template-columns: repeat(var(--n, 1), 7px); gap: 2px; align-self: center; }
+.ct-marks i { height: 6px; border-radius: 1px; background: var(--faint); }
+.ct-name.ct-pos + .ct-marks i, .ct-name.ct-pos + .ct-marks + .ct-count { color: var(--live); }
+.ct-name.ct-pos + .ct-marks i { background: var(--live); }
+.ct-name.ct-neg + .ct-marks i { background: var(--ended); }
+.ct-name.ct-neg + .ct-marks + .ct-count { color: var(--ended); }
+.ct-name.ct-warn + .ct-marks i { background: var(--overdue); }
 .ct-pos .ct-sign { color: var(--live); }
-.ct-neg .ct-sign, .ct-neg .ct-dir { color: var(--ended); }
-.ct-cell .ct-marks { grid-template-columns: repeat(var(--n), 8px); gap: 2px; margin-right: 0; align-self: center; }
-.ct-cell .ct-marks i { height: 6px; background: var(--faint); }
-.ct-cell .ct-pos .ct-marks i { background: var(--live); }
-.ct-cell .ct-neg .ct-marks i { background: var(--ended); }
-.ct-cell .ct-mix .ct-marks i { background: var(--off); }
-.ct-cell .ct-warn .ct-marks i { background: var(--overdue); }
-.ct-more { font: 400 0.86rem var(--f-body); color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer; white-space: nowrap; }
-.ct-more:hover { text-decoration: underline; }
+.ct-neg .ct-sign { color: var(--ended); }
+/* compared-to: a direction band (symbol + word, never colour alone) heads its aligned model rows */
+.ct-line-head { grid-column: 1 / -1; margin-top: 4px; }
+.ct-line-head:first-child { margin-top: 0; }
+.ct-dir { font-weight: 600; white-space: nowrap; font-variant-numeric: tabular-nums; }
 .ct-dir.better { color: var(--live); }
 .ct-dir.worse { color: var(--ended); }
 .ct-dir.similar { color: var(--muted); }
-.ct-ev { font-size: 0.72rem; color: var(--muted); }
-.ct-against { font-size: 0.72rem; color: var(--overdue); white-space: nowrap; }
+.ct-against { color: var(--overdue); white-space: nowrap; }
+/* performance: three columns, each a small header over an aligned list */
+.ct-perf { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr)); gap: 6px 28px; }
+.ct-col { display: grid; gap: 5px; align-content: start; min-width: 0; }
+.ct-colh { font: 600 0.66rem var(--f-body); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+/* one 100% stacked bar with a labelled legend under it (the word is always written, the colour is decoration) */
+.ct-stack { display: flex; height: 9px; border-radius: 5px; overflow: hidden; box-shadow: inset 0 0 0 1px var(--line); }
+.ct-stack i { display: flex; align-items: center; justify-content: center; min-width: 3px; box-shadow: inset -1px 0 0 var(--surface); }
+.ct-stack i:last-child { box-shadow: none; }
+.ct-stack i span { font: 600 0.58rem var(--f-body); color: var(--surface); font-variant-numeric: tabular-nums; }
+.ct-legend { display: flex; flex-wrap: wrap; gap: 2px 14px; font-size: 0.76rem; color: var(--fg); }
+.lg-seg { display: inline-flex; align-items: center; gap: 5px; }
+.lg-seg i { width: 9px; height: 9px; border-radius: 2px; flex: none; }
+.lg-seg b { font-weight: 600; }
+/* numbers as reported: small tiles, value big + unit + metric + source; the maker's contrary evidence lives in its own cell */
+.ct-tiles { display: flex; flex-wrap: wrap; gap: 8px; }
+.ct-tile { display: grid; grid-template-columns: auto auto; grid-template-rows: auto auto; align-items: baseline; gap: 0 6px; padding: 6px 12px; background: var(--surface-2); box-shadow: var(--ring); border-radius: var(--r); min-width: 0; }
+.ct-tile b { grid-row: 1; font: 600 1.4rem/1 var(--f-display); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.ct-unit { grid-row: 1; font-size: 0.76rem; color: var(--muted); }
+.ct-metric { grid-column: 1 / -1; grid-row: 2; font-size: 0.72rem; color: var(--muted); }
+.ct-metric a { color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 3px; }
+.ct-metric .ico { width: 0.85em; height: 0.85em; }
+/* makers beyond the first three fold behind one control */
+.ct-fold { grid-column: 1 / -1; }
+.ct-fold > summary { cursor: pointer; list-style: none; font: 600 0.72rem var(--f-body); color: var(--accent); }
+.ct-fold > summary::-webkit-details-marker { display: none; }
+/* the FTI-empty stats cell becomes a tappable community snapshot (it never shows a compared model's FTI) */
+.stat.ct-snapcell { padding: 0; }
+.ct-snap { display: grid; gap: 5px; align-content: start; padding: 14px 16px; height: 100%; color: inherit; text-decoration: none; border-radius: var(--r); }
+.ct-snap:hover { box-shadow: inset 0 0 0 1px var(--line-strong); }
+.ct-snap .k { font: 600 0.68rem var(--f-body); text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); }
+.ct-snap-not { font-size: 0.76rem; color: var(--muted); }
+.ct-snap-cmp { display: flex; flex-wrap: nowrap; align-items: center; gap: 2px 7px; min-width: 0; }
+.ct-snap-name { color: var(--fg); flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ct-snap-cmp > :not(.ct-snap-name) { flex: 0 0 auto; }
+.ct-snap-cmp .ct-marks { display: grid; grid-template-columns: repeat(var(--n, 1), 6px); gap: 2px; align-self: center; }
+.ct-snap-bar .ct-stack { height: 7px; }
+.ct-snap-jump { display: inline-flex; align-items: center; gap: 4px; font-size: 0.74rem; color: var(--accent); margin-top: 2px; }
+.ct-snap-jump .ico { width: 0.85em; height: 0.85em; }
+/* quote cards and the footer (unchanged shapes) */
 .ctag { display: inline-flex; align-items: center; gap: 4px; font: 600 0.66rem/1.6 var(--f-body); padding: 0 6px; border-radius: 5px; background: var(--off-soft); color: var(--muted); white-space: nowrap; vertical-align: 1px; }
 .ctag.gone { background: var(--ended-soft); color: var(--ended); }
 .ctag.measured { background: var(--measured-soft); color: var(--measured); }
 .ctag.forensic { background: var(--accent-soft); color: var(--accent); }
-.ct-num { display: inline-flex; align-items: baseline; gap: 5px; min-width: 0; }
-.ct-num b { font-weight: 600; font-variant-numeric: tabular-nums; }
-/* up to 3 cards in a row; a short last row fills its own line instead of leaving an empty slot beside it */
 .cquotes { display: flex; flex-wrap: wrap; gap: 12px; }
 .cquote { flex: 1 1 calc((100% - 32px) / 3); min-width: min(100%, 236px); max-width: 100%; background: var(--surface-2); box-shadow: var(--ring); border-radius: var(--r); padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; }
 .cq-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
@@ -1047,26 +1090,26 @@ details.community[open] > summary { border-bottom: 1px solid var(--line); }
 </div></div>
 
 <div class="wrap">
-  <nav class="back subnav" aria-label="Sections"><a href="../index.html#h-models">← All models</a><a href="#h-now">Where it's free</a><a href="#h-chart">Free periods</a><a href="#events">What happened</a><a href="#h-details">Details</a><!--SUBREL--></nav>
+  <nav class="back subnav" aria-label="Sections"><a href="../index.html#h-models">← All models</a><a href="#h-now">Where it's free</a><a href="#community-sec" id="nav-community" class="hide-empty" hidden>Community</a><a href="#h-chart">Free periods</a><a href="#events">What happened</a><a href="#h-details">Details</a><!--SUBREL--></nav>
 
   <header class="mhead" id="mhead"></header>
   <!--RELATED-->
-
-  <section class="community" id="community-sec" aria-labelledby="h-community" hidden>
-    <details class="community" id="community">
-      <summary><h2 id="h-community">Community take <small>What independent posts say, counted · not our verdict</small></h2></summary>
-      <div class="ct" id="ct"></div>
-    </details>
-  </section>
 
   <section aria-labelledby="h-now">
     <h2 id="h-now">Where it's free now <small id="now-sub"></small></h2>
     <div class="chcards chcards-now" id="now"></div>
   </section>
 
-  <section aria-labelledby="h-also" id="also-sec" hidden>
+  <section aria-labelledby="h-also" id="also-sec" class="hide-empty" hidden>
     <h2 id="h-also">Also free through <small>programs whose allowance covers this model · amounts are shared with other models</small></h2>
     <div class="alsofree" id="also"></div>
+  </section>
+
+  <section class="community hide-empty" id="community-sec" aria-labelledby="h-community" hidden>
+    <details class="community" id="community">
+      <summary><h2 id="h-community">Community take <small>What independent posts say, counted · not our verdict</small></h2></summary>
+      <div class="ct" id="ct"></div>
+    </details>
   </section>
 
   <section aria-labelledby="h-chart">
@@ -1247,12 +1290,14 @@ function endInfo(l) {
     return { main: Tx("no end announced", "no end announced"), sub: l.started.date ? `${Tx("free since", "free since")} ${whenLink(l.started.date, se)}` : "" };
   }
   const t2 = pd(end).t, n = daysTo(t2);
-  if (l.status === "overdue" && !l.ends.expected) {
-    return { main: ZH ? `已逾期 ${-n} 天` : `${-n} day${-n === 1 ? "" : "s"} overdue`, sub: `${confHTML(conf)} ${Tx("end was", "end was")} ${whenLink(l.ends.announced, announceEvent(l))}` };
+  /* overdue = free past its announced end (still live): the site-wide legend wording, never a past date as if it ends then */
+  if (l.status === "overdue") {
+    const was = `${Tx("end was", "end was")} ${whenLink(l.ends.announced, announceEvent(l))}`;
+    const sub = l.ends.expected ? `${confHTML(conf)} ${esc(absDate(end))} · ${was}` : `${confHTML(conf)} ${was}`;
+    return { main: Tx("past announced end · still free", "past announced end · still free"), sub };
   }
   const main = n === 0 ? Tx("ends today", "ends today") : n > 0 ? (ZH ? `${Tx("ends", "ends")} ${relDays(t2) || absDate(end)}` : `ends ${relDays(t2) || absDate(end)}`) : `${Tx("end passed", "end passed")} ${absDate(end)}`;
   let sub = `${confHTML(conf)} ${l.ends.expected ? esc(absDate(end)) : whenLink(end, announceEvent(l))}`;
-  if (l.status === "overdue" && l.ends.announced) sub += ` · ${Tx("was", "was")} ${whenLink(l.ends.announced, announceEvent(l))}`;
   return { main, sub };
 }
 
@@ -1828,61 +1873,121 @@ $("details").innerHTML = ML.map((l) => {
   </dl></div>`;
 }).join("");
 
-/* community take (ADR-038): self-rendered counts of public posts, no third-party embed, display only — never feeds FTI */
+/* community take (ADR-038): self-rendered counts of public posts, no third-party embed, display only — never feeds FTI.
+   Four groups (what it is · who it is compared to · how it performs · who says so), aligned name→marks→count rows;
+   a compared model's FT Intelligence never appears here (ADR-038: no public peer estimate). */
 (function () {
   const C = (D.community || {})[D.model];
   if (!C) return;
-  const sec = $("community-sec"), det = $("community"), ct = $("ct");
+  const sec = $("community-sec"), det = $("community"), ct = $("ct"), navC = $("nav-community");
   sec.hidden = false;
+  if (navC) navC.hidden = false;
   const evts = eventsOf(M.id).map((e) => pd(e.date)).filter(Boolean).map((x) => x.t);
   const seeds = [C.first_seen && pd(C.first_seen.date), C.collected && pd(C.collected)].filter(Boolean).map((x) => x.t);
   const first = Math.min.apply(null, evts.concat(seeds));
   const fresh = !ftOf(M) || (isFinite(first) && (Date.parse(D.built + "T00:00Z") - first) / DAY <= 14);
-  if (fresh) det.open = true;
+  if (fresh || location.hash === "#community-sec") det.open = true;
   if ((C.authors || 0) < 3) {
     ct.innerHTML = `<p class="ct-thin">${Tx("Too little discussion yet.", "Too little discussion yet.")}</p>`;
     return;
   }
   const PLAT = { x: "X", hn: "HN", v2ex: "V2EX", linux_do: "Linux.do", reddit: "Reddit", zhihu: "Zhihu", bilibili: "Bilibili", github: "GitHub", discord: "Discord", blog: "Blog", news: "News", other: "Other" };
   const pretty = (s) => PLAT[s] || String(s).replace(/[_-]/g, " ");
+  const MOBJ = Object.fromEntries(D.models.map((x) => [x.id, x]));
   const MN = Object.fromEntries(D.models.map((x) => [x.id, x.name]));
   const mlink = (id) => (MN[id] ? `<a href="${modelHref(id)}">${esc(MN[id])}</a>` : esc(id));
+  /* a model's own mark: its maker's logo, or a name-derived tile for a model we do not track (DESIGN §2: logo only on the entity head, which a row head is) */
+  const mlogo = (id) => (MOBJ[id] ? modelTile(MOBJ[id]) : logoTile(id, MN[id] || id, false, MN[id] || id));
   const POST = Object.fromEntries((C.posts || []).map((p) => [p.id, p]));
-  /* an "other" bucket or a "not discussed" placeholder carries no fact: the term, and with it the whole cell, is dropped */
   const junk = (s) => /^(|other|others|misc|miscellaneous|n\/?a|none|not discussed|no data|unknown|unsure)$/.test(String(s).toLowerCase().replace(/[_-]+/g, " ").trim());
-  /* counts are read as marks, never as prose: one bar per post (saturating at 6), the number stays in the accessible name */
   const CAP = 6;
-  const bars = (n) => {
-    const k = Math.max(1, Math.min(n, CAP));
-    return `<span class="meter ct-marks" style="--n:${k}" role="img" aria-label="${n} ${Tx("posts", "posts")}">${'<i class="on"></i>'.repeat(k)}</span>${n > CAP ? `<b class="ct-n">${n}</b>` : ""}`;
-  };
+  /* the marks (points) are the readable count; the exact number stays in a narrow column, aligned down the group */
+  const bars = (n) => { const k = Math.max(1, Math.min(n, CAP)); return `<span class="meter ct-marks" style="--n:${k}" role="img" aria-label="${n} ${Tx("posts", "posts")}">${'<i class="on"></i>'.repeat(k)}</span>`; };
+  const count = (n) => `<b class="ct-count" aria-hidden="true">${n}</b>`;
   const lab = (k) => Tx(pretty(k), pretty(k));
-  const term = (k, n, cls, sign) => `<span class="ct-term${cls ? " " + cls : ""}" title="${esc(lab(k))} · ${n} ${Tx("posts", "posts")}">${esc(lab(k))}${sign ? `<i class="ct-sign">${sign}</i>` : ""}${bars(n)}</span>`;
-  const tally = (o, cls, sign) => Object.entries(o || {}).filter(([k]) => !junk(k)).sort((a, b) => b[1] - a[1]).map(([k, n]) => term(k, n, cls, sign)).join("");
-  const POL = { negative: "ct-neg", mixed: "ct-mix", positive: "ct-pos" };
-  const senti = Object.entries(C.sentiment || {}).sort((a, b) => b[1] - a[1]).map(([k, n]) => term(k, n, POL[k] || "ct-flat")).join("");
-  const cell = (k, v, rows) => v ? `<div class="ct-cell"><span class="k">${k}</span><span class="v${rows ? " ct-rows" : ""}">${v}</span></div>` : "";
-  const cmp = (C.compared_to || []).slice().sort((a, b) => b.posts - a.posts)
-    .map((x) => `<span class="ct-row">${mlink(x.model)} <span class="ct-dir ${x.direction}">${esc(Tx(x.direction, x.direction))}</span>${bars(x.posts)}</span>`).join("");
+  const nk = (s) => String(s).toLowerCase().replace(/[_-]+/g, " ").replace(/\s+/g, " ").trim();
+  /* one aligned row: name (with its mark) → marks → number. cls carries the tone colour (a decoration, the word/symbol carries the state). */
+  const line = (nameHTML, n, cls, sub) => `<div class="ct-name${cls ? " " + cls : ""}">${nameHTML}${sub ? `<small class="ct-line-sub">${sub}</small>` : ""}</div>${bars(n)}${count(n)}`;
+  /* a term row inside a three-column performance list: word (+sign) as the name, marks, number */
+  const termLine = (k, n, cls, sign) => line(`<span class="ct-term${cls ? " " + cls : ""}">${sign ? `<i class="ct-sign">${sign}</i>` : ""}${esc(lab(k))}</span>`, n, cls);
+  const list = (rows) => rows.length ? `<div class="ct-list" role="list">${rows.join("")}</div>` : "";
+  const tallyList = (o, cls, sign) => list(Object.entries(o || {}).filter(([k]) => !junk(k)).sort((a, b) => b[1] - a[1]).map(([k, n]) => termLine(k, n, cls, sign)));
+
+  /* ---- group: what it is (level · rumoured maker · size) ---- */
   const EVW = { tokenizer: "tokenizer", geo_block: "geo block", api_shape: "API shape", self_report: "self-report", style: "style", version: "version" };
   const evword = (k) => Tx(EVW[k] || pretty(k), EVW[k] || pretty(k));
-  /* a maker guess may name a company, a stealth model or nothing: show a readable name, link where one exists */
   const mkname = (id) => (MK[id] && MK[id].name) || (MN[id] && MN[id].name) || pretty(id).replace(/\b[a-z]/g, (c) => c.toUpperCase());
   const mktag = (id) => (MK[id] ? mklink(id) : MN[id] ? `<a href="${modelHref(id)}">${esc(mkname(id))}</a>` : esc(mkname(id)));
-  /* the cell header already says rumoured: a chip is the maker, how many posts say it, and what the evidence was */
-  const mk = (C.maker_guess || []).slice().sort((a, b) => b.posts - a.posts).map((g) => {
-    const ev = (g.evidence || []).filter((e) => !junk(e)).map(evword);
-    const ag = Object.entries(g.against || {}).filter(([k]) => !junk(k)).map(([k, n]) => `<span class="ct-against" title="${Tx("contrary evidence", "contrary evidence")}">¬${esc(k === "tokenizer" ? Tx("tokenizer mismatch", "tokenizer mismatch") : evword(k))} ×${n}</span>`).join("");
-    const nm = mkname(g.maker);
-    return `<span class="ct-mk" title="${esc(nm)} · ${g.posts} ${Tx("posts", "posts")}"><span class="ct-nm">${mktag(g.maker)}${bars(g.posts)}</span>${ev.length ? `<small class="ct-ev">${esc(ev.join(" · "))}</small>` : ""}${ag}</span>`;
-  }).join("");
-  const sz = typeof C.size_guess === "string" ? (junk(C.size_guess) ? "" : esc(C.size_guess)) : tally(C.size_guess, "ct-flat");
-  const nk = (s) => String(s).toLowerCase().replace(/[_-]+/g, " ").replace(/\s+/g, " ").trim();
+  /* makers: top 3 as aligned rows (mark + name, marks, number), evidence + contrary evidence on the row; the rest fold */
+  const mk = (C.maker_guess || []).slice().sort((a, b) => b.posts - a.posts);
+  const mkTop = mk.slice(0, 3).map((g) => {
+    const ev = (g.evidence || []).filter((e) => !junk(e)).map(evword).join(" · ");
+    const ag = Object.entries(g.against || {}).filter(([k]) => !junk(k)).map(([k, n]) => `<span class="ct-against" title="${esc(Tx("contrary evidence", "contrary evidence"))}">⚠&nbsp;${esc(k === "tokenizer" ? Tx("tokenizer mismatch", "tokenizer mismatch") : evword(k))} ×${n}</span>`).join("");
+    const sub = [ev, ag].filter(Boolean).join(" ");
+    return line(makerTile(g.maker) + mktag(g.maker), g.posts, "", sub);
+  });
+  const mkMore = mk.length > 3 ? list(mk.slice(3).map((g) => {
+    const ev = (g.evidence || []).filter((e) => !junk(e)).map(evword).join(" · ");
+    const ag = Object.entries(g.against || {}).filter(([k]) => !junk(k)).map(([k, n]) => `<span class="ct-against" title="${esc(Tx("contrary evidence", "contrary evidence"))}">${esc(k === "tokenizer" ? Tx("tokenizer mismatch", "tokenizer mismatch") : evword(k))} ×${n}</span>`).join("");
+    return line(makerTile(g.maker) + mktag(g.maker), g.posts, "", [ev, ag].filter(Boolean).join(" "));
+  })) : "";
+  const mkBlock = mk.length ? `<div class="ct-sub">${Tx("Rumoured maker", "Rumoured maker")}${list(mkTop)}${mkMore ? `<details class="ct-fold"><summary>+${mk.length - 3} ${Tx("more", "more")}</summary>${mkMore}</details>` : ""}</div>` : "";
+  const tierBlock = (C.tier && Object.keys(C.tier).length) ? `<div class="ct-sub">${Tx("Level", "Level")}${tallyList(C.tier, "ct-flat")}</div>` : "";
+  const szText = typeof C.size_guess === "string" ? (junk(C.size_guess) ? "" : esc(C.size_guess)) : "";
+  const szList = (C.size_guess && typeof C.size_guess === "object" && Object.keys(C.size_guess).length) ? tallyList(C.size_guess, "ct-flat") : "";
+  const szBlock = (szText || szList) ? `<div class="ct-sub">${Tx("Size", "Size")}${szText ? `<div class="ct-line-text">${szText}</div>` : szList}</div>` : "";
+
+  /* ---- group: who it is compared to (grouped by direction, symbol + word, marks + count) ---- */
+  const DIR = [["similar", "≈", "similar", "ct-flat"], ["better", "↑", "better", "ct-pos"], ["worse", "↓", "worse", "ct-neg"]];
+  const cmpBy = {};
+  (C.compared_to || []).forEach((x) => { (cmpBy[x.direction] = cmpBy[x.direction] || []).push(x); });
+  const cmpRows = DIR.flatMap(([dir, glyph, word, cls]) => {
+    const items = (cmpBy[dir] || []).sort((a, b) => b.posts - a.posts);
+    if (!items.length) return [];
+    const head = `<div class="ct-line-head ${cls}" role="listitem"><span class="ct-dir ${dir}">${glyph} ${esc(Tx(word, word))}</span></div>`;
+    return [head].concat(items.map((x) => line(mlogo(x.model) + mlink(x.model), x.posts, cls)));
+  });
+  const cmpBlock = cmpRows.length ? `<div class="ct-list ct-cmp" role="list">${cmpRows.join("")}</div>` : "";
+
+  /* ---- group: how it performs (strengths | weaknesses | issues, three columns) ---- */
   const wk = C.weaknesses || {}, wkk = new Set(Object.keys(wk).map(nk));
   const iss = Object.fromEntries(Object.entries(C.issues || {}).filter(([k]) => !wkk.has(nk(k))));
-  /* a number row repeats itself when the metric or unit restates the value ("mismatch · tokenizer match", "6 toy tasks · tasks · benchmark"): each word is said once */
+  const perfCols = [
+    [Tx("Strengths", "Strengths"), tallyList(C.strengths, "ct-pos", "+")],
+    [Tx("Weaknesses", "Weaknesses"), tallyList(wk, "ct-neg", "−")],
+    [Tx("Issues", "Issues"), tallyList(iss, "ct-warn")],
+  ].filter(([, v]) => v);
+  const perfBlock = perfCols.length ? `<div class="ct-perf">${perfCols.map(([h, v]) => `<div class="ct-col"><span class="ct-colh">${h}</span>${v}</div>`).join("")}</div>` : "";
+
+  /* ---- group: who says so (sentiment · sources as one 100% stacked bar each, with a labelled legend) ---- */
+  /* each segment carries its word in the legend (the number goes inside when the slice is wide): a colour is never the only signal */
+  const SENTC = { positive: "var(--live)", mixed: "var(--overdue)", negative: "var(--ended)" };
+  const SENTW = { negative: Tx("negative", "negative"), mixed: Tx("mixed", "mixed"), positive: Tx("positive", "positive") };
+  /* sources are a distribution, not a verdict: neutral tints, never the status palette (DESIGN §2) */
+  const SRC = ["var(--fg)", "color-mix(in srgb, var(--fg) 55%, var(--surface))", "color-mix(in srgb, var(--fg) 30%, var(--surface))", "color-mix(in srgb, var(--fg) 16%, var(--surface))"];
+  function stack(counts, order, colorOf, wordOf) {
+    const keys = order.filter((k) => (counts[k] || 0) > 0);
+    const total = keys.reduce((s, k) => s + counts[k], 0);
+    if (!total) return "";
+    let i = 0;
+    const segs = keys.map((k) => { const n = counts[k], p = (100 * n) / total, c = colorOf(k, i++); return `<i style="width:${p.toFixed(1)}%;background:${c}" title="${esc(wordOf(k))} · ${n}">${p >= 22 ? `<span>${n}</span>` : ""}</i>`; }).join("");
+    i = 0;
+    const legend = keys.map((k) => { const p = Math.round((100 * counts[k]) / total), c = colorOf(k, i++); return `<span class="lg-seg"><i style="background:${c}" aria-hidden="true"></i><b>${esc(wordOf(k))}</b> ${counts[k]} · ${p}%</span>`; }).join("");
+    const aria = keys.map((k) => `${wordOf(k)} ${counts[k]}`).join(", ");
+    return `<div class="ct-stack" role="img" aria-label="${esc(aria)}">${segs}</div><div class="ct-legend">${legend}</div>`;
+  }
+  const sentiStack = () => stack(C.sentiment || {}, ["positive", "mixed", "negative"], (k) => SENTC[k], (k) => SENTW[k]);
+  const sentiBlock = sentiStack() ? `<div class="ct-sub">${Tx("Sentiment", "Sentiment")}${sentiStack()}</div>` : "";
+  const srcKeys = Object.entries(C.sources || {}).filter(([k]) => !junk(k)).sort((a, b) => b[1] - a[1]).map(([k]) => k);
+  const srcBlock = srcKeys.length ? `<div class="ct-sub">${Tx("Sources", "Sources")}${stack(C.sources || {}, srcKeys, (k, i) => SRC[i % SRC.length], (k) => lab(k))}</div>` : "";
+
+  /* ---- numbers as reported: small tiles (value + unit + metric + source); tokenizer_match is maker evidence, not a number; dedupe same metric+value ---- */
   const wds = (s) => nk(s).split(" ").filter(Boolean);
-  const nums = (C.numbers || []).map((n) => {
+  const seenNum = new Set();
+  const nums = (C.numbers || []).filter((n) => nk(n.metric) !== "tokenizer match").map((n) => {
+    const key = nk(n.metric) + "|" + nk(n.value);
+    if (seenNum.has(key)) return "";
+    seenNum.add(key);
     const src = POST[n.post], u = src && src.url;
     const vset = new Set(wds(n.value));
     const inVal = (w) => { const t = nk(w); return !!t && [...vset].some((v) => v === t || (v.length >= 3 && t.length >= 3 && (v.includes(t) || t.includes(v)))); };
@@ -1893,8 +1998,9 @@ $("details").innerHTML = ML.map((l) => {
       const keep = dw.filter((_, i) => !(i < nw.length && inVal(nw[i])));
       if (keep.length) m = keep.join(" ");
     }
-    return `<span class="ct-num" title="${esc(n.note || "")}"><b>${esc(String(n.value))}</b>${showUnit ? ` ${esc(n.unit)}` : ""}${u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(m)}</a>` : `<span>${esc(m)}</span>`}${n.grade ? `<span class="ctag ${esc(n.grade)}">${esc(pretty(n.grade))}</span>` : ""}</span>`;
+    return `<div class="ct-tile" title="${esc(n.note || "")}"><b>${esc(String(n.value))}</b>${showUnit ? `<span class="ct-unit">${esc(n.unit)}</span>` : ""}<span class="ct-metric">${u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(m)} ${I.ext()}</a>` : esc(m)}</span></div>`;
   }).join("");
+
   const quotes = (C.quotes || []).map((q) => `<article class="cquote">
     <div class="cq-top"><span class="ctag plat">${esc(pretty(q.platform))}</span><span class="cq-by">${esc(q.author)}</span><span class="cq-date">${esc(absDate(q.date))}</span>${q.gone ? `<span class="ctag gone">${Tx("deleted", "deleted")}</span>` : ""}</div>
     <blockquote class="cq-text">${esc(q.text)}</blockquote>
@@ -1902,50 +2008,38 @@ $("details").innerHTML = ML.map((l) => {
   </article>`).join("");
   const METHOD_URL = ZH ? "https://freetokens.fyi/zh/methodology#community-take" : "https://freetokens.fyi/methodology#community-take";
   const ISSUE_URL = "https://github.com/dimpurr/freetokens/issues/new";
+  const group = (title, body) => body ? `<section class="ct-group"><h3 class="ct-group-h">${title}</h3>${body}</section>` : "";
+  const subs = (arr) => { const b = arr.filter(Boolean); return b.length ? `<div class="ct-subs">${b.join("")}</div>` : ""; };
+  const whatBody = subs([tierBlock, mkBlock, szBlock]);
+  const whoBody = subs([sentiBlock, srcBlock]);
   ct.innerHTML = `
     <p class="ct-meta">${C.authors} ${Tx("authors", "authors")} · ${(C.posts || []).length} ${Tx("posts", "posts")} · ${Tx("collected", "collected")} ${esc(absDate(C.collected))}</p>
-    <div class="ct-cells">
-      ${cell(Tx("Level", "Level"), tally(C.tier, "ct-flat"))}
-      ${cell(Tx("Compared to", "Compared to"), cmp, true)}
-      ${cell(Tx("Rumoured maker", "Rumoured maker"), mk)}
-      ${cell(Tx("Size", "Size"), sz)}
-      ${cell(Tx("Strengths", "Strengths"), tally(C.strengths, "ct-pos", "+"))}
-      ${cell(Tx("Weaknesses", "Weaknesses"), tally(wk, "ct-neg", "−"))}
-      ${cell(Tx("Issues", "Issues"), tally(iss, "ct-warn"))}
-      ${cell(Tx("Sentiment", "Sentiment"), senti)}
-      ${cell(Tx("Sources", "Sources"), tally(C.sources, "ct-flat"))}
-      ${nums ? `<div class="ct-cell ct-wide"><span class="k">${Tx("Numbers as reported", "Numbers as reported")}</span><span class="v">${nums}</span></div>` : ""}
-    </div>
+    ${group(Tx("What it is", "What it is"), whatBody)}
+    ${group(Tx("Who it's compared to", "Who it's compared to"), cmpBlock)}
+    ${group(Tx("How it performs", "How it performs"), perfBlock)}
+    ${group(Tx("Who says so", "Who says so"), whoBody)}
+    ${nums ? `<section class="ct-group ct-group-wide"><h3 class="ct-group-h">${Tx("Numbers as reported", "Numbers as reported")}</h3><div class="ct-tiles">${nums}</div></section>` : ""}
     ${quotes ? `<div class="cquotes">${quotes}</div>` : ""}
     <div class="ct-foot"><span class="ct-notfti">${Tx("Not part of FTI", "Not part of FTI")}</span> · <a href="${METHOD_URL}">${Tx("method", "method")}</a> · <a href="${ISSUE_URL}" target="_blank" rel="noopener">${Tx("report a post", "report a post")}</a></div>`;
 
-  /* a value block is two lines of reading, whatever the width: what does not fit folds behind one "+N more" control */
-  const fit = (box) => {
-    if (box.dataset.ctopen) return;
-    const kids = Array.from(box.children).filter((e) => !e.classList.contains("ct-more"));
-    kids.forEach((k) => { k.hidden = false; });
-    const unit = parseFloat(getComputedStyle(box).lineHeight) || (kids[0] ? kids[0].getBoundingClientRect().height : 0) || 20;
-    const fits = (extra) => Math.ceil((box.scrollHeight - 8) / unit) <= 2 + extra;
-    if (kids.length < 2 || fits(0)) { const old = box.querySelector(".ct-more"); if (old) old.remove(); return; }
-    let more = box.querySelector(".ct-more");
-    if (!more) {
-      more = document.createElement("button");
-      more.type = "button"; more.className = "ct-more";
-      more.addEventListener("click", () => { box.dataset.ctopen = "1"; kids.forEach((k) => { k.hidden = false; }); more.remove(); });
-      box.appendChild(more);
+  /* ---- FTI-empty stats cell → community snapshot (whole cell links here; never a compared model's FTI) ---- */
+  if (!ftOf(M)) {
+    const cell = document.querySelector("#mhead .aa-stat");
+    const top = (C.compared_to || []).slice().sort((a, b) => b.posts - a.posts)[0];
+    const dirG = { similar: "≈", better: "↑", worse: "↓" }[top && top.direction];
+    const dirW = top ? { similar: Tx("similar", "similar"), better: Tx("better", "better"), worse: Tx("worse", "worse") }[top.direction] : "";
+    const cmp = top ? `<span class="ct-snap-cmp">${mlogo(top.model)}<span class="ct-snap-name">${esc(MN[top.model] || top.model)}</span> <span class="ct-dir ${esc(top.direction)}">${dirG} ${esc(dirW)}</span>${bars(top.posts)}<b class="ct-count">${top.posts}</b></span>` : "";
+    const sBar = sentiStack().split('<div class="ct-legend">')[0];
+    if (cell && cmp) {
+      cell.classList.add("ct-snapcell");
+      cell.innerHTML = `<a class="ct-snap" href="#community-sec" aria-label="${esc(Tx("Not scored yet", "Not scored yet") + " — " + Tx("See community take", "See community take"))}">
+        <span class="k">${Tx("FTI", "FTI")}</span>
+        <span class="ct-snap-not">${Tx("Not scored yet", "Not scored yet")}</span>${cmp}
+        ${sBar ? `<span class="ct-snap-bar">${sBar}</span>` : ""}
+        <span class="ct-snap-jump">${Tx("See community take", "See community take")} ${I.ext()}</span></a>`;
+      cell.querySelector(".ct-snap").addEventListener("click", () => { det.open = true; });
     }
-    for (let hide = 0; hide < kids.length - 1; hide++) {
-      kids.slice(kids.length - hide - 1).forEach((k) => { k.hidden = true; });
-      more.textContent = `+${hide + 1} ${Tx("more", "more")}`;
-      if (fits(1)) return;
-    }
-  };
-  const fitAll = () => ct.querySelectorAll(".ct-cell .v").forEach(fit);
-  fitAll();
-  det.addEventListener("toggle", fitAll);
-  let ctT = 0;
-  addEventListener("resize", () => { clearTimeout(ctT); ctT = setTimeout(fitAll, 120); });
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitAll);
+  }
 })();
 
 $("stamp").innerHTML = `${Tx("Data as of", "Data as of")} ${esc(absDate(D.built))}.`;
