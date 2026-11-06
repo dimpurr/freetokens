@@ -792,8 +792,13 @@ ol.rungs > li.muted::before { content: none; }
   .wrap.blog { max-width: 1360px; }
   .a-layout { grid-template-columns: 220px minmax(0, 720px) minmax(0, 252px); }
   .a-live { grid-column: 3; grid-row: 1 / span 5; grid-template-columns: minmax(0, 1fr); align-self: start; position: sticky; top: 72px; max-height: calc(100vh - 96px); overflow-y: auto; scrollbar-width: thin; }
+  /* inside the 252px third column the card is back to normal document flow — the 760px [model] [where] side-by-side
+     would otherwise drop .chips into an implicit auto column and starve the heading/subject track to 0 (11-06 preview review, Blocking 1). */
+  .a-live .where-now-head, .a-live > .lc-who, .a-live > .chips { grid-column: 1; }
+  .a-live > .chips { align-self: stretch; min-width: 0; }
   .a-live > .chips, .lc-alt .chips { display: grid; gap: 5px; }
-  .a-live .chip { white-space: normal; max-width: 100%; }
+  .a-live .chip { white-space: normal; max-width: 100%; min-width: 0; }
+  .a-live .chip .st, .a-live .chip small { min-width: 0; }
 }
 @media (min-width: 760px) and (max-width: 1199px) { .a-layout > *, .a-main > * { max-width: 720px; } }
 
@@ -854,6 +859,11 @@ sup { line-height: 0; font-size: 0.68em; vertical-align: super; }
 .article .tbl-scroll { font-size: 0.92rem; line-height: 1.5; }
 .article .tbl-scroll table { font-size: inherit; }
 .article td, .article th { padding: 10px 14px; }
+/* article tables above the phone cardify breakpoint: keep the subject and the date on one line so a 2-word
+   channel name does not fold and a zh date does not leave 「日」 alone (11-06 preview review, Cosmetic 4/5) */
+@media (min-width: 641px) {
+  .article table.cardify th:nth-child(-n+2), .article table.cardify td:nth-child(-n+2) { white-space: nowrap; }
+}
 .article figure { margin: 2em 0 0; display: grid; gap: 10px; }
 .article figure + * { margin-top: 1.6em; }
 .fig-img { display: block; }
@@ -862,7 +872,8 @@ sup { line-height: 0; font-size: 0.68em; vertical-align: super; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .fig-img.theme-light { display: none; } :root:not([data-theme="light"]) .fig-img.theme-dark { display: block; } }
 :root[data-theme="dark"] .fig-img.theme-light { display: none; }
 :root[data-theme="dark"] .fig-img.theme-dark { display: block; }
-.article figure img[src$="-tweet-light.webp"], .article figure img[src$="-tweet-dark.webp"], .article figure img[src$="-tweet.webp"] { border: 0; background: none; border-radius: 0; max-width: 550px; }
+/* tweet screenshots live on the card surface: same hairline ring as the rest of the site (DESIGN §2), centred in the 720 reading column */
+.article figure img[src$="-tweet-light.webp"], .article figure img[src$="-tweet-dark.webp"], .article figure img[src$="-tweet.webp"] { border: 0; background: none; border-radius: var(--r); box-shadow: var(--ring); max-width: 550px; margin-inline: auto; }
 .article figure img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--surface-2); }
 .article figcaption { font-size: 0.86rem; line-height: 1.5; color: var(--muted); }
 .fig-meta { display: block; margin-top: 2px; font: 0.74rem var(--f-mono); color: var(--faint); }
