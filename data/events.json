@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-11-06",
+    "lanes": [
+      "crouton-go"
+    ],
+    "kind": "listed",
+    "text": "opencode-go/crouton-alpha-free is listed at $0 in the OpenCode Go catalogue at the 2026-11-06 daily check (30 models); stealth model released 2026-11-03, 1M context, 270K max output; cost $0/$0",
+    "source": {
+      "label": "Daily free-catalogue check of the OpenCode Go model list (own tool)",
+      "url": "https://opencode.ai/zen/go/v1/models"
+    }
+  },
+  {
     "date": "2026-11-05",
     "lanes": [
       "inkling-or",

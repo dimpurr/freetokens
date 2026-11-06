@@ -1012,5 +1012,7 @@
  "Mistral-Small-3.2-24B-Instruct-2506 reaches EOL: the OVH catalogue page badges it Retired and it is absent from the availability list a 2nd consecutive day (2026-11-04, 2026-11-05); endpoint still answered on 2026-11-04": "Mistral-Small-3.2-24B-Instruct-2506 到 EOL：OVH 目录页挂 Retired 徽标，连续两天缺席可用名单（2026-11-04、2026-11-05）；2026-11-04 时端点仍可应答。",
  "OVHcloud AI Endpoints catalogue page": "OVHcloud AI Endpoints 目录页",
  "own check of the OpenRouter models API": "自行核查 OpenRouter 模型 API",
- "own check of the Vercel AI Gateway model list": "自行核查 Vercel AI Gateway 模型列表"
+ "own check of the Vercel AI Gateway model list": "自行核查 Vercel AI Gateway 模型列表",
+ "Stealth reasoning model (text/image/video/pdf in, tool use); 1M context, 270K max output; cost $0/$0. Go catalogue id opencode-go/crouton-alpha-free; first listed at the 2026-11-06 check.": "Stealth 推理模型（text/image/video/pdf 输入，可用工具）；1M 上下文，270K 最大输出，费用 $0/$0。Go 目录 id 为 opencode-go/crouton-alpha-free；2026-11-06 核查首次在列。",
+ "opencode-go/crouton-alpha-free is listed at $0 in the OpenCode Go catalogue at the 2026-11-06 daily check (30 models); stealth model released 2026-11-03, 1M context, 270K max output; cost $0/$0": "opencode-go/crouton-alpha-free 在 2026-11-06 日常核查中以 $0 列于 OpenCode Go 目录（30 模型）；stealth 模型发布于 2026-11-03，1M 上下文，270K 最大输出，费用 $0/$0"
 }
