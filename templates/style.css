@@ -941,29 +941,44 @@ details.community > summary h2 { margin: 0; min-width: 0; }
 details.community > summary::before { content: ""; width: 8px; height: 8px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: rotate(-45deg); transition: transform .15s; flex: none; align-self: baseline; }
 details.community[open] > summary::before { transform: rotate(45deg); }
 details.community[open] > summary { border-bottom: 1px solid var(--line); }
-.ct { padding: 6px 18px 16px; display: grid; gap: 16px; }
+.ct { padding: 6px 18px 16px; display: grid; gap: 16px; --ct-cap: 232px; }
 .ct-thin, .ct-meta { color: var(--muted); margin: 0; }
 .ct-meta { font-size: 0.8rem; }
 /* a group = one small header + its content; the four groups stack, columns inside adapt to the width */
 .ct-group { display: grid; gap: 8px; min-width: 0; }
 .ct-group-h { margin: 0; font: 600 0.68rem var(--f-body); text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); }
 .ct-group-wide { border-top: 1px solid var(--line); padding-top: 14px; }
-/* sub-blocks that share a group sit in equal columns, wrapping to one column when they get tight */
-.ct-subs { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 184px), 1fr)); gap: 6px 28px; }
+/* the block's one column grid: whatever splits into columns (performance · sentiment+sources) splits the same way,
+   so the columns of every group start at the same x; a lone last column takes the full width rather than leaving a gap */
+.ct-cols { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px 40px; }
+.ct-cols > :nth-child(odd):last-child { grid-column: 1 / -1; }
+@media (min-width: 900px) { .ct-cols { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .ct-sub { display: grid; gap: 5px; align-content: start; min-width: 0; }
 .ct-sub > :first-child { font: 600 0.66rem var(--f-body); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
-/* an aligned list: name (with its mark) → marks → number, so the point columns line up down the group */
-.ct-list { display: grid; grid-template-columns: minmax(0, 1fr) max-content max-content; column-gap: 10px; row-gap: 4px; align-items: center; }
-.ct-name { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 6px; min-width: 0; }
+/* a single-value fact (level · size) reads as one inline line under the group title, not as a column beside the maker list */
+.ct-inline { display: flex; flex-wrap: wrap; align-items: center; gap: 3px 12px; font-size: 0.92rem; }
+.ct-inline-bit { display: inline-flex; align-items: center; gap: 7px; min-width: 0; }
+.ct-inline-k { font: 600 0.66rem var(--f-body); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+.ct-inline-v { display: inline-flex; align-items: center; gap: 6px; }
+.ct-inline-sep { color: var(--faint); }
+.ct-inline .ct-marks { display: inline-grid; grid-template-columns: repeat(var(--n, 1), 7px); gap: 2px; }
+/* an aligned list: name → marks → number (only past the dot cap) → tail. The name column is --ct-name, the widest name in
+   the group (each row's own max-content until the script measures it, capped by --ct-cap), so the marks sit right after the
+   name and line up down the group instead of being pinned to the card edge. */
+.ct-list { display: grid; gap: 4px; align-content: start; }
+.ct-row { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.ct-name { flex: 0 1 auto; width: var(--ct-name, max-content); max-width: min(var(--ct-cap, 232px), 100%); display: flex; flex-wrap: wrap; align-items: center; gap: 2px 6px; min-width: 0; }
 .ct-name a { color: var(--fg); text-decoration: none; }
 .ct-name a:hover { color: var(--accent); }
 .ct-name .lg { flex: none; }
-.ct-line-sub { flex: 1 1 100%; font-size: 0.72rem; color: var(--muted); min-width: 0; }
+/* the row's small print — evidence words + ⚠ counter-evidence — sits at the tail of the same row (its own line only when the width runs out) */
+.ct-tail { flex: 0 1 auto; font-size: 0.72rem; color: var(--muted); min-width: 0; overflow-wrap: anywhere; }
+.ct-evw { margin-right: 6px; }
 .ct-line-text { font-size: 0.92rem; color: var(--fg); }
-.ct-count { font: 600 0.82rem var(--f-body); color: var(--muted); font-variant-numeric: tabular-nums; min-width: 1.4em; text-align: right; }
+.ct-count { flex: none; font: 600 0.82rem var(--f-body); color: var(--muted); font-variant-numeric: tabular-nums; }
 .ct-term { display: inline-flex; align-items: baseline; gap: 4px; min-width: 0; }
 .ct-sign { font-style: normal; font-weight: 600; color: var(--muted); }
-.ct-list .ct-marks { display: grid; grid-template-columns: repeat(var(--n, 1), 7px); gap: 2px; align-self: center; }
+.ct-list .ct-marks { flex: none; display: grid; grid-template-columns: repeat(var(--n, 1), 7px); gap: 2px; align-self: center; }
 .ct-marks i { height: 6px; border-radius: 1px; background: var(--faint); }
 .ct-name.ct-pos + .ct-marks i, .ct-name.ct-pos + .ct-marks + .ct-count { color: var(--live); }
 .ct-name.ct-pos + .ct-marks i { background: var(--live); }
@@ -980,8 +995,7 @@ details.community[open] > summary { border-bottom: 1px solid var(--line); }
 .ct-dir.worse { color: var(--ended); }
 .ct-dir.similar { color: var(--muted); }
 .ct-against { color: var(--overdue); white-space: nowrap; }
-/* performance: three columns, each a small header over an aligned list */
-.ct-perf { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr)); gap: 6px 28px; }
+/* performance: each column is a small header over an aligned list (the shared .ct-cols grid does the columns) */
 .ct-col { display: grid; gap: 5px; align-content: start; min-width: 0; }
 .ct-colh { font: 600 0.66rem var(--f-body); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
 /* one 100% stacked bar with a labelled legend under it (the word is always written, the colour is decoration) */
@@ -1015,7 +1029,17 @@ details.community[open] > summary { border-bottom: 1px solid var(--line); }
 .ct-snap-name { color: var(--fg); flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .ct-snap-cmp > :not(.ct-snap-name) { flex: 0 0 auto; }
 .ct-snap-cmp .ct-marks { display: grid; grid-template-columns: repeat(var(--n, 1), 6px); gap: 2px; align-self: center; }
-.ct-snap-bar .ct-stack { height: 7px; }
+/* the snapshot bar is 7px tall, so its counts are the words beside it rather than numerals inside the slices;
+   bar and words share one line and the cell keeps its old height on purpose — the stats row takes its height from this
+   cell, and a taller snapshot leaves the sibling cells dangling (responsive.py: dead space in Context/Images/Free now) */
+.ct-snap-bar { display: flex; align-items: center; gap: 4px 8px; }
+.ct-snap-bar .ct-stack { flex: 0 1 30%; min-width: 72px; height: 7px; }
+.ct-snap .ct-legend { flex: 1 1 0; min-width: 0; font: 0.66rem/1.35 var(--f-body); gap: 0 8px; }
+/* the row tail needs the full width once the name and marks have eaten it, and below 480 only the ⚠ tag is left */
+@media (max-width: 719px) { .ct-row { flex-wrap: wrap; } .ct-tail { flex: 1 1 100%; } }
+/* under 360 the evidence words would wrap the row to three lines: only the ⚠ tag is left, and a tail holding nothing
+   but them disappears rather than leaving an empty line */
+@media (max-width: 359px) { .ct-evw { display: none; } .ct-tail:not(:has(.ct-against)) { display: none; } }
 .ct-snap-jump { display: inline-flex; align-items: center; gap: 4px; font-size: 0.74rem; color: var(--accent); margin-top: 2px; }
 .ct-snap-jump .ico { width: 0.85em; height: 0.85em; }
 /* quote cards and the footer (unchanged shapes) */
@@ -1023,8 +1047,9 @@ details.community[open] > summary { border-bottom: 1px solid var(--line); }
 .ctag.gone { background: var(--ended-soft); color: var(--ended); }
 .ctag.measured { background: var(--measured-soft); color: var(--measured); }
 .ctag.forensic { background: var(--accent-soft); color: var(--accent); }
-.cquotes { display: flex; flex-wrap: wrap; gap: 12px; }
-.cquote { flex: 1 1 calc((100% - 32px) / 3); min-width: min(100%, 236px); max-width: 100%; background: var(--surface-2); box-shadow: var(--ring); border-radius: var(--r); padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; }
+/* quote cards: equal-width tracks (a flex row let the last line stretch wider), rows the same height, source pinned to the bottom */
+.cquotes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 12px; }
+.cquote { min-width: 0; background: var(--surface-2); box-shadow: var(--ring); border-radius: var(--r); padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; }
 .cq-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .cq-by { font-size: 0.8rem; color: var(--fg); font-weight: 500; overflow-wrap: anywhere; }
 .cq-date { font: 0.72rem var(--f-mono); color: var(--muted); }
