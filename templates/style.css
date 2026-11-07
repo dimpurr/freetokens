@@ -995,10 +995,12 @@ details.community[open] > summary { border-bottom: 1px solid var(--line); }
 .ct-name.ct-warn + .ct-marks i { background: var(--overdue); }
 .ct-pos .ct-sign { color: var(--live); }
 .ct-neg .ct-sign { color: var(--ended); }
-/* the square in the meta line's key: the same shape as a mark (an element, never a ■ character), coloured like a dot
-   (not the barely-visible --faint grey) and set at the meta line's own size so it is not easy to miss (SONNET-REVIEW-3 cosmetic) */
+/* the square in the meta line's key: the same shape as a mark (an element, never a ■ character), painted with the same
+   neutral colour a mark declares (.ct-marks i → --faint), so the key reads as one of the count squares and not as one of
+   the green/amber/red state tints (SONNET-REVIEW-4 #5). A status colour is wrong here: the key means "one square = one post"
+   for every mark, whatever its verdict. The "= 1 post" word, not the colour, carries the meaning (aria-hidden swatch). */
 .ct-legend-key { display: inline-flex; vertical-align: -1px; }
-.ct-legend-key i { width: 7px; height: 6px; border-radius: 1px; background: var(--muted); }
+.ct-legend-key i { width: 7px; height: 6px; border-radius: 1px; background: var(--faint); }
 .ct-legend-txt { margin-left: 5px; font-size: inherit; }
 /* compared-to: a direction band (symbol + word, never colour alone) heads its aligned model rows */
 .ct-line-head { grid-column: 1 / -1; margin-top: 4px; }

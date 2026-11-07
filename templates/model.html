@@ -300,17 +300,32 @@ $("details").innerHTML = ML.map((l) => {
     <div class="ct-foot"><span class="ct-notfti">${Tx("Not part of FTI", "Not part of FTI")}</span> · <a href="${METHOD_URL}">${Tx("method", "method")}</a> · <a href="${ISSUE_URL}" target="_blank" rel="noopener">${Tx("report a post", "report a post")}</a></div>`;
   /* one --ct-name for the whole block: the widest name anywhere, so every group's marks sit in the same column top to bottom
      (SONNET-REVIEW-3 blocking 1: dot columns differed per group). Each clone is measured in place (its own row parent keeps
-     the inherited font) then removed. No layout under prerender (widths come back 0) → the variable stays unset and each row
-     falls back to its own max-content; --ct-cap still clamps it. */
+     the inherited font) then removed. No layout under prerender (widths come back 0) → the variables stay unset and each row
+     falls back to its own max-content with the CSS --ct-cap. */
   const nameCols = () => {
     let w = 0;
     document.querySelectorAll(".ct .ct-list > .ct-row > .ct-name").forEach((nm) => {
       const host = nm.parentElement || document.body;
       const c = nm.cloneNode(true);
-      c.style.cssText = "position:absolute;visibility:hidden;display:inline-block;white-space:nowrap;width:auto;max-width:none";
+      // measure the row's REAL flex width: inline-flex with the same column-gap the live .ct-name uses, so the logo↔name
+      // gap is counted. The old inline-block clone dropped that gap, so --ct-name came out ~6px short of what the flex row
+      // needs and the name was clipped by an ellipsis even in a column that had room to spare (SONNET-REVIEW-4 #10).
+      const cg = parseFloat(getComputedStyle(nm).columnGap) || 0;
+      c.style.cssText = "position:absolute;visibility:hidden;display:inline-flex;align-items:center;gap:" + cg + "px;white-space:nowrap;width:auto;max-width:none";
       host.appendChild(c); w = Math.max(w, c.getBoundingClientRect().width); c.remove();
     });
     if (w > 0) ct.style.setProperty("--ct-name", w + "px");
+    /* cap each column to the width that column actually has, not a fixed 232px: column content width minus the dots column
+       it must leave for. In the two-column top layout the compared-to column is ~542px wide yet a fixed 232px clamp
+       truncated names with ~290px of free width to their right (SONNET-REVIEW-4 #10). Only a name wider than its own column
+       still truncates, and the name <a> keeps its title=full name. */
+    document.querySelectorAll(".ct .ct-list").forEach((L) => {
+      const avail = L.clientWidth;
+      if (avail <= 0) return; // prerender: no layout → keep the CSS fallback cap
+      let dots = 0;
+      L.querySelectorAll(".ct-marks").forEach((m) => { dots = Math.max(dots, m.getBoundingClientRect().width); });
+      L.style.setProperty("--ct-cap", Math.max(0, Math.round(avail - dots - 10)) + "px");
+    });
   };
   nameCols();
   if (document.fonts) document.fonts.ready.then(nameCols);
