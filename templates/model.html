@@ -143,55 +143,87 @@ $("details").innerHTML = ML.map((l) => {
   const POST = Object.fromEntries((C.posts || []).map((p) => [p.id, p]));
   const junk = (s) => /^(|other|others|misc|miscellaneous|n\/?a|none|not discussed|no data|unknown|unsure)$/.test(String(s).toLowerCase().replace(/[_-]+/g, " ").trim());
   const CAP = 6;
-  /* the marks (points) are the readable count; the exact number stays in a narrow column, aligned down the group */
-  const bars = (n) => { const k = Math.max(1, Math.min(n, CAP)); return `<span class="meter ct-marks" style="--n:${k}" role="img" aria-label="${n} ${Tx("posts", "posts")}">${'<i class="on"></i>'.repeat(k)}</span>`; };
-  const count = (n) => `<b class="ct-count" aria-hidden="true">${n}</b>`;
+  /* the squares are the readable count (DESIGN §2: a shape carries it, the colour is decoration); the exact number lives in
+     the hover/aria text, and a numeral is printed only past the cap — a row never says the same count twice (DESIGN §4). */
+  const postsW = (n) => Tx(n === 1 ? "post" : "posts", n === 1 ? "post" : "posts");
+  const bars = (n) => { const k = Math.max(1, Math.min(n, CAP)); return `<span class="meter ct-marks" style="--n:${k}" role="img" aria-label="${n} ${postsW(n)}" title="${n} ${postsW(n)}">${'<i class="on"></i>'.repeat(k)}</span>`; };
+  /* the key next to the meta line: one square (the same element as a mark, never a ■ character) stands for one post;
+     the "= 1 post" run is one text node in one <small>, so the zh build swaps the whole phrase (build.py _zh_swap matches full runs only) */
+  const keyLegend = () => `<span class="ct-legend-key" aria-hidden="true"><i class="on"></i></span><small class="ct-legend-txt">${Tx("= 1 post", "= 1 post")}</small>`;
+  const count = (n) => (n > CAP ? `<b class="ct-count" aria-hidden="true">${n}</b>` : "");
   const lab = (k) => Tx(pretty(k), pretty(k));
   const nk = (s) => String(s).toLowerCase().replace(/[_-]+/g, " ").replace(/\s+/g, " ").trim();
-  /* one aligned row: name (with its mark) → marks → number. cls carries the tone colour (a decoration, the word/symbol carries the state). */
-  const line = (nameHTML, n, cls, sub) => `<div class="ct-name${cls ? " " + cls : ""}">${nameHTML}${sub ? `<small class="ct-line-sub">${sub}</small>` : ""}</div>${bars(n)}${count(n)}`;
-  /* a term row inside a three-column performance list: word (+sign) as the name, marks, number */
+  /* one aligned row inside one flex line: name (with its mark) in a fixed-width column → marks → number (past the cap only) → tail → note.
+     cls carries the tone colour (a decoration, the word/symbol carries the state). */
+  const line = (nameHTML, n, cls, tailHTML, note) => `<div class="ct-row"><div class="ct-name${cls ? " " + cls : ""}">${nameHTML}</div>${bars(n)}${count(n)}${tailHTML || ""}${note ? `<small class="ct-note">${note}</small>` : ""}</div>`;
+  /* a term row inside a performance list: word (+sign) as the name, marks, number */
   const termLine = (k, n, cls, sign) => line(`<span class="ct-term${cls ? " " + cls : ""}">${sign ? `<i class="ct-sign">${sign}</i>` : ""}${esc(lab(k))}</span>`, n, cls);
   const list = (rows) => rows.length ? `<div class="ct-list" role="list">${rows.join("")}</div>` : "";
   const tallyList = (o, cls, sign) => list(Object.entries(o || {}).filter(([k]) => !junk(k)).sort((a, b) => b[1] - a[1]).map(([k, n]) => termLine(k, n, cls, sign)));
 
   /* ---- group: what it is (level · rumoured maker · size) ---- */
+  /* evidence words: sentence-case plain small print (never a caps chip), one white-talk explanation per word in its title;
+     the ⚠ counter-evidence is the only amber element a row may carry */
   const EVW = { tokenizer: "tokenizer", geo_block: "geo block", api_shape: "API shape", self_report: "self-report", style: "style", version: "version" };
+  const EVX = {
+    tokenizer: "token counts compared with known models",
+    geo_block: "the service blocks or allows traffic from certain regions",
+    api_shape: "request and response fields match a known maker's API",
+    self_report: "the service or model itself names a maker",
+    style: "writing style resembles a known maker's models",
+    version: "a version or codename matches a known model",
+  };
   const evword = (k) => Tx(EVW[k] || pretty(k), EVW[k] || pretty(k));
+  const evexp = (k) => Tx(EVX[k] || "", EVX[k] || "");
   const mkname = (id) => (MK[id] && MK[id].name) || (MN[id] && MN[id].name) || pretty(id).replace(/\b[a-z]/g, (c) => c.toUpperCase());
   const mktag = (id) => (MK[id] ? mklink(id) : MN[id] ? `<a href="${modelHref(id)}">${esc(mkname(id))}</a>` : esc(mkname(id)));
-  /* makers: top 3 as aligned rows (mark + name, marks, number), evidence + contrary evidence on the row; the rest fold */
+  /* the row's small print: evidence words + at most one ⚠ counter-evidence; explain=true puts each word's plain-words title on */
+  const tail = (ev, ag, explain) => {
+    const words = (ev || []).map((k) => {
+      const w = evword(k);
+      return explain && EVX[k] ? `<span class="ct-evw" title="${esc(evexp(k))}">${esc(w)}</span>` : `<span class="ct-evw">${esc(w)}</span>`;
+    }).join(" · ");
+    return words || ag ? `<span class="ct-tail">${words}${ag || ""}</span>` : "";
+  };
+  /* the one amber element a maker row may carry (the only against key in the data is tokenizer) */
+  const againstSpan = (k, n) => `<span class="ct-against" title="${esc(Tx("tokenizer mismatch", "tokenizer mismatch"))}">⚠&nbsp;${esc(Tx("tokenizer doesn't match", "tokenizer doesn't match"))} ×${n}</span>`;
+  /* makers: top 3 as aligned rows (mark + name, marks, number), evidence + contrary evidence on the same row; the rest fold */
   const mk = (C.maker_guess || []).slice().sort((a, b) => b.posts - a.posts);
-  const mkTop = mk.slice(0, 3).map((g) => {
-    const ev = (g.evidence || []).filter((e) => !junk(e)).map(evword).join(" · ");
-    const ag = Object.entries(g.against || {}).filter(([k]) => !junk(k)).map(([k, n]) => `<span class="ct-against" title="${esc(Tx("contrary evidence", "contrary evidence"))}">⚠&nbsp;${esc(k === "tokenizer" ? Tx("tokenizer mismatch", "tokenizer mismatch") : evword(k))} ×${n}</span>`).join("");
-    const sub = [ev, ag].filter(Boolean).join(" ");
-    return line(makerTile(g.maker) + mktag(g.maker), g.posts, "", sub);
-  });
-  const mkMore = mk.length > 3 ? list(mk.slice(3).map((g) => {
-    const ev = (g.evidence || []).filter((e) => !junk(e)).map(evword).join(" · ");
-    const ag = Object.entries(g.against || {}).filter(([k]) => !junk(k)).map(([k, n]) => `<span class="ct-against" title="${esc(Tx("contrary evidence", "contrary evidence"))}">${esc(k === "tokenizer" ? Tx("tokenizer mismatch", "tokenizer mismatch") : evword(k))} ×${n}</span>`).join("");
-    return line(makerTile(g.maker) + mktag(g.maker), g.posts, "", [ev, ag].filter(Boolean).join(" "));
-  })) : "";
-  const mkBlock = mk.length ? `<div class="ct-sub">${Tx("Rumoured maker", "Rumoured maker")}${list(mkTop)}${mkMore ? `<details class="ct-fold"><summary>+${mk.length - 3} ${Tx("more", "more")}</summary>${mkMore}</details>` : ""}</div>` : "";
-  const tierBlock = (C.tier && Object.keys(C.tier).length) ? `<div class="ct-sub">${Tx("Level", "Level")}${tallyList(C.tier, "ct-flat")}</div>` : "";
+  const mkRow = (g) => {
+    const ev = (g.evidence || []).filter((e) => !junk(e));
+    const ag = Object.entries(g.against || {}).filter(([k]) => !junk(k)).map(([k, n]) => againstSpan(k, n)).join("");
+    return line(makerTile(g.maker) + mktag(g.maker), g.posts, "", tail(ev, ag, true));
+  };
+  const mkTop = mk.slice(0, 3).map(mkRow);
+  const mkMore = mk.length > 3 ? list(mk.slice(3).map(mkRow)) : "";
+  const mkBlock = mk.length ? `<div class="ct-sub"><span class="ct-subh">${Tx("Rumoured maker", "Rumoured maker")}</span>${list(mkTop)}${mkMore ? `<details class="ct-fold"><summary>+${mk.length - 3} ${Tx("more", "more")}</summary>${mkMore}</details>` : ""}</div>` : "";
+  /* level · size: one inline line under the group title, not a column beside the maker list (no dead space under a 22px fact) */
+  const inlineBit = (k, vHTML) => `<span class="ct-inline-bit"><span class="ct-inline-k">${k}</span><span class="ct-inline-v">${vHTML}</span></span>`;
   const szText = typeof C.size_guess === "string" ? (junk(C.size_guess) ? "" : esc(C.size_guess)) : "";
-  const szList = (C.size_guess && typeof C.size_guess === "object" && Object.keys(C.size_guess).length) ? tallyList(C.size_guess, "ct-flat") : "";
-  const szBlock = (szText || szList) ? `<div class="ct-sub">${Tx("Size", "Size")}${szText ? `<div class="ct-line-text">${szText}</div>` : szList}</div>` : "";
+  const inlineBlock = (() => {
+    const bits = [];
+    const tiers = Object.entries(C.tier || {}).filter(([k]) => !junk(k)).sort((a, b) => b[1] - a[1]);
+    if (tiers.length) bits.push(inlineBit(Tx("Level", "Level"), tiers.map(([k, n]) => `${esc(lab(k))} ${bars(n)}`).join(`<span class="ct-inline-sep">·</span>`)));
+    if (szText) bits.push(inlineBit(Tx("Size", "Size"), szText));
+    return bits.length ? `<div class="ct-inline">${bits.join(`<span class="ct-inline-sep">·</span>`)}</div>` : "";
+  })();
 
   /* ---- group: who it is compared to (grouped by direction, symbol + word, marks + count) ---- */
   const DIR = [["similar", "≈", "similar", "ct-flat"], ["better", "↑", "better", "ct-pos"], ["worse", "↓", "worse", "ct-neg"]];
   const cmpBy = {};
   (C.compared_to || []).forEach((x) => { (cmpBy[x.direction] = cmpBy[x.direction] || []).push(x); });
+  /* one model named in two directions = posts disagreeing, not a bug: the row says so (SONNET-REVIEW-2 cosmetic) */
+  const dirOf = {};
+  (C.compared_to || []).forEach((x) => { (dirOf[x.model] = dirOf[x.model] || new Set()).add(x.direction); });
   const cmpRows = DIR.flatMap(([dir, glyph, word, cls]) => {
     const items = (cmpBy[dir] || []).sort((a, b) => b.posts - a.posts);
     if (!items.length) return [];
     const head = `<div class="ct-line-head ${cls}" role="listitem"><span class="ct-dir ${dir}">${glyph} ${esc(Tx(word, word))}</span></div>`;
-    return [head].concat(items.map((x) => line(mlogo(x.model) + mlink(x.model), x.posts, cls)));
+    return [head].concat(items.map((x) => line(mlogo(x.model) + mlink(x.model), x.posts, cls, "", dirOf[x.model].size > 1 ? Tx("posts disagree", "posts disagree") : "")));
   });
   const cmpBlock = cmpRows.length ? `<div class="ct-list ct-cmp" role="list">${cmpRows.join("")}</div>` : "";
 
-  /* ---- group: how it performs (strengths | weaknesses | issues, three columns) ---- */
+  /* ---- group: how it performs (strengths | weaknesses | issues) on the block's one shared column grid ---- */
   const wk = C.weaknesses || {}, wkk = new Set(Object.keys(wk).map(nk));
   const iss = Object.fromEntries(Object.entries(C.issues || {}).filter(([k]) => !wkk.has(nk(k))));
   const perfCols = [
@@ -199,7 +231,7 @@ $("details").innerHTML = ML.map((l) => {
     [Tx("Weaknesses", "Weaknesses"), tallyList(wk, "ct-neg", "−")],
     [Tx("Issues", "Issues"), tallyList(iss, "ct-warn")],
   ].filter(([, v]) => v);
-  const perfBlock = perfCols.length ? `<div class="ct-perf">${perfCols.map(([h, v]) => `<div class="ct-col"><span class="ct-colh">${h}</span>${v}</div>`).join("")}</div>` : "";
+  const perfBlock = perfCols.length ? `<div class="ct-cols ct-perf">${perfCols.map(([h, v]) => `<div class="ct-col"><span class="ct-colh">${h}</span>${v}</div>`).join("")}</div>` : "";
 
   /* ---- group: who says so (sentiment · sources as one 100% stacked bar each, with a labelled legend) ---- */
   /* each segment carries its word in the legend (the number goes inside when the slice is wide): a colour is never the only signal */
@@ -219,11 +251,13 @@ $("details").innerHTML = ML.map((l) => {
     return `<div class="ct-stack" role="img" aria-label="${esc(aria)}">${segs}</div><div class="ct-legend">${legend}</div>`;
   }
   const sentiStack = () => stack(C.sentiment || {}, ["positive", "mixed", "negative"], (k) => SENTC[k], (k) => SENTW[k]);
-  const sentiBlock = sentiStack() ? `<div class="ct-sub">${Tx("Sentiment", "Sentiment")}${sentiStack()}</div>` : "";
+  const sentiBlock = sentiStack() ? `<div class="ct-sub"><span class="ct-subh">${Tx("Sentiment", "Sentiment")}</span>${sentiStack()}</div>` : "";
   const srcKeys = Object.entries(C.sources || {}).filter(([k]) => !junk(k)).sort((a, b) => b[1] - a[1]).map(([k]) => k);
-  const srcBlock = srcKeys.length ? `<div class="ct-sub">${Tx("Sources", "Sources")}${stack(C.sources || {}, srcKeys, (k, i) => SRC[i % SRC.length], (k) => lab(k))}</div>` : "";
+  const srcBlock = srcKeys.length ? `<div class="ct-sub"><span class="ct-subh">${Tx("Sources", "Sources")}</span>${stack(C.sources || {}, srcKeys, (k, i) => SRC[i % SRC.length], (k) => lab(k))}</div>` : "";
 
   /* ---- numbers as reported: small tiles (value + unit + metric + source); tokenizer_match is maker evidence, not a number; dedupe same metric+value ---- */
+  /* thousands separators on plain integers of 4+ digits (115100 → 115,100); anything else prints as stored */
+  const numfmt = (v) => { const s = String(v); return /^\d{4,}$/.test(s) ? s.replace(/\B(?=(\d{3})+(?!\d))/g, ",") : s; };
   const wds = (s) => nk(s).split(" ").filter(Boolean);
   const seenNum = new Set();
   const nums = (C.numbers || []).filter((n) => nk(n.metric) !== "tokenizer match").map((n) => {
@@ -240,7 +274,7 @@ $("details").innerHTML = ML.map((l) => {
       const keep = dw.filter((_, i) => !(i < nw.length && inVal(nw[i])));
       if (keep.length) m = keep.join(" ");
     }
-    return `<div class="ct-tile" title="${esc(n.note || "")}"><b>${esc(String(n.value))}</b>${showUnit ? `<span class="ct-unit">${esc(n.unit)}</span>` : ""}<span class="ct-metric">${u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(m)} ${I.ext()}</a>` : esc(m)}</span></div>`;
+    return `<div class="ct-tile" title="${esc(n.note || "")}"><b>${esc(numfmt(n.value))}</b>${showUnit ? `<span class="ct-unit">${esc(n.unit)}</span>` : ""}<span class="ct-metric">${u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(m)} ${I.ext()}</a>` : esc(m)}</span></div>`;
   }).join("");
 
   const quotes = (C.quotes || []).map((q) => `<article class="cquote">
@@ -251,11 +285,12 @@ $("details").innerHTML = ML.map((l) => {
   const METHOD_URL = ZH ? "https://freetokens.fyi/zh/methodology#community-take" : "https://freetokens.fyi/methodology#community-take";
   const ISSUE_URL = "https://github.com/dimpurr/freetokens/issues/new";
   const group = (title, body) => body ? `<section class="ct-group"><h3 class="ct-group-h">${title}</h3>${body}</section>` : "";
-  const subs = (arr) => { const b = arr.filter(Boolean); return b.length ? `<div class="ct-subs">${b.join("")}</div>` : ""; };
-  const whatBody = subs([tierBlock, mkBlock, szBlock]);
-  const whoBody = subs([sentiBlock, srcBlock]);
+  const cols = (arr) => { const b = arr.filter(Boolean); return b.length ? `<div class="ct-cols">${b.join("")}</div>` : ""; };
+  /* level/size as one inline line, then the maker list owns the whole row (DESIGN §3 model page v2) */
+  const whatBody = [inlineBlock, mkBlock].filter(Boolean).join("") || "";
+  const whoBody = cols([sentiBlock, srcBlock]);
   ct.innerHTML = `
-    <p class="ct-meta">${C.authors} ${Tx("authors", "authors")} · ${(C.posts || []).length} ${Tx("posts", "posts")} · ${Tx("collected", "collected")} ${esc(absDate(C.collected))}</p>
+    <p class="ct-meta">${C.authors} ${Tx("authors", "authors")} · ${(C.posts || []).length} ${Tx("posts", "posts")} · ${Tx("collected", "collected")} ${esc(absDate(C.collected))} · ${keyLegend()}</p>
     ${group(Tx("What it is", "What it is"), whatBody)}
     ${group(Tx("Who it's compared to", "Who it's compared to"), cmpBlock)}
     ${group(Tx("How it performs", "How it performs"), perfBlock)}
@@ -263,6 +298,19 @@ $("details").innerHTML = ML.map((l) => {
     ${nums ? `<section class="ct-group ct-group-wide"><h3 class="ct-group-h">${Tx("Numbers as reported", "Numbers as reported")}</h3><div class="ct-tiles">${nums}</div></section>` : ""}
     ${quotes ? `<div class="cquotes">${quotes}</div>` : ""}
     <div class="ct-foot"><span class="ct-notfti">${Tx("Not part of FTI", "Not part of FTI")}</span> · <a href="${METHOD_URL}">${Tx("method", "method")}</a> · <a href="${ISSUE_URL}" target="_blank" rel="noopener">${Tx("report a post", "report a post")}</a></div>`;
+  /* name column = the widest name in the group, so the marks sit right after the names and line up down the group.
+     No layout under prerender (widths come back 0) → the variable stays unset and each row falls back to its own max-content. */
+  const nameCols = () => document.querySelectorAll(".ct .ct-group .ct-list").forEach((ul) => {
+    let w = 0;
+    ul.querySelectorAll(":scope > .ct-row > .ct-name").forEach((nm) => {
+      const c = nm.cloneNode(true);
+      c.style.cssText = "position:absolute;visibility:hidden;display:inline-block;white-space:nowrap;width:auto;max-width:none";
+      ul.appendChild(c); w = Math.max(w, c.getBoundingClientRect().width); c.remove();
+    });
+    if (w > 0) ul.style.setProperty("--ct-name", w + "px");
+  });
+  nameCols();
+  if (document.fonts) document.fonts.ready.then(nameCols);
 
   /* ---- FTI-empty stats cell → community snapshot (whole cell links here; never a compared model's FTI) ---- */
   if (!ftOf(M)) {
@@ -270,7 +318,7 @@ $("details").innerHTML = ML.map((l) => {
     const top = (C.compared_to || []).slice().sort((a, b) => b.posts - a.posts)[0];
     const dirG = { similar: "≈", better: "↑", worse: "↓" }[top && top.direction];
     const dirW = top ? { similar: Tx("similar", "similar"), better: Tx("better", "better"), worse: Tx("worse", "worse") }[top.direction] : "";
-    const cmp = top ? `<span class="ct-snap-cmp">${mlogo(top.model)}<span class="ct-snap-name">${esc(MN[top.model] || top.model)}</span> <span class="ct-dir ${esc(top.direction)}">${dirG} ${esc(dirW)}</span>${bars(top.posts)}<b class="ct-count">${top.posts}</b></span>` : "";
+    const cmp = top ? `<span class="ct-snap-cmp">${mlogo(top.model)}<span class="ct-snap-name">${esc(MN[top.model] || top.model)}</span> <span class="ct-dir ${esc(top.direction)}">${dirG} ${esc(dirW)}</span>${bars(top.posts)}${count(top.posts)}</span>` : "";
     const sBar = sentiStack().split('<div class="ct-legend">')[0];
     if (cell && cmp) {
       cell.classList.add("ct-snapcell");
@@ -278,7 +326,7 @@ $("details").innerHTML = ML.map((l) => {
         <span class="k">${Tx("FTI", "FTI")}</span>
         <span class="ct-snap-not">${Tx("Not scored yet", "Not scored yet")}</span>${cmp}
         ${sBar ? `<span class="ct-snap-bar">${sBar}</span>` : ""}
-        <span class="ct-snap-jump">${Tx("See community take", "See community take")} ${I.ext()}</span></a>`;
+        <span class="ct-snap-jump">${Tx("See community take", "See community take")} <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg></span></a>`;
       cell.querySelector(".ct-snap").addEventListener("click", () => { det.open = true; });
     }
   }
