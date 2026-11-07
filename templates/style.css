@@ -941,18 +941,22 @@ details.community > summary h2 { margin: 0; min-width: 0; }
 details.community > summary::before { content: ""; width: 8px; height: 8px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: rotate(-45deg); transition: transform .15s; flex: none; align-self: baseline; }
 details.community[open] > summary::before { transform: rotate(45deg); }
 details.community[open] > summary { border-bottom: 1px solid var(--line); }
-.ct { padding: 6px 18px 16px; display: grid; gap: 16px; --ct-cap: 232px; }
+/* the community block is ONE three-column card grid (ROUND6, Dim 11-07 "空间率有点低…莫名其妙的空白"):
+   what it is | who it's compared to | who says so in one row, performance across the next row on the same tracks,
+   then the quote cards. Column gap = the site's card gap (12px); cells take their own height (align-items:start),
+   never stretch to match a taller neighbour. */
+.ct { padding: 6px 18px 16px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; align-items: start; }
+.ct > .ct-meta, .ct > .ct-wide { grid-column: 1 / -1; }
+@media (max-width: 1099px) { .ct { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 759px) { .ct { grid-template-columns: minmax(0, 1fr); } }
 .ct-thin, .ct-meta { color: var(--muted); margin: 0; }
 .ct-meta { font-size: 0.8rem; }
-/* a group = one small header + its content; the four groups stack, columns inside adapt to the width */
+/* a group = one small header + its content; it is one cell of the grid above, or a full-width row (.ct-wide) */
 .ct-group { display: grid; gap: 8px; min-width: 0; }
 .ct-group-h { margin: 0; font: 600 0.68rem var(--f-body); text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); }
-.ct-group-wide { border-top: 1px solid var(--line); padding-top: 14px; }
-/* the block's one column grid: whatever splits into columns (performance · sentiment+sources) splits the same way,
-   so the columns of every group start at the same x; a lone last column takes the full width rather than leaving a gap */
-.ct-cols { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px 40px; }
-.ct-cols > :nth-child(odd):last-child { grid-column: 1 / -1; }
-@media (min-width: 900px) { .ct-cols { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+/* strengths | weaknesses | issues: three sub-columns on the very tracks the top row uses, so nothing re-flows */
+.ct-perf { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; align-items: start; }
+@media (max-width: 759px) { .ct-perf { grid-template-columns: minmax(0, 1fr); } }
 .ct-sub { display: grid; gap: 5px; align-content: start; min-width: 0; }
 .ct-sub > .ct-subh { font: 600 0.66rem var(--f-body); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
 /* a single-value fact (level · size) reads as one inline line under the group title, not as a column beside the maker list */
@@ -963,12 +967,13 @@ details.community[open] > summary { border-bottom: 1px solid var(--line); }
 .ct-inline-sep { color: var(--faint); }
 .ct-inline .ct-marks { display: inline-grid; grid-template-columns: repeat(var(--n, 1), 7px); gap: 2px; }
 /* an aligned list: name → marks → number (only past the dot cap) → tail. The name column is --ct-name, the widest name in
-   the whole block (set once on .ct by the script; each row's own max-content until then, capped by --ct-cap), so the marks
-   sit in one column shared by every group instead of drifting per group. nowrap keeps logo + name on one line (SONNET-REVIEW-3
-   blocking 1): the logo never shrinks, the name truncates with a title. */
+   the CELL this list sits in (set on that cell by the script; the row's own max-content until then), so the dots sit next to
+   the name and line up inside the cell without being pushed to one far column. nowrap keeps logo + name on one line
+   (SONNET-REVIEW-3 blocking 1): the logo never shrinks, the name gives way (with its title) only when its own row runs out
+   of width — flex shrink does that, no --ct-cap clamp is needed now that the box is per cell. */
 .ct-list { display: grid; gap: 4px; align-content: start; }
 .ct-row { display: flex; align-items: center; gap: 10px; min-width: 0; }
-.ct-name { flex: 0 1 auto; width: var(--ct-name, max-content); max-width: min(var(--ct-cap, 232px), 100%); display: flex; flex-wrap: nowrap; align-items: center; gap: 2px 6px; min-width: 0; }
+.ct-name { flex: 0 1 auto; width: var(--ct-name, max-content); max-width: 100%; display: flex; flex-wrap: nowrap; align-items: center; gap: 2px 6px; min-width: 0; }
 .ct-name .lgt { flex: 0 0 auto; }
 .ct-name > a, .ct-name > .ct-term { flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .ct-name a { color: var(--fg); text-decoration: none; }
@@ -1010,7 +1015,7 @@ details.community[open] > summary { border-bottom: 1px solid var(--line); }
 .ct-dir.worse { color: var(--ended); }
 .ct-dir.similar { color: var(--muted); }
 .ct-against { color: var(--overdue); white-space: nowrap; margin-left: 4px; }
-/* performance: each column is a small header over an aligned list (the shared .ct-cols grid does the columns) */
+/* performance: each column is a small header over an aligned list (the .ct-perf grid above does the three columns) */
 .ct-col { display: grid; gap: 5px; align-content: start; min-width: 0; }
 .ct-colh { font: 600 0.66rem var(--f-body); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
 /* one 100% stacked bar with a labelled legend under it (the word is always written, the colour is decoration) */
@@ -1022,12 +1027,14 @@ details.community[open] > summary { border-bottom: 1px solid var(--line); }
 .lg-seg { display: inline-flex; align-items: center; gap: 5px; }
 .lg-seg i { width: 9px; height: 9px; border-radius: 2px; flex: none; }
 .lg-seg b { font-weight: 600; }
-/* numbers as reported: small tiles, value big + unit + metric + source; the maker's contrary evidence lives in its own cell */
-.ct-tiles { display: flex; flex-wrap: wrap; gap: 8px; }
-.ct-tile { display: grid; grid-template-columns: auto auto; grid-template-rows: auto auto; align-items: baseline; gap: 0 6px; padding: 6px 12px; background: var(--surface-2); box-shadow: var(--ring); border-radius: var(--r); min-width: 0; }
-.ct-tile b { grid-row: 1; font: 600 1.4rem/1 var(--f-display); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
-.ct-unit { grid-row: 1; font-size: 0.76rem; color: var(--muted); }
-.ct-metric { grid-column: 1 / -1; grid-row: 2; font-size: 0.72rem; color: var(--muted); }
+/* numbers as reported: small tiles, value big + unit + metric + source; the maker's contrary evidence lives in its own cell.
+   They live in the third cell's rail, so the min track is what that column really holds (3 across at ≥1100); a short last row
+   takes the free tracks through fillCells instead of stranding blank on the right. */
+.ct-tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); gap: 8px; }
+.ct-tile { display: grid; grid-template-columns: auto auto; grid-template-rows: auto auto; align-items: baseline; gap: 0 5px; padding: 5px 9px; background: var(--surface-2); box-shadow: var(--ring); border-radius: var(--r); min-width: 0; }
+.ct-tile b { grid-row: 1; font: 600 1.15rem/1.15 var(--f-display); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.ct-unit { grid-row: 1; font-size: 0.72rem; color: var(--muted); }
+.ct-metric { grid-column: 1 / -1; grid-row: 2; font-size: 0.7rem; color: var(--muted); }
 .ct-metric a { color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 3px; }
 .ct-metric .ico { width: 0.85em; height: 0.85em; }
 /* makers beyond the first three fold behind one control */

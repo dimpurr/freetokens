@@ -231,7 +231,7 @@ $("details").innerHTML = ML.map((l) => {
     [Tx("Weaknesses", "Weaknesses"), tallyList(wk, "ct-neg", "−")],
     [Tx("Issues", "Issues"), tallyList(iss, "ct-warn")],
   ].filter(([, v]) => v);
-  const perfBlock = perfCols.length ? `<div class="ct-cols ct-perf">${perfCols.map(([h, v]) => `<div class="ct-col"><span class="ct-colh">${h}</span>${v}</div>`).join("")}</div>` : "";
+  const perfBlock = perfCols.length ? `<div class="ct-perf">${perfCols.map(([h, v]) => `<div class="ct-col ct-cell"><span class="ct-colh">${h}</span>${v}</div>`).join("")}</div>` : "";
 
   /* ---- group: who says so (sentiment · sources as one 100% stacked bar each, with a labelled legend) ---- */
   /* each segment carries its word in the legend (the number goes inside when the slice is wide): a colour is never the only signal */
@@ -276,7 +276,11 @@ $("details").innerHTML = ML.map((l) => {
     }
     return `<div class="ct-tile" title="${esc(n.note || "")}"><b>${esc(numfmt(n.value))}</b>${showUnit ? `<span class="ct-unit">${esc(n.unit)}</span>` : ""}<span class="ct-metric">${u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(m)} ${I.ext()}</a>` : esc(m)}</span></div>`;
   }).join("");
-
+  /* the numbers close the third cell rather than opening a row of their own: three tiles need ~500px and a full-width row of
+     three 177px tiles costs 106px of height to leave the whole right half of the top row empty (ROUND6 消灭空白). In the rail
+     they sit under sentiment + sources, which is what they are — figures the same posts reported. */
+  const numsBlock = nums ? `<div class="ct-sub"><span class="ct-subh">${Tx("Numbers as reported", "Numbers as reported")}</span><div class="ct-tiles">${nums}</div></div>` : "";
+  const whoBody = [sentiBlock, srcBlock, numsBlock].filter(Boolean).join("");
   const quotes = (C.quotes || []).map((q) => `<article class="cquote">
     <div class="cq-top"><span class="ctag plat">${esc(pretty(q.platform))}</span><span class="cq-by">${esc(q.author)}</span><span class="cq-date">${esc(absDate(q.date))}</span>${q.gone ? `<span class="ctag gone">${Tx("deleted", "deleted")}</span>` : ""}</div>
     <blockquote class="cq-text">${esc(q.text)}</blockquote>
@@ -284,51 +288,73 @@ $("details").innerHTML = ML.map((l) => {
   </article>`).join("");
   const METHOD_URL = ZH ? "https://freetokens.fyi/zh/methodology#community-take" : "https://freetokens.fyi/methodology#community-take";
   const ISSUE_URL = "https://github.com/dimpurr/freetokens/issues/new";
-  const group = (title, body) => body ? `<section class="ct-group"><h3 class="ct-group-h">${title}</h3>${body}</section>` : "";
-  const cols = (arr) => { const b = arr.filter(Boolean); return b.length ? `<div class="ct-cols">${b.join("")}</div>` : ""; };
-  /* level/size as one inline line + the maker list; "What it is" and "Who it's compared to" then share the block's one
-     column grid side by side (SONNET-REVIEW-3 cosmetic: the top groups only used the left ~35% of the card) */
-  const whatBody = [inlineBlock, mkBlock].filter(Boolean).join("") || "";
-  const whoBody = cols([sentiBlock, srcBlock]);
+  const group = (title, body, cls) => body ? `<section class="ct-group${cls ? " " + cls : ""}"><h3 class="ct-group-h">${title}</h3>${body}</section>` : "";
+  /* the block is ONE three-column card grid (ROUND6): what it is | who it's compared to | who says so sit side by side,
+     then performance spans the row on the same three tracks, then the quote cards. The numbers close the third cell (above).
+     A group with no data is not rendered at all; the leftover tracks are taken up by the last cell of that row (fillCells),
+     the same way fitStats closes a short stats row, so no empty slot is ever left behind. */
+  const cells = [
+    group(Tx("What it is", "What it is"), [inlineBlock, mkBlock].filter(Boolean).join(""), "ct-cell"),
+    group(Tx("Who it's compared to", "Who it's compared to"), cmpBlock, "ct-cell"),
+    group(Tx("Who says so", "Who says so"), whoBody, "ct-cell"),
+  ].filter(Boolean);
   ct.innerHTML = `
     <p class="ct-meta">${C.authors} ${Tx("authors", "authors")} · ${(C.posts || []).length} ${Tx("posts", "posts")} · ${Tx("collected", "collected")} ${esc(absDate(C.collected))} · ${keyLegend()}</p>
-    ${cols([group(Tx("What it is", "What it is"), whatBody), group(Tx("Who it's compared to", "Who it's compared to"), cmpBlock)])}
-    ${group(Tx("How it performs", "How it performs"), perfBlock)}
-    ${group(Tx("Who says so", "Who says so"), whoBody)}
-    ${nums ? `<section class="ct-group ct-group-wide"><h3 class="ct-group-h">${Tx("Numbers as reported", "Numbers as reported")}</h3><div class="ct-tiles">${nums}</div></section>` : ""}
-    ${quotes ? `<div class="cquotes">${quotes}</div>` : ""}
-    <div class="ct-foot"><span class="ct-notfti">${Tx("Not part of FTI", "Not part of FTI")}</span> · <a href="${METHOD_URL}">${Tx("method", "method")}</a> · <a href="${ISSUE_URL}" target="_blank" rel="noopener">${Tx("report a post", "report a post")}</a></div>`;
-  /* one --ct-name for the whole block: the widest name anywhere, so every group's marks sit in the same column top to bottom
-     (SONNET-REVIEW-3 blocking 1: dot columns differed per group). Each clone is measured in place (its own row parent keeps
-     the inherited font) then removed. No layout under prerender (widths come back 0) → the variables stay unset and each row
-     falls back to its own max-content with the CSS --ct-cap. */
+    ${cells.join("")}
+    ${group(Tx("How it performs", "How it performs"), perfBlock, "ct-wide")}
+    ${quotes ? `<div class="cquotes ct-wide">${quotes}</div>` : ""}
+    <div class="ct-foot ct-wide"><span class="ct-notfti">${Tx("Not part of FTI", "Not part of FTI")}</span> · <a href="${METHOD_URL}">${Tx("method", "method")}</a> · <a href="${ISSUE_URL}" target="_blank" rel="noopener">${Tx("report a post", "report a post")}</a></div>`;
+  /* one --ct-name per CELL, not one for the block: the name column is the widest name inside that cell only, so the dots sit
+     right after the name (SONNET-REVIEW-4 cosmetic "dots float 150-250px away from the names") while rows inside one cell still
+     align. A cell here is one grid cell of the block: a top group, or one of the three performance sub-columns.
+     Each clone is measured in place (its own row parent keeps the inherited font) with the row's real flex column-gap, then
+     removed. No layout under prerender (every width comes back 0) → the variables stay unset and each row falls back to
+     its own max-content. */
   const nameCols = () => {
-    let w = 0;
-    document.querySelectorAll(".ct .ct-list > .ct-row > .ct-name").forEach((nm) => {
+    const need = (nm) => {
       const host = nm.parentElement || document.body;
       const c = nm.cloneNode(true);
-      // measure the row's REAL flex width: inline-flex with the same column-gap the live .ct-name uses, so the logo↔name
-      // gap is counted. The old inline-block clone dropped that gap, so --ct-name came out ~6px short of what the flex row
-      // needs and the name was clipped by an ellipsis even in a column that had room to spare (SONNET-REVIEW-4 #10).
       const cg = parseFloat(getComputedStyle(nm).columnGap) || 0;
       c.style.cssText = "position:absolute;visibility:hidden;display:inline-flex;align-items:center;gap:" + cg + "px;white-space:nowrap;width:auto;max-width:none";
-      host.appendChild(c); w = Math.max(w, c.getBoundingClientRect().width); c.remove();
-    });
-    if (w > 0) ct.style.setProperty("--ct-name", w + "px");
-    /* cap each column to the width that column actually has, not a fixed 232px: column content width minus the dots column
-       it must leave for. In the two-column top layout the compared-to column is ~542px wide yet a fixed 232px clamp
-       truncated names with ~290px of free width to their right (SONNET-REVIEW-4 #10). Only a name wider than its own column
-       still truncates, and the name <a> keeps its title=full name. */
+      host.appendChild(c);
+      const w = c.getBoundingClientRect().width;
+      c.remove();
+      return w;
+    };
+    const best = new Map();
     document.querySelectorAll(".ct .ct-list").forEach((L) => {
-      const avail = L.clientWidth;
-      if (avail <= 0) return; // prerender: no layout → keep the CSS fallback cap
-      let dots = 0;
-      L.querySelectorAll(".ct-marks").forEach((m) => { dots = Math.max(dots, m.getBoundingClientRect().width); });
-      L.style.setProperty("--ct-cap", Math.max(0, Math.round(avail - dots - 10)) + "px");
+      const cell = L.closest(".ct-col") || L.closest(".ct-group") || ct;
+      let w = best.get(cell) || 0;
+      L.querySelectorAll(".ct-row > .ct-name").forEach((nm) => { w = Math.max(w, need(nm)); });
+      best.set(cell, w);
+    });
+    best.forEach((w, cell) => { if (w > 0) cell.style.setProperty("--ct-name", w + "px"); });
+    /* no cap any more: the name box is this cell's own widest name, so flex shrink already takes a name down only when the
+       row it sits in does not fit (dots are flex:none and never shrink, the tail wraps), and a name keeps title=full name.
+       R4/R5 needed --ct-cap because one shared 232px clamp was fighting a column that had room to spare. */
+  };
+  /* a short last row takes the free tracks instead of leaving them empty (fitStats' trick for the community grid): the top
+     row when a group has no data, the performance row when one of the three is empty, the number tiles and the quote cards. */
+  const fillCells = () => {
+    [[ct, ".ct-cell"], [ct.querySelector(".ct-perf"), ".ct-cell"], [ct.querySelector(".ct-tiles"), ".ct-tile"], [ct.querySelector(".cquotes"), ".cquote"]].forEach(([g, sel]) => {
+      if (!g) return;
+      const kids = [...g.querySelectorAll(":scope > " + sel)];
+      kids.forEach((c) => { c.style.gridColumn = ""; });
+      const cols = getComputedStyle(g).gridTemplateColumns.split(" ").filter(Boolean).length;
+      if (!kids.length || !cols || g.clientWidth <= 0) return;
+      const gap = parseFloat(getComputedStyle(g).columnGap) || 0;
+      const unit = (g.clientWidth - gap * (cols - 1)) / cols;
+      const top = (c) => Math.round(c.getBoundingClientRect().top);
+      const last = Math.max(...kids.map(top));
+      const row = kids.filter((c) => top(c) === last);
+      const span = (c) => Math.max(1, Math.round((c.getBoundingClientRect().width + gap) / (unit + gap)));
+      const used = row.reduce((s, c) => s + span(c), 0);
+      if (used < cols) row[row.length - 1].style.gridColumn = "span " + (span(row[row.length - 1]) + cols - used);
     });
   };
-  nameCols();
-  if (document.fonts) document.fonts.ready.then(nameCols);
+  const fitAll = () => { nameCols(); fillCells(); };
+  fitAll();
+  if (document.fonts) document.fonts.ready.then(fitAll);
 
   /* ---- FTI-empty stats cell → community snapshot (whole cell links here; never a compared model's FTI) ---- */
   if (!ftOf(M)) {
