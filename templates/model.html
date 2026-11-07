@@ -155,7 +155,7 @@ $("details").innerHTML = ML.map((l) => {
   const nk = (s) => String(s).toLowerCase().replace(/[_-]+/g, " ").replace(/\s+/g, " ").trim();
   /* one aligned row inside one flex line: name (with its mark) in a fixed-width column → marks → number (past the cap only) → tail → note.
      cls carries the tone colour (a decoration, the word/symbol carries the state). */
-  const line = (nameHTML, n, cls, tailHTML, note) => `<div class="ct-row"><div class="ct-name${cls ? " " + cls : ""}">${nameHTML}</div>${bars(n)}${count(n)}${tailHTML || ""}${note ? `<small class="ct-note">${note}</small>` : ""}</div>`;
+  const line = (nameHTML, n, cls, tailHTML, note, rowCls) => `<div class="ct-row${rowCls ? " " + rowCls : ""}"><div class="ct-name${cls ? " " + cls : ""}">${nameHTML}</div>${bars(n)}${count(n)}${tailHTML || ""}${note ? `<small class="ct-note">${note}</small>` : ""}</div>`;
   /* a term row inside a performance list: word (+sign) as the name, marks, number */
   const termLine = (k, n, cls, sign) => line(`<span class="ct-term${cls ? " " + cls : ""}">${sign ? `<i class="ct-sign">${sign}</i>` : ""}${esc(lab(k))}</span>`, n, cls);
   const list = (rows) => rows.length ? `<div class="ct-list" role="list">${rows.join("")}</div>` : "";
@@ -179,10 +179,13 @@ $("details").innerHTML = ML.map((l) => {
   const mktag = (id) => (MK[id] ? `<a class="mklink" href="${makerHref(id)}" title="${esc(MK[id].name)}">${esc(MK[id].name)}</a>` : MN[id] ? `<a href="${modelHref(id)}" title="${esc(mkname(id))}">${esc(mkname(id))}</a>` : esc(mkname(id)));
   /* the row's small print: evidence words + at most one ⚠ counter-evidence; explain=true puts each word's plain-words title on */
   const tail = (ev, ag, explain) => {
-    const words = (ev || []).map((k) => {
+    /* each word past the first carries its own leading "·" INSIDE the nowrap word span, so the separator travels with the word
+       it belongs to and can never dangle at the end of a wrapped line (SONNET-REVIEW-6 cosmetic "dangling ·"). */
+    const words = (ev || []).map((k, i) => {
       const w = evword(k);
-      return explain && EVX[k] ? `<span class="ct-evw" title="${esc(evexp(k))}">${esc(w)}</span>` : `<span class="ct-evw">${esc(w)}</span>`;
-    }).join(" · ");
+      const inner = `${i ? `<i class="ct-evsep" aria-hidden="true">·</i>` : ""}${esc(w)}`;
+      return explain && EVX[k] ? `<span class="ct-evw" title="${esc(evexp(k))}">${inner}</span>` : `<span class="ct-evw">${inner}</span>`;
+    }).join("");
     return words || ag ? `<span class="ct-tail">${words}${ag || ""}</span>` : "";
   };
   /* the one amber element a maker row may carry (the only against key in the data is tokenizer) */
@@ -192,7 +195,7 @@ $("details").innerHTML = ML.map((l) => {
   const mkRow = (g) => {
     const ev = (g.evidence || []).filter((e) => !junk(e));
     const ag = Object.entries(g.against || {}).filter(([k]) => !junk(k)).map(([k, n]) => againstSpan(k, n)).join("");
-    return line(makerTile(g.maker) + mktag(g.maker), g.posts, "", tail(ev, ag, true));
+    return line(makerTile(g.maker) + mktag(g.maker), g.posts, "", tail(ev, ag, true), "", "ct-mk");
   };
   const mkTop = mk.slice(0, 3).map(mkRow);
   const mkMore = mk.length > 3 ? list(mk.slice(3).map(mkRow)) : "";
@@ -274,7 +277,7 @@ $("details").innerHTML = ML.map((l) => {
       const keep = dw.filter((_, i) => !(i < nw.length && inVal(nw[i])));
       if (keep.length) m = keep.join(" ");
     }
-    return `<div class="ct-tile" title="${esc(n.note || "")}"><b>${esc(numfmt(n.value))}</b>${showUnit ? `<span class="ct-unit">${esc(n.unit)}</span>` : ""}<span class="ct-metric">${u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(m)} ${I.ext()}</a>` : esc(m)}</span></div>`;
+    return `<div class="ct-tile" title="${esc(n.note || "")}"><span class="ct-tval"><b>${esc(numfmt(n.value))}</b>${showUnit ? `<span class="ct-unit">${esc(n.unit)}</span>` : ""}</span><span class="ct-metric">${u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(m)} ${I.ext()}</a>` : esc(m)}</span></div>`;
   }).join("");
   /* the numbers close the third cell rather than opening a row of their own: three tiles need ~500px and a full-width row of
      three 177px tiles costs 106px of height to leave the whole right half of the top row empty (ROUND6 消灭空白). In the rail
@@ -352,7 +355,18 @@ $("details").innerHTML = ML.map((l) => {
       if (used < cols) row[row.length - 1].style.gridColumn = "span " + (span(row[row.length - 1]) + cols - used);
     });
   };
-  const fitAll = () => { nameCols(); fillCells(); };
+  /* the number tile's min track is its own widest value+unit (SONNET-REVIEW-6 blocking 1 "size tiles by content"): a
+      nowrap value never breaks mid-number, so the tile must be at least as wide as its widest first line + the tile's own
+      horizontal padding, or the unit would overflow. inline-flex reports the group's true content width even when the
+      (currently narrow) track clips it. fillCells then closes any short last row, so no half-empty tile row survives. */
+  const tileMin = () => {
+    const g = ct.querySelector(".ct-tiles");
+    if (!g) return;
+    let w = 0;
+    g.querySelectorAll(".ct-tval").forEach((v) => { const r = v.getBoundingClientRect().width; if (r > w) w = r; });
+    if (w > 0) g.style.setProperty("--ct-tile-min", Math.ceil(w + 20) + "px");
+  };
+  const fitAll = () => { nameCols(); tileMin(); fillCells(); };
   fitAll();
   if (document.fonts) document.fonts.ready.then(fitAll);
 

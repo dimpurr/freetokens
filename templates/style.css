@@ -982,10 +982,17 @@ details.community[open] > summary { border-bottom: 1px solid var(--line); }
 /* the row's small print — evidence words + ⚠ counter-evidence — sits at the tail of the same row (its own indented line only when the width runs out).
    Plain sentence-case small print, no caps, no chip: the ⚠ is the only amber element a row carries (SONNET-REVIEW-2 blocking 2) */
 .ct-tail { flex: 0 1 auto; font-size: 0.8em; color: var(--muted); min-width: 0; overflow-wrap: anywhere; }
-.ct-evw { margin-right: 6px; }
+.ct-evw { white-space: nowrap; }
+.ct-evsep { margin: 0 6px; color: var(--faint); font-style: normal; }
 /* the whole tail reads as one sentence-case phrase: only its first letter is capitalised (CJK unaffected) */
 .ct-tail::first-letter { text-transform: capitalize; }
 .ct-line-text { font-size: 0.92rem; color: var(--fg); }
+/* the rumoured-maker row: name + dots on one line, the evidence words + ⚠ counter-evidence on the next line at full cell
+   width (SONNET-REVIEW-6 blocking 2 — the 390 layout moved to every width). Left inline, the maker cell squeezed the tail
+   beside an already-squeezed name column and folded "Geo block · style · tokenizer · ⚠ …" to three lines with a dangling "·".
+   No indent here (full cell width, ROUND7 "整宽"), so the long meta/qwen tails stay on one small-print line. */
+.ct-mk { flex-wrap: wrap; }
+.ct-mk .ct-tail { flex: 1 1 100%; padding-left: 0; }
 /* a model named in two directions: posts disagree — one muted word, no alarm */
 .ct-note { flex: none; font-size: 0.72rem; color: var(--muted); white-space: nowrap; }
 .ct-count { flex: none; font: 600 0.82rem var(--f-body); color: var(--muted); font-variant-numeric: tabular-nums; }
@@ -1015,6 +1022,12 @@ details.community[open] > summary { border-bottom: 1px solid var(--line); }
 .ct-dir.worse { color: var(--ended); }
 .ct-dir.similar { color: var(--muted); }
 .ct-against { color: var(--overdue); white-space: nowrap; margin-left: 4px; }
+/* compared-to: let a long name (e.g. "Muse Spark 1.3 (Contributor)", squeezed by its "posts disagree" note at 1100/780) wrap
+   to a second line INSIDE its cell instead of an ellipsis (SONNET-REVIEW-6 #5), the marks staying level with the last line.
+   Only fires when the row runs out of width — a name that fits is still one line (1440 unchanged), and it stays inside this
+   cell (no cross-column effect). Scoped to .ct-cmp so the performance/maker lists keep their nowrap names. */
+.ct-cmp .ct-name > a { white-space: normal; overflow: visible; text-overflow: clip; }
+.ct-cmp .ct-row { align-items: flex-end; }
 /* performance: each column is a small header over an aligned list (the .ct-perf grid above does the three columns) */
 .ct-col { display: grid; gap: 5px; align-content: start; min-width: 0; }
 .ct-colh { font: 600 0.66rem var(--f-body); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
@@ -1028,13 +1041,18 @@ details.community[open] > summary { border-bottom: 1px solid var(--line); }
 .lg-seg i { width: 9px; height: 9px; border-radius: 2px; flex: none; }
 .lg-seg b { font-weight: 600; }
 /* numbers as reported: small tiles, value big + unit + metric + source; the maker's contrary evidence lives in its own cell.
-   They live in the third cell's rail, so the min track is what that column really holds (3 across at ≥1100); a short last row
-   takes the free tracks through fillCells instead of stranding blank on the right. */
-.ct-tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); gap: 8px; }
-.ct-tile { display: grid; grid-template-columns: auto auto; grid-template-rows: auto auto; align-items: baseline; gap: 0 5px; padding: 5px 9px; background: var(--surface-2); box-shadow: var(--ring); border-radius: var(--r); min-width: 0; }
-.ct-tile b { grid-row: 1; font: 600 1.15rem/1.15 var(--f-display); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
-.ct-unit { grid-row: 1; font-size: 0.72rem; color: var(--muted); }
-.ct-metric { grid-column: 1 / -1; grid-row: 2; font-size: 0.7rem; color: var(--muted); }
+   The min track is the widest value+unit in the rail (--ct-tile-min, set by the script; fallback 132px = longest value here
+   "140/157 tasks" + tile padding), so a nowrap value always fits on its own line (SONNET-REVIEW-6 blocking 1: "140/157"
+   broke into "140/15"/"7"). fillCells closes a short last row, so no half-empty tile row survives. */
+.ct-tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--ct-tile-min, 132px), 1fr)); gap: 8px; }
+/* one tile is a column: [value + unit] on the first line, metric on the next. The old `auto auto` grid let the first
+   auto column absorb the free 1fr width, which threw the unit ~100px away from a short value ("115,100 ... tokens");
+   a flex column with the value+unit bound in one nowrap .ct-tval keeps them touching and unbreakable. */
+.ct-tile { display: flex; flex-direction: column; align-items: flex-start; gap: 0; padding: 5px 9px; background: var(--surface-2); box-shadow: var(--ring); border-radius: var(--r); min-width: 0; }
+.ct-tval { display: inline-flex; align-items: baseline; gap: 4px; white-space: nowrap; }
+.ct-tile b { font: 600 1.15rem/1.15 var(--f-display); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.ct-unit { font-size: 0.72rem; color: var(--muted); }
+.ct-metric { display: block; font-size: 0.7rem; color: var(--muted); }
 .ct-metric a { color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 3px; }
 .ct-metric .ico { width: 0.85em; height: 0.85em; }
 /* makers beyond the first three fold behind one control */
