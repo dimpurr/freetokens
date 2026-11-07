@@ -1887,6 +1887,10 @@ def state_chip(text, href, status, note=""):
 
 def end_note(l):
     e = l["ends"]
+    # an overdue lane is free past its announced end (ADR-016: never print a past date as if it still ends then);
+    # the wording matches the site-wide Free periods legend ("past announced end"), kept short enough for a 252px chip.
+    if l.get("status") == "overdue":
+        return tr("past announced end · still free")
     if e.get("announced"):
         return f"{tr('ends')} {fmt_date(e['announced'])}"
     if e.get("expected"):

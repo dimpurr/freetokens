@@ -771,6 +771,10 @@ ol.rungs > li.muted::before { content: none; }
 .lc-who a { color: var(--fg); text-decoration: none; }
 .lc-who a:hover { color: var(--accent); }
 .a-live > .chips { align-self: center; }
+/* the card's chips: state pill on one line, its note on the next, never a folded date tail (UI-ADDENDUM ②; one line at 252px) */
+.a-live .chip { display: flex; flex-wrap: wrap; white-space: normal; max-width: 100%; }
+.a-live .chip .st { white-space: normal; }
+.a-live .chip small { flex: 1 1 100%; white-space: nowrap; }
 .lc-none { margin: 0; display: flex; align-items: center; gap: 8px; }
 .lc-alt { grid-column: 1 / -1; display: grid; gap: 6px; padding-top: 8px; border-top: 1px solid var(--line); }
 .lc-alt > span { font-size: 0.75rem; }
@@ -954,51 +958,164 @@ details.community > summary h2 { margin: 0; min-width: 0; }
 details.community > summary::before { content: ""; width: 8px; height: 8px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: rotate(-45deg); transition: transform .15s; flex: none; align-self: baseline; }
 details.community[open] > summary::before { transform: rotate(45deg); }
 details.community[open] > summary { border-bottom: 1px solid var(--line); }
-.ct { padding: 6px 18px 16px; display: grid; gap: 14px; }
+/* the community block is ONE three-column card grid (ROUND6, Dim 11-07 "空间率有点低…莫名其妙的空白"):
+   what it is | who it's compared to | who says so in one row, performance across the next row on the same tracks,
+   then the quote cards. Column gap = the site's card gap (12px); cells take their own height (align-items:start),
+   never stretch to match a taller neighbour. */
+.ct { padding: 6px 18px 16px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; align-items: start; }
+.ct > .ct-meta, .ct > .ct-wide { grid-column: 1 / -1; }
+@media (max-width: 1099px) { .ct { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 759px) { .ct { grid-template-columns: minmax(0, 1fr); } }
 .ct-thin, .ct-meta { color: var(--muted); margin: 0; }
 .ct-meta { font-size: 0.8rem; }
-/* cells are as wide as what they say (a one-word cell does not take a column) and sit tight to the top of their row */
-.ct-cells { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 0 26px; }
-.ct-cell { min-width: 0; max-width: 100%; padding: 8px 0; display: grid; gap: 3px; align-content: start; }
-.ct-cell.ct-wide { flex: 1 1 100%; border-top: 1px solid var(--line); }
-.ct-cell .k { font: 600 0.68rem var(--f-body); text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); }
-.ct-cell .v { font-size: 0.92rem; line-height: 1.5; color: var(--fg); overflow-wrap: anywhere; min-width: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 1px 14px; }
-.ct-cell .v.ct-rows { display: grid; gap: 1px; justify-items: start; }
-.ct-cell .v > [hidden] { display: none; }
-.ct-cell .v b { font-weight: 600; font-variant-numeric: tabular-nums; }
-/* one count: the word, its sign and its marks never wrap apart */
-.ct-term { display: inline-flex; align-items: baseline; gap: 6px; white-space: nowrap; min-width: 0; }
-.ct-row { display: inline-flex; align-items: baseline; gap: 1px 8px; min-width: 0; }
-.ct-row .ct-dir { font-weight: 500; white-space: nowrap; }
-.ct-mk { display: inline-flex; align-items: baseline; flex-wrap: wrap; gap: 1px 6px; min-width: 0; }
-.ct-nm { display: inline-flex; align-items: baseline; gap: 6px; min-width: 0; }
-.ct-nm .ct-marks, .ct-row .ct-marks, .ct-term .ct-marks, .ct-n { white-space: nowrap; }
+/* a group = one small header + its content; it is one cell of the grid above, or a full-width row (.ct-wide) */
+.ct-group { display: grid; gap: 8px; min-width: 0; }
+.ct-group-h { margin: 0; font: 600 0.68rem var(--f-body); text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); }
+/* strengths | weaknesses | issues: three sub-columns on the very tracks the top row uses, so nothing re-flows */
+.ct-perf { display: grid; grid-template-columns: repeat(var(--perf-n, 3), minmax(0, 1fr)); gap: 12px; align-items: start; }
+@media (max-width: 759px) { .ct-perf { grid-template-columns: minmax(0, 1fr); } }
+.ct-sub { display: grid; gap: 5px; align-content: start; min-width: 0; }
+.ct-sub > .ct-subh { font: 600 0.66rem var(--f-body); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+/* a single-value fact (level · size) reads as one inline line under the group title, not as a column beside the maker list */
+.ct-inline { display: flex; flex-wrap: wrap; align-items: center; gap: 3px 12px; font-size: 0.92rem; }
+.ct-inline-bit { display: inline-flex; align-items: center; gap: 7px; min-width: 0; }
+.ct-inline-k { font: 600 0.66rem var(--f-body); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+.ct-inline-v { display: inline-flex; align-items: center; gap: 6px; }
+.ct-inline-sep { color: var(--faint); }
+.ct-inline .ct-marks { display: inline-grid; grid-template-columns: repeat(var(--n, 1), 7px); gap: 2px; }
+/* an aligned list: name → marks → number (only past the dot cap) → tail. The name column is --ct-name, the widest name in
+   the CELL this list sits in (set on that cell by the script; the row's own max-content until then), so the dots sit next to
+   the name and line up inside the cell without being pushed to one far column. nowrap keeps logo + name on one line
+   (SONNET-REVIEW-3 blocking 1): the logo never shrinks, the name gives way (with its title) only when its own row runs out
+   of width — flex shrink does that, no --ct-cap clamp is needed now that the box is per cell. */
+.ct-list { display: grid; gap: 4px; align-content: start; }
+.ct-row { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.ct-name { flex: 0 1 auto; width: var(--ct-name, max-content); max-width: 100%; display: flex; flex-wrap: nowrap; align-items: center; gap: 2px 6px; min-width: 0; }
+.ct-name .lgt { flex: 0 0 auto; }
+.ct-name > a, .ct-name > .ct-term { flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ct-name a { color: var(--fg); text-decoration: none; }
+.ct-name a:hover { color: var(--accent); }
+.ct-name .lg { flex: none; }
+/* the row's small print — evidence words + ⚠ counter-evidence — sits at the tail of the same row (its own indented line only when the width runs out).
+   Plain sentence-case small print, no caps, no chip: the ⚠ is the only amber element a row carries (SONNET-REVIEW-2 blocking 2) */
+.ct-tail { flex: 0 1 auto; font-size: 0.8em; color: var(--muted); min-width: 0; overflow-wrap: anywhere; }
+.ct-evw { white-space: nowrap; }
+.ct-evsep { margin: 0 6px; color: var(--faint); font-style: normal; }
+/* the whole tail reads as one sentence-case phrase: only its first letter is capitalised (CJK unaffected) */
+.ct-tail::first-letter { text-transform: capitalize; }
+.ct-line-text { font-size: 0.92rem; color: var(--fg); }
+/* the rumoured-maker row: name + dots on one line, the evidence words + ⚠ counter-evidence on the next line at full cell
+   width (SONNET-REVIEW-6 blocking 2 — the 390 layout moved to every width). Left inline, the maker cell squeezed the tail
+   beside an already-squeezed name column and folded "Geo block · style · tokenizer · ⚠ …" to three lines with a dangling "·".
+   No indent here (full cell width, ROUND7 "整宽"), so the long meta/qwen tails stay on one small-print line. */
+.ct-mk { flex-wrap: wrap; }
+.ct-mk .ct-tail { flex: 1 1 100%; padding-left: 0; }
+/* a model named in two directions: posts disagree — one muted word, no alarm */
+.ct-note { flex: none; font-size: 0.72rem; color: var(--muted); white-space: nowrap; }
+.ct-count { flex: none; font: 600 0.82rem var(--f-body); color: var(--muted); font-variant-numeric: tabular-nums; }
+.ct-term { display: inline-flex; align-items: baseline; gap: 4px; min-width: 0; }
 .ct-sign { font-style: normal; font-weight: 600; color: var(--muted); }
-.ct-n { font: 600 0.72rem var(--f-body); color: var(--muted); font-variant-numeric: tabular-nums; }
+.ct-list .ct-marks { flex: none; display: grid; grid-template-columns: repeat(var(--n, 1), 7px); gap: 2px; align-self: center; }
+.ct-marks i { height: 6px; border-radius: 1px; background: var(--faint); }
+.ct-name.ct-pos + .ct-marks i, .ct-name.ct-pos + .ct-marks + .ct-count { color: var(--live); }
+.ct-name.ct-pos + .ct-marks i { background: var(--live); }
+.ct-name.ct-neg + .ct-marks i { background: var(--ended); }
+.ct-name.ct-neg + .ct-marks + .ct-count { color: var(--ended); }
+.ct-name.ct-warn + .ct-marks i { background: var(--overdue); }
 .ct-pos .ct-sign { color: var(--live); }
-.ct-neg .ct-sign, .ct-neg .ct-dir { color: var(--ended); }
-.ct-cell .ct-marks { grid-template-columns: repeat(var(--n), 8px); gap: 2px; margin-right: 0; align-self: center; }
-.ct-cell .ct-marks i { height: 6px; background: var(--faint); }
-.ct-cell .ct-pos .ct-marks i { background: var(--live); }
-.ct-cell .ct-neg .ct-marks i { background: var(--ended); }
-.ct-cell .ct-mix .ct-marks i { background: var(--off); }
-.ct-cell .ct-warn .ct-marks i { background: var(--overdue); }
-.ct-more { font: 400 0.86rem var(--f-body); color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer; white-space: nowrap; }
-.ct-more:hover { text-decoration: underline; }
+.ct-neg .ct-sign { color: var(--ended); }
+/* the square in the meta line's key: the same shape as a mark (an element, never a ■ character), painted with the same
+   neutral colour a mark declares (.ct-marks i → --faint), so the key reads as one of the count squares and not as one of
+   the green/amber/red state tints (SONNET-REVIEW-4 #5). A status colour is wrong here: the key means "one square = one post"
+   for every mark, whatever its verdict. The "= 1 post" word, not the colour, carries the meaning (aria-hidden swatch). */
+.ct-legend-key { display: inline-flex; vertical-align: -1px; }
+.ct-legend-key i { width: 7px; height: 6px; border-radius: 1px; background: var(--faint); }
+.ct-legend-txt { margin-left: 5px; font-size: inherit; }
+/* compared-to: a direction band (symbol + word, never colour alone) heads its aligned model rows */
+.ct-line-head { grid-column: 1 / -1; margin-top: 4px; }
+.ct-line-head:first-child { margin-top: 0; }
+.ct-dir { font-weight: 600; white-space: nowrap; font-variant-numeric: tabular-nums; }
 .ct-dir.better { color: var(--live); }
 .ct-dir.worse { color: var(--ended); }
 .ct-dir.similar { color: var(--muted); }
-.ct-ev { font-size: 0.72rem; color: var(--muted); }
-.ct-against { font-size: 0.72rem; color: var(--overdue); white-space: nowrap; }
+.ct-against { color: var(--overdue); white-space: nowrap; margin-left: 4px; }
+/* compared-to: let a long name (e.g. "Muse Spark 1.3 (Contributor)", squeezed by its "posts disagree" note at 1100/780) wrap
+   to a second line INSIDE its cell instead of an ellipsis (SONNET-REVIEW-6 #5), the marks staying level with the last line.
+   Only fires when the row runs out of width — a name that fits is still one line (1440 unchanged), and it stays inside this
+   cell (no cross-column effect). Scoped to .ct-cmp so the performance/maker lists keep their nowrap names. */
+.ct-cmp .ct-name > a { white-space: normal; overflow: visible; text-overflow: clip; }
+.ct-cmp .ct-row { align-items: flex-end; }
+/* performance: each column is a small header over an aligned list (the .ct-perf grid above does the three columns) */
+.ct-col { display: grid; gap: 5px; align-content: start; min-width: 0; }
+.ct-colh { font: 600 0.66rem var(--f-body); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+/* one 100% stacked bar with a labelled legend under it (the word is always written, the colour is decoration) */
+.ct-stack { display: flex; height: 9px; border-radius: 5px; overflow: hidden; box-shadow: inset 0 0 0 1px var(--line); }
+.ct-stack i { display: flex; align-items: center; justify-content: center; min-width: 3px; box-shadow: inset -1px 0 0 var(--surface); }
+.ct-stack i:last-child { box-shadow: none; }
+.ct-stack i span { font: 600 0.58rem var(--f-body); color: var(--surface); font-variant-numeric: tabular-nums; }
+.ct-legend { display: flex; flex-wrap: wrap; gap: 2px 14px; font-size: 0.76rem; color: var(--fg); }
+.lg-seg { display: inline-flex; align-items: center; gap: 5px; }
+.lg-seg i { width: 9px; height: 9px; border-radius: 2px; flex: none; }
+.lg-seg b { font-weight: 600; }
+/* numbers as reported: small tiles, value big + unit + metric + source; the maker's contrary evidence lives in its own cell.
+   The min track is the widest value+unit in the rail (--ct-tile-min, set by the script; fallback 132px = longest value here
+   "140/157 tasks" + tile padding), so a nowrap value always fits on its own line (SONNET-REVIEW-6 blocking 1: "140/157"
+   broke into "140/15"/"7"). The script also picks the column count (whole row of n tiles, or a divisor of n), so no row
+   ends half-empty; the auto-fill fallback below is what a no-JS/prerender snapshot gets. */
+.ct-tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--ct-tile-min, 132px), 1fr)); gap: 8px; }
+/* the rail is narrower than one row of these tiles → one tile per row (SONNET-REVIEW-7 blocking 1: a lone tile widened to
+   the whole 367px rail was 280px blank around 69px of text). Full-width rows read as a spec list, not as blank: the tile
+   becomes one line — value+unit at the start, the metric at the end — so the row is filled edge to edge. The unit still
+   hugs its value inside .ct-tval (SONNET-REVIEW-6 blocking 1 stays fixed); only value↔metric is spread, and that pair is
+   a label row, not a number and its unit. */
+.ct-tiles-one > .ct-tile { flex-direction: row; align-items: baseline; justify-content: space-between; gap: 2px 14px; }
+.ct-tiles-one .ct-metric { flex: 0 1 auto; min-width: 0; margin-left: auto; text-align: right; }
+/* one tile is a column: [value + unit] on the first line, metric on the next. The old `auto auto` grid let the first
+   auto column absorb the free 1fr width, which threw the unit ~100px away from a short value ("115,100 ... tokens");
+   a flex column with the value+unit bound in one nowrap .ct-tval keeps them touching and unbreakable. */
+.ct-tile { display: flex; flex-direction: column; align-items: flex-start; gap: 0; padding: 5px 9px; background: var(--surface-2); box-shadow: var(--ring); border-radius: var(--r); min-width: 0; }
+.ct-tval { display: inline-flex; align-items: baseline; gap: 4px; white-space: nowrap; }
+.ct-tile b { font: 600 1.15rem/1.15 var(--f-display); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.ct-unit { font-size: 0.72rem; color: var(--muted); }
+.ct-metric { display: block; font-size: 0.7rem; color: var(--muted); }
+.ct-metric a { color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 3px; }
+.ct-metric .ico { width: 0.85em; height: 0.85em; }
+/* makers beyond the first three fold behind one control */
+.ct-fold { grid-column: 1 / -1; }
+.ct-fold > summary { cursor: pointer; list-style: none; font: 600 0.72rem var(--f-body); color: var(--accent); }
+.ct-fold > summary::-webkit-details-marker { display: none; }
+/* the FTI-empty stats cell becomes a tappable community snapshot (it never shows a compared model's FTI) */
+.stat.ct-snapcell { padding: 0; }
+.ct-snap { display: grid; gap: 5px; align-content: start; padding: 14px 16px; height: 100%; color: inherit; text-decoration: none; border-radius: var(--r); }
+.ct-snap:hover { box-shadow: inset 0 0 0 1px var(--line-strong); }
+.ct-snap .k { font: 600 0.68rem var(--f-body); text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); }
+.ct-snap-not { font-size: 0.76rem; color: var(--muted); }
+.ct-snap-cmp { display: flex; flex-wrap: nowrap; align-items: center; gap: 2px 7px; min-width: 0; }
+.ct-snap-name { color: var(--fg); flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ct-snap-cmp > :not(.ct-snap-name) { flex: 0 0 auto; }
+.ct-snap-cmp .ct-marks { display: grid; grid-template-columns: repeat(var(--n, 1), 6px); gap: 2px; align-self: center; }
+/* the snapshot bar is 7px tall, so its counts are the words beside it rather than numerals inside the slices;
+   bar and words share one line and the cell keeps its old height on purpose — the stats row takes its height from this
+   cell, and a taller snapshot leaves the sibling cells dangling (responsive.py: dead space in Context/Images/Free now) */
+.ct-snap-bar { display: flex; align-items: center; gap: 4px 8px; }
+.ct-snap-bar .ct-stack { flex: 0 1 30%; min-width: 72px; height: 7px; }
+.ct-snap .ct-legend { flex: 1 1 0; min-width: 0; font: 0.66rem/1.35 var(--f-body); gap: 0 8px; }
+/* the row tail needs the full width once the name and marks have eaten it; it indents under the name column so it visibly
+   belongs to that row. The evidence words stay visible at every width (SONNET-REVIEW-3 blocking 2: hiding .ct-evw left only
+   stray "·" separators on mobile); below 360 a tail with no ⚠ collapses so a lone word does not strand a whole line */
+@media (max-width: 719px) { .ct-row { flex-wrap: wrap; } .ct-tail { flex: 1 1 100%; padding-left: 44px; } }
+/* under 360 the ⚠ alone can still wrap: a tail holding only evidence words disappears rather than leaving an empty line */
+@media (max-width: 359px) { .ct-tail:not(:has(.ct-against)) { display: none; } }
+.ct-snap-jump { display: inline-flex; align-items: center; gap: 4px; font-size: 0.74rem; color: var(--accent); margin-top: 2px; }
+.ct-snap-jump .ico { width: 0.85em; height: 0.85em; }
+/* quote cards and the footer (unchanged shapes) */
 .ctag { display: inline-flex; align-items: center; gap: 4px; font: 600 0.66rem/1.6 var(--f-body); padding: 0 6px; border-radius: 5px; background: var(--off-soft); color: var(--muted); white-space: nowrap; vertical-align: 1px; }
 .ctag.gone { background: var(--ended-soft); color: var(--ended); }
 .ctag.measured { background: var(--measured-soft); color: var(--measured); }
 .ctag.forensic { background: var(--accent-soft); color: var(--accent); }
-.ct-num { display: inline-flex; align-items: baseline; gap: 5px; min-width: 0; }
-.ct-num b { font-weight: 600; font-variant-numeric: tabular-nums; }
-/* up to 3 cards in a row; a short last row fills its own line instead of leaving an empty slot beside it */
-.cquotes { display: flex; flex-wrap: wrap; gap: 12px; }
-.cquote { flex: 1 1 calc((100% - 32px) / 3); min-width: min(100%, 236px); max-width: 100%; background: var(--surface-2); box-shadow: var(--ring); border-radius: var(--r); padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; }
+/* quote cards: equal-width tracks (a flex row let the last line stretch wider), each card as tall as its own quote (no blank above "source") */
+.cquotes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 12px; align-items: start; }
+.cquote { min-width: 0; background: var(--surface-2); box-shadow: var(--ring); border-radius: var(--r); padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; }
 .cq-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .cq-by { font-size: 0.8rem; color: var(--fg); font-weight: 500; overflow-wrap: anywhere; }
 .cq-date { font: 0.72rem var(--f-mono); color: var(--muted); }
