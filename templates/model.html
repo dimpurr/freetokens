@@ -328,7 +328,14 @@ $("details").innerHTML = ML.map((l) => {
     document.querySelectorAll(".ct .ct-list").forEach((L) => {
       const cell = L.closest(".ct-col") || L.closest(".ct-group") || ct;
       let w = best.get(cell) || 0;
-      L.querySelectorAll(".ct-row > .ct-name").forEach((nm) => { w = Math.max(w, need(nm)); });
+      /* only the names that are actually on show set the column: a cell's own widest VISIBLE name. The "+N more" maker
+         fold is a closed <details> whose rows Chrome still reports measured here, and its folded names are longer than
+         anything on show — that is what put the dots 119px from "Meta" (SONNET-REVIEW-7 cosmetic: the column was
+         sized by the hidden "Undisclosed (stealth)", 143px, not by the longest maker row shown, 56px). */
+      L.querySelectorAll(".ct-row > .ct-name").forEach((nm) => {
+        if (nm.closest("details:not([open])")) return;
+        w = Math.max(w, need(nm));
+      });
       best.set(cell, w);
     });
     best.forEach((w, cell) => { if (w > 0) cell.style.setProperty("--ct-name", w + "px"); });
@@ -355,20 +362,62 @@ $("details").innerHTML = ML.map((l) => {
       if (used < cols) row[row.length - 1].style.gridColumn = "span " + (span(row[row.length - 1]) + cols - used);
     });
   };
-  /* the number tile's min track is its own widest value+unit (SONNET-REVIEW-6 blocking 1 "size tiles by content"): a
-      nowrap value never breaks mid-number, so the tile must be at least as wide as its widest first line + the tile's own
-      horizontal padding, or the unit would overflow. inline-flex reports the group's true content width even when the
-      (currently narrow) track clips it. fillCells then closes any short last row, so no half-empty tile row survives. */
-  const tileMin = () => {
+  /* the number rail: its min track is the rail's own widest value+unit (SONNET-REVIEW-6 blocking 1 "size tiles by
+     content") — a nowrap value never breaks mid-number, so a tile must be at least as wide as its widest first line plus
+     its own horizontal padding, or the unit overflows. Then the COLUMN COUNT is chosen so every row comes out full:
+     a whole row of n tiles, or a divisor of n. fillCells (which stretches the last tile of a short row over the free
+     tracks) is left as the net but never has to act here — that stretch is exactly what SONNET-REVIEW-7 blocking 1 saw:
+     3 tiles in a 367px rail cannot be 3 tracks (3 x 122 + gaps > 367), so 2 tracks left a 1-tile row that fillCells
+     widened to 367px around 69px of text = 280px of blank inside the tile. When the rail cannot host one row of n
+     tiles it goes ONE TILE PER ROW, and the tile turns into a single line (value+unit at the start, metric at the end)
+     so a full-width row is filled edge to edge instead of being mostly blank. */
+  const fitTiles = () => {
     const g = ct.querySelector(".ct-tiles");
     if (!g) return;
-    let w = 0;
-    g.querySelectorAll(".ct-tval").forEach((v) => { const r = v.getBoundingClientRect().width; if (r > w) w = r; });
-    if (w > 0) g.style.setProperty("--ct-tile-min", Math.ceil(w + 20) + "px");
+    const tiles = [...g.querySelectorAll(":scope > .ct-tile")];
+    if (!tiles.length || g.clientWidth <= 0) return;
+    const st = getComputedStyle(tiles[0]);
+    const pad = (parseFloat(st.paddingLeft) || 0) + (parseFloat(st.paddingRight) || 0);
+    /* natural (unclipped, unshrunk) width of a tile's two parts, measured in place with the row's own inherited font */
+    const nat = (el) => {
+      const c = el.cloneNode(true);
+      c.style.cssText = "position:absolute;visibility:hidden;white-space:nowrap;width:auto;max-width:none;display:inline-flex";
+      el.parentElement.appendChild(c);
+      const x = c.getBoundingClientRect().width;
+      c.remove();
+      return x;
+    };
+    let w = 0, m = 0;
+    tiles.forEach((t) => {
+      const v = t.querySelector(".ct-tval"), e = t.querySelector(".ct-metric");
+      if (v) w = Math.max(w, nat(v));
+      if (e) m = Math.max(m, nat(e));
+    });
+    if (w <= 0) return;
+    const min = Math.ceil(w + pad);
+    g.style.setProperty("--ct-tile-min", min + "px");
+    g.style.gridTemplateColumns = "";
+    const auto = getComputedStyle(g).gridTemplateColumns.split(" ").filter(Boolean).length || 1;
+    let c = Math.min(auto, tiles.length);
+    while (c > 1 && tiles.length % c) c--;
+    const track = (g.clientWidth - 8 * (c - 1)) / c;
+    /* one line (value+unit at the start, metric at the end) whenever the tile is wide enough to hold BOTH on one line:
+       a stacked tile in a track wider than its content is the blank the review counts, and a stretched last tile is the
+       blank it sees as an orphan row. Below that width the two-line tile stays, which is the shape that fits.
+       14px is the column gap the .ct-tiles-one rule puts between the two parts (measured style has the stacked gap, 0). */
+    const one = track >= w + m + 14 + pad;
+    g.classList.toggle("ct-tiles-one", one);
+    g.style.gridTemplateColumns = c === 1 ? "1fr" : "repeat(" + c + ", minmax(" + min + "px, 1fr))";
   };
-  const fitAll = () => { nameCols(); tileMin(); fillCells(); };
+  const fitAll = () => { nameCols(); fitTiles(); fillCells(); };
   fitAll();
   if (document.fonts) document.fonts.ready.then(fitAll);
+  /* the block can start closed (stale data, no #community-sec hash): then every width read above is 0 and the rail keeps
+     its CSS fallback. Recompute once when it is opened, or the opened block shows the unmeasured fallback grid.
+     The same applies to the "+N more" maker fold: its names are not on show (and must not size the column, see nameCols)
+     while it is closed, and must not be ellipsised by a column measured without them once the reader opens it. */
+  det.addEventListener("toggle", fitAll);
+  ct.querySelectorAll("details").forEach((d) => d.addEventListener("toggle", fitAll));
 
   /* ---- FTI-empty stats cell → community snapshot (whole cell links here; never a compared model's FTI) ---- */
   if (!ftOf(M)) {

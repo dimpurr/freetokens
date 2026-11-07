@@ -1043,8 +1043,16 @@ details.community[open] > summary { border-bottom: 1px solid var(--line); }
 /* numbers as reported: small tiles, value big + unit + metric + source; the maker's contrary evidence lives in its own cell.
    The min track is the widest value+unit in the rail (--ct-tile-min, set by the script; fallback 132px = longest value here
    "140/157 tasks" + tile padding), so a nowrap value always fits on its own line (SONNET-REVIEW-6 blocking 1: "140/157"
-   broke into "140/15"/"7"). fillCells closes a short last row, so no half-empty tile row survives. */
+   broke into "140/15"/"7"). The script also picks the column count (whole row of n tiles, or a divisor of n), so no row
+   ends half-empty; the auto-fill fallback below is what a no-JS/prerender snapshot gets. */
 .ct-tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--ct-tile-min, 132px), 1fr)); gap: 8px; }
+/* the rail is narrower than one row of these tiles → one tile per row (SONNET-REVIEW-7 blocking 1: a lone tile widened to
+   the whole 367px rail was 280px blank around 69px of text). Full-width rows read as a spec list, not as blank: the tile
+   becomes one line — value+unit at the start, the metric at the end — so the row is filled edge to edge. The unit still
+   hugs its value inside .ct-tval (SONNET-REVIEW-6 blocking 1 stays fixed); only value↔metric is spread, and that pair is
+   a label row, not a number and its unit. */
+.ct-tiles-one > .ct-tile { flex-direction: row; align-items: baseline; justify-content: space-between; gap: 2px 14px; }
+.ct-tiles-one .ct-metric { flex: 0 1 auto; min-width: 0; margin-left: auto; text-align: right; }
 /* one tile is a column: [value + unit] on the first line, metric on the next. The old `auto auto` grid let the first
    auto column absorb the free 1fr width, which threw the unit ~100px away from a short value ("115,100 ... tokens");
    a flex column with the value+unit bound in one nowrap .ct-tval keeps them touching and unbreakable. */
