@@ -137,7 +137,7 @@ $("details").innerHTML = ML.map((l) => {
   const pretty = (s) => PLAT[s] || String(s).replace(/[_-]/g, " ");
   const MOBJ = Object.fromEntries(D.models.map((x) => [x.id, x]));
   const MN = Object.fromEntries(D.models.map((x) => [x.id, x.name]));
-  const mlink = (id) => (MN[id] ? `<a href="${modelHref(id)}">${esc(MN[id])}</a>` : esc(id));
+  const mlink = (id) => (MN[id] ? `<a href="${modelHref(id)}" title="${esc(MN[id])}">${esc(MN[id])}</a>` : esc(id));
   /* a model's own mark: its maker's logo, or a name-derived tile for a model we do not track (DESIGN §2: logo only on the entity head, which a row head is) */
   const mlogo = (id) => (MOBJ[id] ? modelTile(MOBJ[id]) : logoTile(id, MN[id] || id, false, MN[id] || id));
   const POST = Object.fromEntries((C.posts || []).map((p) => [p.id, p]));
@@ -176,7 +176,7 @@ $("details").innerHTML = ML.map((l) => {
   const evword = (k) => Tx(EVW[k] || pretty(k), EVW[k] || pretty(k));
   const evexp = (k) => Tx(EVX[k] || "", EVX[k] || "");
   const mkname = (id) => (MK[id] && MK[id].name) || (MN[id] && MN[id].name) || pretty(id).replace(/\b[a-z]/g, (c) => c.toUpperCase());
-  const mktag = (id) => (MK[id] ? mklink(id) : MN[id] ? `<a href="${modelHref(id)}">${esc(mkname(id))}</a>` : esc(mkname(id)));
+  const mktag = (id) => (MK[id] ? `<a class="mklink" href="${makerHref(id)}" title="${esc(MK[id].name)}">${esc(MK[id].name)}</a>` : MN[id] ? `<a href="${modelHref(id)}" title="${esc(mkname(id))}">${esc(mkname(id))}</a>` : esc(mkname(id)));
   /* the row's small print: evidence words + at most one ⚠ counter-evidence; explain=true puts each word's plain-words title on */
   const tail = (ev, ag, explain) => {
     const words = (ev || []).map((k) => {
@@ -286,29 +286,32 @@ $("details").innerHTML = ML.map((l) => {
   const ISSUE_URL = "https://github.com/dimpurr/freetokens/issues/new";
   const group = (title, body) => body ? `<section class="ct-group"><h3 class="ct-group-h">${title}</h3>${body}</section>` : "";
   const cols = (arr) => { const b = arr.filter(Boolean); return b.length ? `<div class="ct-cols">${b.join("")}</div>` : ""; };
-  /* level/size as one inline line, then the maker list owns the whole row (DESIGN §3 model page v2) */
+  /* level/size as one inline line + the maker list; "What it is" and "Who it's compared to" then share the block's one
+     column grid side by side (SONNET-REVIEW-3 cosmetic: the top groups only used the left ~35% of the card) */
   const whatBody = [inlineBlock, mkBlock].filter(Boolean).join("") || "";
   const whoBody = cols([sentiBlock, srcBlock]);
   ct.innerHTML = `
     <p class="ct-meta">${C.authors} ${Tx("authors", "authors")} · ${(C.posts || []).length} ${Tx("posts", "posts")} · ${Tx("collected", "collected")} ${esc(absDate(C.collected))} · ${keyLegend()}</p>
-    ${group(Tx("What it is", "What it is"), whatBody)}
-    ${group(Tx("Who it's compared to", "Who it's compared to"), cmpBlock)}
+    ${cols([group(Tx("What it is", "What it is"), whatBody), group(Tx("Who it's compared to", "Who it's compared to"), cmpBlock)])}
     ${group(Tx("How it performs", "How it performs"), perfBlock)}
     ${group(Tx("Who says so", "Who says so"), whoBody)}
     ${nums ? `<section class="ct-group ct-group-wide"><h3 class="ct-group-h">${Tx("Numbers as reported", "Numbers as reported")}</h3><div class="ct-tiles">${nums}</div></section>` : ""}
     ${quotes ? `<div class="cquotes">${quotes}</div>` : ""}
     <div class="ct-foot"><span class="ct-notfti">${Tx("Not part of FTI", "Not part of FTI")}</span> · <a href="${METHOD_URL}">${Tx("method", "method")}</a> · <a href="${ISSUE_URL}" target="_blank" rel="noopener">${Tx("report a post", "report a post")}</a></div>`;
-  /* name column = the widest name in the group, so the marks sit right after the names and line up down the group.
-     No layout under prerender (widths come back 0) → the variable stays unset and each row falls back to its own max-content. */
-  const nameCols = () => document.querySelectorAll(".ct .ct-group .ct-list").forEach((ul) => {
+  /* one --ct-name for the whole block: the widest name anywhere, so every group's marks sit in the same column top to bottom
+     (SONNET-REVIEW-3 blocking 1: dot columns differed per group). Each clone is measured in place (its own row parent keeps
+     the inherited font) then removed. No layout under prerender (widths come back 0) → the variable stays unset and each row
+     falls back to its own max-content; --ct-cap still clamps it. */
+  const nameCols = () => {
     let w = 0;
-    ul.querySelectorAll(":scope > .ct-row > .ct-name").forEach((nm) => {
+    document.querySelectorAll(".ct .ct-list > .ct-row > .ct-name").forEach((nm) => {
+      const host = nm.parentElement || document.body;
       const c = nm.cloneNode(true);
       c.style.cssText = "position:absolute;visibility:hidden;display:inline-block;white-space:nowrap;width:auto;max-width:none";
-      ul.appendChild(c); w = Math.max(w, c.getBoundingClientRect().width); c.remove();
+      host.appendChild(c); w = Math.max(w, c.getBoundingClientRect().width); c.remove();
     });
-    if (w > 0) ul.style.setProperty("--ct-name", w + "px");
-  });
+    if (w > 0) ct.style.setProperty("--ct-name", w + "px");
+  };
   nameCols();
   if (document.fonts) document.fonts.ready.then(nameCols);
 

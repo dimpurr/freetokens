@@ -963,11 +963,14 @@ details.community[open] > summary { border-bottom: 1px solid var(--line); }
 .ct-inline-sep { color: var(--faint); }
 .ct-inline .ct-marks { display: inline-grid; grid-template-columns: repeat(var(--n, 1), 7px); gap: 2px; }
 /* an aligned list: name → marks → number (only past the dot cap) → tail. The name column is --ct-name, the widest name in
-   the group (each row's own max-content until the script measures it, capped by --ct-cap), so the marks sit right after the
-   name and line up down the group instead of being pinned to the card edge. */
+   the whole block (set once on .ct by the script; each row's own max-content until then, capped by --ct-cap), so the marks
+   sit in one column shared by every group instead of drifting per group. nowrap keeps logo + name on one line (SONNET-REVIEW-3
+   blocking 1): the logo never shrinks, the name truncates with a title. */
 .ct-list { display: grid; gap: 4px; align-content: start; }
 .ct-row { display: flex; align-items: center; gap: 10px; min-width: 0; }
-.ct-name { flex: 0 1 auto; width: var(--ct-name, max-content); max-width: min(var(--ct-cap, 232px), 100%); display: flex; flex-wrap: wrap; align-items: center; gap: 2px 6px; min-width: 0; }
+.ct-name { flex: 0 1 auto; width: var(--ct-name, max-content); max-width: min(var(--ct-cap, 232px), 100%); display: flex; flex-wrap: nowrap; align-items: center; gap: 2px 6px; min-width: 0; }
+.ct-name .lgt { flex: 0 0 auto; }
+.ct-name > a, .ct-name > .ct-term { flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .ct-name a { color: var(--fg); text-decoration: none; }
 .ct-name a:hover { color: var(--accent); }
 .ct-name .lg { flex: none; }
@@ -992,10 +995,11 @@ details.community[open] > summary { border-bottom: 1px solid var(--line); }
 .ct-name.ct-warn + .ct-marks i { background: var(--overdue); }
 .ct-pos .ct-sign { color: var(--live); }
 .ct-neg .ct-sign { color: var(--ended); }
-/* the square in the meta line's key: the same 6px square as a mark (an element, never a ■ character) */
+/* the square in the meta line's key: the same shape as a mark (an element, never a ■ character), coloured like a dot
+   (not the barely-visible --faint grey) and set at the meta line's own size so it is not easy to miss (SONNET-REVIEW-3 cosmetic) */
 .ct-legend-key { display: inline-flex; vertical-align: -1px; }
-.ct-legend-key i { width: 6px; height: 6px; border-radius: 1px; background: var(--faint); }
-.ct-legend-txt { margin-left: 5px; }
+.ct-legend-key i { width: 7px; height: 6px; border-radius: 1px; background: var(--muted); }
+.ct-legend-txt { margin-left: 5px; font-size: inherit; }
 /* compared-to: a direction band (symbol + word, never colour alone) heads its aligned model rows */
 .ct-line-head { grid-column: 1 / -1; margin-top: 4px; }
 .ct-line-head:first-child { margin-top: 0; }
@@ -1045,10 +1049,10 @@ details.community[open] > summary { border-bottom: 1px solid var(--line); }
 .ct-snap-bar .ct-stack { flex: 0 1 30%; min-width: 72px; height: 7px; }
 .ct-snap .ct-legend { flex: 1 1 0; min-width: 0; font: 0.66rem/1.35 var(--f-body); gap: 0 8px; }
 /* the row tail needs the full width once the name and marks have eaten it; it indents under the name column so it visibly
-   belongs to that row, and below 480 only the ⚠ tag is left (words go to the row's title) */
+   belongs to that row. The evidence words stay visible at every width (SONNET-REVIEW-3 blocking 2: hiding .ct-evw left only
+   stray "·" separators on mobile); below 360 a tail with no ⚠ collapses so a lone word does not strand a whole line */
 @media (max-width: 719px) { .ct-row { flex-wrap: wrap; } .ct-tail { flex: 1 1 100%; padding-left: 44px; } }
-@media (max-width: 479px) { .ct-evw { display: none; } }
-/* under 360 the ⚠ alone can still wrap: a tail holding nothing but hidden evidence words disappears rather than leaving an empty line */
+/* under 360 the ⚠ alone can still wrap: a tail holding only evidence words disappears rather than leaving an empty line */
 @media (max-width: 359px) { .ct-tail:not(:has(.ct-against)) { display: none; } }
 .ct-snap-jump { display: inline-flex; align-items: center; gap: 4px; font-size: 0.74rem; color: var(--accent); margin-top: 2px; }
 .ct-snap-jump .ico { width: 0.85em; height: 0.85em; }
