@@ -955,7 +955,7 @@ details.community[open] > summary { border-bottom: 1px solid var(--line); }
 .ct-group { display: grid; gap: 8px; min-width: 0; }
 .ct-group-h { margin: 0; font: 600 0.68rem var(--f-body); text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); }
 /* strengths | weaknesses | issues: three sub-columns on the very tracks the top row uses, so nothing re-flows */
-.ct-perf { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; align-items: start; }
+.ct-perf { display: grid; grid-template-columns: repeat(var(--perf-n, 3), minmax(0, 1fr)); gap: 12px; align-items: start; }
 @media (max-width: 759px) { .ct-perf { grid-template-columns: minmax(0, 1fr); } }
 .ct-sub { display: grid; gap: 5px; align-content: start; min-width: 0; }
 .ct-sub > .ct-subh { font: 600 0.66rem var(--f-body); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }

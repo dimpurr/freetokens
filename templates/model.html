@@ -234,7 +234,7 @@ $("details").innerHTML = ML.map((l) => {
     [Tx("Weaknesses", "Weaknesses"), tallyList(wk, "ct-neg", "−")],
     [Tx("Issues", "Issues"), tallyList(iss, "ct-warn")],
   ].filter(([, v]) => v);
-  const perfBlock = perfCols.length ? `<div class="ct-perf">${perfCols.map(([h, v]) => `<div class="ct-col ct-cell"><span class="ct-colh">${h}</span>${v}</div>`).join("")}</div>` : "";
+  const perfBlock = perfCols.length ? `<div class="ct-perf" style="--perf-n:${perfCols.length}">${perfCols.map(([h, v]) => `<div class="ct-col ct-cell"><span class="ct-colh">${h}</span>${v}</div>`).join("")}</div>` : "";
 
   /* ---- group: who says so (sentiment · sources as one 100% stacked bar each, with a labelled legend) ---- */
   /* each segment carries its word in the legend (the number goes inside when the slice is wide): a colour is never the only signal */
