@@ -3573,5 +3573,67 @@
       "label": "Command Code pricing-limits docs",
       "url": "https://commandcode.ai/docs/resources/pricing-limits#crouton-alpha-free"
     }
+  },
+  {
+    "date": "2026-11-07",
+    "lanes": [
+      "ampersand-v0.1-vercel"
+    ],
+    "kind": "listed",
+    "text": "humansand/ampersand-v0.1 (Ampersand v0.1) is listed at input 0 / output 0 in the Vercel AI Gateway model list at the 2026-11-07 daily check (11 language models at $0 there); 1M context, 32K max output, released timestamp 2026-11-06",
+    "source": {
+      "label": "own check of the Vercel AI Gateway model list",
+      "url": "https://ai-gateway.vercel.sh/v1/models"
+    }
+  },
+  {
+    "date": "2026-11-07",
+    "lanes": [
+      "lfm3-1.7b-or"
+    ],
+    "kind": "listed",
+    "text": "liquid/lfm-3-1.7b:free (LiquidAI: LFM3-1.7B (free)) is listed at prompt 0 / completion 0 in the OpenRouter models API at the 2026-11-07 daily check; created 2026-11-06T23:57Z, canonical slug liquid/lfm-3-1.7b-20261106, 256K context, 8K max completion",
+    "source": {
+      "label": "Daily free-catalogue check of the OpenRouter models API (own tool)",
+      "url": "https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2026-11-07",
+    "lanes": [
+      "lfm3-1.7b-kilo"
+    ],
+    "kind": "listed",
+    "text": "liquid/lfm-3-1.7b:free is listed free on the Kilo Gateway (isFree, prompt 0 / completion 0) at the 2026-11-07 daily check (383 models); the same entry flags mayTrainOnYourPrompts true",
+    "source": {
+      "label": "own check of the Kilo Gateway model list",
+      "url": "https://api.kilo.ai/api/gateway/models"
+    }
+  },
+  {
+    "date": "2026-11-07",
+    "lanes": [
+      "iceman-zen",
+      "inkling-2-small-zen"
+    ],
+    "kind": "listed",
+    "text": "opencode/iceman-free and opencode/inkling-2-small-free are listed at cost 0/0 in the OpenCode Zen model list at the 2026-11-07 daily check (81 models); Zen's docs add that Iceman Free is a stealth model free for a limited time and that Inkling 2 Small Free is free for a limited time with its provider retaining data and possibly training on it",
+    "source": {
+      "label": "Daily free-catalogue check of the OpenCode Zen model list (own tool)",
+      "url": "https://opencode.ai/zen/v1/models"
+    }
+  },
+  {
+    "date": "2026-11-07",
+    "lanes": [
+      "pulse-alpha-zen"
+    ],
+    "kind": "ended",
+    "end_date": "2026-11-06",
+    "text": "opencode/pulse-alpha-free is no longer in the OpenCode Zen free model list at the 2026-11-07 daily check (81 models, re-read the same day); it was still there at the 2026-11-06 check, so this is one day's absence, closed as ended on the official date rather than the two-absence rule: Zen's own deprecated-models table lists Pulse Alpha Free with deprecation date November 6, 2026",
+    "source": {
+      "label": "OpenCode Zen docs",
+      "url": "https://opencode.ai/v2/docs/console/models"
+    }
   }
 ]

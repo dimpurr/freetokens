@@ -6561,6 +6561,30 @@
    "evidence": 0,
    "independent": 0,
    "sources": []
+  },
+  "ampersand-v0.1": {
+   "status": "none",
+   "evidence": 0,
+   "independent": 0,
+   "sources": []
+  },
+  "lfm3-1.7b": {
+   "status": "none",
+   "evidence": 0,
+   "independent": 0,
+   "sources": []
+  },
+  "iceman": {
+   "status": "none",
+   "evidence": 0,
+   "independent": 0,
+   "sources": []
+  },
+  "inkling-2-small": {
+   "status": "none",
+   "evidence": 0,
+   "independent": 0,
+   "sources": []
   }
  }
 }

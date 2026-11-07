@@ -6431,7 +6431,7 @@
   "channel": "OpenCode Zen",
   "type": "agent_tool",
   "model_id": "opencode/pulse-alpha-free",
-  "free_condition": "Limited time; no end date published",
+  "free_condition": "Limited time; the Zen docs give a deprecation date of 2026-11-06",
   "meter": "per_model",
   "limits_stated": {
    "basis": "official",
@@ -6444,21 +6444,22 @@
    "note": "first seen in the daily free-catalogue check"
   },
   "ends": {
-   "announced": null,
+   "announced": "2026-11-06",
    "expected": null,
-   "confidence": "none"
+   "confidence": "official",
+   "note": "Zen deprecated-models table: Pulse Alpha Free, November 6, 2026"
   },
   "data_policy": "may_train",
-  "status": "listed",
+  "status": "ended",
   "checked": {
-   "date": "2026-11-03",
+   "date": "2026-11-07",
    "method": "catalogue"
   },
   "volume": {
    "tier": "daily",
    "basis": "channel rule: Zen's free allowance is per IP per day; this model not load-tested"
   },
-  "note": "Stealth model, free for a limited time to collect feedback (Zen docs); 1M context, 128K max output; EU and other regions excluded; free-period data may be retained for training."
+  "note": "Stealth model, free for a limited time to collect feedback (Zen docs); 1M context, 128K max output; EU and other regions excluded; free-period data may be retained for training. Removed from the Zen free model list at the 2026-11-07 daily check (81 models, re-read the same day); it was still in the list at the 2026-11-06 check, so this is one day's absence plus the docs' own deprecation date, not a second consecutive absence."
  },
  {
   "id": "crouton-or",
@@ -6626,5 +6627,173 @@
      "basis": "pricing-limits docs: free up to 1000 requests a day while the stealth preview lasts (Go plan and above, account balance >= $1)"
     },
     "note": "Stealth model; 1M context, Free/Free/Free on the models page. Docs display name Crouton Alpha (anchor #crouton-alpha-free); CLI model id unconfirmed. Same inclusion class as crouton-go ($0 inside a paid plan) and bunny-cc precedent."
-   }
+   },
+ {
+  "id": "ampersand-v0.1-vercel",
+  "model": "ampersand-v0.1",
+  "channel": "Vercel AI Gateway",
+  "type": "router",
+  "model_id": "humansand/ampersand-v0.1",
+  "free_condition": null,
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "unpublished"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-11-07",
+   "note": "first seen in the daily free-catalogue check; the model entry carries a released timestamp of 2026-11-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "may_train",
+  "status": "listed",
+  "checked": {
+   "date": "2026-11-07",
+   "method": "catalogue"
+  },
+  "volume": {
+   "tier": "daily",
+   "basis": "no request limit published: the gateway's own model list prices it input 0 / output 0 at the 2026-11-07 check; this model not load-tested"
+  },
+  "note": "Humans& collaborator model, text in and out, 1M context, 32K max output, tool use and reasoning effort low to max. Free condition is the token price itself: $0 input and $0 output in the gateway model list, no plan or credit condition published. The same entry carries zdr \"none\" and no_training \"none\", i.e. no zero-retention and no no-training commitment."
+ },
+ {
+  "id": "lfm3-1.7b-or",
+  "model": "lfm3-1.7b",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "liquid/lfm-3-1.7b:free",
+  "free_condition": null,
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "official",
+   "per_day": 50,
+   "note": "1000/day once 10+ credits have been bought",
+   "source": "https://openrouter.ai/pricing"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-11-07",
+   "note": "first seen in the daily free-catalogue check; the models API created timestamp is 2026-11-06T23:57Z"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "may_train",
+  "status": "listed",
+  "checked": {
+   "date": "2026-11-07",
+   "method": "catalogue"
+  },
+  "volume": {
+   "tier": "taste",
+   "basis": "50 requests a day without credits (stated); prompt and completion price 0 in the models API at the 2026-11-07 check"
+  },
+  "note": "Liquid AI's 1.7B agent model: 256K context, 8K max completion, text only, tools and structured outputs. OpenRouter's canonical slug liquid/lfm-3-1.7b-20261106 carries a date, so treat it as a snapshot (ADR-037); its page description says prompts and outputs may be retained and used."
+ },
+ {
+  "id": "lfm3-1.7b-kilo",
+  "model": "lfm3-1.7b",
+  "channel": "Kilo Code",
+  "type": "agent_tool",
+  "model_id": "liquid/lfm-3-1.7b:free",
+  "free_condition": "works without signing in (Kilo Gateway \":free\" model)",
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "unpublished"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-11-07",
+   "note": "first seen in the daily free-catalogue check"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "may_train",
+  "status": "listed",
+  "checked": {
+   "date": "2026-11-07",
+   "method": "catalogue"
+  },
+  "volume": {
+   "tier": "daily",
+   "basis": "no limit published; the gateway list flags isFree with prompt and completion 0 at the 2026-11-07 check; this model not load-tested"
+  },
+  "note": "Same listing as the OpenRouter arm (Kilo shows the OpenRouter field mayTrainOnYourPrompts true); 256K context, 8K max completion, text only, tools and structured outputs."
+ },
+ {
+  "id": "iceman-zen",
+  "model": "iceman",
+  "channel": "OpenCode Zen",
+  "type": "agent_tool",
+  "model_id": "opencode/iceman-free",
+  "free_condition": "free for a limited time",
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "unpublished"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-11-07",
+   "note": "first seen in the daily free-catalogue check; the Zen entry gives release_date 2026-11-06"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "may_train",
+  "status": "listed",
+  "checked": {
+   "date": "2026-11-07",
+   "method": "catalogue"
+  },
+  "volume": {
+   "tier": "daily",
+   "basis": "channel rule: Zen's free allowance is per IP per day; this model not load-tested"
+  },
+  "note": "Stealth model: the Zen entry names no provider and Zen's docs call it \"a stealth model that's free on OpenCode for a limited time\". 262K context, 131K max output, text only, tools and reasoning; cost 0/0. Zen's privacy page: during the free period collected data is retained and used to improve the model. OpenCode Go has listed opencode-go/iceman-contributor-free since 2026-10; whether the two are one model is not stated."
+ },
+ {
+  "id": "inkling-2-small-zen",
+  "model": "inkling-2-small",
+  "channel": "OpenCode Zen",
+  "type": "agent_tool",
+  "model_id": "opencode/inkling-2-small-free",
+  "free_condition": "free for a limited time",
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "unpublished"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-11-07",
+   "note": "first seen in the daily free-catalogue check; the Zen entry gives release_date 2026-11-05"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "may_train",
+  "status": "listed",
+  "checked": {
+   "date": "2026-11-07",
+   "method": "catalogue"
+  },
+  "volume": {
+   "tier": "daily",
+   "basis": "channel rule: Zen's free allowance is per IP per day; this model not load-tested"
+  },
+  "note": "Zen entry gives canonical_id thinkingmachines/inkling-2-small, family ling; 1M context, 131K max output, text and image in, tools and reasoning effort; cost 0/0. Zen docs: free for a limited time, its provider retains data and may use it for training; not available in the EU, Iceland, Liechtenstein, Norway, Cuba, Iran, North Korea, Russia, Ukraine or Venezuela. A different model from the ended inkling-small-or / inkling-or listing."
+ }
 ]

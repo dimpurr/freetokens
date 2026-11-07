@@ -277,5 +277,10 @@
   "links": {
    "site": "https://opencode.ai"
   }
+ },
+ {
+  "id": "humansand",
+  "name": "Humans&",
+  "note": "Name and spelling taken from the humansand/ namespace of its Vercel AI Gateway id and from that entry's own description, \"a collaborator model from Humans&\" (daily catalogue check, 2026-11-07); no site or weights link verified."
  }
 ]

@@ -940,5 +940,33 @@
     "maker": "undisclosed",
     "context": "1M",
     "image_input": "yes"
+  },
+  {
+    "id": "ampersand-v0.1",
+    "name": "Ampersand v0.1",
+    "maker": "humansand",
+    "context": "1M",
+    "image_input": "no"
+  },
+  {
+    "id": "lfm3-1.7b",
+    "name": "LFM3-1.7B",
+    "maker": "liquid",
+    "context": "256K",
+    "image_input": "no"
+  },
+  {
+    "id": "iceman",
+    "name": "Iceman",
+    "maker": "undisclosed",
+    "context": "262K",
+    "image_input": "no"
+  },
+  {
+    "id": "inkling-2-small",
+    "name": "Inkling 2 Small",
+    "maker": "thinking-machines",
+    "context": "1M",
+    "image_input": "yes"
   }
 ]
