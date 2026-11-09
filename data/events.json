@@ -3635,5 +3635,18 @@
       "label": "OpenCode Zen docs",
       "url": "https://opencode.ai/v2/docs/console/models"
     }
+  },
+  {
+    "date": "2026-11-09",
+    "lanes": [
+      "beam-kilo"
+    ],
+    "kind": "ended",
+    "end_date": "2026-11-09",
+    "text": "reflection/beam-free is gone from the Kilo Code gateway catalogue at the 2026-11-09 daily check (379 models; only reflection/beam-1.0-501b-a23b remains, a different model id); first absence",
+    "source": {
+      "label": "own check of the Kilo gateway models API",
+      "url": "https://kilo.ai/api/gateway/models"
+    }
   }
 ]

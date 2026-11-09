@@ -4957,13 +4957,14 @@
   "ends": {
    "announced": null,
    "expected": null,
-   "confidence": "none"
+   "confidence": "none",
+   "note": "absent from Kilo gateway catalogue at 2026-11-09 daily check (379 models; only reflection/beam-1.0-501b-a23b remains); first absence, closed per one-day rule for catalogue removals"
   },
   "data_policy": "unstated",
-  "status": "listed",
+  "status": "ended",
   "checked": {
-   "date": "2026-10-27",
-   "method": "listing"
+   "date": "2026-11-09",
+   "method": "catalogue"
   }
  },
  {
