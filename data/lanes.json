@@ -6796,5 +6796,200 @@
    "basis": "channel rule: Zen's free allowance is per IP per day; this model not load-tested"
   },
   "note": "Zen entry gives canonical_id thinkingmachines/inkling-2-small, family ling; 1M context, 131K max output, text and image in, tools and reasoning effort; cost 0/0. Zen docs: free for a limited time, its provider retains data and may use it for training; not available in the EU, Iceland, Liechtenstein, Norway, Cuba, Iran, North Korea, Russia, Ukraine or Venezuela. A different model from the ended inkling-small-or / inkling-or listing."
+ },
+ {
+  "id": "horizon-alpha-or",
+  "model": "horizon-alpha",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "openrouter/horizon-alpha",
+  "free_condition": "free to use during the testing period",
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "unpublished",
+   "note": "no rate limit published for the stealth alpha endpoint",
+   "source": "https://openrouter.ai/openrouter/horizon-alpha"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2025-07-30",
+   "note": "official API field created=1753913884 (2025-07-30T22:18:04Z); page datePublished 2025-07-30; approx - the free wording on the page carries no timestamp, and the id never appears in /api/v1/models catalogue captures"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none",
+   "note": "approx upper bound 2025-08-07: OpenRouter's GPT-5 launch post (datePublished 2025-08-07) says the free Horizon endpoints are now retired; no end date was announced in advance"
+  },
+  "data_policy": "not_checked",
+  "status": "ended",
+  "checked": {
+   "date": "2026-11-09",
+   "method": "public_record"
+  },
+  "note": "Evidence: OpenRouter model page (HTTP 200 on 2026-11-09) 'It's free to use during this testing period'; GPT-5 launch post 2025-08-07 'The free Horizon Alpha and Beta endpoints are now retired.'; first public sighting X 2025-07-31T00:20:36Z. Wayback shows the page absent (Model Not Found) at 2025-07-30T18:28Z. /api/v1/models/{id}/endpoints now returns endpoints=[]"
+ },
+ {
+  "id": "elephant-alpha-or",
+  "model": "elephant-alpha",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "openrouter/elephant-alpha",
+  "free_condition": "free to use during the testing period",
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "unpublished",
+   "note": "no rate limit published for the stealth alpha endpoint",
+   "source": "https://openrouter.ai/openrouter/elephant-alpha"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-04-13",
+   "note": "official API field created=1776052598 (2026-04-13T03:56:38Z); first capture with pricing prompt 0 / completion 0 same day 15:26:50Z; approx"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none",
+   "note": "approx upper bound 2026-04-22T03:41Z: first capture whose page renders but carries no pricing block; last pricing-0 capture 2026-04-20T14:27Z; maker reveal 2026-04-21T19:35Z falls inside the gap; endpoints now []"
+  },
+  "data_policy": "not_checked",
+  "status": "ended",
+  "checked": {
+   "date": "2026-11-09",
+   "method": "public_record"
+  },
+  "note": "Six Wayback captures of https://openrouter.ai/openrouter/elephant-alpha (2026-04-13 to 2026-04-20) carry embedded pricing prompt 0 / completion 0; the 2026-04-22 capture does not. The id is absent from the public /api/v1/models catalogue even while live (349-entry capture 2026-04-23 has no alpha/stealth rows), so free price had to be read off the model page"
+ },
+ {
+  "id": "pony-alpha-or",
+  "model": "pony-alpha",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "openrouter/pony-alpha",
+  "free_condition": "free to use during the testing period",
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "unpublished",
+   "note": "no rate limit published for the stealth alpha endpoint",
+   "source": "https://openrouter.ai/openrouter/pony-alpha"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-02-06",
+   "note": "official API field created=1770393855 (2026-02-06T16:04:15Z); first pricing-0 capture same day 17:57:33Z, OpenRouter announcement tweet 17:53:44Z; approx"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none",
+   "note": "approx upper bound 2026-02-15T11:51Z: first capture with no pricing block; revealed as an early GLM-5 test build 2026-02-11; endpoints now []"
+  },
+  "data_policy": "not_checked",
+  "status": "ended",
+  "checked": {
+   "date": "2026-11-09",
+   "method": "public_record"
+  },
+  "note": "Wayback captures 2026-02-06T17:57Z / 02-06T21:57Z / 02-07 / 02-09 / 02-11 carry embedded pricing prompt 0 / completion 0; captures from 2026-02-15 onward carry none. OpenRouter page (HTTP 200 on 2026-11-09): 'This model was an early testing version of GLM-5.'"
+ },
+ {
+  "id": "gemini-2.0-flash-exp-aistudio",
+  "model": "gemini-2.0-flash-exp",
+  "channel": "Google AI Studio",
+  "type": "first_party",
+  "model_id": "gemini-2.0-flash-exp",
+  "free_condition": "free tier, rate-limited, API key without billing",
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "official",
+   "per_day": 1000,
+   "note": "free tier row; RPD 1500->1000, TPM 1M->250K over listings",
+   "source": "https://web.archive.org/web/20250511044216id_/https://ai.google.dev/gemini-api/docs/rate-limits"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2024-12-11",
+   "note": "released 2024-12-11 (experimental-models capture of 2024-12-18); approx - the free-tier table first lists it in the capture of 2025-03-18T03:13Z and not in 2025-03-12; no capture exists between release and 2025-02-16"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none",
+   "note": "approx upper bound 2025-08-10: the free-tier table stopped listing any Gemini 2.0 row at that capture (last listing 2025-06-11T13:36Z); the table was restructured, so the exact day free access ended is not established. The endpoint itself was shut down 2025-12-09 (changelog)"
+  },
+  "data_policy": "not_checked",
+  "status": "ended",
+  "checked": {
+   "date": "2026-11-09",
+   "method": "public_record"
+  },
+  "note": "14 Wayback captures of the Gemini API rate-limits page read as id_ originals: the free-tier row exists 2025-03-18 to 2025-06-11 and is missing 2025-02-16 / 02-25 / 03-12 and from 2025-08-10 on. Separate lane from gemini-2.0-flash-exp-or (OpenRouter), same model"
+ },
+ {
+  "id": "gemini-2.0-flash-aistudio",
+  "model": "gemini-2.0-flash",
+  "channel": "Google AI Studio",
+  "type": "first_party",
+  "model_id": "gemini-2.0-flash",
+  "free_condition": "free tier, rate-limited, API key without billing",
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "official",
+   "per_day": 1500,
+   "note": "free tier row at earliest capture read 2025-02-16",
+   "source": "https://web.archive.org/web/20250216233200id_/https://ai.google.dev/gemini-api/docs/rate-limits"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2025-02-05",
+   "note": "GA 2025-02-05 (changelog 'Released gemini-2.0-flash-001, a generally available (GA) version of Gemini 2.0 Flash'); approx - the pricing page already shows free tier 'Free of charge' in the capture of 2025-02-17 and the free-tier rate-limit row exists in the capture of 2025-02-16"
+  },
+  "ends": {
+   "announced": "2026-06-01",
+   "expected": "2026-06-01",
+   "confidence": "official",
+   "note": "changelog 2026-06-01 entry lists gemini-2.0-flash among the models now shut down; pricing capture of 2026-06-11 carries 'Gemini 2.0 Flash is deprecated and has been shut down June 1, 2026'"
+  },
+  "data_policy": "not_checked",
+  "status": "ended",
+  "checked": {
+   "date": "2026-11-09",
+   "method": "public_record"
+  },
+  "note": "Free tier 'Input price Free of charge' in the gemini-2.0-flash block of the Gemini API pricing page in every capture read from 2025-02-17 to 2026-01-12 (20250217025032, 20250304102117, 20250404182146, 20250710052252, 20250810144211, 20251110112711, 20260112145313)"
+ },
+ {
+  "id": "gemini-2.5-flash-preview-04-17-aistudio",
+  "model": "gemini-2.5-flash-preview-04-17",
+  "channel": "Google AI Studio",
+  "type": "first_party",
+  "model_id": "gemini-2.5-flash-preview-04-17",
+  "free_condition": "free tier, rate-limited, API key without billing",
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "official",
+   "per_day": 500,
+   "note": "free tier row at 2025-04-17 capture",
+   "source": "https://web.archive.org/web/20250417195348id_/https://ai.google.dev/gemini-api/docs/rate-limits"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2025-04-17",
+   "note": "released 2025-04-17 (changelog) and the free-tier row is already in the capture of the same day 19:53Z; day exact, time unknown"
+  },
+  "ends": {
+   "announced": "2025-07-15",
+   "expected": "2025-07-15",
+   "confidence": "official",
+   "note": "deprecation date published 2025-06-17 ('gemini-2.5-flash-preview-04-17 will be deprecated on July 15, 2025'). The free listing itself disappears earlier: last free-tier row 2025-05-17T03:11Z, replaced by the 05-20 preview in the capture of 2025-05-22 - that table only lists the newest preview, so the day this id stopped being free is not established"
+  },
+  "data_policy": "not_checked",
+  "status": "ended",
+  "checked": {
+   "date": "2026-11-09",
+   "method": "public_record"
+  },
+  "note": "Free tier row in rate-limits captures 2025-04-17 / 05-11 / 05-17; pricing capture 20250515010451 shows the Gemini 2.5 Flash Preview block with free tier 'Input price Free of charge' (paid column non-thinking $0.60 / thinking $3.50)"
  }
 ]

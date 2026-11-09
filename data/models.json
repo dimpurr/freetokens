@@ -968,5 +968,45 @@
     "maker": "thinking-machines",
     "context": "1M",
     "image_input": "yes"
+  },
+  {
+   "id": "horizon-alpha",
+   "name": "Horizon Alpha",
+   "maker": "undisclosed",
+   "context": "not checked",
+   "image_input": "not_checked",
+   "notes": "Stealth model, no maker named at launch. OpenRouter revealed it as GPT-5 in the launch post of 2025-08-07: https://openrouter.ai/blog/announcements/gpt-5-is-now-live/. OpenRouter page (read 2026-11-09): 'This was a cloaked model provided to the community to gather feedback.'"
+  },
+  {
+   "id": "elephant-alpha",
+   "name": "Elephant Alpha",
+   "maker": "undisclosed",
+   "context": "256K",
+   "image_input": "no",
+   "notes": "Stealth model; OpenRouter's page carries no reveal text. Ant Ling self-disclosed it as Ling-2.6-flash on X, 2026-04-21T19:35Z: https://x.com/AntLingAGI/status/2046674223943614638 (unconfirmed by OpenRouter). Context and text-only modality from the OpenRouter model API: https://openrouter.ai/api/v1/models/openrouter/elephant-alpha/endpoints"
+  },
+  {
+   "id": "pony-alpha",
+   "name": "Pony Alpha",
+   "maker": "undisclosed",
+   "context": "not checked",
+   "image_input": "not_checked",
+   "notes": "Stealth model. OpenRouter's own page states the identity: 'This model was an early testing version of GLM-5.' (read 2026-11-09): https://openrouter.ai/openrouter/pony-alpha. z.ai's launch post could not be read (JS shell only, live and in Wayback), so the attribution rests on OpenRouter alone"
+  },
+  {
+   "id": "gemini-2.0-flash",
+   "name": "Gemini 2.0 Flash",
+   "maker": "google",
+   "context": "1M",
+   "image_input": "not_checked",
+   "notes": "GA 2025-02-05, shut down 2026-06-01 (Gemini API changelog: https://ai.google.dev/gemini-api/docs/changelog). Context length from the pricing page description 'with a 1 million token context' (capture of 2025-02-17). Image input not read from a doc capture this round"
+  },
+  {
+   "id": "gemini-2.5-flash-preview-04-17",
+   "name": "Gemini 2.5 Flash Preview (04-17)",
+   "maker": "google",
+   "context": "1M",
+   "image_input": "not_checked",
+   "notes": "Released 2025-04-17, deprecated 2025-07-15 (Gemini API changelog: https://ai.google.dev/gemini-api/docs/changelog). Context length from the pricing page block 'supports a 1M token context window and has thinking budgets' (capture of 2025-05-15)"
   }
 ]

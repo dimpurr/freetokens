@@ -6585,6 +6585,36 @@
    "evidence": 0,
    "independent": 0,
    "sources": []
+  },
+  "elephant-alpha": {
+   "status": "none",
+   "evidence": 0,
+   "independent": 0,
+   "sources": []
+  },
+  "gemini-2.0-flash": {
+   "status": "none",
+   "evidence": 0,
+   "independent": 0,
+   "sources": []
+  },
+  "gemini-2.5-flash-preview-04-17": {
+   "status": "none",
+   "evidence": 0,
+   "independent": 0,
+   "sources": []
+  },
+  "horizon-alpha": {
+   "status": "none",
+   "evidence": 0,
+   "independent": 0,
+   "sources": []
+  },
+  "pony-alpha": {
+   "status": "none",
+   "evidence": 0,
+   "independent": 0,
+   "sources": []
   }
  }
 }

@@ -3648,5 +3648,163 @@
       "label": "own check of the Kilo gateway models API",
       "url": "https://kilo.ai/api/gateway/models"
     }
+  },
+  {
+   "date": "2025-07-30",
+   "kind": "available",
+   "lanes": [
+    "horizon-alpha-or"
+   ],
+   "text": "OpenRouter API reports created=1753913884 (2025-07-30T22:18:04Z); the model page was still 'Model Not Found' in the capture of 2025-07-30T18:28Z (approx start)",
+   "source": {
+    "label": "OpenRouter model API (created field), read 2026-11-09",
+    "url": "https://openrouter.ai/api/v1/models/openrouter/horizon-alpha/endpoints"
+   }
+  },
+  {
+   "date": "2025-08-07",
+   "kind": "ended",
+   "lanes": [
+    "horizon-alpha-or"
+   ],
+   "text": "OpenRouter: 'The free Horizon Alpha and Beta endpoints are now retired.' Post datePublished 2025-08-07T00:00Z; endpoints now []",
+   "source": {
+    "label": "OpenRouter announcement post",
+    "url": "https://openrouter.ai/blog/announcements/gpt-5-is-now-live/"
+   }
+  },
+  {
+   "date": "2026-04-13",
+   "kind": "available",
+   "lanes": [
+    "elephant-alpha-or"
+   ],
+   "text": "Model page capture at 15:26:50Z embeds pricing prompt 0 / completion 0; API created=1776052598 (03:56:38Z). The id is not in the public catalogue JSON, so the price was read off the model page",
+   "source": {
+    "label": "Wayback capture of the OpenRouter model page",
+    "url": "https://web.archive.org/web/20260413152650/https://openrouter.ai/openrouter/elephant-alpha"
+   }
+  },
+  {
+   "date": "2026-04-22",
+   "kind": "ended",
+   "lanes": [
+    "elephant-alpha-or"
+   ],
+   "text": "Capture of 2026-04-22T03:41:59Z renders the page with no pricing block; last pricing-0 capture 2026-04-20T14:27Z. Approx end; maker reveal falls between them (2026-04-21T19:35Z)",
+   "source": {
+    "label": "Wayback capture of the OpenRouter model page",
+    "url": "https://web.archive.org/web/20260422034159/https://openrouter.ai/openrouter/elephant-alpha"
+   }
+  },
+  {
+   "date": "2026-02-06",
+   "kind": "available",
+   "lanes": [
+    "pony-alpha-or"
+   ],
+   "text": "Model page capture at 17:57:33Z embeds pricing prompt 0 / completion 0; API created=1770393855 (16:04:15Z), OpenRouter announcement tweet 17:53:44Z (approx start)",
+   "source": {
+    "label": "Wayback capture of the OpenRouter model page",
+    "url": "https://web.archive.org/web/20260206175733/https://openrouter.ai/openrouter/pony-alpha"
+   }
+  },
+  {
+   "date": "2026-02-15",
+   "kind": "ended",
+   "lanes": [
+    "pony-alpha-or"
+   ],
+   "text": "Capture of 2026-02-15T11:51:13Z has no pricing block; last pricing-0 capture 2026-02-11T11:32:54Z. OpenRouter page now reads 'This model was an early testing version of GLM-5.'",
+   "source": {
+    "label": "Wayback capture of the OpenRouter model page",
+    "url": "https://web.archive.org/web/20260215115113/https://openrouter.ai/openrouter/pony-alpha"
+   }
+  },
+  {
+   "date": "2024-12-11",
+   "kind": "available",
+   "lanes": [
+    "gemini-2.0-flash-exp-aistudio"
+   ],
+   "text": "Released as an experimental Gemini API model (release date in the official experimental-models table). Approx start: the free-tier rate-limit table first lists it in the capture of 2025-03-18T03:13Z, not in 2025-03-12",
+   "source": {
+    "label": "Wayback capture of Google experimental-models doc",
+    "url": "https://web.archive.org/web/20241218114553id_/https://ai.google.dev/gemini-api/docs/experimental-models"
+   }
+  },
+  {
+   "date": "2025-08-10",
+   "kind": "ended",
+   "lanes": [
+    "gemini-2.0-flash-exp-aistudio"
+   ],
+   "text": "Last free-tier row 2025-06-11T13:36Z; from the capture of 2025-08-10 the free-tier table lists no Gemini 2.0 row at all, so this is an approx upper bound, not a published end. Endpoint shut down 2025-12-09 (changelog)",
+   "source": {
+    "label": "Wayback capture of the Gemini API rate-limits page",
+    "url": "https://web.archive.org/web/20250810144212id_/https://ai.google.dev/gemini-api/docs/rate-limits"
+   }
+  },
+  {
+   "date": "2025-02-05",
+   "kind": "available",
+   "lanes": [
+    "gemini-2.0-flash-aistudio"
+   ],
+   "text": "GA release ('Released gemini-2.0-flash-001, a generally available (GA) version of Gemini 2.0 Flash'); the pricing page already shows free tier 'Input price Free of charge' in the capture of 2025-02-17 (approx start)",
+   "source": {
+    "label": "Gemini API changelog",
+    "url": "https://ai.google.dev/gemini-api/docs/changelog"
+   }
+  },
+  {
+   "date": "2026-06-01",
+   "kind": "ended",
+   "end_date": "2026-06-01",
+   "lanes": [
+    "gemini-2.0-flash-aistudio"
+   ],
+   "text": "Changelog 2026-06-01: gemini-2.0-flash among 'The following Gemini 2.0 models are now shut down'; the pricing page capture of 2026-06-11 carries the shut-down warning",
+   "source": {
+    "label": "Gemini API changelog",
+    "url": "https://ai.google.dev/gemini-api/docs/changelog"
+   }
+  },
+  {
+   "date": "2025-04-17",
+   "kind": "available",
+   "lanes": [
+    "gemini-2.5-flash-preview-04-17-aistudio"
+   ],
+   "text": "Released 2025-04-17 and already listed in the free tier in the same-day capture at 19:53:48Z (10 RPM / 250,000 TPM / 500 RPD); day exact, time unknown",
+   "source": {
+    "label": "Wayback capture of the Gemini API rate-limits page",
+    "url": "https://web.archive.org/web/20250417195348id_/https://ai.google.dev/gemini-api/docs/rate-limits"
+   }
+  },
+  {
+   "date": "2025-06-17",
+   "kind": "end_announced",
+   "lanes": [
+    "gemini-2.5-flash-preview-04-17-aistudio"
+   ],
+   "text": "Changelog: 'gemini-2.5-flash-preview-04-17 will be deprecated on July 15, 2025'",
+   "source": {
+    "label": "Gemini API changelog",
+    "url": "https://ai.google.dev/gemini-api/docs/changelog"
+   }
+  },
+  {
+   "date": "2025-07-15",
+   "kind": "ended",
+   "end_date": "2025-07-15",
+   "lanes": [
+    "gemini-2.5-flash-preview-04-17-aistudio"
+   ],
+   "text": "Announced deprecation date. The free-tier listing disappears earlier: last row 2025-05-17T03:11Z, replaced by the 05-20 preview from the capture of 2025-05-22; that table lists only the newest preview, so the day this id stopped being free is not established",
+   "source": {
+    "label": "Gemini API changelog",
+    "url": "https://ai.google.dev/gemini-api/docs/changelog"
+   }
   }
 ]
