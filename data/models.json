@@ -1007,6 +1007,22 @@
    "maker": "google",
    "context": "1M",
    "image_input": "not_checked",
-   "notes": "Released 2025-04-17, deprecated 2025-07-15 (Gemini API changelog: https://ai.google.dev/gemini-api/docs/changelog). Context length from the pricing page block 'supports a 1M token context window and has thinking budgets' (capture of 2025-05-15)"
-  }
+    "notes": "Released 2025-04-17, deprecated 2025-07-15 (Gemini API changelog: https://ai.google.dev/gemini-api/docs/changelog). Context length from the pricing page block 'supports a 1M token context window and has thinking budgets' (capture of 2025-05-15)"
+  },
+  {
+   "id": "longcat-2.5",
+   "name": "LongCat 2.5",
+   "maker": "meituan",
+   "context": "1M",
+   "image_input": "yes",
+   "notes": "The OpenCode Zen and Go catalogue entries carry canonical_id meituan/longcat-2.5 with release_date and last_updated 2026-11-02, cost 0/0 on their free ids, text and image input with tools and reasoning (2026-11-10 catalogue reads). Whether this is the renamed successor of the ended LongCat 2.5 Preview listing is not stated by any official source and is not assumed here"
+  },
+ {
+  "id": "ernie-5.5-flash-preview",
+  "name": "ERNIE 5.5 Flash Preview",
+  "maker": "baidu",
+  "context": "1M",
+  "image_input": "no",
+  "notes": "Listed as baidu/ernie-5.5-flash-preview:free at prompt 0 / completion 0 in both the OpenRouter models API and the Kilo gateway list at our 2026-11-11 reads (469 and 385 entries). OpenRouter gives canonical_slug baidu/ernie-5.5-flash-preview-20261110 and hugging_face_id baidu/ERNIE-5.5-Flash-Preview; the dated canonical slug makes this a snapshot (ADR-037), and it is the only snapshot we have, so no snapshots field is written. Context 1024000 and max completion 921600 come from the two catalogue entries; input_modalities is text-only in both, which is why image_input is no. Whether a paid non-:free listing exists is not established: neither catalogue carries one at these reads"
+ }
 ]

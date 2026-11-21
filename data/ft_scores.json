@@ -6615,6 +6615,18 @@
    "evidence": 0,
    "independent": 0,
    "sources": []
+  },
+  "longcat-2.5": {
+   "status": "none",
+   "evidence": 0,
+   "independent": 0,
+   "sources": []
+  },
+  "ernie-5.5-flash-preview": {
+   "status": "none",
+   "evidence": 0,
+   "independent": 0,
+   "sources": []
   }
  }
 }

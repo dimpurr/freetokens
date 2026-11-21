@@ -282,5 +282,13 @@
   "id": "humansand",
   "name": "Humans&",
   "note": "Name and spelling taken from the humansand/ namespace of its Vercel AI Gateway id and from that entry's own description, \"a collaborator model from Humans&\" (daily catalogue check, 2026-11-07); no site or weights link verified."
+ },
+ {
+  "id": "baidu",
+  "name": "Baidu",
+  "links": {
+   "models": "https://huggingface.co/baidu"
+  },
+  "note": "Id and name taken from the catalogue entries that led here: OpenRouter's hugging_face_id baidu/ERNIE-5.5-Flash-Preview and the name prefix \"Baidu:\" in both catalogues, plus Kilo's inference_provider_ids [\"baidu\"] (our reads 2026-11-11). The weights link is the huggingface.co/baidu organisation named by that hugging_face_id (HTTP 200 at our 2026-11-11T09:38Z read); no company site was verified this round."
  }
 ]

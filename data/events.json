@@ -1042,6 +1042,19 @@
     }
   },
   {
+    "date": "2026-11-06",
+    "lanes": [
+      "qwen3.8-flash-qoder"
+    ],
+    "kind": "ended",
+    "end_date": "2026-11-06",
+    "text": "Official event page read 2026-11-11T04:52Z: “Qwen3.8-Flash 限时免费于 2026 年 11 月 6 日 24:00（即 11 月 7 日 00:00）结束”. The page says its times are Singapore time (UTC+8), so the free window closed at 2026-11-06T16:00Z. From 2026-11-07 00:00 SGT this page and /events/offpeakrate bill the model 0.04× off-peak (22:00-08:00) and 0.1× in standard hours, and the model-selector multiplier table still shows 0.1×; none of the pages read states a 0.0× rate for this model after that date. Our own 16-of-16 agent-run pass of 2026-10-06 was not repeated, so this closing rests on the provider's announcement (ADR-022 §4), not on a call",
+    "source": {
+      "label": "Qoder event page",
+      "url": "https://docs.qoder.com/zh/events/flashoffer"
+    }
+  },
+  {
     "date": "2026-09-23",
     "lanes": [
       "bunny-kilo"
@@ -3801,10 +3814,147 @@
    "lanes": [
     "gemini-2.5-flash-preview-04-17-aistudio"
    ],
-   "text": "Announced deprecation date. The free-tier listing disappears earlier: last row 2025-05-17T03:11Z, replaced by the 05-20 preview from the capture of 2025-05-22; that table lists only the newest preview, so the day this id stopped being free is not established",
-   "source": {
-    "label": "Gemini API changelog",
-    "url": "https://ai.google.dev/gemini-api/docs/changelog"
-   }
+    "text": "Announced deprecation date. The free-tier listing disappears earlier: last row 2025-05-17T03:11Z, replaced by the 05-20 preview from the capture of 2025-05-22; that table lists only the newest preview, so the day this id stopped being free is not established",
+    "source": {
+     "label": "Gemini API changelog",
+     "url": "https://ai.google.dev/gemini-api/docs/changelog"
+    }
+   },
+  {
+    "date": "2026-11-10",
+    "lanes": [
+      "crouton-or"
+    ],
+    "kind": "ended",
+    "end_date": "2026-11-10",
+    "text": "stealth/crouton-alpha is gone from the OpenRouter models API at the 2026-11-10 daily check (465 models; no id containing crouton, re-read by us the same day); first absence, closed per the one-day rule for catalogue removals, with no announced end date recorded on the lane (ends.announced null); the stealth listing was added 2026-11-04 and last listed at the 2026-11-04 check",
+    "source": {
+      "label": "Daily free-catalogue check of the OpenRouter models API (own tool)",
+      "url": "https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2026-11-10",
+    "lanes": [
+      "crouton-kilo"
+    ],
+    "kind": "ended",
+    "end_date": "2026-11-10",
+    "text": "stealth/crouton-alpha is gone from the Kilo Code gateway catalogue at the 2026-11-10 daily check (381 models; the only stealth-prefixed entry left is stealth/glyph-cluster, a different model id, re-read by us the same day); first absence, closed per the one-day rule for catalogue removals; added 2026-11-04, last listed at the 2026-11-04 check",
+    "source": {
+      "label": "own check of the Kilo Gateway model list",
+      "url": "https://api.kilo.ai/api/gateway/models"
+    }
+  },
+  {
+    "date": "2026-11-10",
+    "lanes": [
+      "crouton-zen"
+    ],
+    "kind": "ended",
+    "end_date": "2026-11-09",
+    "text": "opencode/crouton-alpha-free is no longer in the OpenCode Zen model list at the 2026-11-10 daily check (84 models, re-read by us the same day); it was still listed at the 2026-11-05 check; Zen's own deprecated-models table lists Crouton Alpha Free with deprecation date November 9, 2026, so this is closed on the official date plus first observed absence, as with Pulse Alpha Free",
+    "source": {
+      "label": "OpenCode Zen docs",
+      "url": "https://opencode.ai/v2/docs/console/models"
+    }
+  },
+  {
+    "date": "2026-11-10",
+    "lanes": [
+      "crouton-go"
+    ],
+    "kind": "ended",
+    "end_date": "2026-11-10",
+    "text": "opencode-go/crouton-alpha-free is no longer in the OpenCode Go model list at the 2026-11-10 daily check (30 models, re-read by us the same day); first absence, closed per the one-day rule for catalogue removals, with no announced end date recorded on the lane (ends.announced null); Zen's deprecated-models table names Zen's own listing; added 2026-11-06, last listed at the 2026-11-06 check",
+    "source": {
+      "label": "Daily free-catalogue check of the OpenCode Go model list (own tool)",
+      "url": "https://opencode.ai/zen/go/v1/models"
+    }
+  },
+  {
+    "date": "2026-11-10",
+    "lanes": [
+      "inkling-2-small-or"
+    ],
+    "kind": "listed",
+    "text": "thinkingmachines/inkling-2-small:free (Thinking Machines: Inkling 2 Small (free)) is listed at prompt 0 / completion 0 in the OpenRouter models API at the 2026-11-10 daily check; created 2026-11-09T22:04Z, canonical slug thinkingmachines/inkling-2-small-20261107, 1M context, 131K max completion, expiration_date null",
+    "source": {
+      "label": "Daily free-catalogue check of the OpenRouter models API (own tool)",
+      "url": "https://openrouter.ai/api/v1/models"
+    }
+  },
+  {
+    "date": "2026-11-10",
+    "lanes": [
+      "inkling-2-small-kilo"
+    ],
+    "kind": "listed",
+    "text": "thinkingmachines/inkling-2-small:free is listed free on the Kilo Gateway (isFree, prompt 0 / completion 0) at the 2026-11-10 check (381 models); the same entry flags mayTrainOnYourPrompts true and carries expiration_date null",
+    "source": {
+      "label": "own check of the Kilo Gateway model list",
+      "url": "https://api.kilo.ai/api/gateway/models"
+    }
+  },
+  {
+    "date": "2026-11-10",
+    "lanes": [
+      "longcat-2.5-zen"
+    ],
+    "kind": "listed",
+    "text": "opencode/longcat-2.5-free is listed at cost 0/0 in the OpenCode Zen model list at the 2026-11-10 daily check (84 models); the entry gives canonical_id meituan/longcat-2.5 with release_date and last_updated 2026-11-02; Zen's docs add that LongCat 2.5 Free is free for a limited time with a limit of 100 requests per day, its provider follows a zero-retention policy and does not use data for training, and it is hosted in China",
+    "source": {
+      "label": "Daily free-catalogue check of the OpenCode Zen model list (own tool)",
+      "url": "https://opencode.ai/zen/v1/models"
+    }
+  },
+  {
+    "date": "2026-11-10",
+    "lanes": [
+      "longcat-2.5-go"
+    ],
+    "kind": "listed",
+    "text": "opencode-go/longcat-2.5-free is listed at cost 0/0 in the OpenCode Go model list at the 2026-11-10 daily check (30 models); the entry gives canonical_id meituan/longcat-2.5 with release_date and last_updated 2026-11-02, 1M context, 262K max output",
+    "source": {
+      "label": "Daily free-catalogue check of the OpenCode Go model list (own tool)",
+      "url": "https://opencode.ai/zen/go/v1/models"
+    }
+  },
+ {
+    "date": "2026-11-11",
+    "lanes": [
+      "ernie-5.5-flash-preview-or"
+    ],
+    "kind": "listed",
+    "text": "baidu/ernie-5.5-flash-preview:free (Baidu: ERNIE-5.5-Flash-Preview (free)) is listed at prompt 0 / completion 0 in the OpenRouter models API at the 2026-11-11 daily check (469 models); created 2026-11-10T17:58:53Z, canonical slug baidu/ernie-5.5-flash-preview-20261110, 1024000 context, 921600 max completion, expiration_date null; this is the free listing's own price, no call was made",
+    "source": {
+      "label": "Daily free-catalogue check of the OpenRouter models API (own tool)",
+      "url": "https://openrouter.ai/api/v1/models"
+    }
+  },
+ {
+    "date": "2026-11-11",
+    "lanes": [
+      "ernie-5.5-flash-preview-kilo"
+    ],
+    "kind": "listed",
+    "text": "baidu/ernie-5.5-flash-preview:free is listed free on the Kilo Gateway (isFree, prompt 0 / completion 0) at the 2026-11-11 check (385 models); the same entry flags mayTrainOnYourPrompts true and carries expiration_date null; catalogue read only, no call was made",
+    "source": {
+      "label": "own check of the Kilo Gateway model list",
+      "url": "https://api.kilo.ai/api/gateway/models"
+    }
+  },
+ {
+    "date": "2026-11-11",
+    "lanes": [
+      "xing4.0-29b-or"
+    ],
+    "kind": "ended",
+    "end_date": "2026-11-11",
+    "text": "xingchen-agi/xing4.0-29b-a4b:free is gone from the OpenRouter models API at the 2026-11-11 daily check (469 models; no id containing xing at all, and two reads 43 s apart returned a byte-identical body, so the second read may be the same snapshot); first absence in our records, closed per the one-day rule for catalogue removals, with no announced end date recorded on the lane (ends.announced null); the lane was added 2026-10-20 and last listed at the 2026-10-27 check; the SiliconFlow lane for the same model is untouched, and no call was made against this id",
+    "source": {
+      "label": "Daily free-catalogue check of the OpenRouter models API (own tool)",
+      "url": "https://openrouter.ai/api/v1/models"
+    }
   }
 ]
