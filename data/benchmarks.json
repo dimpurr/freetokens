@@ -4378,6 +4378,58 @@
       "url": "https://openrouter.ai/benchmarks/gpqa-diamond",
       "seen": "2026-11-24",
       "quote": "Qwen2.5 VL 72B Instruct | 42.9%"
+    },
+    {
+      "model": "big-pickle",
+      "benchmark": "hle",
+      "score": 38,
+      "variant": "2026-10-02 to 2026-10-04; text-only 100-question subset, one community run; subset uncertainty",
+      "source_type": "community",
+      "url": "https://fellipesoares.com.br/en/stealth-models-benchmark-results/",
+      "seen": "2026-11-24",
+      "date": "2026-10-04",
+      "quote": "HLE (n=100) | 38%"
+    },
+    {
+      "model": "big-pickle",
+      "benchmark": "terminal_bench_2_1",
+      "score": 71,
+      "variant": "2026-10-02 to 2026-10-04; 14-task subset, one community run; 10/14; substantial sample uncertainty",
+      "source_type": "community",
+      "url": "https://fellipesoares.com.br/en/stealth-models-benchmark-results/",
+      "seen": "2026-11-24",
+      "date": "2026-10-04",
+      "quote": "TB 2.1 (n=14) | 71%"
+    },
+    {
+      "model": "coding-kimi-k3",
+      "benchmark": "gpqa_diamond",
+      "score": 93.5,
+      "variant": "GPQA Diamond; vendor Kimi K3 max reasoning; test date undisclosed, report published July 2026; same-name Coding Kimi K3 mapping",
+      "source_type": "vendor",
+      "url": "https://github.com/MoonshotAI/Kimi-K3",
+      "seen": "2026-11-24",
+      "quote": "GPQA Diamond | 93.5"
+    },
+    {
+      "model": "coding-kimi-k3",
+      "benchmark": "hle",
+      "score": 43.5,
+      "variant": "HLE-Full without tools; vendor Kimi K3 max reasoning; test date undisclosed, report published July 2026; same-name Coding Kimi K3 mapping",
+      "source_type": "vendor",
+      "url": "https://github.com/MoonshotAI/Kimi-K3",
+      "seen": "2026-11-24",
+      "quote": "HLE-Full | 43.5 / 56.0"
+    },
+    {
+      "model": "coding-kimi-k3",
+      "benchmark": "terminal_bench_2_1",
+      "score": 88.3,
+      "variant": "Terminal-Bench 2.1; Kimi Code harness, vendor Kimi K3 max reasoning; test date undisclosed, report published July 2026; same-name Coding Kimi K3 mapping",
+      "source_type": "vendor",
+      "url": "https://github.com/MoonshotAI/Kimi-K3",
+      "seen": "2026-11-24",
+      "quote": "Terminal-Bench 2.1 | 88.3"
     }
   ]
 }

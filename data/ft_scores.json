@@ -2660,10 +2660,44 @@
    ]
   },
   "big-pickle": {
-   "status": "none",
-   "evidence": 0,
-   "independent": 0,
-   "sources": []
+   "status": "ok",
+   "center": 22,
+   "low": 19,
+   "high": 24,
+   "evidence": 2,
+   "independent": 2,
+   "independent_non_aa": 2,
+   "exact": false,
+   "vendor_only": false,
+   "disagree": true,
+   "method": "fit",
+   "spread": 10,
+   "sources": [
+    {
+     "name": "Humanity's Last Exam",
+     "benchmark": "hle",
+     "value": 38,
+     "url": "https://fellipesoares.com.br/en/stealth-models-benchmark-results/",
+     "type": "community",
+     "r": 0.737,
+     "n": 46,
+     "used": true,
+     "implied": 16.8,
+     "method": "fit"
+    },
+    {
+     "name": "Terminal-Bench 2.1",
+     "benchmark": "terminal_bench_2_1",
+     "value": 71,
+     "url": "https://fellipesoares.com.br/en/stealth-models-benchmark-results/",
+     "type": "community",
+     "r": 0.759,
+     "n": 45,
+     "used": true,
+     "implied": 26.3,
+     "method": "fit"
+    }
+   ]
   },
   "fledge-alpha": {
    "status": "none",
@@ -4922,10 +4956,56 @@
    ]
   },
   "coding-kimi-k3": {
-   "status": "none",
-   "evidence": 0,
+   "status": "ok",
+   "center": 19,
+   "low": 17,
+   "high": 22,
+   "evidence": 3,
    "independent": 0,
-   "sources": []
+   "independent_non_aa": 0,
+   "exact": false,
+   "vendor_only": true,
+   "disagree": true,
+   "method": "fit",
+   "spread": 9,
+   "sources": [
+    {
+     "name": "GPQA Diamond",
+     "benchmark": "gpqa_diamond",
+     "value": 93.5,
+     "url": "https://github.com/MoonshotAI/Kimi-K3",
+     "type": "vendor",
+     "r": 0.66,
+     "n": 23,
+     "used": true,
+     "implied": 18.0,
+     "method": "fit"
+    },
+    {
+     "name": "Humanity's Last Exam",
+     "benchmark": "hle",
+     "value": 43.5,
+     "url": "https://github.com/MoonshotAI/Kimi-K3",
+     "type": "vendor",
+     "r": 0.737,
+     "n": 46,
+     "used": true,
+     "implied": 19.2,
+     "method": "fit"
+    },
+    {
+     "name": "Terminal-Bench 2.1",
+     "benchmark": "terminal_bench_2_1",
+     "value": 88.3,
+     "url": "https://github.com/MoonshotAI/Kimi-K3",
+     "type": "vendor",
+     "r": 0.877,
+     "n": 25,
+     "used": true,
+     "implied": 27.0,
+     "method": "fit"
+    }
+   ]
   },
   "glm-5.3": {
    "status": "ok",
