@@ -290,5 +290,10 @@
    "models": "https://huggingface.co/baidu"
   },
   "note": "Id and name taken from the catalogue entries that led here: OpenRouter's hugging_face_id baidu/ERNIE-5.5-Flash-Preview and the name prefix \"Baidu:\" in both catalogues, plus Kilo's inference_provider_ids [\"baidu\"] (our reads 2026-11-11). The weights link is the huggingface.co/baidu organisation named by that hugging_face_id (HTTP 200 at our 2026-11-11T09:38Z read); no company site was verified this round."
+ },
+ {
+  "id": "particle-ai",
+  "name": "Particle AI",
+  "note": "Catalogue namespace for particle-ai/particle-1:free on OpenRouter and the Kilo gateway (our 2026-11-21 reads). Both catalogues describe Particle-1 as a token-efficient agentic coding model from Particle AI. No maker site was verified this round."
  }
 ]

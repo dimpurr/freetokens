@@ -217,6 +217,14 @@
    }
   },
   "event_kind": {
+   "reveal": {
+    "label": "revealed",
+    "help": "The operator of a stealth model published its true identity, usually naming a successor",
+    "zh": {
+     "label": "揭晓",
+     "help": "隐身模型的运营方公布其真实身份，通常同时点名后继模型"
+    }
+   },
    "snapshot_update": {
     "label": "snapshot updated",
     "help": "The maker replaced the weights behind an unchanged model name or API name; the model keeps one entry and records the snapshot (ADR-037)",

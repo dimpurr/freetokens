@@ -1024,5 +1024,37 @@
   "context": "1M",
   "image_input": "no",
   "notes": "Listed as baidu/ernie-5.5-flash-preview:free at prompt 0 / completion 0 in both the OpenRouter models API and the Kilo gateway list at our 2026-11-11 reads (469 and 385 entries). OpenRouter gives canonical_slug baidu/ernie-5.5-flash-preview-20261110 and hugging_face_id baidu/ERNIE-5.5-Flash-Preview; the dated canonical slug makes this a snapshot (ADR-037), and it is the only snapshot we have, so no snapshots field is written. Context 1024000 and max completion 921600 come from the two catalogue entries; input_modalities is text-only in both, which is why image_input is no. Whether a paid non-:free listing exists is not established: neither catalogue carries one at these reads"
+ },
+ {
+  "id": "particle-1",
+  "name": "Particle-1",
+  "maker": "particle-ai",
+  "context": "1M",
+  "image_input": "yes",
+  "notes": "Token-efficient agentic coding model described in both the OpenRouter and Kilo catalogues (our 2026-11-21 reads); 1,048,576 context, 131,072 max completion, text and image in. OpenRouter created 2026-10-28T17:18:13Z with canonical slug particle-ai/particle-1-20261027. Listed free at $0 on OpenRouter and Kilo under the same id."
+ },
+ {
+  "id": "hy4-flash",
+  "name": "Hy4 flash",
+  "maker": "tencent",
+  "context": "1M",
+  "image_input": "yes",
+  "notes": "Tencent's lower-cost Hy4 tier (OpenCode catalogue description, read 2026-11-21): image understanding with a 1M-token context; the Zen entry's canonical_id is tencent/hy4-flash with release_date 2026-11-16, 1,048,576 context and 65,536 max output. Distinct from Hy4 preview (a separate entry)."
+ },
+ {
+  "id": "ling-3.2-flash",
+  "name": "Ling 3.2 Flash",
+  "maker": "inclusionai",
+  "context": "1M",
+  "image_input": "yes",
+  "notes": "Hybrid reasoning model from inclusionAI that accepts text and image input (the OpenRouter description allows up to 200 images per request), 1,048,576 context and 262,144 max completion (our 2026-11-21 reads). OpenRouter created 2026-11-13T17:45:58Z with canonical slug inclusionai/ling-3.2-flash-20261113. Listed free at $0 on OpenRouter and Kilo under the same id."
+ },
+ {
+  "id": "tidepool-alpha",
+  "name": "Tidepool Alpha (stealth)",
+  "maker": "undisclosed",
+  "context": "1M",
+  "image_input": "no",
+  "notes": "Stealth reasoning model on OpenCode Zen (opencode/tidepool-alpha-free, read 2026-11-21): catalogue description \"Stealth reasoning model, free for a limited time\", release_date 2026-11-18, 1,048,576 context, 131,072 output, text input only. OpenCode docs do not name a maker (owned_by opencode is the platform label); the team uses the free period to collect feedback."
  }
 ]

@@ -992,12 +992,13 @@
   "ends": {
    "announced": null,
    "expected": null,
-   "confidence": "none"
+   "confidence": "none",
+   "note": "cohere/north-mini-code:free is gone from the Kilo Code gateway catalogue at the 2026-11-21 daily check (470 models at our 23:34:17Z re-read; no cohere/north-mini-code id remains, free or paid); first absence confirmed by two independent reads the same day (watch 09:00Z and our 23:34:17Z re-read), closed per the one-day rule for catalogue removals (ADR-022); no announced end date is recorded for this lane (ends.announced null)"
   },
   "data_policy": "unstated",
-  "status": "live",
+  "status": "ended",
   "checked": {
-   "date": "2026-11-10",
+   "date": "2026-11-21",
    "method": "catalogue"
   },
   "volume": {
@@ -1902,12 +1903,13 @@
   "ends": {
    "announced": null,
    "expected": null,
-   "confidence": "none"
+   "confidence": "none",
+   "note": "liquid/lfm-2.5-2.6b:free is gone from the OpenRouter models API at the 2026-11-21 daily check (476 models at our 23:34:16Z re-read; no liquid/lfm-2.5-2.6b id at all, free or paid); first absence confirmed by two independent reads the same day (watch 09:00Z and our 23:34:16Z re-read), closed per the one-day rule for catalogue removals (ADR-022); no announced end date is recorded for this lane (ends.announced null)"
   },
   "data_policy": "may_train",
-  "status": "live",
+  "status": "ended",
   "checked": {
-   "date": "2026-11-10",
+   "date": "2026-11-21",
    "method": "catalogue"
   },
   "volume": {
@@ -2132,12 +2134,13 @@
   "ends": {
    "announced": null,
    "expected": null,
-   "confidence": "none"
+   "confidence": "none",
+   "note": "cohere/north-mini-code:free is gone from the OpenRouter models API at the 2026-11-21 daily check (476 models at our 23:34:16Z re-read; no cohere/north-mini-code id remains, free or paid); first absence confirmed by two independent reads the same day (watch 09:00Z and our 23:34:16Z re-read), closed per the one-day rule for catalogue removals (ADR-022); no announced end date is recorded for this lane (ends.announced null)"
   },
   "data_policy": "may_train",
-  "status": "live",
+  "status": "ended",
   "checked": {
-   "date": "2026-11-10",
+   "date": "2026-11-21",
    "method": "catalogue"
   },
   "volume": {
@@ -4297,12 +4300,13 @@
   "ends": {
    "announced": null,
    "expected": null,
-   "confidence": "none"
+   "confidence": "none",
+   "note": "the :free listing opencode/glm-5.3-flash-free is gone from the OpenCode Zen model list at the 2026-11-21 daily check (104 models at our 23:34:18Z re-read) while the paid opencode/glm-5.3-flash stays listed at $0.15 input / $0.50 output per 1M — the free arm was retired in favour of the paid one; first absence confirmed by two independent reads the same day (watch 09:00Z and our 23:34:18Z re-read), closed per the one-day rule for catalogue removals (ADR-022); no announced end date is recorded for this lane (ends.announced null)"
   },
   "data_policy": "zero_retention",
-  "status": "live",
+  "status": "ended",
   "checked": {
-   "date": "2026-11-12",
+   "date": "2026-11-21",
    "method": "catalogue"
   },
   "volume": {
@@ -6499,7 +6503,7 @@
     "tier": "taste",
     "basis": "50 requests a day without credits (stated)"
    },
-  "note": "Stealth model (OR Stealth page lists it alongside Space Bunny/Union Alpha); 1M context, 943K max output; OR page: prompts may be retained but not used for training."
+  "note": "Stealth model (OR Stealth page lists it alongside Space Bunny/Union Alpha); 1M context, 943K max output; OR page: prompts may be retained but not used for training. Successor (reveal 2026-11-09): OpenRouter's official Stealth page states Crouton Alpha \"was a stealth model, revealed to be an early version of Muse Ember by Meta\" and that the stealth period has ended; use Muse Ember at https://openrouter.ai/meta/muse-ember (page read 2026-11-23). Muse Ember is paid (input 0.10 / output 0.50 per 1M in the OpenCode Zen catalogue, our 2026-11-21 read), so no free lane follows it."
  },
  {
   "id": "crouton-kilo",
@@ -6531,7 +6535,7 @@
     "date": "2026-11-10",
     "method": "catalogue"
    },
-   "note": "Kilo gateway free arm via stealth provider (may train on prompts); 1M context; expiration_date null."
+   "note": "Kilo gateway free arm via stealth provider (may train on prompts); 1M context; expiration_date null. Successor (reveal 2026-11-09): OpenRouter's official Stealth page states Crouton Alpha \"was a stealth model, revealed to be an early version of Muse Ember by Meta\" and that the stealth period has ended; use Muse Ember at https://openrouter.ai/meta/muse-ember (page read 2026-11-23). Muse Ember is paid (input 0.10 / output 0.50 per 1M in the OpenCode Zen catalogue, our 2026-11-21 read), so no free lane follows it."
  },
  {
   "id": "crouton-zen",
@@ -6565,7 +6569,7 @@
     "tier": "daily",
     "basis": "channel rule: Zen's free allowance is per IP per day; this model not load-tested"
    },
-    "note": "Stealth reasoning model (text/image/video/pdf in, tool use); 1M context, 270K max output; cost $0/$0. Zen catalogue id opencode/crouton-alpha-free; still listed at $0 at the 2026-11-05 check."
+    "note": "Stealth reasoning model (text/image/video/pdf in, tool use); 1M context, 270K max output; cost $0/$0. Zen catalogue id opencode/crouton-alpha-free; still listed at $0 at the 2026-11-05 check. Successor (reveal 2026-11-09): OpenRouter's official Stealth page states Crouton Alpha \"was a stealth model, revealed to be an early version of Muse Ember by Meta\" and that the stealth period has ended; use Muse Ember at https://openrouter.ai/meta/muse-ember (page read 2026-11-23). Muse Ember is paid (input 0.10 / output 0.50 per 1M in the OpenCode Zen catalogue, our 2026-11-21 read), so no free lane follows it."
   },
   {
    "id": "crouton-go",
@@ -6599,7 +6603,7 @@
     "tier": "daily",
     "basis": "Go catalogue lists it at $0/$0 at the 2026-11-06 check; this model not load-tested"
    },
-   "note": "Stealth reasoning model (text/image/video/pdf in, tool use); 1M context, 270K max output; cost $0/$0. Go catalogue id opencode-go/crouton-alpha-free; first listed at the 2026-11-06 check."
+   "note": "Stealth reasoning model (text/image/video/pdf in, tool use); 1M context, 270K max output; cost $0/$0. Go catalogue id opencode-go/crouton-alpha-free; first listed at the 2026-11-06 check. Successor (reveal 2026-11-09): OpenRouter's official Stealth page states Crouton Alpha \"was a stealth model, revealed to be an early version of Muse Ember by Meta\" and that the stealth period has ended; use Muse Ember at https://openrouter.ai/meta/muse-ember (page read 2026-11-23). Muse Ember is paid (input 0.10 / output 0.50 per 1M in the OpenCode Zen catalogue, our 2026-11-21 read), so no free lane follows it."
    },
    {
     "id": "crouton-cc",
@@ -6633,7 +6637,7 @@
      "tier": "daily",
      "basis": "pricing-limits docs: free up to 1000 requests a day while the stealth preview lasts (Go plan and above, account balance >= $1)"
     },
-    "note": "Stealth model; 1M context, Free/Free/Free on the models page. Docs display name Crouton Alpha (anchor #crouton-alpha-free); CLI model id unconfirmed. Same inclusion class as crouton-go ($0 inside a paid plan) and bunny-cc precedent."
+    "note": "Stealth model; 1M context, Free/Free/Free on the models page. Docs display name Crouton Alpha (anchor #crouton-alpha-free); CLI model id unconfirmed. Same inclusion class as crouton-go ($0 inside a paid plan) and bunny-cc precedent. Successor (reveal 2026-11-09): OpenRouter's official Stealth page states Crouton Alpha \"was a stealth model, revealed to be an early version of Muse Ember by Meta\" and that the stealth period has ended; use Muse Ember at https://openrouter.ai/meta/muse-ember (page read 2026-11-23). Muse Ember is paid (input 0.10 / output 0.50 per 1M in the OpenCode Zen catalogue, our 2026-11-21 read), so no free lane follows it."
    },
  {
   "id": "ampersand-v0.1-vercel",
@@ -6789,12 +6793,13 @@
   "ends": {
    "announced": null,
    "expected": null,
-   "confidence": "none"
+   "confidence": "none",
+   "note": "opencode/inkling-2-small-free is gone from the OpenCode Zen model list at the 2026-11-21 daily check (104 models at our 23:34:18Z re-read; the Zen catalogue carries no inkling id at all, so there is no paid variant on Zen); first absence confirmed by two independent reads the same day (watch 09:00Z and our 23:34:18Z re-read), closed per the one-day rule for catalogue removals (ADR-022); no announced end date is recorded for this lane (ends.announced null)"
   },
   "data_policy": "may_train",
-  "status": "listed",
+  "status": "ended",
   "checked": {
-   "date": "2026-11-07",
+   "date": "2026-11-21",
    "method": "catalogue"
   },
   "volume": {
@@ -7020,12 +7025,13 @@
    "ends": {
     "announced": null,
     "expected": null,
-    "confidence": "none"
+    "confidence": "none",
+    "note": "the :free listing thinkingmachines/inkling-2-small:free is gone from the OpenRouter models API at the 2026-11-21 daily check (476 models at our 23:34:16Z re-read) while the paid thinkingmachines/inkling-2-small stays listed at $0.30 input / $1.00 output per 1M — the free arm was retired in favour of the paid one; first absence confirmed by two independent reads the same day (watch 09:00Z and our 23:34:16Z re-read), closed per the one-day rule for catalogue removals (ADR-022); no announced end date is recorded for this lane (ends.announced null)"
    },
    "data_policy": "may_train",
-   "status": "listed",
+   "status": "ended",
    "checked": {
-    "date": "2026-11-10",
+    "date": "2026-11-21",
     "method": "catalogue"
    },
    "volume": {
@@ -7053,12 +7059,13 @@
    "ends": {
     "announced": null,
     "expected": null,
-    "confidence": "none"
+    "confidence": "none",
+    "note": "the :free listing thinkingmachines/inkling-2-small:free is gone from the Kilo Code gateway catalogue at the 2026-11-21 daily check (470 models at our 23:34:17Z re-read) while the paid thinkingmachines/inkling-2-small stays listed at $0.15 input / $0.50 output per 1M — the free arm was retired in favour of the paid one; first absence confirmed by two independent reads the same day (watch 09:00Z and our 23:34:17Z re-read), closed per the one-day rule for catalogue removals (ADR-022); no announced end date is recorded for this lane (ends.announced null)"
    },
    "data_policy": "may_train",
-   "status": "listed",
+   "status": "ended",
    "checked": {
-    "date": "2026-11-10",
+    "date": "2026-11-21",
     "method": "catalogue"
    },
    "volume": {
@@ -7204,5 +7211,274 @@
    "basis": "no limit published; the gateway list flags isFree with prompt and completion 0 at the 2026-11-11 check; this model not load-tested"
   },
   "note": "Kilo gateway free arm of the same id OpenRouter lists. The gateway entry itself flags isFree true, mayTrainOnYourPrompts true, expiration_date null, inference_provider_ids [\"baidu\"], 1024000 context, 921600 max completion, text-only input. Catalogue read only: no request was sent to this model, so free here means listed-free, not tested."
+ },
+ {
+  "id": "flint-vercel",
+  "model": "flint",
+  "channel": "Vercel AI Gateway",
+  "type": "router",
+  "model_id": "recursive/flint-v1.0",
+  "free_condition": "Vercel Free Tier (listed on the freeTier=true page; token price $0)",
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "unpublished",
+   "note": "lower per-model rate limits on the free tier",
+   "source": "https://ai-gateway.vercel.sh/v1/models"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-11-21",
+   "note": "first seen in the 2026-11-21 daily free-catalogue check; the Vercel models API gives released 2026-11-16"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "unstated",
+  "status": "listed",
+  "checked": {
+   "date": "2026-11-21",
+   "method": "catalogue"
+  },
+  "note": "Vercel's own model list carries recursive/flint-v1.0 at input 0 / output 0 (read 2026-11-21); the entry gives context 262,144, max 262,144, released 2026-11-16, and both zdr and no_training are \"none\", so the provider states no data policy. Free Tier terms (vercel.com/docs/ai-gateway/pricing): $5 monthly credit for paid models, lower per-model rate limits, 429 past the limit; the $0 token price itself uses no credit. Same model as the OpenRouter flint-or lane (recursive/flint-v1.0:free)."
+ },
+ {
+  "id": "particle-1-or",
+  "model": "particle-1",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "particle-ai/particle-1:free",
+  "free_condition": null,
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "official",
+   "per_day": 50,
+   "note": "1000/day once 10+ credits have been bought",
+   "source": "https://openrouter.ai/pricing"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-11-21",
+   "note": "first seen in the 2026-11-21 daily free-catalogue check; the models API created timestamp is 2026-10-28T17:18:13Z"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-11-21",
+   "method": "catalogue"
+  },
+  "volume": {
+   "tier": "taste",
+   "basis": "50 requests a day without credits (stated)"
+  },
+  "note": "OpenRouter entry \"Particle AI: Particle-1 (free)\", canonical slug particle-ai/particle-1-20261027, 1,048,576 context, 131,072 max completion, text and image in, expiration_date null; the public models API entry carries no data-policy field (read 2026-11-21). The same id is listed free on Kilo."
+ },
+ {
+  "id": "particle-1-kilo",
+  "model": "particle-1",
+  "channel": "Kilo Code",
+  "type": "agent_tool",
+  "model_id": "particle-ai/particle-1:free",
+  "free_condition": "works without signing in (Kilo Gateway \":free\" model)",
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "unpublished",
+   "source": "https://api.kilo.ai/api/gateway/models"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-11-21",
+   "note": "first seen in the 2026-11-21 daily free-catalogue check; the gateway entry carries created 2026-10-28T17:18:13Z"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "may_train",
+  "status": "listed",
+  "checked": {
+   "date": "2026-11-21",
+   "method": "catalogue"
+  },
+  "note": "Kilo gateway free arm (isFree true, prompt 0 / completion 0, mayTrainOnYourPrompts true, expiration_date null); 1,048,576 context, 131,072 max completion per the gateway entry (read 2026-11-21). The same id is free on OpenRouter."
+ },
+ {
+  "id": "hy4-flash-zen",
+  "model": "hy4-flash",
+  "channel": "OpenCode Zen",
+  "type": "agent_tool",
+  "model_id": "opencode/hy4-flash-free",
+  "free_condition": "Limited time; no end date published",
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "unpublished",
+   "source": "https://opencode.ai/zen/v1/models"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-11-21",
+   "note": "first seen in the 2026-11-21 daily free-catalogue check; the Zen entry gives release_date 2026-11-16"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none",
+   "note": "Officially described as free for a limited time; no end date published"
+  },
+  "data_policy": "zero_retention",
+  "status": "listed",
+  "checked": {
+   "date": "2026-11-21",
+   "method": "catalogue"
+  },
+  "volume": {
+   "tier": "daily",
+   "basis": "channel rule: Zen's free allowance is per IP per day; this model not load-tested"
+  },
+  "note": "Zen entry: name \"Hy4 flash Free\", canonical_id tencent/hy4-flash, 1,048,576 context (983,040 in), 65,536 out, text and image in, cost 0/0. OpenCode docs: free for a limited time, the provider follows a zero-retention policy and does not train on your data, and free-tier chat models require the OpenCode client (read 2026-11-21)."
+ },
+ {
+  "id": "hy4-flash-go",
+  "model": "hy4-flash",
+  "channel": "OpenCode Go",
+  "type": "agent_tool",
+  "model_id": "opencode-go/hy4-flash-free",
+  "free_condition": "Included in the OpenCode Go subscription",
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "unpublished",
+   "source": "https://opencode.ai/zen/go/v1/models"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-11-21",
+   "note": "first seen in the 2026-11-21 daily free-catalogue check; the Go entry gives release_date 2026-11-16"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none",
+   "note": "Included in the Go subscription; no end date published"
+  },
+  "data_policy": "zero_retention",
+  "status": "listed",
+  "checked": {
+   "date": "2026-11-21",
+   "method": "catalogue"
+  },
+  "volume": {
+   "tier": "bulk",
+   "basis": "included in the OpenCode Go subscription; go.monthly_usage null in the catalogue at the 2026-11-21 read; not load-tested",
+   "source": "https://opencode.ai/docs/console/go/"
+  },
+  "note": "Go entry: cost 0/0, go.zdr true, go.training false, featured, go.monthly_usage null (no monthly allowance listed in the catalogue); release_date 2026-11-16, 1,048,576 context (read 2026-11-21). Go is a subscription (opencode.ai/docs/console/go/)."
+ },
+ {
+  "id": "ling-3.2-flash-or",
+  "model": "ling-3.2-flash",
+  "channel": "OpenRouter",
+  "type": "router",
+  "model_id": "inclusionai/ling-3.2-flash:free",
+  "free_condition": null,
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "official",
+   "per_day": 50,
+   "note": "1000/day once 10+ credits have been bought",
+   "source": "https://openrouter.ai/pricing"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-11-21",
+   "note": "first seen in the 2026-11-21 daily free-catalogue check; the models API created timestamp is 2026-11-13T17:45:58Z"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "not_checked",
+  "status": "listed",
+  "checked": {
+   "date": "2026-11-21",
+   "method": "catalogue"
+  },
+  "volume": {
+   "tier": "taste",
+   "basis": "50 requests a day without credits (stated)"
+  },
+  "note": "OpenRouter entry \"inclusionAI: Ling 3.2 Flash (free)\", canonical slug inclusionai/ling-3.2-flash-20261113, 1,048,576 context, 262,144 max completion, text and image in (up to 200 images per request), expiration_date null; the public models API entry carries no data-policy field (read 2026-11-21). The same id is listed free on Kilo."
+ },
+ {
+  "id": "ling-3.2-flash-kilo",
+  "model": "ling-3.2-flash",
+  "channel": "Kilo Code",
+  "type": "agent_tool",
+  "model_id": "inclusionai/ling-3.2-flash:free",
+  "free_condition": "works without signing in (Kilo Gateway \":free\" model)",
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "unpublished",
+   "source": "https://api.kilo.ai/api/gateway/models"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-11-21",
+   "note": "first seen in the 2026-11-21 daily free-catalogue check; the gateway entry carries created 2026-11-13T17:45:58Z"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none"
+  },
+  "data_policy": "may_train",
+  "status": "listed",
+  "checked": {
+   "date": "2026-11-21",
+   "method": "catalogue"
+  },
+  "note": "Kilo gateway free arm (isFree true, prompt 0 / completion 0, mayTrainOnYourPrompts true, expiration_date null); 1,048,576 context, 262,144 max completion per the gateway entry (read 2026-11-21). The same id is free on OpenRouter."
+ },
+ {
+  "id": "tidepool-alpha-zen",
+  "model": "tidepool-alpha",
+  "channel": "OpenCode Zen",
+  "type": "agent_tool",
+  "model_id": "opencode/tidepool-alpha-free",
+  "free_condition": "Limited time; no end date published",
+  "meter": "per_model",
+  "limits_stated": {
+   "basis": "unpublished",
+   "source": "https://opencode.ai/zen/v1/models"
+  },
+  "limits_observed": null,
+  "started": {
+   "date": "2026-11-21",
+   "note": "first seen in the 2026-11-21 daily free-catalogue check; the Zen entry gives release_date 2026-11-18"
+  },
+  "ends": {
+   "announced": null,
+   "expected": null,
+   "confidence": "none",
+   "note": "Officially described as free for a limited time; no end date published"
+  },
+  "data_policy": "unstated",
+  "status": "listed",
+  "checked": {
+   "date": "2026-11-21",
+   "method": "catalogue"
+  },
+  "volume": {
+   "tier": "daily",
+   "basis": "channel rule: Zen's free allowance is per IP per day; this model not load-tested"
+  },
+  "note": "Zen entry: name \"Tidepool Alpha Free\", 1,048,576 context, 131,072 output, text input only, cost 0/0. OpenCode docs: a stealth model free for a limited time while the team collects feedback and improves it; no maker is named and no data-retention policy is stated (read 2026-11-21)."
  }
 ]
