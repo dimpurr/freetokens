@@ -4287,6 +4287,97 @@
       "seen": "2026-11-01",
       "quote": "MRCR (16K-256K) 80.37",
       "from_image": true
+    },
+    {
+      "model": "particle-1",
+      "benchmark": "gpqa_diamond",
+      "score": 90.4,
+      "variant": "Particle-1 vendor GPQA Diamond; settings not stated; post-trained DeepSeek V4.1 Flash",
+      "source_type": "vendor",
+      "url": "https://particle.ai/blog/introducing-particle-1",
+      "seen": "2026-11-24",
+      "quote": "GPQA Diamond 90.40%"
+    },
+    {
+      "model": "lfm3-1.7b",
+      "benchmark": "terminal_bench_2_1",
+      "score": 12.92,
+      "variant": "Vendor evaluation; BF16; OpenCode agent, up to 100 turns",
+      "source_type": "vendor",
+      "url": "https://huggingface.co/LiquidAI/LFM3-1.7B",
+      "seen": "2026-11-24",
+      "quote": "Terminal-Bench 2.1 (OpenCode) | 12.92"
+    },
+    {
+      "model": "lfm3-1.7b",
+      "benchmark": "swe_bench_verified",
+      "score": 43.4,
+      "variant": "Vendor evaluation; BF16; OpenCode agent, up to 250 turns",
+      "source_type": "vendor",
+      "url": "https://huggingface.co/LiquidAI/LFM3-1.7B",
+      "seen": "2026-11-24",
+      "quote": "SWE-bench Verified (OpenCode) | 43.40"
+    },
+    {
+      "model": "lfm3-1.7b",
+      "benchmark": "gpqa_diamond",
+      "score": 63.37,
+      "variant": "Vendor evaluation; BF16, default reasoning enabled",
+      "source_type": "vendor",
+      "url": "https://huggingface.co/LiquidAI/LFM3-1.7B",
+      "seen": "2026-11-24",
+      "quote": "GPQA Diamond | 63.37"
+    },
+    {
+      "model": "lfm3-1.7b",
+      "benchmark": "hle",
+      "score": 7.17,
+      "variant": "Vendor evaluation; no tools, BF16, default reasoning enabled",
+      "source_type": "vendor",
+      "url": "https://huggingface.co/LiquidAI/LFM3-1.7B",
+      "seen": "2026-11-24",
+      "quote": "Humanity's Last Exam (no tools) | 7.17"
+    },
+    {
+      "model": "ernie-5.5-flash-preview",
+      "benchmark": "hle",
+      "score": 46.4,
+      "variant": "Vendor evaluation; HLE text-only subset, without tools, maximum available reasoning",
+      "source_type": "vendor",
+      "url": "https://huggingface.co/baidu/ERNIE-5.5-Flash-Preview",
+      "seen": "2026-11-24",
+      "quote": "HLE (w/o tools) | 46.4"
+    },
+    {
+      "model": "longcat-2.5",
+      "benchmark": "terminal_bench_2_1",
+      "score": 88.4,
+      "variant": "LongCat vendor model card; Terminal-Bench 2.1, vendor evaluation",
+      "source_type": "vendor",
+      "url": "https://huggingface.co/meituan-longcat/LongCat-2.5",
+      "seen": "2026-11-24",
+      "quote": "Terminal Bench v2.1 | 88.4"
+    },
+    {
+      "model": "hy4-flash",
+      "benchmark": "hle",
+      "score": 55.2,
+      "variant": "Vendor benchmark image; HLE-Full with tools; highest reasoning; not comparable to no-tool HLE",
+      "source_type": "vendor",
+      "url": "https://huggingface.co/tencent/Hy4-flash-FP8/resolve/main/assets/benchmark.png",
+      "seen": "2026-11-24",
+      "quote": "HLE-Full (with tools) | 55.2",
+      "from_image": true
+    },
+    {
+      "model": "qwen2.5-vl-72b",
+      "benchmark": "gpqa_diamond",
+      "score": 42.9,
+      "variant": "OpenRouter independent GPQA Diamond benchmark; default routing; last run 2026-11-20",
+      "source_type": "third_party",
+      "url": "https://openrouter.ai/benchmarks/gpqa-diamond",
+      "seen": "2026-11-24",
+      "quote": "Qwen2.5 VL 72B Instruct | 42.9%"
     }
   ]
 }

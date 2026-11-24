@@ -5480,10 +5480,34 @@
    ]
   },
   "qwen2.5-vl-72b": {
-   "status": "none",
-   "evidence": 0,
-   "independent": 0,
-   "sources": []
+   "status": "ok",
+   "center": 0,
+   "low": 0,
+   "high": 5,
+   "evidence": 1,
+   "independent": 1,
+   "independent_non_aa": 1,
+   "exact": false,
+   "vendor_only": false,
+   "disagree": false,
+   "clipped": true,
+   "method": "fit",
+   "spread": 0,
+   "sources": [
+    {
+     "name": "GPQA Diamond",
+     "benchmark": "gpqa_diamond",
+     "value": 42.9,
+     "url": "https://openrouter.ai/benchmarks/gpqa-diamond",
+     "type": "third_party",
+     "r": 0.614,
+     "n": 68,
+     "used": true,
+     "implied": 0.0,
+     "method": "fit",
+     "clipped": true
+    }
+   ]
   },
   "llama-3.3-70b": {
    "status": "ok",
@@ -6569,10 +6593,70 @@
    "sources": []
   },
   "lfm3-1.7b": {
-   "status": "none",
-   "evidence": 0,
+   "status": "ok",
+   "center": 3,
+   "low": 1,
+   "high": 6,
+   "evidence": 4,
    "independent": 0,
-   "sources": []
+   "independent_non_aa": 0,
+   "exact": false,
+   "vendor_only": true,
+   "disagree": false,
+   "clipped": true,
+   "method": "fit",
+   "spread": 5,
+   "sources": [
+    {
+     "name": "GPQA Diamond",
+     "benchmark": "gpqa_diamond",
+     "value": 63.37,
+     "url": "https://huggingface.co/LiquidAI/LFM3-1.7B",
+     "type": "vendor",
+     "r": 0.66,
+     "n": 23,
+     "used": true,
+     "implied": 4.6,
+     "method": "fit"
+    },
+    {
+     "name": "Humanity's Last Exam",
+     "benchmark": "hle",
+     "value": 7.17,
+     "url": "https://huggingface.co/LiquidAI/LFM3-1.7B",
+     "type": "vendor",
+     "r": 0.737,
+     "n": 46,
+     "used": true,
+     "implied": 3.6,
+     "method": "fit"
+    },
+    {
+     "name": "SWE-bench Verified",
+     "benchmark": "swe_bench_verified",
+     "value": 43.4,
+     "url": "https://huggingface.co/LiquidAI/LFM3-1.7B",
+     "type": "vendor",
+     "r": 0.636,
+     "n": 29,
+     "used": true,
+     "implied": 2.9,
+     "method": "fit"
+    },
+    {
+     "name": "Terminal-Bench 2.1",
+     "benchmark": "terminal_bench_2_1",
+     "value": 12.92,
+     "url": "https://huggingface.co/LiquidAI/LFM3-1.7B",
+     "type": "vendor",
+     "r": 0.877,
+     "n": 25,
+     "used": true,
+     "implied": 0.0,
+     "method": "fit",
+     "clipped": true
+    }
+   ]
   },
   "iceman": {
    "status": "none",
@@ -6617,29 +6701,116 @@
    "sources": []
   },
   "longcat-2.5": {
-   "status": "none",
-   "evidence": 0,
+   "status": "ok",
+   "center": 27,
+   "low": 24,
+   "high": 29,
+   "evidence": 1,
    "independent": 0,
-   "sources": []
+   "independent_non_aa": 0,
+   "exact": false,
+   "vendor_only": true,
+   "disagree": false,
+   "method": "fit",
+   "spread": 0,
+   "sources": [
+    {
+     "name": "Terminal-Bench 2.1",
+     "benchmark": "terminal_bench_2_1",
+     "value": 88.4,
+     "url": "https://huggingface.co/meituan-longcat/LongCat-2.5",
+     "type": "vendor",
+     "r": 0.877,
+     "n": 25,
+     "used": true,
+     "implied": 27.0,
+     "method": "fit"
+    }
+   ]
   },
   "ernie-5.5-flash-preview": {
-   "status": "none",
-   "evidence": 0,
+   "status": "ok",
+   "center": 20,
+   "low": 18,
+   "high": 23,
+   "evidence": 1,
    "independent": 0,
-   "sources": []
-  }
-,
+   "independent_non_aa": 0,
+   "exact": false,
+   "vendor_only": true,
+   "disagree": false,
+   "method": "fit",
+   "spread": 0,
+   "sources": [
+    {
+     "name": "Humanity's Last Exam",
+     "benchmark": "hle",
+     "value": 46.4,
+     "url": "https://huggingface.co/baidu/ERNIE-5.5-Flash-Preview",
+     "type": "vendor",
+     "r": 0.737,
+     "n": 46,
+     "used": true,
+     "implied": 20.5,
+     "method": "fit"
+    }
+   ]
+  },
   "particle-1": {
-   "status": "none",
-   "evidence": 0,
+   "status": "ok",
+   "center": 17,
+   "low": 14,
+   "high": 19,
+   "evidence": 1,
    "independent": 0,
-   "sources": []
+   "independent_non_aa": 0,
+   "exact": false,
+   "vendor_only": true,
+   "disagree": false,
+   "method": "fit",
+   "spread": 0,
+   "sources": [
+    {
+     "name": "GPQA Diamond",
+     "benchmark": "gpqa_diamond",
+     "value": 90.4,
+     "url": "https://particle.ai/blog/introducing-particle-1",
+     "type": "vendor",
+     "r": 0.66,
+     "n": 23,
+     "used": true,
+     "implied": 16.6,
+     "method": "fit"
+    }
+   ]
   },
   "hy4-flash": {
-   "status": "none",
-   "evidence": 0,
+   "status": "ok",
+   "center": 24,
+   "low": 22,
+   "high": 27,
+   "evidence": 1,
    "independent": 0,
-   "sources": []
+   "independent_non_aa": 0,
+   "exact": false,
+   "vendor_only": true,
+   "disagree": false,
+   "method": "fit",
+   "spread": 0,
+   "sources": [
+    {
+     "name": "Humanity's Last Exam",
+     "benchmark": "hle",
+     "value": 55.2,
+     "url": "https://huggingface.co/tencent/Hy4-flash-FP8/resolve/main/assets/benchmark.png",
+     "type": "vendor",
+     "r": 0.737,
+     "n": 46,
+     "used": true,
+     "implied": 24.2,
+     "method": "fit"
+    }
+   ]
   },
   "ling-3.2-flash": {
    "status": "none",
@@ -6652,5 +6823,6 @@
    "evidence": 0,
    "independent": 0,
    "sources": []
-  } }
+  }
+ }
 }
