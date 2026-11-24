@@ -301,6 +301,8 @@ def validate(lanes, events, models):
             errs.append(f"{w}: needs a source url")
         if c.get("source_type") not in ("leaderboard", "third_party", "vendor", "community", "leak"):
             errs.append(f"{w}: source_type {c.get('source_type')!r} is not leaderboard, third_party, vendor, community or leak")
+        if c.get("source_kind") not in ("vendor", "independent", "community", "selftest"):
+            errs.append(f"{w}: source_kind must be vendor, independent, community or selftest")
         if c.get("benchmark", "").startswith("aa_") or re.match(r"https?://([a-z0-9.-]*\.)?artificialanalysis\.ai(/|$)", str(c.get("url", ""))):
             errs.append(f"{w}: Artificial Analysis data does not belong in public claims (ADR-036)")
         if isinstance(c.get("score"), bool) or not isinstance(c.get("score"), (int, float)):

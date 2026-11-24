@@ -61,7 +61,7 @@ def _score(claims, lines, rules, names=None, peer_refs=None, aa=None, force_band
     sources, per = [], {}
     for c in claims:
         bid = c["benchmark"]
-        s = {"name": names.get(bid) or pretty(bid), "benchmark": bid, "value": c["score"], "url": c["url"], "type": c["source_type"]}
+        s = {"name": names.get(bid) or pretty(bid), "benchmark": bid, "value": c["score"], "url": c["url"], "type": c["source_type"], "source_kind": c.get("source_kind", "vendor" if c["source_type"] == "vendor" else "community" if c["source_type"] in ("community", "leak") else "independent")}
         if c.get("_snap"):
             s["snapshot"] = c["_snap"]
         if c.get("mode"):
@@ -120,12 +120,12 @@ def _score(claims, lines, rules, names=None, peer_refs=None, aa=None, force_band
     for bid, ss in per.items():
         w = sum(x["weight"] for x in ss)
         items.append({"bid": bid, "implied": sum(x["implied"] * x["weight"] for x in ss) / w, "weight": max(x["weight"] for x in ss),
-                      "independent": any(x["type"] != "vendor" for x in ss), "clipped": any(x.get("clipped") for x in ss), "method": "peer" if any(x["method"] == "peer" for x in ss) else "fit"})
+                      "independent": any(x["source_kind"] == "independent" for x in ss), "clipped": any(x.get("clipped") for x in ss), "method": "peer" if any(x["method"] == "peer" for x in ss) else "fit"})
     has_aa = bool(aa and aa.get("value") is not None)
 
     def add_aa():
         items.append({"bid": "artificial_analysis", "implied": aa["value"], "weight": W["aa"], "independent": True, "clipped": False, "method": "aa"})
-        sources.append({"name": "Artificial Analysis", "benchmark": "artificial_analysis", "url": aa["url"], "type": "third_party", "used": True, "method": "aa"})
+        sources.append({"name": "Artificial Analysis", "benchmark": "artificial_analysis", "url": aa["url"], "type": "third_party", "source_kind": "independent", "used": True, "method": "aa"})
 
     def spread_of(its):
         return max(i["implied"] for i in its) - min(i["implied"] for i in its) if its else 0.0
@@ -168,7 +168,7 @@ def snap_of(c, snapshots):
 
 
 def score_model(claims, lines, rules, names=None, peer_refs=None, aa=None, snapshots=None):
-    """ADR-037: with `snapshots` only the current (last) snapshot's evidence is scored; undated, untagged rows count as current.
+    """ADR-037: with `snapshots`, same-name independent, community and self-test results stay eligible; dated vendor claims retain their snapshot.
     No current evidence (and no AA): fall back to the older evidence and show a band (`stale_snapshot`).
     With two or more snapshots the entry also carries `history`: the score of each snapshot from its own evidence (the trend chart
     applies each from its date); a snapshot without evidence of its own carries the neighbouring score."""
@@ -176,8 +176,9 @@ def score_model(claims, lines, rules, names=None, peer_refs=None, aa=None, snaps
         return _score(claims, lines, rules, names, peer_refs, aa)
     cur = snapshots[-1]["id"]
     tagged = [dict(c, _snap=snap_of(c, snapshots)) for c in claims]
-    now = [c for c in tagged if c["_snap"] in (cur, None)]
-    old = [c for c in tagged if c["_snap"] not in (cur, None)]
+    # Same public name: independent/community/self-test observations remain eligible across snapshots.
+    now = [c for c in tagged if c["_snap"] in (cur, None) or c.get("source_kind") in ("independent", "community", "selftest")]
+    old = [c for c in tagged if c not in now]
     e = _score(now, lines, rules, names, peer_refs, aa)
     if e["status"] == "none" and old:
         e = _score(old + now, lines, rules, names, peer_refs, aa, force_band=True)
