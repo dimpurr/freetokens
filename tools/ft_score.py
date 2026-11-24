@@ -146,7 +146,7 @@ def _score(claims, lines, rules, names=None, peer_refs=None, aa=None, force_band
     clipped = any(i["clipped"] for i in items)
     disagree = spread > rules["max_spread"]
     exact = len(items) >= rules["min_evidence"] and indep_non_aa >= 1 and not disagree and not clipped and not force_band
-    vendor_only = indep == 0 and all(i["method"] == "fit" for i in items)
+    vendor_only = bool(items) and all(s.get("source_kind") == "vendor" for s in sources if s["used"])
     low = max(0, round(center - rules["band_width"] / 2))  # a band never starts below 0
     c = int(round(center))
     return {"status": "ok", "center": c, "low": c if exact else low, "high": c if exact else low + rules["band_width"],
